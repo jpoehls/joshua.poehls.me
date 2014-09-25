@@ -21,4 +21,4 @@ Here goes nothing!
 </tr>
 </table>
 
-[^1]: I.e. this is my plan to take control of my public content. I'll still share on Facebook and Twitter, but I want to own the canonical version.
+[^1]: This is my plan to take control of my public content. I'll still share on Facebook and Twitter, but I want to own the canonical version.
