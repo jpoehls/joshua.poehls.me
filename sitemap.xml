@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://joshua.poehls.me/</loc>
+    <lastmod>2014-09-24T15:12:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2014/09/link-post</loc>
+    <lastmod>2014-09-24T15:12:39-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2014/09/first-post</loc>
+    <lastmod>2014-09-24T14:34:27-05:00</lastmod>
+  </url>
+  
+</urlset>
