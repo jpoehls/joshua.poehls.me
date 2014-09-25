@@ -1,0 +1,9 @@
+{{partial "header.html" .}}
+
+<section id="posts">
+{{range first 10 .Data.Pages}}
+{{partial "li.html" .}}
+{{end}}
+</section>
+
+{{partial "footer.html" .}}

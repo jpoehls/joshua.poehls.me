@@ -1,0 +1,23 @@
+<article class="post">
+    <header>
+        <h2>
+            {{if .Params.linkurl}}
+            <a href="{{.Params.linkurl}}">{{.Title}}</a> &#10230;
+            {{else}}
+            <a href="{{.RelPermalink}}">{{.Title}}</a>
+            {{end}}
+        </h2>
+        <p>
+            <time datetime="{{.Date}}" pubdate="pubdate">{{.Date.Format "Mon, Jan 2, 2006"}}</time>
+            &#8226;
+            <a class="permalink" title="Permalink" href="{{.RelPermalink}}">
+                <span class="noprint">&#8734;</span>
+                <span class="printonly">{{.Permalink}}</span>
+            </a>
+        </p>
+    </header>
+
+    {{.Content}}
+</article>
+
+<div class="fin">&#10687;</div>

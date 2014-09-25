@@ -1,0 +1,14 @@
+baseurl = "http://joshua.poehls.me"
+languageCode = "en-us"
+title = "joshua poehls | silent thought"
+copyright = "Copyright (c) 2014, Joshua Poehls; all rights reserved."
+metadataFormat = "yaml"
+
+[permalinks]
+	post = "/:year/:month/:slug"
+
+[author]
+	name = "Joshua Poehls"
+
+[indexes]
+	tag = "tags"
