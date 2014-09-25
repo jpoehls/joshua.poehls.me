@@ -9,7 +9,7 @@ tags:
 Welcome to my new blog! All of my blogging in the past has been in the form of longer articles, mostly technology related, and mostly trying to teach a tip or trick.
 
 I'm taking a different approach this time. I'll be posting more random thoughts.
-Sharing articles I find interesting. Overall I expect this to feel more like reading my Facebook wall and that's what I'm going for.
+Sharing articles I find interesting. Overall I expect this to feel more like reading my Facebook wall and that's what I'm going for. [^1]
 
 Here goes nothing!
 
@@ -20,3 +20,5 @@ Here goes nothing!
 <td style="text-align: right; direction: rtl;">שלום עולם</td>
 </tr>
 </table>
+
+[^1]: I.e. this is my plan to take control of my public content. I'll still share on Facebook and Twitter, but I want to own the canonical version.
