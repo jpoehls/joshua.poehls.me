@@ -7,33 +7,28 @@
     <language>en-us</language>
     <author>Joshua Poehls</author>
     <copyright>Copyright (c) 2014, Joshua Poehls; all rights reserved.</copyright>
-    <updated>Wed, 24 Sep 2014 15:12:39 CDT</updated>
+    <updated>Thu, 25 Sep 2014 09:58:59 CDT</updated>
     
     <item>
-      <title>link post</title>
-      <link>http://joshua.poehls.me/2014/09/link-post</link>
-      <pubDate>Wed, 24 Sep 2014 15:12:39 CDT</pubDate>
+      <title>Hello World</title>
+      <link>http://joshua.poehls.me/2014/09/hello-world</link>
+      <pubDate>Thu, 25 Sep 2014 09:58:59 CDT</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/09/link-post</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;some quote from the linked page&lt;/p&gt;
-&lt;/blockquote&gt;
+      <guid>http://joshua.poehls.me/2014/09/hello-world</guid>
+      <description>&lt;p&gt;Welcome to my new blog! All of my blogging in the past has been in the form of longer articles, mostly technology related, and mostly trying to teach a tip or trick.&lt;/p&gt;
 
-&lt;p&gt;&lt;cite&gt;bam-o-ramma&lt;/cite&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>First post</title>
-      <link>http://joshua.poehls.me/2014/09/first-post</link>
-      <pubDate>Wed, 24 Sep 2014 14:34:27 CDT</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/09/first-post</guid>
-      <description>
+&lt;p&gt;I&amp;rsquo;m taking a different approach this time. I&amp;rsquo;ll be posting more random thoughts.
+Sharing articles I find interesting. Overall I expect this to feel more like reading my Facebook wall and that&amp;rsquo;s what I&amp;rsquo;m going for.&lt;/p&gt;
 
-&lt;h2 id=&#34;toc_0&#34;&gt;Heading 2&lt;/h2&gt;
+&lt;p&gt;Here goes nothing!&lt;/p&gt;
 
-&lt;p&gt;Woot, my first post! For real.&lt;/p&gt;
+&lt;table border=&#34;0&#34; width=&#34;100%&#34; style=&#34;font-size: 1.5em&#34;&gt;
+&lt;tr&gt;
+&lt;td&gt;Hello World!&lt;/td&gt;
+&lt;td style=&#34;text-align: center;&#34;&gt;Hallo Welt!&lt;/td&gt;
+&lt;td style=&#34;text-align: right; direction: rtl;&#34;&gt;שלום עולם&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
 </description>
     </item>
     
