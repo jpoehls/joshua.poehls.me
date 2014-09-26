@@ -125,6 +125,26 @@ section#posts {
 	margin: 0 auto;
 }
 
+article.post figure {
+	text-align: center;
+}
+
+article.post figure figcaption {
+	font-size: .7em;
+	font-family: sans-serif;
+	font-weight: 300;
+	color: #888;
+}
+
+article.post figure figcaption p {
+	margin-top: 0;
+}
+
+article.post figure a {
+	text-decoration: none;
+	border: 0;
+}
+
 article.post header h1 {
 	margin-bottom: 0;
 	padding: 0;
