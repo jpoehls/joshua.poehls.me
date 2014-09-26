@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>joshua poehls | silent thought</title>
-    <link>http://localhost:1313/tags/grammar/index.xml/</link>
+    <link>http://joshua.poehls.me/tags/grammar/index.xml/</link>
     <language>en-us</language>
     <author>Joshua Poehls</author>
     <copyright>Copyright (c) 2014 Joshua Poehls. All rights reserved.</copyright>
@@ -10,10 +10,10 @@
     
     <item>
       <title>Starting Sentences With I.E. or E.G.</title>
-      <link>http://localhost:1313/2014/09/ie-eg-sentences</link>
+      <link>http://joshua.poehls.me/2014/09/ie-eg-sentences</link>
       <pubDate>Thu, 25 Sep 2014 13:48:49 CDT</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://localhost:1313/2014/09/ie-eg-sentences</guid>
+      <guid>http://joshua.poehls.me/2014/09/ie-eg-sentences</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;A parenthetical statement that is a complete sentence should begin with a capital.&lt;/p&gt;
 &lt;/blockquote&gt;
