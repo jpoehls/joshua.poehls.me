@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>joshua poehls | silent thought</title>
-    <link>http://joshua.poehls.me/tags/meta/index.xml/</link>
+    <link>http://localhost:1313/tags/meta/index.xml/</link>
     <language>en-us</language>
     <author>Joshua Poehls</author>
     <copyright>Copyright (c) 2014 Joshua Poehls. All rights reserved.</copyright>
@@ -10,10 +10,10 @@
     
     <item>
       <title>Hello World</title>
-      <link>http://joshua.poehls.me/2014/09/hello-world</link>
+      <link>http://localhost:1313/2014/09/hello-world</link>
       <pubDate>Thu, 25 Sep 2014 09:58:59 CDT</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/09/hello-world</guid>
+      <guid>http://localhost:1313/2014/09/hello-world</guid>
       <description>&lt;p&gt;Welcome to my new blog! All of my blogging in the past has been in the form of longer articles, mostly technology related, and mostly trying to teach a tip or trick.&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;m taking a different approach this time. I&amp;rsquo;ll be posting more random thoughts.
