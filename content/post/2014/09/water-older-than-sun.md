@@ -10,7 +10,7 @@ tags:
 
 > Astronomers have discovered that much of the water on Earth&mdash;and the solar system&mdash;predates the Sun.
 
-This isn't really surprising, right? I mean, it lines right up with the Genesis creation. Still, thinking about things like this blow my mind.
+This isn't really surprising, right? I mean, it lines right up with the Genesis creation. Still, thinking about things like this blows my mind.
 
 > <sup>1</sup> In the beginning God created the heaven and the earth.
 > <sup>2</sup> And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters.

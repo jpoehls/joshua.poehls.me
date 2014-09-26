@@ -63,6 +63,16 @@ a, a:active, a:visited {
 	border-bottom: none;
 }
 
+.footnotes {
+	font-size: .8em;
+	border-top: 1px dotted #888;
+	margin-top: 1em;
+}
+
+.footnotes hr {
+	display: none;
+}
+
 .footnote-return {
 	border-bottom: none;
 }
