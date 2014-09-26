@@ -3,7 +3,6 @@ languageCode = "en-us"
 title = "joshua poehls | silent thought"
 copyright = "Copyright (c) 2014 Joshua Poehls. All rights reserved."
 metadataFormat = "yaml"
-disableRSS = true
 
 [permalinks]
 	post = "/:year/:month/:slug"
