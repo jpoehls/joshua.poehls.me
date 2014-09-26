@@ -1,17 +1,17 @@
 <article class="post">
     <header>
-        <h2>
+        <h1>
             {{if .Params.linkurl}}
-            <a href="{{.Params.linkurl}}">{{.Title}}</a> &#10230;
+            <a href="{{.Params.linkurl}}">{{.Title}}</a> <span class="subtle symbol">&#10230;</span>
             {{else}}
             <a href="{{.RelPermalink}}">{{.Title}}</a>
             {{end}}
-        </h2>
+        </h1>
         <p>
             <time datetime="{{.Date}}" pubdate="pubdate">{{.Date.Format "Mon, Jan 2, 2006"}}</time>
-            &#8226;
+            <span class="symbol">&#8226;</span>
             <a class="permalink" title="Permalink" href="{{.RelPermalink}}">
-                <span class="noprint">&#8734;</span>
+                <span class="noprint symbol">&#8734;</span>
                 <span class="printonly">{{.Permalink}}</span>
             </a>
         </p>

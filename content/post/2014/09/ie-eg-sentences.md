@@ -1,21 +1,24 @@
 ---
 date: 2014-09-25T13:48:49-05:00
-title: Starting sentences with i.e. or e.g.
+title: Starting Sentences with i.e. or e.g.
 slug: ie-eg-sentences
 linkurl: http://english.stackexchange.com/a/37204
+tags:
+- english
+- grammar
 ---
 
 > A parenthetical statement that is a complete sentence should begin with a capital.
 
-I debate this everytime I use i.e. or e.g. in my writing. Now I know!
+I used to debate this everytime I'd use i.e. or e.g. in my writing. Not anymore!
 
 Right way:
 
 > E.g., this is a proper example.
-
+>
 > I.e., something like this is correct.
 
-Wrong way:[^1]
+Wrong way: [^1]
 
 > e.g., This is a bad example.
 

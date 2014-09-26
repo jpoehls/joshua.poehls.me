@@ -1,0 +1,5 @@
+{{if .Get "url"}}
+<cite>&mdash;<a href="{{.Get "url"}}">{{.Get "text"}}</a></cite>
+{{else}}
+<cite>&mdash;{{.Get "text"}}</cite>
+{{end}}
