@@ -159,6 +159,30 @@ article.post header p {
 	font-size: 1.2em;
 }
 
+.share {
+	overflow: hidden;
+	opacity: 0.70;
+}
+
+.share a {
+	border: 0;
+}
+
+.share:hover {
+	opacity: 1;
+}
+
+.share-btn {
+	display: inline-block;
+	float: left;
+	margin: 0;
+	width: 100px;
+}
+
+.share-btn .fb-like>span {
+	vertical-align: top !important;
+}
+
 @media print {
 	.noprint { display: none; }
 	.printonly { display: inline; }
