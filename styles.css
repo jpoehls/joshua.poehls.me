@@ -159,18 +159,28 @@ article.post header p {
 	font-size: 1.2em;
 }
 
-/* 500px layout for smaller screens */
-@media (max-width: 680px) {
-	section#posts { width: 500px; }
-	header#masthead h1 { width: 500px; }
-	footer { width: 500px; }
+.share {
+	overflow: hidden;
+	opacity: 0.70;
 }
 
-/* 500px layout for smaller screens */
-@media (max-width: 520px) {
-	section#posts { width: 300px; }
-	header#masthead h1 { width: 300px; }
-	footer { width: 300px; }
+.share a {
+	border: 0;
+}
+
+.share:hover {
+	opacity: 1;
+}
+
+.share-btn {
+	display: inline-block;
+	float: left;
+	margin: 0;
+	width: 100px;
+}
+
+.share-btn .fb-like>span {
+	vertical-align: top !important;
 }
 
 @media print {
