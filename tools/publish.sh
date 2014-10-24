@@ -6,7 +6,7 @@
 hugo
 
 # Switch to the gh-pages branch
-git checkout -f gh-pages
+git checkout gh-pages
 
 # Delete all existing files
 rm -rf *
