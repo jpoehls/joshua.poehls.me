@@ -1,8 +1,5 @@
 #!/bin/sh
 
-set -e
-set -o pipefail
-
 # Make sure we are on master
 # git checkout -f master
 
@@ -12,10 +9,10 @@ hugo
 git checkout gh-pages
 
 # Delete all existing files
-git ls-files -z | xargs rm
+rm -rf *
 
 # Copy the new files from the temp folder
-cp -rf public/ .
+cp -Rf public/ .
 rm -rf public
 
 # Commit the changes
@@ -23,5 +20,5 @@ git add -A
 git commit -m "Updated site"
 
 # Move back to the master branch
-git checkout master
+git checkout -f master
 git clean -fd
