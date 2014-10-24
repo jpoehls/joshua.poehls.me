@@ -9,10 +9,10 @@ hugo
 git checkout gh-pages
 
 # Delete all existing files
-rm -rf *
+git ls-files -z | xargs rm
 
 # Copy the new files from the temp folder
-cp -Rf public/ .
+cp -rf public/ .
 rm -rf public
 
 # Commit the changes
@@ -20,5 +20,5 @@ git add -A
 git commit -m "Updated site"
 
 # Move back to the master branch
-git checkout -f master
+git checkout master
 git clean -fd
