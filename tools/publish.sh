@@ -1,5 +1,8 @@
 #!/bin/sh
 
+set -e
+set -o pipefail
+
 # Make sure we are on master
 # git checkout -f master
 
