@@ -42,12 +42,7 @@ if err != nil {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Hopefully a trip to the future would reveal a few more features:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Creating and editing entries&lt;/li&gt;
-&lt;li&gt;Photo support&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;I&amp;rsquo;d like to add support for creating and editing entries in the future. Contributions welcome, just hit me up!&lt;/p&gt;
 </description>
     </item>
     
