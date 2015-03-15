@@ -35,7 +35,4 @@ if err != nil {
 }
 ```
 
-Hopefully a trip to the future would reveal a few more features:
-
-- Creating and editing entries
-- Photo support
+I'd like to add support for creating and editing entries in the future. Contributions welcome, just hit me up!
