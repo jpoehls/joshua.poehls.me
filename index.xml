@@ -24,7 +24,7 @@
 
 &lt;p&gt;It&amp;rsquo;s as easy as:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;import &amp;quot;joshua.poehls.me/dayone.v1&amp;quot;
+&lt;pre&gt;&lt;code&gt;import &amp;quot;github.com/jpoehls/go-dayone&amp;quot;
 
 j := dayone.NewJournal(&amp;quot;/Users/{me}/Dropbox/Apps/Day One/Journal.dayone&amp;quot;)
 
