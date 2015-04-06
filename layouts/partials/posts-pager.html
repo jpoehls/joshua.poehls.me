@@ -1,0 +1,13 @@
+<nav class="pagination">
+{{if .HasNext}}
+	<a href="{{.Next.Url}}" aria-label="Older Posts"><span aria-hidden="true">&laquo; Older Posts</span></a>
+{{end}}
+{{if .HasNext}}
+	{{if .HasPrev}}
+		&nbsp;&nbsp;
+	{{end}}
+{{end}}
+{{if .HasPrev}}
+	<a href="{{.Prev.Url}}" aria-label="Newer Posts"><span aria-hidden="true">Newer Posts &raquo;</span></a>
+{{end}}
+</nav>

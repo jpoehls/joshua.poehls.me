@@ -1,9 +1,13 @@
 {{partial "header.html" .}}
 
+{{$pag := .Paginator}}
+
 <section id="posts">
-{{range first 10 .Data.Pages}}
+{{range $pag.Pages}}
 {{partial "li.html" .}}
 {{end}}
 </section>
+
+{{partial "posts-pager.html" $pag}}
 
 {{partial "footer.html" .}}
