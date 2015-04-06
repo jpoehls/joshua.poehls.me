@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>joshua poehls | silent thought</title>
-    <link>http://joshua.poehls.me/tags/meta/index.xml/</link>
+    <link>http://joshua.poehls.me/tags/meta/</link>
     <language>en-us</language>
     <author>Joshua Poehls</author>
-    <copyright>Copyright (c) 2014 Joshua Poehls. All rights reserved.</copyright>
+    <copyright>Copyright (c) 2014-2015 Joshua Poehls. All rights reserved.</copyright>
     <updated>Thu, 25 Sep 2014 09:58:59 CDT</updated>
     
     <item>
@@ -17,7 +17,7 @@
       <description>&lt;p&gt;Welcome to my new blog! All of my blogging in the past has been in the form of longer articles, mostly technology related, and mostly trying to teach a tip or trick.&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;m taking a different approach this time. I&amp;rsquo;ll be posting more random thoughts.
-Sharing articles I find interesting. Overall I expect this to feel more like reading my Facebook wall and that&amp;rsquo;s what I&amp;rsquo;m going for. &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+Sharing articles I find interesting. Overall I expect this to feel more like reading my Facebook wall and that&amp;rsquo;s what I&amp;rsquo;m going for. &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:aa77bbfd89a7b0ff10def205b9c08d51:1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:aa77bbfd89a7b0ff10def205b9c08d51:1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
 &lt;p&gt;Here goes nothing!&lt;/p&gt;
 
@@ -33,8 +33,8 @@ Sharing articles I find interesting. Overall I expect this to feel more like rea
 &lt;hr /&gt;
 
 &lt;ol&gt;
-&lt;li id=&#34;fn:1&#34;&gt;This is my plan to take control of my public content. I&amp;rsquo;ll still share on Facebook and Twitter, but I want to own the canonical version.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:aa77bbfd89a7b0ff10def205b9c08d51:1&#34;&gt;This is my plan to take control of my public content. I&amp;rsquo;ll still share on Facebook and Twitter, but I want to own the canonical version.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:aa77bbfd89a7b0ff10def205b9c08d51:1&#34;&gt;&lt;sup&gt;[return]&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>

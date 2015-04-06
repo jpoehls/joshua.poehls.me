@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>joshua poehls | silent thought</title>
-    <link>http://joshua.poehls.me/tags/sound/index.xml/</link>
+    <link>http://joshua.poehls.me/tags/sound/</link>
     <language>en-us</language>
     <author>Joshua Poehls</author>
-    <copyright>Copyright (c) 2014 Joshua Poehls. All rights reserved.</copyright>
+    <copyright>Copyright (c) 2014-2015 Joshua Poehls. All rights reserved.</copyright>
     <updated>Thu, 02 Oct 2014 14:03:07 CDT</updated>
     
     <item>
@@ -14,9 +14,9 @@
       <pubDate>Thu, 02 Oct 2014 14:03:07 CDT</pubDate>
       <author>Joshua Poehls</author>
       <guid>http://joshua.poehls.me/2014/10/worlds-loudest-sound</guid>
-      <description>&lt;figure &gt;
+      <description>&lt;p&gt;&lt;figure &gt;
 
-&lt;img src=&#34;/2014/10/worlds-loudest-sound/krakatoa.jpg&#34; alt=&#34;Krakatoa&#34; /&gt;
+&lt;img src=&#34;http://joshua.poehls.me/2014/10/worlds-loudest-sound/krakatoa.jpg&#34; alt=&#34;Krakatoa&#34; /&gt;
 
 
 &lt;figcaption&gt;
@@ -28,7 +28,7 @@ Krakatoa
 &lt;/p&gt; 
 &lt;/figcaption&gt;
 
-&lt;/figure&gt;
+&lt;/figure&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;The sound made by the Krakatoa volcanic eruption in 1883 was so loud it ruptured eardrums of people 40 miles away, travelled around the world four times, and &lt;a href=&#34;http://nautil.us/blog/the-sound-so-loud-that-it-circled-the-earth-four-times&#34;&gt;was clearly heard 3,000 miles away&lt;/a&gt;.&lt;/p&gt;
