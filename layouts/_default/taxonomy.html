@@ -4,12 +4,18 @@
 
 <div class="container">
 
-	<h1 class="taxonomy-title">Posts tagged <span class="term">#{{ .Title | lower }}</span>
-	<span class="desc"><a href="{{ .Data.baseurl }}/{{ .Data.Plural }}">other {{ .Data.Plural }}</a></span></h1>
+	<h1 class="taxonomy-title">
+		{{if eq .Data.Plural "tags"}}
+			Posts tagged <span class="term">#{{ .Title | lower }}</span>
+		{{else}}
+			Posts in series <span class="term">{{ .Title | lower }}</span>
+		{{end}}
+		<span class="desc"><a href="{{ .Data.baseurl }}/{{ .Data.Plural }}">other {{ .Data.Plural }}</a></span>
+	</h1>
 
 	<section id="posts">
 	{{range $pag.Pages}}
-	{{partial "li.html" .}}
+		{{partial "li.html" .}}
 	{{end}}
 	</section>
 

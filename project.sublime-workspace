@@ -1,0 +1,1159 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"no",
+				"nowrap"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"print",
+				"println!	println! …"
+			],
+			[
+				"us",
+				"UseBrowserLink"
+			],
+			[
+				"Config",
+				"Configuration	IConfiguration { get; set; }"
+			],
+			[
+				"al",
+				"AlbumYear	string ν"
+			],
+			[
+				"log",
+				"Log	 ƒ"
+			],
+			[
+				"wind",
+				"WindSpeedKPH	float64 ν"
+			],
+			[
+				"fa",
+				"Fatal	 ƒ"
+			],
+			[
+				"new",
+				"NewJournal	*Journal ƒ"
+			],
+			[
+				"uu",
+				"UUID	string ƒ"
+			],
+			[
+				"u",
+				"UUID	string ƒ"
+			],
+			[
+				"wi",
+				"WindSpeedKPH	uint64 ν"
+			],
+			[
+				"wnd",
+				"WindChillCelsius	int ν"
+			],
+			[
+				"We",
+				"Weather	*Weather ν"
+			],
+			[
+				"rf",
+				"RFC3339	 Ɩ"
+			],
+			[
+				"bu",
+				"NewBuffer	*bytes.Buffer ƒ"
+			],
+			[
+				"trim",
+				"TrimSpace	string ƒ"
+			],
+			[
+				"st",
+				"StepCount	int ν"
+			],
+			[
+				"rea",
+				"Read	error ƒ"
+			],
+			[
+				"fata",
+				"Fatal	 ƒ"
+			],
+			[
+				"ope",
+				"OpenFile	file *os.File, err error ƒ"
+			],
+			[
+				"ne",
+				"NewJournal	*Journal ƒ"
+			],
+			[
+				"fatal",
+				"Fatalf	 ƒ"
+			],
+			[
+				"exec",
+				"ExecuteTemplate	error ƒ"
+			],
+			[
+				"trims",
+				"TrimSuffix	string ƒ"
+			],
+			[
+				"ch",
+				"chanStdout	chan string ν"
+			],
+			[
+				"error",
+				"StatusInternalServerError	 Ɩ"
+			],
+			[
+				"notallo",
+				"StatusMethodNotAllowed	 Ɩ"
+			],
+			[
+				"Response",
+				"ResponseWriter	interface ¡"
+			],
+			[
+				"hand",
+				"Handle	 ƒ"
+			],
+			[
+				"ha",
+				"Handle	 ƒ"
+			],
+			[
+				"pr",
+				"Println	n int, err error ƒ"
+			],
+			[
+				"pro",
+				"Process	*os.Process ν"
+			],
+			[
+				"SP",
+				"Sprintf	string ƒ"
+			],
+			[
+				"Resp",
+				"ResponseWriter	interface ¡"
+			],
+			[
+				"tf",
+				"tfMarkdown	 Ɩ"
+			],
+			[
+				"newbu",
+				"NewBufferString	*bytes.Buffer ƒ"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"createpos",
+				"createPostVM	struct ʈ"
+			],
+			[
+				"rend",
+				"HtmlRenderer	blackfriday.Renderer ƒ"
+			],
+			[
+				"type",
+				"type	Type"
+			],
+			[
+				"regi",
+				"regionVM	struct ʈ"
+			],
+			[
+				"mark",
+				"MarkdownCommon	[]byte ƒ"
+			],
+			[
+				"form",
+				"FormatInt	string ƒ"
+			],
+			[
+				"get",
+				"getAllTopics	list []*topic, err error ƒ"
+			],
+			[
+				"lo",
+				"Location	*time.Location ƒ"
+			],
+			[
+				"topiclistvm",
+				"topicListItemVM	struct ʈ"
+			],
+			[
+				"buf",
+				"Buffer	struct ʈ"
+			],
+			[
+				"buff",
+				"NewBuffer	*bytes.Buffer ƒ"
+			],
+			[
+				"create",
+				"CreateBucketIfNotExists	*bolt.Bucket, error ƒ"
+			],
+			[
+				"env",
+				"Getenv	string ƒ"
+			],
+			[
+				"html",
+				"HTML	string ʈ"
+			],
+			[
+				"Html",
+				"htmlViewEngine	struct ʈ"
+			],
+			[
+				"Viewe",
+				"ViewEngine2	interface ¡"
+			],
+			[
+				"View",
+				"ViewEngine2	interface ¡"
+			],
+			[
+				"res",
+				"Resolve	map[string]*parse.Tree, error ƒ"
+			],
+			[
+				"Resolv",
+				"TemplateResolver	interface ¡"
+			],
+			[
+				"resolve",
+				"resolveTemplate	map[string]*parse.Tree, error ƒ"
+			],
+			[
+				"resolvete",
+				"resolveTemplate	map[string]*parse.Tree, error ƒ"
+			],
+			[
+				"resolvetempl",
+				"resolveTemplateName	string ƒ"
+			],
+			[
+				"resolvefile",
+				"resolveFileTemplateName	string ƒ"
+			],
+			[
+				"reso",
+				"resolveFileTemplate	map[string]*parse.Tree, error ƒ"
+			],
+			[
+				"li",
+				"List	*parse.ListNode ν"
+			],
+			[
+				"ex",
+				"ExecuteTemplate	error ƒ"
+			],
+			[
+				"par",
+				"ParseName	string ν"
+			],
+			[
+				"acoun",
+				"accountID	sql.Result ν"
+			],
+			[
+				"confi",
+				"emailConfirmationCode	string ν"
+			],
+			[
+				"pas",
+				"password	string ν"
+			],
+			[
+				"spl",
+				"SplitN	[]string ƒ"
+			],
+			[
+				"ma",
+				"Match	bool ƒ"
+			],
+			[
+				"con",
+				"EmailConfirmationCode	string ƒ"
+			],
+			[
+				"send",
+				"sendConfirmationMessage	error ƒ"
+			],
+			[
+				"exe",
+				"ExecuteTemplate	error ƒ"
+			],
+			[
+				"add",
+				"AddTo	error ƒ"
+			],
+			[
+				"Homeview",
+				"HomeViewModel	struct ʈ"
+			],
+			[
+				"red",
+				"Render	interface ¡"
+			],
+			[
+				"sess",
+				"Session	interface ¡"
+			],
+			[
+				"ses",
+				"Session	interface ¡"
+			],
+			[
+				"couchu",
+				"couchUrlPost	 ν"
+			],
+			[
+				"couch",
+				"couchUrlHost	 ν"
+			],
+			[
+				"Emailconfi",
+				"emailConfirmationCode	string ν"
+			],
+			[
+				"email",
+				"EmailConfirmed	bool ν"
+			],
+			[
+				"em",
+				"Email	string ƒ"
+			],
+			[
+				"map",
+				"MapTo	inject.TypeMapper ƒ"
+			],
+			[
+				"config",
+				"configFile	string ν"
+			],
+			[
+				"glob",
+				"GlobalString	string ƒ"
+			],
+			[
+				"comm",
+				"Commands	[]cli.Command ν"
+			],
+			[
+				"pid",
+				"Getpid	int ƒ"
+			],
+			[
+				"third",
+				"thirdPartySrc	string ν"
+			],
+			[
+				"remo",
+				"RemoveAll	error ƒ"
+			],
+			[
+				"src",
+				"buildSrcDir	string ν"
+			],
+			[
+				"build",
+				"buildSrcPath	string ƒ"
+			],
+			[
+				"wr",
+				"ResponseWriter	http.ResponseWriter ν"
+			],
+			[
+				"Pasr",
+				"ParseFiles	*ViewEngine, error ƒ"
+			],
+			[
+				"Parse",
+				"Parse	*template.Template, error ƒ"
+			],
+			[
+				"newd",
+				"NewDatabaseByURL	couch.Database, error ƒ"
+			],
+			[
+				"p",
+				"Printf	n int, err error ƒ"
+			],
+			[
+				"handl",
+				"Handler	interface ¡"
+			],
+			[
+				"text-",
+				"text-indent"
+			],
+			[
+				"std",
+				"Stdout	*os.File ν"
+			],
+			[
+				"set",
+				"SetOutput	 ƒ"
+			],
+			[
+				"jsesca",
+				"JSEscapeString	string ƒ"
+			],
+			[
+				"js",
+				"JSEscapeString	string ƒ"
+			],
+			[
+				"htmle",
+				"HTMLEscapeString	string ƒ"
+			],
+			[
+				"emailcon",
+				"EmailConfirmationCode	string ν"
+			],
+			[
+				"pass",
+				"PasswordMatches	bool ƒ"
+			],
+			[
+				"Rol",
+				"RoleAdmin	 Ɩ"
+			],
+			[
+				"sk",
+				"Skip	 ƒ"
+			],
+			[
+				"Error",
+				"ErrConfirmationCodeNotFound	error ν"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 163.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"upper",
+				"Convert Case: Upper Case"
+			],
+			[
+				"guid",
+				"Generate UUID v4"
+			],
+			[
+				"attach",
+				"Evernote: Attach current file to a note"
+			],
+			[
+				"evernote",
+				"Evernote: List recent notes"
+			],
+			[
+				"upda",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"comme",
+				"Toggle Comment"
+			],
+			[
+				"commen",
+				"Toggle Comment"
+			],
+			[
+				"comment",
+				"Toggle Comment"
+			],
+			[
+				"refresh",
+				"Project: Refresh Folders"
+			],
+			[
+				"refres",
+				"Project: Refresh Folders"
+			],
+			[
+				"refre",
+				"Project: Refresh Folders"
+			],
+			[
+				"reres",
+				"Project: Refresh Folders"
+			],
+			[
+				"packag",
+				"GoSublime: Add/Remove package"
+			],
+			[
+				"ref",
+				"Project: Refresh Folders"
+			],
+			[
+				"comm",
+				"Toggle Comment"
+			],
+			[
+				"sublime usa",
+				"GoSublime: Usage & Tips"
+			],
+			[
+				"subl read",
+				"GoSublime: Read Me"
+			],
+			[
+				"preview",
+				"Markdown Preview: Python Markdown: Preview in Browser"
+			],
+			[
+				"previe",
+				"Markdown Preview: Python Markdown: Preview in Browser"
+			],
+			[
+				"prev",
+				"Markdown Preview: Python Markdown: Preview in Browser"
+			],
+			[
+				"tog",
+				"Toggle Comment"
+			],
+			[
+				"omm",
+				"Toggle Comment"
+			],
+			[
+				"prett",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"uuid",
+				"Generate UUID v4"
+			],
+			[
+				"package in",
+				"Package Control: Install Package"
+			],
+			[
+				"json",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"package con",
+				"Package Control: Discover Packages"
+			],
+			[
+				"pack",
+				"GoSublime: Add/Remove package"
+			],
+			[
+				"packa",
+				"GoSublime: Add/Remove package"
+			],
+			[
+				"user",
+				"Preferences: Settings - User"
+			],
+			[
+				"pref",
+				"Preferences: Settings - Default"
+			],
+			[
+				"add p",
+				"GoSublime: Add/Remove package"
+			],
+			[
+				"pac",
+				"GoSublime: Add/Remove package"
+			],
+			[
+				"package ",
+				"GoSublime: Add/Remove package"
+			],
+			[
+				"pa",
+				"GoSublime: Add/Remove package"
+			],
+			[
+				"addp",
+				"GoSublime: Add/Remove package"
+			],
+			[
+				"gosublime sett",
+				"GoSublime: Default Settings"
+			],
+			[
+				"gosub",
+				"GoSublime: Read Me"
+			],
+			[
+				"add",
+				"GoSublime: Add/Remove package"
+			],
+			[
+				"add pa",
+				"GoSublime: Add/Remove package"
+			],
+			[
+				"add pack",
+				"GoSublime: Add/Remove package"
+			],
+			[
+				"import",
+				"Snippet: Import"
+			],
+			[
+				"syntax go",
+				"Set Syntax: GoSublime: HTML"
+			],
+			[
+				"imp",
+				"GoSublime: Add/Remove package"
+			],
+			[
+				"block ",
+				"Toggle Block Comment"
+			],
+			[
+				"bookm",
+				"Bookmarks: Clear All"
+			],
+			[
+				"prefer",
+				"Preferences: Settings - Default"
+			],
+			[
+				"brow",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"view.settings().get('font_face')"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/post",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/post/2014/04",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/post/2014/09",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/data",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/_default",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/partials"
+	],
+	"file_history":
+	[
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/partials/header.html",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/partials/li.html",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/_default/single.html",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/static/styles.css",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/partials/footer.html",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/_default/taxonomy.html",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/post/2014/04/go-conventions-constructors-and-overloads.md",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/post/2014/04/go-101-methods-on-pointers-vs-values.md",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/post/2014/04/go-101-string-or-byte-slice.md",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/config.toml",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/static/skeleton.css",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/dev.sh",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/make.go",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/_default/terms.html",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/_default/section.html",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/partials/posts-pager.html",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/public/sitemap.xml",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/index.html",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/static/skeleton.html",
+		"/Users/joshua/Downloads/Skeleton-2.0.4/index.html",
+		"/Users/joshua/code/rustfun/main.rs",
+		"/Users/joshua/code/jdarc-dotnet/JdArc.Web/package.json",
+		"/Users/joshua/code/jdarc-dotnet/JdArc.Web/Startup.cs",
+		"/Users/joshua/mygo/src/github.com/jpoehls/go-dayone/entry.go",
+		"/Users/joshua/Dropbox/Apps/Day One/Journal.dayone/entries/0EB46030DAA341FCB8B0EA9F653E48A9.doentry",
+		"/Users/joshua/mygo/src/github.com/jpoehls/go-dayone/doc.go",
+		"/Users/joshua/mygo/src/github.com/jpoehls/go-dayone/test_journals/empty_with_dirs/photos/.gitkeep",
+		"/Users/joshua/mygo/src/github.com/jpoehls/go-dayone/test_journals/empty_with_dirs/entries/.gitkeep",
+		"/Users/joshua/mygo/src/github.com/jpoehls/go-dayone/test_journals/empty_no_dirs/.gitkeep",
+		"/Users/joshua/mygo/src/github.com/jpoehls/go-dayone/test_journals/default/photos/.gitkeep",
+		"/Users/joshua/mygo/src/github.com/jpoehls/go-dayone/journal.go",
+		"/Users/joshua/mygo/src/github.com/jpoehls/go-dayone/entry_test.go",
+		"/Users/joshua/mygo/src/github.com/jpoehls/go-dayone/journal_test.go",
+		"/Users/joshua/mygo/src/github.com/jpoehls/go-dayone/README.md",
+		"/Users/joshua/mygo/src/github.com/jpoehls/go-dayone/.git/MERGE_MSG",
+		"/Users/joshua/mygo/src/github.com/jpoehls/go-dayone/test_journals/default/entries/871D0F435D7B469C9429CD441A9E74B5.doentry",
+		"/Users/joshua/mygo/src/github.com/jpoehls/go-dayone/test_journals/default/entries/FF755C6D7D9B4A5FBC4E41C07D622C65.doentry",
+		"/Users/joshua/Dropbox/Projects/go-dayone/journal.go",
+		"/Users/joshua/Dropbox/Projects/go-dayone/stack.go",
+		"/Users/joshua/Dropbox/Projects/go-dayone/doc.go",
+		"/Users/joshua/Dropbox/Projects/go-dayone/journal_test.go",
+		"/Users/joshua/Dropbox/Projects/go-dayone/entries/FF755C6D7D9B4A5FBC4E41C07D622C65.doentry",
+		"/Users/joshua/Dropbox/Projects/go-dayone/README.md",
+		"/Users/joshua/Dropbox/Apps/Day One/Journal.dayone/entries/FF755C6D7D9B4A5FBC4E41C07D622C65.doentry",
+		"/Users/joshua/Dropbox/Projects/dayone-web/static/skeleton/normalize.css",
+		"/Users/joshua/Library/Application Support/Sublime Text 3/Packages/Evernote/Evernote.sublime-settings",
+		"/Users/joshua/Library/Application Support/Sublime Text 3/Packages/User/Evernote.sublime-settings",
+		"/Users/joshua/.hgrc",
+		"/Users/joshua/code/temp/authors",
+		"/Users/joshua/mygo/src/gopkg.in/jpoehls/gophermail.v0/smtp.go",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/post/2014/11/drone_strikes.md",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/dance/hub.go",
+		"/Users/joshua/.bashrc",
+		"/Users/joshua/.profile",
+		"/Users/joshua/.bash_profile",
+		"/Users/joshua/Dropbox/Flashcards Deluxe/JDP German Vocab.txt",
+		"/Users/joshua/Dropbox/Flashcards Deluxe/_Sync/Top 100 German Words.txt",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/tools/publish.sh",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/.gitignore",
+		"/Users/joshua/Downloads/youtube-list.txt",
+		"/Users/joshua/Downloads/Hebrew MP3/readme.md",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/post/2014/09/water-older-than-sun.md",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/post/2014/09/ie-eg-sentences.md",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/_default/rss.xml",
+		"/Users/joshua/Dropbox/Projects/temp/index.html",
+		"/Users/joshua/Dropbox/Projects/temp/feed.xml",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/feed/index.xml",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/shortcodes/cite.html",
+		"/Users/joshua/Dropbox/Projects/blog/layouts/partials/footer.html",
+		"/Users/joshua/Dropbox/Projects/blog/index.html",
+		"/Users/joshua/Dropbox/Projects/blog/content/post/link-post.md",
+		"/Users/joshua/Dropbox/Projects/blog/content/post/first.md",
+		"/Users/joshua/Dropbox/Projects/blog/layouts/partials/header.html",
+		"/Users/joshua/Dropbox/Projects/blog/public/post/first/index.html",
+		"/Users/joshua/Dropbox/Projects/blog/config.toml",
+		"/Users/joshua/Dropbox/Projects/blog/layouts/_default/section.html",
+		"/Users/joshua/Dropbox/Projects/blog/public/index.xml",
+		"/Users/joshua/Dropbox/Projects/blog/layouts/_default/single.html",
+		"/Users/joshua/Dropbox/Projects/blog/public/2014/09/my-link-post/index.html",
+		"/Users/joshua/Dropbox/Projects/blog/static/post/first/test.txt",
+		"/Users/joshua/Dropbox/Projects/blog/layouts/index.html",
+		"/Users/joshua/Dropbox/Projects/blog/public/index.html",
+		"/Users/joshua/Dropbox/Projects/blog/layouts/_default/summary.html",
+		"/Users/joshua/code/jpoehls.github.com/hugo/public/index.html",
+		"/Users/joshua/code/jpoehls.github.com/hugo/content/about.md",
+		"/Users/joshua/code/jpoehls.github.com/hugo/content/post/first.md",
+		"/Users/joshua/code/jpoehls.github.com/hugo/layouts/index.html",
+		"/Users/joshua/code/jpoehls.github.com/hugo/public/sitemap.xml",
+		"/Users/joshua/code/jpoehls.github.com/hugo/public/index.xml",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/views/post.gohtml",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/views/post_create.gohtml",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/main.go",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/models.go",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/viewmodels.go",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/store.go",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/views/home.gohtml",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/views/post_list_item.gohtml",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/views/topic.gohtml",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/views/topic_edit.gohtml",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/Makefile",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/views/topic_list.gohtml",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/vm_topic_list.go",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/vm_topic_edit.go",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/vm_topic_view.go",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/topicData.go",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/.hgignore",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/_vendor/src/gopkg.in/jpoehls/viewmaster.v0/html.go",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/_vendor/src/gopkg.in/jpoehls/viewmaster.v0/text.go",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/views/master.gohtml",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/home.go",
+		"/Users/joshua/Desktop/Book2.twb",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/_vendor/src/gopkg.in/jpoehls/viewmaster.v0/html_test.go",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/_vendor/src/gopkg.in/jpoehls/viewmaster.v0/text_test.go",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/_vendor/src/gopkg.in/jpoehls/viewmaster.v0/viewengine.go",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/src/fingerzoned/static/styles.css",
+		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/.bowerrc",
+		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/text.go",
+		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/html.go",
+		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/README.md",
+		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/doc.go",
+		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/html_test.go",
+		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/text_test.go",
+		"/Users/joshua/Dropbox/Projects/gomasterpages/viewmaster/resolver_test.go",
+		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/resolver.go",
+		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/viewengine.go",
+		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/walk.go",
+		"/Users/joshua/Dropbox/projects/gomasterpages/viewengine.go",
+		"/Users/joshua/Dropbox/projects/gomasterpages/main.go"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 102.0,
+		"where_history":
+		[
+			"",
+			"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fitgist/src",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"pre",
+			"$base",
+			"syscall",
+			"updated site",
+			"font-fam",
+			"sans",
+			"serif",
+			"@media",
+			"margin-bottom:",
+			"p ",
+			"a:ac",
+			":hover",
+			"*creator",
+			"creator)",
+			"stopread",
+			"stopreaEd",
+			"coordinate",
+			"stopread",
+			"todo",
+			"1017",
+			"print",
+			"ssh",
+			"‘",
+			"\\s+Foreword: Followers Worthy to Be Followed                              ",
+			"\\s+Foreword: Followers Worthy to Be Followed\\s+",
+			"\\w+Foreword: Followers Worthy to Be Followed\\w+",
+			"”",
+			"“",
+			"’",
+			"“",
+			"”",
+			" “",
+			" \\s*Foreword: Followers Worthy to Be Followed\\s*",
+			"\\s*Foreword: Followers Worthy to Be Followed\\s*",
+			"\\s*Foreword: Followers Worthy to Be Followed\\s*^",
+			"’",
+			"“",
+			"”",
+			"exec.",
+			"topicsbuck",
+			"newtopic",
+			"tmpl",
+			"^\\+",
+			"RoleUser",
+			"emailconfir",
+			"emailconfirmed",
+			"execute",
+			"github.com/codegangsta/martini",
+			"html",
+			"smtp",
+			"send(",
+			"log",
+			"r.",
+			"https:",
+			"unmarshal",
+			"cleanjson",
+			"{\n",
+			"json",
+			"interface",
+			"mapto",
+			"interface",
+			"log.",
+			"pwd",
+			".copy",
+			"cleango",
+			"verify",
+			"verity",
+			"repoRoot",
+			"todo",
+			"gettemplate",
+			"resend",
+			"re-sent",
+			"resent",
+			"2em",
+			"config"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"'",
+			"",
+			"\"",
+			"'",
+			"\"",
+			" ",
+			"",
+			"'",
+			"\"",
+			"",
+			"github.com/go-martini/martini",
+			"fitgistRoot"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.GoSublime-main-output":
+	{
+		"height": 124.0
+	},
+	"output.GsDoc-output-output":
+	{
+		"height": 172.0
+	},
+	"output.exec":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.variable_get":
+	{
+		"height": 124.0
+	},
+	"pinned_build_system": "",
+	"project": "project.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"contex",
+				"src/middleware/context.go"
+			],
+			[
+				"fitgis",
+				"src/fitgistd/fitgistd.go"
+			],
+			[
+				"couchdb",
+				"src/models/couchdb.go"
+			],
+			[
+				"routes",
+				"docs/routes.md"
+			],
+			[
+				"gophermailmain",
+				"_vendor/src/gopkg.in/jpoehls/gophermail.v0/main_test.go"
+			],
+			[
+				"gophermail",
+				"_vendor/src/gopkg.in/jpoehls/gophermail.v0/main.go"
+			],
+			[
+				"render.go",
+				"_vendor/src/github.com/martini-contrib/render/render.go"
+			],
+			[
+				"injec",
+				"_vendor/src/github.com/codegangsta/inject/inject.go"
+			],
+			[
+				"users.g",
+				"src/controllers/users.go"
+			],
+			[
+				"sessions",
+				"_vendor/src/github.com/gorilla/sessions/sessions.go"
+			],
+			[
+				"cookie",
+				"_vendor/src/github.com/martini-contrib/sessions/cookie_store.go"
+			],
+			[
+				"couch",
+				"_vendor/src/github.com/dustin/go-couch/couch.go"
+			],
+			[
+				"random",
+				"src/models/random.go"
+			],
+			[
+				"user.g",
+				"src/models/user.go"
+			],
+			[
+				"fitgist",
+				"src/fitgistd/fitgistd.go"
+			],
+			[
+				"mai",
+				"main.go"
+			],
+			[
+				"git",
+				".gitignore"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 107.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"userbye",
+				"UserByEmail"
+			],
+			[
+				"userbyem",
+				"UserByEmail"
+			],
+			[
+				"newviewmo",
+				"NewViewModel"
+			],
+			[
+				"insert",
+				"Insert"
+			],
+			[
+				"phon",
+				".PHONY:"
+			],
+			[
+				"email",
+				"Email"
+			],
+			[
+				"",
+				"init"
+			],
+			[
+				"setp",
+				"SetPassword"
+			],
+			[
+				"Board",
+				"LoadBoard"
+			]
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 231.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

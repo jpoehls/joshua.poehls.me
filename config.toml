@@ -18,3 +18,4 @@ footnoteReturnLinkContents = "↩"
 
 [taxonomies]
 	tag = "tags"
+	series = "series"

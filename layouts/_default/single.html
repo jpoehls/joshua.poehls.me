@@ -1,10 +1,40 @@
 {{partial "header.html" .}}
 
+{{/* $seriesName := "" }}
+{{ if .Params.series }}
+	{{ $seriesName = (index .Params.series 0) }}
+{{ end */}}
+
 <div class="container">
+
+	{{/* if $seriesName }}
+		{{ if isset .Site.Data.series ($seriesName | urlize) }}
+			<p>{{ (index .Site.Data.series ($seriesName | urlize)).title }}</p>
+			<p>{{ (index .Site.Data.series ($seriesName | urlize)).description }}</p>
+			{{ safeHtml (index .Site.Data.series ($seriesName | urlize)).postPrefixHtml }}
+		{{ end }}
+	{{ end */}}
 
 	<section id="posts">
 	{{partial "li.html" .}}
 	</section>
+
+	{{/* if $seriesName }}
+		<p>This is a post in the <b>{{ $seriesName }}</b> series.</p>
+		<p>Other posts in this series:</p>
+		<ul>
+			{{ range (index .Site.Taxonomies.series $seriesName) }}
+				<li>
+					{{.Date.Format "Jan 02, 2006"}} -
+					{{ if eq .Permalink $link }}
+						{{.LinkTitle}}
+					{{else}}
+						<a href="{{.Permalink}}">{{.LinkTitle}} </a>
+					{{end}}
+				</li>
+			{{ end }}
+		</ul>
+	{{ end */}}
 
 </div>
 
