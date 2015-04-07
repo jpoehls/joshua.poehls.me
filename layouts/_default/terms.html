@@ -1,0 +1,23 @@
+{{partial "header.html" .}}
+
+<div class="container" id="posts">
+
+<h1 class="title">{{ .Title }}</h1>
+
+<p style="line-height: 2em">
+	{{ $data := .Data}}
+
+	{{ range $name, $pages := .Data.Terms }}
+		{{ $pageCount := len $pages }}
+
+		<span class="nowrap" style="margin-left: .5em">
+			<a href="{{ $name | urlize }}">{{ $name }}</a>
+			&nbsp;
+			<small>({{ $pageCount }} {{ if eq $pageCount 1 }}entry{{else}}entries{{end}})</small>
+		</span>
+	{{ end }}
+</p>
+
+</div>
+
+{{partial "footer.html" .}}

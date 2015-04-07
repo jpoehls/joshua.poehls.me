@@ -1,0 +1,20 @@
+{{partial "header.html" .}}
+
+{{$pag := .Paginator}}
+
+<div class="container">
+
+	<h1 class="taxonomy-title">Posts tagged <span class="term">#{{ .Title | lower }}</span>
+	<span class="desc"><a href="{{ .Data.baseurl }}/{{ .Data.Plural }}">other {{ .Data.Plural }}</a></span></h1>
+
+	<section id="posts">
+	{{range $pag.Pages}}
+	{{partial "li.html" .}}
+	{{end}}
+	</section>
+
+</div>
+
+{{partial "posts-pager.html" $pag}}
+
+{{partial "footer.html" .}}
