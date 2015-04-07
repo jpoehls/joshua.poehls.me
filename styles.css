@@ -12,11 +12,40 @@ article.post figure figcaption {
 	font-family: 'Raleway', sans-serif;
 }
 
+h1.taxonomy-title {
+	font-size: 1.8em;
+	margin-bottom: 0;
+}
+h1.taxonomy-title .desc {
+	margin-left: 1em;
+	margin-top: 0;
+	font-size: .6em;
+}
+h1.taxonomy-title .term {
+	color: #777;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+/* Fix line-height for lines with footnotes.
+   http://discuss.gohugo.io/t/footnote-styling/114/6?u=joshuapoehls */
+sup, sub {
+	vertical-align: baseline;
+	position: relative;
+	top: -0.4em;
+}
+sub {
+	top: 0.4em;
+}
+
 pre, code {
 	font-family: 'Inconsolata', monospace;
 }
 pre {
 	line-height: 1em;
+	font-size: 1.2em;
 }
 
 h1 {
@@ -89,6 +118,10 @@ footer {
 	color: #888;
 	font-weight: 300;
 	text-align: center;
+}
+
+footer p {
+	margin-bottom: .8em;
 }
 
 /* Site header
