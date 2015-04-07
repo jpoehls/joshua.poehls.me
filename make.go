@@ -60,7 +60,7 @@ func main() {
 		log.Fatalf("failed to git add changes: %v\n", exit)
 	}
 
-	if exit := run("git", "commit", "-m", "\"Updated site\""); exit > 1 {
+	if exit := run("git", "commit", "-m", "Updated site"); exit > 1 {
 		log.Fatalf("failed to git commit changes: %v\n", exit)
 	}
 
