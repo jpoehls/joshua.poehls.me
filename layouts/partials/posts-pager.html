@@ -1,6 +1,6 @@
 <nav class="pagination">
 {{if .HasNext}}
-	<a href="{{.Next.Url}}" aria-label="Older Posts"><span aria-hidden="true">&laquo; Older Posts</span></a>
+	<a href="{{.Next.Url}}" aria-label="Earlier Posts"><span aria-hidden="true">&laquo; Earlier Posts</span></a>
 {{end}}
 {{if .HasNext}}
 	{{if .HasPrev}}
@@ -8,6 +8,6 @@
 	{{end}}
 {{end}}
 {{if .HasPrev}}
-	<a href="{{.Prev.Url}}" aria-label="Newer Posts"><span aria-hidden="true">Newer Posts &raquo;</span></a>
+	<a href="{{.Prev.Url}}" aria-label="Recent Posts"><span aria-hidden="true">Recent Posts &raquo;</span></a>
 {{end}}
 </nav>

@@ -7,6 +7,8 @@ metadataFormat = "yaml"
 paginate = 10
 paginatePath = "page"
 
+footnoteReturnLinkContents = "↩"
+
 [permalinks]
 	post = "/:year/:month/:slug"
 

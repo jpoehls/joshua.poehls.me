@@ -6,9 +6,25 @@
 <base href="{{.Site.BaseUrl}}">
 <link rel="canonical" href="{{.Permalink}}">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="{{.Site.Title}}">
-<link rel="stylesheet" href="/styles.css">
-<meta name="viewport" content="width=device-width">
 
+<!-- CSS
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+<!-- Font
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+<!-- Mobile Specific Metas
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Favicon
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
 <link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
 <link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
@@ -18,6 +34,8 @@
 </head>
 <body lang="en-US">
 
+<!-- Facebook
+–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -28,8 +46,14 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <header id="masthead">
-	<h1>
-		<a href="/">Joshua Poehls</a>
-		<span class="aka">silent thought</span>
-	</h1>
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<a href="/">Joshua Poehls</a>
+					<span class="aka">silent thought</span>
+				</h1>
+			</div>
+		</div>
+	</div>
 </header>

@@ -2,11 +2,15 @@
 
 {{$pag := .Paginator}}
 
-<section id="posts">
-{{range $pag.Pages}}
-{{partial "li.html" .}}
-{{end}}
-</section>
+<div class="container">
+
+	<section id="posts">
+	{{range $pag.Pages}}
+	{{partial "li.html" .}}
+	{{end}}
+	</section>
+
+</div>
 
 {{partial "posts-pager.html" $pag}}
 
