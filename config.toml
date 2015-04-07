@@ -7,6 +7,7 @@ metadataFormat = "yaml"
 paginate = 10
 paginatePath = "page"
 
+footnoteAnchorPrefix = "fn"
 footnoteReturnLinkContents = "↩"
 
 [permalinks]
