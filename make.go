@@ -40,6 +40,7 @@ func main() {
 
 	moveFile("./public/post/index.xml", "./public/feed.xml")
 	removeDir("./public/post")
+	removeFile("./public/page/index.html")
 	removeDir("./public/page/page")
 	removeDir("./public/page/page/index.html")
 	removeDir("./public/page/archives")
