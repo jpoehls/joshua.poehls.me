@@ -37,7 +37,7 @@ func main() {
 		}
 	}
 
-	moveFile("./public/posts/index.xml", "./public/feed.xml")
+	moveFile("./public/post/index.xml", "./public/feed.xml")
 
 	// Move everything from ./public up a level.
 	entries, err = ioutil.ReadDir("./public")
