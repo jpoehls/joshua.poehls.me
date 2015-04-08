@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thought</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2014/04/go-101-methods-on-pointers-vs-values">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thought">
+<meta name="generator" content="Hugo 0.13" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a>.</small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/2014/04/go-101-methods-on-pointers-vs-values">Go 101: Methods on Pointers vs. Values</a>
+            
+        </h1>
+        <p>
+            <time datetime="2014-04-14 09:58:59 -0500 CDT" pubdate="pubdate">Mon, Apr 14, 2014</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2014/04/go-101-methods-on-pointers-vs-values">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2014/04/go-101-methods-on-pointers-vs-values</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Methods can be declared on both pointers and values. The difference is subtle but important.</p>
+
+<pre><code>type Person struct {
+     age int
+}
+
+// Method's receiver is the value, `Person`.
+func (p Person) Age() int {
+     return p.age
+}
+
+// Method's receiver is a pointer, `*Person`.
+func (p *Person) SetAge(age int) {
+     p.age = age
+}
+</code></pre>
+
+<blockquote>
+<p>In reality, you&rsquo;d only define getter and setter functions like this if you needed to implement additional logic. In an example like this you&rsquo;d just make the <code>Age</code> field public.</p>
+</blockquote>
+
+<p>This is how you define getter and setter functions in Go. Notice that we defined the <code>Age()</code> function on the value but <code>SetAge()</code> on the pointer (i.e. <code>*Person</code>). This is important.</p>
+
+<p><strong>Go always passes by value.</strong> Function parameters are  always passed by copying them as opposed to passing a reference. (<a href="http://golang.org/doc/faq#pass_by_value">Read more.</a>)</p>
+
+<blockquote>
+<p>Even pointers are technically passed by value. The memory address is copied, the value it points to is <em>not</em> copied.</p>
+</blockquote>
+
+<p>Here is the <em>wrong</em> way to define <code>SetAge</code>. Let&rsquo;s see what happens.</p>
+
+<pre><code>func (p Person) SetAge(age int) {
+     p.age = age
+}
+
+p := Person{}
+p.SetAge(10)
+fmt.Printf(&quot;Age: %v&quot;, p.Age()) // Age: 0
+</code></pre>
+
+<p><a href="http://play.golang.org/p/CJZfqBrAIC">&#9654; Run it.</a></p>
+
+<p>Notice that the output is <code>0</code> instead of <code>10</code>? This is &lsquo;pass by value&rsquo; in action.</p>
+
+<p>Calling <code>p.SetAge(10)</code> passes a copy of <code>p</code> to the <code>SetAge</code> function. <code>SetAge</code> sets the <code>age</code> property on the copy of <code>p</code> that it received which is discarded after the function returns.</p>
+
+<p>Now let&rsquo;s do it the right way.</p>
+
+<pre><code>func (p *Person) SetAge(age int) {
+     p.age = age
+}
+
+p := Person{}
+p.SetAge(10)
+fmt.Printf(&quot;Age: %v&quot;, p.Age()) // Age: 10
+</code></pre>
+
+<p><a href="http://play.golang.org/p/BbIlSUQBCr">&#9654; Run it.</a></p>
+
+<p>My rule of thumb is this: declare the method on the pointer unless your struct is such that you don&rsquo;t use pointers to it.</p>
+
+<p>Two reasons:</p>
+
+<ol>
+<li>Performance. Calling a method on a pointer will almost always be faster than copying the value. There may be cases wear the copy is faster but those are edge case.</li>
+<li>Consistency. It is common for at least one of your methods to need a pointer receiver and if any of the type&rsquo;s methods are on the pointer then they all should be. <em>This recommendation is direct from <a href="http://golang.org/doc/faq#methods_on_values_or_pointers">the FAQ</a>.</em></li>
+</ol>
+
+<p><a href="http://golang.org/doc/faq#methods_on_values_or_pointers">Read the FAQ</a> &ldquo;Should I define methods on values or pointers?&rdquo; for more insight.</p>
+
+<p><strong>Update:</strong> Thanks to the fine folks on reddit for suggesting some improvements.<br />
+<a href="http://www.reddit.com/r/golang/comments/23060m/go_101_methods_on_pointers_vs_values/">Join the discussion on reddit!</a></p>
+
+
+    <div class="share">
+        <div class="share-btn">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://joshua.poehls.me/2014/04/go-101-methods-on-pointers-vs-values" data-text="Go 101: Methods on Pointers vs. Values">Tweet</a>
+        </div>
+
+        <div class="share-btn" style="width: 150px;">
+            <div class="fb-like" data-href="http://joshua.poehls.me/2014/04/go-101-methods-on-pointers-vs-values" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+        </div>
+
+        <div class="share-btn">
+            <a href="//www.pinterest.com/pin/create/button/?url=http%3a%2f%2fjoshua.poehls.me%2f2014%2f04%2fgo-101-methods-on-pointers-vs-values&media=http://joshua.poehls.me/%2ftouch-icon-iphone-retinahd.png&description=Go%20101%3a%20Methods%20on%20Pointers%20vs.%20Values" data-pin-do="buttonPin" data-pin-config="beside"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>
+        </div>
+    </div>
+</article>
+
+<div class="fin">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014-2015&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

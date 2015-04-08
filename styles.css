@@ -40,30 +40,11 @@ sub {
 	top: 0.4em;
 }
 
-pre, code {
-	font-family: 'Inconsolata', monospace;
-}
-pre {
-	line-height: 1em;
-	font-size: 1.2em;
-}
-
 h1 {
 	margin-top: 1em;
 }
 
-blockquote {
-	font-size: .9em;
-	margin: 0 2em;
-}
-
-cite {
-	margin: 0 2em;
-	padding: 0;
-	margin-top: -.5em;
-	text-align: right;
-	display: block;
-}
+table.noborder td { border: 0; }
 
 i, em {
 	font-style: italic;
@@ -71,16 +52,6 @@ i, em {
 
 b, strong {
 	font-weight: 600;
-}
-
-a {
-	color: #045FB4;
-	text-decoration: none;
-	border-bottom: 1px dotted #045FB4;
-}
-
-a:hover {
-	background-color: #FFFF99;
 }
 
 .subtle {
@@ -96,6 +67,7 @@ a:hover {
 	font-size: .8em;
 	border-top: 1px dotted #888;
 	margin-top: 1em;
+	padding-top: 1em;
 }
 
 .footnotes hr {
@@ -124,6 +96,88 @@ footer p {
 	margin-bottom: .8em;
 }
 
+/* Blockquotes
+************************************************** */
+blockquote {
+	font-size: .95em;
+	margin: 0 2em;
+	padding: 0.5em 1em;
+	background: #fdf9f5;
+	border-left: 1px solid #333;
+}
+
+blockquote > blockquote {
+  border: 0;
+  padding: 0;
+}
+
+cite {
+	margin: 0 2em;
+	padding: 0;
+	margin-top: -.5em;
+	text-align: right;
+	display: block;
+}
+
+/* Links
+************************************************** */
+a,
+#masthead h1 .contact-link a {
+	color: #045FB4;
+	text-decoration: none;
+	border-bottom: 1px dotted #045FB4;
+}
+
+a:hover {
+	background-color: #ffffaa;
+}
+
+/* Code
+************************************************** */
+a > code {
+	background-color: transparent !important;
+	border: 0;
+	border-radius: 0;
+	padding: 0;
+}
+a:hover > code {
+	background-color: transparent;
+}
+
+#posts h1 code,
+#posts h2 code,
+#posts h3 code,
+#posts h4 code,
+#posts h5 code,
+#posts h6 code {
+	background-color: transparent;
+	border: 0;
+	border-radius: 0;
+	padding: 0;
+	font-size: 1em;
+}
+
+p code, li code {
+	background-color: #f9f9f9;
+	border: 0;
+	border-radius: 0;
+}
+pre > code {
+	font-size: 1em;
+	color: #515151;
+	background-color: transparent;
+	border: 0;
+	line-height: 1.2em;
+}
+pre {
+	padding: 1em;
+	background-color: #f9f9f9;
+}
+pre, code {
+	font-family: 'Inconsolata', monospace;
+	font-size: 1.1em;
+}
+
 /* Site header
 ************************************************** */
 #masthead {
@@ -137,7 +191,7 @@ footer p {
 
 #masthead h1 {
 	padding: .5em 0;
-	font-size: 1.2em;
+	font-size: 1.5em;
 	font-weight: 300;
 	color: #888;
 	margin: 0 auto;
@@ -150,9 +204,19 @@ footer p {
 }
 
 #masthead h1 .aka {
-	font-size: .8em;
+	font-size: .6em;
 	letter-spacing: .08em;
 	float: right;
+}
+
+.contact-link {
+	margin-left: 1em;
+}
+
+/* Other pages
+************************************************** */
+#page {
+	margin-top: 1.5em;
 }
 
 /* Posts

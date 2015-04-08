@@ -4,8 +4,9 @@
 <meta charset="utf-8">
 <title>joshua poehls | silent thought</title>
 
-<link rel="canonical" href="http://localhost:1313/">
+<link rel="canonical" href="http://joshua.poehls.me/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thought">
+<meta name="generator" content="Hugo 0.13" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -45,8 +46,10 @@
 		<div class="row">
 			<div class="twelve columns">
 				<h1>
-					<a href="/">Joshua Poehls</a>
-					<span class="aka">silent thought</span>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a>.</small>
+					<span class="aka">(not so) silent thoughts</span>
 				</h1>
 			</div>
 		</div>
@@ -66,95 +69,368 @@
     <header>
         <h1>
             
-            <a href="https://firstlook.org/theintercept/2014/11/18/media-outlets-continue-describe-unknown-drone-victims-militants/">Drone Strike Terrorism</a> <span class="subtle symbol">&#10230;</span>
+            <a href="/2014/04/go-101-string-or-byte-slice">Go 101: String or Byte Slice?</a>
             
         </h1>
         <p>
-            <time datetime="2014-11-18 09:55:27 -0600 CST" pubdate="pubdate">Tue, Nov 18, 2014</time>
+            <time datetime="2014-04-16 09:58:59 -0500 CDT" pubdate="pubdate">Wed, Apr 16, 2014</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/2014/11/drone-strike-terrorism">
+            <a class="permalink" title="Permalink" href="/2014/04/go-101-string-or-byte-slice">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://localhost:1313/2014/11/drone-strike-terrorism</span>
+                <span class="printonly">http://joshua.poehls.me/2014/04/go-101-string-or-byte-slice</span>
             </a>
         </p>
     </header>
 
     
 
-<p>Have you read The Intercept&rsquo;s <a href="https://firstlook.org/theintercept/2014/11/18/media-outlets-continue-describe-unknown-drone-victims-militants/">article on US drone strikes</a> and the media&rsquo;s coverage of them in the US? If you are an American, you should.</p>
+<p>One of the first things you&rsquo;ll notice in Go is that two different types are commonly used for representing text. <code>string</code> and <code>[]byte</code>. A quick example is the <a href="http://golang.org/pkg/regexp/#Regexp.FindAll">regexp package</a> which has functions for both <code>string</code> and <code>[]byte</code>.</p>
 
-<p>Let me be clear; I&rsquo;m horrified. There is so much that is completely wrong here that it is hard to begin.</p>
+<h2 id="what-is-the-difference:c3d0e20736b8b30967b0a5298a41fdb7">What is the difference?</h2>
 
-<p><a href="https://firstlook.org/theintercept/2014/11/18/media-outlets-continue-describe-unknown-drone-victims-militants/">Read the article.</a> Read it twice.</p>
+<p><code>string</code> is immutable and <code>[]byte</code> is mutable. Both can contain arbitrary bytes.</p>
 
-<h2 id="on-target-selection:e83d0257ee790c8819d8caa349c131eb">On Target Selection</h2>
+<p>The name &ldquo;string&rdquo; implies unicode text but this is not enforced. Operating on <code>string</code> is like operating on <code>[]byte</code>. You are working with bytes not characters.</p>
 
-<blockquote>
-<p>It has been more than two years since The New York Times revealed that &ldquo;Mr. Obama embraced a disputed method for counting civilian casualties&rdquo; of his drone strikes which &ldquo;in effect <strong>counts all military-age males in a strike zone as combatants &hellip; . unless there is explicit intelligence posthumously proving them innocent</strong>.&rdquo;</p>
-</blockquote>
-
-<p>Shoot first, ask questions later. Except nobody is asking questions.</p>
+<p>They are nearly identical and differ only in mutability. The <a href="http://golang.org/pkg/strings/"><code>strings</code></a> and <a href="http://golang.org/pkg/bytes/"><code>bytes</code></a> packages are nearly identical apart from the type that they use.</p>
 
 <blockquote>
-<p>&hellip; targeting decisions can even be made by <strong>nothing more than metadata analysis</strong> and SIM card use.</p>
+<p><strong>Q:</strong> If strings are just arbitrary bytes, then how do you work with characters?</p>
+
+<p><strong>A:</strong> What you are thinking of as a character, Go calls a <a href="http://golang.org/ref/spec#Rune_literals">rune</a>. One way to iterate the characters in a string is to use the <code>for...range</code> loop. Range will parse the string as UTF-8 and iterate the runes. Read <a href="http://golang.org/doc/effective_go.html#for">the <code>for</code> loop</a> section of Effective Go for more information.</p>
 </blockquote>
 
-<p>We don&rsquo;t want the NSA even <em>storing</em> our own metadata. How would you like them to assassinate based solely on that metadata? Oh, and if they do that by blowing up your whole family, so be it.</p>
+<h2 id="when-to-use-string:c3d0e20736b8b30967b0a5298a41fdb7">When to use <code>string</code>?</h2>
 
-<p>Remember, &ldquo;targeting decisions&rdquo; means capital punishment. And not just for the intended target but also for a wide margin of collateral damage. <a href="http://www.thebureauinvestigates.com/2014/10/16/only-4-of-drone-victims-in-pakistan-named-as-al-qaeda-members/">Far less than half of drone casualities are confirmed militants</a>.</p>
+<p>Ask not when to use <code>string</code> but rather, when to use <code>[]byte</code>. Always start with <code>string</code> and switch to <code>[]byte</code> when justified.</p>
+
+<h2 id="when-to-use-byte:c3d0e20736b8b30967b0a5298a41fdb7">When to use <code>[]byte</code>?</h2>
+
+<p>Use <code>[]byte</code> when you need to make many changes to a string. Since <code>string</code> is immutable, any change will allocate a new <code>string</code>. You can get better performance by using <code>[]byte</code> and avoiding the allocations.</p>
 
 <blockquote>
-<p>The <strong>tactic of drone-killing first responders and rescuers</strong> who come to the scene of drone attacks or even mourners at funerals of drone victims&hellip;</p>
+<p>C# perspective: <code>[]byte</code> is to <a href="http://msdn.microsoft.com/en-us/library/system.text.stringbuilder(v=vs.110).aspx"><code>System.StringBuilder</code></a> as <code>string</code> is to <a href="http://msdn.microsoft.com/en-us/library/system.string(v=vs.110).aspx"><code>System.String</code></a> when it comes to performance.</p>
 </blockquote>
 
-<p>Read that again.</p>
+<p>Even if your code isn&rsquo;t directly manipulating the string, you may want to use <code>[]byte</code> if you are using packages which require it so you can avoid the conversion.</p>
 
-<h2 id="on-public-perception:e83d0257ee790c8819d8caa349c131eb">On Public Perception</h2>
+<p>Converting to and from <code>[]byte</code> is easy. Just remember that each conversion creates a copy of the value.</p>
+
+<pre><code>s := &quot;some string&quot;
+b := []byte(s) // convert string -&gt; []byte
+s2 := string(b) // convert []byte -&gt; string
+</code></pre>
 
 <blockquote>
-<p>&hellip;if a drone missile killed an innocent adult male civilian, such as a vegetable vender or a fruit seller, the victim&rsquo;s long hair and beard would be enough to stereotype him as a militant.</p>
+<p>Converting to/from <code>string</code> and <code>[]byte</code> copies the entire value. Using lots of type conversions in your code is typically a warning sign that you need to reevaluate the types you are using. You want to minimize conversions both for performance and clean code.</p>
 </blockquote>
 
-<p>Sorry, we&rsquo;re too busy being <a href="http://www.newstatesman.com/culture/2014/11/shirtgate-newflash-wearing-terrible-shirt-doesnt-make-you-terrible-person">offended by the t-shirts people wear</a>.</p>
+<h2 id="more-about-strings:c3d0e20736b8b30967b0a5298a41fdb7">More about strings</h2>
 
-<h2 id="on-psychological-effects:e83d0257ee790c8819d8caa349c131eb">On Psychological Effects</h2>
+<p>The Go blog has posted in detail about <a href="http://blog.golang.org/strings">strings, bytes, runes, and characters in Go</a>. You should definitely read that post to fully understand the topic.</p>
 
-<blockquote>
-<p>A 2012 report from Stanford and NYU Law School clinics, &ldquo;Living Under Drones,&rdquo; documented that &ldquo;US drone strike policies cause considerable and under-accounted-for harm to the daily lives of ordinary civilians, beyond death and physical injury&rdquo; – specifically, they &ldquo;hover twenty-four hours a day over communities in northwest Pakistan, striking homes, vehicles, and public spaces without warning. Their presence terrorizes men, women, and children, giving rise to anxiety and psychological trauma among civilian communities.&rdquo;</p>
-
-<blockquote>
-<p>Being attacked by a drone is not the same as being bombed by a jet. With drones, there is typically a much longer prelude to violence. Above North Waziristan, <strong>drones circled for hours, or even days, before striking</strong>. People below looked up to watch the machines, hovering at about twenty thousand feet, capable of unleashing fire at any moment, like dragon&rsquo;s breath. &ldquo;Drones may kill relatively few, but they terrify many more,&rdquo; Malik Jalal, a tribal leader in North Waziristan, told me. &ldquo;They turned the people into psychiatric patients.&rdquo;</p>
-</blockquote>
-</blockquote>
-
-<h2 id="on-terrorism:e83d0257ee790c8819d8caa349c131eb">On Terrorism</h2>
-
-<blockquote>
-<p>The U.S. Joint Chiefs of Staff just released their annual &ldquo;counterterrorism&rdquo; report and it defined &ldquo;terrorism&rdquo; this way:</p>
-
-<blockquote>
-<p>Terrorism is the unlawful use of violence or threat of violence, often motivated by religious, political, or other ideological beliefs, to instill fear and coerce governments or societies in pursuit of goals that are usually political.</p>
-</blockquote>
-</blockquote>
-
-<p><center>&mdash;</center></p>
-
-<blockquote>
-<p>Given their intended effects - both physical and psychological - on entire populations, is there any serious doubt that continual, sustained drone warfare in places such as Pakistan and Yemen meet the U.S.&rsquo;s formal definition of &ldquo;terrorism&rdquo; found in its latest strategy document?</p>
-</blockquote>
+<p><strong>Update:</strong> Thanks to <a href="https://twitter.com/mholt6">@mholt6</a> for reviewing the post and helping improve it!</p>
 
 
     <div class="share">
         <div class="share-btn">
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://localhost:1313/2014/11/drone-strike-terrorism" data-text="Drone Strike Terrorism">Tweet</a>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://joshua.poehls.me/2014/04/go-101-string-or-byte-slice" data-text="Go 101: String or Byte Slice?">Tweet</a>
         </div>
 
         <div class="share-btn" style="width: 150px;">
-            <div class="fb-like" data-href="http://localhost:1313/2014/11/drone-strike-terrorism" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+            <div class="fb-like" data-href="http://joshua.poehls.me/2014/04/go-101-string-or-byte-slice" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
         </div>
 
         <div class="share-btn">
-            <a href="//www.pinterest.com/pin/create/button/?url=http%3a%2f%2flocalhost%3a1313%2f2014%2f11%2fdrone-strike-terrorism&media=http://localhost:1313/%2ftouch-icon-iphone-retinahd.png&description=Drone%20Strike%20Terrorism" data-pin-do="buttonPin" data-pin-config="beside"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>
+            <a href="//www.pinterest.com/pin/create/button/?url=http%3a%2f%2fjoshua.poehls.me%2f2014%2f04%2fgo-101-string-or-byte-slice&media=http://joshua.poehls.me/%2ftouch-icon-iphone-retinahd.png&description=Go%20101%3a%20String%20or%20Byte%20Slice%3f" data-pin-do="buttonPin" data-pin-config="beside"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>
+        </div>
+    </div>
+</article>
+
+<div class="fin">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/2014/04/go-101-methods-on-pointers-vs-values">Go 101: Methods on Pointers vs. Values</a>
+            
+        </h1>
+        <p>
+            <time datetime="2014-04-14 09:58:59 -0500 CDT" pubdate="pubdate">Mon, Apr 14, 2014</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2014/04/go-101-methods-on-pointers-vs-values">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2014/04/go-101-methods-on-pointers-vs-values</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Methods can be declared on both pointers and values. The difference is subtle but important.</p>
+
+<pre><code>type Person struct {
+     age int
+}
+
+// Method's receiver is the value, `Person`.
+func (p Person) Age() int {
+     return p.age
+}
+
+// Method's receiver is a pointer, `*Person`.
+func (p *Person) SetAge(age int) {
+     p.age = age
+}
+</code></pre>
+
+<blockquote>
+<p>In reality, you&rsquo;d only define getter and setter functions like this if you needed to implement additional logic. In an example like this you&rsquo;d just make the <code>Age</code> field public.</p>
+</blockquote>
+
+<p>This is how you define getter and setter functions in Go. Notice that we defined the <code>Age()</code> function on the value but <code>SetAge()</code> on the pointer (i.e. <code>*Person</code>). This is important.</p>
+
+<p><strong>Go always passes by value.</strong> Function parameters are  always passed by copying them as opposed to passing a reference. (<a href="http://golang.org/doc/faq#pass_by_value">Read more.</a>)</p>
+
+<blockquote>
+<p>Even pointers are technically passed by value. The memory address is copied, the value it points to is <em>not</em> copied.</p>
+</blockquote>
+
+<p>Here is the <em>wrong</em> way to define <code>SetAge</code>. Let&rsquo;s see what happens.</p>
+
+<pre><code>func (p Person) SetAge(age int) {
+     p.age = age
+}
+
+p := Person{}
+p.SetAge(10)
+fmt.Printf(&quot;Age: %v&quot;, p.Age()) // Age: 0
+</code></pre>
+
+<p><a href="http://play.golang.org/p/CJZfqBrAIC">&#9654; Run it.</a></p>
+
+<p>Notice that the output is <code>0</code> instead of <code>10</code>? This is &lsquo;pass by value&rsquo; in action.</p>
+
+<p>Calling <code>p.SetAge(10)</code> passes a copy of <code>p</code> to the <code>SetAge</code> function. <code>SetAge</code> sets the <code>age</code> property on the copy of <code>p</code> that it received which is discarded after the function returns.</p>
+
+<p>Now let&rsquo;s do it the right way.</p>
+
+<pre><code>func (p *Person) SetAge(age int) {
+     p.age = age
+}
+
+p := Person{}
+p.SetAge(10)
+fmt.Printf(&quot;Age: %v&quot;, p.Age()) // Age: 10
+</code></pre>
+
+<p><a href="http://play.golang.org/p/BbIlSUQBCr">&#9654; Run it.</a></p>
+
+<p>My rule of thumb is this: declare the method on the pointer unless your struct is such that you don&rsquo;t use pointers to it.</p>
+
+<p>Two reasons:</p>
+
+<ol>
+<li>Performance. Calling a method on a pointer will almost always be faster than copying the value. There may be cases wear the copy is faster but those are edge case.</li>
+<li>Consistency. It is common for at least one of your methods to need a pointer receiver and if any of the type&rsquo;s methods are on the pointer then they all should be. <em>This recommendation is direct from <a href="http://golang.org/doc/faq#methods_on_values_or_pointers">the FAQ</a>.</em></li>
+</ol>
+
+<p><a href="http://golang.org/doc/faq#methods_on_values_or_pointers">Read the FAQ</a> &ldquo;Should I define methods on values or pointers?&rdquo; for more insight.</p>
+
+<p><strong>Update:</strong> Thanks to the fine folks on reddit for suggesting some improvements.<br />
+<a href="http://www.reddit.com/r/golang/comments/23060m/go_101_methods_on_pointers_vs_values/">Join the discussion on reddit!</a></p>
+
+
+    <div class="share">
+        <div class="share-btn">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://joshua.poehls.me/2014/04/go-101-methods-on-pointers-vs-values" data-text="Go 101: Methods on Pointers vs. Values">Tweet</a>
+        </div>
+
+        <div class="share-btn" style="width: 150px;">
+            <div class="fb-like" data-href="http://joshua.poehls.me/2014/04/go-101-methods-on-pointers-vs-values" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+        </div>
+
+        <div class="share-btn">
+            <a href="//www.pinterest.com/pin/create/button/?url=http%3a%2f%2fjoshua.poehls.me%2f2014%2f04%2fgo-101-methods-on-pointers-vs-values&media=http://joshua.poehls.me/%2ftouch-icon-iphone-retinahd.png&description=Go%20101%3a%20Methods%20on%20Pointers%20vs.%20Values" data-pin-do="buttonPin" data-pin-config="beside"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>
+        </div>
+    </div>
+</article>
+
+<div class="fin">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/2014/04/go-conventions-constructors-and-overloads">Go 101: Constructors and Overloads</a>
+            
+        </h1>
+        <p>
+            <time datetime="2014-04-11 09:58:59 -0500 CDT" pubdate="pubdate">Fri, Apr 11, 2014</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2014/04/go-conventions-constructors-and-overloads">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2014/04/go-conventions-constructors-and-overloads</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Go doesn&rsquo;t have constructors in the traditional sense. The convention is to make the zero value useful whenever possible.</p>
+
+<pre><code>type Person struct {
+     Age int
+}
+
+// These are equivalent.
+// `p1` and `p2` are initialized to the zero value of Person.
+// Neither of these are nil.
+var p1 Person // type Person
+p2 := Person{} // type Person
+
+// You could also use `new` to allocate which returns a pointer
+p3 := new(Person) // type *Person
+</code></pre>
+
+<blockquote>
+<p>It is most common to use the struct initializer. e.g. <code>p := Person{}</code> or <code>p := &amp;Person{}</code> if you need the pointer.</p>
+</blockquote>
+
+<p>Sometimes you want special initialization logic. If your type is named <code>Person</code> then the convention would be create a function named <code>NewPerson</code> that returns a pointer to an initialized <code>Person</code> type.</p>
+
+<pre><code>func NewPerson(int age) *Person {
+     p := Person{age}
+     return &amp;p
+}
+
+myPerson := NewPerson(10) // type *Person
+</code></pre>
+
+<p>Multiple constructors can be implemented by having multiple initializer functions. Go doesn&rsquo;t support function overloads so you will need to name your functions intelligently.</p>
+
+<pre><code>import &quot;time&quot;
+
+func NewPersonAge(int age) *Person {
+     p := Person{age}
+     return &amp;p
+}
+
+func NewPersonBirthYear(int birthYear) *Person {
+     p := Person{time.Now().Year() - birthYear}
+     return &amp;p
+}
+</code></pre>
+
+<p><a href="http://golang.org/doc/effective_go.html#composite_literals">Read more</a> in Effective Go.</p>
+
+<p><strong>Update:</strong> Thanks to Joe Shaw for the comments! I&rsquo;ve updated the article with his suggestions.</p>
+
+
+    <div class="share">
+        <div class="share-btn">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://joshua.poehls.me/2014/04/go-conventions-constructors-and-overloads" data-text="Go 101: Constructors and Overloads">Tweet</a>
+        </div>
+
+        <div class="share-btn" style="width: 150px;">
+            <div class="fb-like" data-href="http://joshua.poehls.me/2014/04/go-conventions-constructors-and-overloads" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+        </div>
+
+        <div class="share-btn">
+            <a href="//www.pinterest.com/pin/create/button/?url=http%3a%2f%2fjoshua.poehls.me%2f2014%2f04%2fgo-conventions-constructors-and-overloads&media=http://joshua.poehls.me/%2ftouch-icon-iphone-retinahd.png&description=Go%20101%3a%20Constructors%20and%20Overloads" data-pin-do="buttonPin" data-pin-config="beside"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>
+        </div>
+    </div>
+</article>
+
+<div class="fin">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/contact"></a>
+            
+        </h1>
+        <p>
+            <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Jan 1, 0001</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/contact">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/contact</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+    <div class="share">
+        <div class="share-btn">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://joshua.poehls.me/contact" data-text="">Tweet</a>
+        </div>
+
+        <div class="share-btn" style="width: 150px;">
+            <div class="fb-like" data-href="http://joshua.poehls.me/contact" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+        </div>
+
+        <div class="share-btn">
+            <a href="//www.pinterest.com/pin/create/button/?url=http%3a%2f%2fjoshua.poehls.me%2fcontact&media=http://joshua.poehls.me/%2ftouch-icon-iphone-retinahd.png&description=" data-pin-do="buttonPin" data-pin-config="beside"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>
+        </div>
+    </div>
+</article>
+
+<div class="fin">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/archives"></a>
+            
+        </h1>
+        <p>
+            <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Jan 1, 0001</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/archives">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/archives</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+    <div class="share">
+        <div class="share-btn">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://joshua.poehls.me/archives" data-text="">Tweet</a>
+        </div>
+
+        <div class="share-btn" style="width: 150px;">
+            <div class="fb-like" data-href="http://joshua.poehls.me/archives" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+        </div>
+
+        <div class="share-btn">
+            <a href="//www.pinterest.com/pin/create/button/?url=http%3a%2f%2fjoshua.poehls.me%2farchives&media=http://joshua.poehls.me/%2ftouch-icon-iphone-retinahd.png&description=" data-pin-do="buttonPin" data-pin-config="beside"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>
         </div>
     </div>
 </article>
@@ -170,12 +446,6 @@
 
 <nav class="pagination">
 
-	<a href="/page/3/" aria-label="Earlier Posts"><span aria-hidden="true">&laquo; Earlier Posts</span></a>
-
-
-	
-		&nbsp;&nbsp;
-	
 
 
 	<a href="/" aria-label="Recent Posts"><span aria-hidden="true">Recent Posts &raquo;</span></a>
@@ -184,7 +454,7 @@
 
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
-<p>Browse my <a href="/tags">tags</a> if you're bored.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
 <p>&copy;&nbsp;2014-2015&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
@@ -202,8 +472,5 @@
   ga('send', 'pageview');
 
 </script>
-<script>document.write('<script src="http://'
-        + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
-        + 'script>')</script></body>
+</body>
 </html>

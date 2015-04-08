@@ -57,4 +57,27 @@
     <lastmod>2014-09-25T09:58:59-05:00</lastmod>
   </url>
   
+  <url>
+    <loc>http://joshua.poehls.me/2014/04/go-101-string-or-byte-slice</loc>
+    <lastmod>2014-04-16T09:58:59-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2014/04/go-101-methods-on-pointers-vs-values</loc>
+    <lastmod>2014-04-14T09:58:59-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2014/04/go-conventions-constructors-and-overloads</loc>
+    <lastmod>2014-04-11T09:58:59-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/contact</loc>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/archives</loc>
+  </url>
+  
 </urlset>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thought</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2014/04/go-conventions-constructors-and-overloads">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thought">
+<meta name="generator" content="Hugo 0.13" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a>.</small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/2014/04/go-conventions-constructors-and-overloads">Go 101: Constructors and Overloads</a>
+            
+        </h1>
+        <p>
+            <time datetime="2014-04-11 09:58:59 -0500 CDT" pubdate="pubdate">Fri, Apr 11, 2014</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2014/04/go-conventions-constructors-and-overloads">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2014/04/go-conventions-constructors-and-overloads</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Go doesn&rsquo;t have constructors in the traditional sense. The convention is to make the zero value useful whenever possible.</p>
+
+<pre><code>type Person struct {
+     Age int
+}
+
+// These are equivalent.
+// `p1` and `p2` are initialized to the zero value of Person.
+// Neither of these are nil.
+var p1 Person // type Person
+p2 := Person{} // type Person
+
+// You could also use `new` to allocate which returns a pointer
+p3 := new(Person) // type *Person
+</code></pre>
+
+<blockquote>
+<p>It is most common to use the struct initializer. e.g. <code>p := Person{}</code> or <code>p := &amp;Person{}</code> if you need the pointer.</p>
+</blockquote>
+
+<p>Sometimes you want special initialization logic. If your type is named <code>Person</code> then the convention would be create a function named <code>NewPerson</code> that returns a pointer to an initialized <code>Person</code> type.</p>
+
+<pre><code>func NewPerson(int age) *Person {
+     p := Person{age}
+     return &amp;p
+}
+
+myPerson := NewPerson(10) // type *Person
+</code></pre>
+
+<p>Multiple constructors can be implemented by having multiple initializer functions. Go doesn&rsquo;t support function overloads so you will need to name your functions intelligently.</p>
+
+<pre><code>import &quot;time&quot;
+
+func NewPersonAge(int age) *Person {
+     p := Person{age}
+     return &amp;p
+}
+
+func NewPersonBirthYear(int birthYear) *Person {
+     p := Person{time.Now().Year() - birthYear}
+     return &amp;p
+}
+</code></pre>
+
+<p><a href="http://golang.org/doc/effective_go.html#composite_literals">Read more</a> in Effective Go.</p>
+
+<p><strong>Update:</strong> Thanks to Joe Shaw for the comments! I&rsquo;ve updated the article with his suggestions.</p>
+
+
+    <div class="share">
+        <div class="share-btn">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://joshua.poehls.me/2014/04/go-conventions-constructors-and-overloads" data-text="Go 101: Constructors and Overloads">Tweet</a>
+        </div>
+
+        <div class="share-btn" style="width: 150px;">
+            <div class="fb-like" data-href="http://joshua.poehls.me/2014/04/go-conventions-constructors-and-overloads" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+        </div>
+
+        <div class="share-btn">
+            <a href="//www.pinterest.com/pin/create/button/?url=http%3a%2f%2fjoshua.poehls.me%2f2014%2f04%2fgo-conventions-constructors-and-overloads&media=http://joshua.poehls.me/%2ftouch-icon-iphone-retinahd.png&description=Go%20101%3a%20Constructors%20and%20Overloads" data-pin-do="buttonPin" data-pin-config="beside"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>
+        </div>
+    </div>
+</article>
+
+<div class="fin">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014-2015&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
