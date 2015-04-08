@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strings"
 	"syscall"
 )
 
@@ -38,6 +39,14 @@ func main() {
 	}
 
 	moveFile("./public/post/index.xml", "./public/feed.xml")
+	removeDir("./public/post")
+	removeDir("./public/page/page")
+	removeDir("./public/page/page/index.html")
+	removeDir("./public/page/archives")
+	removeFile("./public/index.xml")
+	removeFileAnywhere("./public/page", "index.xml")
+	removeFileAnywhere("./public/tags", "index.xml")
+	removeFileAnywhere("./public/series", "index.xml")
 
 	// Move everything from ./public up a level.
 	entries, err = ioutil.ReadDir("./public")
@@ -76,6 +85,31 @@ func main() {
 	}
 
 	log.Println("DONE!")
+}
+
+func removeDir(dir string) {
+	if err := os.RemoveAll(dir); err != nil {
+		log.Fatal(err)
+	}
+}
+
+func removeFile(file string) {
+	if err := os.Remove(file); err != nil {
+		log.Fatal(err)
+	}
+}
+
+func removeFileAnywhere(dir, file string) {
+	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
+		if strings.EqualFold(filepath.Base(path), file) {
+			if e := os.Remove(file); e != nil {
+				return e
+			}
+		}
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func moveFile(from, to string) {
