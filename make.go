@@ -102,7 +102,7 @@ func removeFile(file string) {
 func removeFileAnywhere(dir, file string) {
 	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		if strings.EqualFold(filepath.Base(path), file) {
-			if e := os.Remove(file); e != nil {
+			if e := os.Remove(path); e != nil {
 				return e
 			}
 		}
