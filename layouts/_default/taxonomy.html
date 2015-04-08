@@ -1,7 +1,5 @@
 {{partial "header.html" .}}
 
-{{$pag := .Paginator}}
-
 <div class="container">
 
 	<h1 class="taxonomy-title">
@@ -10,17 +8,22 @@
 		{{else}}
 			Posts in series <span class="term">{{ .Title | lower }}</span>
 		{{end}}
-		<span class="desc"><a href="{{ .Data.baseurl }}/{{ .Data.Plural }}">other {{ .Data.Plural }}</a></span>
+		<span class="desc"><a href="{{ .Data.baseurl }}/archives">other {{ .Data.Plural }}</a></span>
 	</h1>
 
-	<section id="posts">
-	{{range $pag.Pages}}
-		{{partial "li.html" .}}
-	{{end}}
-	</section>
+	<ul class="taxonomy-content">
+		{{ range .Data.Pages }}
+		<li>
+			{{.Date.Format "Jan 02, 2006"}} -
+            {{if .Params.linkurl}}
+            <a href="{{.Params.linkurl}}">{{.Title}}</a> <span class="subtle symbol">&#10230;</span>
+            {{else}}
+            <a href="{{.RelPermalink}}">{{.Title}}</a>
+            {{end}}
+		</li>
+		{{ end }}
+	</ul>
 
 </div>
-
-{{partial "posts-pager.html" $pag}}
 
 {{partial "footer.html" .}}

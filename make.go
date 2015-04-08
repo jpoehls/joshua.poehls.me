@@ -37,6 +37,8 @@ func main() {
 		}
 	}
 
+	moveFile("./public/posts/index.xml", "./public/feed.xml")
+
 	// Move everything from ./public up a level.
 	entries, err = ioutil.ReadDir("./public")
 	if err != nil {
@@ -74,6 +76,13 @@ func main() {
 	}
 
 	log.Println("DONE!")
+}
+
+func moveFile(from, to string) {
+	err := os.Rename(from, to)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func verifyRoot() {

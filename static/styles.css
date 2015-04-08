@@ -121,7 +121,8 @@ cite {
 
 /* Links
 ************************************************** */
-a {
+a,
+#masthead h1 .contact-link a {
 	color: #045FB4;
 	text-decoration: none;
 	border-bottom: 1px dotted #045FB4;
@@ -190,7 +191,7 @@ pre, code {
 
 #masthead h1 {
 	padding: .5em 0;
-	font-size: 1.2em;
+	font-size: 1.5em;
 	font-weight: 300;
 	color: #888;
 	margin: 0 auto;
@@ -203,9 +204,19 @@ pre, code {
 }
 
 #masthead h1 .aka {
-	font-size: .8em;
+	font-size: .6em;
 	letter-spacing: .08em;
 	float: right;
+}
+
+.contact-link {
+	margin-left: 1em;
+}
+
+/* Other pages
+************************************************** */
+#page {
+	margin-top: 1.5em;
 }
 
 /* Posts

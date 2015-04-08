@@ -1,0 +1,62 @@
+{{partial "header.html" .}}
+
+<div class="container" id="page">
+
+{{ if eq .RelPermalink "/archives" }}
+
+	<h2>Series</h2>
+	<ul>
+	{{ $seriesData := .Site.Data.series }}
+	{{ range $name, $pages := .Site.Taxonomies.series }}
+		{{ if isset $seriesData $name }}
+			<h3><a href="../series/{{ $name | urlize }}">{{ (index $seriesData $name).title }}</a>
+				<small>({{len $pages}})</small></h3>
+			<p>{{ (index $seriesData $name).description }}</p>
+		{{ end }}
+	{{ end }}
+	</ul>
+
+	<h2>Recommended Tags</h2>
+	<p>
+	{{ $recommended := .Site.Data.tags.recommended }}
+	{{ range $name, $pages := .Site.Taxonomies.tags }}
+		{{/* Inner loop because `if in $recommended $name` isn't working. */}}
+		{{ range $recommended }}
+			{{ if eq . $name }}
+				{{ $pageCount := len $pages }}
+
+				<span class="nowrap" style="margin-left: .5em">
+					<a href="../tags/{{ $name | urlize }}">{{ $name }}</a>
+					<small>({{ $pageCount }})</small>
+				</span>
+			{{ end }}
+		{{ end }}
+	{{ end }}
+	</p>
+
+	<h2>All Tags</h2>
+	<p>
+	{{ range $name, $pages := .Site.Taxonomies.tags }}
+		{{ $pageCount := len $pages }}
+
+		<span class="nowrap" style="margin-left: .5em">
+			<a href="../tags/{{ $name | urlize }}">{{ $name }}</a>
+			<small>({{ $pageCount }})</small>
+		</span>
+	{{ end }}
+	</p>
+
+{{ end }}
+
+{{ if eq .RelPermalink "/contact" }}
+
+	<ul>
+		<li>Twitter: <a href="https://twittter.com/@joshuapoehls">@joshuapoehls</a></li>
+		<li>Email: <a href="mailto:joshua@poehls.me">joshua@poehls.me</a></li>
+	</ul>
+
+{{ end }}
+
+</div>
+
+{{partial "footer.html" .}}
