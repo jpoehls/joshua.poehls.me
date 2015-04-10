@@ -445,9 +445,6 @@
 			]
 		]
 	},
-	"buffers":
-	[
-	],
 	"build_system": "",
 	"build_system_choices":
 	[
@@ -455,10 +452,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 163.0,
-		"last_filter": "",
+		"height": 392.0,
+		"last_filter": "package ",
 		"selected_items":
 		[
+			[
+				"package ",
+				"GoSublime: Add/Remove package"
+			],
 			[
 				"package",
 				"Package Control: Install Package"
@@ -604,10 +605,6 @@
 				"GoSublime: Add/Remove package"
 			],
 			[
-				"package ",
-				"GoSublime: Add/Remove package"
-			],
-			[
 				"pa",
 				"GoSublime: Add/Remove package"
 			],
@@ -664,7 +661,7 @@
 				"Preferences: Browse Packages"
 			]
 		],
-		"width": 449.0
+		"width": 467.0
 	},
 	"console":
 	{
@@ -683,33 +680,30 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/Users/joshua/Dropbox/Projects/joshua.poehls.me",
-		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content",
-		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/post",
-		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/post/2014/04",
-		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/post/2014/09",
-		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/data",
-		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts",
-		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/_default",
-		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/partials"
-	],
 	"file_history":
 	[
-		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/partials/header.html",
-		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/partials/li.html",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/static/skeleton.css",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/post/2014/09/hello-world.md",
 		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/_default/single.html",
-		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/static/styles.css",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/post/2014/04/go-101-string-or-byte-slice.md",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/pages/single.html",
 		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/partials/footer.html",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/partials/header.html",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/config.toml",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/make.go",
 		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/_default/taxonomy.html",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/data/tags.toml",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/page/single.html",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/static/styles.css",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/TODO",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/page/archives.html",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/page/contact.html",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/archives.html",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/project.sublime-project",
+		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/partials/li.html",
 		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/post/2014/04/go-conventions-constructors-and-overloads.md",
 		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/post/2014/04/go-101-methods-on-pointers-vs-values.md",
-		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/content/post/2014/04/go-101-string-or-byte-slice.md",
-		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/config.toml",
-		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/static/skeleton.css",
 		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/dev.sh",
-		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/make.go",
 		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/_default/terms.html",
 		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/_default/section.html",
 		"/Users/joshua/Dropbox/Projects/joshua.poehls.me/layouts/partials/posts-pager.html",
@@ -815,16 +809,7 @@
 		"/Users/joshua/mygo/src/bitbucket.org/jpoehls/fingerzone/.bowerrc",
 		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/text.go",
 		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/html.go",
-		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/README.md",
-		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/doc.go",
-		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/html_test.go",
-		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/text_test.go",
-		"/Users/joshua/Dropbox/Projects/gomasterpages/viewmaster/resolver_test.go",
-		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/resolver.go",
-		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/viewengine.go",
-		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/walk.go",
-		"/Users/joshua/Dropbox/projects/gomasterpages/viewengine.go",
-		"/Users/joshua/Dropbox/projects/gomasterpages/main.go"
+		"/Users/joshua/Dropbox/projects/gomasterpages/viewmaster/README.md"
 	],
 	"find":
 	{
@@ -845,6 +830,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"feed",
+			"blockquo",
+			"code",
 			"pre",
 			"$base",
 			"syscall",
@@ -946,14 +934,6 @@
 		"whole_word": false,
 		"wrap": true
 	},
-	"groups":
-	[
-		{
-			"sheets":
-			[
-			]
-		}
-	],
 	"incremental_find":
 	{
 		"height": 27.0
@@ -1006,7 +986,6 @@
 		"height": 124.0
 	},
 	"pinned_build_system": "",
-	"project": "project.sublime-project",
 	"replace":
 	{
 		"height": 50.0
@@ -1018,6 +997,18 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"singl",
+				"layouts/_default/single.html"
+			],
+			[
+				"skel",
+				"static/skeleton.css"
+			],
+			[
+				"styles",
+				"static/styles.css"
+			],
 			[
 				"contex",
 				"src/middleware/context.go"
@@ -1143,7 +1134,6 @@
 		],
 		"width": 392.0
 	},
-	"selected_group": 0,
 	"settings":
 	{
 	},
