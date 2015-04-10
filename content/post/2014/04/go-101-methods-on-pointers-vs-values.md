@@ -70,3 +70,5 @@ Two reasons:
 
 **Update:** Thanks to the fine folks on reddit for suggesting some improvements.  
 [Join the discussion on reddit!](http://www.reddit.com/r/golang/comments/23060m/go_101_methods_on_pointers_vs_values/)
+
+**Update 2:** Here are [even more rules of thumb](https://github.com/golang/go/wiki/CodeReviewComments#receiver-type) to help you choose whether to use a value or pointer receiver.
