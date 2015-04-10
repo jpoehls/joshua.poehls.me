@@ -8,7 +8,7 @@
 		{{else}}
 			Posts in series <span class="term">{{ .Title }}</span>
 		{{end}}
-		<span class="desc"><a href="{{ .Data.baseurl }}/archives">other {{ .Data.Plural }}</a></span>
+		<span class="desc"><a href="{{ .Data.baseurl }}/archives">other&nbsp;{{ .Data.Plural }}</a></span>
 	</h1>
 	{{ if eq .Data.Plural "series" }}
 		{{ if isset .Site.Data.series (.Title | urlize) }}
