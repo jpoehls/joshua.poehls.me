@@ -1,6 +1,6 @@
 {{partial "header.html" .}}
 
-{{$pag := .Paginator}}
+{{$pag := .Paginate (where .Data.Pages "Type" "post") }}
 
 <div class="container">
 
