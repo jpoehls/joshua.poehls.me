@@ -652,6 +652,8 @@ fmt.Printf(&amp;quot;Age: %v&amp;quot;, p.Age()) // Age: 10
 
 &lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; Thanks to the fine folks on reddit for suggesting some improvements.&lt;br /&gt;
 &lt;a href=&#34;http://www.reddit.com/r/golang/comments/23060m/go_101_methods_on_pointers_vs_values/&#34;&gt;Join the discussion on reddit!&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update 2:&lt;/strong&gt; Here are &lt;a href=&#34;https://github.com/golang/go/wiki/CodeReviewComments#receiver-type&#34;&gt;even more rules of thumb&lt;/a&gt; to help you choose whether to use a value or pointer receiver.&lt;/p&gt;
 </description>
     </item>
     
