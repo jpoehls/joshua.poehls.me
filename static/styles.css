@@ -25,6 +25,14 @@ h1.taxonomy-title .term {
 	color: #777;
 }
 
+.taxonomy-desc {
+	margin-top: 1em;
+}
+
+.taxonomy-content {
+	margin-top: 2em;
+}
+
 .nowrap {
 	white-space: nowrap;
 }
@@ -122,7 +130,8 @@ cite {
 /* Links
 ************************************************** */
 a,
-#masthead h1 .contact-link a {
+#masthead h1 .contact-link a,
+#masthead h1 .archives-link a {
 	color: #045FB4;
 	text-decoration: none;
 	border-bottom: 1px dotted #045FB4;
@@ -209,7 +218,8 @@ pre, code {
 	float: right;
 }
 
-.contact-link {
+.contact-link,
+.archives-link {
 	margin-left: 1em;
 }
 

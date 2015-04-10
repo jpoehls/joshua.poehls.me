@@ -6,19 +6,23 @@
 		{{if eq .Data.Plural "tags"}}
 			Posts tagged <span class="term">#{{ .Title | lower }}</span>
 		{{else}}
-			Posts in series <span class="term">{{ .Title | lower }}</span>
+			Posts in series <span class="term">{{ .Title }}</span>
 		{{end}}
 		<span class="desc"><a href="{{ .Data.baseurl }}/archives">other {{ .Data.Plural }}</a></span>
 	</h1>
+	{{ if eq .Data.Plural "series" }}
+		{{ if isset .Site.Data.series (.Title | urlize) }}
+		<p class="taxonomy-desc">{{ (index .Site.Data.series (.Title | urlize)).description }}</p>
+		{{ end }}
+	{{ end }}
 
 	<ul class="taxonomy-content">
 		{{ range .Data.Pages }}
 		<li>
 			{{.Date.Format "Jan 02, 2006"}} -
+			<a href="{{.RelPermalink}}">{{.Title}}</a>
             {{if .Params.linkurl}}
-            <a href="{{.Params.linkurl}}">{{.Title}}</a> <span class="subtle symbol">&#10230;</span>
-            {{else}}
-            <a href="{{.RelPermalink}}">{{.Title}}</a>
+            <a href="{{.Params.linkurl}}"><span class="subtle symbol">&#10230;</span></a>
             {{end}}
 		</li>
 		{{ end }}
