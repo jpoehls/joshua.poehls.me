@@ -229,6 +229,20 @@ pre, code {
 	margin-top: 1.5em;
 }
 
+#page h2 {
+	font-size: 1.7em;
+}
+
+#page h3 {
+	font-size: 1.5em;
+	margin-bottom: .5em;
+}
+
+#page .series-desc {
+	font-size: .85em;
+	margin-left: 2em;
+}
+
 /* Posts
 ************************************************** */
 #posts {
@@ -297,33 +311,6 @@ article.post figure a {
 	font-size: 2em;
 	color: #888;
 	margin-top: 1em;
-}
-
-/* Social media share buttons
-************************************************** */
-.share {
-	overflow: hidden;
-	opacity: 0.70;
-	margin-top: 1.3em;
-}
-
-.share a {
-	border: 0;
-}
-
-.share:hover {
-	opacity: 1;
-}
-
-.share-btn {
-	display: inline-block;
-	float: left;
-	margin: 0;
-	width: 100px;
-}
-
-.share-btn .fb-like>span {
-	vertical-align: top !important;
 }
 
 /* Print friendliness

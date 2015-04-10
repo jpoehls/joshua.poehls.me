@@ -4,19 +4,7 @@
 
 {{ if eq .RelPermalink "/archives" }}
 
-	<h2>Series</h2>
-	<ul>
-	{{ $seriesData := .Site.Data.series }}
-	{{ range $name, $pages := .Site.Taxonomies.series }}
-		{{ if isset $seriesData $name }}
-			<h3><a href="../series/{{ $name | urlize }}">{{ (index $seriesData $name).title }}</a>
-				<small>({{len $pages}})</small></h3>
-			<p>{{ (index $seriesData $name).description }}</p>
-		{{ end }}
-	{{ end }}
-	</ul>
-
-	<h2>Recommended Tags</h2>
+	<h2>Best Tags</h2>
 	<p>
 	{{ $recommended := .Site.Data.tags.recommended }}
 	{{ range $name, $pages := .Site.Taxonomies.tags }}
@@ -33,6 +21,18 @@
 		{{ end }}
 	{{ end }}
 	</p>
+
+	<h2>Series</h2>
+	<ul>
+	{{ $seriesData := .Site.Data.series }}
+	{{ range $name, $pages := .Site.Taxonomies.series }}
+		{{ if isset $seriesData $name }}
+			<h3><a href="../series/{{ $name | urlize }}">{{ (index $seriesData $name).title }}</a>
+				<small>({{ len $pages }})</small></h3>
+			<p class="series-desc">{{ (index $seriesData $name).description }}</p>
+		{{ end }}
+	{{ end }}
+	</ul>
 
 	<h2>All Tags</h2>
 	<p>
