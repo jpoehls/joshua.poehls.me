@@ -830,6 +830,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"share",
+			"contact-",
 			"feed",
 			"blockquo",
 			"code",
