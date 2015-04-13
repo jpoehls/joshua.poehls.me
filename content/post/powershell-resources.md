@@ -13,9 +13,17 @@ This is a list of resources that should help anyone interested in PowerShell.
 - PowerShell ISE
 	- Launch by running the `ise` command from any PowerShell prompt, or by going to Start | Run... (or `WIN+R`) and entering `powershell_ise`.
 	- Tips and tricks on the [Hey, Scripting Guy! blog](http://blogs.technet.com/b/heyscriptingguy/archive/tags/windows+powershell+ise/)
-- Visual Studio via [PowerShell Tools for Visual Studio](http://visualstudiogallery.msdn.microsoft.com/c9eb3ba8-0c59-4944-9a62-6eee37294597)
-	- Also [on GitHub](https://github.com/adamdriscoll/poshtools)
+- Visual Studio via [PowerShell Tools for Visual Studio](http://visualstudiogallery.msdn.microsoft.com/c9eb3ba8-0c59-4944-9a62-6eee37294597) ([on GitHub](https://github.com/adamdriscoll/poshtools))
 - Sublime Text via the [PowerShell package](https://github.com/SublimeText/PowerShell)
+
+## Articles
+
+I few articles I've written to help you get started.
+
+- My boilerplate for [scripts](http://zduck.com/2013/powershell-script-boilerplate/)
+- My boilerplate for [script modules](http://zduck.com/2013/powershell-script-module-boilerplate/)
+- [Deep dive into PowerShell exit codes](http://zduck.com/2012/powershell-batch-files-exit-codes/)
+- [How to store your profile in Dropbox](http://zduck.com/2011/scripting-tips-take-your-powershell-profile-everywhere-with-dropbox/)
 
 ## Videos
 
