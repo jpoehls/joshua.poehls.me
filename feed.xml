@@ -27,12 +27,19 @@
 &lt;li&gt;Launch by running the &lt;code&gt;ise&lt;/code&gt; command from any PowerShell prompt, or by going to Start | Run&amp;hellip; (or &lt;code&gt;WIN+R&lt;/code&gt;) and entering &lt;code&gt;powershell_ise&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Tips and tricks on the &lt;a href=&#34;http://blogs.technet.com/b/heyscriptingguy/archive/tags/windows+powershell+ise/&#34;&gt;Hey, Scripting Guy! blog&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Visual Studio via &lt;a href=&#34;http://visualstudiogallery.msdn.microsoft.com/c9eb3ba8-0c59-4944-9a62-6eee37294597&#34;&gt;PowerShell Tools for Visual Studio&lt;/a&gt;
+&lt;li&gt;Visual Studio via &lt;a href=&#34;http://visualstudiogallery.msdn.microsoft.com/c9eb3ba8-0c59-4944-9a62-6eee37294597&#34;&gt;PowerShell Tools for Visual Studio&lt;/a&gt; (&lt;a href=&#34;https://github.com/adamdriscoll/poshtools&#34;&gt;on GitHub&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Sublime Text via the &lt;a href=&#34;https://github.com/SublimeText/PowerShell&#34;&gt;PowerShell package&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;articles:fc2b22b46776086c164a896f746d9d30&#34;&gt;Articles&lt;/h2&gt;
+
+&lt;p&gt;I few articles I&amp;rsquo;ve written to help you get started.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Also &lt;a href=&#34;https://github.com/adamdriscoll/poshtools&#34;&gt;on GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Sublime Text via the &lt;a href=&#34;https://github.com/SublimeText/PowerShell&#34;&gt;PowerShell package&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;My boilerplate for &lt;a href=&#34;http://zduck.com/2013/powershell-script-boilerplate/&#34;&gt;scripts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;My boilerplate for &lt;a href=&#34;http://zduck.com/2013/powershell-script-module-boilerplate/&#34;&gt;script modules&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://zduck.com/2012/powershell-batch-files-exit-codes/&#34;&gt;Deep dive into PowerShell exit codes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://zduck.com/2011/scripting-tips-take-your-powershell-profile-everywhere-with-dropbox/&#34;&gt;How to store your profile in Dropbox&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;videos:fc2b22b46776086c164a896f746d9d30&#34;&gt;Videos&lt;/h2&gt;
