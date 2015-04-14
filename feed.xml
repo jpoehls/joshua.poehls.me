@@ -120,7 +120,7 @@ if err != nil {
 
 &lt;p&gt;&lt;a href=&#34;https://firstlook.org/theintercept/2014/11/18/media-outlets-continue-describe-unknown-drone-victims-militants/&#34;&gt;Read the article.&lt;/a&gt; Read it twice.&lt;/p&gt;
 
-&lt;h2 id=&#34;on-target-selection:e83d0257ee790c8819d8caa349c131eb&#34;&gt;On Target Selection&lt;/h2&gt;
+&lt;h2 id=&#34;on-target-selection:d62b6f9184d6cab15beaa2c65f1dfe59&#34;&gt;On Target Selection&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;It has been more than two years since The New York Times revealed that &amp;ldquo;Mr. Obama embraced a disputed method for counting civilian casualties&amp;rdquo; of his drone strikes which &amp;ldquo;in effect &lt;strong&gt;counts all military-age males in a strike zone as combatants &amp;hellip; . unless there is explicit intelligence posthumously proving them innocent&lt;/strong&gt;.&amp;rdquo;&lt;/p&gt;
@@ -142,7 +142,7 @@ if err != nil {
 
 &lt;p&gt;Read that again.&lt;/p&gt;
 
-&lt;h2 id=&#34;on-public-perception:e83d0257ee790c8819d8caa349c131eb&#34;&gt;On Public Perception&lt;/h2&gt;
+&lt;h2 id=&#34;on-public-perception:d62b6f9184d6cab15beaa2c65f1dfe59&#34;&gt;On Public Perception&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;&amp;hellip;if a drone missile killed an innocent adult male civilian, such as a vegetable vender or a fruit seller, the victim&amp;rsquo;s long hair and beard would be enough to stereotype him as a militant.&lt;/p&gt;
@@ -150,7 +150,7 @@ if err != nil {
 
 &lt;p&gt;Sorry, we&amp;rsquo;re too busy being &lt;a href=&#34;http://www.newstatesman.com/culture/2014/11/shirtgate-newflash-wearing-terrible-shirt-doesnt-make-you-terrible-person&#34;&gt;offended by the t-shirts people wear&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;on-psychological-effects:e83d0257ee790c8819d8caa349c131eb&#34;&gt;On Psychological Effects&lt;/h2&gt;
+&lt;h2 id=&#34;on-psychological-effects:d62b6f9184d6cab15beaa2c65f1dfe59&#34;&gt;On Psychological Effects&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;A 2012 report from Stanford and NYU Law School clinics, &amp;ldquo;Living Under Drones,&amp;rdquo; documented that &amp;ldquo;US drone strike policies cause considerable and under-accounted-for harm to the daily lives of ordinary civilians, beyond death and physical injury&amp;rdquo; – specifically, they &amp;ldquo;hover twenty-four hours a day over communities in northwest Pakistan, striking homes, vehicles, and public spaces without warning. Their presence terrorizes men, women, and children, giving rise to anxiety and psychological trauma among civilian communities.&amp;rdquo;&lt;/p&gt;
@@ -160,7 +160,7 @@ if err != nil {
 &lt;/blockquote&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&#34;on-terrorism:e83d0257ee790c8819d8caa349c131eb&#34;&gt;On Terrorism&lt;/h2&gt;
+&lt;h2 id=&#34;on-terrorism:d62b6f9184d6cab15beaa2c65f1dfe59&#34;&gt;On Terrorism&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;The U.S. Joint Chiefs of Staff just released their annual &amp;ldquo;counterterrorism&amp;rdquo; report and it defined &amp;ldquo;terrorism&amp;rdquo; this way:&lt;/p&gt;
@@ -771,6 +771,98 @@ func NewPersonBirthYear(int birthYear) *Person {
 &lt;p&gt;&lt;a href=&#34;http://golang.org/doc/effective_go.html#composite_literals&#34;&gt;Read more&lt;/a&gt; in Effective Go.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; Thanks to Joe Shaw for the comments! I&amp;rsquo;ve updated the article with his suggestions.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>PowerShell Batch File Wrapper</title>
+      <link>http://joshua.poehls.me/powershell-batch-file-wrapper</link>
+      <pubDate>Wed, 18 Dec 2013 10:43:31 CST</pubDate>
+      <author>Joshua Poehls</author>
+      <guid>http://joshua.poehls.me/powershell-batch-file-wrapper</guid>
+      <description>
+
+&lt;p&gt;Sometimes you want a &lt;code&gt;.cmd&lt;/code&gt; wrapper for your PowerShell script. Usually for me this is so people who aren&amp;rsquo;t familiar with the command line can double-click to execute the script.&lt;/p&gt;
+
+&lt;p&gt;This batch file should be saved alongside your PowerShell script, like so.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.\
+ |- my_script.ps1
+ |- my_script.cmd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;my_script.cmd&lt;/code&gt; will execute the same named &lt;code&gt;.ps1&lt;/code&gt; file in the same directory, so &lt;code&gt;my_script.ps1&lt;/code&gt; in this case. Any arguments passed to &lt;code&gt;my_script.cmd&lt;/code&gt; will pass-through to the PowerShell script.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@ECHO OFF
+
+SET SCRIPTNAME=%~d0%~p0%~n0.ps1
+SET ARGS=%*
+IF [%ARGS%] NEQ [] GOTO ESCAPE_ARGS
+
+:POWERSHELL
+PowerShell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -Command &amp;quot;&amp;amp;amp; { $ErrorActionPreference = &#39;Stop&#39;; &amp;amp;amp; &#39;%SCRIPTNAME%&#39; @args; EXIT $LASTEXITCODE }&amp;quot; %ARGS%
+EXIT /B %ERRORLEVEL%
+
+:ESCAPE_ARGS
+SET ARGS=%ARGS:&amp;quot;=\&amp;quot;%
+SET ARGS=%ARGS:`=``%
+SET ARGS=%ARGS:&#39;=`&#39;%
+SET ARGS=%ARGS:$=`$%
+SET ARGS=%ARGS:&amp;amp;#123;=`&amp;amp;#123;%
+SET ARGS=%ARGS:}=`}%
+SET ARGS=%ARGS:(=`(%
+SET ARGS=%ARGS:)=`)%
+SET ARGS=%ARGS:,=`,%
+SET ARGS=%ARGS:^%=%
+
+GOTO POWERSHELL
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;what-s-going-on-here:7908c9f856e796bbc0d3b5748b45b371&#34;&gt;What&amp;rsquo;s going on here?&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;%SCRIPTNAME%&lt;/code&gt; variable holds the name of the PowerShell script to execute. &lt;code&gt;%~d0%~p0%~n0&lt;/code&gt; magic gets the full path of the
+current batch script without the file extension. By specifying the full path of the PowerShell script
+like this we can guarantee that it is always executed from the right place
+no matter what your working directory is.&lt;/li&gt;
+&lt;li&gt;Escapes special characters in the arguments so that they are passed to PowerShell as you would expect.&lt;/li&gt;
+&lt;li&gt;Runs &lt;code&gt;PowerShell.exe&lt;/code&gt; with:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-NoProfile&lt;/code&gt; to improve startup performance. Scripts you are distributing
+shouldn&amp;rsquo;t rely on anything in your profile anyway.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-NonInteractive&lt;/code&gt; because usually my scripts don&amp;rsquo;t need input from the user.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-ExecutionPolicy Unrestricted&lt;/code&gt; to ensure that the PowerShell script can
+be executed regardless of the machine&amp;rsquo;s default Execution Policy.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-Command&lt;/code&gt; syntax for executing the command ensures that PowerShell
+returns the correct exit code from your script.
+Using &lt;code&gt;-Command&lt;/code&gt; with &lt;code&gt;$ErrorActionPreference = &#39;Stop&#39;&lt;/code&gt; also ensures that
+errors thrown from your script cause PowerShell.exe to return a failing
+exit code (1). &lt;a href=&#34;http://zduck.com/2012/powershell-batch-files-exit-codes/&#34;&gt;PowerShell is quite buggy when it comes to bubbling exit
+codes.&lt;/a&gt;
+This is the safest method I&amp;rsquo;ve found.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;batch-file-tips:7908c9f856e796bbc0d3b5748b45b371&#34;&gt;Batch file tips&lt;/h2&gt;
+
+&lt;h3 id=&#34;special-characters-in-arguments:7908c9f856e796bbc0d3b5748b45b371&#34;&gt;Special characters in arguments&lt;/h3&gt;
+
+&lt;p&gt;Remember that certain special characters need to be escaped in arguments passed to the batch file. These characters are: &lt;code&gt;^  &amp;amp;  &amp;lt;  &amp;gt;  /?&lt;/code&gt;. Note that &lt;code&gt;/?&lt;/code&gt; is a sequence and is recognized as a help flag when passed to a batch file.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;my_script.cmd &amp;quot;I &amp;quot;&amp;quot;am&amp;quot;&amp;quot; quoted&amp;quot;&lt;/code&gt; passes a single argument &lt;code&gt;I &amp;quot;am&amp;quot; quoted&lt;/code&gt; to PowerShell.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;my_script.cmd &amp;quot;^&amp;amp;&amp;lt;&amp;gt;/?&amp;quot;&lt;/code&gt; passes &lt;code&gt;^&amp;amp;&amp;lt;&amp;gt;/?&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;environment-variable-expansion:7908c9f856e796bbc0d3b5748b45b371&#34;&gt;Environment variable expansion&lt;/h3&gt;
+
+&lt;p&gt;Environment variables get automatically expanded in batch file arguments.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;my_script.cmd %PROGRAMFILES%&lt;/code&gt; passes &lt;code&gt;C:\Program Files&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 </description>
     </item>
     

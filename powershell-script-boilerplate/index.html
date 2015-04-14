@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thought</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/powershell-script-boilerplate">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thought">
+<meta name="generator" content="Hugo 0.13" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/powershell-script-boilerplate">PowerShell Script Boilerplate</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-12-18 10:43:31 -0600 CST" pubdate="pubdate">Wed, Dec 18, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/powershell-script-boilerplate">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/powershell-script-boilerplate</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>This post is as much for me as it is for you. I write a lot of PowerShell scripts and they tend to follow a certain pattern. This is my personal boilerplate for PowerShell scripts.</p>
+
+<pre><code>Set-StrictMode -Version Latest
+$ErrorActionPreference = &quot;Stop&quot;
+
+$scriptDir = Split-Path -LiteralPath $(if ($PSVersionTable.PSVersion.Major -ge 3) { $PSCommandPath } else { &amp; { $MyInvocation.ScriptName } })
+
+$stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+
+try
+{
+    # TODO: Insert script here.
+}
+finally
+{
+    Write-Output &quot;Done! $($stopwatch.Elapsed)&quot;
+}
+</code></pre>
+
+<h2 id="what-s-going-on-here:469e3590a69ce674428532a2149fa57a">What&rsquo;s going on here?</h2>
+
+<ul>
+<li>Enables <code>StrictMode</code> to enforce some best practices. <sup class="footnote-ref" id="fnref:469e3590a69ce674428532a2149fa57a:fn1"><a rel="footnote" href="#fn:469e3590a69ce674428532a2149fa57a:fn1">1</a></sup>
+
+<ul>
+<li>Prevents use of variables that have not been initialized.</li>
+<li>Cannot call non-existent properties on objects.</li>
+<li>Disallows calling a function like a method, e.g., <code>Do-Something(1 2)</code> instead of <code>Do-Something 1 2</code>.</li>
+<li>Prohibits creating variables without a name.</li>
+</ul></li>
+<li>Sets <code>$ErrorActionPreference</code> so that unhandled exceptions will halt
+the script execution. By default, PowerShell will roll on when an exceptions
+is thrown and this statement makes my scripts safe by default.</li>
+<li>Set <code>$scriptDir</code> to the directory path of the current script.
+This may be different than the working directory.</li>
+<li>Most of the time I want to know how long my script takes to run so I include
+a <code>$stopwatch</code> that will output the elapsed time when the script finishes.</li>
+<li>The <code>try...finally</code> ensures that the elapsed time will output even if the script throws an exception.</li>
+</ul>
+
+<blockquote>
+<p>Need to wrap your PowerShells script with a batch file? Grab my <a href="/powershell-batch-file-wrapper">PowerShell batch file wrapper</a>.</p>
+</blockquote>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:469e3590a69ce674428532a2149fa57a:fn1"><a href="http://blogs.technet.com/b/heyscriptingguy/archive/2014/12/03/enforce-better-script-practices-by-using-set-strictmode.aspx">Read more about this</a> on the &ldquo;Hey, Scripting Guy!&rdquo; blog.
+ <a class="footnote-return" href="#fnref:469e3590a69ce674428532a2149fa57a:fn1">↩</a></li>
+</ol>
+</div>
+
+
+</article>
+
+<div class="fin">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014-2015&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
