@@ -11,7 +11,7 @@ footnoteAnchorPrefix = "fn"
 footnoteReturnLinkContents = "↩"
 
 [permalinks]
-	post = "/:year/:month/:slug"
+	post = "/:year/:slug"
 
 [author]
 	name = "Joshua Poehls"

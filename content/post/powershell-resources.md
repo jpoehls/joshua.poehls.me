@@ -20,9 +20,9 @@ This is a list of resources that should help anyone interested in PowerShell.
 
 I few articles I've written to help you get started.
 
-- My boilerplate for [scripts](http://zduck.com/2013/powershell-script-boilerplate/)
-- My boilerplate for [script modules](http://zduck.com/2013/powershell-script-module-boilerplate/)
-- [Deep dive into PowerShell exit codes](http://zduck.com/2012/powershell-batch-files-exit-codes/)
+- My boilerplate for [scripts](/powershell-script-boilerplate)
+- My boilerplate for [script modules](/powershell-script-module-boilerplate)
+- [Deep dive into PowerShell exit codes](/2012/powershell-batch-files-exit-codes)
 - [How to store your profile in Dropbox](http://zduck.com/2011/scripting-tips-take-your-powershell-profile-everywhere-with-dropbox/)
 
 ## Videos
