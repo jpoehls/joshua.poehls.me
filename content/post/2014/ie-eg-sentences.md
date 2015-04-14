@@ -1,7 +1,7 @@
 ---
 date: 2014-09-25T13:48:49-05:00
 title: Starting Sentences With I.E. or E.G.
-slug: ie-eg-sentences
+url: 2014/09/ie-eg-sentences
 linkurl: http://english.stackexchange.com/a/37204
 tags:
 - english

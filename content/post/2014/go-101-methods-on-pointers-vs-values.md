@@ -1,7 +1,7 @@
 ---
 date: 2014-04-14T09:58:59-05:00
 title: "Go 101: Methods on Pointers vs. Values"
-slug: go-101-methods-on-pointers-vs-values
+url: 2014/04/go-101-methods-on-pointers-vs-values
 tags:
 - golang
 series: Go 101

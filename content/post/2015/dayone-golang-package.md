@@ -1,7 +1,7 @@
 ---
 date: 2015-03-14T10:43:31-06:00
 title: Reading Day One journals in Go
-slug: dayone-golang-package
+url: 2015/03/dayone-golang-package
 tags:
 - golang
 ---

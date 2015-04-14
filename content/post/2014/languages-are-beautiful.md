@@ -1,7 +1,7 @@
 ---
 date: 2014-09-26T12:52:44-05:00
 title: Languages Are Beautiful
-slug: languages-are-beautiful
+url: 2014/09/languages-are-beautiful
 draft: false
 tags:
 - art

@@ -1,7 +1,7 @@
 ---
 date: 2014-04-11T09:58:59-05:00
 title: "Go 101: Constructors and Overloads"
-slug: go-conventions-constructors-and-overloads
+url: 2014/04/go-conventions-constructors-and-overloads
 tags:
 - golang
 series: Go 101

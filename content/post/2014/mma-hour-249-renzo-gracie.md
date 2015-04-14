@@ -1,7 +1,7 @@
 ---
 date: 2014-10-02T15:03:13-05:00
 title: The MMA Hour - 249 - Renzo Gracie
-slug: mma-hour-249-renzo-gracie
+url: 2014/10/mma-hour-249-renzo-gracie
 linkurl: http://www.mmafighting.com/2014/9/30/6872803/the-mma-hour-249-renzo-gracie
 tags:
 - bjj

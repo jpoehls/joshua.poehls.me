@@ -1,7 +1,7 @@
 ---
 date: 2014-09-25T14:21:31-05:00
 title: Earth's Water is Older Than the Sun
-slug: earths-water-is-older-than-the-sun
+url: 2014/09/earths-water-is-older-than-the-sun
 linkurl: http://motherboard.vice.com/read/earths-water-is-older-than-the-sun
 tags:
 - science

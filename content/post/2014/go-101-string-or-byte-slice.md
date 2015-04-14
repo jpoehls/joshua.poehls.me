@@ -1,7 +1,7 @@
 ---
 date: 2014-04-16T09:58:59-05:00
 title: "Go 101: String or Byte Slice?"
-slug: go-101-string-or-byte-slice
+url: 2014/04/go-101-string-or-byte-slice
 tags:
 - golang
 series: Go 101

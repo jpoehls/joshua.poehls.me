@@ -1,7 +1,7 @@
 ---
 date: 2014-11-18T09:55:27-06:00
 title: Drone Strike Terrorism
-slug: drone-strike-terrorism
+url: 2014/11/drone-strike-terrorism
 linkurl: https://firstlook.org/theintercept/2014/11/18/media-outlets-continue-describe-unknown-drone-victims-militants/
 tags:
 - war

@@ -1,7 +1,7 @@
 ---
 date: 2014-09-25T09:58:59-05:00
 title: Hello World
-slug: hello-world
+url: 2014/09/hello-world
 tags:
 - meta
 ---

@@ -1,7 +1,7 @@
 ---
 date: 2014-09-26T16:51:06-05:00
 title: David Rumsey Map Collection
-slug: david-rumsey-map-collection
+url: 2014/09/david-rumsey-map-collection
 linkurl: http://www.davidrumsey.com
 tags:
 - maps

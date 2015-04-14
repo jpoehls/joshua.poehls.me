@@ -1,7 +1,7 @@
 ---
 date: 2014-09-26T09:18:41-05:00
 title: The NSA Reaches Out
-slug: nsa-reaches-out
+url: 2014/09/nsa-reaches-out
 linkurl: http://longnow.org/seminars/02014/aug/06/inside-nsa/
 tags:
 - nsa
