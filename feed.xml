@@ -36,9 +36,9 @@
 &lt;p&gt;I few articles I&amp;rsquo;ve written to help you get started.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;My boilerplate for &lt;a href=&#34;http://zduck.com/2013/powershell-script-boilerplate/&#34;&gt;scripts&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;My boilerplate for &lt;a href=&#34;http://zduck.com/2013/powershell-script-module-boilerplate/&#34;&gt;script modules&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://zduck.com/2012/powershell-batch-files-exit-codes/&#34;&gt;Deep dive into PowerShell exit codes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;My boilerplate for &lt;a href=&#34;http://joshua.poehls.me/powershell-script-boilerplate&#34;&gt;scripts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;My boilerplate for &lt;a href=&#34;http://joshua.poehls.me/powershell-script-module-boilerplate&#34;&gt;script modules&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://joshua.poehls.me/2012/powershell-batch-files-exit-codes&#34;&gt;Deep dive into PowerShell exit codes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://zduck.com/2011/scripting-tips-take-your-powershell-profile-everywhere-with-dropbox/&#34;&gt;How to store your profile in Dropbox&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -775,94 +775,166 @@ func NewPersonBirthYear(int birthYear) *Person {
     </item>
     
     <item>
-      <title>PowerShell Batch File Wrapper</title>
-      <link>http://joshua.poehls.me/powershell-batch-file-wrapper</link>
-      <pubDate>Wed, 18 Dec 2013 10:43:31 CST</pubDate>
+      <title>PowerShell Script Module Boilerplate</title>
+      <link>http://joshua.poehls.me/powershell-script-module-boilerplate</link>
+      <pubDate>Sat, 21 Dec 2013 10:43:31 CST</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/powershell-batch-file-wrapper</guid>
+      <guid>http://joshua.poehls.me/powershell-script-module-boilerplate</guid>
       <description>
 
-&lt;p&gt;Sometimes you want a &lt;code&gt;.cmd&lt;/code&gt; wrapper for your PowerShell script. Usually for me this is so people who aren&amp;rsquo;t familiar with the command line can double-click to execute the script.&lt;/p&gt;
+&lt;p&gt;One of the things I always look for when getting familiar with a new language or environment is examples of the physical file structure and logical organization of the code. How do you layout your project files? What is idiomatic?&lt;/p&gt;
 
-&lt;p&gt;This batch file should be saved alongside your PowerShell script, like so.&lt;/p&gt;
+&lt;p&gt;Unsurprisingly, this isn&amp;rsquo;t always as simple as finding a few open-source projects on GitHub to reference. Believe it or not, there are a lot of pretty unorganized coders out there. I admit to being a bit OCD with my project structures. I like them clean, organized, and consistent.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;.\
- |- my_script.ps1
- |- my_script.cmd
+&lt;p&gt;In this post I&amp;rsquo;m going to cover my preferred boilerplate for &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/dd878340(v=vs.85).aspx&#34;&gt;PowerShell Script Modules&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Script Modules are about as simple as it gets. Typically you have one or more PS1 or PSM1 files that contain your module&amp;rsquo;s cmdlets. Beyond that you &lt;em&gt;should&lt;/em&gt; have a &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/dd878337(v=vs.85).aspx&#34;&gt;PSD1 manifest&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;fork-this:bf50e637665b449b2d775f5a8ffeb5fd&#34;&gt;Fork this!&lt;/h2&gt;
+
+&lt;p&gt;This entire boilerplate &lt;a href=&#34;http://github.com/jpoehls/powershell-script-module-boilerplate&#34;&gt;is on GitHub&lt;/a&gt;. If you just want a solid starting point, download this repo. If you want to know more, keep reading.&lt;/p&gt;
+
+&lt;h2 id=&#34;file-structure:bf50e637665b449b2d775f5a8ffeb5fd&#34;&gt;File Structure&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;+- src/
+| +- source_file.ps1
+| +- ...
++- tools/
+| +- release.ps1
++- LICENSE
++- README.md
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;code&gt;my_script.cmd&lt;/code&gt; will execute the same named &lt;code&gt;.ps1&lt;/code&gt; file in the same directory, so &lt;code&gt;my_script.ps1&lt;/code&gt; in this case. Any arguments passed to &lt;code&gt;my_script.cmd&lt;/code&gt; will pass-through to the PowerShell script.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;@ECHO OFF
-
-SET SCRIPTNAME=%~d0%~p0%~n0.ps1
-SET ARGS=%*
-IF [%ARGS%] NEQ [] GOTO ESCAPE_ARGS
-
-:POWERSHELL
-PowerShell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -Command &amp;quot;&amp;amp;amp; { $ErrorActionPreference = &#39;Stop&#39;; &amp;amp;amp; &#39;%SCRIPTNAME%&#39; @args; EXIT $LASTEXITCODE }&amp;quot; %ARGS%
-EXIT /B %ERRORLEVEL%
-
-:ESCAPE_ARGS
-SET ARGS=%ARGS:&amp;quot;=\&amp;quot;%
-SET ARGS=%ARGS:`=``%
-SET ARGS=%ARGS:&#39;=`&#39;%
-SET ARGS=%ARGS:$=`$%
-SET ARGS=%ARGS:&amp;amp;#123;=`&amp;amp;#123;%
-SET ARGS=%ARGS:}=`}%
-SET ARGS=%ARGS:(=`(%
-SET ARGS=%ARGS:)=`)%
-SET ARGS=%ARGS:,=`,%
-SET ARGS=%ARGS:^%=%
-
-GOTO POWERSHELL
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;what-s-going-on-here:7908c9f856e796bbc0d3b5748b45b371&#34;&gt;What&amp;rsquo;s going on here?&lt;/h2&gt;
-
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;%SCRIPTNAME%&lt;/code&gt; variable holds the name of the PowerShell script to execute. &lt;code&gt;%~d0%~p0%~n0&lt;/code&gt; magic gets the full path of the
-current batch script without the file extension. By specifying the full path of the PowerShell script
-like this we can guarantee that it is always executed from the right place
-no matter what your working directory is.&lt;/li&gt;
-&lt;li&gt;Escapes special characters in the arguments so that they are passed to PowerShell as you would expect.&lt;/li&gt;
-&lt;li&gt;Runs &lt;code&gt;PowerShell.exe&lt;/code&gt; with:
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;-NoProfile&lt;/code&gt; to improve startup performance. Scripts you are distributing
-shouldn&amp;rsquo;t rely on anything in your profile anyway.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-NonInteractive&lt;/code&gt; because usually my scripts don&amp;rsquo;t need input from the user.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-ExecutionPolicy Unrestricted&lt;/code&gt; to ensure that the PowerShell script can
-be executed regardless of the machine&amp;rsquo;s default Execution Policy.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-Command&lt;/code&gt; syntax for executing the command ensures that PowerShell
-returns the correct exit code from your script.
-Using &lt;code&gt;-Command&lt;/code&gt; with &lt;code&gt;$ErrorActionPreference = &#39;Stop&#39;&lt;/code&gt; also ensures that
-errors thrown from your script cause PowerShell.exe to return a failing
-exit code (1). &lt;a href=&#34;http://zduck.com/2012/powershell-batch-files-exit-codes/&#34;&gt;PowerShell is quite buggy when it comes to bubbling exit
-codes.&lt;/a&gt;
-This is the safest method I&amp;rsquo;ve found.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src/&lt;/code&gt; contains the PS1, PSM1, PS1XML, and any other source files for the module.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tools/&lt;/code&gt; is where I put any meta scripts for the project. Usually there is just one script here that builds a release version of my module.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;LICENSE&lt;/code&gt; - if your module is open-source, always specify what license you are releasing it under.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;README.md&lt;/code&gt; - always have a README file. Even if it is only a one sentence description. &lt;a href=&#34;http://daringfireball.net/projects/markdown/&#34;&gt;Markdown&lt;/a&gt; is a great format to use for this.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;batch-file-tips:7908c9f856e796bbc0d3b5748b45b371&#34;&gt;Batch file tips&lt;/h2&gt;
+&lt;h2 id=&#34;explicit-exports:bf50e637665b449b2d775f5a8ffeb5fd&#34;&gt;Explicit Exports&lt;/h2&gt;
 
-&lt;h3 id=&#34;special-characters-in-arguments:7908c9f856e796bbc0d3b5748b45b371&#34;&gt;Special characters in arguments&lt;/h3&gt;
+&lt;p&gt;By default, PowerShell will export all of the functions in your module. I recommend being explicit about this and always specifying which functions should be publically exported. This way it is easy to add private helper functions that are internal to your module without worrying about them being made public accidentally.&lt;/p&gt;
 
-&lt;p&gt;Remember that certain special characters need to be escaped in arguments passed to the batch file. These characters are: &lt;code&gt;^  &amp;amp;  &amp;lt;  &amp;gt;  /?&lt;/code&gt;. Note that &lt;code&gt;/?&lt;/code&gt; is a sequence and is recognized as a help flag when passed to a batch file.&lt;/p&gt;
+&lt;p&gt;You do this by calling &lt;a href=&#34;http://technet.microsoft.com/en-us/library/hh849736.aspx&#34;&gt;&lt;code&gt;Export-ModuleMember&lt;/code&gt;&lt;/a&gt; at the bottom of your source file. If you have a &lt;code&gt;source.psm1&lt;/code&gt; file that contains a &lt;code&gt;Show-Calendar&lt;/code&gt; function that should be public, you would do something like this:&lt;/p&gt;
 
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;my_script.cmd &amp;quot;I &amp;quot;&amp;quot;am&amp;quot;&amp;quot; quoted&amp;quot;&lt;/code&gt; passes a single argument &lt;code&gt;I &amp;quot;am&amp;quot; quoted&lt;/code&gt; to PowerShell.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Show-Calendar.ps1
+#
+# Show-Calendar will be public.
+# Any other functions in this file will be private.
 
-&lt;p&gt;&lt;code&gt;my_script.cmd &amp;quot;^&amp;amp;&amp;lt;&amp;gt;/?&amp;quot;&lt;/code&gt; passes &lt;code&gt;^&amp;amp;&amp;lt;&amp;gt;/?&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+function Show-Calendar {
+    # ...
+}
 
-&lt;h3 id=&#34;environment-variable-expansion:7908c9f856e796bbc0d3b5748b45b371&#34;&gt;Environment variable expansion&lt;/h3&gt;
+Export-ModuleMember -Function Show-Calendar
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Environment variables get automatically expanded in batch file arguments.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://msdn.microsoft.com/en-us/library/dd878340(v=vs.85).aspx&#34;&gt;Full example &amp;#8594;&lt;/a&gt;&lt;/p&gt;
 
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;my_script.cmd %PROGRAMFILES%&lt;/code&gt; passes &lt;code&gt;C:\Program Files&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;h2 id=&#34;release-script:bf50e637665b449b2d775f5a8ffeb5fd&#34;&gt;Release Script&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Every project should have a release script.&lt;/strong&gt; You should never be manually building your distributable release. At a minimum my release script will:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Generate the PSD1 manifest for my module.&lt;/li&gt;
+&lt;li&gt;Save the manifest into a temporary &lt;code&gt;./dist&lt;/code&gt; folder.&lt;/li&gt;
+&lt;li&gt;Copy all of the module source files into &lt;code&gt;./dist&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Add all of the module&amp;rsquo;s source files to a ZIP file ready for me to distribute.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Here is what a simple &lt;code&gt;release.ps1&lt;/code&gt; script might look like.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/jpoehls/powershell-script-module-boilerplate/blob/master/tools/release.ps1&#34;&gt;View on GitHub &amp;#8594;&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;#
+.SYNOPSIS
+    Generates a manifest for the module
+    and bundles all of the module source files
+    and manifest into a distributable ZIP file.
+#&amp;gt;
+
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory = $true)]
+    [version]$ModuleVersion
+)
+
+$ErrorActionPreference = &amp;quot;Stop&amp;quot;
+
+Write-Host &amp;quot;Building release for v$moduleVersion&amp;quot;
+
+$scriptPath = Split-Path -LiteralPath $(if ($PSVersionTable.PSVersion.Major -ge 3) { $PSCommandPath } else { &amp;amp; { $MyInvocation.ScriptName } })
+
+$src = (Join-Path (Split-Path $scriptPath) &#39;src&#39;)
+$dist = (Join-Path (Split-Path $scriptPath) &#39;dist&#39;)
+if (Test-Path $dist) {
+    Remove-Item $dist -Force -Recurse
+}
+New-Item $dist -ItemType Directory | Out-Null
+
+Write-Host &amp;quot;Creating module manifest...&amp;quot;
+
+$manifestFileName = Join-Path $dist &#39;YourModule.psd1&#39;
+
+# TODO: Tweak the manifest to fit your module&#39;s needs.
+New-ModuleManifest `
+    -Path $manifestFileName `
+    -ModuleVersion $ModuleVersion `
+    -Guid fe524c79-95a6-4d02-8e15-30dddeb8c874 `
+    -Author &#39;Your Name&#39; `
+    -CompanyName &#39;Your Company&#39; `
+    -Copyright &#39;(c) $((Get-Date).Year) Your Company. All rights reserved.&#39; `
+    -Description &#39;Description of your module.&#39; `
+    -PowerShellVersion &#39;3.0&#39; `
+    -DotNetFrameworkVersion &#39;4.5&#39; `
+    -NestedModules (Get-ChildItem $src -Exclude *.psd1 | % { $_.Name })
+
+Write-Host &amp;quot;Creating release archive...&amp;quot;
+
+# Copy the distributable files to the dist folder.
+Copy-Item -Path &amp;quot;$src\*&amp;quot; `
+          -Destination $dist `
+          -Recurse
+
+# Requires .NET 4.5
+[Reflection.Assembly]::LoadWithPartialName(&amp;quot;System.IO.Compression.FileSystem&amp;quot;) | Out-Null
+
+$zipFileName = Join-Path ([System.IO.Path]::GetDirectoryName($dist)) &amp;quot;$([System.IO.Path]::GetFileNameWithoutExtension($manifestFileName))-$ModuleVersion.zip&amp;quot;
+
+# Overwrite the ZIP if it already already exists.
+if (Test-Path $zipFileName) {
+    Remove-Item $zipFileName -Force
+}
+
+$compressionLevel = [System.IO.Compression.CompressionLevel]::Optimal
+$includeBaseDirectory = $false
+[System.IO.Compression.ZipFile]::CreateFromDirectory($dist, $zipFileName, $compressionLevel, $includeBaseDirectory)
+
+Move-Item $zipFileName $dist -Force
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;version-control:bf50e637665b449b2d775f5a8ffeb5fd&#34;&gt;Version Control&lt;/h2&gt;
+
+&lt;p&gt;Always exclude your &lt;code&gt;./dist&lt;/code&gt; folder from source control. As a rule of thumb, you never want to store the build output of any project in source control.&lt;/p&gt;
+
+&lt;p&gt;Depending on how you plan to release your module, you may prefer to exclude &lt;code&gt;*.psd1&lt;/code&gt; manifest files from source control. This just keeps things clean and enforces that you use your release script to build the distributable.&lt;/p&gt;
+
+&lt;h2 id=&#34;good-examples:bf50e637665b449b2d775f5a8ffeb5fd&#34;&gt;Good Examples&lt;/h2&gt;
+
+&lt;p&gt;Here are a few open-source PowerShell modules that I&amp;rsquo;ve found to be good examples to follow.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/adamdriscoll/PoshInternals&#34;&gt;PoshInternals&lt;/a&gt; by Adam Driscoll&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/psake/psake&#34;&gt;Psake&lt;/a&gt; by James Kovacs&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/jpoehls/poshato&#34;&gt;Poshato&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!--
+## Binary Modules
+
+I use a very similar file structure for [PowerShell Binary Modules][binary_module] but they do introduce more complexity into the release script. I&#39;ll be covering my binary module boilerplate in a future post. 
+--&gt;
 </description>
     </item>
     

@@ -78,6 +78,11 @@
   </url>
   
   <url>
+    <loc>http://joshua.poehls.me/powershell-script-module-boilerplate</loc>
+    <lastmod>2013-12-21T10:43:31-06:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://joshua.poehls.me/powershell-batch-file-wrapper</loc>
     <lastmod>2013-12-18T10:43:31-06:00</lastmod>
   </url>
@@ -85,6 +90,16 @@
   <url>
     <loc>http://joshua.poehls.me/powershell-script-boilerplate</loc>
     <lastmod>2013-12-18T10:43:31-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2012/powershell-script-module-boilerplate</loc>
+    <lastmod>2012-06-23T10:43:31-06:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2007/recursively-deleting-files-with-powershell</loc>
+    <lastmod>2007-04-23T10:43:31-06:00</lastmod>
   </url>
   
   <url>

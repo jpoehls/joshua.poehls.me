@@ -371,6 +371,190 @@ func NewPersonBirthYear(int birthYear) *Person {
     <header>
         <h1>
             
+            <a href="/powershell-script-module-boilerplate">PowerShell Script Module Boilerplate</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-12-21 10:43:31 -0600 CST" pubdate="pubdate">Sat, Dec 21, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/powershell-script-module-boilerplate">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/powershell-script-module-boilerplate</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>One of the things I always look for when getting familiar with a new language or environment is examples of the physical file structure and logical organization of the code. How do you layout your project files? What is idiomatic?</p>
+
+<p>Unsurprisingly, this isn&rsquo;t always as simple as finding a few open-source projects on GitHub to reference. Believe it or not, there are a lot of pretty unorganized coders out there. I admit to being a bit OCD with my project structures. I like them clean, organized, and consistent.</p>
+
+<p>In this post I&rsquo;m going to cover my preferred boilerplate for <a href="http://msdn.microsoft.com/en-us/library/dd878340(v=vs.85).aspx">PowerShell Script Modules</a>.</p>
+
+<p>Script Modules are about as simple as it gets. Typically you have one or more PS1 or PSM1 files that contain your module&rsquo;s cmdlets. Beyond that you <em>should</em> have a <a href="http://msdn.microsoft.com/en-us/library/dd878337(v=vs.85).aspx">PSD1 manifest</a>.</p>
+
+<h2 id="fork-this:bf50e637665b449b2d775f5a8ffeb5fd">Fork this!</h2>
+
+<p>This entire boilerplate <a href="http://github.com/jpoehls/powershell-script-module-boilerplate">is on GitHub</a>. If you just want a solid starting point, download this repo. If you want to know more, keep reading.</p>
+
+<h2 id="file-structure:bf50e637665b449b2d775f5a8ffeb5fd">File Structure</h2>
+
+<pre><code>+- src/
+| +- source_file.ps1
+| +- ...
++- tools/
+| +- release.ps1
++- LICENSE
++- README.md
+</code></pre>
+
+<ul>
+<li><code>src/</code> contains the PS1, PSM1, PS1XML, and any other source files for the module.</li>
+<li><code>tools/</code> is where I put any meta scripts for the project. Usually there is just one script here that builds a release version of my module.</li>
+<li><code>LICENSE</code> - if your module is open-source, always specify what license you are releasing it under.</li>
+<li><code>README.md</code> - always have a README file. Even if it is only a one sentence description. <a href="http://daringfireball.net/projects/markdown/">Markdown</a> is a great format to use for this.</li>
+</ul>
+
+<h2 id="explicit-exports:bf50e637665b449b2d775f5a8ffeb5fd">Explicit Exports</h2>
+
+<p>By default, PowerShell will export all of the functions in your module. I recommend being explicit about this and always specifying which functions should be publically exported. This way it is easy to add private helper functions that are internal to your module without worrying about them being made public accidentally.</p>
+
+<p>You do this by calling <a href="http://technet.microsoft.com/en-us/library/hh849736.aspx"><code>Export-ModuleMember</code></a> at the bottom of your source file. If you have a <code>source.psm1</code> file that contains a <code>Show-Calendar</code> function that should be public, you would do something like this:</p>
+
+<pre><code># Show-Calendar.ps1
+#
+# Show-Calendar will be public.
+# Any other functions in this file will be private.
+
+function Show-Calendar {
+    # ...
+}
+
+Export-ModuleMember -Function Show-Calendar
+</code></pre>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/dd878340(v=vs.85).aspx">Full example &#8594;</a></p>
+
+<h2 id="release-script:bf50e637665b449b2d775f5a8ffeb5fd">Release Script</h2>
+
+<p><strong>Every project should have a release script.</strong> You should never be manually building your distributable release. At a minimum my release script will:</p>
+
+<ol>
+<li>Generate the PSD1 manifest for my module.</li>
+<li>Save the manifest into a temporary <code>./dist</code> folder.</li>
+<li>Copy all of the module source files into <code>./dist</code>.</li>
+<li>Add all of the module&rsquo;s source files to a ZIP file ready for me to distribute.</li>
+</ol>
+
+<p>Here is what a simple <code>release.ps1</code> script might look like.</p>
+
+<p><a href="https://github.com/jpoehls/powershell-script-module-boilerplate/blob/master/tools/release.ps1">View on GitHub &#8594;</a></p>
+
+<pre><code>&lt;#
+.SYNOPSIS
+    Generates a manifest for the module
+    and bundles all of the module source files
+    and manifest into a distributable ZIP file.
+#&gt;
+
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory = $true)]
+    [version]$ModuleVersion
+)
+
+$ErrorActionPreference = &quot;Stop&quot;
+
+Write-Host &quot;Building release for v$moduleVersion&quot;
+
+$scriptPath = Split-Path -LiteralPath $(if ($PSVersionTable.PSVersion.Major -ge 3) { $PSCommandPath } else { &amp; { $MyInvocation.ScriptName } })
+
+$src = (Join-Path (Split-Path $scriptPath) 'src')
+$dist = (Join-Path (Split-Path $scriptPath) 'dist')
+if (Test-Path $dist) {
+    Remove-Item $dist -Force -Recurse
+}
+New-Item $dist -ItemType Directory | Out-Null
+
+Write-Host &quot;Creating module manifest...&quot;
+
+$manifestFileName = Join-Path $dist 'YourModule.psd1'
+
+# TODO: Tweak the manifest to fit your module's needs.
+New-ModuleManifest `
+    -Path $manifestFileName `
+    -ModuleVersion $ModuleVersion `
+    -Guid fe524c79-95a6-4d02-8e15-30dddeb8c874 `
+    -Author 'Your Name' `
+    -CompanyName 'Your Company' `
+    -Copyright '(c) $((Get-Date).Year) Your Company. All rights reserved.' `
+    -Description 'Description of your module.' `
+    -PowerShellVersion '3.0' `
+    -DotNetFrameworkVersion '4.5' `
+    -NestedModules (Get-ChildItem $src -Exclude *.psd1 | % { $_.Name })
+
+Write-Host &quot;Creating release archive...&quot;
+
+# Copy the distributable files to the dist folder.
+Copy-Item -Path &quot;$src\*&quot; `
+          -Destination $dist `
+          -Recurse
+
+# Requires .NET 4.5
+[Reflection.Assembly]::LoadWithPartialName(&quot;System.IO.Compression.FileSystem&quot;) | Out-Null
+
+$zipFileName = Join-Path ([System.IO.Path]::GetDirectoryName($dist)) &quot;$([System.IO.Path]::GetFileNameWithoutExtension($manifestFileName))-$ModuleVersion.zip&quot;
+
+# Overwrite the ZIP if it already already exists.
+if (Test-Path $zipFileName) {
+    Remove-Item $zipFileName -Force
+}
+
+$compressionLevel = [System.IO.Compression.CompressionLevel]::Optimal
+$includeBaseDirectory = $false
+[System.IO.Compression.ZipFile]::CreateFromDirectory($dist, $zipFileName, $compressionLevel, $includeBaseDirectory)
+
+Move-Item $zipFileName $dist -Force
+</code></pre>
+
+<h2 id="version-control:bf50e637665b449b2d775f5a8ffeb5fd">Version Control</h2>
+
+<p>Always exclude your <code>./dist</code> folder from source control. As a rule of thumb, you never want to store the build output of any project in source control.</p>
+
+<p>Depending on how you plan to release your module, you may prefer to exclude <code>*.psd1</code> manifest files from source control. This just keeps things clean and enforces that you use your release script to build the distributable.</p>
+
+<h2 id="good-examples:bf50e637665b449b2d775f5a8ffeb5fd">Good Examples</h2>
+
+<p>Here are a few open-source PowerShell modules that I&rsquo;ve found to be good examples to follow.</p>
+
+<ul>
+<li><a href="https://github.com/adamdriscoll/PoshInternals">PoshInternals</a> by Adam Driscoll</li>
+<li><a href="https://github.com/psake/psake">Psake</a> by James Kovacs</li>
+<li><a href="https://github.com/jpoehls/poshato">Poshato</a></li>
+</ul>
+
+<!--
+## Binary Modules
+
+I use a very similar file structure for [PowerShell Binary Modules][binary_module] but they do introduce more complexity into the release script. I'll be covering my binary module boilerplate in a future post. 
+-->
+
+
+</article>
+
+<div class="fin">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="/powershell-batch-file-wrapper">PowerShell Batch File Wrapper</a>
             
         </h1>
@@ -550,6 +734,345 @@ a <code>$stopwatch</code> that will output the elapsed time when the script fini
  <a class="footnote-return" href="#fnref:469e3590a69ce674428532a2149fa57a:fn1">↩</a></li>
 </ol>
 </div>
+
+
+</article>
+
+<div class="fin">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/2012/powershell-script-module-boilerplate">PowerShell, batch files, and exit codes. Recipes &amp; Secrets.</a>
+            
+        </h1>
+        <p>
+            <time datetime="2012-06-23 10:43:31 -0600 -0600" pubdate="pubdate">Sat, Jun 23, 2012</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2012/powershell-script-module-boilerplate">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2012/powershell-script-module-boilerplate</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<h2 id="tl-dr:e436619b3c225495df020f575a03107f">TL;DR;</h2>
+
+<blockquote>
+<p><strong>Update:</strong> If you want to save some time, skip reading this and just use my <a href="/powershell-script-boilerplate">PowerShell Script Boilerplate</a>. It includes an excellent batch file wrapper, argument escaping, and error code bubbling.</p>
+</blockquote>
+
+<p><code>PowerShell.exe</code> doesn&rsquo;t return correct exit codes when using the <code>-File</code> option. Use <code>-Command</code> instead. <em>(<a href="https://connect.microsoft.com/PowerShell/feedback/details/750653/powershell-exe-doesn-t-return-correct-exit-codes-when-using-the-file-option">Vote for this issue</a> on Microsoft Connect.)</em></p>
+
+<p><a href="#bat-wrapper">This</a> is a batch file wrapper for executing PowerShell scripts. It forwards arguments to PowerShell and correctly bubbles up the exit code (when it can).</p>
+
+<p><code>PowerShell.exe</code> still <a href="#command-parsererror">returns a passing (0) exit code when a <code>ParserError</code> is thrown</a>. Even when using <code>-Command</code>. I haven&rsquo;t found a workaround for this. <em>(<a href="https://connect.microsoft.com/PowerShell/feedback/details/750654/powershell-exe-returns-a-passing-0-exit-code-when-a-parsererror-is-thrown">Vote for this issue</a> on Microsoft Connect.)</em></p>
+
+<p>You can use <a href="#black-magic">black magic</a> to include spaces and quotes in the arguments you pass through the batch file wrapper to PowerShell.</p>
+
+<h2 id="powershell:e436619b3c225495df020f575a03107f">PowerShell</h2>
+
+<p>PowerShell is a great scripting environment, and it is my preferred tool for writing build scripts for .NET apps. Exit codes are vital in build scripts because they are how your Continuous Integration server knows whether the build passed or failed.</p>
+
+<p>This is a <strike>quick</strike> tour of working with exit codes in PowerShell scripts and batch files. I&rsquo;m including batch files because they are often necessary to wrap the execution of your PowerShell scripts.</p>
+
+<p>Let&rsquo;s start easy. Say you need to run a command line app or batch file from your PowerShell script. How can you check the exit code of that process?</p>
+
+<pre data-language="powershell"><code># script.ps1
+
+cmd /C exit 1
+Write-Host $LastExitCode    # 1</code></pre>
+
+<p><code>$LastExitCode</code> is a special variable that holds the exit code of the last Windows based program that was run. So says <a href="http://technet.microsoft.com/en-us/library/dd347675.aspx">the documentation</a>.</p>
+
+<p>Remember though, <code>$LastExitCode</code> doesn&rsquo;t do squat for PowerShell commands. Use <code>$?</code> for that.</p>
+
+<pre data-language="powershell"><code># script.ps1
+
+Get-ChildItem "C:\"
+Write-Host $?    # True
+
+Get-ChildItem "Z:\some\non-existant\path"
+Write-Host $?    # False</code></pre>
+
+<p>Anytime you run an external command like this, you need to check the exit code and throw an exception if needed. Otherwise the PowerShell script will keep right on trucking after a failure.</p>
+
+<pre data-language="powershell"><code># script.ps1
+
+cmd /C exit 1
+if ($LastExitCode -ne 0) {
+    throw "Command failed with exit code $LastExitCode."
+}
+Write-Host "You'll never see this."</code></pre>
+
+<p>Writing these assertions all the time will get old. Fortunately you can use a helper function, like this one found in the <a href="http://github.com/psake/psake">excellent psake project</a>.</p>
+
+<pre data-language="powershell"><code># script.ps1
+
+function Exec
+{
+    [CmdletBinding()]
+    param (
+        [Parameter(Position=0, Mandatory=1)]
+        [scriptblock]$Command,
+        [Parameter(Position=1, Mandatory=0)]
+        [string]$ErrorMessage = "Execution of command failed.`n$Command"
+    )
+    &amp; $Command
+    if ($LastExitCode -ne 0) {
+        throw "Exec: $ErrorMessage"
+    }
+}
+
+Exec { cmd /C exit 1 }
+Write-Host "You'll never see this."</code></pre>
+
+<h3 id="throwing-exit-codes:e436619b3c225495df020f575a03107f">Throwing &amp; exit codes</h3>
+
+<p>The <code>throw</code> keyword is how you generate a terminating error in PowerShell. It will, sometimes, cause your PowerShell script to return a failing exit code (1). Wait, when does it <em>not</em> cause a failing exit code, you ask? This is where PowerShell&rsquo;s warts start to show. Let me demonstrate some scenarios.</p>
+
+<pre data-language="powershell"><code># broken.ps1
+
+throw "I'm broken"</code></pre>
+
+<p><em>From the PowerShell command prompt:</em></p>
+
+<pre><code>PS&gt; .\broken.ps1
+<span style="color: red;">I'm broken.
+At C:\broken.ps1:1 char:6
++ throw &lt;&lt;&lt;&lt;  "I'm broken."
+    + CategoryInfo          : OperationStopped: (I'm broken.:String) [], RuntimeException
+    + FullyQualifiedErrorId : I'm broken.</span>
+    
+PS&gt; $LastExitCode
+1</code></pre>
+
+<p><em>From the Windows command prompt:</em></p>
+
+<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted -Command ".\broken.ps1"
+<span style="color: red;">I'm broken.
+At C:\broken.ps1:1 char:6
++ throw &lt;&lt;&lt;&lt;  "I'm broken."
+    + CategoryInfo          : OperationStopped: (I'm broken.:String) [], RuntimeException
+    + FullyQualifiedErrorId : I'm broken.</span>
+    
+&gt; echo %errorlevel%
+1</code></pre>
+
+<p>That worked, too. Good.</p>
+
+<p><em>Again, from the Windows command prompt:</em></p>
+
+<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted <b>-File</b> ".\broken.ps1"
+<span style="color: red;">I'm broken.
+At C:\broken.ps1:1 char:6
++ throw &lt;&lt;&lt;&lt;  "I'm broken."
+    + CategoryInfo          : OperationStopped: (I'm broken.:String) [], RuntimeException
+    + FullyQualifiedErrorId : I'm broken.</span>
+
+&gt; echo %errorlevel%
+0</code></pre>
+
+<p>Whoa! We still saw the error, but PowerShell returned a passing exit code. What the heck?! Yes, this is the wart.</p>
+
+<h3 id="a-workaround-for-file:e436619b3c225495df020f575a03107f">A workaround for <code>-File</code></h3>
+
+<p><code>-File</code> allows you to pass in a script for PowerShell to execute, however terminating errors in the script will not cause PowerShell to return a failing exit code. I have no idea why this is the case. If you know why, please share!</p>
+
+<p>A workaround is to add a <code>trap</code> statement to the top of your PowerShell script. (Thanks, Chris Oldwood, for <a href="http://chrisoldwood.blogspot.com/2011/05/powershell-throwing-exceptions-exit.html">pointing this out</a>!)</p>
+
+<pre data-language="powershell"><code># broken.ps1
+
+trap
+{
+    Write-Error $_
+    exit 1
+}
+throw "I'm broken."</code></pre>
+
+<p><em>From the Windows command prompt:</em></p>
+
+<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted <b>-File</b> ".\script.ps1"
+<span style="color: red;">C:\broken.ps1 : I'm broken.
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,broken.ps1</span>
+
+&gt; echo %errorlevel%
+1</code></pre>  
+
+<p>Notice that we got the correct exit code this time, but our error output didn&rsquo;t include as much detail. Specifically, we didn&rsquo;t get the line number of the error like we were getting in the previous tests. So it isn&rsquo;t a perfect workaround.</p>
+
+<p><strong>Remember.</strong> Use <code>-Command</code> instead of <code>-File</code> whenever possible. If for some reason you must use <code>-File</code> or your script needs to support being run that way, then use the trap workaround above.</p>
+
+<p><a id="command-parsererror"> </a></p>
+
+<h3 id="command-can-still-fail:e436619b3c225495df020f575a03107f"><code>-Command</code> can still fail</h3>
+
+<p>I&rsquo;ve discovered that PowerShell will still exit with a success code (0) when a <code>ParserError</code> is thrown. Even when using <code>-Command</code>.</p>
+
+<p><em>From the Windows command prompt:</em></p>
+
+<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -Command "Write-Host 'You will never see this.'" <b>"\"</b>
+<span style="color: red;">The string starting:
+At line:1 char:39
++ Write-Host 'You will never see this.'  &lt;&lt;&lt;&lt; "
+is missing the terminator: ".
+At line:1 char:40
++ Write-Host 'You will never see this.' " &lt;&lt;&lt;&lt;
+    + CategoryInfo          : <b>ParserError</b>: (:String) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : TerminatorExpectedAtEndOfString</span>
+
+&gt; echo %errorlevel%
+0</code></pre>
+
+<p>I&rsquo;m not aware of any workaround for this behavior. This is very disturbing, because these parser errors can be caused by arguments (as I demonstrated above). This means there is no way to guarantee your script will exit with the correct code when it fails.</p>
+
+<p><em>Note: This was tested in PowerShell v2, on Windows 7 (x64).</em></p>
+
+<p>There are <a href="https://connect.microsoft.com/PowerShell/feedback/details/637113/powershell-command-line-exit-codes-inconsistency">other</a> <a href="https://connect.microsoft.com/PowerShell/feedback/details/638771/powershell-return-code-and-parameters">known</a> bugs with PowerShell&rsquo;s exit codes. Beware.</p>
+
+<h2 id="batch-files:e436619b3c225495df020f575a03107f">Batch files</h2>
+
+<p>I mentioned early on that it is often necessary to wrap the execution of your PowerShell script in a batch file. Some common reasons for this might be:</p>
+
+<ul>
+<li>You want users of your script to be able to double-click to run it.</li>
+<li>Your build runner doesn&rsquo;t support execution of PowerShell scripts directly.</li>
+</ul>
+
+<p>Whatever the reason, writing a batch file wrapper for a PowerShell script is easy. You just need to make sure that your batch file properly returns the exit code from PowerShell. Otherwise, your PowerShell script might fail and your batch file would return a successful exit code (0).</p>
+
+<p><a id="bat-wrapper"> </a></p>
+
+<p><del>This is a safe template for you to use. Bookmark it.</del></p>
+
+<blockquote>
+<p><strong>Update:</strong> I&rsquo;ve created a <em>much</em> better batch file wrapper for my PowerShell scripts. I recommend you ignore the one below and <strong><a href="/powershell-batch-file-wrapper">use my new one</a></strong> instead.</p>
+</blockquote>
+
+<pre data-language="batch"><code>:: script.bat
+
+@ECHO OFF
+PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted -Command "&amp; %~d0%~p0%~n0.ps1" %*
+EXIT /B %errorlevel%</code></pre>
+
+<p>This wrapper will execute the PowerShell script with the same file name (i.e., <code>script.ps1</code> if the batch file is named <code>script.bat</code>), and then exit with the same code that PowerShell exited with. It will also forward any arguments passed to the batch file, to the PowerShell script.</p>
+
+<p>Let&rsquo;s test it out.</p>
+
+<pre data-language="powershell"><code># script.ps1
+
+param($Arg1, $Arg2)
+Write-Host "Arg 1: $Arg1"
+Write-Host "Arg 2: $Arg2"</code></pre>
+
+<p><em>From the Windows command prompt:</em></p>
+
+<pre data-language="batch"><code>&gt; script.bat happy scripting
+Arg 1: happy
+Arg 2: scripting</code></pre>
+
+<p>What if we want &ldquo;happy scripting&rdquo; to be passed as a single argument?</p>
+
+<pre data-language="batch"><code>&gt; script.bat "happy scripting"
+Arg 1: happy
+Arg 2: scripting</code></pre>
+
+<p><a id="black-magic"> </a></p>
+
+<p>Well that didn&rsquo;t work at all. This is the secret recipe.</p>
+
+<pre data-language="batch"><code>&gt; script.bat "'Happy scripting with single '' and double \" quotes!'"
+Arg 1: Happy scripting with single ' and double " quotes!
+Arg 2:</code></pre> 
+
+<p>Please don&rsquo;t ask me to explain this black magic, I only know that it works. Much credit to <a href="http://stackoverflow.com/questions/6714165/powershell-stripping-double-quotes-from-command-line-arguments">this StackOverflow question</a> for helping me solve this!</p>
+
+<p>For comparison, here is how you would do it if you were executing the script from PowerShell, without using the batch file wrapper.</p>
+
+<p><em>From the PowerShell command prompt:</em></p>
+
+<pre data-language="batch"><code>PS&gt; .\script.ps1 happy scripting
+Arg 1: happy
+Arg 2: scripting
+
+PS&gt; .\script.ps1 "Happy scripting with single ' and double `" quotes included!"
+Arg 1: Happy scripting with single ' and double " quotes included!
+Arg 2: </code></pre>
+
+<p>That&rsquo;s all folks!</p>
+
+
+</article>
+
+<div class="fin">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/2007/recursively-deleting-files-with-powershell">Recursively deleting files with PowerShell</a>
+            
+        </h1>
+        <p>
+            <time datetime="2007-04-23 10:43:31 -0600 -0600" pubdate="pubdate">Mon, Apr 23, 2007</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2007/recursively-deleting-files-with-powershell">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2007/recursively-deleting-files-with-powershell</span>
+            </a>
+        </p>
+    </header>
+
+    <p>So out of all the things I don&rsquo;t know, PowerShell is the one thing that made it to the top of my To Learn stack. Last week I ordered <a href="http://www.amazon.com/Windows-PowerShell-Action-Bruce-Payette/dp/1932394907/ref=pd_bbs_sr_1/102-7531966-1417704?ie=UTF8&amp;s=books&amp;qid=1177382702&amp;sr=8-1">PowerShell In Action</a>, it hasn&rsquo;t arrived yet but I&rsquo;ve already read about 100 pages out of the PDF (don&rsquo;t ask). The book is very well written and describes the core concepts of PowerShell very well.</p>
+
+<p>Having (almost) never written a batch file in my life it is taking a bit for me to wrap my head around the basics but so far I love it. Compiling C# apps to do simple tasks like iterate directory structures and process files has always annoyed me. There is just too much overhead in having to compile and manage both the source code an executable when you only need the code once (until tomorrow comes).</p>
+
+<p>I just want to create a script and run it. No compilation, no exe. Oh, and since I&rsquo;ve been completely spoiled by the .NET Framework I want access to all that too. PowerShell fits the bill.</p>
+
+<p>My first task. Find all files with an extension of <code>*.bak</code> on my <code>C:\</code> drive and delete them.</p>
+
+<pre><code>#  move to C: drive
+cd c:\
+
+#  list all files in C:
+dir
+
+#  list all *.BAK files in C:
+dir *.BAK
+
+#  do it recursively
+dir -recurse -filter *.BAK</code></pre>
+
+<p>Ok, so now that I&rsquo;ve got PowerShell spinning through my entire <code>C:\</code> drive, how do I stop it? You can always kill the process but I was in a pretty good mood today and decided to be nice. This is likely to be one of the most important things you learn about PowerShell so remember it well&hellip;</p>
+
+<pre><code>CTRL+C</code></pre>
+
+<p>That will halt execution of whatever PowerShell is doing and get you back to a prompt. Very handy for people like me who like tend to hit <code>[Enter]</code> before thinking about how long it might take to run.</p>
+
+<blockquote>
+<p><strong>TIP:</strong> <code>dir</code> (along with <code>ls</code>) is just an alias for the <code>Get-ChildItem</code> command.<br />
+You can get the full syntax for this command by running <code>Get-Help dir</code>.</p>
+</blockquote>
+
+<p>And if you want to delete all those <code>*.BAK</code> files you just found? Just pipe your <code>dir</code> to <code>del</code> (which is an alias for <code>Remove-Item</code>).</p>
+
+<pre><code>dir -recurse -filter *.BAK | del</code></pre>
 
 
 </article>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thought</title>
+
+<link rel="canonical" href="http://localhost:56777/2012/06/powershell-script-module-boilerplate">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thought">
+<meta name="generator" content="Hugo 0.13" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/2012/06/powershell-script-module-boilerplate">PowerShell, batch files, and exit codes. Recipes &amp; Secrets.</a>
+            
+        </h1>
+        <p>
+            <time datetime="2012-06-23 10:43:31 -0600 -0600" pubdate="pubdate">Sat, Jun 23, 2012</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2012/06/powershell-script-module-boilerplate">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://localhost:56777/2012/06/powershell-script-module-boilerplate</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<h2 id="tl-dr:e436619b3c225495df020f575a03107f">TL;DR;</h2>
+
+<blockquote>
+<p><strong>Update:</strong> If you want to save some time, skip reading this and just use my <a href="/powershell-script-boilerplate">PowerShell Script Boilerplate</a>. It includes an excellent batch file wrapper, argument escaping, and error code bubbling.</p>
+</blockquote>
+
+<p><code>PowerShell.exe</code> doesn&rsquo;t return correct exit codes when using the <code>-File</code> option. Use <code>-Command</code> instead. <em>(<a href="https://connect.microsoft.com/PowerShell/feedback/details/750653/powershell-exe-doesn-t-return-correct-exit-codes-when-using-the-file-option">Vote for this issue</a> on Microsoft Connect.)</em></p>
+
+<p><a href="#bat-wrapper">This</a> is a batch file wrapper for executing PowerShell scripts. It forwards arguments to PowerShell and correctly bubbles up the exit code (when it can).</p>
+
+<p><code>PowerShell.exe</code> still <a href="#command-parsererror">returns a passing (0) exit code when a <code>ParserError</code> is thrown</a>. Even when using <code>-Command</code>. I haven&rsquo;t found a workaround for this. <em>(<a href="https://connect.microsoft.com/PowerShell/feedback/details/750654/powershell-exe-returns-a-passing-0-exit-code-when-a-parsererror-is-thrown">Vote for this issue</a> on Microsoft Connect.)</em></p>
+
+<p>You can use <a href="#black-magic">black magic</a> to include spaces and quotes in the arguments you pass through the batch file wrapper to PowerShell.</p>
+
+<h2 id="powershell:e436619b3c225495df020f575a03107f">PowerShell</h2>
+
+<p>PowerShell is a great scripting environment, and it is my preferred tool for writing build scripts for .NET apps. Exit codes are vital in build scripts because they are how your Continuous Integration server knows whether the build passed or failed.</p>
+
+<p>This is a <strike>quick</strike> tour of working with exit codes in PowerShell scripts and batch files. I&rsquo;m including batch files because they are often necessary to wrap the execution of your PowerShell scripts.</p>
+
+<p>Let&rsquo;s start easy. Say you need to run a command line app or batch file from your PowerShell script. How can you check the exit code of that process?</p>
+
+<pre data-language="powershell"><code># script.ps1
+
+cmd /C exit 1
+Write-Host $LastExitCode    # 1</code></pre>
+
+<p><code>$LastExitCode</code> is a special variable that holds the exit code of the last Windows based program that was run. So says <a href="http://technet.microsoft.com/en-us/library/dd347675.aspx">the documentation</a>.</p>
+
+<p>Remember though, <code>$LastExitCode</code> doesn&rsquo;t do squat for PowerShell commands. Use <code>$?</code> for that.</p>
+
+<pre data-language="powershell"><code># script.ps1
+
+Get-ChildItem "C:\"
+Write-Host $?    # True
+
+Get-ChildItem "Z:\some\non-existant\path"
+Write-Host $?    # False</code></pre>
+
+<p>Anytime you run an external command like this, you need to check the exit code and throw an exception if needed. Otherwise the PowerShell script will keep right on trucking after a failure.</p>
+
+<pre data-language="powershell"><code># script.ps1
+
+cmd /C exit 1
+if ($LastExitCode -ne 0) {
+    throw "Command failed with exit code $LastExitCode."
+}
+Write-Host "You'll never see this."</code></pre>
+
+<p>Writing these assertions all the time will get old. Fortunately you can use a helper function, like this one found in the <a href="http://github.com/psake/psake">excellent psake project</a>.</p>
+
+<pre data-language="powershell"><code># script.ps1
+
+function Exec
+{
+    [CmdletBinding()]
+    param (
+        [Parameter(Position=0, Mandatory=1)]
+        [scriptblock]$Command,
+        [Parameter(Position=1, Mandatory=0)]
+        [string]$ErrorMessage = "Execution of command failed.`n$Command"
+    )
+    &amp; $Command
+    if ($LastExitCode -ne 0) {
+        throw "Exec: $ErrorMessage"
+    }
+}
+
+Exec { cmd /C exit 1 }
+Write-Host "You'll never see this."</code></pre>
+
+<h3 id="throwing-exit-codes:e436619b3c225495df020f575a03107f">Throwing &amp; exit codes</h3>
+
+<p>The <code>throw</code> keyword is how you generate a terminating error in PowerShell. It will, sometimes, cause your PowerShell script to return a failing exit code (1). Wait, when does it <em>not</em> cause a failing exit code, you ask? This is where PowerShell&rsquo;s warts start to show. Let me demonstrate some scenarios.</p>
+
+<pre data-language="powershell"><code># broken.ps1
+
+throw "I'm broken"</code></pre>
+
+<p><em>From the PowerShell command prompt:</em></p>
+
+<pre><code>PS&gt; .\broken.ps1
+<span style="color: red;">I'm broken.
+At C:\broken.ps1:1 char:6
++ throw &lt;&lt;&lt;&lt;  "I'm broken."
+    + CategoryInfo          : OperationStopped: (I'm broken.:String) [], RuntimeException
+    + FullyQualifiedErrorId : I'm broken.</span>
+    
+PS&gt; $LastExitCode
+1</code></pre>
+
+<p><em>From the Windows command prompt:</em></p>
+
+<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted -Command ".\broken.ps1"
+<span style="color: red;">I'm broken.
+At C:\broken.ps1:1 char:6
++ throw &lt;&lt;&lt;&lt;  "I'm broken."
+    + CategoryInfo          : OperationStopped: (I'm broken.:String) [], RuntimeException
+    + FullyQualifiedErrorId : I'm broken.</span>
+    
+&gt; echo %errorlevel%
+1</code></pre>
+
+<p>That worked, too. Good.</p>
+
+<p><em>Again, from the Windows command prompt:</em></p>
+
+<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted <b>-File</b> ".\broken.ps1"
+<span style="color: red;">I'm broken.
+At C:\broken.ps1:1 char:6
++ throw &lt;&lt;&lt;&lt;  "I'm broken."
+    + CategoryInfo          : OperationStopped: (I'm broken.:String) [], RuntimeException
+    + FullyQualifiedErrorId : I'm broken.</span>
+
+&gt; echo %errorlevel%
+0</code></pre>
+
+<p>Whoa! We still saw the error, but PowerShell returned a passing exit code. What the heck?! Yes, this is the wart.</p>
+
+<h3 id="a-workaround-for-file:e436619b3c225495df020f575a03107f">A workaround for <code>-File</code></h3>
+
+<p><code>-File</code> allows you to pass in a script for PowerShell to execute, however terminating errors in the script will not cause PowerShell to return a failing exit code. I have no idea why this is the case. If you know why, please share!</p>
+
+<p>A workaround is to add a <code>trap</code> statement to the top of your PowerShell script. (Thanks, Chris Oldwood, for <a href="http://chrisoldwood.blogspot.com/2011/05/powershell-throwing-exceptions-exit.html">pointing this out</a>!)</p>
+
+<pre data-language="powershell"><code># broken.ps1
+
+trap
+{
+    Write-Error $_
+    exit 1
+}
+throw "I'm broken."</code></pre>
+
+<p><em>From the Windows command prompt:</em></p>
+
+<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted <b>-File</b> ".\script.ps1"
+<span style="color: red;">C:\broken.ps1 : I'm broken.
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,broken.ps1</span>
+
+&gt; echo %errorlevel%
+1</code></pre>  
+
+<p>Notice that we got the correct exit code this time, but our error output didn&rsquo;t include as much detail. Specifically, we didn&rsquo;t get the line number of the error like we were getting in the previous tests. So it isn&rsquo;t a perfect workaround.</p>
+
+<p><strong>Remember.</strong> Use <code>-Command</code> instead of <code>-File</code> whenever possible. If for some reason you must use <code>-File</code> or your script needs to support being run that way, then use the trap workaround above.</p>
+
+<p><a id="command-parsererror"> </a></p>
+
+<h3 id="command-can-still-fail:e436619b3c225495df020f575a03107f"><code>-Command</code> can still fail</h3>
+
+<p>I&rsquo;ve discovered that PowerShell will still exit with a success code (0) when a <code>ParserError</code> is thrown. Even when using <code>-Command</code>.</p>
+
+<p><em>From the Windows command prompt:</em></p>
+
+<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -Command "Write-Host 'You will never see this.'" <b>"\"</b>
+<span style="color: red;">The string starting:
+At line:1 char:39
++ Write-Host 'You will never see this.'  &lt;&lt;&lt;&lt; "
+is missing the terminator: ".
+At line:1 char:40
++ Write-Host 'You will never see this.' " &lt;&lt;&lt;&lt;
+    + CategoryInfo          : <b>ParserError</b>: (:String) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : TerminatorExpectedAtEndOfString</span>
+
+&gt; echo %errorlevel%
+0</code></pre>
+
+<p>I&rsquo;m not aware of any workaround for this behavior. This is very disturbing, because these parser errors can be caused by arguments (as I demonstrated above). This means there is no way to guarantee your script will exit with the correct code when it fails.</p>
+
+<p><em>Note: This was tested in PowerShell v2, on Windows 7 (x64).</em></p>
+
+<p>There are <a href="https://connect.microsoft.com/PowerShell/feedback/details/637113/powershell-command-line-exit-codes-inconsistency">other</a> <a href="https://connect.microsoft.com/PowerShell/feedback/details/638771/powershell-return-code-and-parameters">known</a> bugs with PowerShell&rsquo;s exit codes. Beware.</p>
+
+<h2 id="batch-files:e436619b3c225495df020f575a03107f">Batch files</h2>
+
+<p>I mentioned early on that it is often necessary to wrap the execution of your PowerShell script in a batch file. Some common reasons for this might be:</p>
+
+<ul>
+<li>You want users of your script to be able to double-click to run it.</li>
+<li>Your build runner doesn&rsquo;t support execution of PowerShell scripts directly.</li>
+</ul>
+
+<p>Whatever the reason, writing a batch file wrapper for a PowerShell script is easy. You just need to make sure that your batch file properly returns the exit code from PowerShell. Otherwise, your PowerShell script might fail and your batch file would return a successful exit code (0).</p>
+
+<p><a id="bat-wrapper"> </a></p>
+
+<p><del>This is a safe template for you to use. Bookmark it.</del></p>
+
+<blockquote>
+<p><strong>Update:</strong> I&rsquo;ve created a <em>much</em> better batch file wrapper for my PowerShell scripts. I recommend you ignore the one below and <strong><a href="/powershell-batch-file-wrapper">use my new one</a></strong> instead.</p>
+</blockquote>
+
+<pre data-language="batch"><code>:: script.bat
+
+@ECHO OFF
+PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted -Command "&amp; %~d0%~p0%~n0.ps1" %*
+EXIT /B %errorlevel%</code></pre>
+
+<p>This wrapper will execute the PowerShell script with the same file name (i.e., <code>script.ps1</code> if the batch file is named <code>script.bat</code>), and then exit with the same code that PowerShell exited with. It will also forward any arguments passed to the batch file, to the PowerShell script.</p>
+
+<p>Let&rsquo;s test it out.</p>
+
+<pre data-language="powershell"><code># script.ps1
+
+param($Arg1, $Arg2)
+Write-Host "Arg 1: $Arg1"
+Write-Host "Arg 2: $Arg2"</code></pre>
+
+<p><em>From the Windows command prompt:</em></p>
+
+<pre data-language="batch"><code>&gt; script.bat happy scripting
+Arg 1: happy
+Arg 2: scripting</code></pre>
+
+<p>What if we want &ldquo;happy scripting&rdquo; to be passed as a single argument?</p>
+
+<pre data-language="batch"><code>&gt; script.bat "happy scripting"
+Arg 1: happy
+Arg 2: scripting</code></pre>
+
+<p><a id="black-magic"> </a></p>
+
+<p>Well that didn&rsquo;t work at all. This is the secret recipe.</p>
+
+<pre data-language="batch"><code>&gt; script.bat "'Happy scripting with single '' and double \" quotes!'"
+Arg 1: Happy scripting with single ' and double " quotes!
+Arg 2:</code></pre> 
+
+<p>Please don&rsquo;t ask me to explain this black magic, I only know that it works. Much credit to <a href="http://stackoverflow.com/questions/6714165/powershell-stripping-double-quotes-from-command-line-arguments">this StackOverflow question</a> for helping me solve this!</p>
+
+<p>For comparison, here is how you would do it if you were executing the script from PowerShell, without using the batch file wrapper.</p>
+
+<p><em>From the PowerShell command prompt:</em></p>
+
+<pre data-language="batch"><code>PS&gt; .\script.ps1 happy scripting
+Arg 1: happy
+Arg 2: scripting
+
+PS&gt; .\script.ps1 "Happy scripting with single ' and double `" quotes included!"
+Arg 1: Happy scripting with single ' and double " quotes included!
+Arg 2: </code></pre>
+
+<p>That&rsquo;s all folks!</p>
+
+
+</article>
+
+<div class="fin">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014-2015&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':56777/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>
