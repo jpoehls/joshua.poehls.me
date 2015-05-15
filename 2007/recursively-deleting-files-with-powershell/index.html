@@ -92,11 +92,12 @@ dir
 dir *.BAK
 
 #  do it recursively
-dir -recurse -filter *.BAK</code></pre>
+dir -recurse -filter *.BAK
+</code></pre>
 
 <p>Ok, so now that I&rsquo;ve got PowerShell spinning through my entire <code>C:\</code> drive, how do I stop it? You can always kill the process but I was in a pretty good mood today and decided to be nice. This is likely to be one of the most important things you learn about PowerShell so remember it well&hellip;</p>
 
-<pre><code>CTRL+C</code></pre>
+<p><code>CTRL+C</code></p>
 
 <p>That will halt execution of whatever PowerShell is doing and get you back to a prompt. Very handy for people like me who like tend to hit <code>[Enter]</code> before thinking about how long it might take to run.</p>
 
@@ -107,7 +108,7 @@ You can get the full syntax for this command by running <code>Get-Help dir</code
 
 <p>And if you want to delete all those <code>*.BAK</code> files you just found? Just pipe your <code>dir</code> to <code>del</code> (which is an alias for <code>Remove-Item</code>).</p>
 
-<pre><code>dir -recurse -filter *.BAK | del</code></pre>
+<p><code>dir -recurse -filter *.BAK | del</code></p>
 
 
 </article>

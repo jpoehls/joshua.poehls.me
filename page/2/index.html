@@ -1026,53 +1026,104 @@ Arg 2: </code></pre>
     <header>
         <h1>
             
-            <a href="/2007/recursively-deleting-files-with-powershell">Recursively deleting files with PowerShell</a>
+            <a href="/2009/how-to-recover-deleted-files-in-tfs">How to Recover Deleted Files in TFS</a>
             
         </h1>
         <p>
-            <time datetime="2007-04-23 10:43:31 -0600 -0600" pubdate="pubdate">Mon, Apr 23, 2007</time>
+            <time datetime="2009-10-10 00:00:00 &#43;0000 UTC" pubdate="pubdate">Sat, Oct 10, 2009</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/2007/recursively-deleting-files-with-powershell">
+            <a class="permalink" title="Permalink" href="/2009/how-to-recover-deleted-files-in-tfs">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2007/recursively-deleting-files-with-powershell</span>
+                <span class="printonly">http://joshua.poehls.me/2009/how-to-recover-deleted-files-in-tfs</span>
             </a>
         </p>
     </header>
 
-    <p>So out of all the things I don&rsquo;t know, PowerShell is the one thing that made it to the top of my To Learn stack. Last week I ordered <a href="http://www.amazon.com/Windows-PowerShell-Action-Bruce-Payette/dp/1932394907/ref=pd_bbs_sr_1/102-7531966-1417704?ie=UTF8&amp;s=books&amp;qid=1177382702&amp;sr=8-1">PowerShell In Action</a>, it hasn&rsquo;t arrived yet but I&rsquo;ve already read about 100 pages out of the PDF (don&rsquo;t ask). The book is very well written and describes the core concepts of PowerShell very well.</p>
+    <p><strong>Disclaimer:</strong> I didn&rsquo;t work for this knowledge. Google provided
+it for me on a silver platter from the <a href="http://social.msdn.microsoft.com/Forums/en-US/tfsversioncontrol/thread/0836d05c-79f6-4fa9-9adf-75248cc314ff">TFS Forums</a>.</p>
 
-<p>Having (almost) never written a batch file in my life it is taking a bit for me to wrap my head around the basics but so far I love it. Compiling C# apps to do simple tasks like iterate directory structures and process files has always annoyed me. There is just too much overhead in having to compile and manage both the source code an executable when you only need the code once (until tomorrow comes).</p>
+<p>So you just found out that last week while you were cleaning house in your project&rsquo;s
+TFS source control that you deleted something that was still being used.</p>
 
-<p>I just want to create a script and run it. No compilation, no exe. Oh, and since I&rsquo;ve been completely spoiled by the .NET Framework I want access to all that too. PowerShell fits the bill.</p>
+<p><strong>No problem!</strong></p>
 
-<p>My first task. Find all files with an extension of <code>*.bak</code> on my <code>C:\</code> drive and delete them.</p>
+<p>Here&rsquo;s the fast track to recovering those deleted items.</p>
 
-<pre><code>#  move to C: drive
-cd c:\
+<ol>
+<li>In Visual Studio, go to <code>Tools</code> | <code>Options</code> | <code>Source Control</code> | <code>Visual Studio Team Foundation</code></li>
 
-#  list all files in C:
-dir
+<li><p>Check the box to <code>Show deleted items in the Source Control Explorer</code></p>
 
-#  list all *.BAK files in C:
-dir *.BAK
+<p><figure >
 
-#  do it recursively
-dir -recurse -filter *.BAK</code></pre>
+<img src="/2009/10/tfs-deleted-files/option.png"  />
 
-<p>Ok, so now that I&rsquo;ve got PowerShell spinning through my entire <code>C:\</code> drive, how do I stop it? You can always kill the process but I was in a pretty good mood today and decided to be nice. This is likely to be one of the most important things you learn about PowerShell so remember it well&hellip;</p>
 
-<pre><code>CTRL+C</code></pre>
+</figure></p></li>
 
-<p>That will halt execution of whatever PowerShell is doing and get you back to a prompt. Very handy for people like me who like tend to hit <code>[Enter]</code> before thinking about how long it might take to run.</p>
+<li><p>Open up Source Control Explorer (<code>View</code> | <code>Other Windows</code> | <code>Source Control Explorer</code>)</p></li>
 
-<blockquote>
-<p><strong>TIP:</strong> <code>dir</code> (along with <code>ls</code>) is just an alias for the <code>Get-ChildItem</code> command.<br />
-You can get the full syntax for this command by running <code>Get-Help dir</code>.</p>
-</blockquote>
+<li><p>Browse to where the deleted items used to live.</p>
 
-<p>And if you want to delete all those <code>*.BAK</code> files you just found? Just pipe your <code>dir</code> to <code>del</code> (which is an alias for <code>Remove-Item</code>).</p>
+<p><figure >
 
-<pre><code>dir -recurse -filter *.BAK | del</code></pre>
+<img src="/2009/10/tfs-deleted-files/showing.png"  />
+
+
+</figure></p></li>
+
+<li><p>You see all those faded folders with x&rsquo;s on them? Those are the now undead
+ folders living among the rest of your source. If you are looking for a specific
+ file instead of a folder, you can see those as well. In the list of tiles they
+ will be grayed out and in the <code>Latest</code> column will say <code>Deleted</code>.</p></li>
+
+<li><p>After you locate what you want to undelete, right-click on the item and click Undelete.</p>
+
+<p><figure >
+
+<img src="/2009/10/tfs-deleted-files/context_menu.png"  />
+
+
+</figure></p></li>
+
+<li><p>That&rsquo;s it! The resurrection is now part of your pending changes.</p></li>
+</ol>
+
+<p>Note that I wrote these steps for Visual Studio 2008 and TFS 2008. Older and newer versions beware.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/2009/thought-on-the-internet-age">Thought on the internet age</a>
+            
+        </h1>
+        <p>
+            <time datetime="2009-03-13 00:00:00 &#43;0000 UTC" pubdate="pubdate">Fri, Mar 13, 2009</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2009/thought-on-the-internet-age">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2009/thought-on-the-internet-age</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Just something I was thinking about on the ride to work this morning&hellip;.  We live in a time where, thanks to the propagation of the internet and sites like Wikipedia and even Google, we can answer nearly any question or curiosity we have in a matter of seconds. There is almost no question we can&rsquo;t find the answer for, or any topic that we can&rsquo;t delve into and study. All of this free, all of this available at our fingertips.</p>
+
+<p>All this and I realize&hellip; I can&rsquo;t imagine living in a time where I might have a question that I could not find the answer for. Where I may want to learn about something, and not be able to find any knowledge of it.</p>
+
+<p>I realize this is both a &lsquo;time&rsquo; and &lsquo;place&rsquo; thing, as not everyone in the world can experience these benefits yet. But in my small corner of the globe, this is life, and this is a very blessed life that is far too easy to take for granted.</p>
 
 
 </article>
@@ -1088,6 +1139,12 @@ You can get the full syntax for this command by running <code>Get-Help dir</code
 
 <nav class="pagination">
 
+	<a href="/page/3/" aria-label="Earlier Posts"><span aria-hidden="true">&laquo; Earlier Posts</span></a>
+
+
+	
+		&nbsp;&nbsp;
+	
 
 
 	<a href="/" aria-label="Recent Posts"><span aria-hidden="true">Recent Posts &raquo;</span></a>

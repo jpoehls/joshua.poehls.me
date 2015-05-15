@@ -98,6 +98,31 @@
   </url>
   
   <url>
+    <loc>http://joshua.poehls.me/2009/how-to-recover-deleted-files-in-tfs</loc>
+    <lastmod>2009-10-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2009/thought-on-the-internet-age</loc>
+    <lastmod>2009-03-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2007/running-vbs-scripts-under-different-credentials</loc>
+    <lastmod>2007-09-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2007/aspnet-viewstate-and-dropdownlists</loc>
+    <lastmod>2007-05-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2007/clearing-aspnet-control-values</loc>
+    <lastmod>2007-04-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://joshua.poehls.me/2007/recursively-deleting-files-with-powershell</loc>
     <lastmod>2007-04-23T10:43:31-06:00</lastmod>
   </url>

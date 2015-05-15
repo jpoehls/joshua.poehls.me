@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thought</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2009/how-to-recover-deleted-files-in-tfs">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thought">
+<meta name="generator" content="Hugo 0.13" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/2009/how-to-recover-deleted-files-in-tfs">How to Recover Deleted Files in TFS</a>
+            
+        </h1>
+        <p>
+            <time datetime="2009-10-10 00:00:00 &#43;0000 UTC" pubdate="pubdate">Sat, Oct 10, 2009</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2009/how-to-recover-deleted-files-in-tfs">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2009/how-to-recover-deleted-files-in-tfs</span>
+            </a>
+        </p>
+    </header>
+
+    <p><strong>Disclaimer:</strong> I didn&rsquo;t work for this knowledge. Google provided
+it for me on a silver platter from the <a href="http://social.msdn.microsoft.com/Forums/en-US/tfsversioncontrol/thread/0836d05c-79f6-4fa9-9adf-75248cc314ff">TFS Forums</a>.</p>
+
+<p>So you just found out that last week while you were cleaning house in your project&rsquo;s
+TFS source control that you deleted something that was still being used.</p>
+
+<p><strong>No problem!</strong></p>
+
+<p>Here&rsquo;s the fast track to recovering those deleted items.</p>
+
+<ol>
+<li>In Visual Studio, go to <code>Tools</code> | <code>Options</code> | <code>Source Control</code> | <code>Visual Studio Team Foundation</code></li>
+
+<li><p>Check the box to <code>Show deleted items in the Source Control Explorer</code></p>
+
+<p><figure >
+
+<img src="/2009/10/tfs-deleted-files/option.png"  />
+
+
+</figure></p></li>
+
+<li><p>Open up Source Control Explorer (<code>View</code> | <code>Other Windows</code> | <code>Source Control Explorer</code>)</p></li>
+
+<li><p>Browse to where the deleted items used to live.</p>
+
+<p><figure >
+
+<img src="/2009/10/tfs-deleted-files/showing.png"  />
+
+
+</figure></p></li>
+
+<li><p>You see all those faded folders with x&rsquo;s on them? Those are the now undead
+ folders living among the rest of your source. If you are looking for a specific
+ file instead of a folder, you can see those as well. In the list of tiles they
+ will be grayed out and in the <code>Latest</code> column will say <code>Deleted</code>.</p></li>
+
+<li><p>After you locate what you want to undelete, right-click on the item and click Undelete.</p>
+
+<p><figure >
+
+<img src="/2009/10/tfs-deleted-files/context_menu.png"  />
+
+
+</figure></p></li>
+
+<li><p>That&rsquo;s it! The resurrection is now part of your pending changes.</p></li>
+</ol>
+
+<p>Note that I wrote these steps for Visual Studio 2008 and TFS 2008. Older and newer versions beware.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014-2015&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
