@@ -60,37 +60,66 @@
     <header>
         <h1>
             
-            <a href="/2007/running-vbs-scripts-under-different-credentials">Running VBS scripts under different credentials</a>
+            <a href="/2012/syntax-highlighting-for-nginx-in-vim">Syntax highlighting for Nginx in VIM</a>
             
         </h1>
         <p>
-            <time datetime="2007-09-19 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Sep 19, 2007</time>
+            <time datetime="2012-06-10 00:00:00 &#43;0000 UTC" pubdate="pubdate">Sun, Jun 10, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/2007/running-vbs-scripts-under-different-credentials">
+            <a class="permalink" title="Permalink" href="/2012/syntax-highlighting-for-nginx-in-vim">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2007/running-vbs-scripts-under-different-credentials</span>
+                <span class="printonly">http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim</span>
             </a>
         </p>
     </header>
 
-    <p>Today I wrote a VBS script to test out some permission settings on a server. We were debugging a problem and I needed to find out whether different user accounts had permissions to see whether a given file existed. The script was simple enough:</p>
+    <p>Thanks to <a href="http://www.vim.org/scripts/script.php?script_id=1886">Evan Miller</a>, adding VIM syntax highlighting for Nginx config files is a breeze.</p>
 
-<pre><code>Dim fso
-Set fso = Server.CreateObject(&quot;FileSystemObject&quot;)
-MsgBox fso.FileExists(&quot;\\superserver\path\to\file.txt&quot;)
+<p>First, install VIM if you haven&rsquo;t already. On Arch Linux, it goes like this:</p>
+
+<pre><code>&gt; pacman -Sy vim
 </code></pre>
 
-<p>Now how do I run that script as someone other than the logged in user? Go to the command line and type:</p>
+<p>Create a folder for your VIM syntax files.</p>
 
-<p><code>runas /profile /user:domain\username &quot;cscript.exe C:\path\to\script.vbs&quot;</code></p>
+<pre><code>&gt; mkdir -p ~/.vim/syntax/
+</code></pre>
 
-<p>When you run that it will prompt for the password of the user account you specified.</p>
+<p>Download the syntax highlighting plugin.</p>
 
-<p>Note that if you leave off the <code>cscript.exe</code> part you&rsquo;ll get an error about your VBS file not being a valid Win32 application.</p>
+<pre><code>&gt; curl http://www.vim.org/scripts/download_script.php?src_id=14376 -o ~/.vim/syntax/nginx.vim
+</code></pre>
 
-<p>The <code>/profile</code> part may not be required depending on what your script is doing. I left it out for my simple script.</p>
+<p>Add it to VIM&rsquo;s file type definitions. Make sure to adjust the path to your Nginx installation if you need to.</p>
 
-<p>Visit Microsoft for <a href="http://www.microsoft.com/technet/scriptcenter/resources/qanda/apr06/hey0428.mspx">more information</a>.</p>
+<pre><code>&gt; echo &quot;au BufRead,BufNewFile /etc/nginx/conf/* set ft=nginx&quot; &gt;&gt; ~/.vim/filetype.vim
+</code></pre>
+
+<p>Now enable syntax highlighting in your .vimrc file.</p>
+
+<pre><code>&gt; echo &quot;syntax enable&quot; &gt;&gt; ~/.vimrc
+</code></pre>
+
+<p>That&rsquo;s it. Now you&rsquo;ll have nice colors when you edit your Nginx configs with VIM!</p>
+
+<pre><code>&gt; vim /etc/nginx/conf/nginx.conf
+</code></pre>
+
+<p><figure >
+
+<img src="/2012/06/nginx-vim-colors.png" alt="Screenshot of VIM with syntax highlighting in an Nginx config file" />
+
+
+<figcaption>
+<p>
+Screenshot of VIM with syntax highlighting in an Nginx config file
+
+
+
+</p> 
+</figcaption>
+
+</figure></p>
 
 
 </article>
@@ -107,88 +136,228 @@ MsgBox fso.FileExists(&quot;\\superserver\path\to\file.txt&quot;)
     <header>
         <h1>
             
-            <a href="/2007/aspnet-viewstate-and-dropdownlists">ASP.NET ViewState and DropDownLists</a>
+            <a href="/2012/storing-your-raspberry-pi-configuration-in-git">Storing your Raspberry Pi configuration in Git</a>
             
         </h1>
         <p>
-            <time datetime="2007-05-15 00:00:00 &#43;0000 UTC" pubdate="pubdate">Tue, May 15, 2007</time>
+            <time datetime="2012-06-08 00:00:00 &#43;0000 UTC" pubdate="pubdate">Fri, Jun 8, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/2007/aspnet-viewstate-and-dropdownlists">
+            <a class="permalink" title="Permalink" href="/2012/storing-your-raspberry-pi-configuration-in-git">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2007/aspnet-viewstate-and-dropdownlists</span>
+                <span class="printonly">http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Storing your Raspberry Pi&rsquo;s configuration files in Git is a great way to protect yourself from really bad accidents. You get a backup of all your configs and revision control to rollback those nasty changes. Best of all, you don&rsquo;t have to manually create backup copies of each individual file. (<code>cp rc.conf rc.conf.bak</code> anyone?)</p>
+
+<p>I should note that I&rsquo;m running <a href="http://archlinuxarm.org">Arch Linux ARM</a>, but this should apply fairly equally to Debian and other distros.</p>
+
+<p>First, install <a href="http://git-scm.com">Git</a> (if you haven&rsquo;t already).</p>
+
+<pre><code>&gt; pacman -Sy git
+</code></pre>
+
+<p>Arch has a convention of storing all configuration files in <code>/etc</code>. So we will initialize our Git repo there.</p>
+
+<pre><code>&gt; cd /etc
+&gt; git init
+</code></pre>
+
+<p>We only want to store the configuration files that we&rsquo;ve actually changed in Git. We&rsquo;ll use a <code>.gitignore</code> file for that.</p>
+
+<pre><code>&gt; vim .gitignore
+</code></pre>
+
+<p>Here is what mine looks like right now.</p>
+
+<pre><code># Blacklist everything.
+*
+
+# Whitelist the files we care about.
+!rc.conf
+!rc.local
+!ntp.conf
+!resolv.conf
+
+!ddclient/
+!ddclient/ddclient.conf
+
+!nginx/
+!nginx/conf/
+!nginx/conf/nginx.conf
+</code></pre>
+
+<p>The <strong>!</strong> prefix negates the pattern, basically creating a whitelist. Cool, huh?</p>
+
+<p>Now we can do our initial commit.</p>
+
+<pre><code>&gt; git add -A
+&gt; git commit -m &quot;Added initial configs.&quot;
+</code></pre>
+
+<p>Remember to add any new config files to your <code>.gitignore</code> file and always commit your changes!</p>
+
+<p>For added security you should push your repository to <a href="http://git-scm.com/book/en/Git-Basics-Working-with-Remotes">a remote</a>. <a href="http://bitbucket.org">BitBucket</a> offers free private repositories, if you don&rsquo;t have a paid <a href="http://github.com">Github</a> account.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to">Soft links, hard links, junctions, oh my! Symlinks on Windows, a how-to</a>
+            
+        </h1>
+        <p>
+            <time datetime="2012-06-07 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thu, Jun 7, 2012</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to</span>
             </a>
         </p>
     </header>
 
     
 
-<p>Did you know ViewState is the root of all evil? Ok, maybe not all evil but certainly 90% of all ASP.NET page bloat. This isn&rsquo;t a strike against .NET, just a sign of how powerful it really is. Any platform that can enable developers to screw up so easily and never realize it has to be very powerful indeed. To borrow a quote from another blog I was reading&#0133;</p>
+<p>First, a quick definition of terms. There are three kinds of &ldquo;<a href="https://en.wikipedia.org/wiki/Symbolic_link">symlinks</a>&rdquo; on Windows.</p>
 
-<blockquote>
-<p>ASP.NET is so powerful that it can enable you to be an incredibly bad programmer FASTER THAN EVER.<br />
-Don&rsquo;t program by coincidence.</p>
-</blockquote>
+<ul>
+<li>soft links (also called symlinks, or symbolic links)</li>
+<li>hard links</li>
+<li>junctions (a type of soft link only for directories)</li>
+</ul>
 
-<h3 id="background:f1b715c7a782221ac895a13c7c7c48d6">Background</h3>
+<p>Soft links can be created for files or directories.</p>
 
-<p>Yesterday I wanted to disable ViewState on one of my DropDownLists. Reason? The drop-down has 3000 items in it. Yes, I know, sick and wrong&hellip; It&rsquo;s bad enough that the drop-down itself is so large but with ViewState every item in the drop-down essentially gets sent to the client twice! How else do you think ViewState remembers what items were in your drop-down when you do a PostBack? It&rsquo;s very handy, but for large lists it can significantly increase the size of the page you are sending to the client.</p>
+<p>Hard links can only be created for files.</p>
 
-<p>Just to give you some idea, by disabling ViewState on my drop-down I saved nearly 200 kB. That&rsquo;s significant bandwidth savings, especially for those last couple of dial-up users out there.</p>
+<p>Both soft and hard links must be created on the same volume as the target. i.e. You can&rsquo;t link something on <code>C:\</code> to something on <code>D:\</code>.</p>
 
-<h3 id="problem:f1b715c7a782221ac895a13c7c7c48d6">Problem</h3>
+<p>You can read more about hardlinks and junctions <a href="http://msdn.microsoft.com/en-us/library/aa365006%28VS.85%29.aspx">on MSDN</a>.</p>
 
-<p>Now that ViewState is disabled for my drop-down I have a few issues:</p>
+<h3 id="deleting-links:9e58f074bd866214c10dc323b4e5109d">Deleting Links</h3>
 
-<ol>
-<li>ASP.NET pulls the SelectedValue property of the DropDownList out of ViewState. Guess what? No ViewState == no SelectedValue.</li>
-<li>Even though <code>AutoPostBack</code> still works, the <code>SelectedIndexChanged</code> event has lost its firing pin.</li>
-<li>My drop-down now loses all of its items after I any post-back occurs. Suprise, it also forgets which items was selected.</li>
-</ol>
+<p>This is where the difference between soft and hard links is most evident.</p>
 
-<h3 id="solution:f1b715c7a782221ac895a13c7c7c48d6">Solution</h3>
+<p>Deleting the target will cause soft links to stop working. What it points to is gone. Hard links however will keep right on working until you delete the hard link itself. The hard link acts just like the original file, because for all intents and purposes, it is the original file.</p>
 
-<ol>
-<li><p>Despite ASP.NET&rsquo;s attempts to deceive you into thinking that everything that matters must be a Property of the control (i.e. <code>SelectedValue</code>)&hellip; ASP.NET is just a fancy wrapper around HTTP and thus any values that are set from the client are received by the server via the <code>Request.Form</code> or <code>Request.QueryString</code>.</p>
+<h3 id="junctions:9e58f074bd866214c10dc323b4e5109d">Junctions</h3>
 
-<p>Since these are POST-backs, we&rsquo;re interested in <code>Request.Form</code>. Now we just need to know that ASP.NET uses the control&rsquo;s <code>UniqueID</code> property to name the control on the client, this means that <code>Request.Form[myDropDownCtrl.UniqueID]</code> will give me the value of that drop-down list as it was sent from the client. This is the exact same as <code>myDropDownCtrl.SelectedValue</code>. Bingo!</p></li>
+<p>Windows also has another type of link just for directories, called Junctions.</p>
 
-<li><p>There are ways to get the <code>SelectedIndexChanged</code> event to fire again but I found an easier work-around for my needs. This also covers #3.</p></li>
-</ol>
+<p>Junctions look and act like soft links. The key difference is that they allow you to link directories that are located on different local volumes (but still on the same computer). You can&rsquo;t create a junction to a network location.</p>
 
-<pre><code>protected string MySelectedValue
-{
- get
- {
-   return (ViewState[&quot;MySelectedValue&quot;] == null) ? null : ViewState[&quot;MySelectedValue&quot;].ToString();
- }
- set
- {
-   ViewState[&quot;MySelectedValue&quot;] = value;
- }
-}
+<h2 id="using-mklink:9e58f074bd866214c10dc323b4e5109d">Using MKLINK</h2>
 
-protected void Page_Load(object sender, EventArgs e)
-{
- // Check if the selectedValue has changed.
- string selectedValue = Request[myDropDownCtrl.UniqueID];
- if (selectedValue != MySelectedValue)
- {
-   // Value has changed, do whatever you would do in the SelectedIndexChanged event here.
- }
- MySelectedValue = selectedValue;
+<p>Create a soft link to a directory.</p>
 
- // TODO: Populate the drop-down control
- PopulateMyDropDownCtrl();
-
- // set the set the selectedValue on the drop-down
- if (selectedValue != null)
- {
-   myDropDownCtrl.Items.FindByValue(selectedValue).Selected = true;
- }
-}
+<pre><code>c:\symlink_test&gt; mklink symlink_dir real_dir
+symbolic link created for symlink_dir &lt;&lt;===&gt;&gt; real_dir
 </code></pre>
 
-<p><em>I didn&rsquo;t actually test this exact code, so&#0133; this code comes as-is, untested and without any guarantees. Let me know if there is a bug and I&rsquo;ll correct it.</em></p>
+<p>Create junction link to a directory.</p>
+
+<pre><code>c:\symlink_test&gt; mklink /J junction_dir real_dir
+Junction created for junction_dir &lt;&lt;===&gt;&gt; real_dir
+</code></pre>
+
+<p>Create a soft link to a file.</p>
+
+<pre><code>c:\symlink_test&gt; mklink symlink_file.txt real_file.txt
+symbolic link created for symlink_file.txt &lt;&lt;===&gt;&gt; real_file.txt
+</code></pre>
+
+<p>Create a hard link to a file.</p>
+
+<pre><code>c:\symlink_test&gt; mklink /H hardlink_file.txt real_file.txt
+Hardlink created for hardlink_file.txt &lt;&lt;===&gt;&gt; real_file.txt
+</code></pre>
+
+<p>What they look like.</p>
+
+<pre><code>c:\symlink_test&gt; dir
+Volume in drive C is OS
+Volume Serial Number is 7688-08EC
+
+Directory of c:\symlink_test
+
+06/07/2012  10:32 AM    &lt;DIR&gt;          .
+06/07/2012  10:32 AM    &lt;DIR&gt;          ..
+06/07/2012  09:51 AM                15 hardlink_file.txt
+06/07/2012  09:59 AM    &lt;JUNCTION&gt;     junction_dir [c:\symlink_test\real_dir]
+06/07/2012  09:47 AM    &lt;DIR&gt;          real_dir
+06/07/2012  09:51 AM                15 real_file.txt
+06/07/2012  10:00 AM    &lt;SYMLINKD&gt;     symlink_dir [real_dir]
+06/07/2012  10:31 AM    &lt;SYMLINK&gt;      symlink_file.txt [real_file.txt]
+               3 File(s)             30 bytes
+               5 Dir(s)  145,497,268,224 bytes free
+</code></pre>
+
+<p><figure >
+
+<img src="/2012/06/mklink/explorer-screenshot.png" alt="Screenshot of folder in Windows Explorer" />
+
+
+<figcaption>
+<p>
+Screenshot of folder in Windows Explorer
+
+
+
+</p> 
+</figcaption>
+
+</figure></p>
+
+<p><strong>Note for PowerShell users:</strong><br />
+MKLINK isn&rsquo;t an executable that you can just call from PowerShell. You have to call it through the command prompt.</p>
+
+<pre><code>cmd /c mklink /D symlink_dir real_dir
+</code></pre>
+
+<p>Alternatively, you can use <a href="https://gist.github.com/2891103">this module</a> I wrote that has native PowerShell wrappers for MKLINK.</p>
+
+<p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">Read about MKLINK on MSDN.</a></p>
+
+<h2 id="using-fsutil:9e58f074bd866214c10dc323b4e5109d">Using FSUTIL</h2>
+
+<p>FSUTIL is another way to create hard links (but not soft links). This is the same as <code>mklink /H</code>.</p>
+
+<pre><code>c:\symlink_test&gt; where fsutil
+c:\Windows\System32\fsutil.exe
+
+c:\symlink_test&gt; fsutil hardlink create hardlink_file.txt real_file.txt
+Hardlink created for c:\symlink_test\hardlink_file.txt &lt;&lt;===&gt;&gt; c:\symlink_test\real_file.txt
+</code></pre>
+
+<p><a href="http://technet.microsoft.com/en-us/library/cc753059(v=WS.10).aspx">Read about FSUTIL on MSDN.</a></p>
+
+<h2 id="using-junction:9e58f074bd866214c10dc323b4e5109d">Using Junction</h2>
+
+<p>Junction is a tool provided by Sysinternals and provides another way to create junctions. Same as <code>mklink /J</code>.
+It also has some other tools for working with junctions that I won&rsquo;t cover here.</p>
+
+<pre><code>c:\symlink_test&gt; junction junction_dir real_dir
+Junction v1.06 - Windows junction creator and reparse point viewer
+Copyright (C) 2000-2010 Mark Russinovich
+Sysinternals - www.sysinternals.com
+
+Created: c:\symlink_test\junction_dir
+Targetted at: c:\symlink_test\real_dir
+</code></pre>
+
+<p><a href="http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx">Download the Junction tool from Sysinternals.</a></p>
 
 
 </article>
@@ -205,74 +374,295 @@ protected void Page_Load(object sender, EventArgs e)
     <header>
         <h1>
             
-            <a href="/2007/clearing-aspnet-control-values">Clearing ASP.NET control values</a>
+            <a href="/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x">Can&#39;t access network resources over VPN connection on Mac OS X?</a>
             
         </h1>
         <p>
-            <time datetime="2007-04-25 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Apr 25, 2007</time>
+            <time datetime="2012-04-18 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Apr 18, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/2007/clearing-aspnet-control-values">
+            <a class="permalink" title="Permalink" href="/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2007/clearing-aspnet-control-values</span>
+                <span class="printonly">http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x</span>
             </a>
         </p>
     </header>
 
-    <p>Have you ever needed to clear the values of a bunch of TextBoxes on your ASP.NET page? Not all the TextBoxes, but maybe all the ones in a certain Panel. Or maybe you need to reset all the DropDownLists too?</p>
+    <p>So you have your shiny OS X connected to a VPN, good deal! The problem is, you can&rsquo;t connect to any of the servers and workstations on the VPN. What could be wrong?</p>
 
-<p>This is a method I wrote to do just that. It clears the values of all child controls under a given parent. Enjoy.</p>
+<p>It could be that OS X is still trying to find those machines on the internet instead of looking for them on the VPN connection. We can tell OS X to check the VPN connection first by giving it a higher priority than the other network connections on your Mac.</p>
 
-<pre><code>public static void ClearControlValues(Control parentCtrl, bool recursive)
-{
- ClearControlValues(parentCtrl, recursive, new List&amp;lt;Control&amp;gt;(0));
+<p>To change the priority of your VPN connection:</p>
+
+<ol>
+<li>Choose Apple menu &gt; System Preferences and click Network.</li>
+<li>Choose Set Service Order from the Action pop-up menu (looks like a gear).</li>
+<li>Drag your VPN connection to the top of the list.</li>
+<li>Click OK, and then click Apply to make the new settings active.</li>
+</ol>
+
+<p>This solution saved my day when I couldn&rsquo;t Remote Desktop into my workstation over the VPN.</p>
+
+<p>For more information, refer to <a href="http://docs.info.apple.com/article.html?path=Mac/10.6/en/8853.html">Apple&rsquo;s documentation for this</a>.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful">Use AutoHotkey to remap your numpad keys to something useful</a>
+            
+        </h1>
+        <p>
+            <time datetime="2011-12-14 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Dec 14, 2011</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>Are you tired of having to remember that <code>ALT+0176</code> is the degree symbol <strong>&deg;</strong> ? Maybe there are other special characters that you want to be able to type easier.</p>
+
+<p>Personally it was the degree symbol that got me, and since I never use my numpad, I decided it would be much more useful if those keys actually entered stuff that I cared about.</p>
+
+<p>Here is a quick tutorial in using AutoHotkey to remap one of your numpad keys to the degree symbol. Of course you can expand on this beginning easily to solve whatever woes you are having.</p>
+
+<p>Start out by going to <a href="http://www.autohotkey.com">the AutoHotkey website</a>.</p>
+
+<p>Download the <strong>AutoHotkey_L</strong> installer. This is the most recent version of AutoHotkey and specifically supports Unicode which is important for us.</p>
+
+<p><figure >
+
+<img src="/2011/12/autohotkey/Image4.png" alt="Screenshot of the AutoHotkey download page" />
+
+
+<figcaption>
+<p>
+Screenshot of the AutoHotkey download page
+
+
+
+</p> 
+</figcaption>
+
+</figure></p>
+
+<p>Run the installer and leave all the defaults.</p>
+
+<p><figure >
+
+<img src="/2011/12/autohotkey/Image3.png" alt="Screenshot of the AutoHotkey installer" />
+
+
+<figcaption>
+<p>
+Screenshot of the AutoHotkey installer
+
+
+
+</p> 
+</figcaption>
+
+</figure></p>
+
+<p>Look in your My Documents folder and open up <code>AutoHotkey.ahk</code> in a text editor that you can save as UTF-8 in.</p>
+
+<p>If you don&rsquo;t know what this means or don&rsquo;t have an editor that can do this then <a href="http://www.flos-freeware.ch/notepad2.html">download Notepad2</a> and open the file in that program.</p>
+
+<p><figure >
+
+<img src="/2011/12/autohotkey/Image5.png" alt="Screenshot of the AutoHotkey.ahk file in Windows Explorer" />
+
+
+<figcaption>
+<p>
+Screenshot of the AutoHotkey.ahk file in Windows Explorer
+
+
+
+</p> 
+</figcaption>
+
+</figure></p>
+
+<p>Now that you have <code>AutoHotkey.ahk</code> opened, delete everything in there (after reading it if you care) and paste the following in its place.</p>
+
+<pre><code>NumpadIns::
+Send &deg;
+return</code></pre>
+
+<p>Now save this file with <strong>UTF-8</strong> encoding. If you are using Notepad2 you can do this by going to <code>File | Encoding | UTF-8</code> and clicking <strong>Yes</strong> to the warning. Then click <code>File | Save</code> as usual.</p>
+
+<p><figure >
+
+<img src="/2011/12/autohotkey/Image.png" alt="Screenshot of saving the file with UTF-8 encoding" />
+
+
+<figcaption>
+<p>
+Screenshot of saving the file with UTF-8 encoding
+
+
+
+</p> 
+</figcaption>
+
+</figure></p>
+
+<p>Finally, run the <strong>AutoHotkey</strong> program from your Start Menu.</p>
+
+<p><figure >
+
+<img src="/2011/12/autohotkey/Image2.png" alt="Screenshot of AutoHotkey in the Start Menu" />
+
+
+<figcaption>
+<p>
+Screenshot of AutoHotkey in the Start Menu
+
+
+
+</p> 
+</figcaption>
+
+</figure></p>
+
+<h3 id="now-to-try-it-out:92951ddff719c4a186337f8b68cc78b3">Now to try it out!</h3>
+
+<p>Put your focus in any text box. Anywhere. Go ahead. Now make sure you have NumLock turned OFF and hit the <code>0</code> key on your numpad.</p>
+
+<p>See what just happened? No, that&rsquo;s not a superscripted zero. That&rsquo;s a degree symbol. Now that they are easy to type you are going to have to learn what it is! ;)</p>
+
+<p>You can get a list of other special key names here: <a href="http://www.autohotkey.com/docs/KeyList.htm">http://www.autohotkey.com/docs/KeyList.htm</a></p>
+
+<p>This is just scratching the surface of what you can do with AutoHotkey scripts. Be sure to <a href="http://l.autohotkey.net/docs/">read up on the documentation</a> for more ideas. Knowledge is power!</p>
+
+<p>Here is a teaser of just a few of the tricks you can do:</p>
+
+<ul>
+<li>Create global shortcuts to run programs (ex. <code>CTRL+Z</code> to open a browser and navigate to a specific website.)</li>
+<li>Replace acronyms or common spelling mistakes (ex. replace &ldquo;restraunt&rdquo; -&gt; &ldquo;restaurant&rdquo; automatically.)</li>
+<li>Toggle hidden files in Windows Explorer with a shortcut key.</li>
+</ul>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/2011/what-i-miss-in-vanilla-visual-studio">What I miss in vanilla Visual Studio</a>
+            
+        </h1>
+        <p>
+            <time datetime="2011-10-20 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thu, Oct 20, 2011</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2011/what-i-miss-in-vanilla-visual-studio">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2011/what-i-miss-in-vanilla-visual-studio</span>
+            </a>
+        </p>
+    </header>
+
+    <p>For the past week or so I&rsquo;ve gone without any Visual Studio enhancements. No <a href="http://www.jetbrains.com/resharper">ReSharper</a>. No <a href="http://www.devexpress.com/coderush">CodeRush</a>. I knew that I didn&rsquo;t leverage even a fraction of what these tools offer so I wanted to find out what I would miss.</p>
+
+<p>Here&rsquo;s what I&rsquo;m missing the most. In no particular order.</p>
+
+<ol>
+<li><p><strong>Detection of errors</strong> <em>before</em> I compile.</p></li>
+
+<li><p><strong>Shortcut for moving a class</strong> to its own file.</p>
+
+<p>I like to build up features in the same file (for speed) and then refactor the classes into their own files later. A tedius process of copy/paste.</p></li>
+
+<li><p><strong>A rename function</strong> that is smart enough to rename the file as well.</p></li>
+
+<li><p><strong>Unit Test debugger.</strong></p>
+
+<p>I don&rsquo;t mind running tests in the NUnit GUI, it even feels faster sometimes, but I miss the ability to step into my tests. I use this feature a lot for exploring APIs.</p></li>
+
+<li><p><strong>Ability to generate constructors.</strong></p>
+
+<p>Especially useful for creating custom exceptions where you want to implement all of the base constructors.</p></li>
+
+<li><p><strong>Fast code snippets.</strong></p>
+
+<p>Visual Studio&rsquo;s built in snippets are functional, but slow to access compared to the alternatives so I ended up not using them. I definitely prefer CodeRush&rsquo;s snippets.</p></li>
+</ol>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/2011/tortoise-svn-powershell-helper-function">Tortoise SVN PowerShell helper function</a>
+            
+        </h1>
+        <p>
+            <time datetime="2011-10-12 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Oct 12, 2011</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2011/tortoise-svn-powershell-helper-function">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2011/tortoise-svn-powershell-helper-function</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Do you work from the command line? Use PowerShell? SVN?</p>
+
+<p>While the SVN command line client is certainly usable, there are definitely times where a GUI is more convenient. Specifically during a commit where you want to easily check/uncheck files and view diffs.</p>
+
+<p>I got tired of having to open an explorer window to get into Tortoise SVN&rsquo;s commit screen so I wrote this helper function.</p>
+
+<p>Put this into your profile and you can start typing <code>tsvn commit</code> (or just <code>tsvn</code>) to open the Tortoise SVN commit dialog. Enjoy!</p>
+
+<pre><code># Helper function for opening the Tortoise SVN GUI from a PowerShell prompt.
+# Put this into your PowerShell profile.
+# Ensure Tortoise SVN is in your PATH (usually C:\Program Files\TortoiseSVN\bin) 
+function Svn-Tortoise([string]$Command = &quot;commit&quot;) {
+&lt;#
+.SYNOPSIS
+  Launches TortoiseSVN with the given command.
+  Opens the commit screen if no command is given.
+  
+  List of supported commands can be found at:
+  http://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-automation.html
+#&gt;
+  TortoiseProc.exe /command:$Command /path:&quot;$pwd&quot;
 }
-
-public static void ClearControlValues(Control parentCtrl, bool recursive, List&amp;lt;Control&amp;gt; ignoreControls)
-{
- foreach (Control ctrl in parentCtrl.Controls)
- {
-     bool skipMe = false;
-
-     foreach (Control ignoreCtrl in ignoreControls)
-     {
-         if (ctrl.ID == ignoreCtrl.ID)
-         {
-             skipMe = true;
-             break;
-         }
-     }
-
-     if (skipMe)
-         continue;
-
-     if (ctrl.GetType() == typeof(TextBox))
-         ((TextBox)ctrl).Text = string.Empty;
-
-     if (ctrl.GetType() == typeof(DropDownList))
-         ((DropDownList)ctrl).ClearSelection();
-
-     if (ctrl.GetType() == typeof(RadioButton))
-         ((RadioButton)ctrl).Checked = false;
-
-     if (ctrl.GetType() == typeof(CheckBox))
-         ((CheckBox)ctrl).Checked = false;
-
-     if (ctrl.GetType() == typeof(RadioButtonList))
-         ((RadioButtonList)ctrl).ClearSelection();
-
-     if (ctrl.GetType() == typeof(CheckBoxList))
-         ((CheckBoxList)ctrl).ClearSelection();
-
-     if (ctrl.GetType() == typeof(ListBox))
-         ((ListBox)ctrl).ClearSelection();
-
-
-     if (recursive == true)
-     {
-         ClearControlValues(ctrl, true, ignoreControls);
-     }
- }
-}
+Set-Alias tsvn &quot;Svn-Tortoise&quot;
 </code></pre>
 
 
@@ -290,54 +680,287 @@ public static void ClearControlValues(Control parentCtrl, bool recursive, List&a
     <header>
         <h1>
             
-            <a href="/2007/recursively-deleting-files-with-powershell">Recursively deleting files with PowerShell</a>
+            <a href="/2011/take-your-powershell-profile-everywhere-with-dropbox">Take your PowerShell profile everywhere with Dropbox</a>
             
         </h1>
         <p>
-            <time datetime="2007-04-23 10:43:31 -0600 -0600" pubdate="pubdate">Mon, Apr 23, 2007</time>
+            <time datetime="2011-03-25 00:00:00 &#43;0000 UTC" pubdate="pubdate">Fri, Mar 25, 2011</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/2007/recursively-deleting-files-with-powershell">
+            <a class="permalink" title="Permalink" href="/2011/take-your-powershell-profile-everywhere-with-dropbox">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2007/recursively-deleting-files-with-powershell</span>
+                <span class="printonly">http://joshua.poehls.me/2011/take-your-powershell-profile-everywhere-with-dropbox</span>
             </a>
         </p>
     </header>
 
-    <p>So out of all the things I don&rsquo;t know, PowerShell is the one thing that made it to the top of my To Learn stack. Last week I ordered <a href="http://www.amazon.com/Windows-PowerShell-Action-Bruce-Payette/dp/1932394907/ref=pd_bbs_sr_1/102-7531966-1417704?ie=UTF8&amp;s=books&amp;qid=1177382702&amp;sr=8-1">PowerShell In Action</a>, it hasn&rsquo;t arrived yet but I&rsquo;ve already read about 100 pages out of the PDF (don&rsquo;t ask). The book is very well written and describes the core concepts of PowerShell very well.</p>
+    
 
-<p>Having (almost) never written a batch file in my life it is taking a bit for me to wrap my head around the basics but so far I love it. Compiling C# apps to do simple tasks like iterate directory structures and process files has always annoyed me. There is just too much overhead in having to compile and manage both the source code an executable when you only need the code once (until tomorrow comes).</p>
+<p>I&rsquo;ll cover these prerequisites in brief, but for this tip I&rsquo;m going to assume a few things:</p>
 
-<p>I just want to create a script and run it. No compilation, no exe. Oh, and since I&rsquo;ve been completely spoiled by the .NET Framework I want access to all that too. PowerShell fits the bill.</p>
+<ul>
+<li>You are running Windows and have <a href="http://msdn.microsoft.com/en-us/library/aa973757.aspx">PowerShell</a> installed.</li>
+<li>You are familiar enough with PowerShell to care about your <a href="http://msdn.microsoft.com/en-us/library/bb613488.aspx">$PROFILE</a>.</li>
+</ul>
 
-<p>My first task. Find all files with an extension of <code>*.bak</code> on my <code>C:\</code> drive and delete them.</p>
+<h3 id="what-is-powershell:7bb74ac85e0a49464a534530f48431fc">What is PowerShell?</h3>
 
-<pre><code>#  move to C: drive
-cd c:\
+<p>In short, PowerShell is a new scripting language from Microsoft designed to replace the use of batch files and VBScript for administrating and automating Windows machines. The language leverages the .NET Framework such that anything you can do with .NET you can do with PowerShell. Typically you will be using PowerShell from the command line but there are lots of other ways to use it.</p>
 
-#  list all files in C:
-dir
+<h3 id="what-is-a-powershell-profile:7bb74ac85e0a49464a534530f48431fc">What is a PowerShell profile?</h3>
 
-#  list all *.BAK files in C:
-dir *.BAK
+<p>PowerShell has the concept of a script that will run each time you launch PowerShell. This is a really handy place to put any functions that you want to be available all the time. Initialize some variables, create some aliases, anything you do here will be there when you need it.</p>
 
-#  do it recursively
-dir -recurse -filter *.BAK
+<h3 id="what-are-we-doing-here:7bb74ac85e0a49464a534530f48431fc">What are we doing here?</h3>
+
+<p>I&rsquo;m going to give you one possible solution for keeping all of your scripts and settings (i.e. your profile) in sync no matter which computer you are on. No copy/pasting. No more wearing that USB dongle around your neck - seriously, that just <em>screams</em> geek.</p>
+
+<p>Most steps have a sample PowerShell command that will do the trick. So fire up PowerShell and put on your scripting hat &lsquo;cuz here we go!</p>
+
+<ol>
+<li><p><strong><a href="http://db.tt/i03IdN4">Get Dropbox</a>.</strong><br />
+Among other things, Dropbox makes keeping your files in sync across computers dead simple. If you aren&rsquo;t using it you should be. It&rsquo;s just that good.</p></li>
+
+<li><p><strong>Create a folder in Dropbox to hold your scripts.</strong></p>
+
+<p><code>PS&gt; New-Item $dropbox\scripts</code></p>
+
+<p><em>Anywhere you see <code>$dropbox</code>, assume this to be the path to your Dropbox folder. By default on Windows 7 this is <code>%USERPROFILE%\Dropbox</code>.</em></p></li>
+
+<li><p><strong>Copy your profile <code>ps1</code> file into your new scripts folder.</strong></p>
+
+<p><code>PS&gt; Copy-Item $PROFILE $dropbox\scripts\profile.ps1</code></p></li>
+
+<li><p><strong>Edit your profile <code>ps1</code> file (the original one) and &ldquo;dot source&rdquo; the one in your Dropbox folder.</strong></p>
+
+<p><code>PS&gt; &quot;. $dropbox\scripts\profile.ps1&quot; &gt; $PROFILE</code></p></li>
+</ol>
+
+<p><strong>Pro Tip!</strong> As an alternative to dot sourcing your profile from Dropbox, you could instead <a href="/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows/">create a symlink</a> to it.</p>
+
+<pre><code>PS&gt; /cmd /c mklink `&quot;$PROFILE`&quot; `&quot;$dropbox\scripts\profile.ps1`&quot;
 </code></pre>
 
-<p>Ok, so now that I&rsquo;ve got PowerShell spinning through my entire <code>C:\</code> drive, how do I stop it? You can always kill the process but I was in a pretty good mood today and decided to be nice. This is likely to be one of the most important things you learn about PowerShell so remember it well&hellip;</p>
 
-<p><code>CTRL+C</code></p>
+</article>
 
-<p>That will halt execution of whatever PowerShell is doing and get you back to a prompt. Very handy for people like me who like tend to hit <code>[Enter]</code> before thinking about how long it might take to run.</p>
+<div class="fin symbol">&#10687;</div>
 
-<blockquote>
-<p><strong>TIP:</strong> <code>dir</code> (along with <code>ls</code>) is just an alias for the <code>Get-ChildItem</code> command.<br />
-You can get the full syntax for this command by running <code>Get-Help dir</code>.</p>
-</blockquote>
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
 
-<p>And if you want to delete all those <code>*.BAK</code> files you just found? Just pipe your <code>dir</code> to <code>del</code> (which is an alias for <code>Remove-Item</code>).</p>
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/2010/installing-ruby-and-the-devkit-on-windows">Installing Ruby (and the DevKit) on Windows</a>
+            
+        </h1>
+        <p>
+            <time datetime="2010-11-11 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thu, Nov 11, 2010</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2010/installing-ruby-and-the-devkit-on-windows">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2010/installing-ruby-and-the-devkit-on-windows</span>
+            </a>
+        </p>
+    </header>
 
-<p><code>dir -recurse -filter *.BAK | del</code></p>
+    <p>Here&rsquo;s my recipe for a painfree installation of Ruby on Windows.</p>
+
+<ol>
+<li>Use the RubyInstaller from <a href="http://www.ruby-lang.org/en/downloads/">www.ruby-lang.org</a>.
+I used Ruby 1.9.2-p0.</li>
+<li>Install the Ruby DevKit by following the instructions in the <a href="https://github.com/oneclick/rubyinstaller/wiki/development-kit">Installation Overview</a>.
+I used version DevKit-4.5.0-20100819-1536-sfx.</li>
+</ol>
+
+<p>The DevKit is needed so that you can install gems that need to build native extensions.
+Without it when you try to <code>gem install jekyll</code> you will see an error like this:</p>
+
+<pre><code>ERROR: Error installing jekyll:
+ERROR: Failed to build gem native extension.
+
+'make' is not recognized as an internal or external command,
+operable program or batch file.
+</code></pre>
+
+<p>After installing DevKit <code>gem install jekyll</code> will work like a champ.</p>
+
+<p>Good luck!</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/2010/ria-services---lessons-learned-while-getting-started">RIA Services - Lessons Learned While Getting Started</a>
+            
+        </h1>
+        <p>
+            <time datetime="2010-05-17 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, May 17, 2010</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2010/ria-services---lessons-learned-while-getting-started">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2010/ria-services---lessons-learned-while-getting-started</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>Recently my company has been working on a rewrite of one of our line-of-business applications. We have decided to leverage RIA Services in the new application. At the moment we are also using Entity Framework; that may or may not change.</p>
+
+<p>Here are a few lessons I&rsquo;ve learned so far when working with RIA Services.</p>
+
+<h3 id="potentially-massive-in-terms-of-lines-of-code-logic-domain-services:54d669c52f573ab9e19f528763dde44e">Potentially massive (in terms of lines of code &amp; logic) domain services</h3>
+
+<p>RIA doesn&rsquo;t handle multiple domain services well. What I mean by this is that an entity cannot be shared between multiple services. This means that in most cases you are going to have domain services with lots of methods. Worst case, think having an insert, update and delete method for each entity in your domain.</p>
+
+<p><strong>Lesson:</strong> Accept that having lots of methods in your domain service is inevitable.</p>
+
+<p><strong>Aid:</strong> Keep the methods slim by not putting any business or data access logic in them.</p>
+
+<h3 id="shared-database-entity-temptation:54d669c52f573ab9e19f528763dde44e">Shared database entity temptation</h3>
+
+<p><code>LinqToEntitiesDomainService&lt;&gt;</code> wraps up your Entity Framework ObjectContext and lets you access it directory in your domain service. There is also a <code>LinqToSqlDomainService&lt;&gt;</code>. This makes it really tempting to simply return your Entity Framework or LINQ to SQL entities from your domain service methods. This is <a href="http://davybrion.com/blog/2010/05/why-you-shouldnt-expose-your-entities-through-your-services/">a very bad idea</a>.</p>
+
+<p><strong>Lesson:</strong> Don&rsquo;t return your database entities from your domain service.</p>
+
+<p><strong>Aids:</strong></p>
+
+<ul>
+<li>Create a new DTO (Data Transfer Object) for each entity you need to return from your domain service.</li>
+<li>Make sure your domain service operations return these DTOs and <em>not</em> the entities that Entity Framework or LINQ to SQL generate for you.</li>
+</ul>
+
+<h3 id="domainservice-submit-summary:54d669c52f573ab9e19f528763dde44e"><code>DomainService.Submit()</code> summary</h3>
+
+<p>When your client application makes changes and then calls <code>SubmitChanges()</code> on the client-side, RIA Services sends this set of changes to the server as a ChangeSet. This ChangeSet will include deletes, updates and inserts - basically anything your client did before calling <code>SubmitChanges()</code>.</p>
+
+<p>[<code>DomainService</code>][1] is the base class that all RIA Services inherit from. This includes the <code>LinqToEntitiesDomainService&lt;&gt;</code> and <code>LinqToSqlDomainService&lt;&gt;</code> classes.</p>
+
+<p>This base class has a <code>Submit()</code> method. This is basically what is being called when your client calls <code>Submit()</code>. The DomainService&rsquo;s <code>Submit()</code> method handles parsing that set of changes and invoking the methods on your domain service that you have written to handle the inserts, updates and deletes of your entities.</p>
+
+<p>Think of the <code>Submit()</code> method as a router that takes all the changes and routes them to the specific operations that need to happen in order to persist those changes to your backing data store.</p>
+
+<h3 id="using-daos-or-repositories:54d669c52f573ab9e19f528763dde44e">Using DAOs (or Repositories)</h3>
+
+<p>I realized early on that I didn&rsquo;t want to shove all my data access code directly into my domain service methods. I like to isolate the code that talks to the database in DAOs (Data Access Objects). These DAOs act as a weld point between the world of my database and the world of my application. This makes it easier for me to handle inevitable database changes or to switch out my entire data access strategy without having to rewrite the whole application. (<a href="http://davybrion.com/blog/2010/05/why-you-shouldnt-expose-your-entities-through-your-services/">See why.</a>)</p>
+
+<p>At first I thought that to use my DAOs I couldn&rsquo;t/shouldn&rsquo;t use a <code>LinqToEntitiesDomainService&lt;&gt;</code> and should instead just inherit from <code>DomainService</code>. So this is how I started and I had my DAO methods handle the creation (and disposing) of my <code>ObjectContext</code> as needed.</p>
+
+<p>Come to find out, this works; however, it isn&rsquo;t the best way to do things. As I said before, RIA Services will ask your domain service to process a whole set of changes at once. If you have 5 changes to save, do you really want to create a new <code>ObjectContext</code> for each one? Or would you rather create the <code>ObjectContext</code> once, do the 5 changes and then save them all at once to the database?</p>
+
+<p>Here&rsquo;s what I ended up doing:</p>
+
+<ul>
+<li>Went back to using <code>LinqToEntitiesDomainService&lt;&gt;</code> as my base class.</li>
+<li>Updated my DAO constructors to take an instance of the <code>ObjectContext</code>.</li>
+</ul>
+
+<p>The <code>LinqToEntitiesDomainService&lt;&gt;</code> will handle creating my <code>ObjectContext</code> as well as calling <code>SaveChanges()</code> on it when all the changes have been processed. This is much more efficient.</p>
+
+<h3 id="in-code:54d669c52f573ab9e19f528763dde44e">In code</h3>
+
+<p>Here&rsquo;s a code example of what I discovered:</p>
+
+<p>This is bad.</p>
+
+<pre><code>public class PersonDomainService : DomainService
+{
+    public void UpdatePerson(Person dto)
+    {
+        var dao = new PersonDao();
+        dao.Update(dto);
+    }
+}
+
+public class PersonDao
+{
+    public void Update(Person dto)
+    {
+        using (var context = new MyObjectContext())
+        {
+            var existingPerson = _context.People.Where(p =&gt; p.ID == dto.ID).SingleOrDefault();
+            if (existingPerson != null)
+            {
+                existingPerson.Name = dto.Name;
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>This is good.</p>
+
+<pre><code>public class PersonDomainService : LinqToEntitiesDomainService&lt;MyObjectContext&gt;
+{
+    public void UpdatePerson(Person dto)
+    {
+        var dao = new PersonDao(ObjectContext);
+        dao.Update(dto);
+    }
+
+    public override bool Submit(ChangeSet changeSet)
+    {
+        //  base.Submit() is what will take all the changes in the ChangeSet
+        //  and call your insert, update and delete methods for each one.
+        //  When this is all done, the ObjectContext.SaveChanges() method
+        //  will  be called.
+        return base.Submit(changeSet);
+    }
+}
+
+public class PersonDao
+{
+    private readonly MyObjectContext _context;
+    public PersonDao(MyObjectContext context)
+    {
+        _context = context;
+    }
+
+    public void Update(Person dto)
+    {
+        var existingPerson = _context.People.Where(p =&gt; p.ID == dto.ID).SingleOrDefault();
+        if (existingPerson != null)
+        {
+            existingPerson.Name = dto.Name;
+        }
+    }
+}
+</code></pre>
+
+<h3 id="further-reading:54d669c52f573ab9e19f528763dde44e">Further Reading</h3>
+
+<p>Here are some things I&rsquo;ve found helpful thus far:</p>
+
+<ul>
+<li><a href="http://blogs.msdn.com/brada/archive/2009/03/17/mix09-building-amazing-business-applications-with-silverlight-3.aspx">Brad Abrams&rsquo; entire series on Building Amazing Business Applications with Silverlight 3</a></li>
+<li><a href="http://blogs.msdn.com/brada/archive/2010/03/15/silverlight-4-ria-services-ready-for-business-index.aspx">Brad Abrams&rsquo; Silveright 4 + RIA Services series</a></li>
+<li><a href="http://bradabrams.sys-con.com/node/1049931/mobile">Example of using a DataSet with RIA Services</a> - This is what opened my eyes to the true purpose of the <code>Submit()</code> method in the <code>DomainService</code>.</li>
+<li><a href="http://blogs.msdn.com/deepm/archive/2009/11/20/wcf-ria-services-presentation-model-explained.aspx">Example of returning DTOs from your domain service</a></li>
+<li><a href="http://blogs.msdn.com/digital_ruminations/archive/2009/11/18/composition-support-in-ria-services.aspx">Example of Composition support in RIA Services</a></li>
+<li><a href="http://www.nikhilk.net">Nikhil Kothari&rsquo;s</a></li>
+<li><a href="http://live.visitmix.com/MIX10/Sessions/CL09">MIX10 talk on Developing with WCF RIA Services Quickly and Effectively</a></li>
+<li><a href="http://kevindockx.blogspot.com/2009/07/working-with-ria-services-2-change-sets.html">Good blog post describing Change Sets in detail</a></li>
+
+<li><p><a href="http://www.google.com">Google</a> &ndash;  &lsquo;nuff said.</p>
+
+<p>[1]: <a href="http://msdn.microsoft.com/en-us/library/ee707373(VS.91).aspx">http://msdn.microsoft.com/en-us/library/ee707373(VS.91).aspx</a></p></li>
+</ul>
 
 
 </article>
@@ -353,6 +976,12 @@ You can get the full syntax for this command by running <code>Get-Help dir</code
 
 <nav class="pagination">
 
+	<a href="/page/4/" aria-label="Earlier Posts"><span aria-hidden="true">&laquo; Earlier Posts</span></a>
+
+
+	
+		&nbsp;&nbsp;
+	
 
 
 	<a href="/page/2/" aria-label="Recent Posts"><span aria-hidden="true">Recent Posts &raquo;</span></a>

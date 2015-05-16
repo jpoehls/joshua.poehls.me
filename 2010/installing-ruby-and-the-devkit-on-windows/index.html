@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>joshua poehls | silent thought</title>
 
-<link rel="canonical" href="http://joshua.poehls.me/tags/random/">
+<link rel="canonical" href="http://joshua.poehls.me/2010/installing-ruby-and-the-devkit-on-windows">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thought">
 <meta name="generator" content="Hugo 0.13" />
 
@@ -47,37 +47,66 @@
 	</div>
 </header>
 
+
+
 <div class="container">
 
-	<h1 class="taxonomy-title">
-		
-			Posts tagged <span class="term">#random</span>
-		
-		<span class="desc"><a href="/archives">other&nbsp;tags</a></span>
-	</h1>
 	
 
-	<ul class="taxonomy-content">
-		
-		<li>
-			Aug 13, 2012 -
-			<a href="/2012/crime-rates-are-dropping">Crime Rates Are Dropping</a>
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
             
-		</li>
-		
-		<li>
-			Jan 06, 2010 -
-			<a href="/2010/why-i-love-silverlight">Why I Love Silverlight</a>
+            <a href="/2010/installing-ruby-and-the-devkit-on-windows">Installing Ruby (and the DevKit) on Windows</a>
             
-		</li>
-		
-		<li>
-			Oct 12, 2009 -
-			<a href="/2009/from-windows-live-mesh-to-dropbox">From Windows Live Mesh to Dropbox</a>
-            
-		</li>
-		
-	</ul>
+        </h1>
+        <p>
+            <time datetime="2010-11-11 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thu, Nov 11, 2010</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2010/installing-ruby-and-the-devkit-on-windows">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2010/installing-ruby-and-the-devkit-on-windows</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Here&rsquo;s my recipe for a painfree installation of Ruby on Windows.</p>
+
+<ol>
+<li>Use the RubyInstaller from <a href="http://www.ruby-lang.org/en/downloads/">www.ruby-lang.org</a>.
+I used Ruby 1.9.2-p0.</li>
+<li>Install the Ruby DevKit by following the instructions in the <a href="https://github.com/oneclick/rubyinstaller/wiki/development-kit">Installation Overview</a>.
+I used version DevKit-4.5.0-20100819-1536-sfx.</li>
+</ol>
+
+<p>The DevKit is needed so that you can install gems that need to build native extensions.
+Without it when you try to <code>gem install jekyll</code> you will see an error like this:</p>
+
+<pre><code>ERROR: Error installing jekyll:
+ERROR: Failed to build gem native extension.
+
+'make' is not recognized as an internal or external command,
+operable program or batch file.
+</code></pre>
+
+<p>After installing DevKit <code>gem install jekyll</code> will work like a champ.</p>
+
+<p>Good luck!</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
 
 </div>
 

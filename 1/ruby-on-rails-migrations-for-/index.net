@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thought</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/1/ruby-on-rails-migrations-for-.net">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thought">
+<meta name="generator" content="Hugo 0.13" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/1/ruby-on-rails-migrations-for-.net">Ruby on Rails Migrations for .NET</a>
+            
+        </h1>
+        <p>
+            <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Jan 1, 0001</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/1/ruby-on-rails-migrations-for-.net">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/1/ruby-on-rails-migrations-for-.net</span>
+            </a>
+        </p>
+    </header>
+
+    <p>I&rsquo;ve been looking a lot at Ruby on Rails lately, and one of the things
+that really stands out to me are the
+<a href="http://wiki.rubyonrails.org/rails/pages/UnderstandingMigrations">migrations</a>.
+Migrations is the Rails way of defining your database schema in such a way that it is easy to:</p>
+
+<ul>
+<li>put into source control</li>
+<li>shared between developers</li>
+<li>rollback or upgrade to any version of the schema from any version</li>
+</ul>
+
+<p>Plenty of info is available about migrations on at the Ruby on Rails website
+so I won&rsquo;t duplicate that here. I do recommend reading the basics on
+<a href="http://wiki.rubyonrails.org/rails/pages/UnderstandingMigrations">how RoR migrations work</a>
+before continuing.</p>
+
+<p>Suffice to say I wanted something like this to use with my .NET applications pretty bad.
+I searched around and couldn&rsquo;t find anything like this for .NET (without
+jumping into some full blown OR/M) so I made one myself.</p>
+
+<p>I call it &ldquo;DotNetMigrations&rdquo; and it&rsquo;s as close to the RoR version of migrations
+as I could make it. The biggest difference is that your migration script is real
+T-SQL instead of Ruby. This is actually a big plus in the .NET/SQL Server world
+since you can just open your script in SQL Management Studio to test it, and
+copy/paste the scripts Studio generates for you to create your migration scripts.</p>
+
+<p>Here&rsquo;s a screenshot from the app with basic usage examples:</p>
+
+<p><a class="lightbox img" href="http://1.bp.blogspot.com/_uTRG_A-YdZY/SBEDtvhLfFI/AAAAAAAABf4/LjHlzRMz8N8/s1600-h/DotNetMigrations_usage.png">
+    <img src="http://1.bp.blogspot.com/_uTRG_A-YdZY/SBEDtvhLfFI/AAAAAAAABf4/LjHlzRMz8N8/s400/DotNetMigrations_usage.png" /></a></p>
+
+<p>&hellip; and here&rsquo;s the readme file:</p>
+
+<pre><code>README
+-------------------
+
+Run db.exe to see usage information.
+
+All migration scripts are stored underneath the current working directory in: /migrate/
+
+Connection strings to your database can be stored in the db.exe.config file.
+Connection strings in this file can be referenced by name when executing commands on db.exe.
+
+A [dbo].[schema_info] table will be created inside the database.
+This table is used to store the current schema version and will be updated
+whenever you run the 'migrate' command.
+</code></pre>
+
+<p>Of course everything the application does is wrapped in transactions so if at any
+point during a migration an error occurs (i.e. some goof-ball screwed up the migration script)
+it will roll back to the original version of the database.</p>
+
+<p>Since your migration script is just T-SQL you can do anything from create tables and
+add columns to doing data transformations. And assuming your scripts are well written,
+you&rsquo;ll be able to transform your database to/from any version of the schema at anytime.</p>
+
+<p>I&rsquo;m considering creating a Google Code project for this if there&rsquo;s enough interest. Thoughts?</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014-2015&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

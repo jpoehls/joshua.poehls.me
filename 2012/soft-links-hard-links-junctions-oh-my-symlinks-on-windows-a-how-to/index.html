@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thought</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thought">
+<meta name="generator" content="Hugo 0.13" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to">Soft links, hard links, junctions, oh my! Symlinks on Windows, a how-to</a>
+            
+        </h1>
+        <p>
+            <time datetime="2012-06-07 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thu, Jun 7, 2012</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>First, a quick definition of terms. There are three kinds of &ldquo;<a href="https://en.wikipedia.org/wiki/Symbolic_link">symlinks</a>&rdquo; on Windows.</p>
+
+<ul>
+<li>soft links (also called symlinks, or symbolic links)</li>
+<li>hard links</li>
+<li>junctions (a type of soft link only for directories)</li>
+</ul>
+
+<p>Soft links can be created for files or directories.</p>
+
+<p>Hard links can only be created for files.</p>
+
+<p>Both soft and hard links must be created on the same volume as the target. i.e. You can&rsquo;t link something on <code>C:\</code> to something on <code>D:\</code>.</p>
+
+<p>You can read more about hardlinks and junctions <a href="http://msdn.microsoft.com/en-us/library/aa365006%28VS.85%29.aspx">on MSDN</a>.</p>
+
+<h3 id="deleting-links:9e58f074bd866214c10dc323b4e5109d">Deleting Links</h3>
+
+<p>This is where the difference between soft and hard links is most evident.</p>
+
+<p>Deleting the target will cause soft links to stop working. What it points to is gone. Hard links however will keep right on working until you delete the hard link itself. The hard link acts just like the original file, because for all intents and purposes, it is the original file.</p>
+
+<h3 id="junctions:9e58f074bd866214c10dc323b4e5109d">Junctions</h3>
+
+<p>Windows also has another type of link just for directories, called Junctions.</p>
+
+<p>Junctions look and act like soft links. The key difference is that they allow you to link directories that are located on different local volumes (but still on the same computer). You can&rsquo;t create a junction to a network location.</p>
+
+<h2 id="using-mklink:9e58f074bd866214c10dc323b4e5109d">Using MKLINK</h2>
+
+<p>Create a soft link to a directory.</p>
+
+<pre><code>c:\symlink_test&gt; mklink symlink_dir real_dir
+symbolic link created for symlink_dir &lt;&lt;===&gt;&gt; real_dir
+</code></pre>
+
+<p>Create junction link to a directory.</p>
+
+<pre><code>c:\symlink_test&gt; mklink /J junction_dir real_dir
+Junction created for junction_dir &lt;&lt;===&gt;&gt; real_dir
+</code></pre>
+
+<p>Create a soft link to a file.</p>
+
+<pre><code>c:\symlink_test&gt; mklink symlink_file.txt real_file.txt
+symbolic link created for symlink_file.txt &lt;&lt;===&gt;&gt; real_file.txt
+</code></pre>
+
+<p>Create a hard link to a file.</p>
+
+<pre><code>c:\symlink_test&gt; mklink /H hardlink_file.txt real_file.txt
+Hardlink created for hardlink_file.txt &lt;&lt;===&gt;&gt; real_file.txt
+</code></pre>
+
+<p>What they look like.</p>
+
+<pre><code>c:\symlink_test&gt; dir
+Volume in drive C is OS
+Volume Serial Number is 7688-08EC
+
+Directory of c:\symlink_test
+
+06/07/2012  10:32 AM    &lt;DIR&gt;          .
+06/07/2012  10:32 AM    &lt;DIR&gt;          ..
+06/07/2012  09:51 AM                15 hardlink_file.txt
+06/07/2012  09:59 AM    &lt;JUNCTION&gt;     junction_dir [c:\symlink_test\real_dir]
+06/07/2012  09:47 AM    &lt;DIR&gt;          real_dir
+06/07/2012  09:51 AM                15 real_file.txt
+06/07/2012  10:00 AM    &lt;SYMLINKD&gt;     symlink_dir [real_dir]
+06/07/2012  10:31 AM    &lt;SYMLINK&gt;      symlink_file.txt [real_file.txt]
+               3 File(s)             30 bytes
+               5 Dir(s)  145,497,268,224 bytes free
+</code></pre>
+
+<p><figure >
+
+<img src="/2012/06/mklink/explorer-screenshot.png" alt="Screenshot of folder in Windows Explorer" />
+
+
+<figcaption>
+<p>
+Screenshot of folder in Windows Explorer
+
+
+
+</p> 
+</figcaption>
+
+</figure></p>
+
+<p><strong>Note for PowerShell users:</strong><br />
+MKLINK isn&rsquo;t an executable that you can just call from PowerShell. You have to call it through the command prompt.</p>
+
+<pre><code>cmd /c mklink /D symlink_dir real_dir
+</code></pre>
+
+<p>Alternatively, you can use <a href="https://gist.github.com/2891103">this module</a> I wrote that has native PowerShell wrappers for MKLINK.</p>
+
+<p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">Read about MKLINK on MSDN.</a></p>
+
+<h2 id="using-fsutil:9e58f074bd866214c10dc323b4e5109d">Using FSUTIL</h2>
+
+<p>FSUTIL is another way to create hard links (but not soft links). This is the same as <code>mklink /H</code>.</p>
+
+<pre><code>c:\symlink_test&gt; where fsutil
+c:\Windows\System32\fsutil.exe
+
+c:\symlink_test&gt; fsutil hardlink create hardlink_file.txt real_file.txt
+Hardlink created for c:\symlink_test\hardlink_file.txt &lt;&lt;===&gt;&gt; c:\symlink_test\real_file.txt
+</code></pre>
+
+<p><a href="http://technet.microsoft.com/en-us/library/cc753059(v=WS.10).aspx">Read about FSUTIL on MSDN.</a></p>
+
+<h2 id="using-junction:9e58f074bd866214c10dc323b4e5109d">Using Junction</h2>
+
+<p>Junction is a tool provided by Sysinternals and provides another way to create junctions. Same as <code>mklink /J</code>.
+It also has some other tools for working with junctions that I won&rsquo;t cover here.</p>
+
+<pre><code>c:\symlink_test&gt; junction junction_dir real_dir
+Junction v1.06 - Windows junction creator and reparse point viewer
+Copyright (C) 2000-2010 Mark Russinovich
+Sysinternals - www.sysinternals.com
+
+Created: c:\symlink_test\junction_dir
+Targetted at: c:\symlink_test\real_dir
+</code></pre>
+
+<p><a href="http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx">Download the Junction tool from Sysinternals.</a></p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014-2015&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

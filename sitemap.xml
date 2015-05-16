@@ -93,33 +93,83 @@
   </url>
   
   <url>
+    <loc>http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions</loc>
+    <lastmod>2012-12-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2012/crime-rates-are-dropping</loc>
+    <lastmod>2012-08-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://joshua.poehls.me/2012/powershell-script-module-boilerplate</loc>
     <lastmod>2012-06-23T10:43:31-06:00</lastmod>
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/2009/how-to-recover-deleted-files-in-tfs</loc>
-    <lastmod>2009-10-10T00:00:00+00:00</lastmod>
+    <loc>http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim</loc>
+    <lastmod>2012-06-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/2009/thought-on-the-internet-age</loc>
-    <lastmod>2009-03-13T00:00:00+00:00</lastmod>
+    <loc>http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git</loc>
+    <lastmod>2012-06-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/2007/running-vbs-scripts-under-different-credentials</loc>
-    <lastmod>2007-09-19T00:00:00+00:00</lastmod>
+    <loc>http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to</loc>
+    <lastmod>2012-06-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/2007/aspnet-viewstate-and-dropdownlists</loc>
-    <lastmod>2007-05-15T00:00:00+00:00</lastmod>
+    <loc>http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x</loc>
+    <lastmod>2012-04-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/2007/clearing-aspnet-control-values</loc>
-    <lastmod>2007-04-25T00:00:00+00:00</lastmod>
+    <loc>http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful</loc>
+    <lastmod>2011-12-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2011/what-i-miss-in-vanilla-visual-studio</loc>
+    <lastmod>2011-10-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2011/tortoise-svn-powershell-helper-function</loc>
+    <lastmod>2011-10-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2011/take-your-powershell-profile-everywhere-with-dropbox</loc>
+    <lastmod>2011-03-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2010/installing-ruby-and-the-devkit-on-windows</loc>
+    <lastmod>2010-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2010/ria-services---lessons-learned-while-getting-started</loc>
+    <lastmod>2010-05-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2010/why-i-love-silverlight</loc>
+    <lastmod>2010-01-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2009/installing-python-pygments-on-windows</loc>
+    <lastmod>2009-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2009/from-windows-live-mesh-to-dropbox</loc>
+    <lastmod>2009-10-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -133,6 +183,38 @@
   
   <url>
     <loc>http://joshua.poehls.me/contact</loc>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/1/idiomatic-file-path-parameters-in-powershell-cmdlets</loc>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/1/coding-color-schemes---sql-management-studio</loc>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/1/coding-color-schemes---visual-studio-2005</loc>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/1/treesize-free</loc>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/1/corporate-comic</loc>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/1/ruby-on-rails-migrations-for-.net</loc>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/1/dotnetmigrations-demo</loc>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/1/dotnetmigrations-0.5-now-with-a-bulkload-command</loc>
   </url>
   
 </urlset>

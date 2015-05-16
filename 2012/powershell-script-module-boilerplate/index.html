@@ -98,36 +98,39 @@
 
 <p>Let&rsquo;s start easy. Say you need to run a command line app or batch file from your PowerShell script. How can you check the exit code of that process?</p>
 
-<pre data-language="powershell"><code># script.ps1
+<pre><code># script.ps1
 
 cmd /C exit 1
-Write-Host $LastExitCode    # 1</code></pre>
+Write-Host $LastExitCode    # 1
+</code></pre>
 
 <p><code>$LastExitCode</code> is a special variable that holds the exit code of the last Windows based program that was run. So says <a href="http://technet.microsoft.com/en-us/library/dd347675.aspx">the documentation</a>.</p>
 
 <p>Remember though, <code>$LastExitCode</code> doesn&rsquo;t do squat for PowerShell commands. Use <code>$?</code> for that.</p>
 
-<pre data-language="powershell"><code># script.ps1
+<pre><code># script.ps1
 
-Get-ChildItem "C:\"
+Get-ChildItem &quot;C:\&quot;
 Write-Host $?    # True
 
-Get-ChildItem "Z:\some\non-existant\path"
-Write-Host $?    # False</code></pre>
+Get-ChildItem &quot;Z:\some\non-existant\path&quot;
+Write-Host $?    # False
+</code></pre>
 
 <p>Anytime you run an external command like this, you need to check the exit code and throw an exception if needed. Otherwise the PowerShell script will keep right on trucking after a failure.</p>
 
-<pre data-language="powershell"><code># script.ps1
+<pre><code># script.ps1
 
 cmd /C exit 1
 if ($LastExitCode -ne 0) {
-    throw "Command failed with exit code $LastExitCode."
+    throw &quot;Command failed with exit code $LastExitCode.&quot;
 }
-Write-Host "You'll never see this."</code></pre>
+Write-Host &quot;You'll never see this.&quot;
+</code></pre>
 
 <p>Writing these assertions all the time will get old. Fortunately you can use a helper function, like this one found in the <a href="http://github.com/psake/psake">excellent psake project</a>.</p>
 
-<pre data-language="powershell"><code># script.ps1
+<pre><code># script.ps1
 
 function Exec
 {
@@ -136,24 +139,26 @@ function Exec
         [Parameter(Position=0, Mandatory=1)]
         [scriptblock]$Command,
         [Parameter(Position=1, Mandatory=0)]
-        [string]$ErrorMessage = "Execution of command failed.`n$Command"
+        [string]$ErrorMessage = &quot;Execution of command failed.`n$Command&quot;
     )
     &amp; $Command
     if ($LastExitCode -ne 0) {
-        throw "Exec: $ErrorMessage"
+        throw &quot;Exec: $ErrorMessage&quot;
     }
 }
 
 Exec { cmd /C exit 1 }
-Write-Host "You'll never see this."</code></pre>
+Write-Host &quot;You'll never see this.&quot;
+</code></pre>
 
 <h3 id="throwing-exit-codes:e436619b3c225495df020f575a03107f">Throwing &amp; exit codes</h3>
 
 <p>The <code>throw</code> keyword is how you generate a terminating error in PowerShell. It will, sometimes, cause your PowerShell script to return a failing exit code (1). Wait, when does it <em>not</em> cause a failing exit code, you ask? This is where PowerShell&rsquo;s warts start to show. Let me demonstrate some scenarios.</p>
 
-<pre data-language="powershell"><code># broken.ps1
+<pre><code># broken.ps1
 
-throw "I'm broken"</code></pre>
+throw &quot;I'm broken&quot;
+</code></pre>
 
 <p><em>From the PowerShell command prompt:</em></p>
 
@@ -201,14 +206,15 @@ At C:\broken.ps1:1 char:6
 
 <p>A workaround is to add a <code>trap</code> statement to the top of your PowerShell script. (Thanks, Chris Oldwood, for <a href="http://chrisoldwood.blogspot.com/2011/05/powershell-throwing-exceptions-exit.html">pointing this out</a>!)</p>
 
-<pre data-language="powershell"><code># broken.ps1
+<pre><code># broken.ps1
 
 trap
 {
     Write-Error $_
     exit 1
 }
-throw "I'm broken."</code></pre>
+throw &quot;I'm broken.&quot;
+</code></pre>
 
 <p><em>From the Windows command prompt:</em></p>
 
@@ -270,41 +276,46 @@ At line:1 char:40
 <p><strong>Update:</strong> I&rsquo;ve created a <em>much</em> better batch file wrapper for my PowerShell scripts. I recommend you ignore the one below and <strong><a href="/powershell-batch-file-wrapper">use my new one</a></strong> instead.</p>
 </blockquote>
 
-<pre data-language="batch"><code>:: script.bat
+<pre><code>:: script.bat
 
 @ECHO OFF
-PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted -Command "&amp; %~d0%~p0%~n0.ps1" %*
-EXIT /B %errorlevel%</code></pre>
+PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted -Command &quot;&amp; %~d0%~p0%~n0.ps1&quot; %*
+EXIT /B %errorlevel%
+</code></pre>
 
 <p>This wrapper will execute the PowerShell script with the same file name (i.e., <code>script.ps1</code> if the batch file is named <code>script.bat</code>), and then exit with the same code that PowerShell exited with. It will also forward any arguments passed to the batch file, to the PowerShell script.</p>
 
 <p>Let&rsquo;s test it out.</p>
 
-<pre data-language="powershell"><code># script.ps1
+<pre><code># script.ps1
 
 param($Arg1, $Arg2)
-Write-Host "Arg 1: $Arg1"
-Write-Host "Arg 2: $Arg2"</code></pre>
+Write-Host &quot;Arg 1: $Arg1&quot;
+Write-Host &quot;Arg 2: $Arg2&quot;
+</code></pre>
 
 <p><em>From the Windows command prompt:</em></p>
 
-<pre data-language="batch"><code>&gt; script.bat happy scripting
+<pre><code>&gt; script.bat happy scripting
 Arg 1: happy
-Arg 2: scripting</code></pre>
+Arg 2: scripting
+</code></pre>
 
 <p>What if we want &ldquo;happy scripting&rdquo; to be passed as a single argument?</p>
 
-<pre data-language="batch"><code>&gt; script.bat "happy scripting"
+<pre><code>&gt; script.bat &quot;happy scripting&quot;
 Arg 1: happy
-Arg 2: scripting</code></pre>
+Arg 2: scripting
+</code></pre>
 
 <p><a id="black-magic"> </a></p>
 
 <p>Well that didn&rsquo;t work at all. This is the secret recipe.</p>
 
-<pre data-language="batch"><code>&gt; script.bat "'Happy scripting with single '' and double \" quotes!'"
-Arg 1: Happy scripting with single ' and double " quotes!
-Arg 2:</code></pre> 
+<pre><code>&gt; script.bat &quot;'Happy scripting with single '' and double \&quot; quotes!'&quot;
+Arg 1: Happy scripting with single ' and double &quot; quotes!
+Arg 2:
+</code></pre>
 
 <p>Please don&rsquo;t ask me to explain this black magic, I only know that it works. Much credit to <a href="http://stackoverflow.com/questions/6714165/powershell-stripping-double-quotes-from-command-line-arguments">this StackOverflow question</a> for helping me solve this!</p>
 
@@ -312,13 +323,14 @@ Arg 2:</code></pre>
 
 <p><em>From the PowerShell command prompt:</em></p>
 
-<pre data-language="batch"><code>PS&gt; .\script.ps1 happy scripting
+<pre><code>PS&gt; .\script.ps1 happy scripting
 Arg 1: happy
 Arg 2: scripting
 
-PS&gt; .\script.ps1 "Happy scripting with single ' and double `" quotes included!"
-Arg 1: Happy scripting with single ' and double " quotes included!
-Arg 2: </code></pre>
+PS&gt; .\script.ps1 &quot;Happy scripting with single ' and double `&quot; quotes included!&quot;
+Arg 1: Happy scripting with single ' and double &quot; quotes included!
+Arg 2:
+</code></pre>
 
 <p>That&rsquo;s all folks!</p>
 

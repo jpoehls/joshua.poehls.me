@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thought</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thought">
+<meta name="generator" content="Hugo 0.13" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/2012/killing-processes-in-disconnected-terminal-service-sessions">Killing Processes In Disconnected Terminal Service Sessions</a>
+            
+        </h1>
+        <p>
+            <time datetime="2012-12-12 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Dec 12, 2012</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2012/killing-processes-in-disconnected-terminal-service-sessions">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Usually it is best to configure your terminal service policy to log out disconnected sessions, however there may be cases where you only want to kill specific applications when the user disconnects.</p>
+
+<p>This is easy to do with a PowerShell script that you run periodically as a scheduled task. The processes won&rsquo;t be killed <em>immediately</em> when the user disconnects but will be killed shortly after.</p>
+
+<p>This script will, by default, only kill the OUTLOOK processes in disconnected sessions after waiting 15 seconds for it to gracefully close. It is trivial to tweak the script to kill whichever processes you care about.</p>
+
+<pre><code># kill-processes.ps1
+
+# This script supports being run with -WhatIf and -Confirm parameters.
+[CmdletBinding(SupportsShouldProcess=$true, ConfirmImpact='Medium')]
+param (
+    # Regex of the states that should be included in the process killing field.
+    [string]$IncludeStates = '^(Disc)$', # Only DISCONNECTED sessions by default.
+    # Regex of the processes to kill
+    [string]$KillProcesses = '^(OUTLOOK)$', # Only OUTLOOK by default.
+    [int]$GracefulTimeout = 15 # Number of seconds to wait for a graceful shutdown before forcefully closing the program.
+)
+
+function Get-Sessions
+{
+    # `query session` is the same as `qwinsta`
+
+    # `query session`: http://technet.microsoft.com/en-us/library/cc785434(v=ws.10).aspx
+
+    # Possible session states:
+    &lt;#
+    http://support.microsoft.com/kb/186592
+    Active. The session is connected and active.
+    Conn.   The session is connected. No user is logged on.
+    ConnQ.  The session is in the process of connecting. If this state
+            continues, it indicates a problem with the connection.
+    Shadow. The session is shadowing another session.
+    Listen. The session is ready to accept a client connection.
+    Disc.   The session is disconnected.
+    Idle.   The session is initialized.
+    Down.   The session is down, indicating the session failed to initialize correctly.
+    Init.   The session is initializing.
+    #&gt;
+
+    # Snippet from http://poshcode.org/3062
+    # Parses the output of `qwinsta` into PowerShell objects.
+    $c = query session 2&gt;&amp;1 | where {$_.gettype().equals([string]) }
+
+    $starters = New-Object psobject -Property @{&quot;SessionName&quot; = 0; &quot;Username&quot; = 0; &quot;ID&quot; = 0; &quot;State&quot; = 0; &quot;Type&quot; = 0; &quot;Device&quot; = 0;};
+     
+    foreach($line in $c) {
+         try {
+             if($line.trim().substring(0, $line.trim().indexof(&quot; &quot;)) -eq &quot;SESSIONNAME&quot;) {
+                $starters.Username = $line.indexof(&quot;USERNAME&quot;);
+                $starters.ID = $line.indexof(&quot;ID&quot;);
+                $starters.State = $line.indexof(&quot;STATE&quot;);
+                $starters.Type = $line.indexof(&quot;TYPE&quot;);
+                $starters.Device = $line.indexof(&quot;DEVICE&quot;);
+                continue;
+            }
+           
+            New-Object psobject -Property @{
+                &quot;SessionName&quot; = $line.trim().substring(0, $line.trim().indexof(&quot; &quot;)).trim(&quot;&gt;&quot;)
+                ;&quot;Username&quot; = $line.Substring($starters.Username, $line.IndexOf(&quot; &quot;, $starters.Username) - $starters.Username)
+                ;&quot;ID&quot; = $line.Substring($line.IndexOf(&quot; &quot;, $starters.Username), $starters.ID - $line.IndexOf(&quot; &quot;, $starters.Username) + 2).trim()
+                ;&quot;State&quot; = $line.Substring($starters.State, $line.IndexOf(&quot; &quot;, $starters.State)-$starters.State).trim()
+                ;&quot;Type&quot; = $line.Substring($starters.Type, $starters.Device - $starters.Type).trim()
+                ;&quot;Device&quot; = $line.Substring($starters.Device).trim()
+            }
+        } catch {
+            throw $_;
+            #$e = $_;
+            #Write-Error -Exception $e.Exception -Message $e.PSMessageDetails;
+        }
+    }
+}
+
+# Helper function for getting the singular or plural form of
+# a word based on the given count.
+# Because we want proper log messages.
+function Get-ProperWord([string]$singularWord, [int]$count) {
+    if ($count -eq 0 -or $count -gt 1) {
+        if ($singularWord.EndsWith(&quot;s&quot;)) {
+            return &quot;$($singularWord)es&quot;;
+        }
+        else {
+            return &quot;$($singularWord)s&quot;;
+        }
+    }
+    else {
+        return $singularWord;
+    }
+}
+
+# Get a list of all terminal sessions that are in the state we care about.
+$IncludedSessions = Get-Sessions `
+                        | Where { $_.State -match $IncludeStates } `
+                        | Select -ExpandProperty ID
+
+# Get a list of all processes in one of those terminal sessions
+# that match a process we want to kill.
+$SessionProcesses = $IncludedSessions `
+    | % { $id = $_;
+          Get-Process `
+            | Where { $_.SessionID -eq $id -and $_.Name -match $KillProcesses } }
+
+# Get some words to use in log output.
+$wordSecond = $(Get-ProperWord 'second' $GracefulTimeout)
+$wordProcess = $(Get-ProperWord 'process' $SessionProcesses.Length)
+
+if ($SessionProcesses.Length -gt 0) {
+    # Initiate a graceful shutdown of the processes.
+    # http://powershell.com/cs/blogs/tips/archive/2010/05/27/stopping-programs-gracefully.aspx
+    Write-Output &quot;Gracefully closing $($SessionProcesses.Length) $wordProcess&quot;
+    $SessionProcesses `
+        | % { if ($PSCmdlet.ShouldProcess(&quot;$($_.Name) ($($_.Id))&quot;, &quot;CloseMainWindow&quot;)) { $_.CloseMainWindow() } } `
+        | Out-Null
+
+    # Wait X seconds for the programs to close gracefully.
+    Write-Output &quot;Waiting $GracefulTimeout $wordSecond for the $wordProcess to close&quot;
+    if ($GracefulTimeout -gt 0) {
+        if ($PSCmdlet.ShouldProcess(&quot;Current Process&quot;, &quot;Start-Sleep&quot;)) {
+            Start-Sleep -Seconds $GracefulTimeout
+        }
+    }
+
+    # Force any remaining processes to close, the hard way.
+    Write-Output &quot;Forcefully closing any remaining processes&quot;
+    $SessionProcesses `
+        | Where { $_.HasExited -ne $true } `
+        | Stop-Process -ErrorAction SilentlyContinue
+}
+else {
+    Write-Output &quot;No processes to close&quot;
+}
+</code></pre>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014-2015&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

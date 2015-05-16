@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>joshua poehls | silent thought</title>
 
-<link rel="canonical" href="http://joshua.poehls.me/tags/random/">
+<link rel="canonical" href="http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thought">
 <meta name="generator" content="Hugo 0.13" />
 
@@ -47,37 +47,91 @@
 	</div>
 </header>
 
+
+
 <div class="container">
 
-	<h1 class="taxonomy-title">
-		
-			Posts tagged <span class="term">#random</span>
-		
-		<span class="desc"><a href="/archives">other&nbsp;tags</a></span>
-	</h1>
 	
 
-	<ul class="taxonomy-content">
-		
-		<li>
-			Aug 13, 2012 -
-			<a href="/2012/crime-rates-are-dropping">Crime Rates Are Dropping</a>
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
             
-		</li>
-		
-		<li>
-			Jan 06, 2010 -
-			<a href="/2010/why-i-love-silverlight">Why I Love Silverlight</a>
+            <a href="/2012/syntax-highlighting-for-nginx-in-vim">Syntax highlighting for Nginx in VIM</a>
             
-		</li>
-		
-		<li>
-			Oct 12, 2009 -
-			<a href="/2009/from-windows-live-mesh-to-dropbox">From Windows Live Mesh to Dropbox</a>
-            
-		</li>
-		
-	</ul>
+        </h1>
+        <p>
+            <time datetime="2012-06-10 00:00:00 &#43;0000 UTC" pubdate="pubdate">Sun, Jun 10, 2012</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2012/syntax-highlighting-for-nginx-in-vim">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Thanks to <a href="http://www.vim.org/scripts/script.php?script_id=1886">Evan Miller</a>, adding VIM syntax highlighting for Nginx config files is a breeze.</p>
+
+<p>First, install VIM if you haven&rsquo;t already. On Arch Linux, it goes like this:</p>
+
+<pre><code>&gt; pacman -Sy vim
+</code></pre>
+
+<p>Create a folder for your VIM syntax files.</p>
+
+<pre><code>&gt; mkdir -p ~/.vim/syntax/
+</code></pre>
+
+<p>Download the syntax highlighting plugin.</p>
+
+<pre><code>&gt; curl http://www.vim.org/scripts/download_script.php?src_id=14376 -o ~/.vim/syntax/nginx.vim
+</code></pre>
+
+<p>Add it to VIM&rsquo;s file type definitions. Make sure to adjust the path to your Nginx installation if you need to.</p>
+
+<pre><code>&gt; echo &quot;au BufRead,BufNewFile /etc/nginx/conf/* set ft=nginx&quot; &gt;&gt; ~/.vim/filetype.vim
+</code></pre>
+
+<p>Now enable syntax highlighting in your .vimrc file.</p>
+
+<pre><code>&gt; echo &quot;syntax enable&quot; &gt;&gt; ~/.vimrc
+</code></pre>
+
+<p>That&rsquo;s it. Now you&rsquo;ll have nice colors when you edit your Nginx configs with VIM!</p>
+
+<pre><code>&gt; vim /etc/nginx/conf/nginx.conf
+</code></pre>
+
+<p><figure >
+
+<img src="/2012/06/nginx-vim-colors.png" alt="Screenshot of VIM with syntax highlighting in an Nginx config file" />
+
+
+<figcaption>
+<p>
+Screenshot of VIM with syntax highlighting in an Nginx config file
+
+
+
+</p> 
+</figcaption>
+
+</figure></p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
 
 </div>
 
