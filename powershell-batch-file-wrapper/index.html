@@ -94,7 +94,7 @@ SET ARGS=%*
 IF [%ARGS%] NEQ [] GOTO ESCAPE_ARGS
 
 :POWERSHELL
-PowerShell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -Command &quot;&amp;amp; { $ErrorActionPreference = 'Stop'; &amp;amp; '%SCRIPTNAME%' @args; EXIT $LASTEXITCODE }&quot; %ARGS%
+PowerShell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -Command &quot;&amp; { $ErrorActionPreference = 'Stop'; &amp; '%SCRIPTNAME%' @args; EXIT $LASTEXITCODE }&quot; %ARGS%
 EXIT /B %ERRORLEVEL%
 
 :ESCAPE_ARGS
@@ -102,7 +102,7 @@ SET ARGS=%ARGS:&quot;=\&quot;%
 SET ARGS=%ARGS:`=``%
 SET ARGS=%ARGS:'=`'%
 SET ARGS=%ARGS:$=`$%
-SET ARGS=%ARGS:&amp;#123;=`&amp;#123;%
+SET ARGS=%ARGS:{=`}%
 SET ARGS=%ARGS:}=`}%
 SET ARGS=%ARGS:(=`(%
 SET ARGS=%ARGS:)=`)%

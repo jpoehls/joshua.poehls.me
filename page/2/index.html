@@ -555,118 +555,6 @@ I use a very similar file structure for [PowerShell Binary Modules][binary_modul
     <header>
         <h1>
             
-            <a href="/powershell-batch-file-wrapper">PowerShell Batch File Wrapper</a>
-            
-        </h1>
-        <p>
-            <time datetime="2013-12-18 10:43:31 -0600 CST" pubdate="pubdate">Wed, Dec 18, 2013</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/powershell-batch-file-wrapper">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/powershell-batch-file-wrapper</span>
-            </a>
-        </p>
-    </header>
-
-    
-
-<p>Sometimes you want a <code>.cmd</code> wrapper for your PowerShell script. Usually for me this is so people who aren&rsquo;t familiar with the command line can double-click to execute the script.</p>
-
-<p>This batch file should be saved alongside your PowerShell script, like so.</p>
-
-<pre><code>.\
- |- my_script.ps1
- |- my_script.cmd
-</code></pre>
-
-<p><code>my_script.cmd</code> will execute the same named <code>.ps1</code> file in the same directory, so <code>my_script.ps1</code> in this case. Any arguments passed to <code>my_script.cmd</code> will pass-through to the PowerShell script.</p>
-
-<pre><code>@ECHO OFF
-
-SET SCRIPTNAME=%~d0%~p0%~n0.ps1
-SET ARGS=%*
-IF [%ARGS%] NEQ [] GOTO ESCAPE_ARGS
-
-:POWERSHELL
-PowerShell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -Command &quot;&amp;amp; { $ErrorActionPreference = 'Stop'; &amp;amp; '%SCRIPTNAME%' @args; EXIT $LASTEXITCODE }&quot; %ARGS%
-EXIT /B %ERRORLEVEL%
-
-:ESCAPE_ARGS
-SET ARGS=%ARGS:&quot;=\&quot;%
-SET ARGS=%ARGS:`=``%
-SET ARGS=%ARGS:'=`'%
-SET ARGS=%ARGS:$=`$%
-SET ARGS=%ARGS:&amp;#123;=`&amp;#123;%
-SET ARGS=%ARGS:}=`}%
-SET ARGS=%ARGS:(=`(%
-SET ARGS=%ARGS:)=`)%
-SET ARGS=%ARGS:,=`,%
-SET ARGS=%ARGS:^%=%
-
-GOTO POWERSHELL
-</code></pre>
-
-<h2 id="what-s-going-on-here:7908c9f856e796bbc0d3b5748b45b371">What&rsquo;s going on here?</h2>
-
-<ul>
-<li><code>%SCRIPTNAME%</code> variable holds the name of the PowerShell script to execute. <code>%~d0%~p0%~n0</code> magic gets the full path of the
-current batch script without the file extension. By specifying the full path of the PowerShell script
-like this we can guarantee that it is always executed from the right place
-no matter what your working directory is.</li>
-<li>Escapes special characters in the arguments so that they are passed to PowerShell as you would expect.</li>
-<li>Runs <code>PowerShell.exe</code> with:
-
-<ul>
-<li><code>-NoProfile</code> to improve startup performance. Scripts you are distributing
-shouldn&rsquo;t rely on anything in your profile anyway.</li>
-<li><code>-NonInteractive</code> because usually my scripts don&rsquo;t need input from the user.</li>
-<li><code>-ExecutionPolicy Unrestricted</code> to ensure that the PowerShell script can
-be executed regardless of the machine&rsquo;s default Execution Policy.</li>
-<li><code>-Command</code> syntax for executing the command ensures that PowerShell
-returns the correct exit code from your script.
-Using <code>-Command</code> with <code>$ErrorActionPreference = 'Stop'</code> also ensures that
-errors thrown from your script cause PowerShell.exe to return a failing
-exit code (1). <a href="http://zduck.com/2012/powershell-batch-files-exit-codes/">PowerShell is quite buggy when it comes to bubbling exit
-codes.</a>
-This is the safest method I&rsquo;ve found.</li>
-</ul></li>
-</ul>
-
-<h2 id="batch-file-tips:7908c9f856e796bbc0d3b5748b45b371">Batch file tips</h2>
-
-<h3 id="special-characters-in-arguments:7908c9f856e796bbc0d3b5748b45b371">Special characters in arguments</h3>
-
-<p>Remember that certain special characters need to be escaped in arguments passed to the batch file. These characters are: <code>^  &amp;  &lt;  &gt;  /?</code>. Note that <code>/?</code> is a sequence and is recognized as a help flag when passed to a batch file.</p>
-
-<blockquote>
-<p><code>my_script.cmd &quot;I &quot;&quot;am&quot;&quot; quoted&quot;</code> passes a single argument <code>I &quot;am&quot; quoted</code> to PowerShell.</p>
-
-<p><code>my_script.cmd &quot;^&amp;&lt;&gt;/?&quot;</code> passes <code>^&amp;&lt;&gt;/?</code></p>
-</blockquote>
-
-<h3 id="environment-variable-expansion:7908c9f856e796bbc0d3b5748b45b371">Environment variable expansion</h3>
-
-<p>Environment variables get automatically expanded in batch file arguments.</p>
-
-<blockquote>
-<p><code>my_script.cmd %PROGRAMFILES%</code> passes <code>C:\Program Files</code></p>
-</blockquote>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
             <a href="/powershell-script-boilerplate">PowerShell Script Boilerplate</a>
             
         </h1>
@@ -734,6 +622,118 @@ a <code>$stopwatch</code> that will output the elapsed time when the script fini
  <a class="footnote-return" href="#fnref:469e3590a69ce674428532a2149fa57a:fn1">↩</a></li>
 </ol>
 </div>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/powershell-batch-file-wrapper">PowerShell Batch File Wrapper</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-12-18 10:43:31 -0600 CST" pubdate="pubdate">Wed, Dec 18, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/powershell-batch-file-wrapper">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/powershell-batch-file-wrapper</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>Sometimes you want a <code>.cmd</code> wrapper for your PowerShell script. Usually for me this is so people who aren&rsquo;t familiar with the command line can double-click to execute the script.</p>
+
+<p>This batch file should be saved alongside your PowerShell script, like so.</p>
+
+<pre><code>.\
+ |- my_script.ps1
+ |- my_script.cmd
+</code></pre>
+
+<p><code>my_script.cmd</code> will execute the same named <code>.ps1</code> file in the same directory, so <code>my_script.ps1</code> in this case. Any arguments passed to <code>my_script.cmd</code> will pass-through to the PowerShell script.</p>
+
+<pre><code>@ECHO OFF
+
+SET SCRIPTNAME=%~d0%~p0%~n0.ps1
+SET ARGS=%*
+IF [%ARGS%] NEQ [] GOTO ESCAPE_ARGS
+
+:POWERSHELL
+PowerShell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -Command &quot;&amp; { $ErrorActionPreference = 'Stop'; &amp; '%SCRIPTNAME%' @args; EXIT $LASTEXITCODE }&quot; %ARGS%
+EXIT /B %ERRORLEVEL%
+
+:ESCAPE_ARGS
+SET ARGS=%ARGS:&quot;=\&quot;%
+SET ARGS=%ARGS:`=``%
+SET ARGS=%ARGS:'=`'%
+SET ARGS=%ARGS:$=`$%
+SET ARGS=%ARGS:{=`}%
+SET ARGS=%ARGS:}=`}%
+SET ARGS=%ARGS:(=`(%
+SET ARGS=%ARGS:)=`)%
+SET ARGS=%ARGS:,=`,%
+SET ARGS=%ARGS:^%=%
+
+GOTO POWERSHELL
+</code></pre>
+
+<h2 id="what-s-going-on-here:7908c9f856e796bbc0d3b5748b45b371">What&rsquo;s going on here?</h2>
+
+<ul>
+<li><code>%SCRIPTNAME%</code> variable holds the name of the PowerShell script to execute. <code>%~d0%~p0%~n0</code> magic gets the full path of the
+current batch script without the file extension. By specifying the full path of the PowerShell script
+like this we can guarantee that it is always executed from the right place
+no matter what your working directory is.</li>
+<li>Escapes special characters in the arguments so that they are passed to PowerShell as you would expect.</li>
+<li>Runs <code>PowerShell.exe</code> with:
+
+<ul>
+<li><code>-NoProfile</code> to improve startup performance. Scripts you are distributing
+shouldn&rsquo;t rely on anything in your profile anyway.</li>
+<li><code>-NonInteractive</code> because usually my scripts don&rsquo;t need input from the user.</li>
+<li><code>-ExecutionPolicy Unrestricted</code> to ensure that the PowerShell script can
+be executed regardless of the machine&rsquo;s default Execution Policy.</li>
+<li><code>-Command</code> syntax for executing the command ensures that PowerShell
+returns the correct exit code from your script.
+Using <code>-Command</code> with <code>$ErrorActionPreference = 'Stop'</code> also ensures that
+errors thrown from your script cause PowerShell.exe to return a failing
+exit code (1). <a href="http://zduck.com/2012/powershell-batch-files-exit-codes/">PowerShell is quite buggy when it comes to bubbling exit
+codes.</a>
+This is the safest method I&rsquo;ve found.</li>
+</ul></li>
+</ul>
+
+<h2 id="batch-file-tips:7908c9f856e796bbc0d3b5748b45b371">Batch file tips</h2>
+
+<h3 id="special-characters-in-arguments:7908c9f856e796bbc0d3b5748b45b371">Special characters in arguments</h3>
+
+<p>Remember that certain special characters need to be escaped in arguments passed to the batch file. These characters are: <code>^  &amp;  &lt;  &gt;  /?</code>. Note that <code>/?</code> is a sequence and is recognized as a help flag when passed to a batch file.</p>
+
+<blockquote>
+<p><code>my_script.cmd &quot;I &quot;&quot;am&quot;&quot; quoted&quot;</code> passes a single argument <code>I &quot;am&quot; quoted</code> to PowerShell.</p>
+
+<p><code>my_script.cmd &quot;^&amp;&lt;&gt;/?&quot;</code> passes <code>^&amp;&lt;&gt;/?</code></p>
+</blockquote>
+
+<h3 id="environment-variable-expansion:7908c9f856e796bbc0d3b5748b45b371">Environment variable expansion</h3>
+
+<p>Environment variables get automatically expanded in batch file arguments.</p>
+
+<blockquote>
+<p><code>my_script.cmd %PROGRAMFILES%</code> passes <code>C:\Program Files</code></p>
+</blockquote>
 
 
 </article>
