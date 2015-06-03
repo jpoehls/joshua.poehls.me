@@ -23,7 +23,7 @@ This batch file should be saved alongside your PowerShell script, like so.
     IF [%ARGS%] NEQ [] GOTO ESCAPE_ARGS
 
     :POWERSHELL
-    PowerShell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -Command "&amp; { $ErrorActionPreference = 'Stop'; &amp; '%SCRIPTNAME%' @args; EXIT $LASTEXITCODE }" %ARGS%
+    PowerShell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -Command "& { $ErrorActionPreference = 'Stop'; & '%SCRIPTNAME%' @args; EXIT $LASTEXITCODE }" %ARGS%
     EXIT /B %ERRORLEVEL%
 
     :ESCAPE_ARGS
@@ -31,7 +31,7 @@ This batch file should be saved alongside your PowerShell script, like so.
     SET ARGS=%ARGS:`=``%
     SET ARGS=%ARGS:'=`'%
     SET ARGS=%ARGS:$=`$%
-    SET ARGS=%ARGS:&#123;=`&#123;%
+    SET ARGS=%ARGS:{=`}%
     SET ARGS=%ARGS:}=`}%
     SET ARGS=%ARGS:(=`(%
     SET ARGS=%ARGS:)=`)%
