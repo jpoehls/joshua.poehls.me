@@ -3,8 +3,13 @@
   
   <url>
     <loc>http://joshua.poehls.me/</loc>
-    <lastmod>2015-04-13T10:43:31-06:00</lastmod>
+    <lastmod>2015-07-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2015/07/a-simple-way-to-pray-luther</loc>
+    <lastmod>2015-07-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -83,12 +88,12 @@
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/powershell-script-boilerplate</loc>
+    <loc>http://joshua.poehls.me/powershell-batch-file-wrapper</loc>
     <lastmod>2013-12-18T10:43:31-06:00</lastmod>
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/powershell-batch-file-wrapper</loc>
+    <loc>http://joshua.poehls.me/powershell-script-boilerplate</loc>
     <lastmod>2013-12-18T10:43:31-06:00</lastmod>
   </url>
   
@@ -194,15 +199,11 @@
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/1/coding-color-schemes---visual-studio-2005</loc>
-  </url>
-  
-  <url>
     <loc>http://joshua.poehls.me/1/treesize-free</loc>
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/1/ruby-on-rails-migrations-for-.net</loc>
+    <loc>http://joshua.poehls.me/1/coding-color-schemes---visual-studio-2005</loc>
   </url>
   
   <url>
@@ -210,11 +211,15 @@
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/1/dotnetmigrations-demo</loc>
+    <loc>http://joshua.poehls.me/1/ruby-on-rails-migrations-for-.net</loc>
   </url>
   
   <url>
     <loc>http://joshua.poehls.me/1/dotnetmigrations-0.5-now-with-a-bulkload-command</loc>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/1/dotnetmigrations-demo</loc>
   </url>
   
 </urlset>
