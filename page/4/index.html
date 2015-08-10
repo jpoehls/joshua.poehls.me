@@ -60,6 +60,57 @@
     <header>
         <h1>
             
+            <a href="/2010/installing-ruby-and-the-devkit-on-windows">Installing Ruby (and the DevKit) on Windows</a>
+            
+        </h1>
+        <p>
+            <time datetime="2010-11-11 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thu, Nov 11, 2010</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2010/installing-ruby-and-the-devkit-on-windows">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2010/installing-ruby-and-the-devkit-on-windows</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Here&rsquo;s my recipe for a painfree installation of Ruby on Windows.</p>
+
+<ol>
+<li>Use the RubyInstaller from <a href="http://www.ruby-lang.org/en/downloads/">www.ruby-lang.org</a>.
+I used Ruby 1.9.2-p0.</li>
+<li>Install the Ruby DevKit by following the instructions in the <a href="https://github.com/oneclick/rubyinstaller/wiki/development-kit">Installation Overview</a>.
+I used version DevKit-4.5.0-20100819-1536-sfx.</li>
+</ol>
+
+<p>The DevKit is needed so that you can install gems that need to build native extensions.
+Without it when you try to <code>gem install jekyll</code> you will see an error like this:</p>
+
+<pre><code>ERROR: Error installing jekyll:
+ERROR: Failed to build gem native extension.
+
+'make' is not recognized as an internal or external command,
+operable program or batch file.
+</code></pre>
+
+<p>After installing DevKit <code>gem install jekyll</code> will work like a champ.</p>
+
+<p>Good luck!</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="/2010/ria-services---lessons-learned-while-getting-started">RIA Services - Lessons Learned While Getting Started</a>
             
         </h1>
@@ -875,53 +926,6 @@ in Environment|Fonts and Colors under &ldquo;Text Editor&rdquo;</li>
     <header>
         <h1>
             
-            <a href="/1/treesize-free">TreeSize Free</a>
-            
-        </h1>
-        <p>
-            <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Jan 1, 0001</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/1/treesize-free">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/1/treesize-free</span>
-            </a>
-        </p>
-    </header>
-
-    <p>Just bookmarking this great utility so I don&rsquo;t lose it later.</p>
-
-<p><a href="http://www.jam-software.com/freeware/index.shtml">http://www.jam-software.com/freeware/index.shtml</a></p>
-
-<blockquote>
-<p>Every hard disk is too small if you just wait long enough.
-TreeSize Free tells you where precious space has gone to.</p>
-
-<p>TreeSize Free can be started from the context menu of a folder or drive
-and shows you the size of this folder, including its subfolders.</p>
-
-<p>You can expand this folder in Explorer-like style and you will see the size
-of every subfolder. Scanning is done in a thread, so you can already see
-results while TreeSize Free is working. The space, which is wasted by the
-file system, can be displayed and the results can be printed in a report.</p>
-
-<p>TreeSize Free is freeware for Windows 9x/2000/XP/Vista.</p>
-</blockquote>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
             <a href="/1/coding-color-schemes---visual-studio-2005">Coding Color Schemes - Visual Studio 2005</a>
             
         </h1>
@@ -980,32 +984,76 @@ XML Attr. Name, XML Attr. Quotes - <strong>(R,G,B) 255,108,108</strong> <span st
     <header>
         <h1>
             
-            <a href="/1/corporate-comic">Corporate Comic</a>
+            <a href="/1/ruby-on-rails-migrations-for-.net">Ruby on Rails Migrations for .NET</a>
             
         </h1>
         <p>
             <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Jan 1, 0001</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/1/corporate-comic">
+            <a class="permalink" title="Permalink" href="/1/ruby-on-rails-migrations-for-.net">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/1/corporate-comic</span>
+                <span class="printonly">http://joshua.poehls.me/1/ruby-on-rails-migrations-for-.net</span>
             </a>
         </p>
     </header>
 
-    <p>This is my first comic strip, inspired by a random spurt of creativity.
-I can&rsquo;t take all the credit though. The fantastic &lsquo;lettering&rsquo; was done
-by a very good friend ;)</p>
+    <p>I&rsquo;ve been looking a lot at Ruby on Rails lately, and one of the things
+that really stands out to me are the
+<a href="http://wiki.rubyonrails.org/rails/pages/UnderstandingMigrations">migrations</a>.
+Migrations is the Rails way of defining your database schema in such a way that it is easy to:</p>
 
-<p><a class="lightbox img" title="Comic" href="{{site.url}}/assets/forposts/comic/JK-comic-1.jpg">
-    <img src="{{site.url}}/assets/forposts/comic/JK-comic-1-small.jpg" alt="comic" />
-</a></p>
+<ul>
+<li>put into source control</li>
+<li>shared between developers</li>
+<li>rollback or upgrade to any version of the schema from any version</li>
+</ul>
 
-<p>If you can&rsquo;t make it out, here&rsquo;s a blow-by-blow description&hellip;</p>
+<p>Plenty of info is available about migrations on at the Ruby on Rails website
+so I won&rsquo;t duplicate that here. I do recommend reading the basics on
+<a href="http://wiki.rubyonrails.org/rails/pages/UnderstandingMigrations">how RoR migrations work</a>
+before continuing.</p>
 
-<p>The comic depicts an inspector looking at a tank that is structurally insecure.
-During his inspection, the tank falls on him and begins to roll down the hill,
-snowballing with the inspector on it.</p>
+<p>Suffice to say I wanted something like this to use with my .NET applications pretty bad.
+I searched around and couldn&rsquo;t find anything like this for .NET (without
+jumping into some full blown OR/M) so I made one myself.</p>
+
+<p>I call it &ldquo;DotNetMigrations&rdquo; and it&rsquo;s as close to the RoR version of migrations
+as I could make it. The biggest difference is that your migration script is real
+T-SQL instead of Ruby. This is actually a big plus in the .NET/SQL Server world
+since you can just open your script in SQL Management Studio to test it, and
+copy/paste the scripts Studio generates for you to create your migration scripts.</p>
+
+<p>Here&rsquo;s a screenshot from the app with basic usage examples:</p>
+
+<p><a class="lightbox img" href="http://1.bp.blogspot.com/_uTRG_A-YdZY/SBEDtvhLfFI/AAAAAAAABf4/LjHlzRMz8N8/s1600-h/DotNetMigrations_usage.png">
+    <img src="http://1.bp.blogspot.com/_uTRG_A-YdZY/SBEDtvhLfFI/AAAAAAAABf4/LjHlzRMz8N8/s400/DotNetMigrations_usage.png" /></a></p>
+
+<p>&hellip; and here&rsquo;s the readme file:</p>
+
+<pre><code>README
+-------------------
+
+Run db.exe to see usage information.
+
+All migration scripts are stored underneath the current working directory in: /migrate/
+
+Connection strings to your database can be stored in the db.exe.config file.
+Connection strings in this file can be referenced by name when executing commands on db.exe.
+
+A [dbo].[schema_info] table will be created inside the database.
+This table is used to store the current schema version and will be updated
+whenever you run the 'migrate' command.
+</code></pre>
+
+<p>Of course everything the application does is wrapped in transactions so if at any
+point during a migration an error occurs (i.e. some goof-ball screwed up the migration script)
+it will roll back to the original version of the database.</p>
+
+<p>Since your migration script is just T-SQL you can do anything from create tables and
+add columns to doing data transformations. And assuming your scripts are well written,
+you&rsquo;ll be able to transform your database to/from any version of the schema at anytime.</p>
+
+<p>I&rsquo;m considering creating a Google Code project for this if there&rsquo;s enough interest. Thoughts?</p>
 
 
 </article>

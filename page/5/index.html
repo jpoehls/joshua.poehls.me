@@ -60,76 +60,32 @@
     <header>
         <h1>
             
-            <a href="/1/ruby-on-rails-migrations-for-.net">Ruby on Rails Migrations for .NET</a>
+            <a href="/1/corporate-comic">Corporate Comic</a>
             
         </h1>
         <p>
             <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Jan 1, 0001</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/1/ruby-on-rails-migrations-for-.net">
+            <a class="permalink" title="Permalink" href="/1/corporate-comic">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/1/ruby-on-rails-migrations-for-.net</span>
+                <span class="printonly">http://joshua.poehls.me/1/corporate-comic</span>
             </a>
         </p>
     </header>
 
-    <p>I&rsquo;ve been looking a lot at Ruby on Rails lately, and one of the things
-that really stands out to me are the
-<a href="http://wiki.rubyonrails.org/rails/pages/UnderstandingMigrations">migrations</a>.
-Migrations is the Rails way of defining your database schema in such a way that it is easy to:</p>
+    <p>This is my first comic strip, inspired by a random spurt of creativity.
+I can&rsquo;t take all the credit though. The fantastic &lsquo;lettering&rsquo; was done
+by a very good friend ;)</p>
 
-<ul>
-<li>put into source control</li>
-<li>shared between developers</li>
-<li>rollback or upgrade to any version of the schema from any version</li>
-</ul>
+<p><a class="lightbox img" title="Comic" href="{{site.url}}/assets/forposts/comic/JK-comic-1.jpg">
+    <img src="{{site.url}}/assets/forposts/comic/JK-comic-1-small.jpg" alt="comic" />
+</a></p>
 
-<p>Plenty of info is available about migrations on at the Ruby on Rails website
-so I won&rsquo;t duplicate that here. I do recommend reading the basics on
-<a href="http://wiki.rubyonrails.org/rails/pages/UnderstandingMigrations">how RoR migrations work</a>
-before continuing.</p>
+<p>If you can&rsquo;t make it out, here&rsquo;s a blow-by-blow description&hellip;</p>
 
-<p>Suffice to say I wanted something like this to use with my .NET applications pretty bad.
-I searched around and couldn&rsquo;t find anything like this for .NET (without
-jumping into some full blown OR/M) so I made one myself.</p>
-
-<p>I call it &ldquo;DotNetMigrations&rdquo; and it&rsquo;s as close to the RoR version of migrations
-as I could make it. The biggest difference is that your migration script is real
-T-SQL instead of Ruby. This is actually a big plus in the .NET/SQL Server world
-since you can just open your script in SQL Management Studio to test it, and
-copy/paste the scripts Studio generates for you to create your migration scripts.</p>
-
-<p>Here&rsquo;s a screenshot from the app with basic usage examples:</p>
-
-<p><a class="lightbox img" href="http://1.bp.blogspot.com/_uTRG_A-YdZY/SBEDtvhLfFI/AAAAAAAABf4/LjHlzRMz8N8/s1600-h/DotNetMigrations_usage.png">
-    <img src="http://1.bp.blogspot.com/_uTRG_A-YdZY/SBEDtvhLfFI/AAAAAAAABf4/LjHlzRMz8N8/s400/DotNetMigrations_usage.png" /></a></p>
-
-<p>&hellip; and here&rsquo;s the readme file:</p>
-
-<pre><code>README
--------------------
-
-Run db.exe to see usage information.
-
-All migration scripts are stored underneath the current working directory in: /migrate/
-
-Connection strings to your database can be stored in the db.exe.config file.
-Connection strings in this file can be referenced by name when executing commands on db.exe.
-
-A [dbo].[schema_info] table will be created inside the database.
-This table is used to store the current schema version and will be updated
-whenever you run the 'migrate' command.
-</code></pre>
-
-<p>Of course everything the application does is wrapped in transactions so if at any
-point during a migration an error occurs (i.e. some goof-ball screwed up the migration script)
-it will roll back to the original version of the database.</p>
-
-<p>Since your migration script is just T-SQL you can do anything from create tables and
-add columns to doing data transformations. And assuming your scripts are well written,
-you&rsquo;ll be able to transform your database to/from any version of the schema at anytime.</p>
-
-<p>I&rsquo;m considering creating a Google Code project for this if there&rsquo;s enough interest. Thoughts?</p>
+<p>The comic depicts an inspector looking at a tank that is structurally insecure.
+During his inspection, the tank falls on him and begins to roll down the hill,
+snowballing with the inspector on it.</p>
 
 
 </article>
@@ -146,24 +102,38 @@ you&rsquo;ll be able to transform your database to/from any version of the schem
     <header>
         <h1>
             
-            <a href="/1/dotnetmigrations-0.5-now-with-a-bulkload-command">DotNetMigrations 0.5 now with a BulkLoad command!</a>
+            <a href="/1/treesize-free">TreeSize Free</a>
             
         </h1>
         <p>
             <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Jan 1, 0001</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/1/dotnetmigrations-0.5-now-with-a-bulkload-command">
+            <a class="permalink" title="Permalink" href="/1/treesize-free">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/1/dotnetmigrations-0.5-now-with-a-bulkload-command</span>
+                <span class="printonly">http://joshua.poehls.me/1/treesize-free</span>
             </a>
         </p>
     </header>
 
-    <p>I just published <a href="http://www.codeplex.com/dotnetmigrations">DotNetMigrations release 0.5 on CodePlex</a>.</p>  <p>This release has several bug fixes, as well as a large amount of code refactoring and a new <b>bulkload</b> command.</p>  <p>I definitely recommend updating to this new version; there are <i>no breaking changes</i>.</p>  <h2>What is a ‘bulkload’ command?</h2>  <p>Well, the theory is simple. We need a way to easily INSERT a bunch of data into multiple tables in a database. Why not use SQL? Simple. Manually typing a hundred SQL INSERT statements is painful, very painful.</p>  <p>First, I’ll show you <i>how</i> this works and then I’ll tell you why I added this command (if you haven’t figured it out by then).</p>  <h2>The <i>How</i></h2>  <p><b></b></p>  <p>Create an XML file that describes the data you want to INSERT into your database. Example: say our database has 2 tables, “States” and “Cities”, here’s is what our XML file may look like for inserting some demo data.</p>  <p>[StatesAndCitiesSimple.xml]<a href="http://lh5.ggpht.com/jpoehls/SDRzFmSWMPI/AAAAAAAABuY/xCJy-9KWqaA/s1600-h/WindowClipping%20%282%29%5B7%5D.png">  
-<img style="border: 0px none ;" alt="WindowClipping (2)" src="http://lh4.ggpht.com/jpoehls/SDRzGWSWMQI/AAAAAAAABug/FylC-LdsTrU/WindowClipping%20%282%29_thumb%5B5%5D.png?imgmax=800" border="0" height="196" width="390" /></a> </p>  <p>Now, if we run ...</p>  <blockquote>   <p><strong>db bulkload “SERVER=..." C:\StatesAndCitiesSimple.xml</strong></p> </blockquote>  <p><strong>... </strong>it will:</p>  <ol>   <li>insert 2 rows into our [States] table, and</li>    <li>insert 2 rows into our [Cities] table</li> </ol>  <p>Each attribute on the &lt;row /&gt; elements is expected to be the name of a column in the table, and the value that we want to insert into that column.</p>  <p>We could also do more advanced things like this:</p>  <p>[StatesAndCitiesAdvanced.xml]
-<a href="http://lh4.ggpht.com/jpoehls/SDRzHWSWMRI/AAAAAAAABuo/hHx_bR-3re4/s1600-h/WindowClipping%20%283%29%5B3%5D.png"><img style="border: 0px none ;" alt="WindowClipping (3)" src="http://lh6.ggpht.com/jpoehls/SDRzH2SWMSI/AAAAAAAABuw/gu32VlaV5GU/WindowClipping%20%283%29_thumb%5B1%5D.png?imgmax=800" border="0" height="139" width="402" /></a> </p>  <p>Now, when we run...</p>  <blockquote>   <p><b>db bulkload “SERVER=..." C:\StatesAndCitiesAdvanced.xml</b></p> </blockquote>  <p><strong>... </strong>it will:</p>  <ol>   <li>confirm that the database’s schema is at version 5, if not then the <strong>bulkload </strong>will not be attempted</li>    <li>truncate the [States] table</li>    <li>SET IDENTITY_INSERT [States] ON</li>    <li>Insert 2 rows into the [States] table</li>    <li>SET IDENTITY_INSERT [States] OFF</li>    <li>DELETE FROM [Cities] WHERE Name = ‘Denver’</li>    <li>Insert 2 rows into [Cities] table</li> </ol>  <p>Of course, all of this is wrapped in a transaction, so if any piece fails then it will all be rolled back leaving your database unharmed.
-</p>  <p>Now that you know a little of the <i>how</i>, let me tell you <i>why</i> I added this.</p>  <h2>The <i>Why</i></h2>  <p>It’s pretty common to create a SQL script that inserts test or demo data into your database. You may be doing this using regular SQL scripts right now, but those aren’t very friendly to edit. Not with lots of data. On the other hand, there are <i>lots</i> of XML editors out there that would make editing such a file much more enjoyable. Or better yet, you could generate the XML auto-magically somehow.</p>  <p>This is where <b>bulkload</b> shines. It gives you a simple, clean XML format that you can describe your data in, as well as the ability specify things like:</p>  <ul>   <li>Turning identity_insert on so that you can insert values into SQL Server identity fields </li>    <li>Truncating the table before inserting new rows </li>    <li>Use a filter expression to delete specific rows from the table before inserting new ones </li> </ul>  <p>This also ties into your migrations by providing a way to validate that the schema version is compatible with the data you want to push into it.</p>  <p>This release also adds return codes to <span style="font-weight: bold;">db.exe</span> so that we can tell whether the command was successful or whether an error occurred. This could be useful when scripting db.exe from a bat file.
-</p>  <p>What are you still doing here? Go <a href="http://www.codeplex.com/dotnetmigrations">download the new release</a> and starting migrating!</p>
+    <p>Just bookmarking this great utility so I don&rsquo;t lose it later.</p>
+
+<p><a href="http://www.jam-software.com/freeware/index.shtml">http://www.jam-software.com/freeware/index.shtml</a></p>
+
+<blockquote>
+<p>Every hard disk is too small if you just wait long enough.
+TreeSize Free tells you where precious space has gone to.</p>
+
+<p>TreeSize Free can be started from the context menu of a folder or drive
+and shows you the size of this folder, including its subfolders.</p>
+
+<p>You can expand this folder in Explorer-like style and you will see the size
+of every subfolder. Scanning is done in a thread, so you can already see
+results while TreeSize Free is working. The space, which is wasted by the
+file system, can be displayed and the results can be printed in a report.</p>
+
+<p>TreeSize Free is freeware for Windows 9x/2000/XP/Vista.</p>
+</blockquote>
+
 
 </article>
 
@@ -240,6 +210,39 @@ you&rsquo;ll be able to transform your database to/from any version of the schem
 </li>    <li>Do the same to generate the DROP scripts and put those in the TEARDOWN.     
 </li>    <li>TEST, TEST, TEST! Create a new, empty database and run your migration SETUP and TEARDOWN scripts against it. This is very important when creating the migration script for an existing database since all your tables, constraints, indexes, stored procs, etc. probably need to be created (and dropped) in a specific order so that no dependencies are broken.     
 </li>    <li>Now that you have your <b>001_initial_setup</b> migration you can start using migrations for all your incremental database changes. Go for it! </li> </ul>  
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="/1/dotnetmigrations-0.5-now-with-a-bulkload-command">DotNetMigrations 0.5 now with a BulkLoad command!</a>
+            
+        </h1>
+        <p>
+            <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Jan 1, 0001</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/1/dotnetmigrations-0.5-now-with-a-bulkload-command">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/1/dotnetmigrations-0.5-now-with-a-bulkload-command</span>
+            </a>
+        </p>
+    </header>
+
+    <p>I just published <a href="http://www.codeplex.com/dotnetmigrations">DotNetMigrations release 0.5 on CodePlex</a>.</p>  <p>This release has several bug fixes, as well as a large amount of code refactoring and a new <b>bulkload</b> command.</p>  <p>I definitely recommend updating to this new version; there are <i>no breaking changes</i>.</p>  <h2>What is a ‘bulkload’ command?</h2>  <p>Well, the theory is simple. We need a way to easily INSERT a bunch of data into multiple tables in a database. Why not use SQL? Simple. Manually typing a hundred SQL INSERT statements is painful, very painful.</p>  <p>First, I’ll show you <i>how</i> this works and then I’ll tell you why I added this command (if you haven’t figured it out by then).</p>  <h2>The <i>How</i></h2>  <p><b></b></p>  <p>Create an XML file that describes the data you want to INSERT into your database. Example: say our database has 2 tables, “States” and “Cities”, here’s is what our XML file may look like for inserting some demo data.</p>  <p>[StatesAndCitiesSimple.xml]<a href="http://lh5.ggpht.com/jpoehls/SDRzFmSWMPI/AAAAAAAABuY/xCJy-9KWqaA/s1600-h/WindowClipping%20%282%29%5B7%5D.png">  
+<img style="border: 0px none ;" alt="WindowClipping (2)" src="http://lh4.ggpht.com/jpoehls/SDRzGWSWMQI/AAAAAAAABug/FylC-LdsTrU/WindowClipping%20%282%29_thumb%5B5%5D.png?imgmax=800" border="0" height="196" width="390" /></a> </p>  <p>Now, if we run ...</p>  <blockquote>   <p><strong>db bulkload “SERVER=..." C:\StatesAndCitiesSimple.xml</strong></p> </blockquote>  <p><strong>... </strong>it will:</p>  <ol>   <li>insert 2 rows into our [States] table, and</li>    <li>insert 2 rows into our [Cities] table</li> </ol>  <p>Each attribute on the &lt;row /&gt; elements is expected to be the name of a column in the table, and the value that we want to insert into that column.</p>  <p>We could also do more advanced things like this:</p>  <p>[StatesAndCitiesAdvanced.xml]
+<a href="http://lh4.ggpht.com/jpoehls/SDRzHWSWMRI/AAAAAAAABuo/hHx_bR-3re4/s1600-h/WindowClipping%20%283%29%5B3%5D.png"><img style="border: 0px none ;" alt="WindowClipping (3)" src="http://lh6.ggpht.com/jpoehls/SDRzH2SWMSI/AAAAAAAABuw/gu32VlaV5GU/WindowClipping%20%283%29_thumb%5B1%5D.png?imgmax=800" border="0" height="139" width="402" /></a> </p>  <p>Now, when we run...</p>  <blockquote>   <p><b>db bulkload “SERVER=..." C:\StatesAndCitiesAdvanced.xml</b></p> </blockquote>  <p><strong>... </strong>it will:</p>  <ol>   <li>confirm that the database’s schema is at version 5, if not then the <strong>bulkload </strong>will not be attempted</li>    <li>truncate the [States] table</li>    <li>SET IDENTITY_INSERT [States] ON</li>    <li>Insert 2 rows into the [States] table</li>    <li>SET IDENTITY_INSERT [States] OFF</li>    <li>DELETE FROM [Cities] WHERE Name = ‘Denver’</li>    <li>Insert 2 rows into [Cities] table</li> </ol>  <p>Of course, all of this is wrapped in a transaction, so if any piece fails then it will all be rolled back leaving your database unharmed.
+</p>  <p>Now that you know a little of the <i>how</i>, let me tell you <i>why</i> I added this.</p>  <h2>The <i>Why</i></h2>  <p>It’s pretty common to create a SQL script that inserts test or demo data into your database. You may be doing this using regular SQL scripts right now, but those aren’t very friendly to edit. Not with lots of data. On the other hand, there are <i>lots</i> of XML editors out there that would make editing such a file much more enjoyable. Or better yet, you could generate the XML auto-magically somehow.</p>  <p>This is where <b>bulkload</b> shines. It gives you a simple, clean XML format that you can describe your data in, as well as the ability specify things like:</p>  <ul>   <li>Turning identity_insert on so that you can insert values into SQL Server identity fields </li>    <li>Truncating the table before inserting new rows </li>    <li>Use a filter expression to delete specific rows from the table before inserting new ones </li> </ul>  <p>This also ties into your migrations by providing a way to validate that the schema version is compatible with the data you want to push into it.</p>  <p>This release also adds return codes to <span style="font-weight: bold;">db.exe</span> so that we can tell whether the command was successful or whether an error occurred. This could be useful when scripting db.exe from a bat file.
+</p>  <p>What are you still doing here? Go <a href="http://www.codeplex.com/dotnetmigrations">download the new release</a> and starting migrating!</p>
 
 </article>
 

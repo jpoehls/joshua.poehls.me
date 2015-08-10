@@ -6,7 +6,45 @@
     <language>en-us</language>
     <author>Joshua Poehls</author>
     <copyright>Copyright (c) 2014-2015 Joshua Poehls. All rights reserved.</copyright>
-    <updated>Fri, 03 Jul 2015 00:00:00 UTC</updated>
+    <updated>Mon, 10 Aug 2015 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Delighting in the Trinity</title>
+      <link>http://joshua.poehls.me/2015/08/delighting-trinity</link>
+      <pubDate>Mon, 10 Aug 2015 00:00:00 UTC</pubDate>
+      <author>Joshua Poehls</author>
+      <guid>http://joshua.poehls.me/2015/08/delighting-trinity</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;It is not to be expected that we should love God supremely if we have not known him to be more desirable than all other things.&amp;rdquo; So wrote the great hymn writer Isaac Watts. And of course, he was quite right, for we always love what seems most attractive to us.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;But what kind of God could outstrip the attractions of all other things? Could any unitary, single-person god do so? Hardly, or at least not for long. Single-person gods must, by definition, have spent eternity in absolute solitude. Before creation, having no other persons with whom they could commune, they must have been entirely alone.&lt;/p&gt;
+
+&lt;p&gt;Love for others, then, cannot go very deep in them if they can go for eternity without it. And so, not being essentially loving, such gods are inevitably less than lovely. They may demand our worship, but they cannot win our hearts. They must be served with gritted teeth.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Just imagine for a moment a single-person god. Having been alone for eternity, would it want fellowship with us? It seems most unlikely. Would it even know what fellowship was? Almost certainly not. Such a god might allow us to live under its rule and protection, but little more.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;But if God is a Father, whose very life has been about loving and delighting in His precious Son, then you begin to see a God who would have far more intimate and marvelous aims, aims to draw us into His life and joy, to embrace us with the very love He has for His dear Son.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The Trinity, then, is not some awkward add-on to God, the optional extra nobody should want. No, God is beautiful, desirable, and life-giving precisely because He is the Father, the Son, and the Spirit.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
     
     <item>
       <title>A Simple Way to Pray: A Letter from Dr. Martin Luther</title>
@@ -944,63 +982,6 @@ fmt.Printf(&amp;quot;Age: %v&amp;quot;, p.Age()) // Age: 10
 &lt;a href=&#34;http://www.reddit.com/r/golang/comments/23060m/go_101_methods_on_pointers_vs_values/&#34;&gt;Join the discussion on reddit!&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Update 2:&lt;/strong&gt; Here are &lt;a href=&#34;https://github.com/golang/go/wiki/CodeReviewComments#receiver-type&#34;&gt;even more rules of thumb&lt;/a&gt; to help you choose whether to use a value or pointer receiver.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Go 101: Constructors and Overloads</title>
-      <link>http://joshua.poehls.me/2014/04/go-conventions-constructors-and-overloads</link>
-      <pubDate>Fri, 11 Apr 2014 09:58:59 CDT</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/04/go-conventions-constructors-and-overloads</guid>
-      <description>&lt;p&gt;Go doesn&amp;rsquo;t have constructors in the traditional sense. The convention is to make the zero value useful whenever possible.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;type Person struct {
-     Age int
-}
-
-// These are equivalent.
-// `p1` and `p2` are initialized to the zero value of Person.
-// Neither of these are nil.
-var p1 Person // type Person
-p2 := Person{} // type Person
-
-// You could also use `new` to allocate which returns a pointer
-p3 := new(Person) // type *Person
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;It is most common to use the struct initializer. e.g. &lt;code&gt;p := Person{}&lt;/code&gt; or &lt;code&gt;p := &amp;amp;Person{}&lt;/code&gt; if you need the pointer.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Sometimes you want special initialization logic. If your type is named &lt;code&gt;Person&lt;/code&gt; then the convention would be create a function named &lt;code&gt;NewPerson&lt;/code&gt; that returns a pointer to an initialized &lt;code&gt;Person&lt;/code&gt; type.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func NewPerson(int age) *Person {
-     p := Person{age}
-     return &amp;amp;p
-}
-
-myPerson := NewPerson(10) // type *Person
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Multiple constructors can be implemented by having multiple initializer functions. Go doesn&amp;rsquo;t support function overloads so you will need to name your functions intelligently.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;import &amp;quot;time&amp;quot;
-
-func NewPersonAge(int age) *Person {
-     p := Person{age}
-     return &amp;amp;p
-}
-
-func NewPersonBirthYear(int birthYear) *Person {
-     p := Person{time.Now().Year() - birthYear}
-     return &amp;amp;p
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://golang.org/doc/effective_go.html#composite_literals&#34;&gt;Read more&lt;/a&gt; in Effective Go.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; Thanks to Joe Shaw for the comments! I&amp;rsquo;ve updated the article with his suggestions.&lt;/p&gt;
 </description>
     </item>
     
