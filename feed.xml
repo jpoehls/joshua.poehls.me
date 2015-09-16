@@ -6,7 +6,33 @@
     <language>en-us</language>
     <author>Joshua Poehls</author>
     <copyright>Copyright (c) 2014-2015 Joshua Poehls. All rights reserved.</copyright>
-    <updated>Mon, 10 Aug 2015 00:00:00 UTC</updated>
+    <updated>Wed, 16 Sep 2015 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Serve the LORD, Fear Not</title>
+      <link>http://joshua.poehls.me/2016/09/fear-not</link>
+      <pubDate>Wed, 16 Sep 2015 00:00:00 UTC</pubDate>
+      <author>Joshua Poehls</author>
+      <guid>http://joshua.poehls.me/2016/09/fear-not</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;I call heaven and earth to record this day against you, that &lt;strong&gt;I have set before you life and death&lt;/strong&gt;, blessing and cursing: therefore choose life, that both thou and thy seed may live: (Deu 30:19 KJV)&lt;/p&gt;
+
+&lt;p&gt;And if it seem evil unto you to serve the LORD, &lt;strong&gt;choose you this day whom ye will serve&lt;/strong&gt;; &amp;hellip; (Jos 24:15 KJV)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;If ye will fear the LORD, and serve him, and obey his voice,&lt;/strong&gt; and not rebel against the commandment of the LORD, then shall both ye and also the king that reigneth over you continue following the LORD your God: (1Sa 12:14 KJV)&lt;/p&gt;
+
+&lt;p&gt;For &lt;strong&gt;God hath not given us the spirit of fear&lt;/strong&gt;; but of power, and of love, and of a sound mind. (2Ti 1:7 KJV)&lt;/p&gt;
+
+&lt;p&gt;These things I have spoken unto you, that in me ye might have peace. In the world ye shall have tribulation: but &lt;strong&gt;be of good cheer&lt;/strong&gt;; I have overcome the world. (Jhn 16:33 KJV)&lt;/p&gt;
+
+&lt;p&gt;Ye are of God, little children, and have overcome them: because &lt;strong&gt;greater is he that is in you&lt;/strong&gt;, than he that is in the world. (1Jo 4:4 KJV)&lt;/p&gt;
+
+&lt;p&gt;So that we may boldly say, &lt;strong&gt;The Lord is my helper&lt;/strong&gt;, and I will not fear what man shall do unto me. (Heb 13:6 KJV)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The LORD is on my side;&lt;/strong&gt; I will not fear: what can man do unto me? (Psa 118:6 KJV)&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
     
     <item>
       <title>Delighting in the Trinity</title>
@@ -899,89 +925,6 @@ s2 := string(b) // convert []byte -&amp;gt; string
 &lt;p&gt;The Go blog has posted in detail about &lt;a href=&#34;http://blog.golang.org/strings&#34;&gt;strings, bytes, runes, and characters in Go&lt;/a&gt;. You should definitely read that post to fully understand the topic.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; Thanks to &lt;a href=&#34;https://twitter.com/mholt6&#34;&gt;@mholt6&lt;/a&gt; for reviewing the post and helping improve it!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Go 101: Methods on Pointers vs. Values</title>
-      <link>http://joshua.poehls.me/2014/04/go-101-methods-on-pointers-vs-values</link>
-      <pubDate>Mon, 14 Apr 2014 09:58:59 CDT</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/04/go-101-methods-on-pointers-vs-values</guid>
-      <description>&lt;p&gt;Methods can be declared on both pointers and values. The difference is subtle but important.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;type Person struct {
-     age int
-}
-
-// Method&#39;s receiver is the value, `Person`.
-func (p Person) Age() int {
-     return p.age
-}
-
-// Method&#39;s receiver is a pointer, `*Person`.
-func (p *Person) SetAge(age int) {
-     p.age = age
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;In reality, you&amp;rsquo;d only define getter and setter functions like this if you needed to implement additional logic. In an example like this you&amp;rsquo;d just make the &lt;code&gt;Age&lt;/code&gt; field public.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This is how you define getter and setter functions in Go. Notice that we defined the &lt;code&gt;Age()&lt;/code&gt; function on the value but &lt;code&gt;SetAge()&lt;/code&gt; on the pointer (i.e. &lt;code&gt;*Person&lt;/code&gt;). This is important.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Go always passes by value.&lt;/strong&gt; Function parameters are  always passed by copying them as opposed to passing a reference. (&lt;a href=&#34;http://golang.org/doc/faq#pass_by_value&#34;&gt;Read more.&lt;/a&gt;)&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Even pointers are technically passed by value. The memory address is copied, the value it points to is &lt;em&gt;not&lt;/em&gt; copied.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Here is the &lt;em&gt;wrong&lt;/em&gt; way to define &lt;code&gt;SetAge&lt;/code&gt;. Let&amp;rsquo;s see what happens.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func (p Person) SetAge(age int) {
-     p.age = age
-}
-
-p := Person{}
-p.SetAge(10)
-fmt.Printf(&amp;quot;Age: %v&amp;quot;, p.Age()) // Age: 0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://play.golang.org/p/CJZfqBrAIC&#34;&gt;&amp;#9654; Run it.&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Notice that the output is &lt;code&gt;0&lt;/code&gt; instead of &lt;code&gt;10&lt;/code&gt;? This is &amp;lsquo;pass by value&amp;rsquo; in action.&lt;/p&gt;
-
-&lt;p&gt;Calling &lt;code&gt;p.SetAge(10)&lt;/code&gt; passes a copy of &lt;code&gt;p&lt;/code&gt; to the &lt;code&gt;SetAge&lt;/code&gt; function. &lt;code&gt;SetAge&lt;/code&gt; sets the &lt;code&gt;age&lt;/code&gt; property on the copy of &lt;code&gt;p&lt;/code&gt; that it received which is discarded after the function returns.&lt;/p&gt;
-
-&lt;p&gt;Now let&amp;rsquo;s do it the right way.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;func (p *Person) SetAge(age int) {
-     p.age = age
-}
-
-p := Person{}
-p.SetAge(10)
-fmt.Printf(&amp;quot;Age: %v&amp;quot;, p.Age()) // Age: 10
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://play.golang.org/p/BbIlSUQBCr&#34;&gt;&amp;#9654; Run it.&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;My rule of thumb is this: declare the method on the pointer unless your struct is such that you don&amp;rsquo;t use pointers to it.&lt;/p&gt;
-
-&lt;p&gt;Two reasons:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Performance. Calling a method on a pointer will almost always be faster than copying the value. There may be cases wear the copy is faster but those are edge case.&lt;/li&gt;
-&lt;li&gt;Consistency. It is common for at least one of your methods to need a pointer receiver and if any of the type&amp;rsquo;s methods are on the pointer then they all should be. &lt;em&gt;This recommendation is direct from &lt;a href=&#34;http://golang.org/doc/faq#methods_on_values_or_pointers&#34;&gt;the FAQ&lt;/a&gt;.&lt;/em&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://golang.org/doc/faq#methods_on_values_or_pointers&#34;&gt;Read the FAQ&lt;/a&gt; &amp;ldquo;Should I define methods on values or pointers?&amp;rdquo; for more insight.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Update:&lt;/strong&gt; Thanks to the fine folks on reddit for suggesting some improvements.&lt;br /&gt;
-&lt;a href=&#34;http://www.reddit.com/r/golang/comments/23060m/go_101_methods_on_pointers_vs_values/&#34;&gt;Join the discussion on reddit!&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Update 2:&lt;/strong&gt; Here are &lt;a href=&#34;https://github.com/golang/go/wiki/CodeReviewComments#receiver-type&#34;&gt;even more rules of thumb&lt;/a&gt; to help you choose whether to use a value or pointer receiver.&lt;/p&gt;
 </description>
     </item>
     

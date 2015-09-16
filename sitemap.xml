@@ -3,8 +3,13 @@
   
   <url>
     <loc>http://joshua.poehls.me/</loc>
-    <lastmod>2015-08-10T00:00:00+00:00</lastmod>
+    <lastmod>2015-09-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2016/09/fear-not</loc>
+    <lastmod>2015-09-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -93,12 +98,12 @@
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/powershell-script-boilerplate</loc>
+    <loc>http://joshua.poehls.me/powershell-batch-file-wrapper</loc>
     <lastmod>2013-12-18T10:43:31-06:00</lastmod>
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/powershell-batch-file-wrapper</loc>
+    <loc>http://joshua.poehls.me/powershell-script-boilerplate</loc>
     <lastmod>2013-12-18T10:43:31-06:00</lastmod>
   </url>
   
@@ -208,7 +213,7 @@
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/1/ruby-on-rails-migrations-for-.net</loc>
+    <loc>http://joshua.poehls.me/1/treesize-free</loc>
   </url>
   
   <url>
@@ -216,7 +221,7 @@
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/1/treesize-free</loc>
+    <loc>http://joshua.poehls.me/1/ruby-on-rails-migrations-for-.net</loc>
   </url>
   
   <url>

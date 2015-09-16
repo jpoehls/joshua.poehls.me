@@ -60,6 +60,81 @@
     <header>
         <h1>
             
+            <a href="/2011/take-your-powershell-profile-everywhere-with-dropbox">Take your PowerShell profile everywhere with Dropbox</a>
+            
+        </h1>
+        <p>
+            <time datetime="2011-03-25 00:00:00 &#43;0000 UTC" pubdate="pubdate">Fri, Mar 25, 2011</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2011/take-your-powershell-profile-everywhere-with-dropbox">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2011/take-your-powershell-profile-everywhere-with-dropbox</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>I&rsquo;ll cover these prerequisites in brief, but for this tip I&rsquo;m going to assume a few things:</p>
+
+<ul>
+<li>You are running Windows and have <a href="http://msdn.microsoft.com/en-us/library/aa973757.aspx">PowerShell</a> installed.</li>
+<li>You are familiar enough with PowerShell to care about your <a href="http://msdn.microsoft.com/en-us/library/bb613488.aspx">$PROFILE</a>.</li>
+</ul>
+
+<h3 id="what-is-powershell:7bb74ac85e0a49464a534530f48431fc">What is PowerShell?</h3>
+
+<p>In short, PowerShell is a new scripting language from Microsoft designed to replace the use of batch files and VBScript for administrating and automating Windows machines. The language leverages the .NET Framework such that anything you can do with .NET you can do with PowerShell. Typically you will be using PowerShell from the command line but there are lots of other ways to use it.</p>
+
+<h3 id="what-is-a-powershell-profile:7bb74ac85e0a49464a534530f48431fc">What is a PowerShell profile?</h3>
+
+<p>PowerShell has the concept of a script that will run each time you launch PowerShell. This is a really handy place to put any functions that you want to be available all the time. Initialize some variables, create some aliases, anything you do here will be there when you need it.</p>
+
+<h3 id="what-are-we-doing-here:7bb74ac85e0a49464a534530f48431fc">What are we doing here?</h3>
+
+<p>I&rsquo;m going to give you one possible solution for keeping all of your scripts and settings (i.e. your profile) in sync no matter which computer you are on. No copy/pasting. No more wearing that USB dongle around your neck - seriously, that just <em>screams</em> geek.</p>
+
+<p>Most steps have a sample PowerShell command that will do the trick. So fire up PowerShell and put on your scripting hat &lsquo;cuz here we go!</p>
+
+<ol>
+<li><p><strong><a href="http://db.tt/i03IdN4">Get Dropbox</a>.</strong><br />
+Among other things, Dropbox makes keeping your files in sync across computers dead simple. If you aren&rsquo;t using it you should be. It&rsquo;s just that good.</p></li>
+
+<li><p><strong>Create a folder in Dropbox to hold your scripts.</strong></p>
+
+<p><code>PS&gt; New-Item $dropbox\scripts</code></p>
+
+<p><em>Anywhere you see <code>$dropbox</code>, assume this to be the path to your Dropbox folder. By default on Windows 7 this is <code>%USERPROFILE%\Dropbox</code>.</em></p></li>
+
+<li><p><strong>Copy your profile <code>ps1</code> file into your new scripts folder.</strong></p>
+
+<p><code>PS&gt; Copy-Item $PROFILE $dropbox\scripts\profile.ps1</code></p></li>
+
+<li><p><strong>Edit your profile <code>ps1</code> file (the original one) and &ldquo;dot source&rdquo; the one in your Dropbox folder.</strong></p>
+
+<p><code>PS&gt; &quot;. $dropbox\scripts\profile.ps1&quot; &gt; $PROFILE</code></p></li>
+</ol>
+
+<p><strong>Pro Tip!</strong> As an alternative to dot sourcing your profile from Dropbox, you could instead <a href="/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows/">create a symlink</a> to it.</p>
+
+<pre><code>PS&gt; /cmd /c mklink `&quot;$PROFILE`&quot; `&quot;$dropbox\scripts\profile.ps1`&quot;
+</code></pre>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="/2010/installing-ruby-and-the-devkit-on-windows">Installing Ruby (and the DevKit) on Windows</a>
             
         </h1>
@@ -968,92 +1043,6 @@ XML Attr. Name, XML Attr. Quotes - <strong>(R,G,B) 255,108,108</strong> <span st
 <li>Line Numbers, XML CDATA Section, XML Doc Attr., XML Doc Tag, XML Processing Instruction -
 <strong>(R,G,B) 128,128,128</strong> <span style="background-color: #000; padding: 0.5em; color:#808080;">(Gray)</span></li>
 </ul>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="/1/ruby-on-rails-migrations-for-.net">Ruby on Rails Migrations for .NET</a>
-            
-        </h1>
-        <p>
-            <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Jan 1, 0001</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/1/ruby-on-rails-migrations-for-.net">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/1/ruby-on-rails-migrations-for-.net</span>
-            </a>
-        </p>
-    </header>
-
-    <p>I&rsquo;ve been looking a lot at Ruby on Rails lately, and one of the things
-that really stands out to me are the
-<a href="http://wiki.rubyonrails.org/rails/pages/UnderstandingMigrations">migrations</a>.
-Migrations is the Rails way of defining your database schema in such a way that it is easy to:</p>
-
-<ul>
-<li>put into source control</li>
-<li>shared between developers</li>
-<li>rollback or upgrade to any version of the schema from any version</li>
-</ul>
-
-<p>Plenty of info is available about migrations on at the Ruby on Rails website
-so I won&rsquo;t duplicate that here. I do recommend reading the basics on
-<a href="http://wiki.rubyonrails.org/rails/pages/UnderstandingMigrations">how RoR migrations work</a>
-before continuing.</p>
-
-<p>Suffice to say I wanted something like this to use with my .NET applications pretty bad.
-I searched around and couldn&rsquo;t find anything like this for .NET (without
-jumping into some full blown OR/M) so I made one myself.</p>
-
-<p>I call it &ldquo;DotNetMigrations&rdquo; and it&rsquo;s as close to the RoR version of migrations
-as I could make it. The biggest difference is that your migration script is real
-T-SQL instead of Ruby. This is actually a big plus in the .NET/SQL Server world
-since you can just open your script in SQL Management Studio to test it, and
-copy/paste the scripts Studio generates for you to create your migration scripts.</p>
-
-<p>Here&rsquo;s a screenshot from the app with basic usage examples:</p>
-
-<p><a class="lightbox img" href="http://1.bp.blogspot.com/_uTRG_A-YdZY/SBEDtvhLfFI/AAAAAAAABf4/LjHlzRMz8N8/s1600-h/DotNetMigrations_usage.png">
-    <img src="http://1.bp.blogspot.com/_uTRG_A-YdZY/SBEDtvhLfFI/AAAAAAAABf4/LjHlzRMz8N8/s400/DotNetMigrations_usage.png" /></a></p>
-
-<p>&hellip; and here&rsquo;s the readme file:</p>
-
-<pre><code>README
--------------------
-
-Run db.exe to see usage information.
-
-All migration scripts are stored underneath the current working directory in: /migrate/
-
-Connection strings to your database can be stored in the db.exe.config file.
-Connection strings in this file can be referenced by name when executing commands on db.exe.
-
-A [dbo].[schema_info] table will be created inside the database.
-This table is used to store the current schema version and will be updated
-whenever you run the 'migrate' command.
-</code></pre>
-
-<p>Of course everything the application does is wrapped in transactions so if at any
-point during a migration an error occurs (i.e. some goof-ball screwed up the migration script)
-it will roll back to the original version of the database.</p>
-
-<p>Since your migration script is just T-SQL you can do anything from create tables and
-add columns to doing data transformations. And assuming your scripts are well written,
-you&rsquo;ll be able to transform your database to/from any version of the schema at anytime.</p>
-
-<p>I&rsquo;m considering creating a Google Code project for this if there&rsquo;s enough interest. Thoughts?</p>
 
 
 </article>
