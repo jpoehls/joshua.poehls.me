@@ -60,6 +60,142 @@
     <header>
         <h1>
             
+            <a href="2014/09/languages-are-beautiful">Languages Are Beautiful</a>
+            
+        </h1>
+        <p>
+            <time datetime="2014-09-26 12:52:44 -0500 CDT" pubdate="pubdate">Fri, Sep 26, 2014</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="2014/09/languages-are-beautiful">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2014/09/languages-are-beautiful</span>
+            </a>
+        </p>
+    </header>
+
+    <p>If you ever see me doodling, odds are that I&rsquo;m drawing letters and numbers of some kind. I&rsquo;ve always found alphabets, notations, and writing systems in general to be facinating. Typography is beautiful. Typography in foreign languages, even more so.</p>
+
+<p><figure >
+<a href="http://www.zazzle.com/jesus_christ_the_son_of_the_living_god_in_hebrew_canvas-192689088319290932">
+<img src="/2014/09/languages-are-beautiful/jesus.png" alt="Jesus Christ, the Son of the Living God" />
+</a>
+
+<figcaption>
+<p>
+Jesus Christ, the Son of the Living God
+
+
+
+</p> 
+</figcaption>
+
+</figure>
+<figure >
+<a href="http://www.alefbetty.com/shop/poster_red_blocks.html">
+<img src="/2014/09/languages-are-beautiful/red.jpg" alt="Hebrew Alphabet Poster - Red Blocks" />
+</a>
+
+<figcaption>
+<p>
+Hebrew Alphabet Poster - Red Blocks
+
+
+
+</p> 
+</figcaption>
+
+</figure>
+<figure >
+<a href="http://www.alefbetty.com/shop/poster_blue_classic.html">
+<img src="/2014/09/languages-are-beautiful/blue.jpg" alt="Hebrew Alphabet Poster - Classic Blue" />
+</a>
+
+<figcaption>
+<p>
+Hebrew Alphabet Poster - Classic Blue
+
+
+
+</p> 
+</figcaption>
+
+</figure>
+<figure >
+<a href="http://society6.com/johnyunker/see-the-world_print#1=45">
+<img src="/2014/09/languages-are-beautiful/eye.jpg" alt="See the World by John Yunker" />
+</a>
+
+<figcaption>
+<p>
+See the World by John Yunker
+
+
+
+</p> 
+</figcaption>
+
+</figure>
+<figure >
+<a href="http://www.coroflot.com/maltin75/photography">
+<img src="/2014/09/languages-are-beautiful/print.jpg" alt="Hebrew Calligraphy" />
+</a>
+
+<figcaption>
+<p>
+Hebrew Calligraphy
+
+
+
+</p> 
+</figcaption>
+
+</figure>
+<figure >
+<a href="https://www.behance.net/gallery/7250675/Writing-Systems-Poster">
+<img src="/2014/09/languages-are-beautiful/greek.png" alt="Writing Systems Poster by Emily Law" />
+</a>
+
+<figcaption>
+<p>
+Writing Systems Poster by Emily Law
+
+
+
+</p> 
+</figcaption>
+
+</figure>
+<figure >
+<a href="https://www.behance.net/gallery/18750311/Hebrew-Lettering-">
+<img src="/2014/09/languages-are-beautiful/black.jpg" alt="Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש" />
+</a>
+
+<figcaption>
+<p>
+Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש
+
+
+
+</p> 
+</figcaption>
+
+</figure></p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="http://longnow.org/seminars/02014/aug/06/inside-nsa/">The NSA Reaches Out</a> <span class="subtle symbol">&#10230;</span>
             
         </h1>
@@ -328,7 +464,7 @@ Sharing articles I find interesting. Overall I expect this to feel more like rea
 <p>Use <code>[]byte</code> when you need to make many changes to a string. Since <code>string</code> is immutable, any change will allocate a new <code>string</code>. You can get better performance by using <code>[]byte</code> and avoiding the allocations.</p>
 
 <blockquote>
-<p>C# perspective: <code>[]byte</code> is to <a href="http://msdn.microsoft.com/en-us/library/system.text.stringbuilder(v=vs.110).aspx"><code>System.StringBuilder</code></a> as <code>string</code> is to <a href="http://msdn.microsoft.com/en-us/library/system.string(v=vs.110).aspx"><code>System.String</code></a> when it comes to performance.</p>
+<p>C# perspective: <code>[]byte</code> is to <a href="http://msdn.microsoft.com/en-us/library/system.text.stringbuilder(v=vs.110).aspx"><code>System.StringBuilder</code></a> as <code>string</code> is to [<code>System.String</code>][systemstring] when it comes to performance.</p>
 </blockquote>
 
 <p>Even if your code isn&rsquo;t directly manipulating the string, you may want to use <code>[]byte</code> if you are using packages which require it so you can avoid the conversion.</p>
@@ -349,6 +485,8 @@ s2 := string(b) // convert []byte -&gt; string
 <p>The Go blog has posted in detail about <a href="http://blog.golang.org/strings">strings, bytes, runes, and characters in Go</a>. You should definitely read that post to fully understand the topic.</p>
 
 <p><strong>Update:</strong> Thanks to <a href="https://twitter.com/mholt6">@mholt6</a> for reviewing the post and helping improve it!</p>
+
+<p>[systemstring]: <a href="http://msdn.microsoft.com/en-us/library/system.string(v=vs.110).aspx">http://msdn.microsoft.com/en-us/library/system.string(v=vs.110).aspx</a></p>
 
 
 </article>
@@ -623,7 +761,7 @@ Export-ModuleMember -Function Show-Calendar
 
 <p>Here is what a simple <code>release.ps1</code> script might look like.</p>
 
-<p><a href="https://github.com/jpoehls/powershell-script-module-boilerplate/blob/master/tools/release.ps1">View on GitHub &#8594;</a></p>
+<p>[View on GitHub &#8594;][release_script]</p>
 
 <pre><code>&lt;#
 .SYNOPSIS
@@ -713,6 +851,8 @@ Move-Item $zipFileName $dist -Force
 
 I use a very similar file structure for [PowerShell Binary Modules][binary_module] but they do introduce more complexity into the release script. I'll be covering my binary module boilerplate in a future post. 
 -->
+
+<p>[release_script]: <a href="https://github.com/jpoehls/powershell-script-module-boilerplate/blob/master/tools/release.ps1">https://github.com/jpoehls/powershell-script-module-boilerplate/blob/master/tools/release.ps1</a></p>
 
 
 </article>
@@ -825,89 +965,6 @@ This is the safest method I&rsquo;ve found.</li>
 <blockquote>
 <p><code>my_script.cmd %PROGRAMFILES%</code> passes <code>C:\Program Files</code></p>
 </blockquote>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="/powershell-script-boilerplate">PowerShell Script Boilerplate</a>
-            
-        </h1>
-        <p>
-            <time datetime="2013-12-18 10:43:31 -0600 CST" pubdate="pubdate">Wed, Dec 18, 2013</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/powershell-script-boilerplate">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/powershell-script-boilerplate</span>
-            </a>
-        </p>
-    </header>
-
-    
-
-<p>This post is as much for me as it is for you. I write a lot of PowerShell scripts and they tend to follow a certain pattern. This is my personal boilerplate for PowerShell scripts.</p>
-
-<pre><code>Set-StrictMode -Version Latest
-$ErrorActionPreference = &quot;Stop&quot;
-
-$scriptDir = Split-Path -LiteralPath $(if ($PSVersionTable.PSVersion.Major -ge 3) { $PSCommandPath } else { &amp; { $MyInvocation.ScriptName } })
-
-$stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
-
-try
-{
-    # TODO: Insert script here.
-}
-finally
-{
-    Write-Output &quot;Done! $($stopwatch.Elapsed)&quot;
-}
-</code></pre>
-
-<h2 id="what-s-going-on-here:469e3590a69ce674428532a2149fa57a">What&rsquo;s going on here?</h2>
-
-<ul>
-<li>Enables <code>StrictMode</code> to enforce some best practices. <sup class="footnote-ref" id="fnref:469e3590a69ce674428532a2149fa57a:fn1"><a rel="footnote" href="#fn:469e3590a69ce674428532a2149fa57a:fn1">1</a></sup>
-
-<ul>
-<li>Prevents use of variables that have not been initialized.</li>
-<li>Cannot call non-existent properties on objects.</li>
-<li>Disallows calling a function like a method, e.g., <code>Do-Something(1 2)</code> instead of <code>Do-Something 1 2</code>.</li>
-<li>Prohibits creating variables without a name.</li>
-</ul></li>
-<li>Sets <code>$ErrorActionPreference</code> so that unhandled exceptions will halt
-the script execution. By default, PowerShell will roll on when an exceptions
-is thrown and this statement makes my scripts safe by default.</li>
-<li>Set <code>$scriptDir</code> to the directory path of the current script.
-This may be different than the working directory.</li>
-<li>Most of the time I want to know how long my script takes to run so I include
-a <code>$stopwatch</code> that will output the elapsed time when the script finishes.</li>
-<li>The <code>try...finally</code> ensures that the elapsed time will output even if the script throws an exception.</li>
-</ul>
-
-<blockquote>
-<p>Need to wrap your PowerShells script with a batch file? Grab my <a href="/powershell-batch-file-wrapper">PowerShell batch file wrapper</a>.</p>
-</blockquote>
-<div class="footnotes">
-
-<hr />
-
-<ol>
-<li id="fn:469e3590a69ce674428532a2149fa57a:fn1"><a href="http://blogs.technet.com/b/heyscriptingguy/archive/2014/12/03/enforce-better-script-practices-by-using-set-strictmode.aspx">Read more about this</a> on the &ldquo;Hey, Scripting Guy!&rdquo; blog.
- <a class="footnote-return" href="#fnref:469e3590a69ce674428532a2149fa57a:fn1">↩</a></li>
-</ol>
-</div>
 
 
 </article>

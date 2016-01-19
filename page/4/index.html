@@ -60,6 +60,59 @@
     <header>
         <h1>
             
+            <a href="/2011/tortoise-svn-powershell-helper-function">Tortoise SVN PowerShell helper function</a>
+            
+        </h1>
+        <p>
+            <time datetime="2011-10-12 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Oct 12, 2011</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/2011/tortoise-svn-powershell-helper-function">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2011/tortoise-svn-powershell-helper-function</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Do you work from the command line? Use PowerShell? SVN?</p>
+
+<p>While the SVN command line client is certainly usable, there are definitely times where a GUI is more convenient. Specifically during a commit where you want to easily check/uncheck files and view diffs.</p>
+
+<p>I got tired of having to open an explorer window to get into Tortoise SVN&rsquo;s commit screen so I wrote this helper function.</p>
+
+<p>Put this into your profile and you can start typing <code>tsvn commit</code> (or just <code>tsvn</code>) to open the Tortoise SVN commit dialog. Enjoy!</p>
+
+<pre><code># Helper function for opening the Tortoise SVN GUI from a PowerShell prompt.
+# Put this into your PowerShell profile.
+# Ensure Tortoise SVN is in your PATH (usually C:\Program Files\TortoiseSVN\bin) 
+function Svn-Tortoise([string]$Command = &quot;commit&quot;) {
+&lt;#
+.SYNOPSIS
+  Launches TortoiseSVN with the given command.
+  Opens the commit screen if no command is given.
+  
+  List of supported commands can be found at:
+  http://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-automation.html
+#&gt;
+  TortoiseProc.exe /command:$Command /path:&quot;$pwd&quot;
+}
+Set-Alias tsvn &quot;Svn-Tortoise&quot;
+</code></pre>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="/2011/take-your-powershell-profile-everywhere-with-dropbox">Take your PowerShell profile everywhere with Dropbox</a>
             
         </h1>
@@ -984,64 +1037,6 @@ in Environment|Fonts and Colors under &ldquo;Text Editor&rdquo;</li>
 <li>SQL String - <strong>(R,G,B) 255,108,108</strong> <span style="background-color: #000; padding: .5em; color:#FF6C6C;">(Redish)</span></li>
 <li>SQL System Function - <strong>(R,G,B) 255,255,117</strong> <span style="background-color: #000; padding: .5em; color:#FFFF75;">(Yellowish)</span></li>
 <li>SQL System Table - <strong>(R,G,B) 74,255,74</strong> <span style="background-color: #000; padding: .5em; color:#4AFF4A;">(Greenish)</span></li>
-</ul>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="/1/coding-color-schemes---visual-studio-2005">Coding Color Schemes - Visual Studio 2005</a>
-            
-        </h1>
-        <p>
-            <time datetime="0001-01-01 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Jan 1, 0001</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/1/coding-color-schemes---visual-studio-2005">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/1/coding-color-schemes---visual-studio-2005</span>
-            </a>
-        </p>
-    </header>
-
-    <p>As promised here is my color scheme for Visual Studio.</p>
-
-<p><a rel="screenshots" class="lightbox img" href="http://2.bp.blogspot.com/_uTRG_A-YdZY/RxTUAixBbyI/AAAAAAAABDM/tp8OS4y3vmE/s1600-h/1.png">
-    <img src="http://2.bp.blogspot.com/_uTRG_A-YdZY/RxTUAixBbyI/AAAAAAAABDM/tp8OS4y3vmE/s400/1.png" /></a>
-<a rel="screenshots" class="lightbox img" href="http://2.bp.blogspot.com/_uTRG_A-YdZY/RxTUAixBbzI/AAAAAAAABDU/vgquenRv5IM/s1600-h/2.png">
-    <img src="http://2.bp.blogspot.com/_uTRG_A-YdZY/RxTUAixBbzI/AAAAAAAABDU/vgquenRv5IM/s400/2.png" /></a>
-<a rel="screenshots" class="lightbox img" href="http://3.bp.blogspot.com/_uTRG_A-YdZY/RxTUAyxBb0I/AAAAAAAABDc/TxUbcQ3Y82k/s1600-h/3.png">
-    <img src="http://3.bp.blogspot.com/_uTRG_A-YdZY/RxTUAyxBb0I/AAAAAAAABDc/TxUbcQ3Y82k/s400/3.png" /></a>
-<a rel="screenshots" class="lightbox img" href="http://4.bp.blogspot.com/_uTRG_A-YdZY/RxTUBCxBb1I/AAAAAAAABDk/WpFdsJBPNqA/s1600-h/4.png">
-    <img src="http://4.bp.blogspot.com/_uTRG_A-YdZY/RxTUBCxBb1I/AAAAAAAABDk/WpFdsJBPNqA/s400/4.png" /></a></p>
-
-<ul>
-<li>Changed font to <a href="http://www.webdevkungfu.com/textmate-envy-aka-monaco-font-for-windows">Monaco</a>
-in Environment|Fonts and Colors under &ldquo;Text Editor&rdquo;</li>
-<li>Plain Text, HTML Attr. Value, Identifier, XML Attr. Value, XML Text - <strong>White</strong>
-<span style="background-color: #000; padding: 0.5em; color:#fff;">(White)</span></li>
-<li>Comment, CSS Comment, HTML Comment, XML Comment, XML Doc Comment - <strong>(R,G,B) 74,255,74</strong>
-<span style="background-color: #000; padding: 0.5em; color:#4AFF4A;">(Greenish)</span></li>
-<li>CSS Selector, HTML Element Name, HTML Operator, HTML Tag Delimiter, Keyword,
-XML Delimiter, XML Keyword, XML Tag Delimiter - <strong>(R,G,B) 177,100,255</strong> <span style="background-color: #000; padding: 0.5em; color:#B164FF;">(Purplish)</span></li>
-<li>CSS Property Name, HTML Attr. Name, Number, String, String (C# @ Verbatim), XML Attr.,
-XML Attr. Name, XML Attr. Quotes - <strong>(R,G,B) 255,108,108</strong> <span style="background-color: #000; padding: 0.5em; color:#FF6C6C;">(Redish)</span></li>
-<li>CSS Keyword, CSS Property Value, CSS String Value, Operator, User Types - <strong>(R,G,B) 43,145,175</strong>
-<span style="background-color: #000; padding: 0.5em; color:#2B91AF;">(Bluish)</span></li>
-<li>HTML Entity, Preprocessor Keyword, XML Element Name, XML Name - <strong>(R,G,B) 255,255,117</strong>
-<span style="background-color: #000; padding: 0.5em; color:#FFFF75;">(Yellowish)</span></li>
-<li>Line Numbers, XML CDATA Section, XML Doc Attr., XML Doc Tag, XML Processing Instruction -
-<strong>(R,G,B) 128,128,128</strong> <span style="background-color: #000; padding: 0.5em; color:#808080;">(Gray)</span></li>
 </ul>
 
 

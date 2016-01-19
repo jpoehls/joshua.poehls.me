@@ -131,6 +131,11 @@ cite {
 	display: block;
 }
 
+blockquote > ul {
+	margin-top: 1em;
+	margin-bottom: 0;
+}
+
 /* Links
 ************************************************** */
 a,

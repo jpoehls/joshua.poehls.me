@@ -3,8 +3,13 @@
   
   <url>
     <loc>http://joshua.poehls.me/</loc>
-    <lastmod>2015-09-16T00:00:00+00:00</lastmod>
+    <lastmod>2016-01-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2016/01/bible-quiz-1</loc>
+    <lastmod>2016-01-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -213,7 +218,7 @@
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/1/treesize-free</loc>
+    <loc>http://joshua.poehls.me/1/dotnetmigrations-demo</loc>
   </url>
   
   <url>
@@ -225,7 +230,7 @@
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/1/dotnetmigrations-demo</loc>
+    <loc>http://joshua.poehls.me/1/treesize-free</loc>
   </url>
   
   <url>

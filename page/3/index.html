@@ -60,6 +60,89 @@
     <header>
         <h1>
             
+            <a href="/powershell-script-boilerplate">PowerShell Script Boilerplate</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-12-18 10:43:31 -0600 CST" pubdate="pubdate">Wed, Dec 18, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="/powershell-script-boilerplate">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/powershell-script-boilerplate</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>This post is as much for me as it is for you. I write a lot of PowerShell scripts and they tend to follow a certain pattern. This is my personal boilerplate for PowerShell scripts.</p>
+
+<pre><code>Set-StrictMode -Version Latest
+$ErrorActionPreference = &quot;Stop&quot;
+
+$scriptDir = Split-Path -LiteralPath $(if ($PSVersionTable.PSVersion.Major -ge 3) { $PSCommandPath } else { &amp; { $MyInvocation.ScriptName } })
+
+$stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+
+try
+{
+    # TODO: Insert script here.
+}
+finally
+{
+    Write-Output &quot;Done! $($stopwatch.Elapsed)&quot;
+}
+</code></pre>
+
+<h2 id="what-s-going-on-here:469e3590a69ce674428532a2149fa57a">What&rsquo;s going on here?</h2>
+
+<ul>
+<li>Enables <code>StrictMode</code> to enforce some best practices. <sup class="footnote-ref" id="fnref:469e3590a69ce674428532a2149fa57a:fn1"><a rel="footnote" href="#fn:469e3590a69ce674428532a2149fa57a:fn1">1</a></sup>
+
+<ul>
+<li>Prevents use of variables that have not been initialized.</li>
+<li>Cannot call non-existent properties on objects.</li>
+<li>Disallows calling a function like a method, e.g., <code>Do-Something(1 2)</code> instead of <code>Do-Something 1 2</code>.</li>
+<li>Prohibits creating variables without a name.</li>
+</ul></li>
+<li>Sets <code>$ErrorActionPreference</code> so that unhandled exceptions will halt
+the script execution. By default, PowerShell will roll on when an exceptions
+is thrown and this statement makes my scripts safe by default.</li>
+<li>Set <code>$scriptDir</code> to the directory path of the current script.
+This may be different than the working directory.</li>
+<li>Most of the time I want to know how long my script takes to run so I include
+a <code>$stopwatch</code> that will output the elapsed time when the script finishes.</li>
+<li>The <code>try...finally</code> ensures that the elapsed time will output even if the script throws an exception.</li>
+</ul>
+
+<blockquote>
+<p>Need to wrap your PowerShells script with a batch file? Grab my <a href="/powershell-batch-file-wrapper">PowerShell batch file wrapper</a>.</p>
+</blockquote>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:469e3590a69ce674428532a2149fa57a:fn1"><a href="http://blogs.technet.com/b/heyscriptingguy/archive/2014/12/03/enforce-better-script-practices-by-using-set-strictmode.aspx">Read more about this</a> on the &ldquo;Hey, Scripting Guy!&rdquo; blog.
+ <a class="footnote-return" href="#fnref:469e3590a69ce674428532a2149fa57a:fn1">↩</a></li>
+</ol>
+</div>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="/2012/killing-processes-in-disconnected-terminal-service-sessions">Killing Processes In Disconnected Terminal Service Sessions</a>
             
         </h1>
@@ -584,7 +667,7 @@ At line:1 char:40
 <p><del>This is a safe template for you to use. Bookmark it.</del></p>
 
 <blockquote>
-<p><strong>Update:</strong> I&rsquo;ve created a <em>much</em> better batch file wrapper for my PowerShell scripts. I recommend you ignore the one below and <strong><a href="/powershell-batch-file-wrapper">use my new one</a></strong> instead.</p>
+<p><strong>Update:</strong> I&rsquo;ve created a <em>much</em> better batch file wrapper for my PowerShell scripts. I recommend you ignore the one below and <strong>[use my new one][newbatwrapper]</strong> instead.</p>
 </blockquote>
 
 <pre><code>:: script.bat
@@ -644,6 +727,8 @@ Arg 2:
 </code></pre>
 
 <p>That&rsquo;s all folks!</p>
+
+<p>[newbatwrapper]: /powershell-batch-file-wrapper</p>
 
 
 </article>
@@ -844,7 +929,7 @@ Screenshot of VIM with syntax highlighting in an Nginx config file
 
 <p>Both soft and hard links must be created on the same volume as the target. i.e. You can&rsquo;t link something on <code>C:\</code> to something on <code>D:\</code>.</p>
 
-<p>You can read more about hardlinks and junctions <a href="http://msdn.microsoft.com/en-us/library/aa365006%28VS.85%29.aspx">on MSDN</a>.</p>
+<p>You can read more about hardlinks and junctions [on MSDN][4].</p>
 
 <h3 id="deleting-links:9e58f074bd866214c10dc323b4e5109d">Deleting Links</h3>
 
@@ -958,6 +1043,8 @@ Targetted at: c:\symlink_test\real_dir
 </code></pre>
 
 <p><a href="http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx">Download the Junction tool from Sysinternals.</a></p>
+
+<p>[4]: <a href="http://msdn.microsoft.com/en-us/library/aa365006%28VS.85%29.aspx">http://msdn.microsoft.com/en-us/library/aa365006%28VS.85%29.aspx</a></p>
 
 
 </article>
@@ -1211,59 +1298,6 @@ Screenshot of AutoHotkey in the Start Menu
 
 <p>Visual Studio&rsquo;s built in snippets are functional, but slow to access compared to the alternatives so I ended up not using them. I definitely prefer CodeRush&rsquo;s snippets.</p></li>
 </ol>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="/2011/tortoise-svn-powershell-helper-function">Tortoise SVN PowerShell helper function</a>
-            
-        </h1>
-        <p>
-            <time datetime="2011-10-12 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Oct 12, 2011</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/2011/tortoise-svn-powershell-helper-function">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2011/tortoise-svn-powershell-helper-function</span>
-            </a>
-        </p>
-    </header>
-
-    <p>Do you work from the command line? Use PowerShell? SVN?</p>
-
-<p>While the SVN command line client is certainly usable, there are definitely times where a GUI is more convenient. Specifically during a commit where you want to easily check/uncheck files and view diffs.</p>
-
-<p>I got tired of having to open an explorer window to get into Tortoise SVN&rsquo;s commit screen so I wrote this helper function.</p>
-
-<p>Put this into your profile and you can start typing <code>tsvn commit</code> (or just <code>tsvn</code>) to open the Tortoise SVN commit dialog. Enjoy!</p>
-
-<pre><code># Helper function for opening the Tortoise SVN GUI from a PowerShell prompt.
-# Put this into your PowerShell profile.
-# Ensure Tortoise SVN is in your PATH (usually C:\Program Files\TortoiseSVN\bin) 
-function Svn-Tortoise([string]$Command = &quot;commit&quot;) {
-&lt;#
-.SYNOPSIS
-  Launches TortoiseSVN with the given command.
-  Opens the commit screen if no command is given.
-  
-  List of supported commands can be found at:
-  http://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-automation.html
-#&gt;
-  TortoiseProc.exe /command:$Command /path:&quot;$pwd&quot;
-}
-Set-Alias tsvn &quot;Svn-Tortoise&quot;
-</code></pre>
 
 
 </article>
