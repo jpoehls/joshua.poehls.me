@@ -25,3 +25,8 @@ postPrefixHtml = """
 </p>
 </blockquote>
 """
+
+[bible-quiz-questions]
+title = "Bible Quiz Questions"
+description = """
+Questions. About the Bible. With which to quiz."""
