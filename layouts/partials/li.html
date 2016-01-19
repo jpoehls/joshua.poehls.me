@@ -7,13 +7,13 @@
             {{if .Params.linkurl}}
             <a href="{{.Params.linkurl}}">{{.Title}}</a> <span class="subtle symbol">&#10230;</span>
             {{else}}
-            <a href="{{.RelPermalink}}">{{.Title}}</a>
+            <a href="{{.Permalink}}">{{.Title}}</a>
             {{end}}
         </h1>
         <p>
             <time datetime="{{.Date}}" pubdate="pubdate">{{.Date.Format "Mon, Jan 2, 2006"}}</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="{{.RelPermalink}}">
+            <a class="permalink" title="Permalink" href="{{.Permalink}}">
                 <span class="noprint symbol">&#8734;</span>
                 <span class="printonly">{{.Permalink}}</span>
             </a>

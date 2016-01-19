@@ -20,7 +20,7 @@
 		{{ range .Data.Pages }}
 		<li>
 			{{.Date.Format "Jan 02, 2006"}} -
-			<a href="{{.RelPermalink}}">{{.Title}}</a>
+			<a href="{{.Permalink}}">{{.Title}}</a>
             {{if .Params.linkurl}}
             <a href="{{.Params.linkurl}}"><span class="subtle symbol">&#10230;</span></a>
             {{end}}
