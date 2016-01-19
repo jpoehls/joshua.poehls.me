@@ -103,12 +103,12 @@
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/powershell-batch-file-wrapper</loc>
+    <loc>http://joshua.poehls.me/powershell-script-boilerplate</loc>
     <lastmod>2013-12-18T10:43:31-06:00</lastmod>
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/powershell-script-boilerplate</loc>
+    <loc>http://joshua.poehls.me/powershell-batch-file-wrapper</loc>
     <lastmod>2013-12-18T10:43:31-06:00</lastmod>
   </url>
   
@@ -210,19 +210,15 @@
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/1/coding-color-schemes---sql-management-studio</loc>
-  </url>
-  
-  <url>
     <loc>http://joshua.poehls.me/1/coding-color-schemes---visual-studio-2005</loc>
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/1/dotnetmigrations-demo</loc>
+    <loc>http://joshua.poehls.me/1/corporate-comic</loc>
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/1/corporate-comic</loc>
+    <loc>http://joshua.poehls.me/1/coding-color-schemes---sql-management-studio</loc>
   </url>
   
   <url>
@@ -231,6 +227,10 @@
   
   <url>
     <loc>http://joshua.poehls.me/1/treesize-free</loc>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/1/dotnetmigrations-demo</loc>
   </url>
   
   <url>

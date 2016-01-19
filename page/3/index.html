@@ -60,73 +60,102 @@
     <header>
         <h1>
             
-            <a href="/powershell-script-boilerplate">PowerShell Script Boilerplate</a>
+            <a href="http://joshua.poehls.me/powershell-batch-file-wrapper">PowerShell Batch File Wrapper</a>
             
         </h1>
         <p>
             <time datetime="2013-12-18 10:43:31 -0600 CST" pubdate="pubdate">Wed, Dec 18, 2013</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/powershell-script-boilerplate">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/powershell-batch-file-wrapper">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/powershell-script-boilerplate</span>
+                <span class="printonly">http://joshua.poehls.me/powershell-batch-file-wrapper</span>
             </a>
         </p>
     </header>
 
     
 
-<p>This post is as much for me as it is for you. I write a lot of PowerShell scripts and they tend to follow a certain pattern. This is my personal boilerplate for PowerShell scripts.</p>
+<p>Sometimes you want a <code>.cmd</code> wrapper for your PowerShell script. Usually for me this is so people who aren&rsquo;t familiar with the command line can double-click to execute the script.</p>
 
-<pre><code>Set-StrictMode -Version Latest
-$ErrorActionPreference = &quot;Stop&quot;
+<p>This batch file should be saved alongside your PowerShell script, like so.</p>
 
-$scriptDir = Split-Path -LiteralPath $(if ($PSVersionTable.PSVersion.Major -ge 3) { $PSCommandPath } else { &amp; { $MyInvocation.ScriptName } })
-
-$stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
-
-try
-{
-    # TODO: Insert script here.
-}
-finally
-{
-    Write-Output &quot;Done! $($stopwatch.Elapsed)&quot;
-}
+<pre><code>.\
+ |- my_script.ps1
+ |- my_script.cmd
 </code></pre>
 
-<h2 id="what-s-going-on-here:469e3590a69ce674428532a2149fa57a">What&rsquo;s going on here?</h2>
+<p><code>my_script.cmd</code> will execute the same named <code>.ps1</code> file in the same directory, so <code>my_script.ps1</code> in this case. Any arguments passed to <code>my_script.cmd</code> will pass-through to the PowerShell script.</p>
+
+<pre><code>@ECHO OFF
+
+SET SCRIPTNAME=%~d0%~p0%~n0.ps1
+SET ARGS=%*
+IF [%ARGS%] NEQ [] GOTO ESCAPE_ARGS
+
+:POWERSHELL
+PowerShell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -Command &quot;&amp; { $ErrorActionPreference = 'Stop'; &amp; '%SCRIPTNAME%' @args; EXIT $LASTEXITCODE }&quot; %ARGS%
+EXIT /B %ERRORLEVEL%
+
+:ESCAPE_ARGS
+SET ARGS=%ARGS:&quot;=\&quot;%
+SET ARGS=%ARGS:`=``%
+SET ARGS=%ARGS:'=`'%
+SET ARGS=%ARGS:$=`$%
+SET ARGS=%ARGS:{=`}%
+SET ARGS=%ARGS:}=`}%
+SET ARGS=%ARGS:(=`(%
+SET ARGS=%ARGS:)=`)%
+SET ARGS=%ARGS:,=`,%
+SET ARGS=%ARGS:^%=%
+
+GOTO POWERSHELL
+</code></pre>
+
+<h2 id="what-s-going-on-here:7908c9f856e796bbc0d3b5748b45b371">What&rsquo;s going on here?</h2>
 
 <ul>
-<li>Enables <code>StrictMode</code> to enforce some best practices. <sup class="footnote-ref" id="fnref:469e3590a69ce674428532a2149fa57a:fn1"><a rel="footnote" href="#fn:469e3590a69ce674428532a2149fa57a:fn1">1</a></sup>
+<li><code>%SCRIPTNAME%</code> variable holds the name of the PowerShell script to execute. <code>%~d0%~p0%~n0</code> magic gets the full path of the
+current batch script without the file extension. By specifying the full path of the PowerShell script
+like this we can guarantee that it is always executed from the right place
+no matter what your working directory is.</li>
+<li>Escapes special characters in the arguments so that they are passed to PowerShell as you would expect.</li>
+<li>Runs <code>PowerShell.exe</code> with:
 
 <ul>
-<li>Prevents use of variables that have not been initialized.</li>
-<li>Cannot call non-existent properties on objects.</li>
-<li>Disallows calling a function like a method, e.g., <code>Do-Something(1 2)</code> instead of <code>Do-Something 1 2</code>.</li>
-<li>Prohibits creating variables without a name.</li>
+<li><code>-NoProfile</code> to improve startup performance. Scripts you are distributing
+shouldn&rsquo;t rely on anything in your profile anyway.</li>
+<li><code>-NonInteractive</code> because usually my scripts don&rsquo;t need input from the user.</li>
+<li><code>-ExecutionPolicy Unrestricted</code> to ensure that the PowerShell script can
+be executed regardless of the machine&rsquo;s default Execution Policy.</li>
+<li><code>-Command</code> syntax for executing the command ensures that PowerShell
+returns the correct exit code from your script.
+Using <code>-Command</code> with <code>$ErrorActionPreference = 'Stop'</code> also ensures that
+errors thrown from your script cause PowerShell.exe to return a failing
+exit code (1). <a href="http://zduck.com/2012/powershell-batch-files-exit-codes/">PowerShell is quite buggy when it comes to bubbling exit
+codes.</a>
+This is the safest method I&rsquo;ve found.</li>
 </ul></li>
-<li>Sets <code>$ErrorActionPreference</code> so that unhandled exceptions will halt
-the script execution. By default, PowerShell will roll on when an exceptions
-is thrown and this statement makes my scripts safe by default.</li>
-<li>Set <code>$scriptDir</code> to the directory path of the current script.
-This may be different than the working directory.</li>
-<li>Most of the time I want to know how long my script takes to run so I include
-a <code>$stopwatch</code> that will output the elapsed time when the script finishes.</li>
-<li>The <code>try...finally</code> ensures that the elapsed time will output even if the script throws an exception.</li>
 </ul>
 
+<h2 id="batch-file-tips:7908c9f856e796bbc0d3b5748b45b371">Batch file tips</h2>
+
+<h3 id="special-characters-in-arguments:7908c9f856e796bbc0d3b5748b45b371">Special characters in arguments</h3>
+
+<p>Remember that certain special characters need to be escaped in arguments passed to the batch file. These characters are: <code>^  &amp;  &lt;  &gt;  /?</code>. Note that <code>/?</code> is a sequence and is recognized as a help flag when passed to a batch file.</p>
+
 <blockquote>
-<p>Need to wrap your PowerShells script with a batch file? Grab my <a href="/powershell-batch-file-wrapper">PowerShell batch file wrapper</a>.</p>
+<p><code>my_script.cmd &quot;I &quot;&quot;am&quot;&quot; quoted&quot;</code> passes a single argument <code>I &quot;am&quot; quoted</code> to PowerShell.</p>
+
+<p><code>my_script.cmd &quot;^&amp;&lt;&gt;/?&quot;</code> passes <code>^&amp;&lt;&gt;/?</code></p>
 </blockquote>
-<div class="footnotes">
 
-<hr />
+<h3 id="environment-variable-expansion:7908c9f856e796bbc0d3b5748b45b371">Environment variable expansion</h3>
 
-<ol>
-<li id="fn:469e3590a69ce674428532a2149fa57a:fn1"><a href="http://blogs.technet.com/b/heyscriptingguy/archive/2014/12/03/enforce-better-script-practices-by-using-set-strictmode.aspx">Read more about this</a> on the &ldquo;Hey, Scripting Guy!&rdquo; blog.
- <a class="footnote-return" href="#fnref:469e3590a69ce674428532a2149fa57a:fn1">↩</a></li>
-</ol>
-</div>
+<p>Environment variables get automatically expanded in batch file arguments.</p>
+
+<blockquote>
+<p><code>my_script.cmd %PROGRAMFILES%</code> passes <code>C:\Program Files</code></p>
+</blockquote>
 
 
 </article>
@@ -143,13 +172,13 @@ a <code>$stopwatch</code> that will output the elapsed time when the script fini
     <header>
         <h1>
             
-            <a href="/2012/killing-processes-in-disconnected-terminal-service-sessions">Killing Processes In Disconnected Terminal Service Sessions</a>
+            <a href="http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions">Killing Processes In Disconnected Terminal Service Sessions</a>
             
         </h1>
         <p>
             <time datetime="2012-12-12 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Dec 12, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/2012/killing-processes-in-disconnected-terminal-service-sessions">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions">
                 <span class="noprint symbol">&#8734;</span>
                 <span class="printonly">http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions</span>
             </a>
@@ -303,13 +332,13 @@ else {
     <header>
         <h1>
             
-            <a href="/2012/crime-rates-are-dropping">Crime Rates Are Dropping</a>
+            <a href="http://joshua.poehls.me/2012/crime-rates-are-dropping">Crime Rates Are Dropping</a>
             
         </h1>
         <p>
             <time datetime="2012-08-13 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Aug 13, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/2012/crime-rates-are-dropping">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/crime-rates-are-dropping">
                 <span class="noprint symbol">&#8734;</span>
                 <span class="printonly">http://joshua.poehls.me/2012/crime-rates-are-dropping</span>
             </a>
@@ -455,13 +484,13 @@ else {
     <header>
         <h1>
             
-            <a href="/2012/powershell-script-module-boilerplate">PowerShell, batch files, and exit codes. Recipes &amp; Secrets.</a>
+            <a href="http://joshua.poehls.me/2012/powershell-script-module-boilerplate">PowerShell, batch files, and exit codes. Recipes &amp; Secrets.</a>
             
         </h1>
         <p>
             <time datetime="2012-06-23 10:43:31 -0600 -0600" pubdate="pubdate">Sat, Jun 23, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/2012/powershell-script-module-boilerplate">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/powershell-script-module-boilerplate">
                 <span class="noprint symbol">&#8734;</span>
                 <span class="printonly">http://joshua.poehls.me/2012/powershell-script-module-boilerplate</span>
             </a>
@@ -745,13 +774,13 @@ Arg 2:
     <header>
         <h1>
             
-            <a href="/2012/syntax-highlighting-for-nginx-in-vim">Syntax highlighting for Nginx in VIM</a>
+            <a href="http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim">Syntax highlighting for Nginx in VIM</a>
             
         </h1>
         <p>
             <time datetime="2012-06-10 00:00:00 &#43;0000 UTC" pubdate="pubdate">Sun, Jun 10, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/2012/syntax-highlighting-for-nginx-in-vim">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim">
                 <span class="noprint symbol">&#8734;</span>
                 <span class="printonly">http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim</span>
             </a>
@@ -821,13 +850,13 @@ Screenshot of VIM with syntax highlighting in an Nginx config file
     <header>
         <h1>
             
-            <a href="/2012/storing-your-raspberry-pi-configuration-in-git">Storing your Raspberry Pi configuration in Git</a>
+            <a href="http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git">Storing your Raspberry Pi configuration in Git</a>
             
         </h1>
         <p>
             <time datetime="2012-06-08 00:00:00 &#43;0000 UTC" pubdate="pubdate">Fri, Jun 8, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/2012/storing-your-raspberry-pi-configuration-in-git">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git">
                 <span class="noprint symbol">&#8734;</span>
                 <span class="printonly">http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git</span>
             </a>
@@ -900,13 +929,13 @@ Screenshot of VIM with syntax highlighting in an Nginx config file
     <header>
         <h1>
             
-            <a href="/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to">Soft links, hard links, junctions, oh my! Symlinks on Windows, a how-to</a>
+            <a href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to">Soft links, hard links, junctions, oh my! Symlinks on Windows, a how-to</a>
             
         </h1>
         <p>
             <time datetime="2012-06-07 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thu, Jun 7, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to">
                 <span class="noprint symbol">&#8734;</span>
                 <span class="printonly">http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to</span>
             </a>
@@ -1061,13 +1090,13 @@ Targetted at: c:\symlink_test\real_dir
     <header>
         <h1>
             
-            <a href="/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x">Can&#39;t access network resources over VPN connection on Mac OS X?</a>
+            <a href="http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x">Can&#39;t access network resources over VPN connection on Mac OS X?</a>
             
         </h1>
         <p>
             <time datetime="2012-04-18 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Apr 18, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x">
                 <span class="noprint symbol">&#8734;</span>
                 <span class="printonly">http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x</span>
             </a>
@@ -1106,13 +1135,13 @@ Targetted at: c:\symlink_test\real_dir
     <header>
         <h1>
             
-            <a href="/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful">Use AutoHotkey to remap your numpad keys to something useful</a>
+            <a href="http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful">Use AutoHotkey to remap your numpad keys to something useful</a>
             
         </h1>
         <p>
             <time datetime="2011-12-14 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Dec 14, 2011</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful">
                 <span class="noprint symbol">&#8734;</span>
                 <span class="printonly">http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful</span>
             </a>
@@ -1260,13 +1289,13 @@ Screenshot of AutoHotkey in the Start Menu
     <header>
         <h1>
             
-            <a href="/2011/what-i-miss-in-vanilla-visual-studio">What I miss in vanilla Visual Studio</a>
+            <a href="http://joshua.poehls.me/2011/what-i-miss-in-vanilla-visual-studio">What I miss in vanilla Visual Studio</a>
             
         </h1>
         <p>
             <time datetime="2011-10-20 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thu, Oct 20, 2011</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="/2011/what-i-miss-in-vanilla-visual-studio">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2011/what-i-miss-in-vanilla-visual-studio">
                 <span class="noprint symbol">&#8734;</span>
                 <span class="printonly">http://joshua.poehls.me/2011/what-i-miss-in-vanilla-visual-studio</span>
             </a>
