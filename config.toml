@@ -10,6 +10,13 @@ paginatePath = "page"
 footnoteAnchorPrefix = "fn"
 footnoteReturnLinkContents = "↩"
 
+disableKinds = ["404"]
+
+[outputFormats]
+[outputFormats.RSS]
+	mediatype = "application/rss"
+	baseName = "feed"
+
 [permalinks]
 	post = "/:year/:slug"
 
