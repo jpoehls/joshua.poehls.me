@@ -1,4 +1,5 @@
 ---
+draft: true
 title: Idiomatic file path parameters in PowerShell cmdlets
 tags:
 - powershell
