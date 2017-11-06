@@ -1,7 +1,7 @@
 ---
 date: 2012-06-23T10:43:31-06:00
 title: PowerShell, batch files, and exit codes. Recipes & Secrets.
-slug: powershell-script-module-boilerplate
+slug: powershell-batch-files-exit-codes
 description: "My boilerplate for PowerShell Script Modules. Basic file structure and a release script for building the manifest and distributable ZIP."
 tags:
 - powershell

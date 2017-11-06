@@ -58,7 +58,7 @@ This batch file should be saved alongside your PowerShell script, like so.
       Using `-Command` with `$ErrorActionPreference = 'Stop'` also ensures that
       errors thrown from your script cause PowerShell.exe to return a failing
       exit code (1). [PowerShell is quite buggy when it comes to bubbling exit 
-      codes.](http://zduck.com/2012/powershell-batch-files-exit-codes/)
+      codes.](/2012/powershell-batch-files-exit-codes/)
       This is the safest method I've found.
 
 ## Batch file tips
