@@ -30,17 +30,6 @@ Set-Location (Join-Path $scriptDir "../") # set to repo root
 
 try
 {
-    if (& git status -s) {
-        $continue = Read-Choice -Message "Working directory has pending changes" -Question "Continue?" -Choices @("&Yes", "&No") -DefaultChoice "&No"
-        if ($continue -eq "&No") {
-            Write-Host "Working directory is dirty. Please commit any pending changes."
-            exit 1
-        }
-        else {
-            Write-Warning "Working directory pending changes may be committed along with the generated site."
-        }
-    }
-
     $remoteName = "origin"
     $branchName = "gh-pages"
     $folderName = "public"
@@ -72,6 +61,11 @@ try
     Set-Location $folderName
     Write-Host "Removing excess RSS feeds"
     Remove-Item @("*/feed.xml", "*/*/feed.xml")
+
+    if (& git status -s) {
+        Write-Host "Working directory is dirty. Please commit any pending changes."
+        exit 1
+    }
     
     $continue = Read-Choice -Message "Ready to commit generated site" -Question "Commit changes to $($branchName)?" -Choices @("&Yes", "&No") -DefaultChoice "&No"
     if ($continue -eq "&Yes") {
