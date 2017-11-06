@@ -1,5 +1,5 @@
 ---
-date: 2013-12-18T10:43:31-06:00
+date: 2017-11-06T01:18:00-06:00
 title: PowerShell Script Boilerplate
 url: /powershell-script-boilerplate
 description: "A walkthrough of my boilerplate PowerShell script and batch file wrapper. Includes argument pass through and exit code bubbling."
@@ -9,12 +9,16 @@ tags:
 
 This post is as much for me as it is for you. I write a lot of PowerShell scripts and they tend to follow a certain pattern. This is my personal boilerplate for PowerShell scripts.
 
+    #Requires -Version 3
     Set-StrictMode -Version Latest
     $ErrorActionPreference = "Stop"
 
-    $scriptDir = Split-Path -LiteralPath $(if ($PSVersionTable.PSVersion.Major -ge 3) { $PSCommandPath } else { & { $MyInvocation.ScriptName } })
-
     $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+    $scriptDir = Split-Path -LiteralPath $PSCommandPath
+    $startingLoc = Get-Location
+    Set-Location $scriptDir
+    $startingDir = [System.Environment]::CurrentDirectory
+    [System.Environment]::CurrentDirectory = $scriptDir
 
     try
     {
@@ -22,7 +26,9 @@ This post is as much for me as it is for you. I write a lot of PowerShell script
     }
     finally
     {
-        Write-Output "Done! $($stopwatch.Elapsed)"
+        Set-Location $startingLoc
+        [System.Environment]::CurrentDirectory = $startingDir
+        Write-Output "Done. Elapsed time: $($stopwatch.Elapsed)"
     }
 
 ## What's going on here?
@@ -37,6 +43,7 @@ This post is as much for me as it is for you. I write a lot of PowerShell script
   is thrown and this statement makes my scripts safe by default.
 - Set `$scriptDir` to the directory path of the current script.
   This may be different than the working directory.
+- Set the working directory to the `$scriptDir` so that relative paths in the script itself can be consistent.
 - Most of the time I want to know how long my script takes to run so I include
   a `$stopwatch` that will output the elapsed time when the script finishes.
 - The `try...finally` ensures that the elapsed time will output even if the script throws an exception.
