@@ -84,8 +84,7 @@ try
 
         & git commit -m "Publishing to $branchName"
         if ($LASTEXITCODE -ne 0) {
-            Write-Host "git commit returned a non-success exit code of $LASTEXITCODE`nPublish cancelled."
-            exit 1
+            Write-Warning "git commit returned a non-success exit code of $LASTEXITCODE`nPublish cancelled."
         }
         
         Write-Host "Site published. Push $branchName when ready."
