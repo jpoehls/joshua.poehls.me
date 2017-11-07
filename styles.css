@@ -56,6 +56,14 @@ h1 {
 	margin-top: 1em;
 }
 
+ul {
+	list-style-type: disc;
+}
+
+ul li ul {
+	list-style-type: circle;
+}
+
 table.noborder td { border: 0; }
 
 i, em {
@@ -112,10 +120,15 @@ footer p {
 ************************************************** */
 blockquote {
 	font-size: .95em;
-	margin: 0 2em;
+	margin: 0 1em;
 	padding: 0.5em 1em;
-	background: #fdf9f5;
-	border-left: 1px solid #333;
+	background: #f9f9f9;
+	border-left: 2px solid #333;
+}
+
+#posts blockquote p {
+	font-size: .95em;
+	text-indent: 0em;
 }
 
 blockquote > blockquote {
@@ -263,7 +276,8 @@ pre, code {
 #posts p {
 	margin-top: 1.3em;
 	margin-bottom: 1.3em;
-	font-size: .9em;
+	font-size: .95em;
+	text-indent: 1em;
 }
 
 #posts h1 {
@@ -286,6 +300,7 @@ pre, code {
 	margin-top: 0;
 	padding: 0;
 	font-size: 1em;
+	text-indent: 0;
 }
 
 article.post figure {
