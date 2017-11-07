@@ -273,7 +273,7 @@ pre, code {
 	margin: 0 auto;
 }
 
-#posts p {
+#posts p, #posts div {
 	margin-top: 1.3em;
 	margin-bottom: 1.3em;
 	font-size: .95em;
