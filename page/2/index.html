@@ -60,6 +60,75 @@
     <header>
         <h1>
             
+            <a href="http://www.mmafighting.com/2014/9/30/6872803/the-mma-hour-249-renzo-gracie">The MMA Hour - 249 - Renzo Gracie</a> <span class="subtle symbol">&#10230;</span>
+            
+        </h1>
+        <p>
+            <time datetime="2014-10-02 15:03:13 -0500 CDT" pubdate="pubdate">Thu, Oct 2, 2014</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/10/mma-hour-249-renzo-gracie/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2014/10/mma-hour-249-renzo-gracie/</span>
+            </a>
+        </p>
+    </header>
+
+    <figure >
+<a href="http://www.mmafighting.com/2014/9/30/6872803/the-mma-hour-249-renzo-gracie">
+<img src="/2014/10/mma-hour-249-renzo-gracie/renzo.jpg" alt="Renzo Gracie on MMA Hour Episode 249" />
+</a>
+
+<figcaption>
+<p>
+Renzo Gracie on MMA Hour Episode 249
+
+
+
+</p> 
+</figcaption>
+
+</figure>
+
+<p>I listened to <a href="http://www.mmafighting.com/2014/9/30/6872803/the-mma-hour-249-renzo-gracie">the Renzo interview on MMA Hour</a> this morning; an amazing interview. <a href="https://twitter.com/renzograciebjj">Renzo</a> seems like a great person and several of his comments really touched me. Lots of great stories and true respect as he talks about various people and competitors. Getting exposed to people like this is one of the reasons I love BJJ. There is a strong sense of honor and respect in the community that I don’t see in my own everyday life. It’s an inspiring influence.</p>
+
+<p>Just stop reading and <a href="http://www.mmafighting.com/2014/9/30/6872803/the-mma-hour-249-renzo-gracie">go listen to it</a>.</p>
+
+<p>One part that stood out the most to me was when he talked about how in this country (America), “nobody wants to <strong>do</strong>.”<sup class="footnote-ref" id="fnref:fn2"><a rel="footnote" href="#fn:fn2">1</a></sup> He referenced a story about a woman who was raped in New York. “Fifty-two people heard her scream.” Nobody helped. “Everybody assumed, you gonna take care, not me.”</p>
+
+<p>In contrast, he told about a time when he was in Brazil driving with his wife and kids and saw a guy hit a woman.</p>
+
+<blockquote>
+<p>When he hit her I stopped and I jumped to beat him up. When I get there I had to save him because the mob was lynching him. And this was in the space of ten seconds.</p>
+</blockquote>
+
+<p>People jumped out of their cars to get this guy. Just because he hit a woman. Renzo’s wife said, “I can’t believe, you get out to hit him and you drive him home now!” Renzo replied, “you gotta do what is right.”</p>
+
+<p>When I look at myself I see more of the guy who would drive on by. I want to become the guy who stops to help.</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:fn2">Skip to around 52 minutes into the interview for this story.
+ <a class="footnote-return" href="#fnref:fn2">↩</a></li>
+</ol>
+</div>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="http://kottke.org/14/10/the-worlds-loudest-sound">The World&#39;s Loudest Sound</a> <span class="subtle symbol">&#10230;</span>
             
         </h1>
@@ -714,83 +783,6 @@ fmt.Printf(&quot;Age: %v&quot;, p.Age()) // Age: 10
 <a href="http://www.reddit.com/r/golang/comments/23060m/go_101_methods_on_pointers_vs_values/">Join the discussion on reddit!</a></p>
 
 <p><strong>Update 2:</strong> Here are <a href="https://github.com/golang/go/wiki/CodeReviewComments#receiver-type">even more rules of thumb</a> to help you choose whether to use a value or pointer receiver.</p>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2014/04/go-conventions-constructors-and-overloads/">Go 101: Constructors and Overloads</a>
-            
-        </h1>
-        <p>
-            <time datetime="2014-04-11 09:58:59 -0500 CDT" pubdate="pubdate">Fri, Apr 11, 2014</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/04/go-conventions-constructors-and-overloads/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2014/04/go-conventions-constructors-and-overloads/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>Go doesn&rsquo;t have constructors in the traditional sense. The convention is to make the zero value useful whenever possible.</p>
-
-<pre><code>type Person struct {
-     Age int
-}
-
-// These are equivalent.
-// `p1` and `p2` are initialized to the zero value of Person.
-// Neither of these are nil.
-var p1 Person // type Person
-p2 := Person{} // type Person
-
-// You could also use `new` to allocate which returns a pointer
-p3 := new(Person) // type *Person
-</code></pre>
-
-<blockquote>
-<p>It is most common to use the struct initializer. e.g. <code>p := Person{}</code> or <code>p := &amp;Person{}</code> if you need the pointer.</p>
-</blockquote>
-
-<p>Sometimes you want special initialization logic. If your type is named <code>Person</code> then the convention would be create a function named <code>NewPerson</code> that returns a pointer to an initialized <code>Person</code> type.</p>
-
-<pre><code>func NewPerson(int age) *Person {
-     p := Person{age}
-     return &amp;p
-}
-
-myPerson := NewPerson(10) // type *Person
-</code></pre>
-
-<p>Multiple constructors can be implemented by having multiple initializer functions. Go doesn&rsquo;t support function overloads so you will need to name your functions intelligently.</p>
-
-<pre><code>import &quot;time&quot;
-
-func NewPersonAge(int age) *Person {
-     p := Person{age}
-     return &amp;p
-}
-
-func NewPersonBirthYear(int birthYear) *Person {
-     p := Person{time.Now().Year() - birthYear}
-     return &amp;p
-}
-</code></pre>
-
-<p><a href="http://golang.org/doc/effective_go.html#composite_literals">Read more</a> in Effective Go.</p>
-
-<p><strong>Update:</strong> Thanks to Joe Shaw for the comments! I&rsquo;ve updated the article with his suggestions.</p>
 
 
 </article>

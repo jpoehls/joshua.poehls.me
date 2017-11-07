@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://joshua.poehls.me/2017/the-bible-project-justice/</loc>
+    <lastmod>2017-11-07T13:19:24-06:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://joshua.poehls.me/2017/think-clearly/</loc>
     <lastmod>2017-11-06T22:36:19-06:00</lastmod>
   </url>
@@ -338,7 +343,7 @@
   
   <url>
     <loc>http://joshua.poehls.me/post/</loc>
-    <lastmod>2017-11-06T22:36:19-06:00</lastmod>
+    <lastmod>2017-11-07T13:19:24-06:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -397,6 +402,12 @@
   </url>
   
   <url>
+    <loc>http://joshua.poehls.me/tags/scripture/</loc>
+    <lastmod>2017-11-07T13:19:24-06:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://joshua.poehls.me/series/</loc>
     <lastmod>2016-01-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -423,6 +434,12 @@
   <url>
     <loc>http://joshua.poehls.me/tags/typography/</loc>
     <lastmod>2014-09-26T12:52:44-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/tags/videos/</loc>
+    <lastmod>2017-11-07T13:19:24-06:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -464,7 +481,7 @@
   
   <url>
     <loc>http://joshua.poehls.me/</loc>
-    <lastmod>2017-11-06T22:36:19-06:00</lastmod>
+    <lastmod>2017-11-07T13:19:24-06:00</lastmod>
     <priority>0</priority>
   </url>
   
