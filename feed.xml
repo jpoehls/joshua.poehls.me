@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>joshua poehls | silent thoughts</title>
-    <link>http://joshua.poehls.me/</link>
-    <language>en-us</language>
-    <author>Joshua Poehls</author>
-    <copyright>Copyright (c) 2014-2017 Joshua Poehls. All rights reserved.</copyright>
-    <updated>Tue, 07 Nov 2017 13:19:24 CST</updated>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>joshua poehls | silent thoughts</title>
+  <icon>http://joshua.poehls.metouch-icon-iphone-retinahd.png</icon>
+  <rights>Copyright (c) 2014-2017 Joshua Poehls. All rights reserved.</rights>
+  <link rel="self" href="http://joshua.poehls.me/feed.xml"/>
+  <link href="http://joshua.poehls.me/"/>
+  <updated>2017-11-07T13:19:24-06:00</updated>
+  <author>
+    <name>Joshua Poehls</name>
+  </author>
+  <id>http://joshua.poehls.me/</id>
+
+  
+  <entry>
+    <title>The Bible Project: Justice</title>
+    <link href="http://joshua.poehls.me/2017/the-bible-project-justice/"/>
+    <id>http://joshua.poehls.me/2017/the-bible-project-justice/</id>
+    <updated>2017-11-07T13:19:24-06:00</updated>
     
-    <item>
-      <title>The Bible Project: Justice</title>
-      <link>http://joshua.poehls.me/2017/the-bible-project-justice/</link>
-      <pubDate>Tue, 07 Nov 2017 13:19:24 CST</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2017/the-bible-project-justice/</guid>
-      <description>&lt;p&gt;&lt;em&gt;Justice&lt;/em&gt; has been a recurring theme that stands out to me as I read the Bible. This video from &lt;a href=&#34;https://thebibleproject.com/&#34;&gt;The Bible Project&lt;/a&gt; is really helpful to understand the biblical themes righteousness and justice.&lt;/p&gt;
+    <category term="videos" />
+    <category term="scripture" />
+    
+    <content type="html">&lt;p&gt;&lt;em&gt;Justice&lt;/em&gt; has been a recurring theme that stands out to me as I read the Bible. This video from &lt;a href=&#34;https://thebibleproject.com/&#34;&gt;The Bible Project&lt;/a&gt; is really helpful to understand the biblical themes righteousness and justice.&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Humans are set apart from all other creatures as the &lt;em&gt;image of God&lt;/em&gt;&amp;hellip; This identity is the bedrock of the Bible&amp;rsquo;s view of justice. All humans are equal before God and have the right to be treated with dignity and fairness, no matter who you are.&lt;/p&gt;
@@ -74,32 +81,36 @@ He judged the cause of the poor and needy;&lt;br /&gt;
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;declares the LORD.&lt;br /&gt;
 &amp;ndash; &lt;a href=&#34;https://www.esv.org/Jeremiah+22:15/&#34;&gt;Jeremiah 22:15-16&lt;/a&gt; (ESV)&lt;/p&gt;
 &lt;/blockquote&gt;
-</description>
-    </item>
+</content>
+  </entry>
+  
+  <entry>
+    <title>Think Clearly</title>
+    <link href="http://joshua.poehls.me/2017/think-clearly/"/>
+    <id>http://joshua.poehls.me/2017/think-clearly/</id>
+    <updated>2017-11-06T22:36:19-06:00</updated>
     
-    <item>
-      <title>Think Clearly</title>
-      <link>http://joshua.poehls.me/2017/think-clearly/</link>
-      <pubDate>Mon, 06 Nov 2017 22:36:19 CST</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2017/think-clearly/</guid>
-      <description>&lt;blockquote&gt;
+    <category term="quotes" />
+    
+    <content type="html">&lt;blockquote&gt;
 &lt;p&gt;My desire is to think clearly about concepts and then communicate them intuitively to others. I am particularly interested in the ideas and advancements that affect our lives spiritually and emotionally.&lt;/p&gt;
 
 &lt;p&gt;&amp;ndash; Jonathan Collins, co-founder of &lt;a href=&#34;https://thebibleproject.com/&#34;&gt;The Bible Project&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Source: &lt;a href=&#34;http://www.jonpdx.com/&#34;&gt;http://www.jonpdx.com/&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
+</content>
+  </entry>
+  
+  <entry>
+    <title>PowerShell Script Boilerplate</title>
+    <link href="http://joshua.poehls.me/powershell-script-boilerplate/"/>
+    <id>http://joshua.poehls.me/powershell-script-boilerplate/</id>
+    <updated>2017-11-06T01:18:00-06:00</updated>
     
-    <item>
-      <title>PowerShell Script Boilerplate</title>
-      <link>http://joshua.poehls.me/powershell-script-boilerplate/</link>
-      <pubDate>Mon, 06 Nov 2017 01:18:00 CST</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/powershell-script-boilerplate/</guid>
-      <description>
+    <category term="powershell" />
+    
+    <content type="html">
 
 &lt;p&gt;This post is as much for me as it is for you. I write a lot of PowerShell scripts and they tend to follow a certain pattern. This is my personal boilerplate for PowerShell scripts.&lt;/p&gt;
 
@@ -160,16 +171,19 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn1&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</description>
-    </item>
+</content>
+  </entry>
+  
+  <entry>
+    <title>Bible Quiz: Deu 7:9, 10:12-13</title>
+    <link href="http://joshua.poehls.me/2016/01/bible-quiz-1/"/>
+    <id>http://joshua.poehls.me/2016/01/bible-quiz-1/</id>
+    <updated>2016-01-18T00:00:00&#43;00:00</updated>
+    <category term="Bible Quiz Questions" />
+    <category term="bible quiz" />
+    <category term="scripture" />
     
-    <item>
-      <title>Bible Quiz: Deu 7:9, 10:12-13</title>
-      <link>http://joshua.poehls.me/2016/01/bible-quiz-1/</link>
-      <pubDate>Mon, 18 Jan 2016 00:00:00 UTC</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2016/01/bible-quiz-1/</guid>
-      <description>
+    <content type="html">
 
 &lt;p&gt;Hundreds of verses forgotten. Yep, that&amp;rsquo;s what happen to me. I joined up with our church&amp;rsquo;s Bible Quiz team as a teen and memorized hundreds of verses for competition. Looking back, it is one of my favorite things I did growing up. Unfortunately, that was many years ago and with little practice comes much forgetfulness.&lt;/p&gt;
 
@@ -245,16 +259,18 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;em&gt;Verses are quoted from the King James Version.&lt;/em&gt;&lt;/p&gt;
-</description>
-    </item>
+</content>
+  </entry>
+  
+  <entry>
+    <title>Serve the LORD, Fear Not</title>
+    <link href="http://joshua.poehls.me/2016/09/fear-not/"/>
+    <id>http://joshua.poehls.me/2016/09/fear-not/</id>
+    <updated>2015-09-16T00:00:00&#43;00:00</updated>
     
-    <item>
-      <title>Serve the LORD, Fear Not</title>
-      <link>http://joshua.poehls.me/2016/09/fear-not/</link>
-      <pubDate>Wed, 16 Sep 2015 00:00:00 UTC</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2016/09/fear-not/</guid>
-      <description>&lt;blockquote&gt;
+    <category term="scripture" />
+    
+    <content type="html">&lt;blockquote&gt;
 &lt;p&gt;I call heaven and earth to record this day against you, that &lt;strong&gt;I have set before you life and death&lt;/strong&gt;, blessing and cursing: therefore choose life, that both thou and thy seed may live: (Deu 30:19 KJV)&lt;/p&gt;
 
 &lt;p&gt;And if it seem evil unto you to serve the LORD, &lt;strong&gt;choose you this day whom ye will serve&lt;/strong&gt;; &amp;hellip; (Jos 24:15 KJV)&lt;/p&gt;
@@ -271,16 +287,17 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
 
 &lt;p&gt;&lt;strong&gt;The LORD is on my side;&lt;/strong&gt; I will not fear: what can man do unto me? (Psa 118:6 KJV)&lt;/p&gt;
 &lt;/blockquote&gt;
-</description>
-    </item>
+</content>
+  </entry>
+  
+  <entry>
+    <title>Delighting in the Trinity</title>
+    <link href="http://joshua.poehls.me/2015/08/delighting-trinity/"/>
+    <id>http://joshua.poehls.me/2015/08/delighting-trinity/</id>
+    <updated>2015-08-10T00:00:00&#43;00:00</updated>
     
-    <item>
-      <title>Delighting in the Trinity</title>
-      <link>http://joshua.poehls.me/2015/08/delighting-trinity/</link>
-      <pubDate>Mon, 10 Aug 2015 00:00:00 UTC</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2015/08/delighting-trinity/</guid>
-      <description>&lt;blockquote&gt;
+    
+    <content type="html">&lt;blockquote&gt;
 &lt;p&gt;&amp;ldquo;It is not to be expected that we should love God supremely if we have not known him to be more desirable than all other things.&amp;rdquo; So wrote the great hymn writer Isaac Watts. And of course, he was quite right, for we always love what seems most attractive to us.&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -309,16 +326,18 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
 &lt;blockquote&gt;
 &lt;p&gt;The Trinity, then, is not some awkward add-on to God, the optional extra nobody should want. No, God is beautiful, desirable, and life-giving precisely because He is the Father, the Son, and the Spirit.&lt;/p&gt;
 &lt;/blockquote&gt;
-</description>
-    </item>
+</content>
+  </entry>
+  
+  <entry>
+    <title>A Simple Way to Pray: A Letter from Dr. Martin Luther</title>
+    <link href="http://joshua.poehls.me/2015/07/a-simple-way-to-pray-luther/"/>
+    <id>http://joshua.poehls.me/2015/07/a-simple-way-to-pray-luther/</id>
+    <updated>2015-07-03T00:00:00&#43;00:00</updated>
     
-    <item>
-      <title>A Simple Way to Pray: A Letter from Dr. Martin Luther</title>
-      <link>http://joshua.poehls.me/2015/07/a-simple-way-to-pray-luther/</link>
-      <pubDate>Fri, 03 Jul 2015 00:00:00 UTC</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2015/07/a-simple-way-to-pray-luther/</guid>
-      <description>
+    <category term="martin luther" />
+    
+    <content type="html">
 
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 
@@ -539,16 +558,18 @@ Luther and Friends Pray at the Bedside of Melancthon
 &lt;hr /&gt;
 
 &lt;p&gt;This letter is widely reproduced, including J. J. Pelikan, H. C. Oswald &amp;amp; H. T. Lehmann, Eds., Luther&amp;rsquo;s Works, American Edition, Vol. 43. &amp;ldquo;Devotional Writings II&amp;rdquo; (Philadelphia: Fortress Press, and St. Louis: Concordia Publishing House, 1968).&lt;/p&gt;
-</description>
-    </item>
+</content>
+  </entry>
+  
+  <entry>
+    <title>Resources for PowerShell users</title>
+    <link href="http://joshua.poehls.me/powershell-resources/"/>
+    <id>http://joshua.poehls.me/powershell-resources/</id>
+    <updated>2015-04-13T10:43:31-06:00</updated>
     
-    <item>
-      <title>Resources for PowerShell users</title>
-      <link>http://joshua.poehls.me/powershell-resources/</link>
-      <pubDate>Mon, 13 Apr 2015 10:43:31 -0600</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/powershell-resources/</guid>
-      <description>
+    <category term="powershell" />
+    
+    <content type="html">
 
 &lt;p&gt;This is a list of resources that should help anyone interested in PowerShell.&lt;/p&gt;
 
@@ -599,16 +620,18 @@ Luther and Friends Pray at the Bedside of Melancthon
 &lt;li&gt;&lt;a href=&#34;http://stackoverflow.com/questions/tagged/powershell&#34;&gt;PowerShell questions&lt;/a&gt; on StackOverflow&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://reddit.com/r/powershell&#34;&gt;/r/powershell&lt;/a&gt; on Reddit&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
+</content>
+  </entry>
+  
+  <entry>
+    <title>Reading Day One journals in Go</title>
+    <link href="http://joshua.poehls.me/2015/03/dayone-golang-package/"/>
+    <id>http://joshua.poehls.me/2015/03/dayone-golang-package/</id>
+    <updated>2015-03-14T10:43:31-06:00</updated>
     
-    <item>
-      <title>Reading Day One journals in Go</title>
-      <link>http://joshua.poehls.me/2015/03/dayone-golang-package/</link>
-      <pubDate>Sat, 14 Mar 2015 10:43:31 -0600</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2015/03/dayone-golang-package/</guid>
-      <description>&lt;p&gt;Here&amp;rsquo;s a little gift for my fellow &lt;a href=&#34;http://dayoneapp.com&#34;&gt;Day One&lt;/a&gt; aficionados who also happen to use &lt;a href=&#34;http://golang.org&#34;&gt;Go&lt;/a&gt;.&lt;/p&gt;
+    <category term="golang" />
+    
+    <content type="html">&lt;p&gt;Here&amp;rsquo;s a little gift for my fellow &lt;a href=&#34;http://dayoneapp.com&#34;&gt;Day One&lt;/a&gt; aficionados who also happen to use &lt;a href=&#34;http://golang.org&#34;&gt;Go&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;A Go package for reading Day One journal files!&lt;/strong&gt;&lt;/p&gt;
 
@@ -637,16 +660,18 @@ if err != nil {
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;I&amp;rsquo;d like to add support for creating and editing entries in the future. Contributions welcome, just hit me up!&lt;/p&gt;
-</description>
-    </item>
+</content>
+  </entry>
+  
+  <entry>
+    <title>Drone Strike Terrorism</title>
+    <link href="http://joshua.poehls.me/2014/11/drone-strike-terrorism/"/>
+    <id>http://joshua.poehls.me/2014/11/drone-strike-terrorism/</id>
+    <updated>2014-11-18T09:55:27-06:00</updated>
     
-    <item>
-      <title>Drone Strike Terrorism</title>
-      <link>http://joshua.poehls.me/2014/11/drone-strike-terrorism/</link>
-      <pubDate>Tue, 18 Nov 2014 09:55:27 CST</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/11/drone-strike-terrorism/</guid>
-      <description>
+    <category term="war" />
+    
+    <content type="html">
 
 &lt;p&gt;Have you read The Intercept&amp;rsquo;s &lt;a href=&#34;https://firstlook.org/theintercept/2014/11/18/media-outlets-continue-describe-unknown-drone-victims-militants/&#34;&gt;article on US drone strikes&lt;/a&gt; and the media&amp;rsquo;s coverage of them in the US? If you are an American, you should.&lt;/p&gt;
 
@@ -709,16 +734,20 @@ if err != nil {
 &lt;blockquote&gt;
 &lt;p&gt;Given their intended effects - both physical and psychological - on entire populations, is there any serious doubt that continual, sustained drone warfare in places such as Pakistan and Yemen meet the U.S.&amp;rsquo;s formal definition of &amp;ldquo;terrorism&amp;rdquo; found in its latest strategy document?&lt;/p&gt;
 &lt;/blockquote&gt;
-</description>
-    </item>
+</content>
+  </entry>
+  
+  <entry>
+    <title>The MMA Hour - 249 - Renzo Gracie</title>
+    <link href="http://joshua.poehls.me/2014/10/mma-hour-249-renzo-gracie/"/>
+    <id>http://joshua.poehls.me/2014/10/mma-hour-249-renzo-gracie/</id>
+    <updated>2014-10-02T15:03:13-05:00</updated>
     
-    <item>
-      <title>The MMA Hour - 249 - Renzo Gracie</title>
-      <link>http://joshua.poehls.me/2014/10/mma-hour-249-renzo-gracie/</link>
-      <pubDate>Thu, 02 Oct 2014 15:03:13 CDT</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/10/mma-hour-249-renzo-gracie/</guid>
-      <description>&lt;figure &gt;
+    <category term="bjj" />
+    <category term="mma" />
+    <category term="interview" />
+    
+    <content type="html">&lt;figure &gt;
 &lt;a href=&#34;http://www.mmafighting.com/2014/9/30/6872803/the-mma-hour-249-renzo-gracie&#34;&gt;
 &lt;img src=&#34;http://joshua.poehls.me/2014/10/mma-hour-249-renzo-gracie/renzo.jpg&#34; alt=&#34;Renzo Gracie on MMA Hour Episode 249&#34; /&gt;
 &lt;/a&gt;
@@ -758,16 +787,19 @@ Renzo Gracie on MMA Hour Episode 249
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn2&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</description>
-    </item>
+</content>
+  </entry>
+  
+  <entry>
+    <title>The World&#39;s Loudest Sound</title>
+    <link href="http://joshua.poehls.me/2014/10/worlds-loudest-sound/"/>
+    <id>http://joshua.poehls.me/2014/10/worlds-loudest-sound/</id>
+    <updated>2014-10-02T14:03:07-05:00</updated>
     
-    <item>
-      <title>The World&#39;s Loudest Sound</title>
-      <link>http://joshua.poehls.me/2014/10/worlds-loudest-sound/</link>
-      <pubDate>Thu, 02 Oct 2014 14:03:07 CDT</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/10/worlds-loudest-sound/</guid>
-      <description>&lt;figure &gt;
+    <category term="sound" />
+    <category term="science" />
+    
+    <content type="html">&lt;figure &gt;
 
 &lt;img src=&#34;http://joshua.poehls.me/2014/10/worlds-loudest-sound/krakatoa.jpg&#34; alt=&#34;Krakatoa&#34; /&gt;
 
@@ -788,16 +820,19 @@ Krakatoa
 &lt;/blockquote&gt;
 
 &lt;p&gt;This is the most amazing thing you&amp;rsquo;ll read today.&lt;/p&gt;
-</description>
-    </item>
+</content>
+  </entry>
+  
+  <entry>
+    <title>David Rumsey Map Collection</title>
+    <link href="http://joshua.poehls.me/2014/09/david-rumsey-map-collection/"/>
+    <id>http://joshua.poehls.me/2014/09/david-rumsey-map-collection/</id>
+    <updated>2014-09-26T16:51:06-05:00</updated>
     
-    <item>
-      <title>David Rumsey Map Collection</title>
-      <link>http://joshua.poehls.me/2014/09/david-rumsey-map-collection/</link>
-      <pubDate>Fri, 26 Sep 2014 16:51:06 CDT</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/09/david-rumsey-map-collection/</guid>
-      <description>&lt;p&gt;I just hit the cartography jackpot. This collection has well over 37,000 maps in high-resolution glory. I&amp;rsquo;ll see you in a few hours&amp;hellip;&lt;/p&gt;
+    <category term="maps" />
+    <category term="art" />
+    
+    <content type="html">&lt;p&gt;I just hit the cartography jackpot. This collection has well over 37,000 maps in high-resolution glory. I&amp;rsquo;ll see you in a few hours&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;&lt;figure &gt;
 &lt;a href=&#34;http://www.davidrumsey.com/luna/servlet/s/jn8c3p&#34;&gt;
@@ -844,16 +879,20 @@ London Underground Transport (1933)
 &lt;/figcaption&gt;
 
 &lt;/figure&gt;&lt;/p&gt;
-</description>
-    </item>
+</content>
+  </entry>
+  
+  <entry>
+    <title>Languages Are Beautiful</title>
+    <link href="http://joshua.poehls.me/2014/09/languages-are-beautiful/"/>
+    <id>http://joshua.poehls.me/2014/09/languages-are-beautiful/</id>
+    <updated>2014-09-26T12:52:44-05:00</updated>
     
-    <item>
-      <title>Languages Are Beautiful</title>
-      <link>http://joshua.poehls.me/2014/09/languages-are-beautiful/</link>
-      <pubDate>Fri, 26 Sep 2014 12:52:44 CDT</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/09/languages-are-beautiful/</guid>
-      <description>&lt;p&gt;If you ever see me doodling, odds are that I&amp;rsquo;m drawing letters and numbers of some kind. I&amp;rsquo;ve always found alphabets, notations, and writing systems in general to be facinating. Typography is beautiful. Typography in foreign languages, even more so.&lt;/p&gt;
+    <category term="art" />
+    <category term="languages" />
+    <category term="typography" />
+    
+    <content type="html">&lt;p&gt;If you ever see me doodling, odds are that I&amp;rsquo;m drawing letters and numbers of some kind. I&amp;rsquo;ve always found alphabets, notations, and writing systems in general to be facinating. Typography is beautiful. Typography in foreign languages, even more so.&lt;/p&gt;
 
 &lt;p&gt;&lt;figure &gt;
 &lt;a href=&#34;http://www.zazzle.com/jesus_christ_the_son_of_the_living_god_in_hebrew_canvas-192689088319290932&#34;&gt;
@@ -960,16 +999,19 @@ Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש
 &lt;/figcaption&gt;
 
 &lt;/figure&gt;&lt;/p&gt;
-</description>
-    </item>
+</content>
+  </entry>
+  
+  <entry>
+    <title>The NSA Reaches Out</title>
+    <link href="http://joshua.poehls.me/2014/09/nsa-reaches-out/"/>
+    <id>http://joshua.poehls.me/2014/09/nsa-reaches-out/</id>
+    <updated>2014-09-26T09:18:41-05:00</updated>
     
-    <item>
-      <title>The NSA Reaches Out</title>
-      <link>http://joshua.poehls.me/2014/09/nsa-reaches-out/</link>
-      <pubDate>Fri, 26 Sep 2014 09:18:41 CDT</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/09/nsa-reaches-out/</guid>
-      <description>&lt;iframe width=&#34;100%&#34; height=&#34;150&#34; scrolling=&#34;no&#34; frameborder=&#34;no&#34; src=&#34;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/162688991&amp;color=2fa3bc&amp;show_artwork=false&#34;&gt;&lt;/iframe&gt;
+    <category term="nsa" />
+    <category term="podcast" />
+    
+    <content type="html">&lt;iframe width=&#34;100%&#34; height=&#34;150&#34; scrolling=&#34;no&#34; frameborder=&#34;no&#34; src=&#34;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/162688991&amp;color=2fa3bc&amp;show_artwork=false&#34;&gt;&lt;/iframe&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Anne Neuberger is Special Assistant to NSA Director Michael Rogers and also the Director of the NSA&amp;rsquo;s Commercial Solutions Center.&lt;/p&gt;
@@ -1002,8 +1044,7 @@ Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש
 &lt;/blockquote&gt;
 
 &lt;p&gt;The room erupted in laughter when Anne replied that the FOIA (Freedom of Information Act) was a solution to this.&lt;/p&gt;
-</description>
-    </item>
-    
-  </channel>
-</rss>
+</content>
+  </entry>
+  
+</feed>
