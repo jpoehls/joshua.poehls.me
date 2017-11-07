@@ -1,20 +1,25 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>{{.Site.Title}}</title>
-    <link>{{.Permalink}}</link>
-    {{with .Site.LanguageCode}}<language>{{.}}</language>{{end}}
-    {{with .Site.Author.name}}<author>{{.}}</author>{{end}}
-    {{with .Site.Copyright}}<copyright>{{.}}</copyright>{{end}}
-    <updated>{{.Date.Format "Mon, 02 Jan 2006 15:04:05 MST"}}</updated>
-    {{range first 15 .Data.Pages}}
-    <item>
-      <title>{{.Title}}</title>
-      <link>{{.Permalink}}</link>
-      <pubDate>{{.Date.Format "Mon, 02 Jan 2006 15:04:05 MST"}}</pubDate>
-      {{with .Site.Author.name}}<author>{{.}}</author>{{end}}
-      <guid>{{.Permalink}}</guid>
-      <description>{{.Content | html}}</description>
-    </item>
-    {{end}}
-  </channel>
-</rss>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{.Site.Title}}</title>
+  <icon>{{.Site.BaseURL}}touch-icon-iphone-retinahd.png</icon>
+  <rights>{{.Site.Copyright}}</rights>
+  <link rel="self" href="{{.Permalink}}feed.xml"/>
+  <link href="{{.Permalink}}"/>
+  <updated>{{.Date.Format "2006-01-02T15:04:05-07:00"}}</updated>
+  <author>
+    <name>{{.Site.Author.name}}</name>
+  </author>
+  <id>{{.Permalink}}</id>
+
+  {{range first 15 .Data.Pages}}
+  <entry>
+    <title>{{.Title}}</title>
+    <link href="{{.Permalink}}"/>
+    <id>{{.Permalink}}</id>
+    <updated>{{.Date.Format "2006-01-02T15:04:05-07:00"}}</updated>
+    {{with .Params.series}}<category term="{{.}}" />{{end}}
+    {{if .Params.tags}}{{range .Params.tags}}<category term="{{.}}" />
+    {{end}}{{end}}
+    <content type="html">{{.Content | html}}</content>
+  </entry>
+  {{end}}
+</feed>
