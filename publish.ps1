@@ -46,7 +46,7 @@ try {
     & git worktree prune
 
     Write-Host "Checking out $branchName branch into $folderName"
-    & git worktree add -B $branchName $folderName $remoteName/$branchName
+    & git worktree add $folderName $branchName
 
     Write-Host "Removing existing files"
     Remove-Item (Join-Path $folderName "/*") -Force -Recurse -Exclude ".git"
