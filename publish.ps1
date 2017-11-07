@@ -8,51 +8,51 @@ function Read-Choice(
     [Parameter(Mandatory)][string[]]$Choices,
     [Parameter(Mandatory)][string]$DefaultChoice,
     [Parameter()][string]$Question
- ) {
-     $defaultIndex = $Choices.IndexOf($DefaultChoice)
-     if ($defaultIndex -lt 0) {
-         throw "$DefaultChoice not found in choices"
-     }
+) {
+    $defaultIndex = $Choices.IndexOf($DefaultChoice)
+    if ($defaultIndex -lt 0) {
+        throw "$DefaultChoice not found in choices"
+    }
  
-     $choiceObj = New-Object Collections.ObjectModel.Collection[Management.Automation.Host.ChoiceDescription]
+    $choiceObj = New-Object Collections.ObjectModel.Collection[Management.Automation.Host.ChoiceDescription]
  
-     foreach($c in $Choices) {
-         $choiceObj.Add((New-Object Management.Automation.Host.ChoiceDescription -ArgumentList $c))
-     }
+    foreach ($c in $Choices) {
+        $choiceObj.Add((New-Object Management.Automation.Host.ChoiceDescription -ArgumentList $c))
+    }
  
-     $decision = $Host.UI.PromptForChoice($Message, $Question, $choiceObj, $defaultIndex)
-     return $Choices[$decision]
- }
+    $decision = $Host.UI.PromptForChoice($Message, $Question, $choiceObj, $defaultIndex)
+    return $Choices[$decision]
+}
 
 $scriptDir = Split-Path -LiteralPath $PSCommandPath
 $startingLoc = Get-Location
-Set-Location (Join-Path $scriptDir "../") # set to repo root
+Set-Location (& git rev-parse --show-toplevel) # set to repo root
 
-try
-{
+try {
     $remoteName = "origin"
     $branchName = "gh-pages"
     $folderName = "public"
 
-    Write-Host "Deleting old publication from ./$folderName"
+    #if (& git status -s) {
+    #    Write-Host "Working directory is dirty. Please commit any pending changes."
+    #    exit 1
+    #}
+
+    Write-Host "Deleting old publication from $folderName"
     if (Test-Path $folderName) {
         Remove-Item -LiteralPath $folderName -Recurse -Force
     }
     New-Item $folderName -ItemType Directory | Out-Null
     & git worktree prune
-    $gitWorktreeDir = Join-Path $scriptDir ".git/worktrees/$folderName"
-    if (Test-Path $gitWorktreeDir) {
-        Remove-Item -LiteralPath $gitWorktreeDir -Recurse -Force
-    }
 
-    Write-Host "Checking out $branchName branch into ./$folderName"
-    & git worktree add -B $branchName $folderName "$remoteName/$branchName"
+    Write-Host "Checking out $branchName branch into $folderName"
+    & git worktree add -B $branchName $folderName $remoteName/$branchName
 
     Write-Host "Removing existing files"
-    Remove-Item (Join-Path $folderName "/*") -Force -Recurse
-    
+    Remove-Item (Join-Path $folderName "/*") -Force -Recurse -Exclude ".git"
+
     Write-Host "Generating site"
-    & hugo
+    & hugo --destination $folderName
     if ($LASTEXITCODE -ne 0) {
         Write-Host "hugo returned a non-success exit code of $LASTEXITCODE`nPublish cancelled."
         exit 1
@@ -61,11 +61,6 @@ try
     Set-Location $folderName
     Write-Host "Removing excess RSS feeds"
     Remove-Item @("*/feed.xml", "*/*/feed.xml")
-
-    if (& git status -s) {
-        Write-Host "Working directory is dirty. Please commit any pending changes."
-        exit 1
-    }
     
     $continue = Read-Choice -Message "Ready to commit generated site" -Question "Commit changes to $($branchName)?" -Choices @("&Yes", "&No") -DefaultChoice "&No"
     if ($continue -eq "&Yes") {
@@ -92,7 +87,6 @@ try
         Write-Host "    git push $remoteName $branchName"
     }
 }
-finally
-{
+finally {
     Set-Location $startingLoc
 }
