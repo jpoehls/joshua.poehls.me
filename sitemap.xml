@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://joshua.poehls.me/2017/think-clearly/</loc>
+    <lastmod>2017-11-06T22:36:19-06:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://joshua.poehls.me/powershell-script-boilerplate/</loc>
     <lastmod>2017-11-06T01:18:00-06:00</lastmod>
   </url>
@@ -333,7 +338,7 @@
   
   <url>
     <loc>http://joshua.poehls.me/post/</loc>
-    <lastmod>2017-11-06T01:18:00-06:00</lastmod>
+    <lastmod>2017-11-06T22:36:19-06:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -346,6 +351,12 @@
   <url>
     <loc>http://joshua.poehls.me/tags/python/</loc>
     <lastmod>2009-10-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/tags/quotes/</loc>
+    <lastmod>2017-11-06T22:36:19-06:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -453,7 +464,7 @@
   
   <url>
     <loc>http://joshua.poehls.me/</loc>
-    <lastmod>2017-11-06T01:18:00-06:00</lastmod>
+    <lastmod>2017-11-06T22:36:19-06:00</lastmod>
     <priority>0</priority>
   </url>
   

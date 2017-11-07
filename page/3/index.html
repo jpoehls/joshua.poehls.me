@@ -60,6 +60,190 @@
     <header>
         <h1>
             
+            <a href="http://joshua.poehls.me/powershell-script-module-boilerplate/">PowerShell Script Module Boilerplate</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-12-21 10:43:31 -0600 CST" pubdate="pubdate">Sat, Dec 21, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/powershell-script-module-boilerplate/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/powershell-script-module-boilerplate/</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>One of the things I always look for when getting familiar with a new language or environment is examples of the physical file structure and logical organization of the code. How do you layout your project files? What is idiomatic?</p>
+
+<p>Unsurprisingly, this isn&rsquo;t always as simple as finding a few open-source projects on GitHub to reference. Believe it or not, there are a lot of pretty unorganized coders out there. I admit to being a bit OCD with my project structures. I like them clean, organized, and consistent.</p>
+
+<p>In this post I&rsquo;m going to cover my preferred boilerplate for <a href="http://msdn.microsoft.com/en-us/library/dd878340(v=vs.85).aspx">PowerShell Script Modules</a>.</p>
+
+<p>Script Modules are about as simple as it gets. Typically you have one or more PS1 or PSM1 files that contain your module&rsquo;s cmdlets. Beyond that you <em>should</em> have a <a href="http://msdn.microsoft.com/en-us/library/dd878337(v=vs.85).aspx">PSD1 manifest</a>.</p>
+
+<h2 id="fork-this">Fork this!</h2>
+
+<p>This entire boilerplate <a href="http://github.com/jpoehls/powershell-script-module-boilerplate">is on GitHub</a>. If you just want a solid starting point, download this repo. If you want to know more, keep reading.</p>
+
+<h2 id="file-structure">File Structure</h2>
+
+<pre><code>+- src/
+| +- source_file.ps1
+| +- ...
++- tools/
+| +- release.ps1
++- LICENSE
++- README.md
+</code></pre>
+
+<ul>
+<li><code>src/</code> contains the PS1, PSM1, PS1XML, and any other source files for the module.</li>
+<li><code>tools/</code> is where I put any meta scripts for the project. Usually there is just one script here that builds a release version of my module.</li>
+<li><code>LICENSE</code> - if your module is open-source, always specify what license you are releasing it under.</li>
+<li><code>README.md</code> - always have a README file. Even if it is only a one sentence description. <a href="http://daringfireball.net/projects/markdown/">Markdown</a> is a great format to use for this.</li>
+</ul>
+
+<h2 id="explicit-exports">Explicit Exports</h2>
+
+<p>By default, PowerShell will export all of the functions in your module. I recommend being explicit about this and always specifying which functions should be publically exported. This way it is easy to add private helper functions that are internal to your module without worrying about them being made public accidentally.</p>
+
+<p>You do this by calling <a href="http://technet.microsoft.com/en-us/library/hh849736.aspx"><code>Export-ModuleMember</code></a> at the bottom of your source file. If you have a <code>source.psm1</code> file that contains a <code>Show-Calendar</code> function that should be public, you would do something like this:</p>
+
+<pre><code># Show-Calendar.ps1
+#
+# Show-Calendar will be public.
+# Any other functions in this file will be private.
+
+function Show-Calendar {
+    # ...
+}
+
+Export-ModuleMember -Function Show-Calendar
+</code></pre>
+
+<p><a href="http://msdn.microsoft.com/en-us/library/dd878340(v=vs.85).aspx">Full example &#8594;</a></p>
+
+<h2 id="release-script">Release Script</h2>
+
+<p><strong>Every project should have a release script.</strong> You should never be manually building your distributable release. At a minimum my release script will:</p>
+
+<ol>
+<li>Generate the PSD1 manifest for my module.</li>
+<li>Save the manifest into a temporary <code>./dist</code> folder.</li>
+<li>Copy all of the module source files into <code>./dist</code>.</li>
+<li>Add all of the module&rsquo;s source files to a ZIP file ready for me to distribute.</li>
+</ol>
+
+<p>Here is what a simple <code>release.ps1</code> script might look like.</p>
+
+<p><a href="https://github.com/jpoehls/powershell-script-module-boilerplate/blob/master/tools/release.ps1">View on GitHub &#8594;</a></p>
+
+<pre><code>&lt;#
+.SYNOPSIS
+    Generates a manifest for the module
+    and bundles all of the module source files
+    and manifest into a distributable ZIP file.
+#&gt;
+
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory = $true)]
+    [version]$ModuleVersion
+)
+
+$ErrorActionPreference = &quot;Stop&quot;
+
+Write-Host &quot;Building release for v$moduleVersion&quot;
+
+$scriptPath = Split-Path -LiteralPath $(if ($PSVersionTable.PSVersion.Major -ge 3) { $PSCommandPath } else { &amp; { $MyInvocation.ScriptName } })
+
+$src = (Join-Path (Split-Path $scriptPath) 'src')
+$dist = (Join-Path (Split-Path $scriptPath) 'dist')
+if (Test-Path $dist) {
+    Remove-Item $dist -Force -Recurse
+}
+New-Item $dist -ItemType Directory | Out-Null
+
+Write-Host &quot;Creating module manifest...&quot;
+
+$manifestFileName = Join-Path $dist 'YourModule.psd1'
+
+# TODO: Tweak the manifest to fit your module's needs.
+New-ModuleManifest `
+    -Path $manifestFileName `
+    -ModuleVersion $ModuleVersion `
+    -Guid fe524c79-95a6-4d02-8e15-30dddeb8c874 `
+    -Author 'Your Name' `
+    -CompanyName 'Your Company' `
+    -Copyright '(c) $((Get-Date).Year) Your Company. All rights reserved.' `
+    -Description 'Description of your module.' `
+    -PowerShellVersion '3.0' `
+    -DotNetFrameworkVersion '4.5' `
+    -NestedModules (Get-ChildItem $src -Exclude *.psd1 | % { $_.Name })
+
+Write-Host &quot;Creating release archive...&quot;
+
+# Copy the distributable files to the dist folder.
+Copy-Item -Path &quot;$src\*&quot; `
+          -Destination $dist `
+          -Recurse
+
+# Requires .NET 4.5
+[Reflection.Assembly]::LoadWithPartialName(&quot;System.IO.Compression.FileSystem&quot;) | Out-Null
+
+$zipFileName = Join-Path ([System.IO.Path]::GetDirectoryName($dist)) &quot;$([System.IO.Path]::GetFileNameWithoutExtension($manifestFileName))-$ModuleVersion.zip&quot;
+
+# Overwrite the ZIP if it already already exists.
+if (Test-Path $zipFileName) {
+    Remove-Item $zipFileName -Force
+}
+
+$compressionLevel = [System.IO.Compression.CompressionLevel]::Optimal
+$includeBaseDirectory = $false
+[System.IO.Compression.ZipFile]::CreateFromDirectory($dist, $zipFileName, $compressionLevel, $includeBaseDirectory)
+
+Move-Item $zipFileName $dist -Force
+</code></pre>
+
+<h2 id="version-control">Version Control</h2>
+
+<p>Always exclude your <code>./dist</code> folder from source control. As a rule of thumb, you never want to store the build output of any project in source control.</p>
+
+<p>Depending on how you plan to release your module, you may prefer to exclude <code>*.psd1</code> manifest files from source control. This just keeps things clean and enforces that you use your release script to build the distributable.</p>
+
+<h2 id="good-examples">Good Examples</h2>
+
+<p>Here are a few open-source PowerShell modules that I&rsquo;ve found to be good examples to follow.</p>
+
+<ul>
+<li><a href="https://github.com/adamdriscoll/PoshInternals">PoshInternals</a> by Adam Driscoll</li>
+<li><a href="https://github.com/psake/psake">Psake</a> by James Kovacs</li>
+<li><a href="https://github.com/jpoehls/poshato">Poshato</a></li>
+</ul>
+
+<!--
+## Binary Modules
+
+I use a very similar file structure for [PowerShell Binary Modules][binary_module] but they do introduce more complexity into the release script. I'll be covering my binary module boilerplate in a future post. 
+-->
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="http://joshua.poehls.me/powershell-batch-file-wrapper/">PowerShell Batch File Wrapper</a>
             
         </h1>
@@ -1269,60 +1453,6 @@ Screenshot of AutoHotkey in the Start Menu
 <li>Replace acronyms or common spelling mistakes (ex. replace &ldquo;restraunt&rdquo; -&gt; &ldquo;restaurant&rdquo; automatically.)</li>
 <li>Toggle hidden files in Windows Explorer with a shortcut key.</li>
 </ul>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2011/what-i-miss-in-vanilla-visual-studio/">What I miss in vanilla Visual Studio</a>
-            
-        </h1>
-        <p>
-            <time datetime="2011-10-20 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thu, Oct 20, 2011</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2011/what-i-miss-in-vanilla-visual-studio/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2011/what-i-miss-in-vanilla-visual-studio/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>For the past week or so I&rsquo;ve gone without any Visual Studio enhancements. No <a href="http://www.jetbrains.com/resharper">ReSharper</a>. No <a href="http://www.devexpress.com/coderush">CodeRush</a>. I knew that I didn&rsquo;t leverage even a fraction of what these tools offer so I wanted to find out what I would miss.</p>
-
-<p>Here&rsquo;s what I&rsquo;m missing the most. In no particular order.</p>
-
-<ol>
-<li><p><strong>Detection of errors</strong> <em>before</em> I compile.</p></li>
-
-<li><p><strong>Shortcut for moving a class</strong> to its own file.</p>
-
-<p>I like to build up features in the same file (for speed) and then refactor the classes into their own files later. A tedius process of copy/paste.</p></li>
-
-<li><p><strong>A rename function</strong> that is smart enough to rename the file as well.</p></li>
-
-<li><p><strong>Unit Test debugger.</strong></p>
-
-<p>I don&rsquo;t mind running tests in the NUnit GUI, it even feels faster sometimes, but I miss the ability to step into my tests. I use this feature a lot for exploring APIs.</p></li>
-
-<li><p><strong>Ability to generate constructors.</strong></p>
-
-<p>Especially useful for creating custom exceptions where you want to implement all of the base constructors.</p></li>
-
-<li><p><strong>Fast code snippets.</strong></p>
-
-<p>Visual Studio&rsquo;s built in snippets are functional, but slow to access compared to the alternatives so I ended up not using them. I definitely prefer CodeRush&rsquo;s snippets.</p></li>
-</ol>
 
 
 </article>
