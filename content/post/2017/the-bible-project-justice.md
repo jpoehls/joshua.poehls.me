@@ -10,11 +10,11 @@ _Justice_ has been a recurring theme that stands out to me as I read the Bible. 
 
 > Humans are set apart from all other creatures as the _image of God_... This identity is the bedrock of the Bible's view of justice. All humans are equal before God and have the right to be treated with dignity and fairness, no matter who you are.
 >
-> Doing righteousness... what comes to mind is, being a good person. But what does that even mean, "being a good"?
+> Doing righteousness... what comes to mind is, being a good person. But what does that even mean, "being good"?
 >
 > The biblical hebrew word for _righteousness_ is [_tsĕdaqah_](https://www.blueletterbible.org/lang/lexicon/lexicon.cfm?strongs=H6666). It's more specific. It's an ethical standard that refers to right relationships _between people_. It's about treating others _as the image of God_. With the God given dignity they deserve.
 >
-> And this word _justice_, it's the hebrew word [_mishpat_](https://www.blueletterbible.org/lang/lexicon/lexicon.cfm?t=nasb&strongs=h4941). It _can_ refer to retributive justice... yet most often in the Bible, _mishpat_ refers to _restorative_ justice. It means going a step further. Actually seeking out vulnerable people who are being taken advantage of and helping them out. ... It means taking steps to advocate for the vulnerable and changing social structures to _prevent_ injustice.
+> And this word _justice_, it's the hebrew word [_mishpat_](https://www.blueletterbible.org/lang/lexicon/lexicon.cfm?t=nasb&strongs=h4941). It _can_ refer to retributive justice... yet most often in the Bible, _mishpat_ refers to _restorative_ justice. It means going a step further. Actually seeking out vulnerable people who are being taken advantage of and helping them out. ...It means taking steps to advocate for the vulnerable, and changing social structures to _prevent_ injustice.
 
 {{< youtube A14THPoc4-4 >}}
 
