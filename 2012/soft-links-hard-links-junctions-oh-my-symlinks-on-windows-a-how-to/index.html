@@ -2,11 +2,11 @@
 <html lang="en-US">
 <head>
 <meta charset="utf-8">
-<title>joshua poehls | silent thought</title>
+<title>joshua poehls | silent thoughts</title>
 
-<link rel="canonical" href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to">
-<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thought">
-<meta name="generator" content="Hugo 0.14" />
+<link rel="canonical" href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.30.2" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -61,15 +61,15 @@
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to">Soft links, hard links, junctions, oh my! Symlinks on Windows, a how-to</a>
+            <a href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/">Soft links, hard links, junctions, oh my! Symlinks on Windows, a how-to</a>
             
         </h1>
         <p>
             <time datetime="2012-06-07 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thu, Jun 7, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to</span>
+                <span class="printonly">http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/</span>
             </a>
         </p>
     </header>
@@ -90,21 +90,21 @@
 
 <p>Both soft and hard links must be created on the same volume as the target. i.e. You can&rsquo;t link something on <code>C:\</code> to something on <code>D:\</code>.</p>
 
-<p>You can read more about hardlinks and junctions [on MSDN][4].</p>
+<p>You can read more about hardlinks and junctions <a href="http://msdn.microsoft.com/en-us/library/aa365006%28VS.85%29.aspx">on MSDN</a>.</p>
 
-<h3 id="deleting-links:9e58f074bd866214c10dc323b4e5109d">Deleting Links</h3>
+<h3 id="deleting-links">Deleting Links</h3>
 
 <p>This is where the difference between soft and hard links is most evident.</p>
 
 <p>Deleting the target will cause soft links to stop working. What it points to is gone. Hard links however will keep right on working until you delete the hard link itself. The hard link acts just like the original file, because for all intents and purposes, it is the original file.</p>
 
-<h3 id="junctions:9e58f074bd866214c10dc323b4e5109d">Junctions</h3>
+<h3 id="junctions">Junctions</h3>
 
 <p>Windows also has another type of link just for directories, called Junctions.</p>
 
 <p>Junctions look and act like soft links. The key difference is that they allow you to link directories that are located on different local volumes (but still on the same computer). You can&rsquo;t create a junction to a network location.</p>
 
-<h2 id="using-mklink:9e58f074bd866214c10dc323b4e5109d">Using MKLINK</h2>
+<h2 id="using-mklink">Using MKLINK</h2>
 
 <p>Create a soft link to a directory.</p>
 
@@ -150,7 +150,7 @@ Directory of c:\symlink_test
                5 Dir(s)  145,497,268,224 bytes free
 </code></pre>
 
-<p><figure >
+<figure >
 
 <img src="/2012/06/mklink/explorer-screenshot.png" alt="Screenshot of folder in Windows Explorer" />
 
@@ -164,7 +164,7 @@ Screenshot of folder in Windows Explorer
 </p> 
 </figcaption>
 
-</figure></p>
+</figure>
 
 <p><strong>Note for PowerShell users:</strong><br />
 MKLINK isn&rsquo;t an executable that you can just call from PowerShell. You have to call it through the command prompt.</p>
@@ -176,7 +176,7 @@ MKLINK isn&rsquo;t an executable that you can just call from PowerShell. You hav
 
 <p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">Read about MKLINK on MSDN.</a></p>
 
-<h2 id="using-fsutil:9e58f074bd866214c10dc323b4e5109d">Using FSUTIL</h2>
+<h2 id="using-fsutil">Using FSUTIL</h2>
 
 <p>FSUTIL is another way to create hard links (but not soft links). This is the same as <code>mklink /H</code>.</p>
 
@@ -189,7 +189,7 @@ Hardlink created for c:\symlink_test\hardlink_file.txt &lt;&lt;===&gt;&gt; c:\sy
 
 <p><a href="http://technet.microsoft.com/en-us/library/cc753059(v=WS.10).aspx">Read about FSUTIL on MSDN.</a></p>
 
-<h2 id="using-junction:9e58f074bd866214c10dc323b4e5109d">Using Junction</h2>
+<h2 id="using-junction">Using Junction</h2>
 
 <p>Junction is a tool provided by Sysinternals and provides another way to create junctions. Same as <code>mklink /J</code>.
 It also has some other tools for working with junctions that I won&rsquo;t cover here.</p>
@@ -204,8 +204,6 @@ Targetted at: c:\symlink_test\real_dir
 </code></pre>
 
 <p><a href="http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx">Download the Junction tool from Sysinternals.</a></p>
-
-<p>[4]: <a href="http://msdn.microsoft.com/en-us/library/aa365006%28VS.85%29.aspx">http://msdn.microsoft.com/en-us/library/aa365006%28VS.85%29.aspx</a></p>
 
 
 </article>

@@ -2,11 +2,11 @@
 <html lang="en-US">
 <head>
 <meta charset="utf-8">
-<title>joshua poehls | silent thought</title>
+<title>joshua poehls | silent thoughts</title>
 
-<link rel="canonical" href="http://joshua.poehls.me/powershell-script-boilerplate">
-<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thought">
-<meta name="generator" content="Hugo 0.14" />
+<link rel="canonical" href="http://joshua.poehls.me/powershell-script-boilerplate/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.30.2" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -61,15 +61,15 @@
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/powershell-script-boilerplate">PowerShell Script Boilerplate</a>
+            <a href="http://joshua.poehls.me/powershell-script-boilerplate/">PowerShell Script Boilerplate</a>
             
         </h1>
         <p>
-            <time datetime="2013-12-18 10:43:31 -0600 CST" pubdate="pubdate">Wed, Dec 18, 2013</time>
+            <time datetime="2017-11-06 01:18:00 -0600 CST" pubdate="pubdate">Mon, Nov 6, 2017</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/powershell-script-boilerplate">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/powershell-script-boilerplate/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/powershell-script-boilerplate</span>
+                <span class="printonly">http://joshua.poehls.me/powershell-script-boilerplate/</span>
             </a>
         </p>
     </header>
@@ -78,12 +78,16 @@
 
 <p>This post is as much for me as it is for you. I write a lot of PowerShell scripts and they tend to follow a certain pattern. This is my personal boilerplate for PowerShell scripts.</p>
 
-<pre><code>Set-StrictMode -Version Latest
+<pre><code>#Requires -Version 3
+Set-StrictMode -Version Latest
 $ErrorActionPreference = &quot;Stop&quot;
 
-$scriptDir = Split-Path -LiteralPath $(if ($PSVersionTable.PSVersion.Major -ge 3) { $PSCommandPath } else { &amp; { $MyInvocation.ScriptName } })
-
 $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+$scriptDir = Split-Path -LiteralPath $PSCommandPath
+$startingLoc = Get-Location
+Set-Location $scriptDir
+$startingDir = [System.Environment]::CurrentDirectory
+[System.Environment]::CurrentDirectory = $scriptDir
 
 try
 {
@@ -91,14 +95,16 @@ try
 }
 finally
 {
-    Write-Output &quot;Done! $($stopwatch.Elapsed)&quot;
+    Set-Location $startingLoc
+    [System.Environment]::CurrentDirectory = $startingDir
+    Write-Output &quot;Done. Elapsed time: $($stopwatch.Elapsed)&quot;
 }
 </code></pre>
 
-<h2 id="what-s-going-on-here:469e3590a69ce674428532a2149fa57a">What&rsquo;s going on here?</h2>
+<h2 id="what-s-going-on-here">What&rsquo;s going on here?</h2>
 
 <ul>
-<li>Enables <code>StrictMode</code> to enforce some best practices. <sup class="footnote-ref" id="fnref:469e3590a69ce674428532a2149fa57a:fn1"><a rel="footnote" href="#fn:469e3590a69ce674428532a2149fa57a:fn1">1</a></sup>
+<li>Enables <code>StrictMode</code> to enforce some best practices. <sup class="footnote-ref" id="fnref:fn1"><a rel="footnote" href="#fn:fn1">1</a></sup>
 
 <ul>
 <li>Prevents use of variables that have not been initialized.</li>
@@ -111,6 +117,7 @@ the script execution. By default, PowerShell will roll on when an exceptions
 is thrown and this statement makes my scripts safe by default.</li>
 <li>Set <code>$scriptDir</code> to the directory path of the current script.
 This may be different than the working directory.</li>
+<li>Set the working directory to the <code>$scriptDir</code> so that relative paths in the script itself can be consistent.</li>
 <li>Most of the time I want to know how long my script takes to run so I include
 a <code>$stopwatch</code> that will output the elapsed time when the script finishes.</li>
 <li>The <code>try...finally</code> ensures that the elapsed time will output even if the script throws an exception.</li>
@@ -124,8 +131,8 @@ a <code>$stopwatch</code> that will output the elapsed time when the script fini
 <hr />
 
 <ol>
-<li id="fn:469e3590a69ce674428532a2149fa57a:fn1"><a href="http://blogs.technet.com/b/heyscriptingguy/archive/2014/12/03/enforce-better-script-practices-by-using-set-strictmode.aspx">Read more about this</a> on the &ldquo;Hey, Scripting Guy!&rdquo; blog.
- <a class="footnote-return" href="#fnref:469e3590a69ce674428532a2149fa57a:fn1">↩</a></li>
+<li id="fn:fn1"><a href="http://blogs.technet.com/b/heyscriptingguy/archive/2014/12/03/enforce-better-script-practices-by-using-set-strictmode.aspx">Read more about this</a> on the &ldquo;Hey, Scripting Guy!&rdquo; blog.
+ <a class="footnote-return" href="#fnref:fn1">↩</a></li>
 </ol>
 </div>
 

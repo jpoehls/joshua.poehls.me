@@ -2,11 +2,11 @@
 <html lang="en-US">
 <head>
 <meta charset="utf-8">
-<title>joshua poehls | silent thought</title>
+<title>joshua poehls | silent thoughts</title>
 
-<link rel="canonical" href="http://joshua.poehls.me/2010/ria-services---lessons-learned-while-getting-started">
-<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thought">
-<meta name="generator" content="Hugo 0.14" />
+<link rel="canonical" href="http://joshua.poehls.me/2010/ria-services---lessons-learned-while-getting-started/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.30.2" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -61,15 +61,15 @@
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2010/ria-services---lessons-learned-while-getting-started">RIA Services - Lessons Learned While Getting Started</a>
+            <a href="http://joshua.poehls.me/2010/ria-services---lessons-learned-while-getting-started/">RIA Services - Lessons Learned While Getting Started</a>
             
         </h1>
         <p>
             <time datetime="2010-05-17 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, May 17, 2010</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2010/ria-services---lessons-learned-while-getting-started">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2010/ria-services---lessons-learned-while-getting-started/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2010/ria-services---lessons-learned-while-getting-started</span>
+                <span class="printonly">http://joshua.poehls.me/2010/ria-services---lessons-learned-while-getting-started/</span>
             </a>
         </p>
     </header>
@@ -80,7 +80,7 @@
 
 <p>Here are a few lessons I&rsquo;ve learned so far when working with RIA Services.</p>
 
-<h3 id="potentially-massive-in-terms-of-lines-of-code-logic-domain-services:54d669c52f573ab9e19f528763dde44e">Potentially massive (in terms of lines of code &amp; logic) domain services</h3>
+<h3 id="potentially-massive-in-terms-of-lines-of-code-logic-domain-services">Potentially massive (in terms of lines of code &amp; logic) domain services</h3>
 
 <p>RIA doesn&rsquo;t handle multiple domain services well. What I mean by this is that an entity cannot be shared between multiple services. This means that in most cases you are going to have domain services with lots of methods. Worst case, think having an insert, update and delete method for each entity in your domain.</p>
 
@@ -88,7 +88,7 @@
 
 <p><strong>Aid:</strong> Keep the methods slim by not putting any business or data access logic in them.</p>
 
-<h3 id="shared-database-entity-temptation:54d669c52f573ab9e19f528763dde44e">Shared database entity temptation</h3>
+<h3 id="shared-database-entity-temptation">Shared database entity temptation</h3>
 
 <p><code>LinqToEntitiesDomainService&lt;&gt;</code> wraps up your Entity Framework ObjectContext and lets you access it directory in your domain service. There is also a <code>LinqToSqlDomainService&lt;&gt;</code>. This makes it really tempting to simply return your Entity Framework or LINQ to SQL entities from your domain service methods. This is <a href="http://davybrion.com/blog/2010/05/why-you-shouldnt-expose-your-entities-through-your-services/">a very bad idea</a>.</p>
 
@@ -101,7 +101,7 @@
 <li>Make sure your domain service operations return these DTOs and <em>not</em> the entities that Entity Framework or LINQ to SQL generate for you.</li>
 </ul>
 
-<h3 id="domainservice-submit-summary:54d669c52f573ab9e19f528763dde44e"><code>DomainService.Submit()</code> summary</h3>
+<h3 id="domainservice-submit-summary"><code>DomainService.Submit()</code> summary</h3>
 
 <p>When your client application makes changes and then calls <code>SubmitChanges()</code> on the client-side, RIA Services sends this set of changes to the server as a ChangeSet. This ChangeSet will include deletes, updates and inserts - basically anything your client did before calling <code>SubmitChanges()</code>.</p>
 
@@ -111,7 +111,7 @@
 
 <p>Think of the <code>Submit()</code> method as a router that takes all the changes and routes them to the specific operations that need to happen in order to persist those changes to your backing data store.</p>
 
-<h3 id="using-daos-or-repositories:54d669c52f573ab9e19f528763dde44e">Using DAOs (or Repositories)</h3>
+<h3 id="using-daos-or-repositories">Using DAOs (or Repositories)</h3>
 
 <p>I realized early on that I didn&rsquo;t want to shove all my data access code directly into my domain service methods. I like to isolate the code that talks to the database in DAOs (Data Access Objects). These DAOs act as a weld point between the world of my database and the world of my application. This makes it easier for me to handle inevitable database changes or to switch out my entire data access strategy without having to rewrite the whole application. (<a href="http://davybrion.com/blog/2010/05/why-you-shouldnt-expose-your-entities-through-your-services/">See why.</a>)</p>
 
@@ -128,7 +128,7 @@
 
 <p>The <code>LinqToEntitiesDomainService&lt;&gt;</code> will handle creating my <code>ObjectContext</code> as well as calling <code>SaveChanges()</code> on it when all the changes have been processed. This is much more efficient.</p>
 
-<h3 id="in-code:54d669c52f573ab9e19f528763dde44e">In code</h3>
+<h3 id="in-code">In code</h3>
 
 <p>Here&rsquo;s a code example of what I discovered:</p>
 
@@ -198,7 +198,7 @@ public class PersonDao
 }
 </code></pre>
 
-<h3 id="further-reading:54d669c52f573ab9e19f528763dde44e">Further Reading</h3>
+<h3 id="further-reading">Further Reading</h3>
 
 <p>Here are some things I&rsquo;ve found helpful thus far:</p>
 

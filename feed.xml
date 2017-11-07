@@ -1,19 +1,89 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>joshua poehls | silent thought</title>
-    <link>http://joshua.poehls.me/post/</link>
+    <title>joshua poehls | silent thoughts</title>
+    <link>http://joshua.poehls.me/</link>
     <language>en-us</language>
     <author>Joshua Poehls</author>
-    <copyright>Copyright (c) 2014-2015 Joshua Poehls. All rights reserved.</copyright>
-    <updated>Mon, 18 Jan 2016 00:00:00 UTC</updated>
+    <copyright>Copyright (c) 2014-2017 Joshua Poehls. All rights reserved.</copyright>
+    <updated>Mon, 06 Nov 2017 01:18:00 CST</updated>
+    
+    <item>
+      <title>PowerShell Script Boilerplate</title>
+      <link>http://joshua.poehls.me/powershell-script-boilerplate/</link>
+      <pubDate>Mon, 06 Nov 2017 01:18:00 CST</pubDate>
+      <author>Joshua Poehls</author>
+      <guid>http://joshua.poehls.me/powershell-script-boilerplate/</guid>
+      <description>
+
+&lt;p&gt;This post is as much for me as it is for you. I write a lot of PowerShell scripts and they tend to follow a certain pattern. This is my personal boilerplate for PowerShell scripts.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#Requires -Version 3
+Set-StrictMode -Version Latest
+$ErrorActionPreference = &amp;quot;Stop&amp;quot;
+
+$stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+$scriptDir = Split-Path -LiteralPath $PSCommandPath
+$startingLoc = Get-Location
+Set-Location $scriptDir
+$startingDir = [System.Environment]::CurrentDirectory
+[System.Environment]::CurrentDirectory = $scriptDir
+
+try
+{
+    # TODO: Insert script here.
+}
+finally
+{
+    Set-Location $startingLoc
+    [System.Environment]::CurrentDirectory = $startingDir
+    Write-Output &amp;quot;Done. Elapsed time: $($stopwatch.Elapsed)&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;what-s-going-on-here&#34;&gt;What&amp;rsquo;s going on here?&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Enables &lt;code&gt;StrictMode&lt;/code&gt; to enforce some best practices. &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:fn1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Prevents use of variables that have not been initialized.&lt;/li&gt;
+&lt;li&gt;Cannot call non-existent properties on objects.&lt;/li&gt;
+&lt;li&gt;Disallows calling a function like a method, e.g., &lt;code&gt;Do-Something(1 2)&lt;/code&gt; instead of &lt;code&gt;Do-Something 1 2&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Prohibits creating variables without a name.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Sets &lt;code&gt;$ErrorActionPreference&lt;/code&gt; so that unhandled exceptions will halt
+the script execution. By default, PowerShell will roll on when an exceptions
+is thrown and this statement makes my scripts safe by default.&lt;/li&gt;
+&lt;li&gt;Set &lt;code&gt;$scriptDir&lt;/code&gt; to the directory path of the current script.
+This may be different than the working directory.&lt;/li&gt;
+&lt;li&gt;Set the working directory to the &lt;code&gt;$scriptDir&lt;/code&gt; so that relative paths in the script itself can be consistent.&lt;/li&gt;
+&lt;li&gt;Most of the time I want to know how long my script takes to run so I include
+a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the script finishes.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;try...finally&lt;/code&gt; ensures that the elapsed time will output even if the script throws an exception.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Need to wrap your PowerShells script with a batch file? Grab my &lt;a href=&#34;http://joshua.poehls.me/powershell-batch-file-wrapper&#34;&gt;PowerShell batch file wrapper&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:fn1&#34;&gt;&lt;a href=&#34;http://blogs.technet.com/b/heyscriptingguy/archive/2014/12/03/enforce-better-script-practices-by-using-set-strictmode.aspx&#34;&gt;Read more about this&lt;/a&gt; on the &amp;ldquo;Hey, Scripting Guy!&amp;rdquo; blog.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn1&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>Bible Quiz: Deu 7:9, 10:12-13</title>
-      <link>http://joshua.poehls.me/2016/01/bible-quiz-1</link>
+      <link>http://joshua.poehls.me/2016/01/bible-quiz-1/</link>
       <pubDate>Mon, 18 Jan 2016 00:00:00 UTC</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2016/01/bible-quiz-1</guid>
+      <guid>http://joshua.poehls.me/2016/01/bible-quiz-1/</guid>
       <description>
 
 &lt;p&gt;Hundreds of verses forgotten. Yep, that&amp;rsquo;s what happen to me. I joined up with our church&amp;rsquo;s Bible Quiz team as a teen and memorized hundreds of verses for competition. Looking back, it is one of my favorite things I did growing up. Unfortunately, that was many years ago and with little practice comes much forgetfulness.&lt;/p&gt;
@@ -24,7 +94,7 @@
 
 &lt;hr /&gt;
 
-&lt;h2 id=&#34;deuteronomy-10-12-13:5c25e3515427d664000d7473fc8bcf8a&#34;&gt;Deuteronomy 10:12-13&lt;/h2&gt;
+&lt;h2 id=&#34;deuteronomy-10-12-13&#34;&gt;Deuteronomy 10:12-13&lt;/h2&gt;
 
 &lt;p&gt;&lt;em&gt;And now, Israel, what doth the LORD thy God require of thee, but to fear the LORD thy God, to walk in all his ways, and to love him, and to serve the LORD thy God with all thy heart and with all thy soul, To keep the commandments of the LORD, and his statutes, which I command thee this day for thy good?&lt;/em&gt;&lt;/p&gt;
 
@@ -55,7 +125,7 @@
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&#34;deuteronomy-7-9:5c25e3515427d664000d7473fc8bcf8a&#34;&gt;Deuteronomy 7:9&lt;/h2&gt;
+&lt;h2 id=&#34;deuteronomy-7-9&#34;&gt;Deuteronomy 7:9&lt;/h2&gt;
 
 &lt;p&gt;&lt;em&gt;Know therefore that the LORD thy God, he is God, the faithful God, which keepeth covenant and mercy with them that love him and keep his commandments to a thousand generations;&lt;/em&gt;&lt;/p&gt;
 
@@ -95,10 +165,10 @@
     
     <item>
       <title>Serve the LORD, Fear Not</title>
-      <link>http://joshua.poehls.me/2016/09/fear-not</link>
+      <link>http://joshua.poehls.me/2016/09/fear-not/</link>
       <pubDate>Wed, 16 Sep 2015 00:00:00 UTC</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2016/09/fear-not</guid>
+      <guid>http://joshua.poehls.me/2016/09/fear-not/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;I call heaven and earth to record this day against you, that &lt;strong&gt;I have set before you life and death&lt;/strong&gt;, blessing and cursing: therefore choose life, that both thou and thy seed may live: (Deu 30:19 KJV)&lt;/p&gt;
 
@@ -121,10 +191,10 @@
     
     <item>
       <title>Delighting in the Trinity</title>
-      <link>http://joshua.poehls.me/2015/08/delighting-trinity</link>
+      <link>http://joshua.poehls.me/2015/08/delighting-trinity/</link>
       <pubDate>Mon, 10 Aug 2015 00:00:00 UTC</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2015/08/delighting-trinity</guid>
+      <guid>http://joshua.poehls.me/2015/08/delighting-trinity/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;&amp;ldquo;It is not to be expected that we should love God supremely if we have not known him to be more desirable than all other things.&amp;rdquo; So wrote the great hymn writer Isaac Watts. And of course, he was quite right, for we always love what seems most attractive to us.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -159,19 +229,19 @@
     
     <item>
       <title>A Simple Way to Pray: A Letter from Dr. Martin Luther</title>
-      <link>http://joshua.poehls.me/2015/07/a-simple-way-to-pray-luther</link>
+      <link>http://joshua.poehls.me/2015/07/a-simple-way-to-pray-luther/</link>
       <pubDate>Fri, 03 Jul 2015 00:00:00 UTC</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2015/07/a-simple-way-to-pray-luther</guid>
+      <guid>http://joshua.poehls.me/2015/07/a-simple-way-to-pray-luther/</guid>
       <description>
 
-&lt;h1 id=&#34;introduction:d70503e8bcf9464a5e0336062ac91458&#34;&gt;Introduction&lt;/h1&gt;
+&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;Early in the year 1535, Peter Beskendorf, a barber and an old friend of Luther&amp;rsquo;s, asked Dr. Luther for suggestions concerning prayer. Luther responded with an open letter titled, &lt;em&gt;How One Should Pray, for Master Peter the Barber&lt;/em&gt;. This letter is as follows.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Paraphrased introduction from Paster Wolfmueller of Hope Lutheran Church, Aurora, CO. 2006.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;figure &gt;
+&lt;figure &gt;
 
 &lt;img src=&#34;http://joshua.poehls.me/2015/luther-and-friends-praying.jpg&#34; alt=&#34;Luther and Friends Pray at the Bedside of Melancthon&#34; /&gt;
 
@@ -185,9 +255,9 @@ Luther and Friends Pray at the Bedside of Melancthon
 &lt;/p&gt; 
 &lt;/figcaption&gt;
 
-&lt;/figure&gt;&lt;/p&gt;
+&lt;/figure&gt;
 
-&lt;h1 id=&#34;how-one-should-pray:d70503e8bcf9464a5e0336062ac91458&#34;&gt;How One Should Pray&lt;/h1&gt;
+&lt;h1 id=&#34;how-one-should-pray&#34;&gt;How One Should Pray&lt;/h1&gt;
 
 &lt;p&gt;I will tell you as best I can what I do personally when I pray. May our dear Lord grant to you and to everybody to do it better than I! Amen.&lt;/p&gt;
 
@@ -201,49 +271,49 @@ Luther and Friends Pray at the Bedside of Melancthon
 
 &lt;p&gt;Yet we must be careful not to break the habit of true prayer and imagine other works to be necessary which, after all, are nothing of the kind. Thus at the end we become lax and lazy, cool and listless toward prayer. The devil who besets us is not lazy or careless, and our flesh is too ready and eager to sin and is disinclined to the spirit of prayer.&lt;/p&gt;
 
-&lt;h2 id=&#34;praying-the-lord-s-prayer:d70503e8bcf9464a5e0336062ac91458&#34;&gt;Praying the Lord&amp;rsquo;s Prayer&lt;/h2&gt;
+&lt;h2 id=&#34;praying-the-lord-s-prayer&#34;&gt;Praying the Lord&amp;rsquo;s Prayer&lt;/h2&gt;
 
 &lt;p&gt;When your heart has been warmed by such recitation to yourself and is intent upon the matter, kneel or stand with your hands folded and your eyes toward heaven and speak or think as briefly as you can:&lt;/p&gt;
 
 &lt;p&gt;O Heavenly Father, dear God, I am a poor unworthy sinner. I do not deserve to raise my eyes or hands toward thee or to pray. But because thou hast commanded us all to pray and hast promised to hear us and through thy dear Son Jesus Christ hast taught us both how and what to pray, I come to thee in obedience to thy word, trusting in thy gracious promise. I pray in the name of my Lord Jesus Christ together with all thy saints and Christians on earth as he has taught us: Our Father who art, etc., through the whole prayer, word for word.&lt;/p&gt;
 
-&lt;h3 id=&#34;the-first-petition-hallowed-be-thy-name:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The First Petition: Hallowed Be Thy Name&lt;/h3&gt;
+&lt;h3 id=&#34;the-first-petition-hallowed-be-thy-name&#34;&gt;The First Petition: Hallowed Be Thy Name&lt;/h3&gt;
 
 &lt;p&gt;Then repeat one part or as much as you wish, perhaps the first petition: &amp;ldquo;Hallowed be thy name,&amp;rdquo; and say: &amp;ldquo;Yes, Lord God, dear Father, hallowed be thy name, both in us and throughout the whole world. Destroy and root out the abominations, idolatry, and heresy of the Turk, the pope, and all false teachers and fanatics who wrongly use thy name and in scandalous ways take it in vain and horribly blaspheme it. They insistently boast that they teach thy word and the laws of the church, though they really use the devil&amp;rsquo;s deceit and trickery in thy name to wretchedly seduce many poor souls throughout the world, even killing and shedding much innocent blood, and in such persecution they believe that they render thee a divine service.&lt;/p&gt;
 
 &lt;p&gt;Dear Lord God, convert and restrain. Convert those who are still to be converted that they with us and we with them may hallow and praise thy name, both with true and pure doctrine and with a good and holy life. Restrain those who are unwilling to be converted so that they be forced to cease from misusing, defiling, and dishonoring thy holy name and from misleading the poor people. Amen.&amp;rdquo;&lt;/p&gt;
 
-&lt;h3 id=&#34;the-second-petition-thy-kingdom-come:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The Second Petition: Thy Kingdom Come&lt;/h3&gt;
+&lt;h3 id=&#34;the-second-petition-thy-kingdom-come&#34;&gt;The Second Petition: Thy Kingdom Come&lt;/h3&gt;
 
 &lt;p&gt;The second petition: &amp;ldquo;Thy kingdom come.&amp;rdquo; Say: &amp;ldquo;O dear Lord, God and Father, thou seest how worldly wisdom and reason not only profane thy name and ascribe the honor due to thee to lies and to the devil, but how they also take the power, might, wealth and glory which thou hast given them on earth for ruling the world and thus serving thee, and use it in their own ambition to oppose thy kingdom. They are many and mighty; they plague and hinder the tiny flock of thy kingdom who are weak, despised, and few. They will not tolerate thy flock on earth and think that by plaguing them they render a great and godly service to thee. Dear Lord, God and Father, convert them and defend us. Convert those who are still to become children and members of thy kingdom so that they with us and we with them may serve thee in thy kingdom in true faith and unfeigned love and that from thy kingdom which has begun, we may enter into thy eternal kingdom. Defend us against those who will not turn away their might and power from the destruction of thy kingdom so that when they are east down from their thrones and humbled, they will have to cease from their efforts. Amen.&amp;rdquo;&lt;/p&gt;
 
-&lt;h3 id=&#34;the-third-petition-thy-will-be-done:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The Third Petition: Thy Will Be Done&lt;/h3&gt;
+&lt;h3 id=&#34;the-third-petition-thy-will-be-done&#34;&gt;The Third Petition: Thy Will Be Done&lt;/h3&gt;
 
 &lt;p&gt;The third petition. &amp;ldquo;Thy will be done on earth as it is in heaven.&amp;rdquo; Say: &amp;ldquo;O dear Lord, God and Father, thou knowest that the world, if it cannot destroy thy name or root out thy kingdom, is busy day and night with wicked tricks and schemes, strange conspiracies and intrigue, huddling together in secret counsel, giving mutual encouragement and support, raging and threatening and going about with every evil intention to destroy thy name, word, kingdom, and children. Therefore, dear Lord, God and Father, convert them and defend us. Convert those who have yet to acknowledge thy good will that they with us and we with them may obey thy will and for thy sake gladly, patiently, and joyously bear every evil, cross, and adversity, and thereby acknowledge, test, and experience thy benign, gracious, and perfect will. But defend us against those who in their rage, fury, hate, threats, and evil desires do not cease to do us harm. Make their wicked schemes, tricks, and devices to come to nothing so that these may be turned against them, as we sing in Psalm 7.&amp;rdquo;&lt;/p&gt;
 
-&lt;h3 id=&#34;the-fourth-petition-give-us-this-day-our-daily-bread:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The Fourth Petition: Give Us This Day Our Daily Bread&lt;/h3&gt;
+&lt;h3 id=&#34;the-fourth-petition-give-us-this-day-our-daily-bread&#34;&gt;The Fourth Petition: Give Us This Day Our Daily Bread&lt;/h3&gt;
 
 &lt;p&gt;The fourth petition. &amp;ldquo;Give us this day our daily bread.&amp;rdquo; Say: &amp;ldquo;Dear Lord, God and Father, grant us thy blessing also in this temporal and physical life. Graciously grant us blessed peace. Protect us against war and disorder. Grant to our dear emperor fortune and success against his enemies. Grant him wisdom and understanding to rule over his earthly kingdom in peace and prosperity. Grant to all kings, princes, and rulers good counsel and the will to preserve their domains and their subjects in tranquility and justice. Especially aid and guide our dear prince N., under whose protection and shelter thou dost maintain us, so that he may be protected against all harm and reign blessedly, secure from evil tongues and disloyal people. Grant to all his subjects grace to serve him loyally and obediently. Grant to every estate-townsman or farmer-to be diligent and to display charity and loyalty toward each other. Give us favorable weather and good harvest. I commend to thee my house and property, wife and child. Grant that I may manage them well, supporting and educating them as a Christian should. Defend us against the Destroyer and all his wicked angels who would do us harm and mischief in this life. Amen.&amp;rdquo;&lt;/p&gt;
 
-&lt;h3 id=&#34;the-fifth-petition-forgive-us-our-trespasses:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The Fifth Petition: Forgive Us Our Trespasses&lt;/h3&gt;
+&lt;h3 id=&#34;the-fifth-petition-forgive-us-our-trespasses&#34;&gt;The Fifth Petition: Forgive Us Our Trespasses&lt;/h3&gt;
 
 &lt;p&gt;The fifth petition. &amp;ldquo;Forgive us our trespasses as we forgive those who trespass against us.&amp;rdquo; Say: &amp;ldquo;O dear Lord, God and Father, enter not into judgment against us because no man living is justified before thee. Do not count it against us as a sin that we are so unthankful for thine ineffable goodness, spiritual and physical, or that we stray into sin many times every day, more often than we can know or recognize, Psalm 19. Do not look upon how good or how wicked we have been but only upon the infinite compassion which thou hast bestowed upon us in Christ, thy dear Son. Grant forgiveness also to those who have harmed or wronged us, as we forgive them from our hearts. They inflict the greatest injury upon themselves by arousing thy anger in their actions toward us. We are not helped by their ruin; we would much rather that they be saved with us. Amen.&amp;rdquo; (Anyone who feels unable to forgive, let him ask for grace so that he can forgive; but that belongs in a sermon.)&lt;/p&gt;
 
-&lt;h3 id=&#34;the-sixth-petition-lead-us-not-into-temptation:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The Sixth Petition: Lead Us Not Into Temptation&lt;/h3&gt;
+&lt;h3 id=&#34;the-sixth-petition-lead-us-not-into-temptation&#34;&gt;The Sixth Petition: Lead Us Not Into Temptation&lt;/h3&gt;
 
 &lt;p&gt;The sixth petition. &amp;ldquo;And lead us not into temptation.&amp;rdquo; Say: &amp;ldquo;O dear Lord, Father and God, keep us fit and alert, eager and diligent in thy word and service, so that we do not become complacent, lazy, and slothful as though we had already achieved everything. In that way the fearful devil cannot fall upon us, surprise us, and deprive us of thy precious word or stir up strife and factions among us and lead us into other sin and disgrace, both spiritually and physically. Rather grant us wisdom and strength through thy spirit that we may valiantly resist him and gain the victory. Amen.&amp;rdquo;&lt;/p&gt;
 
-&lt;h3 id=&#34;the-seventh-petition-but-deliver-us-from-evil:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The Seventh Petition: But Deliver Us From Evil&lt;/h3&gt;
+&lt;h3 id=&#34;the-seventh-petition-but-deliver-us-from-evil&#34;&gt;The Seventh Petition: But Deliver Us From Evil&lt;/h3&gt;
 
 &lt;p&gt;The seventh petition. &amp;ldquo;But deliver us from evil.&amp;rdquo; Say: &amp;ldquo;O dear Lord, God and Father, this wretched life is so full of misery and calamity, of danger and uncertainty, so full of malice and faithlessness (as St. Paul says, &amp;ldquo;The days are evil&amp;rdquo;) that we might rightfully grow weary of life and long for death. But thou, dear Father, knowest our frailty; therefore help us to pass in safety through so much wickedness and villainy; and, when our last hour comes, in thy mercy grant us a blessed departure from this vale of sorrows so that in the face of death we do not become fearful or despondent but in firm faith commit our souls into thy hands. Amen.&amp;rdquo;&lt;/p&gt;
 
-&lt;h3 id=&#34;amen:d70503e8bcf9464a5e0336062ac91458&#34;&gt;Amen&lt;/h3&gt;
+&lt;h3 id=&#34;amen&#34;&gt;Amen&lt;/h3&gt;
 
 &lt;p&gt;Finally, mark this, that you must always speak the Amen firmly. Never doubt that God in his mercy will surely hear you and say &amp;ldquo;yes&amp;rdquo; to your prayers. Never think that you are kneeling or standing alone, rather think that the whole of Christendom, all devout Christians, are standing there beside you and you are standing among them in a common, united petition which God cannot disdain. Do not leave your prayer without having said or thought, &amp;ldquo;Very well, God has heard my prayer; this I know as a certainty and a truth.&amp;rdquo; That is what Amen means.&lt;/p&gt;
 
 &lt;p&gt;You should also know that I do not want you to recite all these words in your prayer. That would make it nothing but idle chatter and prattle, read word for word out of a book as were the rosaries by the laity and the prayers of the priests and monks. Rather do I want your heart to be stirred and guided concerning the thoughts which ought to be comprehended in the Lord&amp;rsquo;s Prayer. These thoughts may be expressed, if your heart is rightly warmed and inclined toward prayer, in many different ways and with more words or fewer. I do not bind myself to such words or syllables, but say my prayers in one fashion today, in another tomorrow, depending upon my mood and feeling. I stay however, as nearly as I can, with the same general thoughts and ideas. It may happen occasionally that I may get lost among so many ideas in one petition that I forego the other six. If such an abundance of good thoughts comes to us we ought to disregard the other petitions, make room for such thoughts, listen in silence, and under no circumstances obstruct them. The Holy Spirit himself preaches here, and one word of his sermon is far better than a thousand of our prayers. Many times I have learned more from one prayer than I might have learned from much reading and speculation.&lt;/p&gt;
 
-&lt;h2 id=&#34;an-eagerness-for-prayer:d70503e8bcf9464a5e0336062ac91458&#34;&gt;An Eagerness for Prayer&lt;/h2&gt;
+&lt;h2 id=&#34;an-eagerness-for-prayer&#34;&gt;An Eagerness for Prayer&lt;/h2&gt;
 
 &lt;p&gt;It is of great importance that the heart be made ready and eager for prayer. As the Preacher says, &amp;ldquo;Prepare your heart for prayer, and do not tempt God&amp;rdquo;. What else is it but tempting God when your mouth babbles and the mind wanders to other thoughts? Like the priest who prayed, &amp;ldquo;Deus in adjutorium meum intende. Farmhand, did you unhitch the horses? Domine ad adjuvandum me festina. Maid, go out and milk the cow. Gloria patti et filio et spiritui sancto. Hurry up, boy, I wish the ague would take you!&amp;rdquo; I have heard many such prayers in my experience under the papacy; most of their prayers are of this sort. This is blasphemy and it would be better if they played at it if they cannot or do not care to do better. In my day I have prayed many such canonical hours myself, regrettably, and in such a manner that the psalm or the allotted time came to an end before I even realized whether I was at the beginning or in the middle.&lt;/p&gt;
 
@@ -253,21 +323,21 @@ Luther and Friends Pray at the Bedside of Melancthon
 
 &lt;p&gt;This in short is the way I use the Lord&amp;rsquo;s Prayer when I pray it. To this day I suckle at the Lord&amp;rsquo;s Prayer like a child, and as an old man eat and drink from it and never get my fill. It is the very best prayer, even better than the psalter, which is so very dear to me. It is surely evident that a real master composed and taught it. What a great pity that the prayer of such a master is prattled and chattered so irreverently all over the world! How many pray the Lord&amp;rsquo;s Prayer several thousand times in the course of a year, and if they were to keep on doing so for a thousand years they would not have tasted nor prayed one iota, one dot, of it! In a word, the Lord&amp;rsquo;s Prayer is the greatest martyr on earth (as are the name and word of God). Everybody tortures and abuses it; few take comfort and joy in its proper use.&lt;/p&gt;
 
-&lt;h2 id=&#34;praying-the-ten-commandments-a-garland-of-four-strands:d70503e8bcf9464a5e0336062ac91458&#34;&gt;Praying the Ten Commandments: A Garland of Four Strands&lt;/h2&gt;
+&lt;h2 id=&#34;praying-the-ten-commandments-a-garland-of-four-strands&#34;&gt;Praying the Ten Commandments: A Garland of Four Strands&lt;/h2&gt;
 
 &lt;p&gt;If I have had time and opportunity to go through the Lord&amp;rsquo;s Prayer, I do the same with the Ten Commandments. I take one part after another and free myself as much as possible from distractions in order to pray. I divide each commandment into four parts, thereby fashioning a garland of four strands. That is, I think of each commandment as, first, instruction, which is really what it is intended to be, and consider what the Lord God demands of me so earnestly. Second, I turn it into a thanksgiving; third, a confession; and fourth, a prayer.&lt;/p&gt;
 
-&lt;h3 id=&#34;the-first-commandment-you-shall-have-no-other-gods:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The First Commandment: You Shall Have No Other Gods&lt;/h3&gt;
+&lt;h3 id=&#34;the-first-commandment-you-shall-have-no-other-gods&#34;&gt;The First Commandment: You Shall Have No Other Gods&lt;/h3&gt;
 
 &lt;p&gt;I do so in thoughts or words such as these: &amp;ldquo;I am the Lord your God, etc. You shall have no other gods before me,&amp;rdquo; etc. Here I earnestly consider that God expects and teaches me to trust him sincerely in all things and that it is his most earnest purpose to be my God. I must think of him in this way at the risk of losing eternal salvation. My heart must not build upon anything else or trust in any other thing, be it wealth, prestige, wisdom, might, piety, or anything else. Second, I give thanks for his infinite compassion by which he has come to me in such a fatherly way and, unasked, unbidden, and unmerited, has offered to be my God, to care for me, and to be my comfort, guardian, help, and strength in every time of need. We poor mortals have sought so many gods and would have to seek them still if he did not enable us to hear him openly tell us in our own language that he intends to be our God. How could we ever-in all eternity-thank him enough! Third, I confess and acknowledge my great sin and ingratitude for having so shamefully despised such sublime teachings and such a precious gift throughout my whole life, and for having fearfully provoked his wrath by countless acts of idolatry. I repent of these and ask for his grace. Fourth, I pray and say: &amp;ldquo;O my God and Lord, help me by thy grace to learn and understand thy commandments more fully every day and to live by them in sincere confidence. Preserve my heart so that I shall never again become forgetful and ungrateful, that I may never seek after other gods or other consolation on earth or in any creature, but cling truly and solely to thee, my only God. Amen, dear Lord God and Father. Amen.&amp;rdquo;&lt;/p&gt;
 
-&lt;h3 id=&#34;the-second-commandment-you-shall-not-misuse-the-name-of-the-lord-your-god:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The Second Commandment: You Shall Not Misuse the Name of the Lord Your God&lt;/h3&gt;
+&lt;h3 id=&#34;the-second-commandment-you-shall-not-misuse-the-name-of-the-lord-your-god&#34;&gt;The Second Commandment: You Shall Not Misuse the Name of the Lord Your God&lt;/h3&gt;
 
 &lt;p&gt;Afterward, if time and inclination permit, the Second Commandment likewise in four strands, like this: &amp;ldquo;You shall not take the name of the Lord your God in vain,&amp;rdquo; etc. First, I learn that I must keep God&amp;rsquo;s name in honor, holiness, and beauty; not to swear, curse, not to be boastful or seek honor and repute for myself, but humbly to invoke his name, to pray, praise, and extol it, and to let it be my only honor and glory that he is my God and that I am his lowly creature and unworthy servant. Second, I give thanks to him for these precious gifts, that he has revealed his name to me and bestowed it upon me, that I can glory in his name and be called God&amp;rsquo;s servant and creature, etc., that his name is my refuge like a mighty fortress to which the righteous man can flee and find protection, as Solomon says. Third, I confess and acknowledge that I have grievously and shamefully sinned against this commandment all my life. I have not only failed to invoke, extol, and honor his holy name, but have also been ungrateful for such gifts and have, by swearing, lying, and betraying, misused them in the pursuit of shame and sin. This I bitterly regret and ask grace and forgiveness, etc. Fourth, I ask for help and strength henceforth to learn this commandment and to be preserved from such evil ingratitude, abuse, and sin against his name, and that I may be found grateful in revering and honoring his name.&lt;/p&gt;
 
 &lt;p&gt;I repeat here what I previously said in reference to the Lord&amp;rsquo;s Prayer: if in the midst of such thoughts the Holy Spirit begins to preach in your heart with rich, enlightening thoughts, honor him by letting go of this written scheme; be still and listen to him who can do better than you can. Remember what he says and note it well and you will behold wondrous things in the law of God, as David says.&lt;/p&gt;
 
-&lt;h3 id=&#34;the-third-commandment-remember-the-sabbath-day-to-keep-it-holy:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The Third Commandment: Remember the Sabbath Day to Keep It Holy&lt;/h3&gt;
+&lt;h3 id=&#34;the-third-commandment-remember-the-sabbath-day-to-keep-it-holy&#34;&gt;The Third Commandment: Remember the Sabbath Day to Keep It Holy&lt;/h3&gt;
 
 &lt;p&gt;The Third Commandment: &amp;ldquo;Remember the sabbath day, to keep it holy.&amp;rdquo; I learn from this, first of all, that the sabbath day has not been instituted for the sake of being idle or indulging in worldly pleasures, but in order that we may keep it holy. However, it is not sanctified by our works and actions- our works are not holy-but by the word of God, which alone is wholly pure and sacred and which sanctifies everything that comes in contact with it, be it time, place, person, labor, rest, etc. According to St. Paul, who says that every creature is consecrated by word and prayer, I Timothy 4, our works are consecrated through the word. I realize therefore that on the sabbath I must, above all, hear and contemplate God&amp;rsquo;s word. Thereafter I should give thanks in my own words, praise God for all his benefits, and pray for myself and for the whole world. He who so conducts himself on the sabbath day keeps it holy. He who fails to do so is worse than the person who works on the sabbath.&lt;/p&gt;
 
@@ -277,7 +347,7 @@ Luther and Friends Pray at the Bedside of Melancthon
 
 &lt;p&gt;Fourth, I pray for myself and for the whole world that the gracious Father may preserve us in his holy word and not withdraw it from us because of our sin, ingratitude, and laziness. May he preserve us from factious spirits and false teachers, and may he send faithful and honest laborers into his harvest, that is, devout pastors and preachers. May he grant us grace humbly to hear, accept, and honor their words as his own words and to offer our sincere thanks and praise.&lt;/p&gt;
 
-&lt;h3 id=&#34;the-fourth-commandment-honor-your-father-and-your-mother:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The Fourth Commandment: Honor Your Father and Your Mother&lt;/h3&gt;
+&lt;h3 id=&#34;the-fourth-commandment-honor-your-father-and-your-mother&#34;&gt;The Fourth Commandment: Honor Your Father and Your Mother&lt;/h3&gt;
 
 &lt;p&gt;The Fourth Commandment: &amp;ldquo;Honor your father and your mother.&amp;rdquo; First, I learn to acknowledge God, my Greater; how wondrously he has created me, body and soul; and how he has given me life through my parents and has ins ed in them the desire to care for me, the fruit of their bodies, with all their power. He has brought me into this world, has sustained and cared for me, nurtured and educated me with great diligence, carefulness, and concern, through danger, trouble, and hard work. To this moment he protects me, his creature, and helps me in countless dangers and troubles. It is as though he were creating me anew every moment. But the devil does not willingly concede us one single moment of life.&lt;/p&gt;
 
@@ -291,7 +361,7 @@ Luther and Friends Pray at the Bedside of Melancthon
 
 &lt;p&gt;If you are a father or mother, you should at this point remember your children and the workers in your household. Pray earnestly to the dear Father, who has set you in an office of honor in his name and intends that you be honored by the name &amp;ldquo;father.&amp;rdquo; Ask that he grant you grace and blessing to look after and support your wife, children, and servants in a godly and Christian manner. May he give you wisdom and strength to train them well in heart and will to follow your instruction with obedience. Both are God&amp;rsquo;s gifts, your children and the way they flourish, that they turn out well and that they remain so. Otherwise the home is nothing but a pigsty and school for rascals, as one can see among the uncouth and godless.&lt;/p&gt;
 
-&lt;h3 id=&#34;the-fifth-commandment-you-shall-not-kill:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The Fifth Commandment: You Shall Not Kill&lt;/h3&gt;
+&lt;h3 id=&#34;the-fifth-commandment-you-shall-not-kill&#34;&gt;The Fifth Commandment: You Shall Not Kill&lt;/h3&gt;
 
 &lt;p&gt;The Fifth Commandment: &amp;ldquo;You shall not kill.&amp;rdquo; Here I learn, first of all, that God desires me to love my neighbor, so that I do him no bodily harm, either by word or action, neither injure nor take revenge upon him in anger, vexation, envy, hatred, or for any evil reason, but realize that I am obliged to assist and counsel him in every bodily need. In this commandment God commands me to protect my neighbor&amp;rsquo;s body and in turn commands my neighbor to protect my own. As Sirach says, &amp;ldquo;He has committed to each of us his neighbor&amp;rdquo;.&lt;/p&gt;
 
@@ -301,7 +371,7 @@ Luther and Friends Pray at the Bedside of Melancthon
 
 &lt;p&gt;Fourth, I pray the dear Father to lead us to an understanding of this his sacred commandment and to help us keep it and live in accordance with it. May he preserve us from the murderer who is the master of every form of murder and violence. May he grant us his grace that we and all others may treat each other in kindly, gentle, charitable ways, forgiving one another from the heart, bearing each other&amp;rsquo;s faults and shortcomings in a Christian and brotherly manner, and thus living together in true peace and concord, as the commandment teaches and requires us to do.&lt;/p&gt;
 
-&lt;h3 id=&#34;the-sixth-commandment-you-shall-not-commit-adultery:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The Sixth Commandment: You Shall Not Commit Adultery&lt;/h3&gt;
+&lt;h3 id=&#34;the-sixth-commandment-you-shall-not-commit-adultery&#34;&gt;The Sixth Commandment: You Shall Not Commit Adultery&lt;/h3&gt;
 
 &lt;p&gt;The Sixth Commandment: &amp;ldquo;You shall not commit adultery.&amp;rdquo; Here I learn once more what God intends and expects me to do, namely, to live chastely, decently, and temperately, both in thoughts and in words and actions, and not to disgrace any man&amp;rsquo;s wife, daughter, or maidservant. More than this, I ought to assist, save, protect, and guard marriage and decency to the best of my ability; I should silence the idle thoughts of those who want to destroy and slander their reputation. All this I am obliged to do, and God expects me not only to leave my neighbor&amp;rsquo;s wife and family unmolested, but I owe it to my neighbor to preserve and protect his good character and honor, just as I would want my neighbor to do for me and mine in keeping with this commandment.&lt;/p&gt;
 
@@ -313,7 +383,7 @@ Luther and Friends Pray at the Bedside of Melancthon
 
 &lt;p&gt;Then I continue with the other commandments as I have time or opportunity or am in the mood for it. As I have said before, I do not want anyone to feel bound by my words or thoughts. I only want to offer an example for those who may wish to follow it; let anyone improve it who is able to do so and let him meditate either upon all commandments at one time or on as many as he may desire. For the mind, once it is seriously occupied with a matter, be it good or evil, can ponder more in one moment than the tongue can recite in ten hours or the pen write in ten days. There is something quick, subtle, and mighty about the mind and soul. It is able to review the Ten Commandments in their fourfold aspect very rapidly if it wants to do so and is in earnest.&lt;/p&gt;
 
-&lt;h3 id=&#34;the-seventh-commandment-you-shall-not-steal:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The Seventh Commandment: You Shall Not Steal&lt;/h3&gt;
+&lt;h3 id=&#34;the-seventh-commandment-you-shall-not-steal&#34;&gt;The Seventh Commandment: You Shall Not Steal&lt;/h3&gt;
 
 &lt;p&gt;The Seventh Commandment: &amp;ldquo;You shall not steal.&amp;rdquo; First, I can learn here that I must not take my neighbor&amp;rsquo;s property from him or possess it against his will, either in secret or openly. I must not be false or dishonest in business, service, or work, nor profit by fraud, but must support myself by the sweat of my brow and eat my bread in honor. Furthermore, I must see to it that in any of the above-named ways my neighbor is not defrauded, just as I wish for myself. I also learn in this commandment that God, in his fatherly solicitude, sets a protective hedge around my goods and solemnly prohibits anyone to steal from me. Where that is ignored, he has imposed a penalty and has placed the gallows and the rope in the hands of Jack the hangman. Where that cannot be done, God himself metes out punishment and they become beggars in the end, as the proverb says, &amp;ldquo;Who steals in his youth, goes begging in old age,&amp;rdquo; or, &amp;ldquo;Stolen gain goes down the drain.&amp;rdquo;&lt;/p&gt;
 
@@ -323,7 +393,7 @@ Luther and Friends Pray at the Bedside of Melancthon
 
 &lt;p&gt;Fourth, I ask that he grant to me and all the world grace to learn from this commandment, to ponder it, and to become better people, so that there may be less theft, robbery, usury, cheating, and injustice and that the Judgment Day, for which all saints and the whole creation pray, Romans 8, shall soon bring this to an end. Amen&lt;/p&gt;
 
-&lt;h3 id=&#34;the-eighth-commandment-you-shall-not-bear-false-witness:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The Eighth Commandment: You Shall Not Bear False Witness&lt;/h3&gt;
+&lt;h3 id=&#34;the-eighth-commandment-you-shall-not-bear-false-witness&#34;&gt;The Eighth Commandment: You Shall Not Bear False Witness&lt;/h3&gt;
 
 &lt;p&gt;The Eighth Commandment: &amp;ldquo;You shall not bear false witness.&amp;rdquo; This teaches us, first of all, to be truthful to each other, to shun lies and calumnies, to be glad to speak well of each other, and to delight in hearing what is good about others. Thus a wall has been built around our good reputation and integrity to protect it against malicious gossip and deceitful tongues; God will not let that go unpunished, as he has said in the other commandments.&lt;/p&gt;
 
@@ -333,7 +403,7 @@ Luther and Friends Pray at the Bedside of Melancthon
 
 &lt;p&gt;Fourth, we ask for help from now on to keep the commandment and for a healing tongue, etc.&lt;/p&gt;
 
-&lt;h3 id=&#34;the-ninth-and-tenth-commandments-you-shall-not-covet:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The Ninth and Tenth Commandments: You Shall Not Covet&lt;/h3&gt;
+&lt;h3 id=&#34;the-ninth-and-tenth-commandments-you-shall-not-covet&#34;&gt;The Ninth and Tenth Commandments: You Shall Not Covet&lt;/h3&gt;
 
 &lt;p&gt;The Ninth and Tenth Commandments: &amp;ldquo;You shall not covet your neighbor&amp;rsquo;s house.&amp;rdquo; Similarly, &amp;ldquo;his wife,&amp;rdquo; etc.&lt;/p&gt;
 
@@ -345,17 +415,17 @@ Luther and Friends Pray at the Bedside of Melancthon
 
 &lt;p&gt;Fourth, we should ask for help and strength devoutly to keep such divine commandments&lt;/p&gt;
 
-&lt;h3 id=&#34;conclusion-of-the-ten-commandments:d70503e8bcf9464a5e0336062ac91458&#34;&gt;Conclusion of the Ten Commandments&lt;/h3&gt;
+&lt;h3 id=&#34;conclusion-of-the-ten-commandments&#34;&gt;Conclusion of the Ten Commandments&lt;/h3&gt;
 
 &lt;p&gt;These are the Ten Commandments in their fourfold aspect, namely, as a school text, song book, penitential book, and prayer book. They are intended to help the heart come to itself and grow zealous in prayer. Take care, however, not to undertake all of this or so much that one becomes weary in spirit. Likewise, a good prayer should not be lengthy or drawn out, but frequent and ardent. It is enough to consider one section or half a section which kindles a fire in the heart. This the Spirit will grant us and continually instruct us in when, by God&amp;rsquo;s word, our hearts have been cleared and freed of outside thoughts and concerns.&lt;/p&gt;
 
 &lt;p&gt;Nothing can be said here about the part of faith and Holy Scriptures because there would be no end to what could be said. With practice one can take the Ten Commandments on one day, a psalm or chapter of Holy Scripture the next day, and use them as flint and steel to kindle a flame in the heart.&lt;/p&gt;
 
-&lt;h2 id=&#34;a-simple-exercise-for-contemplating-the-creed:d70503e8bcf9464a5e0336062ac91458&#34;&gt;A Simple Exercise for Contemplating the Creed&lt;/h2&gt;
+&lt;h2 id=&#34;a-simple-exercise-for-contemplating-the-creed&#34;&gt;A Simple Exercise for Contemplating the Creed&lt;/h2&gt;
 
 &lt;p&gt;If you have more time, or the inclination, you may treat the Creed in the same manner and make it into a garland of four strands. The Creed, however, consists of three main parts or articles, corresponding to the three Persons of the Divine Majesty, as it has been so divided in the Catechism and elsewhere.&lt;/p&gt;
 
-&lt;h3 id=&#34;the-first-article-of-creation-i-believe-in-god-the-father-almighty-maker-of-heaven-and-earth:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The First Article of Creation: &amp;ldquo;I believe in God the Father Almighty, maker of heaven and earth.&amp;rdquo;&lt;/h3&gt;
+&lt;h3 id=&#34;the-first-article-of-creation-i-believe-in-god-the-father-almighty-maker-of-heaven-and-earth&#34;&gt;The First Article of Creation: &amp;ldquo;I believe in God the Father Almighty, maker of heaven and earth.&amp;rdquo;&lt;/h3&gt;
 
 &lt;p&gt;Here, first of all, a great light shines into your heart if you permit it to and teaches you in a few words what all the languages of the world and a multitude of books cannot describe or fathom in words, namely, who you are, whence you came, whence came heaven and earth. You are God&amp;rsquo;s creation, his handiwork, his workmanship. That is, of yourself and in yourself you are nothing, can do nothing, know nothing, are capable of nothing. What were you a thousand years ago? What were heaven and earth six thousand years ago? Nothing, just as that which will never be created is nothing. But what you are, know, can do, and can achieve is God&amp;rsquo;s creation, as you confess by word of mouth. Therefore you have nothing to boast of before God except that you are nothing and he is your Creator who can annihilate you at any moment. Reason knows nothing of such a light. Many great people have sought to know what heaven and earth, man and creatures are and have found no answer. But here it is declared and faith affirms that God has created everything out of nothing. Here is the soul&amp;rsquo;s garden of pleasure, along whose paths we enjoy the works of God-but it would take too long to describe all that.&lt;/p&gt;
 
@@ -365,7 +435,7 @@ Luther and Friends Pray at the Bedside of Melancthon
 
 &lt;p&gt;Fourth, we pray for a true and confident faith that sincerely esteems and trusts God to be our Creator, as this article declares.&lt;/p&gt;
 
-&lt;h3 id=&#34;the-second-article-of-redemption-and-in-jesus-christ-his-only-son-our-lord-etc:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The Second Article of Redemption: &amp;ldquo;And in Jesus Christ, his only Son, our Lord,&amp;rdquo; etc.&lt;/h3&gt;
+&lt;h3 id=&#34;the-second-article-of-redemption-and-in-jesus-christ-his-only-son-our-lord-etc&#34;&gt;The Second Article of Redemption: &amp;ldquo;And in Jesus Christ, his only Son, our Lord,&amp;rdquo; etc.&lt;/h3&gt;
 
 &lt;p&gt;Again a great light shines forth and teaches us how Christ, God&amp;rsquo;s Son, has redeemed us from death which, after the creation, had become our lot through Adam&amp;rsquo;s fall and in which we would have perished eternally. Now think: just as in the first article you were to consider yourself one of God&amp;rsquo;s creatures and not doubt it, now you must think of yourself as one of the redeemed and never doubt that. Emphasize one word above all others, for instance, Jesus Christ, our Lord. Likewise, suffered for us, died for us, arose for us. All this is ours and pertains to us; that us includes yourself, as the word of God declares.&lt;/p&gt;
 
@@ -375,7 +445,7 @@ Luther and Friends Pray at the Bedside of Melancthon
 
 &lt;p&gt;Fourth, pray now that God will preserve you from this time forward to the end in true and pure faith in Christ our Lord.&lt;/p&gt;
 
-&lt;h3 id=&#34;the-third-article-of-sanctification-i-believe-in-the-holy-spirit-etc:d70503e8bcf9464a5e0336062ac91458&#34;&gt;The Third Article of Sanctification: &amp;ldquo;I believe in the Holy Spirit,&amp;rdquo; etc.&lt;/h3&gt;
+&lt;h3 id=&#34;the-third-article-of-sanctification-i-believe-in-the-holy-spirit-etc&#34;&gt;The Third Article of Sanctification: &amp;ldquo;I believe in the Holy Spirit,&amp;rdquo; etc.&lt;/h3&gt;
 
 &lt;p&gt;This is the third great light which teaches us where such a Creator and Redeemer may be found and plainly encountered in this world, and what this will all come to in the end. Much could be said about this, but here is a summary: Where the holy Christian church exists, there we can find God the Creator, God the Redeemer, God the Holy Spirit, that is, him who daily sanctifies us through the forgiveness of sins, etc. The church exists where the word of God concerning such faith is rightly preached and confessed.&lt;/p&gt;
 
@@ -389,15 +459,15 @@ Luther and Friends Pray at the Bedside of Melancthon
     
     <item>
       <title>Resources for PowerShell users</title>
-      <link>http://joshua.poehls.me/powershell-resources</link>
+      <link>http://joshua.poehls.me/powershell-resources/</link>
       <pubDate>Mon, 13 Apr 2015 10:43:31 -0600</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/powershell-resources</guid>
+      <guid>http://joshua.poehls.me/powershell-resources/</guid>
       <description>
 
 &lt;p&gt;This is a list of resources that should help anyone interested in PowerShell.&lt;/p&gt;
 
-&lt;h2 id=&#34;editors-and-ides:fc2b22b46776086c164a896f746d9d30&#34;&gt;Editors and IDEs&lt;/h2&gt;
+&lt;h2 id=&#34;editors-and-ides&#34;&gt;Editors and IDEs&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;PowerShell ISE
@@ -410,7 +480,7 @@ Luther and Friends Pray at the Bedside of Melancthon
 &lt;li&gt;Sublime Text via the &lt;a href=&#34;https://github.com/SublimeText/PowerShell&#34;&gt;PowerShell package&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;articles:fc2b22b46776086c164a896f746d9d30&#34;&gt;Articles&lt;/h2&gt;
+&lt;h2 id=&#34;articles&#34;&gt;Articles&lt;/h2&gt;
 
 &lt;p&gt;I few articles I&amp;rsquo;ve written to help you get started.&lt;/p&gt;
 
@@ -421,20 +491,20 @@ Luther and Friends Pray at the Bedside of Melancthon
 &lt;li&gt;&lt;a href=&#34;http://zduck.com/2011/scripting-tips-take-your-powershell-profile-everywhere-with-dropbox/&#34;&gt;How to store your profile in Dropbox&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;videos:fc2b22b46776086c164a896f746d9d30&#34;&gt;Videos&lt;/h2&gt;
+&lt;h2 id=&#34;videos&#34;&gt;Videos&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/MDC-B340#fbid=48_8oesWS8j&#34;&gt;Windows PowerShell Unplugged&lt;/a&gt; with Jeffery Snover. &lt;strong&gt;Essential watching for beginners.&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/MDC-B400#fbid=48_8oesWS8j&#34;&gt;Advanced Automation Using Windows PowerShell&lt;/a&gt; with Don Jones and Jeffery Snover&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;books:fc2b22b46776086c164a896f746d9d30&#34;&gt;Books&lt;/h2&gt;
+&lt;h2 id=&#34;books&#34;&gt;Books&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.amazon.com/gp/product/1935182137/ref=as_li_ss_il?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=390957&amp;amp;creativeASIN=1935182137&amp;amp;linkCode=as2&amp;amp;tag=zduck-20&#34;&gt;Windows PowerShell in Action, Second Edition&lt;/a&gt; by Bruce Payette&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;community-resources:fc2b22b46776086c164a896f746d9d30&#34;&gt;Community Resources&lt;/h2&gt;
+&lt;h2 id=&#34;community-resources&#34;&gt;Community Resources&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://blogs.msdn.com/b/powershell/&#34;&gt;Windows PowerShell blog&lt;/a&gt;&lt;/li&gt;
@@ -449,10 +519,10 @@ Luther and Friends Pray at the Bedside of Melancthon
     
     <item>
       <title>Reading Day One journals in Go</title>
-      <link>http://joshua.poehls.me/2015/03/dayone-golang-package</link>
+      <link>http://joshua.poehls.me/2015/03/dayone-golang-package/</link>
       <pubDate>Sat, 14 Mar 2015 10:43:31 -0600</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2015/03/dayone-golang-package</guid>
+      <guid>http://joshua.poehls.me/2015/03/dayone-golang-package/</guid>
       <description>&lt;p&gt;Here&amp;rsquo;s a little gift for my fellow &lt;a href=&#34;http://dayoneapp.com&#34;&gt;Day One&lt;/a&gt; aficionados who also happen to use &lt;a href=&#34;http://golang.org&#34;&gt;Go&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;A Go package for reading Day One journal files!&lt;/strong&gt;&lt;/p&gt;
@@ -468,16 +538,16 @@ Luther and Friends Pray at the Bedside of Melancthon
 j := dayone.NewJournal(&amp;quot;/Users/{me}/Dropbox/Apps/Day One/Journal.dayone&amp;quot;)
 
 err := j.Read(func(e *Entry, err error) error {
-	if err != nil {
-		return err
-	}
+    if err != nil {
+        return err
+    }
 
-	// Do something with the entry,
-	// or return dayone.ErrStopRead to break.
+    // Do something with the entry,
+    // or return dayone.ErrStopRead to break.
 })
 
 if err != nil {
-	panic(err)
+    panic(err)
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -487,10 +557,10 @@ if err != nil {
     
     <item>
       <title>Drone Strike Terrorism</title>
-      <link>http://joshua.poehls.me/2014/11/drone-strike-terrorism</link>
+      <link>http://joshua.poehls.me/2014/11/drone-strike-terrorism/</link>
       <pubDate>Tue, 18 Nov 2014 09:55:27 CST</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/11/drone-strike-terrorism</guid>
+      <guid>http://joshua.poehls.me/2014/11/drone-strike-terrorism/</guid>
       <description>
 
 &lt;p&gt;Have you read The Intercept&amp;rsquo;s &lt;a href=&#34;https://firstlook.org/theintercept/2014/11/18/media-outlets-continue-describe-unknown-drone-victims-militants/&#34;&gt;article on US drone strikes&lt;/a&gt; and the media&amp;rsquo;s coverage of them in the US? If you are an American, you should.&lt;/p&gt;
@@ -499,7 +569,7 @@ if err != nil {
 
 &lt;p&gt;&lt;a href=&#34;https://firstlook.org/theintercept/2014/11/18/media-outlets-continue-describe-unknown-drone-victims-militants/&#34;&gt;Read the article.&lt;/a&gt; Read it twice.&lt;/p&gt;
 
-&lt;h2 id=&#34;on-target-selection:d62b6f9184d6cab15beaa2c65f1dfe59&#34;&gt;On Target Selection&lt;/h2&gt;
+&lt;h2 id=&#34;on-target-selection&#34;&gt;On Target Selection&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;It has been more than two years since The New York Times revealed that &amp;ldquo;Mr. Obama embraced a disputed method for counting civilian casualties&amp;rdquo; of his drone strikes which &amp;ldquo;in effect &lt;strong&gt;counts all military-age males in a strike zone as combatants &amp;hellip; . unless there is explicit intelligence posthumously proving them innocent&lt;/strong&gt;.&amp;rdquo;&lt;/p&gt;
@@ -513,7 +583,7 @@ if err != nil {
 
 &lt;p&gt;We don&amp;rsquo;t want the NSA even &lt;em&gt;storing&lt;/em&gt; our own metadata. How would you like them to assassinate based solely on that metadata? Oh, and if they do that by blowing up your whole family, so be it.&lt;/p&gt;
 
-&lt;p&gt;Remember, &amp;ldquo;targeting decisions&amp;rdquo; means capital punishment. And not just for the intended target but also for a wide margin of collateral damage. [Far less than half of drone casualities are confirmed militants][2].&lt;/p&gt;
+&lt;p&gt;Remember, &amp;ldquo;targeting decisions&amp;rdquo; means capital punishment. And not just for the intended target but also for a wide margin of collateral damage. &lt;a href=&#34;http://www.thebureauinvestigates.com/2014/10/16/only-4-of-drone-victims-in-pakistan-named-as-al-qaeda-members/&#34;&gt;Far less than half of drone casualities are confirmed militants&lt;/a&gt;.&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;The &lt;strong&gt;tactic of drone-killing first responders and rescuers&lt;/strong&gt; who come to the scene of drone attacks or even mourners at funerals of drone victims&amp;hellip;&lt;/p&gt;
@@ -521,7 +591,7 @@ if err != nil {
 
 &lt;p&gt;Read that again.&lt;/p&gt;
 
-&lt;h2 id=&#34;on-public-perception:d62b6f9184d6cab15beaa2c65f1dfe59&#34;&gt;On Public Perception&lt;/h2&gt;
+&lt;h2 id=&#34;on-public-perception&#34;&gt;On Public Perception&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;&amp;hellip;if a drone missile killed an innocent adult male civilian, such as a vegetable vender or a fruit seller, the victim&amp;rsquo;s long hair and beard would be enough to stereotype him as a militant.&lt;/p&gt;
@@ -529,7 +599,7 @@ if err != nil {
 
 &lt;p&gt;Sorry, we&amp;rsquo;re too busy being &lt;a href=&#34;http://www.newstatesman.com/culture/2014/11/shirtgate-newflash-wearing-terrible-shirt-doesnt-make-you-terrible-person&#34;&gt;offended by the t-shirts people wear&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&#34;on-psychological-effects:d62b6f9184d6cab15beaa2c65f1dfe59&#34;&gt;On Psychological Effects&lt;/h2&gt;
+&lt;h2 id=&#34;on-psychological-effects&#34;&gt;On Psychological Effects&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;A 2012 report from Stanford and NYU Law School clinics, &amp;ldquo;Living Under Drones,&amp;rdquo; documented that &amp;ldquo;US drone strike policies cause considerable and under-accounted-for harm to the daily lives of ordinary civilians, beyond death and physical injury&amp;rdquo; – specifically, they &amp;ldquo;hover twenty-four hours a day over communities in northwest Pakistan, striking homes, vehicles, and public spaces without warning. Their presence terrorizes men, women, and children, giving rise to anxiety and psychological trauma among civilian communities.&amp;rdquo;&lt;/p&gt;
@@ -539,7 +609,7 @@ if err != nil {
 &lt;/blockquote&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&#34;on-terrorism:d62b6f9184d6cab15beaa2c65f1dfe59&#34;&gt;On Terrorism&lt;/h2&gt;
+&lt;h2 id=&#34;on-terrorism&#34;&gt;On Terrorism&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;The U.S. Joint Chiefs of Staff just released their annual &amp;ldquo;counterterrorism&amp;rdquo; report and it defined &amp;ldquo;terrorism&amp;rdquo; this way:&lt;/p&gt;
@@ -554,18 +624,16 @@ if err != nil {
 &lt;blockquote&gt;
 &lt;p&gt;Given their intended effects - both physical and psychological - on entire populations, is there any serious doubt that continual, sustained drone warfare in places such as Pakistan and Yemen meet the U.S.&amp;rsquo;s formal definition of &amp;ldquo;terrorism&amp;rdquo; found in its latest strategy document?&lt;/p&gt;
 &lt;/blockquote&gt;
-
-&lt;p&gt;[2]: &lt;a href=&#34;http://www.thebureauinvestigates.com/2014/10/16/only-4-of-drone-victims-in-pakistan-named-as-al-qaeda-members/&#34;&gt;http://www.thebureauinvestigates.com/2014/10/16/only-4-of-drone-victims-in-pakistan-named-as-al-qaeda-members/&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>The MMA Hour - 249 - Renzo Gracie</title>
-      <link>http://joshua.poehls.me/2014/10/mma-hour-249-renzo-gracie</link>
+      <link>http://joshua.poehls.me/2014/10/mma-hour-249-renzo-gracie/</link>
       <pubDate>Thu, 02 Oct 2014 15:03:13 CDT</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/10/mma-hour-249-renzo-gracie</guid>
-      <description>&lt;p&gt;&lt;figure &gt;
+      <guid>http://joshua.poehls.me/2014/10/mma-hour-249-renzo-gracie/</guid>
+      <description>&lt;figure &gt;
 &lt;a href=&#34;http://www.mmafighting.com/2014/9/30/6872803/the-mma-hour-249-renzo-gracie&#34;&gt;
 &lt;img src=&#34;http://joshua.poehls.me/2014/10/mma-hour-249-renzo-gracie/renzo.jpg&#34; alt=&#34;Renzo Gracie on MMA Hour Episode 249&#34; /&gt;
 &lt;/a&gt;
@@ -579,13 +647,13 @@ Renzo Gracie on MMA Hour Episode 249
 &lt;/p&gt; 
 &lt;/figcaption&gt;
 
-&lt;/figure&gt;&lt;/p&gt;
+&lt;/figure&gt;
 
 &lt;p&gt;I listened to &lt;a href=&#34;http://www.mmafighting.com/2014/9/30/6872803/the-mma-hour-249-renzo-gracie&#34;&gt;the Renzo interview on MMA Hour&lt;/a&gt; this morning; an amazing interview. &lt;a href=&#34;https://twitter.com/renzograciebjj&#34;&gt;Renzo&lt;/a&gt; seems like a great person and several of his comments really touched me. Lots of great stories and true respect as he talks about various people and competitors. Getting exposed to people like this is one of the reasons I love BJJ. There is a strong sense of honor and respect in the community that I don’t see in my own everyday life. It’s an inspiring influence.&lt;/p&gt;
 
 &lt;p&gt;Just stop reading and &lt;a href=&#34;http://www.mmafighting.com/2014/9/30/6872803/the-mma-hour-249-renzo-gracie&#34;&gt;go listen to it&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;One part that stood out the most to me was when he talked about how in this country (America), “nobody wants to &lt;strong&gt;do&lt;/strong&gt;.”&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:79b51f667639d27990d5e198eed7d0a3:fn2&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:79b51f667639d27990d5e198eed7d0a3:fn2&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; He referenced a story about a woman who was raped in New York. “Fifty-two people heard her scream.” Nobody helped. “Everybody assumed, you gonna take care, not me.”&lt;/p&gt;
+&lt;p&gt;One part that stood out the most to me was when he talked about how in this country (America), “nobody wants to &lt;strong&gt;do&lt;/strong&gt;.”&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn2&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:fn2&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; He referenced a story about a woman who was raped in New York. “Fifty-two people heard her scream.” Nobody helped. “Everybody assumed, you gonna take care, not me.”&lt;/p&gt;
 
 &lt;p&gt;In contrast, he told about a time when he was in Brazil driving with his wife and kids and saw a guy hit a woman.&lt;/p&gt;
 
@@ -601,8 +669,8 @@ Renzo Gracie on MMA Hour Episode 249
 &lt;hr /&gt;
 
 &lt;ol&gt;
-&lt;li id=&#34;fn:79b51f667639d27990d5e198eed7d0a3:fn2&#34;&gt;Skip to around 52 minutes into the interview for this story.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:79b51f667639d27990d5e198eed7d0a3:fn2&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:fn2&#34;&gt;Skip to around 52 minutes into the interview for this story.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn2&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>
@@ -610,11 +678,11 @@ Renzo Gracie on MMA Hour Episode 249
     
     <item>
       <title>The World&#39;s Loudest Sound</title>
-      <link>http://joshua.poehls.me/2014/10/worlds-loudest-sound</link>
+      <link>http://joshua.poehls.me/2014/10/worlds-loudest-sound/</link>
       <pubDate>Thu, 02 Oct 2014 14:03:07 CDT</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/10/worlds-loudest-sound</guid>
-      <description>&lt;p&gt;&lt;figure &gt;
+      <guid>http://joshua.poehls.me/2014/10/worlds-loudest-sound/</guid>
+      <description>&lt;figure &gt;
 
 &lt;img src=&#34;http://joshua.poehls.me/2014/10/worlds-loudest-sound/krakatoa.jpg&#34; alt=&#34;Krakatoa&#34; /&gt;
 
@@ -628,7 +696,7 @@ Krakatoa
 &lt;/p&gt; 
 &lt;/figcaption&gt;
 
-&lt;/figure&gt;&lt;/p&gt;
+&lt;/figure&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;The sound made by the Krakatoa volcanic eruption in 1883 was so loud it ruptured eardrums of people 40 miles away, travelled around the world four times, and &lt;a href=&#34;http://nautil.us/blog/the-sound-so-loud-that-it-circled-the-earth-four-times&#34;&gt;was clearly heard 3,000 miles away&lt;/a&gt;.&lt;/p&gt;
@@ -640,10 +708,10 @@ Krakatoa
     
     <item>
       <title>David Rumsey Map Collection</title>
-      <link>http://joshua.poehls.me/2014/09/david-rumsey-map-collection</link>
+      <link>http://joshua.poehls.me/2014/09/david-rumsey-map-collection/</link>
       <pubDate>Fri, 26 Sep 2014 16:51:06 CDT</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/09/david-rumsey-map-collection</guid>
+      <guid>http://joshua.poehls.me/2014/09/david-rumsey-map-collection/</guid>
       <description>&lt;p&gt;I just hit the cartography jackpot. This collection has well over 37,000 maps in high-resolution glory. I&amp;rsquo;ll see you in a few hours&amp;hellip;&lt;/p&gt;
 
 &lt;p&gt;&lt;figure &gt;
@@ -696,10 +764,10 @@ London Underground Transport (1933)
     
     <item>
       <title>Languages Are Beautiful</title>
-      <link>http://joshua.poehls.me/2014/09/languages-are-beautiful</link>
+      <link>http://joshua.poehls.me/2014/09/languages-are-beautiful/</link>
       <pubDate>Fri, 26 Sep 2014 12:52:44 CDT</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/09/languages-are-beautiful</guid>
+      <guid>http://joshua.poehls.me/2014/09/languages-are-beautiful/</guid>
       <description>&lt;p&gt;If you ever see me doodling, odds are that I&amp;rsquo;m drawing letters and numbers of some kind. I&amp;rsquo;ve always found alphabets, notations, and writing systems in general to be facinating. Typography is beautiful. Typography in foreign languages, even more so.&lt;/p&gt;
 
 &lt;p&gt;&lt;figure &gt;
@@ -812,11 +880,11 @@ Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש
     
     <item>
       <title>The NSA Reaches Out</title>
-      <link>http://joshua.poehls.me/2014/09/nsa-reaches-out</link>
+      <link>http://joshua.poehls.me/2014/09/nsa-reaches-out/</link>
       <pubDate>Fri, 26 Sep 2014 09:18:41 CDT</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/09/nsa-reaches-out</guid>
-      <description>&lt;p&gt;&lt;iframe width=&#34;100%&#34; height=&#34;150&#34; scrolling=&#34;no&#34; frameborder=&#34;no&#34; src=&#34;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/162688991&amp;color=2fa3bc&amp;show_artwork=false&#34;&gt;&lt;/iframe&gt;&lt;/p&gt;
+      <guid>http://joshua.poehls.me/2014/09/nsa-reaches-out/</guid>
+      <description>&lt;iframe width=&#34;100%&#34; height=&#34;150&#34; scrolling=&#34;no&#34; frameborder=&#34;no&#34; src=&#34;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/162688991&amp;color=2fa3bc&amp;show_artwork=false&#34;&gt;&lt;/iframe&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Anne Neuberger is Special Assistant to NSA Director Michael Rogers and also the Director of the NSA&amp;rsquo;s Commercial Solutions Center.&lt;/p&gt;
@@ -854,10 +922,10 @@ Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש
     
     <item>
       <title>Earth&#39;s Water is Older Than the Sun</title>
-      <link>http://joshua.poehls.me/2014/09/earths-water-is-older-than-the-sun</link>
+      <link>http://joshua.poehls.me/2014/09/earths-water-is-older-than-the-sun/</link>
       <pubDate>Thu, 25 Sep 2014 14:21:31 CDT</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/09/earths-water-is-older-than-the-sun</guid>
+      <guid>http://joshua.poehls.me/2014/09/earths-water-is-older-than-the-sun/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;Astronomers have discovered that much of the water on Earth&amp;mdash;and the solar system&amp;mdash;predates the Sun.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -867,19 +935,19 @@ Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש
 &lt;blockquote&gt;
 &lt;p&gt;&lt;sup&gt;1&lt;/sup&gt; In the beginning God created the heaven and the earth.
 &lt;sup&gt;2&lt;/sup&gt; And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters.
-&lt;sup&gt;3&lt;/sup&gt; And God said, Let there be light: and there was light. &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:d38baf5a8bc9978a9bedb86fbf13f269:fn1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:d38baf5a8bc9978a9bedb86fbf13f269:fn1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;sup&gt;3&lt;/sup&gt; And God said, Let there be light: and there was light. &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:fn1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;
+
 &lt;cite&gt;&amp;mdash;&lt;a href=&#34;https://www.biblegateway.com/passage/?search=Genesis&amp;#43;1&amp;amp;version=KJV&#34;&gt;Genesis 1:1-3 (KJV)&lt;/a&gt;&lt;/cite&gt;
-&lt;/p&gt;
+
 &lt;div class=&#34;footnotes&#34;&gt;
 
 &lt;hr /&gt;
 
 &lt;ol&gt;
-&lt;li id=&#34;fn:d38baf5a8bc9978a9bedb86fbf13f269:fn1&#34;&gt;I&amp;rsquo;m no scholar but I read this as, &amp;ldquo;Let there be light: and there was &lt;em&gt;the Sun&lt;/em&gt;.&amp;rdquo;
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:d38baf5a8bc9978a9bedb86fbf13f269:fn1&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:fn1&#34;&gt;I&amp;rsquo;m no scholar but I read this as, &amp;ldquo;Let there be light: and there was &lt;em&gt;the Sun&lt;/em&gt;.&amp;rdquo;
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn1&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>
@@ -887,10 +955,10 @@ Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש
     
     <item>
       <title>Starting Sentences With I.E. or E.G.</title>
-      <link>http://joshua.poehls.me/2014/09/ie-eg-sentences</link>
+      <link>http://joshua.poehls.me/2014/09/ie-eg-sentences/</link>
       <pubDate>Thu, 25 Sep 2014 13:48:49 CDT</pubDate>
       <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/09/ie-eg-sentences</guid>
+      <guid>http://joshua.poehls.me/2014/09/ie-eg-sentences/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;A parenthetical statement that is a complete sentence should begin with a capital.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -905,7 +973,7 @@ Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש
 &lt;p&gt;I.e., something like this is correct.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Wrong way: &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:cab3ac98872c724440b0e3a6c62466d0:fn1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:cab3ac98872c724440b0e3a6c62466d0:fn1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;Wrong way: &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:fn1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;e.g., This is a bad example.&lt;/p&gt;
@@ -917,42 +985,8 @@ Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש
 &lt;hr /&gt;
 
 &lt;ol&gt;
-&lt;li id=&#34;fn:cab3ac98872c724440b0e3a6c62466d0:fn1&#34;&gt;Sadly this is how I&amp;rsquo;ve usually written it, except I almost always left off the comma.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:cab3ac98872c724440b0e3a6c62466d0:fn1&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Hello World</title>
-      <link>http://joshua.poehls.me/2014/09/hello-world</link>
-      <pubDate>Thu, 25 Sep 2014 09:58:59 CDT</pubDate>
-      <author>Joshua Poehls</author>
-      <guid>http://joshua.poehls.me/2014/09/hello-world</guid>
-      <description>&lt;p&gt;Welcome to my new blog! &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:aa77bbfd89a7b0ff10def205b9c08d51:fn1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:aa77bbfd89a7b0ff10def205b9c08d51:fn1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; All of my blogging in the past has been in the form of longer articles, mostly technology related, and mostly trying to teach a tip or trick.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;m taking a different approach this time. I&amp;rsquo;ll be posting more random thoughts.
-Sharing articles I find interesting. Overall I expect this to feel more like reading my Facebook wall and that&amp;rsquo;s what I&amp;rsquo;m going for. &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:aa77bbfd89a7b0ff10def205b9c08d51:fn2&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:aa77bbfd89a7b0ff10def205b9c08d51:fn2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;Here goes nothing!&lt;/p&gt;
-
-&lt;table border=&#34;0&#34; width=&#34;100%&#34; style=&#34;font-size: 1.5em&#34; class=&#34;noborder&#34;&gt;
-&lt;tr&gt;
-&lt;td&gt;Hello World!&lt;/td&gt;
-&lt;td style=&#34;text-align: center;&#34;&gt;Hallo Welt!&lt;/td&gt;
-&lt;td style=&#34;text-align: right; direction: rtl;&#34;&gt;שלום עולם&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
-&lt;ol&gt;
-&lt;li id=&#34;fn:aa77bbfd89a7b0ff10def205b9c08d51:fn1&#34;&gt;This is no longer the first post as I&amp;rsquo;ve started migrating older content from my blog at &lt;code&gt;zduck.com&lt;/code&gt;.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:aa77bbfd89a7b0ff10def205b9c08d51:fn1&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:aa77bbfd89a7b0ff10def205b9c08d51:fn2&#34;&gt;This is my plan to take control of my public content. I&amp;rsquo;ll still share on Facebook and Twitter, but I want to own the canonical version.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:aa77bbfd89a7b0ff10def205b9c08d51:fn2&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:fn1&#34;&gt;Sadly this is how I&amp;rsquo;ve usually written it, except I almost always left off the comma.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn1&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>

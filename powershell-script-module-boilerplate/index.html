@@ -2,11 +2,11 @@
 <html lang="en-US">
 <head>
 <meta charset="utf-8">
-<title>joshua poehls | silent thought</title>
+<title>joshua poehls | silent thoughts</title>
 
-<link rel="canonical" href="http://joshua.poehls.me/powershell-script-module-boilerplate">
-<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thought">
-<meta name="generator" content="Hugo 0.14" />
+<link rel="canonical" href="http://joshua.poehls.me/powershell-script-module-boilerplate/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.30.2" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -61,15 +61,15 @@
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/powershell-script-module-boilerplate">PowerShell Script Module Boilerplate</a>
+            <a href="http://joshua.poehls.me/powershell-script-module-boilerplate/">PowerShell Script Module Boilerplate</a>
             
         </h1>
         <p>
             <time datetime="2013-12-21 10:43:31 -0600 CST" pubdate="pubdate">Sat, Dec 21, 2013</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/powershell-script-module-boilerplate">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/powershell-script-module-boilerplate/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/powershell-script-module-boilerplate</span>
+                <span class="printonly">http://joshua.poehls.me/powershell-script-module-boilerplate/</span>
             </a>
         </p>
     </header>
@@ -84,11 +84,11 @@
 
 <p>Script Modules are about as simple as it gets. Typically you have one or more PS1 or PSM1 files that contain your module&rsquo;s cmdlets. Beyond that you <em>should</em> have a <a href="http://msdn.microsoft.com/en-us/library/dd878337(v=vs.85).aspx">PSD1 manifest</a>.</p>
 
-<h2 id="fork-this:bf50e637665b449b2d775f5a8ffeb5fd">Fork this!</h2>
+<h2 id="fork-this">Fork this!</h2>
 
 <p>This entire boilerplate <a href="http://github.com/jpoehls/powershell-script-module-boilerplate">is on GitHub</a>. If you just want a solid starting point, download this repo. If you want to know more, keep reading.</p>
 
-<h2 id="file-structure:bf50e637665b449b2d775f5a8ffeb5fd">File Structure</h2>
+<h2 id="file-structure">File Structure</h2>
 
 <pre><code>+- src/
 | +- source_file.ps1
@@ -106,7 +106,7 @@
 <li><code>README.md</code> - always have a README file. Even if it is only a one sentence description. <a href="http://daringfireball.net/projects/markdown/">Markdown</a> is a great format to use for this.</li>
 </ul>
 
-<h2 id="explicit-exports:bf50e637665b449b2d775f5a8ffeb5fd">Explicit Exports</h2>
+<h2 id="explicit-exports">Explicit Exports</h2>
 
 <p>By default, PowerShell will export all of the functions in your module. I recommend being explicit about this and always specifying which functions should be publically exported. This way it is easy to add private helper functions that are internal to your module without worrying about them being made public accidentally.</p>
 
@@ -126,7 +126,7 @@ Export-ModuleMember -Function Show-Calendar
 
 <p><a href="http://msdn.microsoft.com/en-us/library/dd878340(v=vs.85).aspx">Full example &#8594;</a></p>
 
-<h2 id="release-script:bf50e637665b449b2d775f5a8ffeb5fd">Release Script</h2>
+<h2 id="release-script">Release Script</h2>
 
 <p><strong>Every project should have a release script.</strong> You should never be manually building your distributable release. At a minimum my release script will:</p>
 
@@ -139,7 +139,7 @@ Export-ModuleMember -Function Show-Calendar
 
 <p>Here is what a simple <code>release.ps1</code> script might look like.</p>
 
-<p>[View on GitHub &#8594;][release_script]</p>
+<p><a href="https://github.com/jpoehls/powershell-script-module-boilerplate/blob/master/tools/release.ps1">View on GitHub &#8594;</a></p>
 
 <pre><code>&lt;#
 .SYNOPSIS
@@ -208,13 +208,13 @@ $includeBaseDirectory = $false
 Move-Item $zipFileName $dist -Force
 </code></pre>
 
-<h2 id="version-control:bf50e637665b449b2d775f5a8ffeb5fd">Version Control</h2>
+<h2 id="version-control">Version Control</h2>
 
 <p>Always exclude your <code>./dist</code> folder from source control. As a rule of thumb, you never want to store the build output of any project in source control.</p>
 
 <p>Depending on how you plan to release your module, you may prefer to exclude <code>*.psd1</code> manifest files from source control. This just keeps things clean and enforces that you use your release script to build the distributable.</p>
 
-<h2 id="good-examples:bf50e637665b449b2d775f5a8ffeb5fd">Good Examples</h2>
+<h2 id="good-examples">Good Examples</h2>
 
 <p>Here are a few open-source PowerShell modules that I&rsquo;ve found to be good examples to follow.</p>
 
@@ -229,8 +229,6 @@ Move-Item $zipFileName $dist -Force
 
 I use a very similar file structure for [PowerShell Binary Modules][binary_module] but they do introduce more complexity into the release script. I'll be covering my binary module boilerplate in a future post. 
 -->
-
-<p>[release_script]: <a href="https://github.com/jpoehls/powershell-script-module-boilerplate/blob/master/tools/release.ps1">https://github.com/jpoehls/powershell-script-module-boilerplate/blob/master/tools/release.ps1</a></p>
 
 
 </article>

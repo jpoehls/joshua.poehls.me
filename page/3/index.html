@@ -2,11 +2,11 @@
 <html lang="en-US">
 <head>
 <meta charset="utf-8">
-<title>joshua poehls | silent thought</title>
+<title>joshua poehls | silent thoughts</title>
 
 <link rel="canonical" href="http://joshua.poehls.me/">
-<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thought">
-<meta name="generator" content="Hugo 0.14" />
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.30.2" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -60,15 +60,15 @@
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/powershell-batch-file-wrapper">PowerShell Batch File Wrapper</a>
+            <a href="http://joshua.poehls.me/powershell-batch-file-wrapper/">PowerShell Batch File Wrapper</a>
             
         </h1>
         <p>
             <time datetime="2013-12-18 10:43:31 -0600 CST" pubdate="pubdate">Wed, Dec 18, 2013</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/powershell-batch-file-wrapper">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/powershell-batch-file-wrapper/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/powershell-batch-file-wrapper</span>
+                <span class="printonly">http://joshua.poehls.me/powershell-batch-file-wrapper/</span>
             </a>
         </p>
     </header>
@@ -111,7 +111,7 @@ SET ARGS=%ARGS:^%=%
 GOTO POWERSHELL
 </code></pre>
 
-<h2 id="what-s-going-on-here:7908c9f856e796bbc0d3b5748b45b371">What&rsquo;s going on here?</h2>
+<h2 id="what-s-going-on-here">What&rsquo;s going on here?</h2>
 
 <ul>
 <li><code>%SCRIPTNAME%</code> variable holds the name of the PowerShell script to execute. <code>%~d0%~p0%~n0</code> magic gets the full path of the
@@ -131,15 +131,15 @@ be executed regardless of the machine&rsquo;s default Execution Policy.</li>
 returns the correct exit code from your script.
 Using <code>-Command</code> with <code>$ErrorActionPreference = 'Stop'</code> also ensures that
 errors thrown from your script cause PowerShell.exe to return a failing
-exit code (1). <a href="http://zduck.com/2012/powershell-batch-files-exit-codes/">PowerShell is quite buggy when it comes to bubbling exit
+exit code (1). <a href="/2012/powershell-batch-files-exit-codes/">PowerShell is quite buggy when it comes to bubbling exit
 codes.</a>
 This is the safest method I&rsquo;ve found.</li>
 </ul></li>
 </ul>
 
-<h2 id="batch-file-tips:7908c9f856e796bbc0d3b5748b45b371">Batch file tips</h2>
+<h2 id="batch-file-tips">Batch file tips</h2>
 
-<h3 id="special-characters-in-arguments:7908c9f856e796bbc0d3b5748b45b371">Special characters in arguments</h3>
+<h3 id="special-characters-in-arguments">Special characters in arguments</h3>
 
 <p>Remember that certain special characters need to be escaped in arguments passed to the batch file. These characters are: <code>^  &amp;  &lt;  &gt;  /?</code>. Note that <code>/?</code> is a sequence and is recognized as a help flag when passed to a batch file.</p>
 
@@ -149,7 +149,7 @@ This is the safest method I&rsquo;ve found.</li>
 <p><code>my_script.cmd &quot;^&amp;&lt;&gt;/?&quot;</code> passes <code>^&amp;&lt;&gt;/?</code></p>
 </blockquote>
 
-<h3 id="environment-variable-expansion:7908c9f856e796bbc0d3b5748b45b371">Environment variable expansion</h3>
+<h3 id="environment-variable-expansion">Environment variable expansion</h3>
 
 <p>Environment variables get automatically expanded in batch file arguments.</p>
 
@@ -172,15 +172,15 @@ This is the safest method I&rsquo;ve found.</li>
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions">Killing Processes In Disconnected Terminal Service Sessions</a>
+            <a href="http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/">Killing Processes In Disconnected Terminal Service Sessions</a>
             
         </h1>
         <p>
             <time datetime="2012-12-12 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Dec 12, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions</span>
+                <span class="printonly">http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/</span>
             </a>
         </p>
     </header>
@@ -332,15 +332,15 @@ else {
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2012/crime-rates-are-dropping">Crime Rates Are Dropping</a>
+            <a href="http://joshua.poehls.me/2012/crime-rates-are-dropping/">Crime Rates Are Dropping</a>
             
         </h1>
         <p>
             <time datetime="2012-08-13 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Aug 13, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/crime-rates-are-dropping">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/crime-rates-are-dropping/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/crime-rates-are-dropping</span>
+                <span class="printonly">http://joshua.poehls.me/2012/crime-rates-are-dropping/</span>
             </a>
         </p>
     </header>
@@ -484,22 +484,22 @@ else {
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2012/powershell-script-module-boilerplate">PowerShell, batch files, and exit codes. Recipes &amp; Secrets.</a>
+            <a href="http://joshua.poehls.me/2012/powershell-batch-files-exit-codes/">PowerShell, batch files, and exit codes. Recipes &amp; Secrets.</a>
             
         </h1>
         <p>
             <time datetime="2012-06-23 10:43:31 -0600 -0600" pubdate="pubdate">Sat, Jun 23, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/powershell-script-module-boilerplate">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/powershell-batch-files-exit-codes/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/powershell-script-module-boilerplate</span>
+                <span class="printonly">http://joshua.poehls.me/2012/powershell-batch-files-exit-codes/</span>
             </a>
         </p>
     </header>
 
     
 
-<h2 id="tl-dr:e436619b3c225495df020f575a03107f">TL;DR;</h2>
+<h2 id="tl-dr">TL;DR;</h2>
 
 <blockquote>
 <p><strong>Update:</strong> If you want to save some time, skip reading this and just use my <a href="/powershell-script-boilerplate">PowerShell Script Boilerplate</a>. It includes an excellent batch file wrapper, argument escaping, and error code bubbling.</p>
@@ -513,7 +513,7 @@ else {
 
 <p>You can use <a href="#black-magic">black magic</a> to include spaces and quotes in the arguments you pass through the batch file wrapper to PowerShell.</p>
 
-<h2 id="powershell:e436619b3c225495df020f575a03107f">PowerShell</h2>
+<h2 id="powershell">PowerShell</h2>
 
 <p>PowerShell is a great scripting environment, and it is my preferred tool for writing build scripts for .NET apps. Exit codes are vital in build scripts because they are how your Continuous Integration server knows whether the build passed or failed.</p>
 
@@ -574,7 +574,7 @@ Exec { cmd /C exit 1 }
 Write-Host &quot;You'll never see this.&quot;
 </code></pre>
 
-<h3 id="throwing-exit-codes:e436619b3c225495df020f575a03107f">Throwing &amp; exit codes</h3>
+<h3 id="throwing-exit-codes">Throwing &amp; exit codes</h3>
 
 <p>The <code>throw</code> keyword is how you generate a terminating error in PowerShell. It will, sometimes, cause your PowerShell script to return a failing exit code (1). Wait, when does it <em>not</em> cause a failing exit code, you ask? This is where PowerShell&rsquo;s warts start to show. Let me demonstrate some scenarios.</p>
 
@@ -623,7 +623,7 @@ At C:\broken.ps1:1 char:6
 
 <p>Whoa! We still saw the error, but PowerShell returned a passing exit code. What the heck?! Yes, this is the wart.</p>
 
-<h3 id="a-workaround-for-file:e436619b3c225495df020f575a03107f">A workaround for <code>-File</code></h3>
+<h3 id="a-workaround-for-file">A workaround for <code>-File</code></h3>
 
 <p><code>-File</code> allows you to pass in a script for PowerShell to execute, however terminating errors in the script will not cause PowerShell to return a failing exit code. I have no idea why this is the case. If you know why, please share!</p>
 
@@ -655,7 +655,7 @@ throw &quot;I'm broken.&quot;
 
 <p><a id="command-parsererror"> </a></p>
 
-<h3 id="command-can-still-fail:e436619b3c225495df020f575a03107f"><code>-Command</code> can still fail</h3>
+<h3 id="command-can-still-fail"><code>-Command</code> can still fail</h3>
 
 <p>I&rsquo;ve discovered that PowerShell will still exit with a success code (0) when a <code>ParserError</code> is thrown. Even when using <code>-Command</code>.</p>
 
@@ -680,7 +680,7 @@ At line:1 char:40
 
 <p>There are <a href="https://connect.microsoft.com/PowerShell/feedback/details/637113/powershell-command-line-exit-codes-inconsistency">other</a> <a href="https://connect.microsoft.com/PowerShell/feedback/details/638771/powershell-return-code-and-parameters">known</a> bugs with PowerShell&rsquo;s exit codes. Beware.</p>
 
-<h2 id="batch-files:e436619b3c225495df020f575a03107f">Batch files</h2>
+<h2 id="batch-files">Batch files</h2>
 
 <p>I mentioned early on that it is often necessary to wrap the execution of your PowerShell script in a batch file. Some common reasons for this might be:</p>
 
@@ -696,7 +696,7 @@ At line:1 char:40
 <p><del>This is a safe template for you to use. Bookmark it.</del></p>
 
 <blockquote>
-<p><strong>Update:</strong> I&rsquo;ve created a <em>much</em> better batch file wrapper for my PowerShell scripts. I recommend you ignore the one below and <strong>[use my new one][newbatwrapper]</strong> instead.</p>
+<p><strong>Update:</strong> I&rsquo;ve created a <em>much</em> better batch file wrapper for my PowerShell scripts. I recommend you ignore the one below and <strong><a href="/powershell-batch-file-wrapper">use my new one</a></strong> instead.</p>
 </blockquote>
 
 <pre><code>:: script.bat
@@ -757,8 +757,6 @@ Arg 2:
 
 <p>That&rsquo;s all folks!</p>
 
-<p>[newbatwrapper]: /powershell-batch-file-wrapper</p>
-
 
 </article>
 
@@ -774,15 +772,15 @@ Arg 2:
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim">Syntax highlighting for Nginx in VIM</a>
+            <a href="http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim/">Syntax highlighting for Nginx in VIM</a>
             
         </h1>
         <p>
             <time datetime="2012-06-10 00:00:00 &#43;0000 UTC" pubdate="pubdate">Sun, Jun 10, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim</span>
+                <span class="printonly">http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim/</span>
             </a>
         </p>
     </header>
@@ -819,7 +817,7 @@ Arg 2:
 <pre><code>&gt; vim /etc/nginx/conf/nginx.conf
 </code></pre>
 
-<p><figure >
+<figure >
 
 <img src="/2012/06/nginx-vim-colors.png" alt="Screenshot of VIM with syntax highlighting in an Nginx config file" />
 
@@ -833,7 +831,7 @@ Screenshot of VIM with syntax highlighting in an Nginx config file
 </p> 
 </figcaption>
 
-</figure></p>
+</figure>
 
 
 </article>
@@ -850,15 +848,15 @@ Screenshot of VIM with syntax highlighting in an Nginx config file
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git">Storing your Raspberry Pi configuration in Git</a>
+            <a href="http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git/">Storing your Raspberry Pi configuration in Git</a>
             
         </h1>
         <p>
             <time datetime="2012-06-08 00:00:00 &#43;0000 UTC" pubdate="pubdate">Fri, Jun 8, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git</span>
+                <span class="printonly">http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git/</span>
             </a>
         </p>
     </header>
@@ -929,15 +927,15 @@ Screenshot of VIM with syntax highlighting in an Nginx config file
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to">Soft links, hard links, junctions, oh my! Symlinks on Windows, a how-to</a>
+            <a href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/">Soft links, hard links, junctions, oh my! Symlinks on Windows, a how-to</a>
             
         </h1>
         <p>
             <time datetime="2012-06-07 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thu, Jun 7, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to</span>
+                <span class="printonly">http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/</span>
             </a>
         </p>
     </header>
@@ -958,21 +956,21 @@ Screenshot of VIM with syntax highlighting in an Nginx config file
 
 <p>Both soft and hard links must be created on the same volume as the target. i.e. You can&rsquo;t link something on <code>C:\</code> to something on <code>D:\</code>.</p>
 
-<p>You can read more about hardlinks and junctions [on MSDN][4].</p>
+<p>You can read more about hardlinks and junctions <a href="http://msdn.microsoft.com/en-us/library/aa365006%28VS.85%29.aspx">on MSDN</a>.</p>
 
-<h3 id="deleting-links:9e58f074bd866214c10dc323b4e5109d">Deleting Links</h3>
+<h3 id="deleting-links">Deleting Links</h3>
 
 <p>This is where the difference between soft and hard links is most evident.</p>
 
 <p>Deleting the target will cause soft links to stop working. What it points to is gone. Hard links however will keep right on working until you delete the hard link itself. The hard link acts just like the original file, because for all intents and purposes, it is the original file.</p>
 
-<h3 id="junctions:9e58f074bd866214c10dc323b4e5109d">Junctions</h3>
+<h3 id="junctions">Junctions</h3>
 
 <p>Windows also has another type of link just for directories, called Junctions.</p>
 
 <p>Junctions look and act like soft links. The key difference is that they allow you to link directories that are located on different local volumes (but still on the same computer). You can&rsquo;t create a junction to a network location.</p>
 
-<h2 id="using-mklink:9e58f074bd866214c10dc323b4e5109d">Using MKLINK</h2>
+<h2 id="using-mklink">Using MKLINK</h2>
 
 <p>Create a soft link to a directory.</p>
 
@@ -1018,7 +1016,7 @@ Directory of c:\symlink_test
                5 Dir(s)  145,497,268,224 bytes free
 </code></pre>
 
-<p><figure >
+<figure >
 
 <img src="/2012/06/mklink/explorer-screenshot.png" alt="Screenshot of folder in Windows Explorer" />
 
@@ -1032,7 +1030,7 @@ Screenshot of folder in Windows Explorer
 </p> 
 </figcaption>
 
-</figure></p>
+</figure>
 
 <p><strong>Note for PowerShell users:</strong><br />
 MKLINK isn&rsquo;t an executable that you can just call from PowerShell. You have to call it through the command prompt.</p>
@@ -1044,7 +1042,7 @@ MKLINK isn&rsquo;t an executable that you can just call from PowerShell. You hav
 
 <p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">Read about MKLINK on MSDN.</a></p>
 
-<h2 id="using-fsutil:9e58f074bd866214c10dc323b4e5109d">Using FSUTIL</h2>
+<h2 id="using-fsutil">Using FSUTIL</h2>
 
 <p>FSUTIL is another way to create hard links (but not soft links). This is the same as <code>mklink /H</code>.</p>
 
@@ -1057,7 +1055,7 @@ Hardlink created for c:\symlink_test\hardlink_file.txt &lt;&lt;===&gt;&gt; c:\sy
 
 <p><a href="http://technet.microsoft.com/en-us/library/cc753059(v=WS.10).aspx">Read about FSUTIL on MSDN.</a></p>
 
-<h2 id="using-junction:9e58f074bd866214c10dc323b4e5109d">Using Junction</h2>
+<h2 id="using-junction">Using Junction</h2>
 
 <p>Junction is a tool provided by Sysinternals and provides another way to create junctions. Same as <code>mklink /J</code>.
 It also has some other tools for working with junctions that I won&rsquo;t cover here.</p>
@@ -1072,8 +1070,6 @@ Targetted at: c:\symlink_test\real_dir
 </code></pre>
 
 <p><a href="http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx">Download the Junction tool from Sysinternals.</a></p>
-
-<p>[4]: <a href="http://msdn.microsoft.com/en-us/library/aa365006%28VS.85%29.aspx">http://msdn.microsoft.com/en-us/library/aa365006%28VS.85%29.aspx</a></p>
 
 
 </article>
@@ -1090,15 +1086,15 @@ Targetted at: c:\symlink_test\real_dir
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x">Can&#39;t access network resources over VPN connection on Mac OS X?</a>
+            <a href="http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/">Can&#39;t access network resources over VPN connection on Mac OS X?</a>
             
         </h1>
         <p>
             <time datetime="2012-04-18 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Apr 18, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x</span>
+                <span class="printonly">http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/</span>
             </a>
         </p>
     </header>
@@ -1135,15 +1131,15 @@ Targetted at: c:\symlink_test\real_dir
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful">Use AutoHotkey to remap your numpad keys to something useful</a>
+            <a href="http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/">Use AutoHotkey to remap your numpad keys to something useful</a>
             
         </h1>
         <p>
             <time datetime="2011-12-14 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Dec 14, 2011</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful</span>
+                <span class="printonly">http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/</span>
             </a>
         </p>
     </header>
@@ -1160,7 +1156,7 @@ Targetted at: c:\symlink_test\real_dir
 
 <p>Download the <strong>AutoHotkey_L</strong> installer. This is the most recent version of AutoHotkey and specifically supports Unicode which is important for us.</p>
 
-<p><figure >
+<figure >
 
 <img src="/2011/12/autohotkey/Image4.png" alt="Screenshot of the AutoHotkey download page" />
 
@@ -1174,11 +1170,11 @@ Screenshot of the AutoHotkey download page
 </p> 
 </figcaption>
 
-</figure></p>
+</figure>
 
 <p>Run the installer and leave all the defaults.</p>
 
-<p><figure >
+<figure >
 
 <img src="/2011/12/autohotkey/Image3.png" alt="Screenshot of the AutoHotkey installer" />
 
@@ -1192,13 +1188,13 @@ Screenshot of the AutoHotkey installer
 </p> 
 </figcaption>
 
-</figure></p>
+</figure>
 
 <p>Look in your My Documents folder and open up <code>AutoHotkey.ahk</code> in a text editor that you can save as UTF-8 in.</p>
 
 <p>If you don&rsquo;t know what this means or don&rsquo;t have an editor that can do this then <a href="http://www.flos-freeware.ch/notepad2.html">download Notepad2</a> and open the file in that program.</p>
 
-<p><figure >
+<figure >
 
 <img src="/2011/12/autohotkey/Image5.png" alt="Screenshot of the AutoHotkey.ahk file in Windows Explorer" />
 
@@ -1212,7 +1208,7 @@ Screenshot of the AutoHotkey.ahk file in Windows Explorer
 </p> 
 </figcaption>
 
-</figure></p>
+</figure>
 
 <p>Now that you have <code>AutoHotkey.ahk</code> opened, delete everything in there (after reading it if you care) and paste the following in its place.</p>
 
@@ -1222,7 +1218,7 @@ return</code></pre>
 
 <p>Now save this file with <strong>UTF-8</strong> encoding. If you are using Notepad2 you can do this by going to <code>File | Encoding | UTF-8</code> and clicking <strong>Yes</strong> to the warning. Then click <code>File | Save</code> as usual.</p>
 
-<p><figure >
+<figure >
 
 <img src="/2011/12/autohotkey/Image.png" alt="Screenshot of saving the file with UTF-8 encoding" />
 
@@ -1236,11 +1232,11 @@ Screenshot of saving the file with UTF-8 encoding
 </p> 
 </figcaption>
 
-</figure></p>
+</figure>
 
 <p>Finally, run the <strong>AutoHotkey</strong> program from your Start Menu.</p>
 
-<p><figure >
+<figure >
 
 <img src="/2011/12/autohotkey/Image2.png" alt="Screenshot of AutoHotkey in the Start Menu" />
 
@@ -1254,9 +1250,9 @@ Screenshot of AutoHotkey in the Start Menu
 </p> 
 </figcaption>
 
-</figure></p>
+</figure>
 
-<h3 id="now-to-try-it-out:92951ddff719c4a186337f8b68cc78b3">Now to try it out!</h3>
+<h3 id="now-to-try-it-out">Now to try it out!</h3>
 
 <p>Put your focus in any text box. Anywhere. Go ahead. Now make sure you have NumLock turned OFF and hit the <code>0</code> key on your numpad.</p>
 
@@ -1289,15 +1285,15 @@ Screenshot of AutoHotkey in the Start Menu
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2011/what-i-miss-in-vanilla-visual-studio">What I miss in vanilla Visual Studio</a>
+            <a href="http://joshua.poehls.me/2011/what-i-miss-in-vanilla-visual-studio/">What I miss in vanilla Visual Studio</a>
             
         </h1>
         <p>
             <time datetime="2011-10-20 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thu, Oct 20, 2011</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2011/what-i-miss-in-vanilla-visual-studio">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2011/what-i-miss-in-vanilla-visual-studio/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2011/what-i-miss-in-vanilla-visual-studio</span>
+                <span class="printonly">http://joshua.poehls.me/2011/what-i-miss-in-vanilla-visual-studio/</span>
             </a>
         </p>
     </header>

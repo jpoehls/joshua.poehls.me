@@ -2,11 +2,11 @@
 <html lang="en-US">
 <head>
 <meta charset="utf-8">
-<title>joshua poehls | silent thought</title>
+<title>joshua poehls | silent thoughts</title>
 
-<link rel="canonical" href="http://joshua.poehls.me/2012/powershell-script-module-boilerplate">
-<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thought">
-<meta name="generator" content="Hugo 0.14" />
+<link rel="canonical" href="http://joshua.poehls.me/2012/powershell-batch-files-exit-codes/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.30.2" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -61,22 +61,22 @@
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2012/powershell-script-module-boilerplate">PowerShell, batch files, and exit codes. Recipes &amp; Secrets.</a>
+            <a href="http://joshua.poehls.me/2012/powershell-batch-files-exit-codes/">PowerShell, batch files, and exit codes. Recipes &amp; Secrets.</a>
             
         </h1>
         <p>
             <time datetime="2012-06-23 10:43:31 -0600 -0600" pubdate="pubdate">Sat, Jun 23, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/powershell-script-module-boilerplate">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/powershell-batch-files-exit-codes/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/powershell-script-module-boilerplate</span>
+                <span class="printonly">http://joshua.poehls.me/2012/powershell-batch-files-exit-codes/</span>
             </a>
         </p>
     </header>
 
     
 
-<h2 id="tl-dr:e436619b3c225495df020f575a03107f">TL;DR;</h2>
+<h2 id="tl-dr">TL;DR;</h2>
 
 <blockquote>
 <p><strong>Update:</strong> If you want to save some time, skip reading this and just use my <a href="/powershell-script-boilerplate">PowerShell Script Boilerplate</a>. It includes an excellent batch file wrapper, argument escaping, and error code bubbling.</p>
@@ -90,7 +90,7 @@
 
 <p>You can use <a href="#black-magic">black magic</a> to include spaces and quotes in the arguments you pass through the batch file wrapper to PowerShell.</p>
 
-<h2 id="powershell:e436619b3c225495df020f575a03107f">PowerShell</h2>
+<h2 id="powershell">PowerShell</h2>
 
 <p>PowerShell is a great scripting environment, and it is my preferred tool for writing build scripts for .NET apps. Exit codes are vital in build scripts because they are how your Continuous Integration server knows whether the build passed or failed.</p>
 
@@ -151,7 +151,7 @@ Exec { cmd /C exit 1 }
 Write-Host &quot;You'll never see this.&quot;
 </code></pre>
 
-<h3 id="throwing-exit-codes:e436619b3c225495df020f575a03107f">Throwing &amp; exit codes</h3>
+<h3 id="throwing-exit-codes">Throwing &amp; exit codes</h3>
 
 <p>The <code>throw</code> keyword is how you generate a terminating error in PowerShell. It will, sometimes, cause your PowerShell script to return a failing exit code (1). Wait, when does it <em>not</em> cause a failing exit code, you ask? This is where PowerShell&rsquo;s warts start to show. Let me demonstrate some scenarios.</p>
 
@@ -200,7 +200,7 @@ At C:\broken.ps1:1 char:6
 
 <p>Whoa! We still saw the error, but PowerShell returned a passing exit code. What the heck?! Yes, this is the wart.</p>
 
-<h3 id="a-workaround-for-file:e436619b3c225495df020f575a03107f">A workaround for <code>-File</code></h3>
+<h3 id="a-workaround-for-file">A workaround for <code>-File</code></h3>
 
 <p><code>-File</code> allows you to pass in a script for PowerShell to execute, however terminating errors in the script will not cause PowerShell to return a failing exit code. I have no idea why this is the case. If you know why, please share!</p>
 
@@ -232,7 +232,7 @@ throw &quot;I'm broken.&quot;
 
 <p><a id="command-parsererror"> </a></p>
 
-<h3 id="command-can-still-fail:e436619b3c225495df020f575a03107f"><code>-Command</code> can still fail</h3>
+<h3 id="command-can-still-fail"><code>-Command</code> can still fail</h3>
 
 <p>I&rsquo;ve discovered that PowerShell will still exit with a success code (0) when a <code>ParserError</code> is thrown. Even when using <code>-Command</code>.</p>
 
@@ -257,7 +257,7 @@ At line:1 char:40
 
 <p>There are <a href="https://connect.microsoft.com/PowerShell/feedback/details/637113/powershell-command-line-exit-codes-inconsistency">other</a> <a href="https://connect.microsoft.com/PowerShell/feedback/details/638771/powershell-return-code-and-parameters">known</a> bugs with PowerShell&rsquo;s exit codes. Beware.</p>
 
-<h2 id="batch-files:e436619b3c225495df020f575a03107f">Batch files</h2>
+<h2 id="batch-files">Batch files</h2>
 
 <p>I mentioned early on that it is often necessary to wrap the execution of your PowerShell script in a batch file. Some common reasons for this might be:</p>
 
@@ -273,7 +273,7 @@ At line:1 char:40
 <p><del>This is a safe template for you to use. Bookmark it.</del></p>
 
 <blockquote>
-<p><strong>Update:</strong> I&rsquo;ve created a <em>much</em> better batch file wrapper for my PowerShell scripts. I recommend you ignore the one below and <strong>[use my new one][newbatwrapper]</strong> instead.</p>
+<p><strong>Update:</strong> I&rsquo;ve created a <em>much</em> better batch file wrapper for my PowerShell scripts. I recommend you ignore the one below and <strong><a href="/powershell-batch-file-wrapper">use my new one</a></strong> instead.</p>
 </blockquote>
 
 <pre><code>:: script.bat
@@ -333,8 +333,6 @@ Arg 2:
 </code></pre>
 
 <p>That&rsquo;s all folks!</p>
-
-<p>[newbatwrapper]: /powershell-batch-file-wrapper</p>
 
 
 </article>
