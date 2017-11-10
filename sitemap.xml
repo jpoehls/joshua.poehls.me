@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://joshua.poehls.me/2017/vincent-van-gogh---the-letters/</loc>
+    <lastmod>2017-11-10T08:54:57-06:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://joshua.poehls.me/2017/the-bible-project-justice/</loc>
     <lastmod>2017-11-07T13:19:24-06:00</lastmod>
   </url>
@@ -212,7 +217,7 @@
   
   <url>
     <loc>http://joshua.poehls.me/tags/art/</loc>
-    <lastmod>2014-09-26T16:51:06-05:00</lastmod>
+    <lastmod>2017-11-10T08:54:57-06:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -343,7 +348,7 @@
   
   <url>
     <loc>http://joshua.poehls.me/post/</loc>
-    <lastmod>2017-11-07T13:19:24-06:00</lastmod>
+    <lastmod>2017-11-10T08:54:57-06:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -361,7 +366,7 @@
   
   <url>
     <loc>http://joshua.poehls.me/tags/quotes/</loc>
-    <lastmod>2017-11-06T22:36:19-06:00</lastmod>
+    <lastmod>2017-11-10T08:54:57-06:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -427,7 +432,7 @@
   
   <url>
     <loc>http://joshua.poehls.me/tags/</loc>
-    <lastmod>2014-09-26T16:51:06-05:00</lastmod>
+    <lastmod>2017-11-10T08:54:57-06:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -446,6 +451,12 @@
   <url>
     <loc>http://joshua.poehls.me/tags/vim/</loc>
     <lastmod>2012-06-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/tags/vincent-van-gogh/</loc>
+    <lastmod>2017-11-10T08:54:57-06:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -481,7 +492,7 @@
   
   <url>
     <loc>http://joshua.poehls.me/</loc>
-    <lastmod>2017-11-07T13:19:24-06:00</lastmod>
+    <lastmod>2017-11-10T08:54:57-06:00</lastmod>
     <priority>0</priority>
   </url>
   

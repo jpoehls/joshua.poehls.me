@@ -60,6 +60,109 @@
     <header>
         <h1>
             
+            <a href="http://joshua.poehls.me/2014/04/go-101-methods-on-pointers-vs-values/">Go 101: Methods on Pointers vs. Values</a>
+            
+        </h1>
+        <p>
+            <time datetime="2014-04-14 09:58:59 -0500 CDT" pubdate="pubdate">Mon, Apr 14, 2014</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/04/go-101-methods-on-pointers-vs-values/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2014/04/go-101-methods-on-pointers-vs-values/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Methods can be declared on both pointers and values. The difference is subtle but important.</p>
+
+<pre><code>type Person struct {
+     age int
+}
+
+// Method's receiver is the value, `Person`.
+func (p Person) Age() int {
+     return p.age
+}
+
+// Method's receiver is a pointer, `*Person`.
+func (p *Person) SetAge(age int) {
+     p.age = age
+}
+</code></pre>
+
+<blockquote>
+<p>In reality, you&rsquo;d only define getter and setter functions like this if you needed to implement additional logic. In an example like this you&rsquo;d just make the <code>Age</code> field public.</p>
+</blockquote>
+
+<p>This is how you define getter and setter functions in Go. Notice that we defined the <code>Age()</code> function on the value but <code>SetAge()</code> on the pointer (i.e. <code>*Person</code>). This is important.</p>
+
+<p><strong>Go always passes by value.</strong> Function parameters are  always passed by copying them as opposed to passing a reference. (<a href="http://golang.org/doc/faq#pass_by_value">Read more.</a>)</p>
+
+<blockquote>
+<p>Even pointers are technically passed by value. The memory address is copied, the value it points to is <em>not</em> copied.</p>
+</blockquote>
+
+<p>Here is the <em>wrong</em> way to define <code>SetAge</code>. Let&rsquo;s see what happens.</p>
+
+<pre><code>func (p Person) SetAge(age int) {
+     p.age = age
+}
+
+p := Person{}
+p.SetAge(10)
+fmt.Printf(&quot;Age: %v&quot;, p.Age()) // Age: 0
+</code></pre>
+
+<p><a href="http://play.golang.org/p/CJZfqBrAIC">&#9654; Run it.</a></p>
+
+<p>Notice that the output is <code>0</code> instead of <code>10</code>? This is &lsquo;pass by value&rsquo; in action.</p>
+
+<p>Calling <code>p.SetAge(10)</code> passes a copy of <code>p</code> to the <code>SetAge</code> function. <code>SetAge</code> sets the <code>age</code> property on the copy of <code>p</code> that it received which is discarded after the function returns.</p>
+
+<p>Now let&rsquo;s do it the right way.</p>
+
+<pre><code>func (p *Person) SetAge(age int) {
+     p.age = age
+}
+
+p := Person{}
+p.SetAge(10)
+fmt.Printf(&quot;Age: %v&quot;, p.Age()) // Age: 10
+</code></pre>
+
+<p><a href="http://play.golang.org/p/BbIlSUQBCr">&#9654; Run it.</a></p>
+
+<p>My rule of thumb is this: declare the method on the pointer unless your struct is such that you don&rsquo;t use pointers to it.</p>
+
+<p>Two reasons:</p>
+
+<ol>
+<li>Performance. Calling a method on a pointer will almost always be faster than copying the value. There may be cases wear the copy is faster but those are edge case.</li>
+<li>Consistency. It is common for at least one of your methods to need a pointer receiver and if any of the type&rsquo;s methods are on the pointer then they all should be. <em>This recommendation is direct from <a href="http://golang.org/doc/faq#methods_on_values_or_pointers">the FAQ</a>.</em></li>
+</ol>
+
+<p><a href="http://golang.org/doc/faq#methods_on_values_or_pointers">Read the FAQ</a> &ldquo;Should I define methods on values or pointers?&rdquo; for more insight.</p>
+
+<p><strong>Update:</strong> Thanks to the fine folks on reddit for suggesting some improvements.<br />
+<a href="http://www.reddit.com/r/golang/comments/23060m/go_101_methods_on_pointers_vs_values/">Join the discussion on reddit!</a></p>
+
+<p><strong>Update 2:</strong> Here are <a href="https://github.com/golang/go/wiki/CodeReviewComments#receiver-type">even more rules of thumb</a> to help you choose whether to use a value or pointer receiver.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="http://joshua.poehls.me/2014/04/go-conventions-constructors-and-overloads/">Go 101: Constructors and Overloads</a>
             
         </h1>
@@ -1331,51 +1434,6 @@ Targetted at: c:\symlink_test\real_dir
 </code></pre>
 
 <p><a href="http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx">Download the Junction tool from Sysinternals.</a></p>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/">Can&#39;t access network resources over VPN connection on Mac OS X?</a>
-            
-        </h1>
-        <p>
-            <time datetime="2012-04-18 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Apr 18, 2012</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>So you have your shiny OS X connected to a VPN, good deal! The problem is, you can&rsquo;t connect to any of the servers and workstations on the VPN. What could be wrong?</p>
-
-<p>It could be that OS X is still trying to find those machines on the internet instead of looking for them on the VPN connection. We can tell OS X to check the VPN connection first by giving it a higher priority than the other network connections on your Mac.</p>
-
-<p>To change the priority of your VPN connection:</p>
-
-<ol>
-<li>Choose Apple menu &gt; System Preferences and click Network.</li>
-<li>Choose Set Service Order from the Action pop-up menu (looks like a gear).</li>
-<li>Drag your VPN connection to the top of the list.</li>
-<li>Click OK, and then click Apply to make the new settings active.</li>
-</ol>
-
-<p>This solution saved my day when I couldn&rsquo;t Remote Desktop into my workstation over the VPN.</p>
-
-<p>For more information, refer to <a href="http://docs.info.apple.com/article.html?path=Mac/10.6/en/8853.html">Apple&rsquo;s documentation for this</a>.</p>
 
 
 </article>
