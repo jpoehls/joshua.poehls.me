@@ -75,9 +75,19 @@ try {
         if ($LASTEXITCODE -ne 0) {
             Write-Warning "git commit returned a non-success exit code of $LASTEXITCODE`nPublish cancelled."
         }
-        
-        Write-Host "Site published. Push $branchName when ready."
-        Write-Host "    git push $remoteName $branchName"
+
+        $continue = Read-Choice -Message "Push changes?" -Question "Push to $remoteName $($branchName)?" -Choices @("&Yes", "&No") -DefaultChoice "&No"
+        if ($continue -eq "&Yes") {
+            & git push $remoteName $branchName
+            if ($LASTEXITCODE -ne 0) {
+                Write-Warning "git push returned a non-success exit code of $LASTEXITCODE`nPublish cancelled."
+            }
+            Write-Host "Site published and pushed to $remoteName $($branchName)."
+        }
+        else {
+            Write-Host "Site published. Push $branchName when ready."
+            Write-Host "    git push $remoteName $branchName"
+        }
     }
     else {
         Write-Host "Site generated but not committed. Commit and push $branchName when ready."
