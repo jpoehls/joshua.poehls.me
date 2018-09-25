@@ -3,7 +3,7 @@ title: "Greek New Testament Narrated by Theo Karvounakis"
 date: 2018-09-24T09:52:40-05:00
 tags:
 - greek
-- scripture
+- bible
 ---
 
 I recently discovered an excellent narration of the Greek New Testament. It is freely available for download and streaming; the links are below.

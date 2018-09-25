@@ -3,7 +3,7 @@ date: 2015-09-16
 title: "Serve the LORD, Fear Not"
 url: 2016/09/fear-not
 tags:
-- scripture
+- bible
 ---
 
 > I call heaven and earth to record this day against you, that **I have set before you life and death**, blessing and cursing: therefore choose life, that both thou and thy seed may live: (Deu 30:19 KJV)
