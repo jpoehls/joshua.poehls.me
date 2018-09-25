@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://joshua.poehls.me/2018/greek-new-testament-narrated-by-theo-karvounakis/</loc>
+    <lastmod>2018-09-24T09:52:40-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://joshua.poehls.me/2017/vincent-van-gogh---the-letters/</loc>
     <lastmod>2017-11-10T08:54:57-06:00</lastmod>
   </url>
@@ -276,6 +281,12 @@
   </url>
   
   <url>
+    <loc>http://joshua.poehls.me/tags/greek/</loc>
+    <lastmod>2018-09-24T09:52:40-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://joshua.poehls.me/tags/interview/</loc>
     <lastmod>2014-10-02T15:03:13-05:00</lastmod>
     <priority>0</priority>
@@ -348,7 +359,7 @@
   
   <url>
     <loc>http://joshua.poehls.me/post/</loc>
-    <lastmod>2017-11-10T08:54:57-06:00</lastmod>
+    <lastmod>2018-09-24T09:52:40-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -408,7 +419,7 @@
   
   <url>
     <loc>http://joshua.poehls.me/tags/scripture/</loc>
-    <lastmod>2017-11-07T13:19:24-06:00</lastmod>
+    <lastmod>2018-09-24T09:52:40-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -492,7 +503,7 @@
   
   <url>
     <loc>http://joshua.poehls.me/</loc>
-    <lastmod>2017-11-10T08:54:57-06:00</lastmod>
+    <lastmod>2018-09-24T09:52:40-05:00</lastmod>
     <priority>0</priority>
   </url>
   

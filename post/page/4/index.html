@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/post/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.30.2" />
+<meta name="generator" content="Hugo 0.49" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -52,6 +52,165 @@
 <div class="container">
 
 	<section id="posts">
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/">Soft links, hard links, junctions, oh my! Symlinks on Windows, a how-to</a>
+            
+        </h1>
+        <p>
+            <time datetime="2012-06-07 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thu, Jun 7, 2012</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>First, a quick definition of terms. There are three kinds of &ldquo;<a href="https://en.wikipedia.org/wiki/Symbolic_link">symlinks</a>&rdquo; on Windows.</p>
+
+<ul>
+<li>soft links (also called symlinks, or symbolic links)</li>
+<li>hard links</li>
+<li>junctions (a type of soft link only for directories)</li>
+</ul>
+
+<p>Soft links can be created for files or directories.</p>
+
+<p>Hard links can only be created for files.</p>
+
+<p>Both soft and hard links must be created on the same volume as the target. i.e. You can&rsquo;t link something on <code>C:\</code> to something on <code>D:\</code>.</p>
+
+<p>You can read more about hardlinks and junctions <a href="http://msdn.microsoft.com/en-us/library/aa365006%28VS.85%29.aspx">on MSDN</a>.</p>
+
+<h3 id="deleting-links">Deleting Links</h3>
+
+<p>This is where the difference between soft and hard links is most evident.</p>
+
+<p>Deleting the target will cause soft links to stop working. What it points to is gone. Hard links however will keep right on working until you delete the hard link itself. The hard link acts just like the original file, because for all intents and purposes, it is the original file.</p>
+
+<h3 id="junctions">Junctions</h3>
+
+<p>Windows also has another type of link just for directories, called Junctions.</p>
+
+<p>Junctions look and act like soft links. The key difference is that they allow you to link directories that are located on different local volumes (but still on the same computer). You can&rsquo;t create a junction to a network location.</p>
+
+<h2 id="using-mklink">Using MKLINK</h2>
+
+<p>Create a soft link to a directory.</p>
+
+<pre><code>c:\symlink_test&gt; mklink symlink_dir real_dir
+symbolic link created for symlink_dir &lt;&lt;===&gt;&gt; real_dir
+</code></pre>
+
+<p>Create junction link to a directory.</p>
+
+<pre><code>c:\symlink_test&gt; mklink /J junction_dir real_dir
+Junction created for junction_dir &lt;&lt;===&gt;&gt; real_dir
+</code></pre>
+
+<p>Create a soft link to a file.</p>
+
+<pre><code>c:\symlink_test&gt; mklink symlink_file.txt real_file.txt
+symbolic link created for symlink_file.txt &lt;&lt;===&gt;&gt; real_file.txt
+</code></pre>
+
+<p>Create a hard link to a file.</p>
+
+<pre><code>c:\symlink_test&gt; mklink /H hardlink_file.txt real_file.txt
+Hardlink created for hardlink_file.txt &lt;&lt;===&gt;&gt; real_file.txt
+</code></pre>
+
+<p>What they look like.</p>
+
+<pre><code>c:\symlink_test&gt; dir
+Volume in drive C is OS
+Volume Serial Number is 7688-08EC
+
+Directory of c:\symlink_test
+
+06/07/2012  10:32 AM    &lt;DIR&gt;          .
+06/07/2012  10:32 AM    &lt;DIR&gt;          ..
+06/07/2012  09:51 AM                15 hardlink_file.txt
+06/07/2012  09:59 AM    &lt;JUNCTION&gt;     junction_dir [c:\symlink_test\real_dir]
+06/07/2012  09:47 AM    &lt;DIR&gt;          real_dir
+06/07/2012  09:51 AM                15 real_file.txt
+06/07/2012  10:00 AM    &lt;SYMLINKD&gt;     symlink_dir [real_dir]
+06/07/2012  10:31 AM    &lt;SYMLINK&gt;      symlink_file.txt [real_file.txt]
+               3 File(s)             30 bytes
+               5 Dir(s)  145,497,268,224 bytes free
+</code></pre>
+
+<figure >
+
+<img src="/2012/06/mklink/explorer-screenshot.png" alt="Screenshot of folder in Windows Explorer" />
+
+
+<figcaption>
+<p>
+Screenshot of folder in Windows Explorer
+
+
+
+</p> 
+</figcaption>
+
+</figure>
+
+<p><strong>Note for PowerShell users:</strong><br />
+MKLINK isn&rsquo;t an executable that you can just call from PowerShell. You have to call it through the command prompt.</p>
+
+<pre><code>cmd /c mklink /D symlink_dir real_dir
+</code></pre>
+
+<p>Alternatively, you can use <a href="https://gist.github.com/2891103">this module</a> I wrote that has native PowerShell wrappers for MKLINK.</p>
+
+<p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">Read about MKLINK on MSDN.</a></p>
+
+<h2 id="using-fsutil">Using FSUTIL</h2>
+
+<p>FSUTIL is another way to create hard links (but not soft links). This is the same as <code>mklink /H</code>.</p>
+
+<pre><code>c:\symlink_test&gt; where fsutil
+c:\Windows\System32\fsutil.exe
+
+c:\symlink_test&gt; fsutil hardlink create hardlink_file.txt real_file.txt
+Hardlink created for c:\symlink_test\hardlink_file.txt &lt;&lt;===&gt;&gt; c:\symlink_test\real_file.txt
+</code></pre>
+
+<p><a href="http://technet.microsoft.com/en-us/library/cc753059(v=WS.10).aspx">Read about FSUTIL on MSDN.</a></p>
+
+<h2 id="using-junction">Using Junction</h2>
+
+<p>Junction is a tool provided by Sysinternals and provides another way to create junctions. Same as <code>mklink /J</code>.
+It also has some other tools for working with junctions that I won&rsquo;t cover here.</p>
+
+<pre><code>c:\symlink_test&gt; junction junction_dir real_dir
+Junction v1.06 - Windows junction creator and reparse point viewer
+Copyright (C) 2000-2010 Mark Russinovich
+Sysinternals - www.sysinternals.com
+
+Created: c:\symlink_test\junction_dir
+Targetted at: c:\symlink_test\real_dir
+</code></pre>
+
+<p><a href="http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx">Download the Junction tool from Sysinternals.</a></p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
 	
 	<div class="row">
 <div class="twelve columns">
@@ -811,209 +970,6 @@ how to install an egg!</p>
 <p>You can find much more knowledgable information on Python Eggs
 <a href="http://mrtopf.de/blog/python_zope/a-small-introduction-to-python-eggs/">here</a>
 and <a href="http://mxm-mad-science.blogspot.com/2008/02/python-eggs-simple-introduction.html">here</a>.</p>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2009/from-windows-live-mesh-to-dropbox/">From Windows Live Mesh to Dropbox</a>
-            
-        </h1>
-        <p>
-            <time datetime="2009-10-12 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Oct 12, 2009</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2009/from-windows-live-mesh-to-dropbox/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2009/from-windows-live-mesh-to-dropbox/</span>
-            </a>
-        </p>
-    </header>
-
-    
-
-<p>The other night I received a recommendation to try out Dropbox.
-If you don&rsquo;t know what Dropbox is, here&rsquo;s the short of it.
-Post-install, you&rsquo;ll see a &ldquo;My Dropbox&rdquo; folder on your desktop
-(or wherever you chose to place it) and anything you put in there gets
-automagically sync&rsquo;d with every other computer you have Dropbox installed on.</p>
-
-<p>From random documents and OneNote Notebooks to my <a href="http://www.keepass.info">Keepass</a>
-Database and books I&rsquo;m reading, I have quite a few files that I like to
-have access to no matter which computer I&rsquo;m on. I could use a thumb drive
-for this&hellip; and I have in the past, but the convenience of having everything
-synchronized automatically for me and not having to remember to carry
-around the thumb drive is too much to pass up.</p>
-
-<p>For the past 6 months or so I&rsquo;ve been using Windows Live Mesh to
-synchronize these files between my computers. Before that I was
-using Windows Live Sync. I&rsquo;m actually still using Live Sync for
-some things (more on that later) but I have made the switch from Mesh
-to Dropbox. Bottom line, Dropbox &ldquo;just works&rdquo; and it keeps me in the
-loop while it&rsquo;s doing it. Let me explain.</p>
-
-<h2 id="windows-live-mesh">Windows Live Mesh</h2>
-
-<p>This is Microsoft&rsquo;s vision for your personal cloud.
-You get 5GB of online storage known as your Live Desktop.
-You get file synchronization between your computers (just like Live Sync).
-And you get remote desktop baked in.</p>
-
-<p>Mesh is still a beta product and things seem to be moving slowly
-on it judging by the sparse updates and lack of news via the blogging community.</p>
-
-<figure >
-
-<img src="/2009/10/livemesh-dropbox/mesh_live_desktop.jpg"  />
-
-
-</figure>
-
-<p>The best part of Mesh is that in addition to syncing folders
-across your computer, you can <em>optionally</em> have it sync the folder
-to your Live Desktop. Anything in your Live Desktop is available from any
-web connected computer and this is very handy. Don&rsquo;t miss the key word though.
-<strong>Optional</strong>. This is very important because I may have 20+ GB of music that
-I want to sync between my computers, but I don&rsquo;t want that eating
-up my 5GB of cloud space. With Mesh, this is easily handled by configuring
-exactly which devices you want to sync each folder with. Guess what?
-Your Live Desktop shows up as a device!</p>
-
-<figure >
-
-<img src="/2009/10/livemesh-dropbox/mesh_folder_share_config.png"  />
-
-
-</figure>
-
-<p>What&rsquo;s the catch? Well for me the whole syncing part was too opaque.
-I never felt like I really &lsquo;knew&rsquo; if my latest changes had been sync&rsquo;d
-yet or not. Even with the fancy News sidebar that Mesh attaches to each
-of your sync&rsquo;d folders.</p>
-
-<figure >
-
-<img src="/2009/10/livemesh-dropbox/mesh_log_small.jpg"  />
-
-
-</figure>
-
-<p>All too often I would update files and trust Mesh to sync them only
-to find out later that Mesh never picked up on the changes. Maybe it&rsquo;s
-just the fancy UI they&rsquo;ve given it, but I don&rsquo;t feel like the News pane
-is giving me all the details about which files have been uploaded, when,
-and which ones are still in progress.</p>
-
-<p>Maybe if Mesh had been faithful in keeping my files in sync I wouldn&rsquo;t
-care about seeing these details. Unfortunately it failed me and now I want
-to see everything.</p>
-
-<p>I only used the built in remote desktop a couple of times but I was
-impressed that it worked pretty well, even when the computer I was connecting
-to was behind a proxy.</p>
-
-<h2 id="dropbox">Dropbox</h2>
-
-<p>Whereas Mesh and Live Sync allow you to synchronize multiple folders
-between your computers, Dropbox only syncs one folder. Your My Dropbox folder.
-This was a small adjustment for me to make but it was worth it.</p>
-
-<p>Dropbox is completely cross platform with support for Windows, Mac, Linux,
-iPhone and other mobile phones. I only care about Windows and the iPhone though.</p>
-
-<p>I get 2GB free from Dropbox which is plenty for my critical files.
-Unlike Mesh, you can&rsquo;t choose to <em>not</em> have some files sync&rsquo;d to the cloud.
-Everything in your My Dropbox goes to the cloud, as well as your other computers.
-This is the only thing that I see Mesh having an upper hand in and its
-actually the reason I&rsquo;m still using Live Sync for some things.</p>
-
-<p>The Windows client for Dropbox is perfect. I get status overlays on all
-of the files and folders in My Dropbox that indicates whether they are
-up-to-date or downloading (+1 for acting like TortoiseSVN!). I get real-time
-balloon messages from my notification area whenever a file is changed, even
-when it&rsquo;s on another computer. For instance if I update a file on my desktop,
-I&rsquo;ll get a notification as soon as my laptop receives the update. This does
-wonders for making me feel &ldquo;in the loop&rdquo; and confident that my files are being
-kept up-to-date.</p>
-
-<figure >
-
-<img src="/2009/10/livemesh-dropbox/dropbox_status_overlays.png"  />
-
-
-</figure>
-
-<p>Dropbox has the cloud part covered by letting you login and access all your
-files via the browser. On top of this, they also keep past versions of your
-files (think shadow copy) as backups.</p>
-
-<p>The iPhone application (free) is a real work of art. I expected slow and
-clunky and I got fast and simple. Once you login you see a list of all your
-files and folders alphabetized. If its a file type that the iPhone supports
-(i.e photos or Office docs) you can open it up right on your phone. You can
-also add photos to your dropbox from your iPhone.</p>
-
-<p>Of course all of these apps offer great support for sharing files with
-your friends and colleagues, but Dropbox offers one stand out feature here.
-In addition to being able to share specific folders with friends, they give
-you a built-in Public folder that you can drop any file into, then right-click
-on the file to select an option to Copy a Public Link to that file. You can
-send this link to anyone and they&rsquo;ll be able to access the file. This enables
-a very quick workflow for sharing documents.</p>
-
-<h2 id="windows-live-sync">Windows Live Sync</h2>
-
-<p>This one has been around for awhile and (unlike Mesh) its <em>not</em> a beta.
-Also unlike Mesh, this one hasn&rsquo;t lost my confidence.</p>
-
-<p>There is no cloud storage with Live Sync. It only syncs directly between
-your computers peer-to-peer style. This means to stay up to date your
-computers really need be online all the time. When you change a file on
-computer A it checks if computer B is online and if so it will upload
-directly from A to B. If computer B is offline, it doesn&rsquo;t get the update.
-When computer B comes back online it will look for updates from A, if A is
-offline it won&rsquo;t get updates until it comes back.</p>
-
-<p>Oh, and it has an activity log:</p>
-
-<figure >
-
-<img src="/2009/10/livemesh-dropbox/live_sync_activity.png"  />
-
-
-</figure>
-
-<p>No cloud storage means no piddly size limitations. Well, sort of.
-You are limited to syncing 20 folders (top-level folders, this doesn&rsquo;t
-include children) with up to 20,000 files in each. I&rsquo;m not sure what the
-per-file size limits are.</p>
-
-<p>I mentioned above that I&rsquo;m still using Live Sync in addition to Dropbox.
-This is for 2 reasons:</p>
-
-<ol>
-<li>I have a <code>C:\tools</code> folder that I want to sync. I don&rsquo;t want this
-to become <code>C:\My Dropbox\tools</code>.</li>
-<li>I have some larger files (like music) that I don&rsquo;t care if its
-stored in the cloud, I just want it sync&rsquo;d. If I used Dropbox
-for this my free storage limits would have run out within the first hour&hellip;
-<br /></li>
-</ol>
-
-<p>At the end of the day, if you need to sync files between computers,
-I highly recommend either Dropbox or Windows Live Sync. As for Live Mesh?
-This is admittedly still a BETA product and it acts like one. I&rsquo;d wait until
-it&rsquo;s more mature before going this route.</p>
 
 
 </article>

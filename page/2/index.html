@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.30.2" />
+<meta name="generator" content="Hugo 0.49" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -60,11 +60,69 @@
     <header>
         <h1>
             
+            <a href="http://joshua.poehls.me/2015/03/dayone-golang-package/">Reading Day One journals in Go</a>
+            
+        </h1>
+        <p>
+            <time datetime="2015-03-14 10:43:31 -0600 -0600" pubdate="pubdate">Sat, Mar 14, 2015</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2015/03/dayone-golang-package/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2015/03/dayone-golang-package/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Here&rsquo;s a little gift for my fellow <a href="http://dayoneapp.com">Day One</a> aficionados who also happen to use <a href="http://golang.org">Go</a>.</p>
+
+<p><strong>A Go package for reading Day One journal files!</strong></p>
+
+<p>&#11089; <a href="http://github.com/jpoehls/go-dayone">Source</a>
+&nbsp;
+&#11089; <a href="http://godoc.org/github.com/jpoehls/go-dayone">Documentation</a></p>
+
+<p>It&rsquo;s as easy as:</p>
+
+<pre><code>import &quot;github.com/jpoehls/go-dayone&quot;
+
+j := dayone.NewJournal(&quot;/Users/{me}/Dropbox/Apps/Day One/Journal.dayone&quot;)
+
+err := j.Read(func(e *Entry, err error) error {
+	if err != nil {
+		return err
+	}
+
+	// Do something with the entry,
+	// or return dayone.ErrStopRead to break.
+})
+
+if err != nil {
+	panic(err)
+}
+</code></pre>
+
+<p>I&rsquo;d like to add support for creating and editing entries in the future. Contributions welcome, just hit me up!</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="https://firstlook.org/theintercept/2014/11/18/media-outlets-continue-describe-unknown-drone-victims-militants/">Drone Strike Terrorism</a> <span class="subtle symbol">&#10230;</span>
             
         </h1>
         <p>
-            <time datetime="2014-11-18 09:55:27 -0600 -0600" pubdate="pubdate">Tue, Nov 18, 2014</time>
+            <time datetime="2014-11-18 09:55:27 -0600 CST" pubdate="pubdate">Tue, Nov 18, 2014</time>
             <span class="symbol">&#8226;</span>
             <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/11/drone-strike-terrorism/">
                 <span class="noprint symbol">&#8734;</span>
@@ -156,7 +214,7 @@
             
         </h1>
         <p>
-            <time datetime="2014-10-02 15:03:13 -0500 -0500" pubdate="pubdate">Thu, Oct 2, 2014</time>
+            <time datetime="2014-10-02 15:03:13 -0500 CDT" pubdate="pubdate">Thu, Oct 2, 2014</time>
             <span class="symbol">&#8226;</span>
             <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/10/mma-hour-249-renzo-gracie/">
                 <span class="noprint symbol">&#8734;</span>
@@ -185,7 +243,7 @@ Renzo Gracie on MMA Hour Episode 249
 
 <p>Just stop reading and <a href="http://www.mmafighting.com/2014/9/30/6872803/the-mma-hour-249-renzo-gracie">go listen to it</a>.</p>
 
-<p>One part that stood out the most to me was when he talked about how in this country (America), “nobody wants to <strong>do</strong>.”<sup class="footnote-ref" id="fnref:fn2"><a rel="footnote" href="#fn:fn2">1</a></sup> He referenced a story about a woman who was raped in New York. “Fifty-two people heard her scream.” Nobody helped. “Everybody assumed, you gonna take care, not me.”</p>
+<p>One part that stood out the most to me was when he talked about how in this country (America), “nobody wants to <strong>do</strong>.”<sup class="footnote-ref" id="fnref:fn2"><a href="#fn:fn2">1</a></sup> He referenced a story about a woman who was raped in New York. “Fifty-two people heard her scream.” Nobody helped. “Everybody assumed, you gonna take care, not me.”</p>
 
 <p>In contrast, he told about a time when he was in Brazil driving with his wife and kids and saw a guy hit a woman.</p>
 
@@ -225,7 +283,7 @@ Renzo Gracie on MMA Hour Episode 249
             
         </h1>
         <p>
-            <time datetime="2014-10-02 14:03:07 -0500 -0500" pubdate="pubdate">Thu, Oct 2, 2014</time>
+            <time datetime="2014-10-02 14:03:07 -0500 CDT" pubdate="pubdate">Thu, Oct 2, 2014</time>
             <span class="symbol">&#8226;</span>
             <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/10/worlds-loudest-sound/">
                 <span class="noprint symbol">&#8734;</span>
@@ -275,7 +333,7 @@ Krakatoa
             
         </h1>
         <p>
-            <time datetime="2014-09-26 16:51:06 -0500 -0500" pubdate="pubdate">Fri, Sep 26, 2014</time>
+            <time datetime="2014-09-26 16:51:06 -0500 CDT" pubdate="pubdate">Fri, Sep 26, 2014</time>
             <span class="symbol">&#8226;</span>
             <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/09/david-rumsey-map-collection/">
                 <span class="noprint symbol">&#8734;</span>
@@ -351,7 +409,7 @@ London Underground Transport (1933)
             
         </h1>
         <p>
-            <time datetime="2014-09-26 12:52:44 -0500 -0500" pubdate="pubdate">Fri, Sep 26, 2014</time>
+            <time datetime="2014-09-26 12:52:44 -0500 CDT" pubdate="pubdate">Fri, Sep 26, 2014</time>
             <span class="symbol">&#8226;</span>
             <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/09/languages-are-beautiful/">
                 <span class="noprint symbol">&#8734;</span>
@@ -487,7 +545,7 @@ Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש
             
         </h1>
         <p>
-            <time datetime="2014-09-26 09:18:41 -0500 -0500" pubdate="pubdate">Fri, Sep 26, 2014</time>
+            <time datetime="2014-09-26 09:18:41 -0500 CDT" pubdate="pubdate">Fri, Sep 26, 2014</time>
             <span class="symbol">&#8226;</span>
             <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/09/nsa-reaches-out/">
                 <span class="noprint symbol">&#8734;</span>
@@ -549,7 +607,7 @@ Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש
             
         </h1>
         <p>
-            <time datetime="2014-09-25 14:21:31 -0500 -0500" pubdate="pubdate">Thu, Sep 25, 2014</time>
+            <time datetime="2014-09-25 14:21:31 -0500 CDT" pubdate="pubdate">Thu, Sep 25, 2014</time>
             <span class="symbol">&#8226;</span>
             <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/09/earths-water-is-older-than-the-sun/">
                 <span class="noprint symbol">&#8734;</span>
@@ -567,7 +625,7 @@ Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש
 <blockquote>
 <p><sup>1</sup> In the beginning God created the heaven and the earth.
 <sup>2</sup> And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters.
-<sup>3</sup> And God said, Let there be light: and there was light. <sup class="footnote-ref" id="fnref:fn1"><a rel="footnote" href="#fn:fn1">1</a></sup></p>
+<sup>3</sup> And God said, Let there be light: and there was light. <sup class="footnote-ref" id="fnref:fn1"><a href="#fn:fn1">1</a></sup></p>
 </blockquote>
 
 
@@ -602,7 +660,7 @@ Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש
             
         </h1>
         <p>
-            <time datetime="2014-09-25 13:48:49 -0500 -0500" pubdate="pubdate">Thu, Sep 25, 2014</time>
+            <time datetime="2014-09-25 13:48:49 -0500 CDT" pubdate="pubdate">Thu, Sep 25, 2014</time>
             <span class="symbol">&#8226;</span>
             <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/09/ie-eg-sentences/">
                 <span class="noprint symbol">&#8734;</span>
@@ -625,7 +683,7 @@ Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש
 <p>I.e., something like this is correct.</p>
 </blockquote>
 
-<p>Wrong way: <sup class="footnote-ref" id="fnref:fn1"><a rel="footnote" href="#fn:fn1">1</a></sup></p>
+<p>Wrong way: <sup class="footnote-ref" id="fnref:fn1"><a href="#fn:fn1">1</a></sup></p>
 
 <blockquote>
 <p>e.g., This is a bad example.</p>
@@ -661,7 +719,7 @@ Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש
             
         </h1>
         <p>
-            <time datetime="2014-09-25 09:58:59 -0500 -0500" pubdate="pubdate">Thu, Sep 25, 2014</time>
+            <time datetime="2014-09-25 09:58:59 -0500 CDT" pubdate="pubdate">Thu, Sep 25, 2014</time>
             <span class="symbol">&#8226;</span>
             <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/09/hello-world/">
                 <span class="noprint symbol">&#8734;</span>
@@ -670,10 +728,10 @@ Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש
         </p>
     </header>
 
-    <p>Welcome to my new blog! <sup class="footnote-ref" id="fnref:fn1"><a rel="footnote" href="#fn:fn1">1</a></sup> All of my blogging in the past has been in the form of longer articles, mostly technology related, and mostly trying to teach a tip or trick.</p>
+    <p>Welcome to my new blog! <sup class="footnote-ref" id="fnref:fn1"><a href="#fn:fn1">1</a></sup> All of my blogging in the past has been in the form of longer articles, mostly technology related, and mostly trying to teach a tip or trick.</p>
 
 <p>I&rsquo;m taking a different approach this time. I&rsquo;ll be posting more random thoughts.
-Sharing articles I find interesting. Overall I expect this to feel more like reading my Facebook wall and that&rsquo;s what I&rsquo;m going for. <sup class="footnote-ref" id="fnref:fn2"><a rel="footnote" href="#fn:fn2">2</a></sup></p>
+Sharing articles I find interesting. Overall I expect this to feel more like reading my Facebook wall and that&rsquo;s what I&rsquo;m going for. <sup class="footnote-ref" id="fnref:fn2"><a href="#fn:fn2">2</a></sup></p>
 
 <p>Here goes nothing!</p>
 
@@ -695,83 +753,6 @@ Sharing articles I find interesting. Overall I expect this to feel more like rea
  <a class="footnote-return" href="#fnref:fn2">↩</a></li>
 </ol>
 </div>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2014/04/go-101-string-or-byte-slice/">Go 101: String or Byte Slice?</a>
-            
-        </h1>
-        <p>
-            <time datetime="2014-04-16 09:58:59 -0500 -0500" pubdate="pubdate">Wed, Apr 16, 2014</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/04/go-101-string-or-byte-slice/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2014/04/go-101-string-or-byte-slice/</span>
-            </a>
-        </p>
-    </header>
-
-    
-
-<p>One of the first things you&rsquo;ll notice in Go is that two different types are commonly used for representing text. <code>string</code> and <code>[]byte</code>. A quick example is the <a href="http://golang.org/pkg/regexp/#Regexp.FindAll">regexp package</a> which has functions for both <code>string</code> and <code>[]byte</code>.</p>
-
-<h2 id="what-is-the-difference">What is the difference?</h2>
-
-<p><code>string</code> is immutable and <code>[]byte</code> is mutable. Both can contain arbitrary bytes.</p>
-
-<p>The name &ldquo;string&rdquo; implies unicode text but this is not enforced. Operating on <code>string</code> is like operating on <code>[]byte</code>. You are working with bytes not characters.</p>
-
-<p>They are nearly identical and differ only in mutability. The <a href="http://golang.org/pkg/strings/"><code>strings</code></a> and <a href="http://golang.org/pkg/bytes/"><code>bytes</code></a> packages are nearly identical apart from the type that they use.</p>
-
-<blockquote>
-<p><strong>Q:</strong> If strings are just arbitrary bytes, then how do you work with characters?</p>
-
-<p><strong>A:</strong> What you are thinking of as a character, Go calls a <a href="http://golang.org/ref/spec#Rune_literals">rune</a>. One way to iterate the characters in a string is to use the <code>for...range</code> loop. Range will parse the string as UTF-8 and iterate the runes. Read <a href="http://golang.org/doc/effective_go.html#for">the <code>for</code> loop</a> section of Effective Go for more information.</p>
-</blockquote>
-
-<h2 id="when-to-use-string">When to use <code>string</code>?</h2>
-
-<p>Ask not when to use <code>string</code> but rather, when to use <code>[]byte</code>. Always start with <code>string</code> and switch to <code>[]byte</code> when justified.</p>
-
-<h2 id="when-to-use-byte">When to use <code>[]byte</code>?</h2>
-
-<p>Use <code>[]byte</code> when you need to make many changes to a string. Since <code>string</code> is immutable, any change will allocate a new <code>string</code>. You can get better performance by using <code>[]byte</code> and avoiding the allocations.</p>
-
-<blockquote>
-<p>C# perspective: <code>[]byte</code> is to <a href="http://msdn.microsoft.com/en-us/library/system.text.stringbuilder(v=vs.110).aspx"><code>System.StringBuilder</code></a> as <code>string</code> is to <a href="http://msdn.microsoft.com/en-us/library/system.string(v=vs.110).aspx"><code>System.String</code></a> when it comes to performance.</p>
-</blockquote>
-
-<p>Even if your code isn&rsquo;t directly manipulating the string, you may want to use <code>[]byte</code> if you are using packages which require it so you can avoid the conversion.</p>
-
-<p>Converting to and from <code>[]byte</code> is easy. Just remember that each conversion creates a copy of the value.</p>
-
-<pre><code>s := &quot;some string&quot;
-b := []byte(s) // convert string -&gt; []byte
-s2 := string(b) // convert []byte -&gt; string
-</code></pre>
-
-<blockquote>
-<p>Converting to/from <code>string</code> and <code>[]byte</code> copies the entire value. Using lots of type conversions in your code is typically a warning sign that you need to reevaluate the types you are using. You want to minimize conversions both for performance and clean code.</p>
-</blockquote>
-
-<h2 id="more-about-strings">More about strings</h2>
-
-<p>The Go blog has posted in detail about <a href="http://blog.golang.org/strings">strings, bytes, runes, and characters in Go</a>. You should definitely read that post to fully understand the topic.</p>
-
-<p><strong>Update:</strong> Thanks to <a href="https://twitter.com/mholt6">@mholt6</a> for reviewing the post and helping improve it!</p>
 
 
 </article>

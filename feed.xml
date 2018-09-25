@@ -5,12 +5,50 @@
   <rights>Copyright (c) 2014-2017 Joshua Poehls. All rights reserved.</rights>
   <link rel="self" href="http://joshua.poehls.me/feed.xml"/>
   <link href="http://joshua.poehls.me/"/>
-  <updated>2017-11-10T08:54:57-06:00</updated>
+  <updated>2018-09-24T09:52:40-05:00</updated>
   <author>
     <name>Joshua Poehls</name>
   </author>
   <id>http://joshua.poehls.me/</id>
 
+  
+  <entry>
+    <title>Greek New Testament Narrated by Theo Karvounakis</title>
+    <link href="http://joshua.poehls.me/2018/greek-new-testament-narrated-by-theo-karvounakis/"/>
+    <id>http://joshua.poehls.me/2018/greek-new-testament-narrated-by-theo-karvounakis/</id>
+    <updated>2018-09-24T09:52:40-05:00</updated>
+    
+    <category term="greek" />
+    <category term="scripture" />
+    
+    <content type="html">
+
+&lt;p&gt;I recently discovered an excellent narration of the Greek New Testament. It is freely available for download and streaming; the links are below.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=-BfYa4QM2dc&amp;amp;list=PL40D66708671D260F&#34;&gt;Stream on YouTube&lt;/a&gt; with text that follows the audio&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://bit.ly/KoineGreekNT-mp3&#34;&gt;Download the MP3s&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://biblia.com/books/tr1894mr&#34;&gt;Read along at Biblia.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;After finding these recordings on YouTube I had to dig around to find who to cite as the narrator. According to &lt;a href=&#34;https://christthetruth.net/2012/06/23/free-greek-audio-bible/&#34;&gt;a post on Glen Scrivener’s blog&lt;/a&gt;, the narration is by Theo Karvounakis and the recordings are being released into the public domain by he and Matthias Müller.&lt;/p&gt;
+
+&lt;p&gt;The readings &lt;a href=&#34;https://www.youtube.com/watch?v=7Nwmwi01AWg&amp;amp;lc=UgwXRj1oN5t6C5aKVIx4AaABAg&#34;&gt;are from&lt;/a&gt; &lt;em&gt;Scrivener’s Textus Receptus (1894 edition)&lt;/em&gt; published by the Trinitarian Bible Society, the text of which is also in the public domain.&lt;/p&gt;
+
+&lt;p&gt;I’ve listened to a bit from &lt;em&gt;The Gospel of Matthew&lt;/em&gt; and &lt;em&gt;The Gospel of John&lt;/em&gt; and the production quality is very good. Theo Karvounakis reads in a modern Greek pronunciation that is easy to understand and listen to.&lt;/p&gt;
+
+&lt;h2 id=&#34;the-gospel-of-john-a-podcast&#34;&gt;The Gospel of John: A Podcast?&lt;/h2&gt;
+
+&lt;p&gt;I’ve experimented with creating a podcast feed for these recordings so that they are easy to stream on the go. I like to listen to spoken audio in &lt;a href=&#34;https://overcast.fm&#34;&gt;Overcast&lt;/a&gt; as much as possible because of the excellent Smart Speed and Voice Boost features that trim up the excess silence and enhance the audio quality so much.&lt;/p&gt;
+
+&lt;p&gt;I started by making a feed for &lt;em&gt;The Gospel of John&lt;/em&gt; by uploading the MP3s to the Internet Archive and hosting the podcast RSS feed on GitHub. Use the links below to subscribe. If this is useful to you then I’d love &lt;a href=&#34;http://joshua.poehls.me/contact&#34;&gt;to hear your feedback&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://gist.github.com/jpoehls/aba41a9f0827fe2369df68b307988b3d&#34;&gt;Read the readme&lt;/a&gt; for the podcast feed&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gist.github.com/jpoehls/aba41a9f0827fe2369df68b307988b3d/raw/feed.xml&#34;&gt;Subscribe to the RSS feed&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Vincent van Gogh - The Letters</title>
@@ -82,9 +120,9 @@ Facsimile of a letter from Vincent van Gogh
 &lt;/blockquote&gt;
 
 
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/A14THPoc4-4&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34; title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
- &lt;/div&gt;
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/A14THPoc4-4&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
 
 
 &lt;blockquote&gt;
@@ -114,9 +152,9 @@ The LORD watches over the sojourners;&lt;br /&gt;
 &lt;p&gt;The behind-the-scenes is pretty cool as well.&lt;/p&gt;
 
 
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/9U9nxG544Gk&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%;&#34; allowfullscreen frameborder=&#34;0&#34; title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
- &lt;/div&gt;
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;//www.youtube.com/embed/9U9nxG544Gk&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
 
 
 &lt;blockquote&gt;
@@ -188,7 +226,7 @@ finally
 &lt;h2 id=&#34;what-s-going-on-here&#34;&gt;What&amp;rsquo;s going on here?&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Enables &lt;code&gt;StrictMode&lt;/code&gt; to enforce some best practices. &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn1&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:fn1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;
+&lt;li&gt;Enables &lt;code&gt;StrictMode&lt;/code&gt; to enforce some best practices. &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn1&#34;&gt;&lt;a href=&#34;#fn:fn1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Prevents use of variables that have not been initialized.&lt;/li&gt;
@@ -694,16 +732,16 @@ Luther and Friends Pray at the Bedside of Melancthon
 j := dayone.NewJournal(&amp;quot;/Users/{me}/Dropbox/Apps/Day One/Journal.dayone&amp;quot;)
 
 err := j.Read(func(e *Entry, err error) error {
-    if err != nil {
-        return err
-    }
+	if err != nil {
+		return err
+	}
 
-    // Do something with the entry,
-    // or return dayone.ErrStopRead to break.
+	// Do something with the entry,
+	// or return dayone.ErrStopRead to break.
 })
 
 if err != nil {
-    panic(err)
+	panic(err)
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -815,7 +853,7 @@ Renzo Gracie on MMA Hour Episode 249
 
 &lt;p&gt;Just stop reading and &lt;a href=&#34;http://www.mmafighting.com/2014/9/30/6872803/the-mma-hour-249-renzo-gracie&#34;&gt;go listen to it&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;One part that stood out the most to me was when he talked about how in this country (America), “nobody wants to &lt;strong&gt;do&lt;/strong&gt;.”&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn2&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:fn2&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; He referenced a story about a woman who was raped in New York. “Fifty-two people heard her scream.” Nobody helped. “Everybody assumed, you gonna take care, not me.”&lt;/p&gt;
+&lt;p&gt;One part that stood out the most to me was when he talked about how in this country (America), “nobody wants to &lt;strong&gt;do&lt;/strong&gt;.”&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn2&#34;&gt;&lt;a href=&#34;#fn:fn2&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; He referenced a story about a woman who was raped in New York. “Fifty-two people heard her scream.” Nobody helped. “Everybody assumed, you gonna take care, not me.”&lt;/p&gt;
 
 &lt;p&gt;In contrast, he told about a time when he was in Brazil driving with his wife and kids and saw a guy hit a woman.&lt;/p&gt;
 
@@ -920,126 +958,6 @@ Ocean Floors and Land Relief (1976)
 &lt;figcaption&gt;
 &lt;p&gt;
 London Underground Transport (1933)
-
-
-
-&lt;/p&gt; 
-&lt;/figcaption&gt;
-
-&lt;/figure&gt;&lt;/p&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>Languages Are Beautiful</title>
-    <link href="http://joshua.poehls.me/2014/09/languages-are-beautiful/"/>
-    <id>http://joshua.poehls.me/2014/09/languages-are-beautiful/</id>
-    <updated>2014-09-26T12:52:44-05:00</updated>
-    
-    <category term="art" />
-    <category term="languages" />
-    <category term="typography" />
-    
-    <content type="html">&lt;p&gt;If you ever see me doodling, odds are that I&amp;rsquo;m drawing letters and numbers of some kind. I&amp;rsquo;ve always found alphabets, notations, and writing systems in general to be facinating. Typography is beautiful. Typography in foreign languages, even more so.&lt;/p&gt;
-
-&lt;p&gt;&lt;figure &gt;
-&lt;a href=&#34;http://www.zazzle.com/jesus_christ_the_son_of_the_living_god_in_hebrew_canvas-192689088319290932&#34;&gt;
-&lt;img src=&#34;http://joshua.poehls.me/2014/09/languages-are-beautiful/jesus.png&#34; alt=&#34;Jesus Christ, the Son of the Living God&#34; /&gt;
-&lt;/a&gt;
-
-&lt;figcaption&gt;
-&lt;p&gt;
-Jesus Christ, the Son of the Living God
-
-
-
-&lt;/p&gt; 
-&lt;/figcaption&gt;
-
-&lt;/figure&gt;
-&lt;figure &gt;
-&lt;a href=&#34;http://www.alefbetty.com/shop/poster_red_blocks.html&#34;&gt;
-&lt;img src=&#34;http://joshua.poehls.me/2014/09/languages-are-beautiful/red.jpg&#34; alt=&#34;Hebrew Alphabet Poster - Red Blocks&#34; /&gt;
-&lt;/a&gt;
-
-&lt;figcaption&gt;
-&lt;p&gt;
-Hebrew Alphabet Poster - Red Blocks
-
-
-
-&lt;/p&gt; 
-&lt;/figcaption&gt;
-
-&lt;/figure&gt;
-&lt;figure &gt;
-&lt;a href=&#34;http://www.alefbetty.com/shop/poster_blue_classic.html&#34;&gt;
-&lt;img src=&#34;http://joshua.poehls.me/2014/09/languages-are-beautiful/blue.jpg&#34; alt=&#34;Hebrew Alphabet Poster - Classic Blue&#34; /&gt;
-&lt;/a&gt;
-
-&lt;figcaption&gt;
-&lt;p&gt;
-Hebrew Alphabet Poster - Classic Blue
-
-
-
-&lt;/p&gt; 
-&lt;/figcaption&gt;
-
-&lt;/figure&gt;
-&lt;figure &gt;
-&lt;a href=&#34;http://society6.com/johnyunker/see-the-world_print#1=45&#34;&gt;
-&lt;img src=&#34;http://joshua.poehls.me/2014/09/languages-are-beautiful/eye.jpg&#34; alt=&#34;See the World by John Yunker&#34; /&gt;
-&lt;/a&gt;
-
-&lt;figcaption&gt;
-&lt;p&gt;
-See the World by John Yunker
-
-
-
-&lt;/p&gt; 
-&lt;/figcaption&gt;
-
-&lt;/figure&gt;
-&lt;figure &gt;
-&lt;a href=&#34;http://www.coroflot.com/maltin75/photography&#34;&gt;
-&lt;img src=&#34;http://joshua.poehls.me/2014/09/languages-are-beautiful/print.jpg&#34; alt=&#34;Hebrew Calligraphy&#34; /&gt;
-&lt;/a&gt;
-
-&lt;figcaption&gt;
-&lt;p&gt;
-Hebrew Calligraphy
-
-
-
-&lt;/p&gt; 
-&lt;/figcaption&gt;
-
-&lt;/figure&gt;
-&lt;figure &gt;
-&lt;a href=&#34;https://www.behance.net/gallery/7250675/Writing-Systems-Poster&#34;&gt;
-&lt;img src=&#34;http://joshua.poehls.me/2014/09/languages-are-beautiful/greek.png&#34; alt=&#34;Writing Systems Poster by Emily Law&#34; /&gt;
-&lt;/a&gt;
-
-&lt;figcaption&gt;
-&lt;p&gt;
-Writing Systems Poster by Emily Law
-
-
-
-&lt;/p&gt; 
-&lt;/figcaption&gt;
-
-&lt;/figure&gt;
-&lt;figure &gt;
-&lt;a href=&#34;https://www.behance.net/gallery/18750311/Hebrew-Lettering-&#34;&gt;
-&lt;img src=&#34;http://joshua.poehls.me/2014/09/languages-are-beautiful/black.jpg&#34; alt=&#34;Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש&#34; /&gt;
-&lt;/a&gt;
-
-&lt;figcaption&gt;
-&lt;p&gt;
-Hebrew Lettering by Tal Maimon - הגיעו מים עד גועל נפש
 
 
 
