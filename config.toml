@@ -1,7 +1,7 @@
 baseurl = "http://joshua.poehls.me"
 languageCode = "en-us"
 title = "joshua poehls | silent thoughts"
-copyright = "Copyright (c) 2014-2017 Joshua Poehls. All rights reserved."
+copyright = "Copyright (c) 2014-2018 Joshua Poehls. All rights reserved."
 metadataFormat = "yaml"
 
 paginate = 10
