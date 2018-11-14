@@ -60,6 +60,92 @@
     <header>
         <h1>
             
+            <a href="http://joshua.poehls.me/2009/installing-python-pygments-on-windows/">Installing Python Pygments on Windows</a>
+            
+        </h1>
+        <p>
+            <time datetime="2009-10-25 00:00:00 &#43;0000 UTC" pubdate="pubdate">Sun, Oct 25, 2009</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2009/installing-python-pygments-on-windows/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2009/installing-python-pygments-on-windows/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>While I was updating this blog to use <a href="http://www.jekyllrb.com">Jekyll</a>,
+I wanted to enable some nice syntax highlighting for any code snippets I may post.
+Jekyll provides support for this through <a href="http://pygments.org/">Pygments</a> which is
+a pretty mature and widely used syntax highlighter built on Python.</p>
+
+<p>I find it a little ironic that I need to install Python to enable a feature in a Ruby program.
+Though it is nice to see that the Jekyll team isn&rsquo;t afraid to leverage great tools even if they
+aren&rsquo;t written in Ruby.</p>
+
+<p>I should note that this is my first experience doing anything with Python. That said, here
+are the steps I fumbled through to install Pygments. This is officially the first
+Python egg I&rsquo;ve ever hatched.</p>
+
+<p>What the heck is an egg? Eggs are one way to package up
+a group of Python scripts for easy distribution. This makes
+eggs the equivelant of <a href="http://en.wikipedia.org/wiki/RubyGems">Ruby gems</a>.</p>
+
+<p>To create or install eggs you need to have
+<a href="http://pypi.python.org/pypi/setuptools">easy_install</a> installed.</p>
+
+<p>Here are the steps I took to do that.</p>
+
+<ol>
+<li><p>Download ez_setup.py from <a href="http://peak.telecommunity.com/dist/ez_setup.py">http://peak.telecommunity.com/dist/ez_setup.py</a>
+&gt; <strong>Note:</strong> The official documenation for easy_install can be found at
+&gt; <a href="http://peak.telecommunity.com/DevCenter/EasyInstall">http://peak.telecommunity.com/DevCenter/EasyInstall</a>.</p></li>
+
+<li><p>From the command line run: <code>python ez_setup.py</code>.
+This will put an easy_install.exe file (and related scripts) in your <code>C:\Python2x\Scripts</code> folder.</p></li>
+</ol>
+
+<blockquote>
+<p><strong>Note:</strong> If your Python scripts folder is not already in your
+<a href="http://en.wikipedia.org/wiki/PATH_(variable)">PATH environment variable</a> you
+may want to add it. This will make it easier to run scripts from that directory later on.</p>
+</blockquote>
+
+<p>Now that easy_install is available, I can download and install the Pygments egg that I need.</p>
+
+<ol>
+<li><p>Download the latest Pygments egg for your version of Python from <a href="http://pygments.org/download">http://pygments.org/download</a></p></li>
+
+<li><p>From the command line run: <code>easy_install Pygments-x.y.z-pyX.egg</code>.</p></li>
+
+<li><p>This will put add a &lsquo;pygmentize&rsquo; script to your default Python scripts folder (probably C:\Python2x\Script).</p></li>
+</ol>
+
+<p>And that&rsquo;s it. Of course after going through all of that I discovered that
+there is <a href="http://github.com/mojombo/jekyll/issues/#issue/76">a bug</a> in
+the current release of Jekyll that breaks its pygments support on Windows.
+Fortunately someone has fixed this bug in <a href="http://github.com/mojombo/jekyll/issues/#issue/76">a fork of Jekyll</a>
+but I haven&rsquo;t gotten around to trying that out yet. So for now I have no fancy syntax highlighting, but I did learn
+how to install an egg!</p>
+
+<p>You can find much more knowledgable information on Python Eggs
+<a href="http://mrtopf.de/blog/python_zope/a-small-introduction-to-python-eggs/">here</a>
+and <a href="http://mxm-mad-science.blogspot.com/2008/02/python-eggs-simple-introduction.html">here</a>.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="http://joshua.poehls.me/2009/from-windows-live-mesh-to-dropbox/">From Windows Live Mesh to Dropbox</a>
             
         </h1>
@@ -335,7 +421,7 @@ You can get the full syntax for this command by running <code>Get-Help dir</code
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014-2017&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2018&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

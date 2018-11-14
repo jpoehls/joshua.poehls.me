@@ -60,6 +60,60 @@
     <header>
         <h1>
             
+            <a href="http://joshua.poehls.me/2014/09/hello-world/">Hello World</a>
+            
+        </h1>
+        <p>
+            <time datetime="2014-09-25 09:58:59 -0500 CDT" pubdate="pubdate">Thu, Sep 25, 2014</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/09/hello-world/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2014/09/hello-world/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Welcome to my new blog! <sup class="footnote-ref" id="fnref:fn1"><a href="#fn:fn1">1</a></sup> All of my blogging in the past has been in the form of longer articles, mostly technology related, and mostly trying to teach a tip or trick.</p>
+
+<p>I&rsquo;m taking a different approach this time. I&rsquo;ll be posting more random thoughts.
+Sharing articles I find interesting. Overall I expect this to feel more like reading my Facebook wall and that&rsquo;s what I&rsquo;m going for. <sup class="footnote-ref" id="fnref:fn2"><a href="#fn:fn2">2</a></sup></p>
+
+<p>Here goes nothing!</p>
+
+<table border="0" width="100%" style="font-size: 1.5em" class="noborder">
+<tr>
+<td>Hello World!</td>
+<td style="text-align: center;">Hallo Welt!</td>
+<td style="text-align: right; direction: rtl;">שלום עולם</td>
+</tr>
+</table>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:fn1">This is no longer the first post as I&rsquo;ve started migrating older content from my blog at <code>zduck.com</code>.
+ <a class="footnote-return" href="#fnref:fn1">↩</a></li>
+<li id="fn:fn2">This is my plan to take control of my public content. I&rsquo;ll still share on Facebook and Twitter, but I want to own the canonical version.
+ <a class="footnote-return" href="#fnref:fn2">↩</a></li>
+</ol>
+</div>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="http://joshua.poehls.me/2014/04/go-101-string-or-byte-slice/">Go 101: String or Byte Slice?</a>
             
         </h1>
@@ -1282,85 +1336,6 @@ Screenshot of VIM with syntax highlighting in an Nginx config file
 </div>
 </div>
 	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git/">Storing your Raspberry Pi configuration in Git</a>
-            
-        </h1>
-        <p>
-            <time datetime="2012-06-08 00:00:00 &#43;0000 UTC" pubdate="pubdate">Fri, Jun 8, 2012</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>Storing your Raspberry Pi&rsquo;s configuration files in Git is a great way to protect yourself from really bad accidents. You get a backup of all your configs and revision control to rollback those nasty changes. Best of all, you don&rsquo;t have to manually create backup copies of each individual file. (<code>cp rc.conf rc.conf.bak</code> anyone?)</p>
-
-<p>I should note that I&rsquo;m running <a href="http://archlinuxarm.org">Arch Linux ARM</a>, but this should apply fairly equally to Debian and other distros.</p>
-
-<p>First, install <a href="http://git-scm.com">Git</a> (if you haven&rsquo;t already).</p>
-
-<pre><code>&gt; pacman -Sy git
-</code></pre>
-
-<p>Arch has a convention of storing all configuration files in <code>/etc</code>. So we will initialize our Git repo there.</p>
-
-<pre><code>&gt; cd /etc
-&gt; git init
-</code></pre>
-
-<p>We only want to store the configuration files that we&rsquo;ve actually changed in Git. We&rsquo;ll use a <code>.gitignore</code> file for that.</p>
-
-<pre><code>&gt; vim .gitignore
-</code></pre>
-
-<p>Here is what mine looks like right now.</p>
-
-<pre><code># Blacklist everything.
-*
-
-# Whitelist the files we care about.
-!rc.conf
-!rc.local
-!ntp.conf
-!resolv.conf
-
-!ddclient/
-!ddclient/ddclient.conf
-
-!nginx/
-!nginx/conf/
-!nginx/conf/nginx.conf
-</code></pre>
-
-<p>The <strong>!</strong> prefix negates the pattern, basically creating a whitelist. Cool, huh?</p>
-
-<p>Now we can do our initial commit.</p>
-
-<pre><code>&gt; git add -A
-&gt; git commit -m &quot;Added initial configs.&quot;
-</code></pre>
-
-<p>Remember to add any new config files to your <code>.gitignore</code> file and always commit your changes!</p>
-
-<p>For added security you should push your repository to <a href="http://git-scm.com/book/en/Git-Basics-Working-with-Remotes">a remote</a>. <a href="http://bitbucket.org">BitBucket</a> offers free private repositories, if you don&rsquo;t have a paid <a href="http://github.com">Github</a> account.</p>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
 	</section>
 
 </div>
@@ -1382,7 +1357,7 @@ Screenshot of VIM with syntax highlighting in an Nginx config file
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014-2017&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2018&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

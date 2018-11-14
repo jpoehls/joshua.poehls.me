@@ -2,15 +2,45 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>joshua poehls | silent thoughts</title>
   <icon>http://joshua.poehls.metouch-icon-iphone-retinahd.png</icon>
-  <rights>Copyright (c) 2014-2017 Joshua Poehls. All rights reserved.</rights>
+  <rights>Copyright (c) 2014-2018 Joshua Poehls. All rights reserved.</rights>
   <link rel="self" href="http://joshua.poehls.me/feed.xml"/>
   <link href="http://joshua.poehls.me/"/>
-  <updated>2018-09-24T09:52:40-05:00</updated>
+  <updated>2018-11-14T13:41:40-05:00</updated>
   <author>
     <name>Joshua Poehls</name>
   </author>
   <id>http://joshua.poehls.me/</id>
 
+  
+  <entry>
+    <title>Resources for Studying Zephaniah</title>
+    <link href="http://joshua.poehls.me/2018/resources-for-studying-zephaniah/"/>
+    <id>http://joshua.poehls.me/2018/resources-for-studying-zephaniah/</id>
+    <updated>2018-11-14T13:41:40-05:00</updated>
+    
+    <category term="scripture" />
+    
+    <content type="html">&lt;p&gt;I&amp;rsquo;ve been studying through Zephaniah recently, prompted by the recently released &lt;em&gt;&lt;a href=&#34;https://www.amazon.com/ESV-Expository-Commentary-7-Daniel-Malachi/dp/1433546523?&amp;amp;_encoding=UTF8&amp;amp;tag=poehls-20&amp;amp;linkCode=ur2&amp;amp;linkId=f84fa13acb18f9e11c227fc183537e37&amp;amp;camp=1789&amp;amp;creative=9325&#34;&gt;ESV Expository Commentary (Volume 7): Daniel–Malachi&lt;/a&gt;&lt;/em&gt;. The commentary on Zephaniah is written by Jason DeRouchie who I&amp;rsquo;ve been following since his &lt;em&gt;&lt;a href=&#34;https://www.amazon.com/How-Understand-Apply-Old-Testament/dp/1629952451?&amp;amp;_encoding=UTF8&amp;amp;tag=poehls-20&amp;amp;linkCode=ur2&amp;amp;linkId=3aea9f4d4504f9ceb5bb219392214716&amp;amp;camp=1789&amp;amp;creative=9325&#34;&gt;How to Understand and Apply the Old Testament&lt;/a&gt;&lt;/em&gt;, which is fantastic.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Andy Naselli&amp;rsquo;s companion volume, &lt;em&gt;&lt;a href=&#34;https://www.amazon.com/How-Understand-Apply-New-Testament/dp/1629952486?&amp;amp;_encoding=UTF8&amp;amp;tag=poehls-20&amp;amp;linkCode=ur2&amp;amp;linkId=1b2956844e522127703e788ed3967077&amp;amp;camp=1789&amp;amp;creative=9325&#34;&gt;How to Understand and Apply the New Testament&lt;/a&gt;&lt;/em&gt;, is equally fantastic. I read it first and I&amp;rsquo;m still working through DeRouchie&amp;rsquo;s volume.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Jason DeRouchie has taught though Zephaniah &lt;a href=&#34;https://jasonderouchie.com/a-number-of-studies-on-zephaniah/&#34;&gt;several times&lt;/a&gt;, including &lt;a href=&#34;https://jasonderouchie.com/derouchie-zephaniah-audio-lectures/&#34;&gt;15 lectures&lt;/a&gt; given to his adult Sunday School class at Bethlehem Baptist Church in the Fall of 2015. I&amp;rsquo;ve compiled the audio recordings from those lectures into a podcast feed for easy listening.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://gist.github.com/jpoehls/b85b800e364358d93ac7a4a4e746d3db/raw/feed.xml&#34;&gt;Subscribe to the podcast feed&lt;/a&gt; for &lt;em&gt;Zephaniah Lectures (Fall 2015) - Jason DeRouchie&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here are some other links that I&amp;rsquo;ve found useful for studying  Zephaniah:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The Bible Project&amp;rsquo;s &lt;a href=&#34;https://thebibleproject.com/explore/zephaniah/&#34;&gt;Read Scripture: Zephaniah&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Jason DeRouchie&amp;rsquo;s &lt;a href=&#34;https://jasonderouchie.com/a-number-of-studies-on-zephaniah/&#34;&gt;studies on Zephaniah&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Tim Mackie&amp;rsquo;s &lt;em&gt;&lt;a href=&#34;https://vimeo.com/43972474&#34;&gt;Bible in Five: The Minor Prophets, Part 2&lt;/a&gt;&lt;/em&gt; which covers Zephaniah and is part of his &lt;em&gt;&lt;a href=&#34;http://www.timmackie.com/bible-in-five/&#34;&gt;Bible in Five&lt;/a&gt;&lt;/em&gt; series.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Greek New Testament Narrated by Theo Karvounakis</title>
@@ -356,23 +386,46 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
     
     <category term="scripture" />
     
-    <content type="html">&lt;blockquote&gt;
-&lt;p&gt;I call heaven and earth to record this day against you, that &lt;strong&gt;I have set before you life and death&lt;/strong&gt;, blessing and cursing: therefore choose life, that both thou and thy seed may live: (Deu 30:19 KJV)&lt;/p&gt;
+    <content type="html">&lt;p&gt;I call heaven and earth to record this day against you, that &lt;strong&gt;I have set before you life and death&lt;/strong&gt;, blessing and cursing: therefore choose life, that both thou and thy seed may live:&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn1&#34;&gt;&lt;a href=&#34;#fn:fn1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
-&lt;p&gt;And if it seem evil unto you to serve the LORD, &lt;strong&gt;choose you this day whom ye will serve&lt;/strong&gt;; &amp;hellip; (Jos 24:15 KJV)&lt;/p&gt;
+&lt;p&gt;And if it seem evil unto you to serve the LORD, &lt;strong&gt;choose you this day whom ye will serve&lt;/strong&gt;; &amp;hellip;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn2&#34;&gt;&lt;a href=&#34;#fn:fn2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;If ye will fear the LORD, and serve him, and obey his voice,&lt;/strong&gt; and not rebel against the commandment of the LORD, then shall both ye and also the king that reigneth over you continue following the LORD your God: (1Sa 12:14 KJV)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;If ye will fear the LORD, and serve him, and obey his voice,&lt;/strong&gt; and not rebel against the commandment of the LORD, then shall both ye and also the king that reigneth over you continue following the LORD your God:&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn3&#34;&gt;&lt;a href=&#34;#fn:fn3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
-&lt;p&gt;For &lt;strong&gt;God hath not given us the spirit of fear&lt;/strong&gt;; but of power, and of love, and of a sound mind. (2Ti 1:7 KJV)&lt;/p&gt;
+&lt;p&gt;For &lt;strong&gt;God hath not given us the spirit of fear&lt;/strong&gt;; but of power, and of love, and of a sound mind.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn4&#34;&gt;&lt;a href=&#34;#fn:fn4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
-&lt;p&gt;These things I have spoken unto you, that in me ye might have peace. In the world ye shall have tribulation: but &lt;strong&gt;be of good cheer&lt;/strong&gt;; I have overcome the world. (Jhn 16:33 KJV)&lt;/p&gt;
+&lt;p&gt;These things I have spoken unto you, that in me ye might have peace. In the world ye shall have tribulation: but &lt;strong&gt;be of good cheer&lt;/strong&gt;; I have overcome the world.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn5&#34;&gt;&lt;a href=&#34;#fn:fn5&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
-&lt;p&gt;Ye are of God, little children, and have overcome them: because &lt;strong&gt;greater is he that is in you&lt;/strong&gt;, than he that is in the world. (1Jo 4:4 KJV)&lt;/p&gt;
+&lt;p&gt;Ye are of God, little children, and have overcome them: because &lt;strong&gt;greater is he that is in you&lt;/strong&gt;, than he that is in the world.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn6&#34;&gt;&lt;a href=&#34;#fn:fn6&#34;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
-&lt;p&gt;So that we may boldly say, &lt;strong&gt;The Lord is my helper&lt;/strong&gt;, and I will not fear what man shall do unto me. (Heb 13:6 KJV)&lt;/p&gt;
+&lt;p&gt;So that we may boldly say, &lt;strong&gt;The Lord is my helper&lt;/strong&gt;, and I will not fear what man shall do unto me.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn7&#34;&gt;&lt;a href=&#34;#fn:fn7&#34;&gt;7&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;The LORD is on my side;&lt;/strong&gt; I will not fear: what can man do unto me? (Psa 118:6 KJV)&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;The LORD is on my side;&lt;/strong&gt; I will not fear: what can man do unto me?&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn8&#34;&gt;&lt;a href=&#34;#fn:fn8&#34;&gt;8&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;These quotations are all from the KJV.&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:fn1&#34;&gt;Deu 30:19
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn1&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:fn2&#34;&gt;Jos 24:15
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn2&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:fn3&#34;&gt;1Sa 12:14
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn3&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:fn4&#34;&gt;2Ti 1:7
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn4&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:fn5&#34;&gt;Jhn 16:33
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn5&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:fn6&#34;&gt;1Jo 4:4
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn6&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:fn7&#34;&gt;Heb 13:6
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn7&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:fn8&#34;&gt;Psa 118:6
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn8&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
 </content>
   </entry>
   
@@ -906,65 +959,6 @@ Krakatoa
 &lt;/blockquote&gt;
 
 &lt;p&gt;This is the most amazing thing you&amp;rsquo;ll read today.&lt;/p&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>David Rumsey Map Collection</title>
-    <link href="http://joshua.poehls.me/2014/09/david-rumsey-map-collection/"/>
-    <id>http://joshua.poehls.me/2014/09/david-rumsey-map-collection/</id>
-    <updated>2014-09-26T16:51:06-05:00</updated>
-    
-    <category term="maps" />
-    <category term="art" />
-    
-    <content type="html">&lt;p&gt;I just hit the cartography jackpot. This collection has well over 37,000 maps in high-resolution glory. I&amp;rsquo;ll see you in a few hours&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;&lt;figure &gt;
-&lt;a href=&#34;http://www.davidrumsey.com/luna/servlet/s/jn8c3p&#34;&gt;
-&lt;img src=&#34;http://joshua.poehls.me/2014/09/david-rumsey-map-collection/mountains.jpg&#34; alt=&#34;Comparative Mountain Heights in Germany and Switzerland (1851)&#34; /&gt;
-&lt;/a&gt;
-
-&lt;figcaption&gt;
-&lt;p&gt;
-Comparative Mountain Heights in Germany and Switzerland (1851)
-
-
-
-&lt;/p&gt; 
-&lt;/figcaption&gt;
-
-&lt;/figure&gt;
-&lt;figure &gt;
-&lt;a href=&#34;http://www.davidrumsey.com/luna/servlet/s/p6xrhq&#34;&gt;
-&lt;img src=&#34;http://joshua.poehls.me/2014/09/david-rumsey-map-collection/ocean-floor.jpg&#34; alt=&#34;Ocean Floors and Land Relief (1976)&#34; /&gt;
-&lt;/a&gt;
-
-&lt;figcaption&gt;
-&lt;p&gt;
-Ocean Floors and Land Relief (1976)
-
-
-
-&lt;/p&gt; 
-&lt;/figcaption&gt;
-
-&lt;/figure&gt;
-&lt;figure &gt;
-&lt;a href=&#34;http://www.davidrumsey.com/luna/servlet/s/234evp&#34;&gt;
-&lt;img src=&#34;http://joshua.poehls.me/2014/09/david-rumsey-map-collection/london-underground.jpg&#34; alt=&#34;London Underground Transport (1933)&#34; /&gt;
-&lt;/a&gt;
-
-&lt;figcaption&gt;
-&lt;p&gt;
-London Underground Transport (1933)
-
-
-
-&lt;/p&gt; 
-&lt;/figcaption&gt;
-
-&lt;/figure&gt;&lt;/p&gt;
 </content>
   </entry>
   
