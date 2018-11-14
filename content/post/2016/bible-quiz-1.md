@@ -4,7 +4,7 @@ title: "Bible Quiz: Deu 7:9, 10:12-13"
 url: 2016/01/bible-quiz-1
 tags:
 - bible quiz
-- bible
+- scripture
 series: Bible Quiz Questions
 ---
 

@@ -3,7 +3,7 @@ title: "The Bible Project: Justice"
 date: 2017-11-07T13:19:24-06:00
 tags:
 - videos
-- bible
+- scripture
 ---
 
 _Justice_ has been a recurring theme that stands out to me as I read the Bible. This video from [The Bible Project](https://thebibleproject.com/) is really helpful to understand the biblical themes righteousness and justice.
