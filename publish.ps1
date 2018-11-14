@@ -48,7 +48,7 @@ try {
     Write-Host "Checking out $branchName branch into $folderName"
     & git worktree add $folderName $branchName
 
-    Write-Host "Removing existing files"
+    Write-Host "Removing existing files from $folderName"
     Remove-Item (Join-Path $folderName "/*") -Force -Recurse -Exclude ".git"
 
     Write-Host "Generating site"
