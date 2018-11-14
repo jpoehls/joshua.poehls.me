@@ -3,6 +3,8 @@ title: "Resources for Studying Zephaniah"
 date: 2018-11-14T13:41:40-05:00
 tags:
 - scripture
+- tim-mackie
+- jason-derouchie
 ---
 
 I've been studying through Zephaniah recently, prompted by the recently released *[ESV Expository Commentary (Volume 7): Daniel–Malachi](https://www.amazon.com/ESV-Expository-Commentary-7-Daniel-Malachi/dp/1433546523?&_encoding=UTF8&tag=poehls-20&linkCode=ur2&linkId=f84fa13acb18f9e11c227fc183537e37&camp=1789&creative=9325)*. The commentary on Zephaniah is written by Jason DeRouchie who I've been following since his *[How to Understand and Apply the Old Testament](https://www.amazon.com/How-Understand-Apply-Old-Testament/dp/1629952451?&_encoding=UTF8&tag=poehls-20&linkCode=ur2&linkId=3aea9f4d4504f9ceb5bb219392214716&camp=1789&creative=9325)*, which is fantastic.

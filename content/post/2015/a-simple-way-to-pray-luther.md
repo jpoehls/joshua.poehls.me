@@ -3,7 +3,7 @@ date: 2015-07-03
 title: "A Simple Way to Pray: A Letter from Dr. Martin Luther"
 url: 2015/07/a-simple-way-to-pray-luther
 tags:
-- "martin luther"
+- martin-luther
 ---
 
 # Introduction
