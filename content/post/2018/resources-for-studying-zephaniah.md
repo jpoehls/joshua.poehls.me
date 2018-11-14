@@ -16,5 +16,6 @@ Jason DeRouchie has taught though Zephaniah [several times](https://jasonderouch
 Here are some other links that I've found useful for studying  Zephaniah:
 
 - The Bible Project's [Read Scripture: Zephaniah](https://thebibleproject.com/explore/zephaniah/)
-- Jason DeRouchie's [studies on Zephaniah](https://jasonderouchie.com/a-number-of-studies-on-zephaniah/)
+- Jason DeRouchie's [commentary on Zephaniah (PDF)](https://jasonderouchie.com/wp-content/uploads/2018/09/2018-Zephaniah-ESVEC7-DeRouchie.pdf) from the *[ESV Expository Commentary (Volume 7): Daniel–Malachi](https://www.amazon.com/ESV-Expository-Commentary-7-Daniel-Malachi/dp/1433546523?&_encoding=UTF8&tag=poehls-20&linkCode=ur2&linkId=f84fa13acb18f9e11c227fc183537e37&camp=1789&creative=9325)*
+- Jason DeRouchie's other [studies on Zephaniah](https://jasonderouchie.com/a-number-of-studies-on-zephaniah/)
 - Tim Mackie's *[Bible in Five: The Minor Prophets, Part 2](https://vimeo.com/43972474)* which covers Zephaniah and is part of his *[Bible in Five](http://www.timmackie.com/bible-in-five/)* series.
