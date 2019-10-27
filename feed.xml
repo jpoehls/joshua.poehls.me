@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>joshua poehls | silent thoughts</title>
   <icon>http://joshua.poehls.metouch-icon-iphone-retinahd.png</icon>
@@ -19,6 +18,8 @@
     <updated>2018-11-14T13:41:40-05:00</updated>
     
     <category term="scripture" />
+    <category term="tim-mackie" />
+    <category term="jason-derouchie" />
     
     <content type="html">&lt;p&gt;I&amp;rsquo;ve been studying through Zephaniah recently, prompted by the recently released &lt;em&gt;&lt;a href=&#34;https://www.amazon.com/ESV-Expository-Commentary-7-Daniel-Malachi/dp/1433546523?&amp;amp;_encoding=UTF8&amp;amp;tag=poehls-20&amp;amp;linkCode=ur2&amp;amp;linkId=f84fa13acb18f9e11c227fc183537e37&amp;amp;camp=1789&amp;amp;creative=9325&#34;&gt;ESV Expository Commentary (Volume 7): Daniel–Malachi&lt;/a&gt;&lt;/em&gt;. The commentary on Zephaniah is written by Jason DeRouchie who I&amp;rsquo;ve been following since his &lt;em&gt;&lt;a href=&#34;https://www.amazon.com/How-Understand-Apply-Old-Testament/dp/1629952451?&amp;amp;_encoding=UTF8&amp;amp;tag=poehls-20&amp;amp;linkCode=ur2&amp;amp;linkId=3aea9f4d4504f9ceb5bb219392214716&amp;amp;camp=1789&amp;amp;creative=9325&#34;&gt;How to Understand and Apply the Old Testament&lt;/a&gt;&lt;/em&gt;, which is fantastic.&lt;/p&gt;
 
@@ -83,8 +84,8 @@
   
   <entry>
     <title>Vincent van Gogh - The Letters</title>
-    <link href="http://joshua.poehls.me/2017/vincent-van-gogh---the-letters/"/>
-    <id>http://joshua.poehls.me/2017/vincent-van-gogh---the-letters/</id>
+    <link href="http://joshua.poehls.me/2017/vincent-van-gogh-the-letters/"/>
+    <id>http://joshua.poehls.me/2017/vincent-van-gogh-the-letters/</id>
     <updated>2017-11-10T08:54:57-06:00</updated>
     
     <category term="art" />
@@ -137,6 +138,7 @@ Facsimile of a letter from Vincent van Gogh
     
     <category term="videos" />
     <category term="scripture" />
+    <category term="tim-mackie" />
     
     <content type="html">&lt;p&gt;&lt;em&gt;Justice&lt;/em&gt; has been a recurring theme that stands out to me as I read the Bible. This video from &lt;a href=&#34;https://thebibleproject.com/&#34;&gt;The Bible Project&lt;/a&gt; is really helpful to understand the biblical themes righteousness and justice.&lt;/p&gt;
 
@@ -152,7 +154,7 @@ Facsimile of a letter from Vincent van Gogh
 
 
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/A14THPoc4-4&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/A14THPoc4-4&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 
 
@@ -184,7 +186,7 @@ The LORD watches over the sojourners;&lt;br /&gt;
 
 
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;//www.youtube.com/embed/9U9nxG544Gk&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/9U9nxG544Gk&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 
 
@@ -475,7 +477,7 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
     <id>http://joshua.poehls.me/2015/07/a-simple-way-to-pray-luther/</id>
     <updated>2015-07-03T00:00:00&#43;00:00</updated>
     
-    <category term="martin luther" />
+    <category term="martin-luther" />
     
     <content type="html">
 
