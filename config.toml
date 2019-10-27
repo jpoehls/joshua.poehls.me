@@ -10,7 +10,7 @@ paginatePath = "page"
 footnoteAnchorPrefix = "fn"
 footnoteReturnLinkContents = "↩"
 
-disableKinds = ["404"]
+disableKinds = ["404", "taxonomyTerm"]
 
 [outputFormats]
 [outputFormats.RSS]
