@@ -24,7 +24,6 @@ function Read-Choice(
     return $Choices[$decision]
 }
 
-$scriptDir = Split-Path -LiteralPath $PSCommandPath
 $startingLoc = Get-Location
 Set-Location (& git rev-parse --show-toplevel) # set to repo root
 
