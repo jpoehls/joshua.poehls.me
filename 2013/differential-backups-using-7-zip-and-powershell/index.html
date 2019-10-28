@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thoughts</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.59.0" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='///fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/">Differential backups using 7-zip and PowerShell</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-12-10 23:04:50 -0500 -0500" pubdate="pubdate">Tue, Dec 10, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>Backups are like changing the oil on your car. It&rsquo;s the best thing you can do to extend the life of your engine and the best thing you can do to save yourself when your hard drive crashes, gets stolen, or otherwise corrupted.</p>
+
+<p>I work remotely and needed a backup strategy for my work laptop. My company encourages you to keep critical client files and such in your personal share on the network. Most of our employees work in office so this is perfectly reasonable as the norm. (Though I bet a ton of stuff still ends up on local machines!) As a remotee however, this isn&rsquo;t practical for reasons that are hopefully obvious to everyone.</p>
+
+<p>There are as many backup strategies, scripts, and apps as there are computers. Today though, it was PowerShell to the rescue with the help of trusty <a href="http://www.7-zip.org">7-zip</a> (command line version) and <a href="http://technet.microsoft.com/en-us/library/cc733145.aspx">robocopy</a>.</p>
+
+<p><strong>Requirements</strong></p>
+
+<ul>
+<li>I&rsquo;m not concerned with a full system backup. No need to image my hard drive, I only want to backup a specific set of directories that contain my working files.</li>
+<li>I need to backup to a local drive.</li>
+<li>I need to upload backups to my user share on the company network.</li>
+<li>I need a scheduled task that will perform the backup on a regular basis.</li>
+</ul>
+
+<p><strong>Implementation details</strong></p>
+
+<ul>
+<li>Differential backups. Because I&rsquo;ll be uploading these over a VPN, I want them to be as small as possible. Differential backups will allow me to upload a full backup once (or occasionally) and then upload much small backups daily.</li>
+<li>LZMA compression. I&rsquo;ll sacrifice some speed during the backup stage but save a ton of time on the upload by compressing my backups using 7-zips LZMA (7z) compression format.</li>
+<li>Local hard drive space is limited so I&rsquo;ll only keep the most recent backup locally. I&rsquo;ll keep past backups on the company network and manually prune old ones when needed. This will be a casual safety net if I ever need to roll back to a specific point in time.</li>
+</ul>
+
+<p><strong>Results</strong></p>
+
+<p>Here&rsquo;s what it looks like.</p>
+
+<p>I&rsquo;ll store my most recent backups locally in <strong>C:\backup</strong>. Timestamps in the names keep everything straight. Each backup has an accompanying log file.</p>
+
+<p><img src="backup-folder.png" alt="Screenshot of backup folder" title="Screenshot of backup folder" /></p>
+
+<p>My backup script is stored in <a href="https://db.tt/i03IdN4">Dropbox</a>.</p>
+
+<ul>
+<li><code>backup.ps1</code> - The meat of the backup script. The various *.cmd scripts are just wrappers that pass this the appropriate arguments.</li>
+<li><code>upload-backup.cmd</code> - Starts uploading all existing backups to the company network.</li>
+<li><code>full-backup.cmd</code> - Starts a full backup.</li>
+<li><code>diff-backup.cmd</code> - Starts a differential backup.</li>
+<li><code>includes.txt</code> - A list of directory and file paths to include in the backup. This is passed to 7-zip.</li>
+<li><code>excludes.txt</code> - A list of directory and file paths to exclude from the backup. This is also passed to 7-zip.</li>
+</ul>
+
+<p><img src="script-folder.png" alt="Screenshot of script folder" title="Screenshot of script folder" /></p>
+
+<p>I have a Windows Scheduled Task that runs a differential backup (<code>diff-backup.cmd</code>) hourly. The differential backup is usually pretty fast, so running hourly is no problem.</p>
+
+<p>I have another task that runs the upload (<code>upload-backup.cmd</code>) once a day when I am connected to the VPN. Task Scheduler is supposedly smart enough to only run the task if the VPN connection is available and to retry on a regular basis if it isn&rsquo;t. I&rsquo;ve never used this feature before so we&rsquo;ll see how it goes. I can always fall back to manually running this via a desktop shortcut.</p>
+
+<h2 id="the-script">The Script</h2>
+
+<p>My script isn&rsquo;t suited to sharing verbatim but I do want to share the good parts.</p>
+
+<h3 id="selecting-the-most-recent-full-backup">Selecting the most recent full backup</h3>
+
+<p>Differential backups have to be based on a full backup. The script is smart enough to find the most recent full backup file and use it as the base.</p>
+
+<pre><code class="language-powershell"># Find the most recent full backup.
+# Depends on Get-ChildItem returning the items sorted in ascending order (oldest backups first).
+$fullBackup = Get-ChildItem -File -Path &quot;$backupOutputPath\backup-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9].7z&quot; | select -Last 1 -ExpandProperty FullName
+if (-not ($fullBackup) -or -not (Test-Path $fullBackup -PathType Leaf)) {
+	throw &quot;No full backup was found. Must have a full backup before performing a differential.&quot;
+}
+</code></pre>
+
+<h3 id="7-zip-args-for-a-full-backup">7-zip args for a full backup</h3>
+
+<pre><code class="language-powershell">$7zipArgs = @(
+	&quot;a&quot;;                          # Create an archive.
+	&quot;-t7z&quot;;                       # Use the 7z format.
+	&quot;-mx=7&quot;;                      # Use a level 7 &quot;high&quot; compression.
+	&quot;-xr!thumbs.db&quot;;              # Exclude thumbs.db files wherever they are found.
+	&quot;-xr!*.log&quot;;                  # Exclude all *.log files as well.
+	&quot;-xr-@`&quot;`&quot;$excludesFile`&quot;`&quot;&quot;; # Exclude all paths in my excludes.txt file.
+	&quot;-ir-@`&quot;`&quot;$includesFile`&quot;`&quot;&quot;; # Include all paths in my includes.txt file.
+	&quot;$outputFile&quot;;                # Output file path (a *.7z file).
+)
+</code></pre>
+
+<p>Notice that I doubled some quotation marks for the excludes and includes arguments. This escaping is necessary to ensure the path I&rsquo;m passing in works even if it has spaces in it.</p>
+
+<h3 id="7-zip-args-for-a-differential-backup">7-zip args for a differential backup</h3>
+
+<pre><code class="language-powershell">$7zipArgs = @(
+	&quot;u&quot;;                                    # Update an archive. Slightly confusing since we'll be saving those updates to a new archive file.
+	&quot;$fullBackupPath&quot;;                      # Path of the full backup we are creating a differential for.
+	&quot;-t7z&quot;;
+	&quot;-mx=7&quot;;
+	&quot;-xr!thumbs.db&quot;;
+	&quot;-xr!*.log&quot;;
+	&quot;-xr-@`&quot;`&quot;$excludesFile`&quot;`&quot;&quot;;
+	&quot;-ir-@`&quot;`&quot;$includesFile`&quot;`&quot;&quot;;
+	&quot;-u-&quot;;                                  # Don't update the original archive (the full backup).
+	&quot;-up0q3r2x2y2z0w2!`&quot;`&quot;$outputFile`&quot;`&quot;&quot;; # Flags to specify how the archive should be updated and the output file path (a *.7z file).
+)
+</code></pre>
+
+<p>The last argument there is a doosey. Here&rsquo;s what those flags mean.</p>
+
+<ul>
+<li><code>-u</code> - Starts the &ldquo;update options&rdquo; which follow.</li>
+<li>Each letter represents a state of a file either in the base archive (our full backup) or on disk (the files we&rsquo;re backing up).
+
+<ul>
+<li><code>p</code> - File exists in archive, but isn&rsquo;t in any of the include file paths. The file is no longer included in the backup (includes.txt probably changed).</li>
+<li><code>q</code> - File exists in archive, but doesn&rsquo;t exists on disk. The file has been deleted since the full backup.</li>
+<li><code>r</code> - File doesn&rsquo;t exist in archive, but exists on disk. The file is new since the full backup.</li>
+<li><code>x</code> - File in archive is newer than the file on disk. (Odd.)</li>
+<li><code>y</code> - File in archive is older than the file on disk. The file has been updated since the full backup.</li>
+<li><code>z</code> - File in archive is same as the file on disk.</li>
+<li><code>w</code> - Cannot be detected which file is newer (times are the same, sizes are different).</li>
+</ul></li>
+<li>After each of those letters is a number that represents what action to take on files matching that state.
+
+<ul>
+<li><code>0</code> - Ignore file. Don&rsquo;t include it in the backup.</li>
+<li><em><code>1</code> - Copy file. Copy it from the old archive to the new. From our full backup to our new differential backup.</em></li>
+<li><code>2</code> - Compress. Include the file from disk in our new differential backup.</li>
+<li><code>3</code> - Create an anti-item. This is a feature only supported by 7z archives and basically puts a marker in the archive saying that this file has been deleted. If you extract this archive into a directory where this file exists then it will be deleted during the extraction.</li>
+</ul></li>
+<li>Everything after the ! is specifying the output file path.</li>
+</ul>
+
+<p><em>You can read more about 7-zip&rsquo;s options in their documentation.</em></p>
+
+<h3 id="watching-for-exit-codes">Watching for exit codes</h3>
+
+<p>I want my backup to fail if 7-zip fails.</p>
+
+<pre><code class="language-powershell">&amp; $7zip @7zipArgs | Tee-Object -LiteralPath $logFile
+if ($LASTEXITCODE -gt 1) # Ignores warnings which use exit code 1.
+{
+	throw &quot;7zip failed with exit code $LASTEXITCODE&quot;
+}
+</code></pre>
+
+<h3 id="log-7-zip-output-to-both-the-console-and-log-file">Log 7-zip output to both the console and log file</h3>
+
+<p>Did you notice <a href="http://technet.microsoft.com/en-us/library/hh849937.aspx"><code>Tee-Object</code></a> in the above snippet? That&rsquo;s what handles this. The only downside is that your console output will be laggy due to PowerShell buffering the pipeline.</p>
+
+<h3 id="deleting-old-backups">Deleting old backups</h3>
+
+<p>Remember, I&rsquo;m only keeping the most recent full backup and most recent differential backup files locally. My script automatically deletes old backup files after a new backup is successful. This is the magic used to delete the old differential backups when a new one finishes.</p>
+
+<pre><code class="language-powershell"># Clean up old differential backup files.
+# Only keep the most recent differential backup.
+# Depends on Get-ChildItem returning the items sorted in ascending order (oldest backups first).
+$allDiffBackups = Get-ChildItem -File -Path &quot;$backupOutputPath\backup-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]-diff-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9].7z&quot;
+if ($allDiffBackups -is [array] ) {
+	[Array]:: Reverse($allDiffBackups)
+	$allDiffBackups | select -Skip 1 | % {
+		Write-Host &quot;Deleting old differential backup. File: $($_.FullName)&quot;
+		# Remove the matching log file.
+		Remove-Item -LiteralPath ([System.IO.Path ]::ChangeExtension($_.FullName, &quot;.log&quot;)) -ErrorAction SilentlyContinue
+		$_
+	} | Remove-Item
+} 
+</code></pre>
+
+<h3 id="robocopy-args-to-upload-the-backups">Robocopy args to upload the backups</h3>
+
+<pre><code class="language-powershell">$robocopyArgs = @(
+	&quot;$backupOutputPath&quot;; # Source path
+	&quot;$networkDestPath&quot;;  # Destination path
+	&quot;/Z&quot;;                # Use restartable mode when transferring files.
+	&quot;/FP&quot;;               # Log the full paths to files.
+	&quot;/NP&quot;;               # Don't log progress percentages.
+	&quot;/X&quot;;                # Log a list of 'extra' files that exist in the destination but not locally.
+	&quot;/UNILOG+$logfile&quot;;  # Append to the specified log file.
+	&quot;/TEE&quot;;              # Send output to the console in addition to the log file.
+)
+</code></pre>
+
+<p>Those arguments will perform a shallow copy of all files in the source folder to the destination.</p>
+
+<p>Note that since robocopy supports the <code>/UNILOG+</code> and <code>/TEE</code> arguments I don&rsquo;t have to use <code>Tee-Object</code> to append to the log file.</p>
+
+<p>Once again, I&rsquo;ll make sure the copy is successful and fail the script if the copy fails.</p>
+
+<pre><code class="language-powershell">&amp; $robocopy @robocopyArgs
+if ($LASTEXITCODE -ge 8) # exit code when files failed to copy
+{
+	# robocopy exit codes: http://support.microsoft.com/kb/954404
+	throw &quot;robocopy failed with exit code $LASTEXITCODE&quot;
+}
+</code></pre>
+
+<h3 id="passing-args-from-powershell-to-executables">Passing args from PowerShell to executables</h3>
+
+<p>There are a million ways, of course, but my favorite is to put the arguments into an array and let PowerShell splat them. I really like how this keeps the script readable even when you are passing a ton of arguments around.</p>
+
+<pre><code class="language-powershell">$cmdArgs = @(
+	&quot;/E&quot;;
+	&quot;/UNILOG+$logfile&quot;;
+) 
+
+&amp; some_application.exe @cmdArgs
+</code></pre>
+
+<p>The only thing to be aware of here is that if one of your <code>$cmdArg</code> items contains a SPACE then PowerShell will automatically wrap the argument in double quotes when passing it to the executable.</p>
+
+<blockquote>
+<p>If you are having trouble getting your quotes and other special characters escaped properly, I&rsquo;ve written <a href="http://github.com/jpoehls/echoargs">several EchoArgs apps</a> to help. They just echo back the arguments passed in so you can see how they are being received.</p>
+</blockquote>
+
+<h2 id="epilogue">Epilogue</h2>
+
+<p>Hopefully this will help you get a jump start on your own backup strategy. Please, hit me up in the comments if you have any questions.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
