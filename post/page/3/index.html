@@ -371,6 +371,339 @@ func NewPersonBirthYear(int birthYear) *Person {
     <header>
         <h1>
             
+            <a href="http://joshua.poehls.me/2014/go-and-package-versioning/">Go and Package Versioning</a>
+            
+        </h1>
+        <p>
+            <time datetime="2014-03-23 20:49:21 -0500 CDT" pubdate="pubdate">Sun, Mar 23, 2014</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/go-and-package-versioning/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2014/go-and-package-versioning/</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p><em>I&rsquo;ve been working with Go on personal projects for several months. During that time, Go&rsquo;s intended strategy for package management and versioning has largely eluded me. My understanding really started to come together over the past week which is why I wrote about my <a href="/2014/go-project-structure-and-dependencies">Go Project Structure</a> and now am writing about package versioning.</em></p>
+
+<p><em>My goal with this post is to help others who, like myself, have had a hard time reconciling Go&rsquo;s approach to package dependencies and versioning with that of other languages.</em></p>
+
+<h2 id="import-paths-and-go-get">Import Paths and <code>go get</code></h2>
+
+<p>Other languages, particularly recent ones, tend to have a package manager that the community has adopted as defacto standard. Ruby has <a href="http://rubygems.org">gems</a>. Node has <a href="https://www.npmjs.org">npm</a>. .NET has <a href="http://www.nuget.org">NuGet</a>. Perl has <a href="http://www.cpan.org">CPAN</a>. Haskell has <a href="http://hackage.haskell.org">Hackage</a>. All of these have something in common; <strong>they are all a central package hosting repository.</strong></p>
+
+<p><strong>Go&rsquo;s package manager is the <code>go get</code> command and it is completely decentralized.</strong></p>
+
+<p>How does this work?</p>
+
+<p>When you reference a package in your Go source code you use an import path that usually looks like a URL. e.g. <code>github.com/jpoehls/gophermail</code>. When you <code>go build</code> your code the Go tool uses this path to find the package in your <a href="http://golang.org/cmd/go/#hdr-GOPATH_environment_variable">GOPATH</a>. If it can&rsquo;t find the package the build fails. So how do you pull down the package?</p>
+
+<ol>
+<li>Manually. You can <code>git clone</code> the package into your GOPATH.</li>
+<li>Use <a href="http://golang.org/cmd/go/#hdr-Download_and_install_packages_and_dependencies"><code>go get</code></a>. This is where the URL import path convention is leveraged. <code>go get</code> simply <a href="http://godoc.org/code.google.com/p/go/src/cmd/go#hdr-Remote_import_paths">treats the import path as a URL</a> and attempts to retrieve it via HTTP or HTTPS. It is smart enough to handle Git, Mercurial, Bazaar, and Subversion. Go has special support for common hosts like GitHub and Bitbucket, but you can use it with any host and even custom URLs.</li>
+</ol>
+
+<h2 id="finding-packages">Finding Packages</h2>
+
+<p>As a <a href="http://babygopher.org">Baby Gopher</a> you may find it hard to locate packages that you need. e.g. &ldquo;What&rsquo;s a good image resizing package?&rdquo; You feel lost without a central repository to search.</p>
+
+<p>Sites like <a href="http://godoc.org">GoDoc.org</a> <a href="http://go-search.org">Go-Search.org</a> fill the role of a central repository in this regard. They don&rsquo;t host the packages but they index all packages stored on various hosting sites. GitHub, Bitbucket, etc. They even include packages from your custom servers.</p>
+
+<p>So to answer the question, &ldquo;what&rsquo;s a good image resizing package&rdquo;, all you have to do is a simple search.</p>
+
+<ul>
+<li><a href="http://godoc.org/?q=image+resize">http://godoc.org/?q=image+resize</a></li>
+<li><a href="http://go-search.org/search?q=image+resize">http://go-search.org/search?q=image+resize</a></li>
+</ul>
+
+<blockquote>
+<p>GoDoc.org was recently <a href="https://groups.google.com/d/topic/golang-nuts/_rbVuzl-OqA/discussion">adopted into the Go project</a> which is very, very cool.</p>
+</blockquote>
+
+<h2 id="package-versioning">Package Versioning</h2>
+
+<p><code>go get</code> <em>is</em> the Go package manager. We&rsquo;ve seen how it works in a completely decentralized way and how package discovery still possible without a central package hosting repository.</p>
+
+<p>Besides locating and downloading packages, the other big role of a package manager is handling multiple versions of the same package. Go takes the most minimal and pragmatic approach of any package manager. There is no such thing as multiple versions of a Go package.</p>
+
+<p><code>go get</code> always pulls from the HEAD of the default branch in the repository. Always. This has two important implications.</p>
+
+<blockquote>
+<p>This isn&rsquo;t always true. If your repository has certain special branches then <code>go get</code> will pull from them instead. Specifically, if you have a <code>go1</code> branch and are running Go 1+ it will pull from that branch.</p>
+</blockquote>
+
+<ol>
+<li>As a package author, you must adhere to the stable HEAD philosophy. Your default branch must always be the stable, released version of your package. You must do work in feature branches and only merge when ready to release.</li>
+<li>New major versions of your package must have their own repository. Put simply, each major version of your package (following <a href="http://semver.org">semantic versioning</a>) would have its own repository and thus its own import path. e.g. <code>github.com/jpoehls/gophermail-v1</code> and <code>github.com/jpoehls/gophermail-v2</code>.</li>
+</ol>
+
+<p>It&rsquo;s that simple.</p>
+
+<p>Another way to phrase this is that each import path must point to a stable API. Major version bumps are for backwards incompatible API changes and thus each major version is a distinct stable API. In the Go world this warrants a distinct import path and because <code>go get</code> ties import paths to VCS repositories, it means a distinct repository.</p>
+
+<blockquote>
+<p>This is exactly the explanation I wish was in the Go docs. They kind of dance around the idea but it isn&rsquo;t stated as clearly as it could be IMO. This is the epiphany that I needed to really understand how Go works.</p>
+</blockquote>
+
+<h2 id="version-2-0-new-repository">Version 2.0? New Repository.</h2>
+
+<p>As someone building an application in Go, the above philosophy really doesn&rsquo;t have a downside. Every import path is a stable API. There are no version numbers to worry about. Awesome!</p>
+
+<blockquote>
+<p>I think this must have been the Go author&rsquo;s focus when designing <code>go get</code>. It is a solid and simple design for Go applications. I love it. It&rsquo;s only frustrating from the package authoring point of view, which I&rsquo;ll elaborate on below.</p>
+</blockquote>
+
+<p>The frustration lies with the authoring of packages. Putting different versions of your package in separate repositories is simply not the standard workflow. The standard flow is to maintain tags or branches for each version of your package.</p>
+
+<p>As a package author, you think about your repository as the top level of your project and the ecosystem supports this (think GitHub). I&rsquo;ll use <a href="http://github.com/jpoehls/gophermail">gophermail</a> as an example. I can tag bugs with version numbers and organize them into release milestones, moving features from V1 to V2, etc. I might use GitHub Pages to serve a website for the project and host the documentation.</p>
+
+<p>Go shatters this world view by forcing you to break your project into multiple repositories as soon as you want a version 2.0. The level of abstraction is simply moved from the branch level to the repository level and the ecosystem doesn&rsquo;t cater to this methodology.</p>
+
+<p>The biggest hurdle is just understanding that this is the case. That this is how Go works.</p>
+
+<p>The downside is all in code organization preference. The industry standard is to use tags and branches for marking multiple versions. Not separate repositories. <code>go get</code> thinks of branches as being used solely to target different versions of Go (i.e. the special <code>go1</code> branch) and, honestly, I think that&rsquo;s a pretty ugly hack on their part.</p>
+
+<h2 id="multiple-versions-in-a-single-repository">Multiple Versions in a Single Repository</h2>
+
+<p>There is a workaround that will allow you to keep multiple versions of your package in the same repository and use branches/tags for differentiating between them.</p>
+
+<p><code>go get</code> supports custom URLs and you can use this to insert a version number into your package&rsquo;s import path. Granted, this is non-trivial. It means writing and hosting a proxy service that parses URL and proxies the requests to the applicable branch/tag of your repository.</p>
+
+<p>Fortunately, someone has already done the hard work for us. <a href="http://gopkg.in">GoPkg.in</a> does exactly what I&rsquo;ve described.</p>
+
+<p>I&rsquo;m taking advantage of this for my gophermail package. All it means is that instead of people using <code>github.com/jpoehls/gophermail</code> to import my package, they use <code>gopkg.in/jpoehls/gophermail.v0</code>. The <code>.v0</code> is because gophermail hasn&rsquo;t reached 1.0 yet. When I release 1.0 and declare a stable API, the import path will change to <code>gopkg.in/jpoehls/gophermail.v1</code>.</p>
+
+<p><a href="http://gopkg.in">GoPkg.in</a> is a fantastic service and I encourage anyone with a Go package to use it. All you have to do is tell your users to use the <code>gopkg.in</code> import path for your package. If this gets wide enough attention, hopefully similar functionality will be adopted into <code>go get</code> itself.</p>
+
+<blockquote>
+<p>My dream is for <code>go get</code> to support a version number component in the import path. So <code>github.com/jpoehls/gophermail</code> would fetch the HEAD of the repository as it does today. <code>github.com/jpoehls/gophermail#v1</code> would fetch the <code>v1</code> branch or tag.</p>
+</blockquote>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2014/go-project-structure-and-dependencies/">Go Project Structure and Dependencies</a>
+            
+        </h1>
+        <p>
+            <time datetime="2014-03-21 21:48:59 -0500 CDT" pubdate="pubdate">Fri, Mar 21, 2014</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/go-project-structure-and-dependencies/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2014/go-project-structure-and-dependencies/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Go is build around the concept of a <a href="http://golang.org/cmd/go/#hdr-GOPATH_environment_variable">GOPATH</a> which is a common workspace for most (or all) of your Go source code. This works well but sometimes you don&rsquo;t want the third party packages you depend on to be in your primary GOPATH. I can think of a few reasons for this:</p>
+
+<p>&bull; You have multiple Go apps and each depend on different versions of the same third party package. Ideally these packages would use a versioned URL so that the import paths are different but this isn&rsquo;t always the case. (See <a href="http://gopkg.in">http://gopkg.in</a>, a great tool for package authors to use for providing versioned URLs.)</p>
+
+<blockquote>
+<p>If you want to know more about how package versioning works in Go, you should read my other post: <a href="{{site.url}}/2014/go-and-package-versioning">Go and Package Versioning</a></p>
+</blockquote>
+
+<p>&bull; You want to commit your third party packages as part of your application&rsquo;s code so that everything needed for a build is in one place. This guarantees that your app will always build regardless of the state of the third party repo and elminates a lot of headaches when working with a build server or multiple developers.</p>
+
+<blockquote>
+<p>This is equivelant to committing your NuGet <code>./packages</code> folder in .NET or your npm <code>./node_modules</code> folder in Node.</p>
+</blockquote>
+
+<p>I looked at many Go projects to find a solution I liked. There are a lot of approaches to this problem including <a href="https://code.google.com/p/go-wiki/wiki/PackageManagementTools">many attempts</a> at a package manager for Go. The community is <a href="https://groups.google.com/d/topic/golang-nuts/PLTY792AVzc/discussion">very much in flux</a> around this topic.</p>
+
+<p>Personally, I felt any package manager tool was overkill for my needs. I was also discouraged by the fact that the community hasn&rsquo;t rallied behind any single package management solution.</p>
+
+<p>In the end, this is my recipe for Go application structure.</p>
+
+<ul>
+<li>It uses all the standard <code>go get</code>, <code>go build</code>, and <code>go test</code> commands.</li>
+<li>It doesn&rsquo;t involve copying your source code into a temporary folder during the build.</li>
+<li>It doesn&rsquo;t require you to rewrite the import paths of third party packages.</li>
+<li>It modifies your GOPATH environment variable in a very simple and isolated way. This is how we prioritize our <code>_vendor</code> directory so that third party packages are pulled from there instead of our primary GOPATH.</li>
+<li>It wraps common commands in a Makefile. This can easily be replaced by a batch file on Windows or a <code>make.go</code> file that you can run with <code>go run make.go</code>.</li>
+</ul>
+
+<blockquote>
+<p><a href="http://camlistore.org">Camlistore</a> uses the <code>make.go</code> approach (<a href="https://camlistore.googlesource.com/camlistore/+/master">see here</a>) and I really like its cross platform consistency. I may switch to it at some point.</p>
+</blockquote>
+
+<p><strong>Solution:</strong></p>
+
+<p>For context, my system <code>GOPATH</code> is <code>~/mygo</code>.</p>
+
+<p>My project is at <code>~/mygo/src/bitbucket.org/USERNAME/PROJECT</code>.</p>
+
+<pre><code>~/mygo/src/bitbucket.org/USERNAME/PROJECT
+|-- .gitignore
+|-- README
+|-- Makefile
+|-- _vendor # Third party packages. This is a typical GOPATH workspace.
+|   `-- src
+|       `-- github.com
+|           |-- codegangsta
+|           |   |-- inject
+|           |   `-- martini
+|           `-- jpoehls
+|               `-- gophermail
+|-- bin  # My app's binary output.
+|-- docs # My app's documentation.
+`-- src  # My app's source code.
+    |-- main_app
+    |-- some_pkg
+    `-- some_other_pkg
+</code></pre>
+
+<p>My Makefile looks like this:</p>
+
+<pre><code>.PHONY: build doc fmt lint run test vendor_clean vendor_get vendor_update vet
+
+# Prepend our _vendor directory to the system GOPATH
+# so that import path resolution will prioritize
+# our third party snapshots.
+GOPATH := ${PWD}/_vendor:${GOPATH}
+export GOPATH
+
+default: build
+
+build: vet
+	go build -v -o ./bin/main_app ./src/main_app
+
+doc:
+	godoc -http=:6060 -index
+
+# http://golang.org/cmd/go/#hdr-Run_gofmt_on_package_sources
+fmt:
+	go fmt ./src/...
+
+# https://github.com/golang/lint
+# go get github.com/golang/lint/golint
+lint:
+	golint ./src
+
+run: build
+	./bin/main_app
+
+test:
+	go test ./src/...
+
+vendor_clean:
+	rm -dRf ./_vendor/src
+
+# We have to set GOPATH to just the _vendor
+# directory to ensure that `go get` doesn't
+# update packages in our primary GOPATH instead.
+# This will happen if you already have the package
+# installed in GOPATH since `go get` will use
+# that existing location as the destination.
+vendor_get: vendor_clean
+	GOPATH=${PWD}/_vendor go get -d -u -v \
+	github.com/jpoehls/gophermail \
+	github.com/codegangsta/martini
+
+vendor_update: vendor_get
+	rm -rf `find ./_vendor/src -type d -name .git` \
+	&amp;&amp; rm -rf `find ./_vendor/src -type d -name .hg` \
+	&amp;&amp; rm -rf `find ./_vendor/src -type d -name .bzr` \
+	&amp;&amp; rm -rf `find ./_vendor/src -type d -name .svn`
+
+# http://godoc.org/code.google.com/p/go.tools/cmd/vet
+# go get code.google.com/p/go.tools/cmd/vet
+vet:
+	go vet ./src/...
+</code></pre>
+
+<p><strong>Notes:</strong></p>
+
+<ul>
+<li>The standard <code>go get</code>, <code>go build</code>, and <code>go test</code> commands are used. All we do is prepend our <code>_vendor</code> workspace to the GOPATH to prioritize our snapshot of the third party packages during import path resolution.</li>
+<li><code>vendor_update</code> task in the Makefile is a shotgun approach. It will update all of your dependencies to their latest version. 80% of the time this is what I want. In the 20% cases, I simply manually update the individual packages.</li>
+<li>The <code>_vendor</code> directory can be called anything you like but the underscore prefix is important. The <a href="http://golang.org/cmd/go"><code>go</code></a> tool will ignore any files or directories that begin with <code>.</code> or <code>_</code> (<a href="http://golang.org/cmd/go/#hdr-Description_of_package_lists">read more</a>). This means we can run things like <code>go test</code> in our repo root without it picking up those third party packages.</li>
+<li>I&rsquo;ve included some useful ancillary tasks as well. Such as the <a href="http://godoc.org/code.google.com/p/go.tools/cmd/godoc"><code>doc</code></a>, <a href="http://golang.org/cmd/go/#hdr-Run_gofmt_on_package_sources"><code>fmt</code></a>, <a href="https://github.com/golang/lint"><code>lint</code></a>, and <a href="http://godoc.org/code.google.com/p/go.tools/cmd/vet"><code>vet</code></a> tasks, and the fact that <code>build</code> runs <a href="http://godoc.org/code.google.com/p/go.tools/cmd/vet"><code>go vet</code></a> first.</li>
+</ul>
+
+<p><strong>How do you structure your Go projects?</strong> What does your build script look like? I&rsquo;m always interested in improving my methods, let me know what&rsquo;s working for you!</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2014/creating-an-ico-icon-file-for-your-windows-app/">Creating an ICO icon file for your Windows app</a>
+            
+        </h1>
+        <p>
+            <time datetime="2014-01-29 22:13:50 -0500 -0500" pubdate="pubdate">Wed, Jan 29, 2014</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/creating-an-ico-icon-file-for-your-windows-app/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2014/creating-an-ico-icon-file-for-your-windows-app/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Every Windows app needs an icon. Even yours.</p>
+
+<p>If you are a developer then this task probably sounds simpler than it may turn out to be. First off, a lot of graphics programs (<a href="http://www.getpaint.net/">Paint.NET</a>, for example) don&rsquo;t support saving as an ICO file, the format needed by Windows.</p>
+
+<p>Don&rsquo;t sweat. I&rsquo;ve got you covered. Here is the developer cheat sheet for creating an app icon file.</p>
+
+<blockquote>
+<p><strong>Pro tip:</strong> ICO files can contain <em>multiple</em> icons. Often they will contain multiple versions of the same icon in different sizes. For example, a 64px and a 16px icon, each optimized for their respective size.</p>
+
+<p><a href="http://en.wikipedia.org/wiki/ICO_(file_format)">Wikipedia</a> has a lot more interesting info on the ICO format.</p>
+</blockquote>
+
+<ol>
+<li>Create your icon. Make it square. Make it high res. Remember, you can always size down but it is harder to size up. I like to go with a minimum of 256px.</li>
+<li>Export your icon to PNG files at multiple sizes. My minimum recommendation would be the following: 16px, 32px, 48px, 64px, 96px.</li>
+<li>Use <a href="http://pnggauntlet.com/">PNGGauntlet</a> or <a href="http://advsys.net/ken/util/pngout.htm">PNGOut</a> to compress those PNGs. You won&rsquo;t lose quality but you will shed a lot of wasted bytes.<br/><img alt="Screenshot of PNGGauntlet" src="pnggauntlet.png" /></li>
+<li>Use <a href="http://www.inedo.com/downloads/icon-maker">Icon Maker</a> to create your ICO file. Windows supports a single ICO file with multiple sizes embedded and that&rsquo;s what we want to do. Create a single ICO file with each of your specifically sized PNGs in it. You could also just drag in the largest PNG (96px for example) and trust Windows to resize it nicely.<br/><img alt="Screenshot of Icon Maker" src="iconmaker.png" /></li>
+<li>Save out the ICO file and use it in your application.</li>
+</ol>
+
+<p>That&rsquo;s it! The biggest trick is knowing the tools. Icon Maker is a life saver. You should also understand what size icon(s) to use so that your app is well represented throughout the Windows UI. There is a <a href="http://stackoverflow.com/a/3244679/31308">good thread on StackOverflow</a> with more details on this.</p>
+
+<p>I&rsquo;m not an expert in this area so I&rsquo;m sure there are things I&rsquo;m missing to further optimize your icon. Add any of your own tips in the comments!</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="http://joshua.poehls.me/powershell-script-module-boilerplate/">PowerShell Script Module Boilerplate</a>
             
         </h1>
@@ -811,523 +1144,6 @@ else {
     Write-Output &quot;No processes to close&quot;
 }
 </code></pre>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2012/crime-rates-are-dropping/">Crime Rates Are Dropping</a>
-            
-        </h1>
-        <p>
-            <time datetime="2012-08-13 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Aug 13, 2012</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/crime-rates-are-dropping/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/crime-rates-are-dropping/</span>
-            </a>
-        </p>
-    </header>
-
-    
-    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-      google.load('visualization', '1', {packages: ['corechart']});
-    </script>
-
-    <p>We all know the news is biased. Media slants to the left or the right. Bias is natural
-    and very difficult to avoid.</p>
-
-    <p>I don't read the news much but the recent public shootings in Aurora, Colorado
-    and at the Sikh temple in Wisconsin have made my social media feeds flutter with the topic of gun control with
-    points from all sides.</p>
-
-    <p>Today I listened to <a href="http://www.dancarlin.com/disp.php/csarchive/Show-234---Aiming-for-Effectiveness/guns-shootings-firearms">an episode of Common Sense with Dan Carlin</a>, a podcast
-    that I occasionally listen to and always enjoy. He does a good job, in my opinion, of thinking
-    about situations from both sides of the fence.</p>
-
-    <p>Dan listed several statistics from the <ACRONYM title="Department of Justice">DOJ's</ACRONYM>
-    website. Some I expected, but a few caught me off guard.</p>
-
-    <p>As I said, media is slanted, we know this. So when I hear how our country is violent and things are
-    worse than ever, I figure it isn't nearly that bad. But, I do figure it is worse than it was <i>to
-    some degree</i>. Well the numbers don't seem to agree.</p>
-
-    <p>In fact, it would seem that this country has never been a safer place.</p>
-
-    <p>The chart above was just for 2005 and doesn't give you much for comparison. Here are the numbers for victims of all types of crime for 1993 and 2010. See for yourself.</p>
-
-    <script type="text/javascript">
-      function drawVisualization() {
-        // Create and populate the data table.
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Violent Victimization', 'Rape/Sexual Assault', 'Robbery', 'Aggravated Assault', 'Simple Assault', 'Property Victimization', 'Household Burglary', 'Motor Vehicle Theft', 'Theft'],
-          ['2003',  16822618,               898239,                1752667,   3481055,              10690657,         35093887,                 6378721,              1921179,               26793987],
-          ['2010',  4935983,                268574,                568510,    857751,               3241148,          15411610,                 3176181,              606991,                11628437]
-        ]);
-      
-        // Create and draw the visualization.
-        var ac = new google.visualization.ComboChart(document.getElementById('visualization'));
-        ac.draw(data, {
-          title : 'Bureau of Justice Statistics - Victimization by Type',
-          width: 600,
-          height: 400,
-          vAxis: {title: "Victims"},
-          hAxis: {title: "Year"},
-          seriesType: "bars",
-          series: {5: {type: "line"}}
-        });
-
-        document.getElementById('visualization').style.backgroundImage = 'none';
-      }
-      
-
-      google.setOnLoadCallback(drawVisualization);
-    </script>
-
-    <div id="visualization" style="width: 600px; height: 400px; background-image: url(/2012/08/crime-rates-are-dropping.png);"></div>
-
-    <p style="font-size: .8em;">Bureau of Justice Statistics.
-      Generated using the <a href="http://bjs.ojp.usdoj.gov/index.cfm?ty=nvat">NCVS Victimization Analysis Tool</a> at <a href="www.bjs.gov">www.bjs.gov</a>. 13-Aug-12
-    </p>
-
-    <p>This isn't an opinion or bias, just facts.
-        Crime is going down, not up. As of 2010, violent crime specifically was a mere 29% of what it was just 17 years prior. That is a massive drop.</p>
-
-    <p>I'm not saying that this is good enough, that we should stop trying. What I am saying is that things are a
-        heck of a lot better than they were.</p>
-
-    <p>I don't believe the solution to violence in America will be as simple as banning weapons. Just like
-        I wouldn't propose banning phones as a solution to the telling of lies. Medium is not cause. We need to be
-        more creative when trying to solve this problem.</p>
-
-    <table border="0" cellpadding="10" cellspacing="20" style="margin-top: 5em; font-size: .8em; font-family: courier new, courier;">
-      <caption>Raw data for the Bureau of Justice Statistics<br/>Victimization by Type</caption>
-      <tr>
-        <th>&nbsp;</th>
-        <th>1993</th>
-        <th>2010</th>
-      </tr>
-      <tr>
-        <td>Violent Victimization</td>
-        <td>16,822,618</td>
-        <td>4,935,983</td>
-      </tr>
-      <tr>
-        <td>Rape/Sexual Assault</td>
-        <td>898,239</td>
-        <td>268,574</td>
-      </tr>
-      <tr>
-        <td>Robbery</td>
-        <td>1,752,667</td>
-        <td>568,510</td>
-      </tr>
-      <tr>
-        <td>Aggravated Assault</td>
-        <td>3,481,055</td>
-        <td>857,751</td>
-      </tr>
-      <tr>
-        <td>Simple Assault</td>
-        <td>10,690,657</td>
-        <td>3,241,148</td>
-      </tr>
-      <tr>
-        <td>Property Victimization</td>
-        <td>35,093,887</td>
-        <td>15,411,610</td>
-      </tr>
-      <tr>
-        <td>Household Burglary</td>
-        <td>6,378,721</td>
-        <td>3,176,181</td>
-      </tr>
-      <tr>
-        <td>Motor Vehicle Theft</td>
-        <td>1,921,179</td>
-        <td>606,991</td>
-      </tr>
-      <tr>
-        <td>Theft</td>
-        <td>26,793,987</td>
-        <td>11,628,437</td>
-      </tr>
-    </table>
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2012/powershell-batch-files-exit-codes/">PowerShell, batch files, and exit codes. Recipes &amp; Secrets.</a>
-            
-        </h1>
-        <p>
-            <time datetime="2012-06-23 10:43:31 -0600 -0600" pubdate="pubdate">Sat, Jun 23, 2012</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/powershell-batch-files-exit-codes/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/powershell-batch-files-exit-codes/</span>
-            </a>
-        </p>
-    </header>
-
-    
-
-<h2 id="tl-dr">TL;DR;</h2>
-
-<blockquote>
-<p><strong>Update:</strong> If you want to save some time, skip reading this and just use my <a href="/powershell-script-boilerplate">PowerShell Script Boilerplate</a>. It includes an excellent batch file wrapper, argument escaping, and error code bubbling.</p>
-</blockquote>
-
-<p><code>PowerShell.exe</code> doesn&rsquo;t return correct exit codes when using the <code>-File</code> option. Use <code>-Command</code> instead. <em>(<a href="https://connect.microsoft.com/PowerShell/feedback/details/750653/powershell-exe-doesn-t-return-correct-exit-codes-when-using-the-file-option">Vote for this issue</a> on Microsoft Connect.)</em></p>
-
-<p><a href="#bat-wrapper">This</a> is a batch file wrapper for executing PowerShell scripts. It forwards arguments to PowerShell and correctly bubbles up the exit code (when it can).</p>
-
-<p><code>PowerShell.exe</code> still <a href="#command-parsererror">returns a passing (0) exit code when a <code>ParserError</code> is thrown</a>. Even when using <code>-Command</code>. I haven&rsquo;t found a workaround for this. <em>(<a href="https://connect.microsoft.com/PowerShell/feedback/details/750654/powershell-exe-returns-a-passing-0-exit-code-when-a-parsererror-is-thrown">Vote for this issue</a> on Microsoft Connect.)</em></p>
-
-<p>You can use <a href="#black-magic">black magic</a> to include spaces and quotes in the arguments you pass through the batch file wrapper to PowerShell.</p>
-
-<h2 id="powershell">PowerShell</h2>
-
-<p>PowerShell is a great scripting environment, and it is my preferred tool for writing build scripts for .NET apps. Exit codes are vital in build scripts because they are how your Continuous Integration server knows whether the build passed or failed.</p>
-
-<p>This is a <strike>quick</strike> tour of working with exit codes in PowerShell scripts and batch files. I&rsquo;m including batch files because they are often necessary to wrap the execution of your PowerShell scripts.</p>
-
-<p>Let&rsquo;s start easy. Say you need to run a command line app or batch file from your PowerShell script. How can you check the exit code of that process?</p>
-
-<pre><code># script.ps1
-
-cmd /C exit 1
-Write-Host $LastExitCode    # 1
-</code></pre>
-
-<p><code>$LastExitCode</code> is a special variable that holds the exit code of the last Windows based program that was run. So says <a href="http://technet.microsoft.com/en-us/library/dd347675.aspx">the documentation</a>.</p>
-
-<p>Remember though, <code>$LastExitCode</code> doesn&rsquo;t do squat for PowerShell commands. Use <code>$?</code> for that.</p>
-
-<pre><code># script.ps1
-
-Get-ChildItem &quot;C:\&quot;
-Write-Host $?    # True
-
-Get-ChildItem &quot;Z:\some\non-existant\path&quot;
-Write-Host $?    # False
-</code></pre>
-
-<p>Anytime you run an external command like this, you need to check the exit code and throw an exception if needed. Otherwise the PowerShell script will keep right on trucking after a failure.</p>
-
-<pre><code># script.ps1
-
-cmd /C exit 1
-if ($LastExitCode -ne 0) {
-    throw &quot;Command failed with exit code $LastExitCode.&quot;
-}
-Write-Host &quot;You'll never see this.&quot;
-</code></pre>
-
-<p>Writing these assertions all the time will get old. Fortunately you can use a helper function, like this one found in the <a href="http://github.com/psake/psake">excellent psake project</a>.</p>
-
-<pre><code># script.ps1
-
-function Exec
-{
-    [CmdletBinding()]
-    param (
-        [Parameter(Position=0, Mandatory=1)]
-        [scriptblock]$Command,
-        [Parameter(Position=1, Mandatory=0)]
-        [string]$ErrorMessage = &quot;Execution of command failed.`n$Command&quot;
-    )
-    &amp; $Command
-    if ($LastExitCode -ne 0) {
-        throw &quot;Exec: $ErrorMessage&quot;
-    }
-}
-
-Exec { cmd /C exit 1 }
-Write-Host &quot;You'll never see this.&quot;
-</code></pre>
-
-<h3 id="throwing-exit-codes">Throwing &amp; exit codes</h3>
-
-<p>The <code>throw</code> keyword is how you generate a terminating error in PowerShell. It will, sometimes, cause your PowerShell script to return a failing exit code (1). Wait, when does it <em>not</em> cause a failing exit code, you ask? This is where PowerShell&rsquo;s warts start to show. Let me demonstrate some scenarios.</p>
-
-<pre><code># broken.ps1
-
-throw &quot;I'm broken&quot;
-</code></pre>
-
-<p><em>From the PowerShell command prompt:</em></p>
-
-<pre><code>PS&gt; .\broken.ps1
-<span style="color: red;">I'm broken.
-At C:\broken.ps1:1 char:6
-+ throw &lt;&lt;&lt;&lt;  "I'm broken."
-    + CategoryInfo          : OperationStopped: (I'm broken.:String) [], RuntimeException
-    + FullyQualifiedErrorId : I'm broken.</span>
-    
-PS&gt; $LastExitCode
-1</code></pre>
-
-<p><em>From the Windows command prompt:</em></p>
-
-<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted -Command ".\broken.ps1"
-<span style="color: red;">I'm broken.
-At C:\broken.ps1:1 char:6
-+ throw &lt;&lt;&lt;&lt;  "I'm broken."
-    + CategoryInfo          : OperationStopped: (I'm broken.:String) [], RuntimeException
-    + FullyQualifiedErrorId : I'm broken.</span>
-    
-&gt; echo %errorlevel%
-1</code></pre>
-
-<p>That worked, too. Good.</p>
-
-<p><em>Again, from the Windows command prompt:</em></p>
-
-<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted <b>-File</b> ".\broken.ps1"
-<span style="color: red;">I'm broken.
-At C:\broken.ps1:1 char:6
-+ throw &lt;&lt;&lt;&lt;  "I'm broken."
-    + CategoryInfo          : OperationStopped: (I'm broken.:String) [], RuntimeException
-    + FullyQualifiedErrorId : I'm broken.</span>
-
-&gt; echo %errorlevel%
-0</code></pre>
-
-<p>Whoa! We still saw the error, but PowerShell returned a passing exit code. What the heck?! Yes, this is the wart.</p>
-
-<h3 id="a-workaround-for-file">A workaround for <code>-File</code></h3>
-
-<p><code>-File</code> allows you to pass in a script for PowerShell to execute, however terminating errors in the script will not cause PowerShell to return a failing exit code. I have no idea why this is the case. If you know why, please share!</p>
-
-<p>A workaround is to add a <code>trap</code> statement to the top of your PowerShell script. (Thanks, Chris Oldwood, for <a href="http://chrisoldwood.blogspot.com/2011/05/powershell-throwing-exceptions-exit.html">pointing this out</a>!)</p>
-
-<pre><code># broken.ps1
-
-trap
-{
-    Write-Error $_
-    exit 1
-}
-throw &quot;I'm broken.&quot;
-</code></pre>
-
-<p><em>From the Windows command prompt:</em></p>
-
-<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted <b>-File</b> ".\script.ps1"
-<span style="color: red;">C:\broken.ps1 : I'm broken.
-    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
-    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,broken.ps1</span>
-
-&gt; echo %errorlevel%
-1</code></pre>  
-
-<p>Notice that we got the correct exit code this time, but our error output didn&rsquo;t include as much detail. Specifically, we didn&rsquo;t get the line number of the error like we were getting in the previous tests. So it isn&rsquo;t a perfect workaround.</p>
-
-<p><strong>Remember.</strong> Use <code>-Command</code> instead of <code>-File</code> whenever possible. If for some reason you must use <code>-File</code> or your script needs to support being run that way, then use the trap workaround above.</p>
-
-<p><a id="command-parsererror"> </a></p>
-
-<h3 id="command-can-still-fail"><code>-Command</code> can still fail</h3>
-
-<p>I&rsquo;ve discovered that PowerShell will still exit with a success code (0) when a <code>ParserError</code> is thrown. Even when using <code>-Command</code>.</p>
-
-<p><em>From the Windows command prompt:</em></p>
-
-<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -Command "Write-Host 'You will never see this.'" <b>"\"</b>
-<span style="color: red;">The string starting:
-At line:1 char:39
-+ Write-Host 'You will never see this.'  &lt;&lt;&lt;&lt; "
-is missing the terminator: ".
-At line:1 char:40
-+ Write-Host 'You will never see this.' " &lt;&lt;&lt;&lt;
-    + CategoryInfo          : <b>ParserError</b>: (:String) [], ParentContainsErrorRecordException
-    + FullyQualifiedErrorId : TerminatorExpectedAtEndOfString</span>
-
-&gt; echo %errorlevel%
-0</code></pre>
-
-<p>I&rsquo;m not aware of any workaround for this behavior. This is very disturbing, because these parser errors can be caused by arguments (as I demonstrated above). This means there is no way to guarantee your script will exit with the correct code when it fails.</p>
-
-<p><em>Note: This was tested in PowerShell v2, on Windows 7 (x64).</em></p>
-
-<p>There are <a href="https://connect.microsoft.com/PowerShell/feedback/details/637113/powershell-command-line-exit-codes-inconsistency">other</a> <a href="https://connect.microsoft.com/PowerShell/feedback/details/638771/powershell-return-code-and-parameters">known</a> bugs with PowerShell&rsquo;s exit codes. Beware.</p>
-
-<h2 id="batch-files">Batch files</h2>
-
-<p>I mentioned early on that it is often necessary to wrap the execution of your PowerShell script in a batch file. Some common reasons for this might be:</p>
-
-<ul>
-<li>You want users of your script to be able to double-click to run it.</li>
-<li>Your build runner doesn&rsquo;t support execution of PowerShell scripts directly.</li>
-</ul>
-
-<p>Whatever the reason, writing a batch file wrapper for a PowerShell script is easy. You just need to make sure that your batch file properly returns the exit code from PowerShell. Otherwise, your PowerShell script might fail and your batch file would return a successful exit code (0).</p>
-
-<p><a id="bat-wrapper"> </a></p>
-
-<p><del>This is a safe template for you to use. Bookmark it.</del></p>
-
-<blockquote>
-<p><strong>Update:</strong> I&rsquo;ve created a <em>much</em> better batch file wrapper for my PowerShell scripts. I recommend you ignore the one below and <strong><a href="/powershell-batch-file-wrapper">use my new one</a></strong> instead.</p>
-</blockquote>
-
-<pre><code>:: script.bat
-
-@ECHO OFF
-PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted -Command &quot;&amp; %~d0%~p0%~n0.ps1&quot; %*
-EXIT /B %errorlevel%
-</code></pre>
-
-<p>This wrapper will execute the PowerShell script with the same file name (i.e., <code>script.ps1</code> if the batch file is named <code>script.bat</code>), and then exit with the same code that PowerShell exited with. It will also forward any arguments passed to the batch file, to the PowerShell script.</p>
-
-<p>Let&rsquo;s test it out.</p>
-
-<pre><code># script.ps1
-
-param($Arg1, $Arg2)
-Write-Host &quot;Arg 1: $Arg1&quot;
-Write-Host &quot;Arg 2: $Arg2&quot;
-</code></pre>
-
-<p><em>From the Windows command prompt:</em></p>
-
-<pre><code>&gt; script.bat happy scripting
-Arg 1: happy
-Arg 2: scripting
-</code></pre>
-
-<p>What if we want &ldquo;happy scripting&rdquo; to be passed as a single argument?</p>
-
-<pre><code>&gt; script.bat &quot;happy scripting&quot;
-Arg 1: happy
-Arg 2: scripting
-</code></pre>
-
-<p><a id="black-magic"> </a></p>
-
-<p>Well that didn&rsquo;t work at all. This is the secret recipe.</p>
-
-<pre><code>&gt; script.bat &quot;'Happy scripting with single '' and double \&quot; quotes!'&quot;
-Arg 1: Happy scripting with single ' and double &quot; quotes!
-Arg 2:
-</code></pre>
-
-<p>Please don&rsquo;t ask me to explain this black magic, I only know that it works. Much credit to <a href="http://stackoverflow.com/questions/6714165/powershell-stripping-double-quotes-from-command-line-arguments">this StackOverflow question</a> for helping me solve this!</p>
-
-<p>For comparison, here is how you would do it if you were executing the script from PowerShell, without using the batch file wrapper.</p>
-
-<p><em>From the PowerShell command prompt:</em></p>
-
-<pre><code>PS&gt; .\script.ps1 happy scripting
-Arg 1: happy
-Arg 2: scripting
-
-PS&gt; .\script.ps1 &quot;Happy scripting with single ' and double `&quot; quotes included!&quot;
-Arg 1: Happy scripting with single ' and double &quot; quotes included!
-Arg 2:
-</code></pre>
-
-<p>That&rsquo;s all folks!</p>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim/">Syntax highlighting for Nginx in VIM</a>
-            
-        </h1>
-        <p>
-            <time datetime="2012-06-10 00:00:00 &#43;0000 UTC" pubdate="pubdate">Sun, Jun 10, 2012</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>Thanks to <a href="http://www.vim.org/scripts/script.php?script_id=1886">Evan Miller</a>, adding VIM syntax highlighting for Nginx config files is a breeze.</p>
-
-<p>First, install VIM if you haven&rsquo;t already. On Arch Linux, it goes like this:</p>
-
-<pre><code>&gt; pacman -Sy vim
-</code></pre>
-
-<p>Create a folder for your VIM syntax files.</p>
-
-<pre><code>&gt; mkdir -p ~/.vim/syntax/
-</code></pre>
-
-<p>Download the syntax highlighting plugin.</p>
-
-<pre><code>&gt; curl http://www.vim.org/scripts/download_script.php?src_id=14376 -o ~/.vim/syntax/nginx.vim
-</code></pre>
-
-<p>Add it to VIM&rsquo;s file type definitions. Make sure to adjust the path to your Nginx installation if you need to.</p>
-
-<pre><code>&gt; echo &quot;au BufRead,BufNewFile /etc/nginx/conf/* set ft=nginx&quot; &gt;&gt; ~/.vim/filetype.vim
-</code></pre>
-
-<p>Now enable syntax highlighting in your .vimrc file.</p>
-
-<pre><code>&gt; echo &quot;syntax enable&quot; &gt;&gt; ~/.vimrc
-</code></pre>
-
-<p>That&rsquo;s it. Now you&rsquo;ll have nice colors when you edit your Nginx configs with VIM!</p>
-
-<pre><code>&gt; vim /etc/nginx/conf/nginx.conf
-</code></pre>
-
-<figure >
-
-<img src="/2012/06/nginx-vim-colors.png" alt="Screenshot of VIM with syntax highlighting in an Nginx config file" />
-
-
-<figcaption>
-<p>
-Screenshot of VIM with syntax highlighting in an Nginx config file
-
-
-
-</p> 
-</figcaption>
-
-</figure>
 
 
 </article>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thoughts</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2014/go-project-structure-and-dependencies/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.59.0" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='///fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2014/go-project-structure-and-dependencies/">Go Project Structure and Dependencies</a>
+            
+        </h1>
+        <p>
+            <time datetime="2014-03-21 21:48:59 -0500 CDT" pubdate="pubdate">Fri, Mar 21, 2014</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/go-project-structure-and-dependencies/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2014/go-project-structure-and-dependencies/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Go is build around the concept of a <a href="http://golang.org/cmd/go/#hdr-GOPATH_environment_variable">GOPATH</a> which is a common workspace for most (or all) of your Go source code. This works well but sometimes you don&rsquo;t want the third party packages you depend on to be in your primary GOPATH. I can think of a few reasons for this:</p>
+
+<p>&bull; You have multiple Go apps and each depend on different versions of the same third party package. Ideally these packages would use a versioned URL so that the import paths are different but this isn&rsquo;t always the case. (See <a href="http://gopkg.in">http://gopkg.in</a>, a great tool for package authors to use for providing versioned URLs.)</p>
+
+<blockquote>
+<p>If you want to know more about how package versioning works in Go, you should read my other post: <a href="{{site.url}}/2014/go-and-package-versioning">Go and Package Versioning</a></p>
+</blockquote>
+
+<p>&bull; You want to commit your third party packages as part of your application&rsquo;s code so that everything needed for a build is in one place. This guarantees that your app will always build regardless of the state of the third party repo and elminates a lot of headaches when working with a build server or multiple developers.</p>
+
+<blockquote>
+<p>This is equivelant to committing your NuGet <code>./packages</code> folder in .NET or your npm <code>./node_modules</code> folder in Node.</p>
+</blockquote>
+
+<p>I looked at many Go projects to find a solution I liked. There are a lot of approaches to this problem including <a href="https://code.google.com/p/go-wiki/wiki/PackageManagementTools">many attempts</a> at a package manager for Go. The community is <a href="https://groups.google.com/d/topic/golang-nuts/PLTY792AVzc/discussion">very much in flux</a> around this topic.</p>
+
+<p>Personally, I felt any package manager tool was overkill for my needs. I was also discouraged by the fact that the community hasn&rsquo;t rallied behind any single package management solution.</p>
+
+<p>In the end, this is my recipe for Go application structure.</p>
+
+<ul>
+<li>It uses all the standard <code>go get</code>, <code>go build</code>, and <code>go test</code> commands.</li>
+<li>It doesn&rsquo;t involve copying your source code into a temporary folder during the build.</li>
+<li>It doesn&rsquo;t require you to rewrite the import paths of third party packages.</li>
+<li>It modifies your GOPATH environment variable in a very simple and isolated way. This is how we prioritize our <code>_vendor</code> directory so that third party packages are pulled from there instead of our primary GOPATH.</li>
+<li>It wraps common commands in a Makefile. This can easily be replaced by a batch file on Windows or a <code>make.go</code> file that you can run with <code>go run make.go</code>.</li>
+</ul>
+
+<blockquote>
+<p><a href="http://camlistore.org">Camlistore</a> uses the <code>make.go</code> approach (<a href="https://camlistore.googlesource.com/camlistore/+/master">see here</a>) and I really like its cross platform consistency. I may switch to it at some point.</p>
+</blockquote>
+
+<p><strong>Solution:</strong></p>
+
+<p>For context, my system <code>GOPATH</code> is <code>~/mygo</code>.</p>
+
+<p>My project is at <code>~/mygo/src/bitbucket.org/USERNAME/PROJECT</code>.</p>
+
+<pre><code>~/mygo/src/bitbucket.org/USERNAME/PROJECT
+|-- .gitignore
+|-- README
+|-- Makefile
+|-- _vendor # Third party packages. This is a typical GOPATH workspace.
+|   `-- src
+|       `-- github.com
+|           |-- codegangsta
+|           |   |-- inject
+|           |   `-- martini
+|           `-- jpoehls
+|               `-- gophermail
+|-- bin  # My app's binary output.
+|-- docs # My app's documentation.
+`-- src  # My app's source code.
+    |-- main_app
+    |-- some_pkg
+    `-- some_other_pkg
+</code></pre>
+
+<p>My Makefile looks like this:</p>
+
+<pre><code>.PHONY: build doc fmt lint run test vendor_clean vendor_get vendor_update vet
+
+# Prepend our _vendor directory to the system GOPATH
+# so that import path resolution will prioritize
+# our third party snapshots.
+GOPATH := ${PWD}/_vendor:${GOPATH}
+export GOPATH
+
+default: build
+
+build: vet
+	go build -v -o ./bin/main_app ./src/main_app
+
+doc:
+	godoc -http=:6060 -index
+
+# http://golang.org/cmd/go/#hdr-Run_gofmt_on_package_sources
+fmt:
+	go fmt ./src/...
+
+# https://github.com/golang/lint
+# go get github.com/golang/lint/golint
+lint:
+	golint ./src
+
+run: build
+	./bin/main_app
+
+test:
+	go test ./src/...
+
+vendor_clean:
+	rm -dRf ./_vendor/src
+
+# We have to set GOPATH to just the _vendor
+# directory to ensure that `go get` doesn't
+# update packages in our primary GOPATH instead.
+# This will happen if you already have the package
+# installed in GOPATH since `go get` will use
+# that existing location as the destination.
+vendor_get: vendor_clean
+	GOPATH=${PWD}/_vendor go get -d -u -v \
+	github.com/jpoehls/gophermail \
+	github.com/codegangsta/martini
+
+vendor_update: vendor_get
+	rm -rf `find ./_vendor/src -type d -name .git` \
+	&amp;&amp; rm -rf `find ./_vendor/src -type d -name .hg` \
+	&amp;&amp; rm -rf `find ./_vendor/src -type d -name .bzr` \
+	&amp;&amp; rm -rf `find ./_vendor/src -type d -name .svn`
+
+# http://godoc.org/code.google.com/p/go.tools/cmd/vet
+# go get code.google.com/p/go.tools/cmd/vet
+vet:
+	go vet ./src/...
+</code></pre>
+
+<p><strong>Notes:</strong></p>
+
+<ul>
+<li>The standard <code>go get</code>, <code>go build</code>, and <code>go test</code> commands are used. All we do is prepend our <code>_vendor</code> workspace to the GOPATH to prioritize our snapshot of the third party packages during import path resolution.</li>
+<li><code>vendor_update</code> task in the Makefile is a shotgun approach. It will update all of your dependencies to their latest version. 80% of the time this is what I want. In the 20% cases, I simply manually update the individual packages.</li>
+<li>The <code>_vendor</code> directory can be called anything you like but the underscore prefix is important. The <a href="http://golang.org/cmd/go"><code>go</code></a> tool will ignore any files or directories that begin with <code>.</code> or <code>_</code> (<a href="http://golang.org/cmd/go/#hdr-Description_of_package_lists">read more</a>). This means we can run things like <code>go test</code> in our repo root without it picking up those third party packages.</li>
+<li>I&rsquo;ve included some useful ancillary tasks as well. Such as the <a href="http://godoc.org/code.google.com/p/go.tools/cmd/godoc"><code>doc</code></a>, <a href="http://golang.org/cmd/go/#hdr-Run_gofmt_on_package_sources"><code>fmt</code></a>, <a href="https://github.com/golang/lint"><code>lint</code></a>, and <a href="http://godoc.org/code.google.com/p/go.tools/cmd/vet"><code>vet</code></a> tasks, and the fact that <code>build</code> runs <a href="http://godoc.org/code.google.com/p/go.tools/cmd/vet"><code>go vet</code></a> first.</li>
+</ul>
+
+<p><strong>How do you structure your Go projects?</strong> What does your build script look like? I&rsquo;m always interested in improving my methods, let me know what&rsquo;s working for you!</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

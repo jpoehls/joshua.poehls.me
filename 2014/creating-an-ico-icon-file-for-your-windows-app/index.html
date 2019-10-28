@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thoughts</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2014/creating-an-ico-icon-file-for-your-windows-app/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.59.0" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='///fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2014/creating-an-ico-icon-file-for-your-windows-app/">Creating an ICO icon file for your Windows app</a>
+            
+        </h1>
+        <p>
+            <time datetime="2014-01-29 22:13:50 -0500 -0500" pubdate="pubdate">Wed, Jan 29, 2014</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/creating-an-ico-icon-file-for-your-windows-app/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2014/creating-an-ico-icon-file-for-your-windows-app/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Every Windows app needs an icon. Even yours.</p>
+
+<p>If you are a developer then this task probably sounds simpler than it may turn out to be. First off, a lot of graphics programs (<a href="http://www.getpaint.net/">Paint.NET</a>, for example) don&rsquo;t support saving as an ICO file, the format needed by Windows.</p>
+
+<p>Don&rsquo;t sweat. I&rsquo;ve got you covered. Here is the developer cheat sheet for creating an app icon file.</p>
+
+<blockquote>
+<p><strong>Pro tip:</strong> ICO files can contain <em>multiple</em> icons. Often they will contain multiple versions of the same icon in different sizes. For example, a 64px and a 16px icon, each optimized for their respective size.</p>
+
+<p><a href="http://en.wikipedia.org/wiki/ICO_(file_format)">Wikipedia</a> has a lot more interesting info on the ICO format.</p>
+</blockquote>
+
+<ol>
+<li>Create your icon. Make it square. Make it high res. Remember, you can always size down but it is harder to size up. I like to go with a minimum of 256px.</li>
+<li>Export your icon to PNG files at multiple sizes. My minimum recommendation would be the following: 16px, 32px, 48px, 64px, 96px.</li>
+<li>Use <a href="http://pnggauntlet.com/">PNGGauntlet</a> or <a href="http://advsys.net/ken/util/pngout.htm">PNGOut</a> to compress those PNGs. You won&rsquo;t lose quality but you will shed a lot of wasted bytes.<br/><img alt="Screenshot of PNGGauntlet" src="pnggauntlet.png" /></li>
+<li>Use <a href="http://www.inedo.com/downloads/icon-maker">Icon Maker</a> to create your ICO file. Windows supports a single ICO file with multiple sizes embedded and that&rsquo;s what we want to do. Create a single ICO file with each of your specifically sized PNGs in it. You could also just drag in the largest PNG (96px for example) and trust Windows to resize it nicely.<br/><img alt="Screenshot of Icon Maker" src="iconmaker.png" /></li>
+<li>Save out the ICO file and use it in your application.</li>
+</ol>
+
+<p>That&rsquo;s it! The biggest trick is knowing the tools. Icon Maker is a life saver. You should also understand what size icon(s) to use so that your app is well represented throughout the Windows UI. There is a <a href="http://stackoverflow.com/a/3244679/31308">good thread on StackOverflow</a> with more details on this.</p>
+
+<p>I&rsquo;m not an expert in this area so I&rsquo;m sure there are things I&rsquo;m missing to further optimize your icon. Add any of your own tips in the comments!</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

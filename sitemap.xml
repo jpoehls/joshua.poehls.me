@@ -278,6 +278,26 @@
   </url>
   
   <url>
+    <loc>http://joshua.poehls.me/2014/go-and-package-versioning/</loc>
+    <lastmod>2014-03-23T20:49:21-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2014/go-project-structure-and-dependencies/</loc>
+    <lastmod>2014-03-21T21:48:59-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2014/creating-an-ico-icon-file-for-your-windows-app/</loc>
+    <lastmod>2014-01-29T22:13:50-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/tags/windows/</loc>
+    <lastmod>2014-01-29T22:13:50-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://joshua.poehls.me/powershell-script-module-boilerplate/</loc>
     <lastmod>2013-12-21T10:43:31-06:00</lastmod>
   </url>
@@ -339,11 +359,6 @@
   
   <url>
     <loc>http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/</loc>
-    <lastmod>2012-06-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://joshua.poehls.me/tags/windows/</loc>
     <lastmod>2012-06-07T00:00:00+00:00</lastmod>
   </url>
   
