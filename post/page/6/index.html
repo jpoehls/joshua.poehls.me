@@ -60,6 +60,142 @@
     <header>
         <h1>
             
+            <a href="http://joshua.poehls.me/2013/using-bookmarks-to-quickly-navigate-in-powershell/">Using bookmarks to quickly navigate in PowerShell</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-01-31 21:32:57 -0500 -0500" pubdate="pubdate">Thu, Jan 31, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/using-bookmarks-to-quickly-navigate-in-powershell/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/using-bookmarks-to-quickly-navigate-in-powershell/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>There are a few folders that I spend a lot of time and it is surprisingly slow to type <code>cd c:\path\to\my\project</code> many times a day. I solved this by creating a module that allows me to bookmark directories and navigate to them using aliases. Simply put, I can shorten the previous command to <code>g project</code>.</p>
+
+<p>Usage looks like this:</p>
+
+<pre>
+<b>Set-Bookmark</b> &lt;name&gt; &lt;path&gt;
+<b>Get-Bookmark</b> <i># to list all</i>
+<b>Get-Bookmark</b> &lt;name&gt;
+<b>Remove-Bookmark</b> &lt;name&gt;
+<b>Clear-Bookmarks</b>
+<b>Invoke-Bookmark</b> &lt;name&gt;
+</pre>
+
+<p>I alias <code>Invoke-Bookmark</code> as <code>g</code> for speed.</p>
+
+<p>All you have to do is import the module in your profile and initialize your bookmarks.</p>
+
+<pre data-language="powershell">
+# Microsoft.PowerShell_profile.ps1
+
+Import-Module bookmarks.psm1
+Set-Alias g Invoke-Bookmark
+
+Set-Bookmark project c:\path\to\my\project
+</pre>
+
+<p>Here is the module. Happy bookmarking!</p>
+
+<pre data-language="powershell">
+# bookmarks.psm1
+# Exports: Set-Bookmark, Get-Bookmark, Remove-Bookmark, Clear-Bookmarks, Invoke-Bookmark
+
+# holds hash of bookmarked locations
+$_bookmarks = @{}
+
+function Get-Bookmark() {
+  Write-Output ($_bookmarks.GetEnumerator() | sort Name)
+}
+
+function Remove-Bookmark($key) {
+&lt;#
+.SYNOPSIS
+  Removes the bookmark with the given key.
+#&gt;
+  if ($_bookmarks.keys -contains $key) {
+    $_bookmarks.remove($key)
+  }
+}
+
+function Clear-Bookmarks() {
+&lt;#
+.SYNOPSIS
+  Clears all bookmarks.
+#&gt;
+  $_bookmarks.Clear()
+}
+
+function Set-Bookmark($key, $location) {
+&lt;#
+.SYNOPSIS
+  Bookmarks the given location or the current location (Get-Location).
+#&gt;
+  # bookmark the current location if a specific path wasn't specified
+  if ($location -eq $null) {
+    $location = (Get-Location).Path
+  }
+
+  # make sure we haven't already bookmarked this location (no need to clutter things)
+  if ($_bookmarks.values -contains $location) {
+    Write-Warning ("Already bookmarked as: " + ($_bookmarks.keys | where { $_bookmarks[$_] -eq $location }))
+    return
+  }
+
+  # if no specific key was specified then auto-set the key to the next bookmark number
+  if ($key -eq $null) {
+    $existingNumbers = ($_bookmarks.keys | Sort-Object -Descending | where { $_ -is [int] })
+    if ($existingNumbers.length -gt 0) {
+      $key = $existingNumbers[0] + 1
+    }
+    else {
+      $key = 1
+    }
+  }
+
+  $_bookmarks[$key] = $location
+}
+
+function Invoke-Bookmark($key) {
+&lt;#
+.SYNOPSIS
+  Goes to the location specified by the given bookmark.
+#&gt;
+  if ([string]::IsNullOrEmpty($key)) {
+    Get-Bookmark
+    return
+  }
+
+  if ($_bookmarks.keys -contains $key) {
+    Push-Location $_bookmarks[$key]
+  }
+  else {
+    Write-Warning "No bookmark set for the key: $key"
+  }
+}
+
+Export-ModuleMember Get-Bookmark, Remove-Bookmark, Clear-Bookmarks, Set-Bookmark, Invoke-Bookmark
+</pre>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="http://joshua.poehls.me/2013/benchmarking-scripts-and-programs-with-powershell/">Benchmarking scripts and programs with PowerShell</a>
             
         </h1>
@@ -1403,160 +1539,6 @@ Targetted at: c:\symlink_test\real_dir
 <p>This solution saved my day when I couldn&rsquo;t Remote Desktop into my workstation over the VPN.</p>
 
 <p>For more information, refer to <a href="http://docs.info.apple.com/article.html?path=Mac/10.6/en/8853.html">Apple&rsquo;s documentation for this</a>.</p>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/">Use AutoHotkey to remap your numpad keys to something useful</a>
-            
-        </h1>
-        <p>
-            <time datetime="2011-12-14 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Dec 14, 2011</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/</span>
-            </a>
-        </p>
-    </header>
-
-    
-
-<p>Are you tired of having to remember that <code>ALT+0176</code> is the degree symbol <strong>&deg;</strong> ? Maybe there are other special characters that you want to be able to type easier.</p>
-
-<p>Personally it was the degree symbol that got me, and since I never use my numpad, I decided it would be much more useful if those keys actually entered stuff that I cared about.</p>
-
-<p>Here is a quick tutorial in using AutoHotkey to remap one of your numpad keys to the degree symbol. Of course you can expand on this beginning easily to solve whatever woes you are having.</p>
-
-<p>Start out by going to <a href="http://www.autohotkey.com">the AutoHotkey website</a>.</p>
-
-<p>Download the <strong>AutoHotkey_L</strong> installer. This is the most recent version of AutoHotkey and specifically supports Unicode which is important for us.</p>
-
-<figure >
-
-<img src="/2011/12/autohotkey/Image4.png" alt="Screenshot of the AutoHotkey download page" />
-
-
-<figcaption>
-<p>
-Screenshot of the AutoHotkey download page
-
-
-
-</p> 
-</figcaption>
-
-</figure>
-
-<p>Run the installer and leave all the defaults.</p>
-
-<figure >
-
-<img src="/2011/12/autohotkey/Image3.png" alt="Screenshot of the AutoHotkey installer" />
-
-
-<figcaption>
-<p>
-Screenshot of the AutoHotkey installer
-
-
-
-</p> 
-</figcaption>
-
-</figure>
-
-<p>Look in your My Documents folder and open up <code>AutoHotkey.ahk</code> in a text editor that you can save as UTF-8 in.</p>
-
-<p>If you don&rsquo;t know what this means or don&rsquo;t have an editor that can do this then <a href="http://www.flos-freeware.ch/notepad2.html">download Notepad2</a> and open the file in that program.</p>
-
-<figure >
-
-<img src="/2011/12/autohotkey/Image5.png" alt="Screenshot of the AutoHotkey.ahk file in Windows Explorer" />
-
-
-<figcaption>
-<p>
-Screenshot of the AutoHotkey.ahk file in Windows Explorer
-
-
-
-</p> 
-</figcaption>
-
-</figure>
-
-<p>Now that you have <code>AutoHotkey.ahk</code> opened, delete everything in there (after reading it if you care) and paste the following in its place.</p>
-
-<pre><code>NumpadIns::
-Send &deg;
-return</code></pre>
-
-<p>Now save this file with <strong>UTF-8</strong> encoding. If you are using Notepad2 you can do this by going to <code>File | Encoding | UTF-8</code> and clicking <strong>Yes</strong> to the warning. Then click <code>File | Save</code> as usual.</p>
-
-<figure >
-
-<img src="/2011/12/autohotkey/Image.png" alt="Screenshot of saving the file with UTF-8 encoding" />
-
-
-<figcaption>
-<p>
-Screenshot of saving the file with UTF-8 encoding
-
-
-
-</p> 
-</figcaption>
-
-</figure>
-
-<p>Finally, run the <strong>AutoHotkey</strong> program from your Start Menu.</p>
-
-<figure >
-
-<img src="/2011/12/autohotkey/Image2.png" alt="Screenshot of AutoHotkey in the Start Menu" />
-
-
-<figcaption>
-<p>
-Screenshot of AutoHotkey in the Start Menu
-
-
-
-</p> 
-</figcaption>
-
-</figure>
-
-<h3 id="now-to-try-it-out">Now to try it out!</h3>
-
-<p>Put your focus in any text box. Anywhere. Go ahead. Now make sure you have NumLock turned OFF and hit the <code>0</code> key on your numpad.</p>
-
-<p>See what just happened? No, that&rsquo;s not a superscripted zero. That&rsquo;s a degree symbol. Now that they are easy to type you are going to have to learn what it is! ;)</p>
-
-<p>You can get a list of other special key names here: <a href="http://www.autohotkey.com/docs/KeyList.htm">http://www.autohotkey.com/docs/KeyList.htm</a></p>
-
-<p>This is just scratching the surface of what you can do with AutoHotkey scripts. Be sure to <a href="http://l.autohotkey.net/docs/">read up on the documentation</a> for more ideas. Knowledge is power!</p>
-
-<p>Here is a teaser of just a few of the tricks you can do:</p>
-
-<ul>
-<li>Create global shortcuts to run programs (ex. <code>CTRL+Z</code> to open a browser and navigate to a specific website.)</li>
-<li>Replace acronyms or common spelling mistakes (ex. replace &ldquo;restraunt&rdquo; -&gt; &ldquo;restaurant&rdquo; automatically.)</li>
-<li>Toggle hidden files in Windows Explorer with a shortcut key.</li>
-</ul>
 
 
 </article>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>joshua poehls | silent thoughts</title>
 
-<link rel="canonical" href="http://joshua.poehls.me/tags/csharp/">
+<link rel="canonical" href="http://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
 <meta name="generator" content="Hugo 0.59.0" />
 
@@ -47,31 +47,57 @@
 	</div>
 </header>
 
+
+
 <div class="container">
 
-	<h1 class="taxonomy-title">
-		
-			Posts tagged <span class="term">#csharp</span>
-		
-		<span class="desc"><a href="/archives">other&nbsp;tags</a></span>
-	</h1>
 	
 
-	<ul class="taxonomy-content">
-		
-		<li>
-			Oct 28, 2019 -
-			<a href="http://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/">Parse .NET TimeSpans in a Tableau Calculated Field</a>
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
             
-		</li>
-		
-		<li>
-			Feb 12, 2013 -
-			<a href="http://joshua.poehls.me/2013/using-enum-flags-to-model-user-roles-in-csharp-and-sql/">Using enum flags to model user roles in C#, SQL, and Go</a>
+            <a href="http://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/">Parse .NET TimeSpans in a Tableau Calculated Field</a>
             
-		</li>
-		
-	</ul>
+        </h1>
+        <p>
+            <time datetime="2019-10-28 23:03:55 -0500 CDT" pubdate="pubdate">Mon, Oct 28, 2019</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Here&rsquo;s a formula you can use to create a calculated field in <a href="https://tableau.com">Tableau</a> for converting strings in the format of .NET <code>TimeSpan</code> values to a total number of seconds.</p>
+
+<p>Given a string <code>79.23:08:01.3976607</code> (79 days, 23 hours, 8 minutes, 1.3976607 seconds), it would return the total number of seconds.</p>
+
+<pre><code>IF ISNULL([TimeSpan]) THEN
+   NULL
+ELSE
+   (IFNULL(INT(REGEXP_EXTRACT_NTH([TimeSpan], &quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&quot;, 2)), 0) * 86400)
+   + (INT(REGEXP_EXTRACT_NTH([TimeSpan], &quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&quot;, 3)) * 3600)
+   + (INT(REGEXP_EXTRACT_NTH([TimeSpan], &quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&quot;, 4)) * 60)
+   + FLOAT(REGEXP_EXTRACT_NTH([TimeSpan], &quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&quot;, 5))
+END
+</code></pre>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
 
 </div>
 

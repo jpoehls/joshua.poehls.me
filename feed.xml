@@ -4,12 +4,39 @@
   <rights>Copyright (c) 2014-2018 Joshua Poehls. All rights reserved.</rights>
   <link rel="self" href="http://joshua.poehls.me/feed.xml"/>
   <link href="http://joshua.poehls.me/"/>
-  <updated>2018-11-14T13:41:40-05:00</updated>
+  <updated>2019-10-28T23:03:55-05:00</updated>
   <author>
     <name>Joshua Poehls</name>
   </author>
   <id>http://joshua.poehls.me/</id>
 
+  
+  <entry>
+    <title>Parse .NET TimeSpans in a Tableau Calculated Field</title>
+    <link href="http://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/"/>
+    <id>http://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/</id>
+    <updated>2019-10-28T23:03:55-05:00</updated>
+    
+    <category term="tableau" />
+    <category term="csharp" />
+    <category term="dotnet" />
+    <category term="regex" />
+    
+    <content type="html">&lt;p&gt;Here&amp;rsquo;s a formula you can use to create a calculated field in &lt;a href=&#34;https://tableau.com&#34;&gt;Tableau&lt;/a&gt; for converting strings in the format of .NET &lt;code&gt;TimeSpan&lt;/code&gt; values to a total number of seconds.&lt;/p&gt;
+
+&lt;p&gt;Given a string &lt;code&gt;79.23:08:01.3976607&lt;/code&gt; (79 days, 23 hours, 8 minutes, 1.3976607 seconds), it would return the total number of seconds.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;IF ISNULL([TimeSpan]) THEN
+   NULL
+ELSE
+   (IFNULL(INT(REGEXP_EXTRACT_NTH([TimeSpan], &amp;quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&amp;quot;, 2)), 0) * 86400)
+   + (INT(REGEXP_EXTRACT_NTH([TimeSpan], &amp;quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&amp;quot;, 3)) * 3600)
+   + (INT(REGEXP_EXTRACT_NTH([TimeSpan], &amp;quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&amp;quot;, 4)) * 60)
+   + FLOAT(REGEXP_EXTRACT_NTH([TimeSpan], &amp;quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&amp;quot;, 5))
+END
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Resources for Studying Zephaniah</title>
@@ -929,39 +956,6 @@ Renzo Gracie on MMA Hour Episode 249
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn2&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>The World&#39;s Loudest Sound</title>
-    <link href="http://joshua.poehls.me/2014/10/worlds-loudest-sound/"/>
-    <id>http://joshua.poehls.me/2014/10/worlds-loudest-sound/</id>
-    <updated>2014-10-02T14:03:07-05:00</updated>
-    
-    <category term="sound" />
-    <category term="science" />
-    
-    <content type="html">&lt;figure &gt;
-
-&lt;img src=&#34;http://joshua.poehls.me/2014/10/worlds-loudest-sound/krakatoa.jpg&#34; alt=&#34;Krakatoa&#34; /&gt;
-
-
-&lt;figcaption&gt;
-&lt;p&gt;
-Krakatoa
-
-
-
-&lt;/p&gt; 
-&lt;/figcaption&gt;
-
-&lt;/figure&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;The sound made by the Krakatoa volcanic eruption in 1883 was so loud it ruptured eardrums of people 40 miles away, travelled around the world four times, and &lt;a href=&#34;http://nautil.us/blog/the-sound-so-loud-that-it-circled-the-earth-four-times&#34;&gt;was clearly heard 3,000 miles away&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This is the most amazing thing you&amp;rsquo;ll read today.&lt;/p&gt;
 </content>
   </entry>
   
