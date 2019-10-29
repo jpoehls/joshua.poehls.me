@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thoughts</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2013/tableau-via-powershell-part-2-saving-changes/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.59.0" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='///fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/tableau-via-powershell-part-2-saving-changes/">Tableau via PowerShell, Part 2: Saving Changes</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-08-07 22:40:40 -0500 CDT" pubdate="pubdate">Wed, Aug 7, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/tableau-via-powershell-part-2-saving-changes/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/tableau-via-powershell-part-2-saving-changes/</span>
+            </a>
+        </p>
+    </header>
+
+    <blockquote>
+<p>This is part 2 of my mini-series on exploring Tableau workbooks with PowerShell. If you missed it, you should read <a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">Part 1: Opening Workbooks</a>, before continuing.</p>
+</blockquote>
+
+<p>Welcome back! Last time I showed you how to open a Tableau workbook (TWB or TWBX) in PowerShell so you could start exploring the raw XML. Today I&rsquo;ll show the next logical thing, saving the changes you make.</p>
+
+<p>If you are only opening TWB files, then saving your changes couldn&rsquo;t be easier. Since TWBs are just XML files we can simply write it to a file, like so.</p>
+
+<pre>
+$workbook = Get-TableauWorkbookXml 'MyWorkbook.twb'
+$workbook.Save('ModifiedWorkbook.twb')
+</pre>
+
+<p>Cake.</p>
+
+<p>Saving changes back to a TWBX file is a bit more work but still totally doable. Let&rsquo;s write a new function, <code>Export-TableauPackagedWorkbook</code>. We will spice things up a bit by making this function smart. It&rsquo;ll take a few parameters to allow us to control exactly how we want the export to happen.</p>
+
+<p>A <code>-Force</code> parameter will let us specify whether we want to overwrite the destination file if it already exists. By default we would be prompted. Note that this isn&rsquo;t a terribly useful parameter since it would replace the TWBX with an empty TWBX containing only the TWB.</p>
+
+<p><code>-Update</code> will let us specify that we want to update the TWB inside the destination TWBX file if the destination file exists. This is the cool parameter because it lets us open an existing TWBX, make changes to the TWB inside, and then save those changes back out into the original TWBX.</p>
+
+<p>We will also support the common <code>-WhatIf</code> and <code>-Confirm</code> parameters that are so useful in PowerShell.</p>
+
+<p>Here is our function:</p>
+
+<blockquote>
+<p>If you find this helpful then check out <a href="/2013/tableaukit-powershell-module-for-tableau/">TableauKit</a>;
+a full on PowerShell module for working with Tableau files. It contains a new and improved
+version of the function below and much more.</p>
+</blockquote>
+
+<pre data-language="powershell">
+function Export-TableauPackagedWorkbook {
+&lt;#
+.SYNOPSIS
+    Exports the workbook XML to a packaged workbook (TWBX) file.
+ 
+.PARAMETER Path
+    The literal file path to export to.
+ 
+.PARAMETER WorkbookXml
+    The workbook XML to export.
+ 
+.PARAMETER Update
+    Whether to update the TWB inside the destination TWBX file
+    if the destination file exists.
+ 
+.PARAMETER Force
+    Whether to overwrite the destination TWBX file if it exists.
+    By default, you will be prompted whether to overwrite any
+    existing file.
+ 
+.NOTES
+    Author: Joshua Poehls ({{site.url}})
+#&gt;
+    [CmdletBinding(
+        SupportsShouldProcess=$true
+    )]
+    param(
+        [Parameter(
+            Position=0,
+            Mandatory=$true
+        )]
+        [string]$Path,
+ 
+        [Parameter(
+            Position=1,
+            Mandatory=$true,
+            ValueFromPipeline=$true
+        )]
+        [xml]$WorkbookXml,
+ 
+        [switch]$Update,
+        [switch]$Force
+    )
+ 
+    begin {
+        $originalCurrentDirectory = [System.Environment]::CurrentDirectory
+ 
+        # System.IO.Compression.FileSystem requires at least .NET 4.5
+        [System.Reflection.Assembly]::LoadWithPartialName("System.IO.Compression") | Out-Null
+    }
+ 
+    process {
+        [System.Environment]::CurrentDirectory = (Get-Location).Path
+        $entryName = [System.IO.Path]::GetFileNameWithoutExtension($Path) + '.twb'
+        $createNewTwbx = $false
+       
+        if (Test-Path $Path) {
+            if ($Update -or $Force -or $PSCmdlet.ShouldContinue('Overwrite existing file?', 'Confirm')) {
+                if ($Update) {
+                    if ($PSCmdlet.ShouldProcess($Path, 'Update TWB in packaged workbook')) {
+ 
+                        [System.IO.FileStream]$fileStream = $null
+                        [System.IO.Compression.ZipArchive]$zip = $null
+                        try {
+                            $fileStream = New-Object System.IO.FileStream -ArgumentList $Path, ([System.IO.FileMode]::Open), ([System.IO.FileAccess]::ReadWrite), ([System.IO.FileShare]::Read)
+                            $zip = New-Object System.IO.Compression.ZipArchive -ArgumentList $fileStream, ([System.IO.Compression.ZipArchiveMode]::Update)
+ 
+                            # Locate the existing TWB entry and remove it.
+                            $entry = $zip.Entries |
+                                where {
+                                    # Look for a .twb file at the root level of the archive.
+                                    $_.FullName -eq $_.Name -and ([System.IO.Path]::GetExtension($_.Name)) -eq '.twb'
+                                } |
+                                select -First 1
+                            if ($entry) {
+                                $entry.Delete()
+                            }
+ 
+                            $entry = $zip.CreateEntry($entryName, ([System.IO.Compression.CompressionLevel]::Optimal))
+                            [System.IO.Stream]$entryStream = $null
+                            try {
+                                $entryStream = $entry.Open()
+                                $WorkbookXml.Save($entryStream)
+                            }
+                            finally {
+                                if ($entryStream) {
+                                    $entryStream.Dispose()
+                                }
+                            }
+                        }
+                        finally {
+                            if ($zip) {
+                                $zip.Dispose()
+                            }
+                            if ($fileStream) {
+                                $fileStream.Dispose()
+                            }
+                        }
+                    }
+                }
+                else {
+                    if ($PSCmdlet.ShouldProcess($Path, 'Replace existing packaged workbook')) {
+                        # delete existing TWBX
+                        Remove-Item $Path -ErrorAction Stop #TODO: Figure out how to pass WhatIf and Confirm to this
+                        
+                        $createNewTwbx = $true
+                    }
+                }
+            }
+        }
+        else {
+            if ($PSCmdlet.ShouldProcess($Path, 'Export packaged workbook')) {
+                $createNewTwbx = $true
+            }
+        }
+ 
+        if ($createNewTwbx) {
+            [System.IO.FileStream]$fileStream = $null
+            [System.IO.Compression.ZipArchive]$zip = $null
+            try {
+                $fileStream = New-Object System.IO.FileStream -ArgumentList $Path, ([System.IO.FileMode]::CreateNew), ([System.IO.FileAccess]::ReadWrite), ([System.IO.FileShare]::None)
+                $zip = New-Object System.IO.Compression.ZipArchive -ArgumentList $fileStream, ([System.IO.Compression.ZipArchiveMode]::Update)
+ 
+                $entry = $zip.CreateEntry($entryName, ([System.IO.Compression.CompressionLevel]::Optimal))
+                [System.IO.Stream]$entryStream = $null
+                try {
+                    $entryStream = $entry.Open()
+                    $WorkbookXml.Save($entryStream)
+                }
+                finally {
+                    if ($entryStream) {
+                        $entryStream.Dispose()
+                    }
+               }
+            }
+            finally {
+                if ($zip) {
+                    $zip.Dispose()
+                }
+                if ($fileStream) {
+                    $fileStream.Dispose()
+                }
+            }
+        }
+    }
+ 
+    end {
+        [System.Environment]::CurrentDirectory = $originalCurrentDirectory
+    }
+}
+</pre>
+
+<p>Not too bad. Here are some quick usage examples.</p>
+
+<p><strong>Convert a TWB into a TWBX</strong></p>
+
+<pre>
+$workbook = Get-TableauWorkbookXml 'MyWorkbook.twb'
+$workbook | Export-TableauPackagedWorkbook 'MyPackagedWorkbook.twbx'
+</pre>
+
+<p><strong>Update an existing TWBX</strong></p>
+
+<pre>
+$workbook = Get-TableauWorkbookXml 'MyPackagedWorkbook.twbx'
+# TODO: Make some changes to the workbook XML
+$workbook | Export-TableauPackagedWorkbook 'MyPackagedWorkbook.twbx' -Update
+</pre>
+
+<p>Leave me a comment if you have any questions about working with Tableau workbooks in PowerShell. Maybe I&rsquo;ll cover your topic in the next post!</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

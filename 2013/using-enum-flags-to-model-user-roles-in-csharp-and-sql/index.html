@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thoughts</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2013/using-enum-flags-to-model-user-roles-in-csharp-and-sql/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.59.0" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='///fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/using-enum-flags-to-model-user-roles-in-csharp-and-sql/">Using enum flags to model user roles in C#, SQL, and Go</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-02-12 21:48:50 -0500 -0500" pubdate="pubdate">Tue, Feb 12, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/using-enum-flags-to-model-user-roles-in-csharp-and-sql/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/using-enum-flags-to-model-user-roles-in-csharp-and-sql/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Using an enum flags property to hold users&rsquo; roles is just one trick
+I&rsquo;ve learned from <a href="https://twitter.com/SeiginoRaikou">@SeiginoRaikou</a>,
+one of my co-geniuses at <a href="https://www.interworks.com/">InterWorks</a>.</p>
+
+<p>Historically I have always modeled user roles with a <code>Role</code> table
+and a many-to-many relationship with my <code>User</code> table.</p>
+
+<pre>    +-------------------+
+    | User              |
+    |-------------------|
+    | UserId   : int    +-------------+---------------+
+    | UserName : varchar|             | UserRole      |
+    +-------------------+             |---------------|
+                                      + UserId : int  |
+    +-------------------+             + RoleId : int  |
+    | Role              |             |---------------+
+    |-------------------|             |
+    | RoleId   : int    +-------------+
+    | RoleName : varchar|
+    +-------------------+</pre>
+
+<p>Compared to a flags enum approach this is downright wasteful.
+With flags, there is only ever one column to work with and it is an integer.
+No second table. No joins or second query.</p>
+
+<pre>    +--------------------+
+    | User               |
+    |--------------------|
+    | UserId   : int     |
+    | UserName : varchar |
+    | Roles    : int     |
+    +--------------------+</pre>
+
+<p>Modeling this in C# is easy.</p>
+
+<pre data-language="csharp">
+[Flags] // Values must always be powers of two
+enum UserRole : int {
+  Employee = 1,
+  Manager = 2,
+  Admin = 4
+}
+
+class User {
+  public UserRole Role { get; set; }
+ 
+  public void AddRole(UserRole roleToAdd) {
+    this.Role |= roleToAdd;
+  }
+ 
+  public void RemoveRole(UserRole roleToRemove) {
+    this.Role &amp;= ~roleToRemove;
+  }
+  
+  public bool IsInRole(UserRole roleToCheck) {
+    return this.Role.HasFlag(roleToCheck);
+  }
+}
+</pre>
+
+<p>Flag enumerations are just as accessible in SQL.</p>
+
+<pre data-language="sql">
+-- Add users to the Admin role
+UPDATE [User] SET [Roles] = ([Roles] | 4)
+
+-- Remove users from the Admin role
+UPDATE [User] SET [Roles] = ([Roles] - ([Roles] &amp; 4))
+
+-- Find all users in the Admin role
+SELECT * FROM [User] WHERE [Roles] &amp; 4 &lt;&gt; 0
+</pre>
+
+<p>Go forth and simplify, my friends.</p>
+
+<p><strong>Update for Go</strong></p>
+
+<p>Bonus! Here is how you might model this in <a href="http://www.golang.org">Go</a>.</p>
+
+<pre data-language="golang">
+type User struct {
+    Roles    Roles
+}
+
+type Roles uint
+
+const (
+    // Roles must be powers of two.
+    RoleEmployee Roles = 1
+    RoleManager        = 2
+    RoleAdmin          = 4
+)
+
+func (user *User) AddRole(role Roles) {
+  user.Roles |= role
+}
+
+func (user *User) RemoveRole(role Roles) {
+  user.Roles &amp;^= role
+}
+
+func (user *User) IsInRole(role Roles) bool {
+  return (user.Roles &amp; role) != 0
+}
+</pre>
+
+<p>An even cleaner way would be to use <a href="http://golang.org/pkg/builtin/#iota"><code>iota</code></a> to have Go automatically assign the flag values in powers of two. You can see this method used by Go&rsquo;s own <a href="http://golang.org/pkg/text/tabwriter/#pkg-constants">text/tabwriter</a> package.</p>
+
+<pre data-language="golang">
+const (
+  // Roles must be powers of two.
+  RoleEmployee Roles = 1 &lt;&lt; iota
+  RoleManager
+  RoleAdmin
+)
+</pre>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

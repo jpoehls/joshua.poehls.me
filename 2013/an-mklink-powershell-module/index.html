@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thoughts</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2013/an-mklink-powershell-module/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.59.0" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='///fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/an-mklink-powershell-module/">An MKLINK PowerShell Module</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-01-22 21:07:03 -0500 -0500" pubdate="pubdate">Tue, Jan 22, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/an-mklink-powershell-module/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/an-mklink-powershell-module/</span>
+            </a>
+        </p>
+    </header>
+
+    <p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">MKLINK</a> is a very useful utility on Windows. Unfortunately there aren&rsquo;t any native PowerShell functions that replace it so we still have to shell out to the command prompt.</p>
+
+<p>This can be made less painful with a helper function that will pipe all arguments to the MKLINK command.</p>
+
+<pre><code class="language-powershell">function mklink { cmd /c mklink $args }
+</code></pre>
+
+<p>Personally though, I prefer to use native PowerShell functions whenever possible so I put together a module that provides wrappers for the key functionality of MKLINK.</p>
+
+<p>Usage looks like this:</p>
+
+<pre>
+<b>New-Symlink</b> &lt;link_path&gt; &lt;target_path&gt; &lt;force?&gt;
+<b>New-Hardlink</b> &lt;link_path&gt; &lt;target_path&gt; &lt;force?&gt;
+<b>New-Junction</b> &lt;link_path&gt; &lt;target_path&gt; &lt;force?&gt;
+<b>mklink</b> &lt;args&gt; <i># raw pipe to mklink</i>
+</pre>
+
+<p>Import this module in your profile and you&rsquo;ll have it whenever you need it.</p>
+
+<pre><code class="language-powershell"># Microsoft.PowerShell_profile.ps1
+
+Import-Module mklink.psm1
+</code></pre>
+
+<pre><code class="language-powershell"># mklink.psm1
+# Exports: New-Symlink, New-Hardlink, New-Junction, mklink
+
+function Force-Resolve-Path {
+    &lt;#
+    .SYNOPSIS
+        Calls Resolve-Path but works for files that don't exist.
+    .REMARKS
+        From http://devhawk.net/2010/01/21/fixing-powershells-busted-resolve-path-cmdlet/
+    #&gt;
+    param (
+        [string] $FileName
+    )
+    
+    $FileName = Resolve-Path $FileName -ErrorAction SilentlyContinue `
+                                       -ErrorVariable _frperror
+    if (-not($FileName)) {
+        $FileName = $_frperror[0].TargetObject
+    }
+    
+    return $FileName
+}
+
+function New-Symlink {
+    &lt;#
+    .SYNOPSIS
+        Creates a symbolic link.
+    #&gt;
+    param (
+        [Parameter(Position=0, Mandatory=$true)]
+        [string] $Link,
+        [Parameter(Position=1, Mandatory=$true)]
+        [string] $Target,
+        [Parameter(Position=2)]
+        [switch] $Force
+    )
+
+    Invoke-MKLINK -Link $Link -Target $Target -Symlink -Force $Force
+}
+
+function New-Hardlink {
+    &lt;#
+    .SYNOPSIS
+        Creates a hard link.
+    #&gt;
+    param (
+        [Parameter(Position=0, Mandatory=$true)]
+        [string] $Link,
+        [Parameter(Position=1, Mandatory=$true)]
+        [string] $Target,
+        [Parameter(Position=2)]
+        [switch] $Force
+    )
+
+    Invoke-MKLINK -Link $Link -Target $Target -HardLink -Force $Force
+}
+
+function New-Junction {
+    &lt;#
+    .SYNOPSIS
+        Creates a directory junction.
+    #&gt;
+    param (
+        [Parameter(Position=0, Mandatory=$true)]
+        [string] $Link,
+        [Parameter(Position=1, Mandatory=$true)]
+        [string] $Target,
+        [Parameter(Position=2)]
+        [switch] $Force
+    )
+
+    Invoke-MKLINK -Link $Link -Target $Target -Junction -Force $Force
+}
+
+function Invoke-MKLINK {
+    &lt;#
+    .SYNOPSIS
+        Creates a symbolic link, hard link, or directory junction.
+    #&gt;
+    [CmdletBinding(DefaultParameterSetName = &quot;Symlink&quot;)]
+    param (
+        [Parameter(Position=0, Mandatory=$true)]
+        [string] $Link,
+        [Parameter(Position=1, Mandatory=$true)]
+        [string] $Target,
+
+        [Parameter(ParameterSetName = &quot;Symlink&quot;)]
+        [switch] $Symlink = $true,
+        [Parameter(ParameterSetName = &quot;HardLink&quot;)]
+        [switch] $HardLink,
+        [Parameter(ParameterSetName = &quot;Junction&quot;)]
+        [switch] $Junction,
+        [Parameter()]
+        [bool] $Force
+    )
+    
+    # Resolve the paths incase a relative path was passed in.
+    $Link = (Force-Resolve-Path $Link)
+    $Target = (Force-Resolve-Path $Target)
+
+    # Ensure target exists.
+    if (-not(Test-Path $Target)) {
+        throw &quot;Target does not exist.`nTarget: $Target&quot;
+    }
+
+    # Ensure link does not exist.
+    if (Test-Path $Link) {
+        if ($Force) {
+            Remove-Item $Link -Recurse -Force
+        }
+        else {
+            throw &quot;A file or directory already exists at the link path.`nLink: $Link&quot;
+        }
+    }
+
+    $isDirectory = (Get-Item $Target).PSIsContainer
+    $mklinkArg = &quot;&quot;
+
+    if ($Symlink -and $isDirectory) {
+        $mkLinkArg = &quot;/D&quot;
+    }
+
+    if ($Junction) {
+        # Ensure we are linking a directory. (Junctions don't work for files.)
+        if (-not($isDirectory)) {
+            throw &quot;The target is a file. Junctions cannot be created for files.`nTarget: $Target&quot;
+        }
+
+        $mklinkArg = &quot;/J&quot;
+    }
+
+    if ($HardLink) {
+        # Ensure we are linking a file. (Hard links don't work for directories.)
+        if ($isDirectory) {
+            throw &quot;The target is a directory. Hard links cannot be created for directories.`nTarget: $Target&quot;
+        }
+
+        $mkLinkArg = &quot;/H&quot;
+    }
+
+    # Capture the MKLINK output so we can return it properly.
+    # Includes a redirect of STDERR to STDOUT so we can capture it as well.
+    $output = cmd /c mklink $mkLinkArg `&quot;$Link`&quot; `&quot;$Target`&quot; 2&gt;&amp;1
+
+    if ($lastExitCode -ne 0) {
+        throw &quot;MKLINK failed. Exit code: $lastExitCode`n$output&quot;
+    }
+    else {
+        Write-Output $output
+    }
+}
+
+function mklink {
+    &lt;#
+    .SYNOPSIS
+        Helper function for calling mklink directly.
+        All arguments are piped through to mklink.
+        
+        Hat tip to http://stackoverflow.com/questions/894430/powershell-hard-and-soft-links#comment9823010_5549583
+    #&gt;
+    cmd /c mklink $args
+}
+
+Export-ModuleMember New-Symlink, New-Hardlink, New-Junction, mklink
+</code></pre>
+
+<p>I&rsquo;ve heard it rumored that the <a href="http://pscx.codeplex.com/">PowerShell Community Extensions</a> project has a lot of these functions as well, and more. It might be worth looking into if you want a more robust solution.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

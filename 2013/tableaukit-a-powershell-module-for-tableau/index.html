@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thoughts</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.59.0" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='///fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/">TableauKit: A PowerShell Module for Tableau</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-08-09 22:32:43 -0500 CDT" pubdate="pubdate">Fri, Aug 9, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<style>
+pre.powershell-result {
+    background-color: #012456;
+    color: #ffffff;
+}
+</style>
+
+<p>If you&rsquo;ve been following my <a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">Tableau via PowerShell</a> series then you already
+know there are a lot of cool things you can do with Tableau workbooks using
+PowerShell. Up until now I&rsquo;ve been sharing helper functions in a stand-alone
+fashion. No longer.</p>
+
+<p>I&rsquo;d like to introduce you to <a href="https://www.interworks.com/content/download-tableaukit">TableauKit</a>. A pure, script-based PowerShell
+module for working with Tableau files.</p>
+
+<h2 id="say-what">Say what?</h2>
+
+<p>Today TableauKit is shipping with the following commands:</p>
+
+<ul>
+<li><p><b>Get-TableauObject</b> - Gets a summary object for a workbook. The summary
+  contains things like the list of dashboards, worksheets, data sources, and
+  parameters in the workbook. It also contains metadata like the version of
+  Tableau that saved the workbook.</p>
+
+  <p>You can dig a bit deeper to find the
+  parameter values and which worksheets are included on specific dashboards.</p>
+  
+  <p><i>No XPath required!</i></p>
+</li>
+<li><b>Get-TableauXml</b> - Opens up a TWB or TWBX file and returns the workbook's
+  raw XML. <i>XPath Heaven.</i></li>
+
+<li><b>Export-Tableau</b> - Lets you save changes you've made to the workbook's
+  XML back into a new or existing TWB or TWBX file.</li>
+</ul>
+
+<p>You&rsquo;ll probably recognize <strong>Get-TableauXml</strong> and <strong>Export-Tableau</strong> from my
+<a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">previous</a> <a href="/2013/tableau-via-powershell-part-2-saving-changes/">posts</a> about them. They are much better than when you last
+met them, though! Several bugs have been fixed and the names are shorter now.</p>
+
+<p><strong>Get-TableauObject</strong> is all new. Just because you <em>can</em> dig through the
+workbook with XPath doesn&rsquo;t mean it&rsquo;s fun. This command provides quick access
+to the most common parts of a workbook. Don&rsquo;t worry, it also gives you the raw
+XML so you can go spelunking for the hard to find stuff!</p>
+
+<h2 id="no-really-what-can-it-do">No really, what can it do?</h2>
+
+<h3 id="find-workbooks-by-worksheet-name">Find workbooks by worksheet name</h3>
+
+<p>Can&rsquo;t remember which workbook contains that elusive &ldquo;Top 10 Hot Dogs&rdquo; worksheet?</p>
+
+<pre><code>Get-TableauObject *.twb, *.twbx |
+    where {
+        ($_.Worksheets | select -Expand DisplayName) -contains &quot;Top 10 Hot Dogs&quot;
+    } |
+    select FileName
+</code></pre>
+
+<pre class="powershell-result">
+FileName
+--------
+C:\users\jpoehls\desktop\result.twb
+C:\users\jpoehls\desktop\another-result.twbx
+</pre>
+
+<h3 id="analyze-connection-types">Analyze connection types</h3>
+
+<p>What types of connections do my workbooks use?</p>
+
+<pre><code>Get-TableauObject *.twb, *.twbx |
+    select -Expand DataSources |
+    group ConnectionType |
+    sort Count -Desc
+</code></pre>
+
+<pre class="powershell-result">
+Count Name
+----- ----
+   26 excel
+   12 sqlserver
+   10 csv
+    4
+    3 dataengine
+    3 msaccess
+    2 bigquery
+    1 firebird
+</pre>
+
+<h3 id="find-workbooks-by-connection-type">Find workbooks by connection type</h3>
+
+<p>Which workbooks use the Big Query connection?</p>
+
+<pre><code>Get-TableauObject *.twb, *.twbx |
+    where { ($_.DataSources | select -Expand ConnectionType) -eq &quot;bigquery&quot; } |
+    select FileName
+</code></pre>
+
+<pre class="powershell-result">
+FileName
+--------
+C:\users\jpoehls\desktop\Shakespeare.twb
+C:\users\jpoehls\desktop\Shakespeare_Extract.twb
+</pre>
+
+<h3 id="list-all-dashboard-worksheets">List all dashboard worksheets</h3>
+
+<p>Let&rsquo;s get a list of all dashboards and their worksheets for all
+of our workbooks.</p>
+
+<p>Oh, and we want that list presented in a GUI that we can
+use to further search and filter.</p>
+
+<pre><code>Get-TableauObject *.twb, *.twbx |
+    foreach { $workbook = $_; $_ } |
+    select -Expand Dashboards |
+    foreach { $dashboard = $_; $_ } |
+    select -Expand Worksheets |
+    select @{ Label=&quot;Dashboard&quot;; Expression={$dashboard.DisplayName} },
+           @{ Label=&quot;Worksheet&quot;; Expression={$_.DisplayName} },
+           @{ Label=&quot;File&quot;; Expression={$workbook.FileName} } |
+    Out-GridView
+</code></pre>
+
+<p><img src="tableaukit1.png" alt="Results Screenshot" title="Results Screenshot" /></p>
+
+<h3 id="find-worksheets-with-a-specific-column-filter">Find worksheets with a specific column filter</h3>
+
+<p>Looking for all the workbooks and worksheets that have a filter
+on your &ldquo;NextPaymentDate&rdquo; column? Sure, we can do that.</p>
+
+<blockquote>
+<p>This code is pretty ridiculous so I&rsquo;m going to break it up with annotations
+to make it easier to grok.</p>
+
+<p>This kind of query requires advanced knowledge of workbook internals and
+your mileage may vary if you run this against your own workbooks.</p>
+</blockquote>
+
+<pre data-language="powershell">
+# Name of the data source.
+$dataSource = "MonthlySummary (Landboss_com-Accounts)"
+# Name of column that has a filter on it.
+$column = "NextPaymentDate"
+
+# Read all the workbooks.
+Get-ChildItem *.twb , *.twbx |
+
+    # Save a reference to the file name.
+    foreach { $file = $_.FullName; $_ } |
+    Get-TableauXml |
+
+    # Find all worksheets with the data source we
+    # are looking for.
+    Select-Xml "/workbook/worksheets/worksheet/table/view/datasources/datasource" |
+    Select -Expand Node |
+    where {
+        $_.caption -eq $dataSource -or $_.name -eq $dataSource
+    } |
+    
+    # Save a reference to the data source's actual name
+    # for later parts of the pipeline.
+    foreach { $dataSourceName = $_.name; $_ } |
+    
+    # Find references to the column we are looking for.
+    # Note we're still inside the worksheet node.
+    Select-Xml "../../datasource-dependencies[@datasource='$dataSourceName']/column-instance[@column='[$column]']" |
+    Select -Expand Node |
+    
+    # Save a reference to the column's actual name
+    # for the next part of the pipeline.
+    foreach { $filterColumnName = $_.name; $_ } |
+    
+    # Find any filters on the worksheet that
+    # apply to the column we care about.
+    Select-Xml "../../filter[@column='[$dataSourceName].$filterColumnName']" |
+    select -Expand Node |
+    
+    # Traverse back to the worksheet node.
+    Select-Xml "../../.." |
+    select -Expand Node |
+    
+    # Build the final result display.
+    select @{ Label="Worksheet"; Expression={
+            if ($_.caption) { $_.caption }
+            else { $_.name }
+            }},
+            @{ Label="File"; Expression={$file} } 
+</pre>
+
+<pre class="powershell-result">
+Worksheet                 File                                       
+---------                 ----                                       
+Avg Monthly Income        C:\users\jpoehls\desktop\Landboss Income.twb
+Monthly Income by Account C:\users\jpoehls\desktop\Landboss Income.twb 
+</pre>
+
+<h3 id="you-can-do-anything">You can do anything!</h3>
+
+<p>Hopefully this has given you a glimpse at the power of querying your workbooks
+en masse. The queries are pretty gnarly so I definitely recommend wrapping
+anything you&rsquo;ll reuse into helper functions.</p>
+
+<h2 id="what-are-you-waiting-for-go-get-it">What are you waiting for? Go get it!</h2>
+
+<ul>
+<li><a href="https://www.interworks.com/content/download-tableaukit">Download it</a></li>
+</ul>
+
+<p>After you download it, check the README for detailed installation and usage instructions.</p>
+
+<p>TableauKit is a product of <a href="https://www.interworks.com">InterWorks</a>, a fantastic company that
+<a href="https://www.interworks.com/company/careers">you <em>really</em> want to work for</a>!</p>
+
+<h2 id="roadmap">Roadmap</h2>
+
+<p>The future is wide open for this. What kind of functionality would you like to
+see added? Let me know in the comments!</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

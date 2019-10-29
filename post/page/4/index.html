@@ -60,592 +60,407 @@
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/">Killing Processes In Disconnected Terminal Service Sessions</a>
+            <a href="http://joshua.poehls.me/powershell-batch-file-wrapper/">PowerShell Batch File Wrapper</a>
             
         </h1>
         <p>
-            <time datetime="2012-12-12 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Dec 12, 2012</time>
+            <time datetime="2013-12-18 10:43:31 -0600 CST" pubdate="pubdate">Wed, Dec 18, 2013</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/powershell-batch-file-wrapper/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/</span>
+                <span class="printonly">http://joshua.poehls.me/powershell-batch-file-wrapper/</span>
             </a>
         </p>
     </header>
 
-    <p>Usually it is best to configure your terminal service policy to log out disconnected sessions, however there may be cases where you only want to kill specific applications when the user disconnects.</p>
+    
 
-<p>This is easy to do with a PowerShell script that you run periodically as a scheduled task. The processes won&rsquo;t be killed <em>immediately</em> when the user disconnects but will be killed shortly after.</p>
+<p>Sometimes you want a <code>.cmd</code> wrapper for your PowerShell script. Usually for me this is so people who aren&rsquo;t familiar with the command line can double-click to execute the script.</p>
 
-<p>This script will, by default, only kill the OUTLOOK processes in disconnected sessions after waiting 15 seconds for it to gracefully close. It is trivial to tweak the script to kill whichever processes you care about.</p>
+<p>This batch file should be saved alongside your PowerShell script, like so.</p>
 
-<pre><code># kill-processes.ps1
+<pre><code>.\
+ |- my_script.ps1
+ |- my_script.cmd
+</code></pre>
 
-# This script supports being run with -WhatIf and -Confirm parameters.
-[CmdletBinding(SupportsShouldProcess=$true, ConfirmImpact='Medium')]
-param (
-    # Regex of the states that should be included in the process killing field.
-    [string]$IncludeStates = '^(Disc)$', # Only DISCONNECTED sessions by default.
-    # Regex of the processes to kill
-    [string]$KillProcesses = '^(OUTLOOK)$', # Only OUTLOOK by default.
-    [int]$GracefulTimeout = 15 # Number of seconds to wait for a graceful shutdown before forcefully closing the program.
+<p><code>my_script.cmd</code> will execute the same named <code>.ps1</code> file in the same directory, so <code>my_script.ps1</code> in this case. Any arguments passed to <code>my_script.cmd</code> will pass-through to the PowerShell script.</p>
+
+<pre><code>@ECHO OFF
+
+SET SCRIPTNAME=%~d0%~p0%~n0.ps1
+SET ARGS=%*
+IF [%ARGS%] NEQ [] GOTO ESCAPE_ARGS
+
+:POWERSHELL
+PowerShell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -Command &quot;&amp; { $ErrorActionPreference = 'Stop'; &amp; '%SCRIPTNAME%' @args; EXIT $LASTEXITCODE }&quot; %ARGS%
+EXIT /B %ERRORLEVEL%
+
+:ESCAPE_ARGS
+SET ARGS=%ARGS:&quot;=\&quot;%
+SET ARGS=%ARGS:`=``%
+SET ARGS=%ARGS:'=`'%
+SET ARGS=%ARGS:$=`$%
+SET ARGS=%ARGS:{=`}%
+SET ARGS=%ARGS:}=`}%
+SET ARGS=%ARGS:(=`(%
+SET ARGS=%ARGS:)=`)%
+SET ARGS=%ARGS:,=`,%
+SET ARGS=%ARGS:^%=%
+
+GOTO POWERSHELL
+</code></pre>
+
+<h2 id="what-s-going-on-here">What&rsquo;s going on here?</h2>
+
+<ul>
+<li><code>%SCRIPTNAME%</code> variable holds the name of the PowerShell script to execute. <code>%~d0%~p0%~n0</code> magic gets the full path of the
+current batch script without the file extension. By specifying the full path of the PowerShell script
+like this we can guarantee that it is always executed from the right place
+no matter what your working directory is.</li>
+<li>Escapes special characters in the arguments so that they are passed to PowerShell as you would expect.</li>
+<li>Runs <code>PowerShell.exe</code> with:
+
+<ul>
+<li><code>-NoProfile</code> to improve startup performance. Scripts you are distributing
+shouldn&rsquo;t rely on anything in your profile anyway.</li>
+<li><code>-NonInteractive</code> because usually my scripts don&rsquo;t need input from the user.</li>
+<li><code>-ExecutionPolicy Unrestricted</code> to ensure that the PowerShell script can
+be executed regardless of the machine&rsquo;s default Execution Policy.</li>
+<li><code>-Command</code> syntax for executing the command ensures that PowerShell
+returns the correct exit code from your script.
+Using <code>-Command</code> with <code>$ErrorActionPreference = 'Stop'</code> also ensures that
+errors thrown from your script cause PowerShell.exe to return a failing
+exit code (1). <a href="/2012/powershell-batch-files-exit-codes/">PowerShell is quite buggy when it comes to bubbling exit
+codes.</a>
+This is the safest method I&rsquo;ve found.</li>
+</ul></li>
+</ul>
+
+<h2 id="batch-file-tips">Batch file tips</h2>
+
+<h3 id="special-characters-in-arguments">Special characters in arguments</h3>
+
+<p>Remember that certain special characters need to be escaped in arguments passed to the batch file. These characters are: <code>^  &amp;  &lt;  &gt;  /?</code>. Note that <code>/?</code> is a sequence and is recognized as a help flag when passed to a batch file.</p>
+
+<blockquote>
+<p><code>my_script.cmd &quot;I &quot;&quot;am&quot;&quot; quoted&quot;</code> passes a single argument <code>I &quot;am&quot; quoted</code> to PowerShell.</p>
+
+<p><code>my_script.cmd &quot;^&amp;&lt;&gt;/?&quot;</code> passes <code>^&amp;&lt;&gt;/?</code></p>
+</blockquote>
+
+<h3 id="environment-variable-expansion">Environment variable expansion</h3>
+
+<p>Environment variables get automatically expanded in batch file arguments.</p>
+
+<blockquote>
+<p><code>my_script.cmd %PROGRAMFILES%</code> passes <code>C:\Program Files</code></p>
+</blockquote>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/">Differential backups using 7-zip and PowerShell</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-12-10 23:04:50 -0500 -0500" pubdate="pubdate">Tue, Dec 10, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>Backups are like changing the oil on your car. It&rsquo;s the best thing you can do to extend the life of your engine and the best thing you can do to save yourself when your hard drive crashes, gets stolen, or otherwise corrupted.</p>
+
+<p>I work remotely and needed a backup strategy for my work laptop. My company encourages you to keep critical client files and such in your personal share on the network. Most of our employees work in office so this is perfectly reasonable as the norm. (Though I bet a ton of stuff still ends up on local machines!) As a remotee however, this isn&rsquo;t practical for reasons that are hopefully obvious to everyone.</p>
+
+<p>There are as many backup strategies, scripts, and apps as there are computers. Today though, it was PowerShell to the rescue with the help of trusty <a href="http://www.7-zip.org">7-zip</a> (command line version) and <a href="http://technet.microsoft.com/en-us/library/cc733145.aspx">robocopy</a>.</p>
+
+<p><strong>Requirements</strong></p>
+
+<ul>
+<li>I&rsquo;m not concerned with a full system backup. No need to image my hard drive, I only want to backup a specific set of directories that contain my working files.</li>
+<li>I need to backup to a local drive.</li>
+<li>I need to upload backups to my user share on the company network.</li>
+<li>I need a scheduled task that will perform the backup on a regular basis.</li>
+</ul>
+
+<p><strong>Implementation details</strong></p>
+
+<ul>
+<li>Differential backups. Because I&rsquo;ll be uploading these over a VPN, I want them to be as small as possible. Differential backups will allow me to upload a full backup once (or occasionally) and then upload much small backups daily.</li>
+<li>LZMA compression. I&rsquo;ll sacrifice some speed during the backup stage but save a ton of time on the upload by compressing my backups using 7-zips LZMA (7z) compression format.</li>
+<li>Local hard drive space is limited so I&rsquo;ll only keep the most recent backup locally. I&rsquo;ll keep past backups on the company network and manually prune old ones when needed. This will be a casual safety net if I ever need to roll back to a specific point in time.</li>
+</ul>
+
+<p><strong>Results</strong></p>
+
+<p>Here&rsquo;s what it looks like.</p>
+
+<p>I&rsquo;ll store my most recent backups locally in <strong>C:\backup</strong>. Timestamps in the names keep everything straight. Each backup has an accompanying log file.</p>
+
+<p><img src="backup-folder.png" alt="Screenshot of backup folder" title="Screenshot of backup folder" /></p>
+
+<p>My backup script is stored in <a href="https://db.tt/i03IdN4">Dropbox</a>.</p>
+
+<ul>
+<li><code>backup.ps1</code> - The meat of the backup script. The various *.cmd scripts are just wrappers that pass this the appropriate arguments.</li>
+<li><code>upload-backup.cmd</code> - Starts uploading all existing backups to the company network.</li>
+<li><code>full-backup.cmd</code> - Starts a full backup.</li>
+<li><code>diff-backup.cmd</code> - Starts a differential backup.</li>
+<li><code>includes.txt</code> - A list of directory and file paths to include in the backup. This is passed to 7-zip.</li>
+<li><code>excludes.txt</code> - A list of directory and file paths to exclude from the backup. This is also passed to 7-zip.</li>
+</ul>
+
+<p><img src="script-folder.png" alt="Screenshot of script folder" title="Screenshot of script folder" /></p>
+
+<p>I have a Windows Scheduled Task that runs a differential backup (<code>diff-backup.cmd</code>) hourly. The differential backup is usually pretty fast, so running hourly is no problem.</p>
+
+<p>I have another task that runs the upload (<code>upload-backup.cmd</code>) once a day when I am connected to the VPN. Task Scheduler is supposedly smart enough to only run the task if the VPN connection is available and to retry on a regular basis if it isn&rsquo;t. I&rsquo;ve never used this feature before so we&rsquo;ll see how it goes. I can always fall back to manually running this via a desktop shortcut.</p>
+
+<h2 id="the-script">The Script</h2>
+
+<p>My script isn&rsquo;t suited to sharing verbatim but I do want to share the good parts.</p>
+
+<h3 id="selecting-the-most-recent-full-backup">Selecting the most recent full backup</h3>
+
+<p>Differential backups have to be based on a full backup. The script is smart enough to find the most recent full backup file and use it as the base.</p>
+
+<pre><code class="language-powershell"># Find the most recent full backup.
+# Depends on Get-ChildItem returning the items sorted in ascending order (oldest backups first).
+$fullBackup = Get-ChildItem -File -Path &quot;$backupOutputPath\backup-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9].7z&quot; | select -Last 1 -ExpandProperty FullName
+if (-not ($fullBackup) -or -not (Test-Path $fullBackup -PathType Leaf)) {
+	throw &quot;No full backup was found. Must have a full backup before performing a differential.&quot;
+}
+</code></pre>
+
+<h3 id="7-zip-args-for-a-full-backup">7-zip args for a full backup</h3>
+
+<pre><code class="language-powershell">$7zipArgs = @(
+	&quot;a&quot;;                          # Create an archive.
+	&quot;-t7z&quot;;                       # Use the 7z format.
+	&quot;-mx=7&quot;;                      # Use a level 7 &quot;high&quot; compression.
+	&quot;-xr!thumbs.db&quot;;              # Exclude thumbs.db files wherever they are found.
+	&quot;-xr!*.log&quot;;                  # Exclude all *.log files as well.
+	&quot;-xr-@`&quot;`&quot;$excludesFile`&quot;`&quot;&quot;; # Exclude all paths in my excludes.txt file.
+	&quot;-ir-@`&quot;`&quot;$includesFile`&quot;`&quot;&quot;; # Include all paths in my includes.txt file.
+	&quot;$outputFile&quot;;                # Output file path (a *.7z file).
 )
+</code></pre>
 
-function Get-Sessions
+<p>Notice that I doubled some quotation marks for the excludes and includes arguments. This escaping is necessary to ensure the path I&rsquo;m passing in works even if it has spaces in it.</p>
+
+<h3 id="7-zip-args-for-a-differential-backup">7-zip args for a differential backup</h3>
+
+<pre><code class="language-powershell">$7zipArgs = @(
+	&quot;u&quot;;                                    # Update an archive. Slightly confusing since we'll be saving those updates to a new archive file.
+	&quot;$fullBackupPath&quot;;                      # Path of the full backup we are creating a differential for.
+	&quot;-t7z&quot;;
+	&quot;-mx=7&quot;;
+	&quot;-xr!thumbs.db&quot;;
+	&quot;-xr!*.log&quot;;
+	&quot;-xr-@`&quot;`&quot;$excludesFile`&quot;`&quot;&quot;;
+	&quot;-ir-@`&quot;`&quot;$includesFile`&quot;`&quot;&quot;;
+	&quot;-u-&quot;;                                  # Don't update the original archive (the full backup).
+	&quot;-up0q3r2x2y2z0w2!`&quot;`&quot;$outputFile`&quot;`&quot;&quot;; # Flags to specify how the archive should be updated and the output file path (a *.7z file).
+)
+</code></pre>
+
+<p>The last argument there is a doosey. Here&rsquo;s what those flags mean.</p>
+
+<ul>
+<li><code>-u</code> - Starts the &ldquo;update options&rdquo; which follow.</li>
+<li>Each letter represents a state of a file either in the base archive (our full backup) or on disk (the files we&rsquo;re backing up).
+
+<ul>
+<li><code>p</code> - File exists in archive, but isn&rsquo;t in any of the include file paths. The file is no longer included in the backup (includes.txt probably changed).</li>
+<li><code>q</code> - File exists in archive, but doesn&rsquo;t exists on disk. The file has been deleted since the full backup.</li>
+<li><code>r</code> - File doesn&rsquo;t exist in archive, but exists on disk. The file is new since the full backup.</li>
+<li><code>x</code> - File in archive is newer than the file on disk. (Odd.)</li>
+<li><code>y</code> - File in archive is older than the file on disk. The file has been updated since the full backup.</li>
+<li><code>z</code> - File in archive is same as the file on disk.</li>
+<li><code>w</code> - Cannot be detected which file is newer (times are the same, sizes are different).</li>
+</ul></li>
+<li>After each of those letters is a number that represents what action to take on files matching that state.
+
+<ul>
+<li><code>0</code> - Ignore file. Don&rsquo;t include it in the backup.</li>
+<li><em><code>1</code> - Copy file. Copy it from the old archive to the new. From our full backup to our new differential backup.</em></li>
+<li><code>2</code> - Compress. Include the file from disk in our new differential backup.</li>
+<li><code>3</code> - Create an anti-item. This is a feature only supported by 7z archives and basically puts a marker in the archive saying that this file has been deleted. If you extract this archive into a directory where this file exists then it will be deleted during the extraction.</li>
+</ul></li>
+<li>Everything after the ! is specifying the output file path.</li>
+</ul>
+
+<p><em>You can read more about 7-zip&rsquo;s options in their documentation.</em></p>
+
+<h3 id="watching-for-exit-codes">Watching for exit codes</h3>
+
+<p>I want my backup to fail if 7-zip fails.</p>
+
+<pre><code class="language-powershell">&amp; $7zip @7zipArgs | Tee-Object -LiteralPath $logFile
+if ($LASTEXITCODE -gt 1) # Ignores warnings which use exit code 1.
 {
-    # `query session` is the same as `qwinsta`
-
-    # `query session`: http://technet.microsoft.com/en-us/library/cc785434(v=ws.10).aspx
-
-    # Possible session states:
-    &lt;#
-    http://support.microsoft.com/kb/186592
-    Active. The session is connected and active.
-    Conn.   The session is connected. No user is logged on.
-    ConnQ.  The session is in the process of connecting. If this state
-            continues, it indicates a problem with the connection.
-    Shadow. The session is shadowing another session.
-    Listen. The session is ready to accept a client connection.
-    Disc.   The session is disconnected.
-    Idle.   The session is initialized.
-    Down.   The session is down, indicating the session failed to initialize correctly.
-    Init.   The session is initializing.
-    #&gt;
-
-    # Snippet from http://poshcode.org/3062
-    # Parses the output of `qwinsta` into PowerShell objects.
-    $c = query session 2&gt;&amp;1 | where {$_.gettype().equals([string]) }
-
-    $starters = New-Object psobject -Property @{&quot;SessionName&quot; = 0; &quot;Username&quot; = 0; &quot;ID&quot; = 0; &quot;State&quot; = 0; &quot;Type&quot; = 0; &quot;Device&quot; = 0;};
-     
-    foreach($line in $c) {
-         try {
-             if($line.trim().substring(0, $line.trim().indexof(&quot; &quot;)) -eq &quot;SESSIONNAME&quot;) {
-                $starters.Username = $line.indexof(&quot;USERNAME&quot;);
-                $starters.ID = $line.indexof(&quot;ID&quot;);
-                $starters.State = $line.indexof(&quot;STATE&quot;);
-                $starters.Type = $line.indexof(&quot;TYPE&quot;);
-                $starters.Device = $line.indexof(&quot;DEVICE&quot;);
-                continue;
-            }
-           
-            New-Object psobject -Property @{
-                &quot;SessionName&quot; = $line.trim().substring(0, $line.trim().indexof(&quot; &quot;)).trim(&quot;&gt;&quot;)
-                ;&quot;Username&quot; = $line.Substring($starters.Username, $line.IndexOf(&quot; &quot;, $starters.Username) - $starters.Username)
-                ;&quot;ID&quot; = $line.Substring($line.IndexOf(&quot; &quot;, $starters.Username), $starters.ID - $line.IndexOf(&quot; &quot;, $starters.Username) + 2).trim()
-                ;&quot;State&quot; = $line.Substring($starters.State, $line.IndexOf(&quot; &quot;, $starters.State)-$starters.State).trim()
-                ;&quot;Type&quot; = $line.Substring($starters.Type, $starters.Device - $starters.Type).trim()
-                ;&quot;Device&quot; = $line.Substring($starters.Device).trim()
-            }
-        } catch {
-            throw $_;
-            #$e = $_;
-            #Write-Error -Exception $e.Exception -Message $e.PSMessageDetails;
-        }
-    }
-}
-
-# Helper function for getting the singular or plural form of
-# a word based on the given count.
-# Because we want proper log messages.
-function Get-ProperWord([string]$singularWord, [int]$count) {
-    if ($count -eq 0 -or $count -gt 1) {
-        if ($singularWord.EndsWith(&quot;s&quot;)) {
-            return &quot;$($singularWord)es&quot;;
-        }
-        else {
-            return &quot;$($singularWord)s&quot;;
-        }
-    }
-    else {
-        return $singularWord;
-    }
-}
-
-# Get a list of all terminal sessions that are in the state we care about.
-$IncludedSessions = Get-Sessions `
-                        | Where { $_.State -match $IncludeStates } `
-                        | Select -ExpandProperty ID
-
-# Get a list of all processes in one of those terminal sessions
-# that match a process we want to kill.
-$SessionProcesses = $IncludedSessions `
-    | % { $id = $_;
-          Get-Process `
-            | Where { $_.SessionID -eq $id -and $_.Name -match $KillProcesses } }
-
-# Get some words to use in log output.
-$wordSecond = $(Get-ProperWord 'second' $GracefulTimeout)
-$wordProcess = $(Get-ProperWord 'process' $SessionProcesses.Length)
-
-if ($SessionProcesses.Length -gt 0) {
-    # Initiate a graceful shutdown of the processes.
-    # http://powershell.com/cs/blogs/tips/archive/2010/05/27/stopping-programs-gracefully.aspx
-    Write-Output &quot;Gracefully closing $($SessionProcesses.Length) $wordProcess&quot;
-    $SessionProcesses `
-        | % { if ($PSCmdlet.ShouldProcess(&quot;$($_.Name) ($($_.Id))&quot;, &quot;CloseMainWindow&quot;)) { $_.CloseMainWindow() } } `
-        | Out-Null
-
-    # Wait X seconds for the programs to close gracefully.
-    Write-Output &quot;Waiting $GracefulTimeout $wordSecond for the $wordProcess to close&quot;
-    if ($GracefulTimeout -gt 0) {
-        if ($PSCmdlet.ShouldProcess(&quot;Current Process&quot;, &quot;Start-Sleep&quot;)) {
-            Start-Sleep -Seconds $GracefulTimeout
-        }
-    }
-
-    # Force any remaining processes to close, the hard way.
-    Write-Output &quot;Forcefully closing any remaining processes&quot;
-    $SessionProcesses `
-        | Where { $_.HasExited -ne $true } `
-        | Stop-Process -ErrorAction SilentlyContinue
-}
-else {
-    Write-Output &quot;No processes to close&quot;
+	throw &quot;7zip failed with exit code $LASTEXITCODE&quot;
 }
 </code></pre>
 
+<h3 id="log-7-zip-output-to-both-the-console-and-log-file">Log 7-zip output to both the console and log file</h3>
 
-</article>
+<p>Did you notice <a href="http://technet.microsoft.com/en-us/library/hh849937.aspx"><code>Tee-Object</code></a> in the above snippet? That&rsquo;s what handles this. The only downside is that your console output will be laggy due to PowerShell buffering the pipeline.</p>
 
-<div class="fin symbol">&#10687;</div>
+<h3 id="deleting-old-backups">Deleting old backups</h3>
 
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
+<p>Remember, I&rsquo;m only keeping the most recent full backup and most recent differential backup files locally. My script automatically deletes old backup files after a new backup is successful. This is the magic used to delete the old differential backups when a new one finishes.</p>
 
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2012/crime-rates-are-dropping/">Crime Rates Are Dropping</a>
-            
-        </h1>
-        <p>
-            <time datetime="2012-08-13 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Aug 13, 2012</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/crime-rates-are-dropping/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/crime-rates-are-dropping/</span>
-            </a>
-        </p>
-    </header>
+<pre><code class="language-powershell"># Clean up old differential backup files.
+# Only keep the most recent differential backup.
+# Depends on Get-ChildItem returning the items sorted in ascending order (oldest backups first).
+$allDiffBackups = Get-ChildItem -File -Path &quot;$backupOutputPath\backup-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]-diff-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9].7z&quot;
+if ($allDiffBackups -is [array] ) {
+	[Array]:: Reverse($allDiffBackups)
+	$allDiffBackups | select -Skip 1 | % {
+		Write-Host &quot;Deleting old differential backup. File: $($_.FullName)&quot;
+		# Remove the matching log file.
+		Remove-Item -LiteralPath ([System.IO.Path ]::ChangeExtension($_.FullName, &quot;.log&quot;)) -ErrorAction SilentlyContinue
+		$_
+	} | Remove-Item
+} 
+</code></pre>
 
-    
-    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-      google.load('visualization', '1', {packages: ['corechart']});
-    </script>
+<h3 id="robocopy-args-to-upload-the-backups">Robocopy args to upload the backups</h3>
 
-    <p>We all know the news is biased. Media slants to the left or the right. Bias is natural
-    and very difficult to avoid.</p>
+<pre><code class="language-powershell">$robocopyArgs = @(
+	&quot;$backupOutputPath&quot;; # Source path
+	&quot;$networkDestPath&quot;;  # Destination path
+	&quot;/Z&quot;;                # Use restartable mode when transferring files.
+	&quot;/FP&quot;;               # Log the full paths to files.
+	&quot;/NP&quot;;               # Don't log progress percentages.
+	&quot;/X&quot;;                # Log a list of 'extra' files that exist in the destination but not locally.
+	&quot;/UNILOG+$logfile&quot;;  # Append to the specified log file.
+	&quot;/TEE&quot;;              # Send output to the console in addition to the log file.
+)
+</code></pre>
 
-    <p>I don't read the news much but the recent public shootings in Aurora, Colorado
-    and at the Sikh temple in Wisconsin have made my social media feeds flutter with the topic of gun control with
-    points from all sides.</p>
+<p>Those arguments will perform a shallow copy of all files in the source folder to the destination.</p>
 
-    <p>Today I listened to <a href="http://www.dancarlin.com/disp.php/csarchive/Show-234---Aiming-for-Effectiveness/guns-shootings-firearms">an episode of Common Sense with Dan Carlin</a>, a podcast
-    that I occasionally listen to and always enjoy. He does a good job, in my opinion, of thinking
-    about situations from both sides of the fence.</p>
+<p>Note that since robocopy supports the <code>/UNILOG+</code> and <code>/TEE</code> arguments I don&rsquo;t have to use <code>Tee-Object</code> to append to the log file.</p>
 
-    <p>Dan listed several statistics from the <ACRONYM title="Department of Justice">DOJ's</ACRONYM>
-    website. Some I expected, but a few caught me off guard.</p>
+<p>Once again, I&rsquo;ll make sure the copy is successful and fail the script if the copy fails.</p>
 
-    <p>As I said, media is slanted, we know this. So when I hear how our country is violent and things are
-    worse than ever, I figure it isn't nearly that bad. But, I do figure it is worse than it was <i>to
-    some degree</i>. Well the numbers don't seem to agree.</p>
+<pre><code class="language-powershell">&amp; $robocopy @robocopyArgs
+if ($LASTEXITCODE -ge 8) # exit code when files failed to copy
+{
+	# robocopy exit codes: http://support.microsoft.com/kb/954404
+	throw &quot;robocopy failed with exit code $LASTEXITCODE&quot;
+}
+</code></pre>
 
-    <p>In fact, it would seem that this country has never been a safer place.</p>
+<h3 id="passing-args-from-powershell-to-executables">Passing args from PowerShell to executables</h3>
 
-    <p>The chart above was just for 2005 and doesn't give you much for comparison. Here are the numbers for victims of all types of crime for 1993 and 2010. See for yourself.</p>
+<p>There are a million ways, of course, but my favorite is to put the arguments into an array and let PowerShell splat them. I really like how this keeps the script readable even when you are passing a ton of arguments around.</p>
 
-    <script type="text/javascript">
-      function drawVisualization() {
-        // Create and populate the data table.
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Violent Victimization', 'Rape/Sexual Assault', 'Robbery', 'Aggravated Assault', 'Simple Assault', 'Property Victimization', 'Household Burglary', 'Motor Vehicle Theft', 'Theft'],
-          ['2003',  16822618,               898239,                1752667,   3481055,              10690657,         35093887,                 6378721,              1921179,               26793987],
-          ['2010',  4935983,                268574,                568510,    857751,               3241148,          15411610,                 3176181,              606991,                11628437]
-        ]);
-      
-        // Create and draw the visualization.
-        var ac = new google.visualization.ComboChart(document.getElementById('visualization'));
-        ac.draw(data, {
-          title : 'Bureau of Justice Statistics - Victimization by Type',
-          width: 600,
-          height: 400,
-          vAxis: {title: "Victims"},
-          hAxis: {title: "Year"},
-          seriesType: "bars",
-          series: {5: {type: "line"}}
-        });
+<pre><code class="language-powershell">$cmdArgs = @(
+	&quot;/E&quot;;
+	&quot;/UNILOG+$logfile&quot;;
+) 
 
-        document.getElementById('visualization').style.backgroundImage = 'none';
-      }
-      
+&amp; some_application.exe @cmdArgs
+</code></pre>
 
-      google.setOnLoadCallback(drawVisualization);
-    </script>
-
-    <div id="visualization" style="width: 600px; height: 400px; background-image: url(/2012/08/crime-rates-are-dropping.png);"></div>
-
-    <p style="font-size: .8em;">Bureau of Justice Statistics.
-      Generated using the <a href="http://bjs.ojp.usdoj.gov/index.cfm?ty=nvat">NCVS Victimization Analysis Tool</a> at <a href="www.bjs.gov">www.bjs.gov</a>. 13-Aug-12
-    </p>
-
-    <p>This isn't an opinion or bias, just facts.
-        Crime is going down, not up. As of 2010, violent crime specifically was a mere 29% of what it was just 17 years prior. That is a massive drop.</p>
-
-    <p>I'm not saying that this is good enough, that we should stop trying. What I am saying is that things are a
-        heck of a lot better than they were.</p>
-
-    <p>I don't believe the solution to violence in America will be as simple as banning weapons. Just like
-        I wouldn't propose banning phones as a solution to the telling of lies. Medium is not cause. We need to be
-        more creative when trying to solve this problem.</p>
-
-    <table border="0" cellpadding="10" cellspacing="20" style="margin-top: 5em; font-size: .8em; font-family: courier new, courier;">
-      <caption>Raw data for the Bureau of Justice Statistics<br/>Victimization by Type</caption>
-      <tr>
-        <th>&nbsp;</th>
-        <th>1993</th>
-        <th>2010</th>
-      </tr>
-      <tr>
-        <td>Violent Victimization</td>
-        <td>16,822,618</td>
-        <td>4,935,983</td>
-      </tr>
-      <tr>
-        <td>Rape/Sexual Assault</td>
-        <td>898,239</td>
-        <td>268,574</td>
-      </tr>
-      <tr>
-        <td>Robbery</td>
-        <td>1,752,667</td>
-        <td>568,510</td>
-      </tr>
-      <tr>
-        <td>Aggravated Assault</td>
-        <td>3,481,055</td>
-        <td>857,751</td>
-      </tr>
-      <tr>
-        <td>Simple Assault</td>
-        <td>10,690,657</td>
-        <td>3,241,148</td>
-      </tr>
-      <tr>
-        <td>Property Victimization</td>
-        <td>35,093,887</td>
-        <td>15,411,610</td>
-      </tr>
-      <tr>
-        <td>Household Burglary</td>
-        <td>6,378,721</td>
-        <td>3,176,181</td>
-      </tr>
-      <tr>
-        <td>Motor Vehicle Theft</td>
-        <td>1,921,179</td>
-        <td>606,991</td>
-      </tr>
-      <tr>
-        <td>Theft</td>
-        <td>26,793,987</td>
-        <td>11,628,437</td>
-      </tr>
-    </table>
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2012/powershell-batch-files-exit-codes/">PowerShell, batch files, and exit codes. Recipes &amp; Secrets.</a>
-            
-        </h1>
-        <p>
-            <time datetime="2012-06-23 10:43:31 -0600 -0600" pubdate="pubdate">Sat, Jun 23, 2012</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/powershell-batch-files-exit-codes/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/powershell-batch-files-exit-codes/</span>
-            </a>
-        </p>
-    </header>
-
-    
-
-<h2 id="tl-dr">TL;DR;</h2>
+<p>The only thing to be aware of here is that if one of your <code>$cmdArg</code> items contains a SPACE then PowerShell will automatically wrap the argument in double quotes when passing it to the executable.</p>
 
 <blockquote>
-<p><strong>Update:</strong> If you want to save some time, skip reading this and just use my <a href="/powershell-script-boilerplate">PowerShell Script Boilerplate</a>. It includes an excellent batch file wrapper, argument escaping, and error code bubbling.</p>
+<p>If you are having trouble getting your quotes and other special characters escaped properly, I&rsquo;ve written <a href="http://github.com/jpoehls/echoargs">several EchoArgs apps</a> to help. They just echo back the arguments passed in so you can see how they are being received.</p>
 </blockquote>
 
-<p><code>PowerShell.exe</code> doesn&rsquo;t return correct exit codes when using the <code>-File</code> option. Use <code>-Command</code> instead. <em>(<a href="https://connect.microsoft.com/PowerShell/feedback/details/750653/powershell-exe-doesn-t-return-correct-exit-codes-when-using-the-file-option">Vote for this issue</a> on Microsoft Connect.)</em></p>
+<h2 id="epilogue">Epilogue</h2>
 
-<p><a href="#bat-wrapper">This</a> is a batch file wrapper for executing PowerShell scripts. It forwards arguments to PowerShell and correctly bubbles up the exit code (when it can).</p>
+<p>Hopefully this will help you get a jump start on your own backup strategy. Please, hit me up in the comments if you have any questions.</p>
 
-<p><code>PowerShell.exe</code> still <a href="#command-parsererror">returns a passing (0) exit code when a <code>ParserError</code> is thrown</a>. Even when using <code>-Command</code>. I haven&rsquo;t found a workaround for this. <em>(<a href="https://connect.microsoft.com/PowerShell/feedback/details/750654/powershell-exe-returns-a-passing-0-exit-code-when-a-parsererror-is-thrown">Vote for this issue</a> on Microsoft Connect.)</em></p>
 
-<p>You can use <a href="#black-magic">black magic</a> to include spaces and quotes in the arguments you pass through the batch file wrapper to PowerShell.</p>
+</article>
 
-<h2 id="powershell">PowerShell</h2>
+<div class="fin symbol">&#10687;</div>
 
-<p>PowerShell is a great scripting environment, and it is my preferred tool for writing build scripts for .NET apps. Exit codes are vital in build scripts because they are how your Continuous Integration server knows whether the build passed or failed.</p>
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
 
-<p>This is a <strike>quick</strike> tour of working with exit codes in PowerShell scripts and batch files. I&rsquo;m including batch files because they are often necessary to wrap the execution of your PowerShell scripts.</p>
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/push-it-out-push-ups-every-hour./">Push it out! Push ups every hour.</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-08-23 22:20:56 -0500 CDT" pubdate="pubdate">Fri, Aug 23, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/push-it-out-push-ups-every-hour./">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/push-it-out-push-ups-every-hour./</span>
+            </a>
+        </p>
+    </header>
 
-<p>Let&rsquo;s start easy. Say you need to run a command line app or batch file from your PowerShell script. How can you check the exit code of that process?</p>
-
-<pre><code># script.ps1
-
-cmd /C exit 1
-Write-Host $LastExitCode    # 1
-</code></pre>
-
-<p><code>$LastExitCode</code> is a special variable that holds the exit code of the last Windows based program that was run. So says <a href="http://technet.microsoft.com/en-us/library/dd347675.aspx">the documentation</a>.</p>
-
-<p>Remember though, <code>$LastExitCode</code> doesn&rsquo;t do squat for PowerShell commands. Use <code>$?</code> for that.</p>
-
-<pre><code># script.ps1
-
-Get-ChildItem &quot;C:\&quot;
-Write-Host $?    # True
-
-Get-ChildItem &quot;Z:\some\non-existant\path&quot;
-Write-Host $?    # False
-</code></pre>
-
-<p>Anytime you run an external command like this, you need to check the exit code and throw an exception if needed. Otherwise the PowerShell script will keep right on trucking after a failure.</p>
-
-<pre><code># script.ps1
-
-cmd /C exit 1
-if ($LastExitCode -ne 0) {
-    throw &quot;Command failed with exit code $LastExitCode.&quot;
-}
-Write-Host &quot;You'll never see this.&quot;
-</code></pre>
-
-<p>Writing these assertions all the time will get old. Fortunately you can use a helper function, like this one found in the <a href="http://github.com/psake/psake">excellent psake project</a>.</p>
-
-<pre><code># script.ps1
-
-function Exec
-{
-    [CmdletBinding()]
-    param (
-        [Parameter(Position=0, Mandatory=1)]
-        [scriptblock]$Command,
-        [Parameter(Position=1, Mandatory=0)]
-        [string]$ErrorMessage = &quot;Execution of command failed.`n$Command&quot;
-    )
-    &amp; $Command
-    if ($LastExitCode -ne 0) {
-        throw &quot;Exec: $ErrorMessage&quot;
-    }
-}
-
-Exec { cmd /C exit 1 }
-Write-Host &quot;You'll never see this.&quot;
-</code></pre>
-
-<h3 id="throwing-exit-codes">Throwing &amp; exit codes</h3>
-
-<p>The <code>throw</code> keyword is how you generate a terminating error in PowerShell. It will, sometimes, cause your PowerShell script to return a failing exit code (1). Wait, when does it <em>not</em> cause a failing exit code, you ask? This is where PowerShell&rsquo;s warts start to show. Let me demonstrate some scenarios.</p>
-
-<pre><code># broken.ps1
-
-throw &quot;I'm broken&quot;
-</code></pre>
-
-<p><em>From the PowerShell command prompt:</em></p>
-
-<pre><code>PS&gt; .\broken.ps1
-<span style="color: red;">I'm broken.
-At C:\broken.ps1:1 char:6
-+ throw &lt;&lt;&lt;&lt;  "I'm broken."
-    + CategoryInfo          : OperationStopped: (I'm broken.:String) [], RuntimeException
-    + FullyQualifiedErrorId : I'm broken.</span>
     
-PS&gt; $LastExitCode
-1</code></pre>
 
-<p><em>From the Windows command prompt:</em></p>
+<p><strong>Push ups. Every hour, on the hour. Can you handle it?</strong></p>
 
-<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted -Command ".\broken.ps1"
-<span style="color: red;">I'm broken.
-At C:\broken.ps1:1 char:6
-+ throw &lt;&lt;&lt;&lt;  "I'm broken."
-    + CategoryInfo          : OperationStopped: (I'm broken.:String) [], RuntimeException
-    + FullyQualifiedErrorId : I'm broken.</span>
-    
-&gt; echo %errorlevel%
-1</code></pre>
+<p>I&rsquo;ve been motivated by <a href="http://www.steubing.me">a friend</a> to start this challenge. Every hour, on the hour, I&rsquo;m going to drop and do a set of push ups.</p>
 
-<p>That worked, too. Good.</p>
+<p>Remembering is the hardest part. Timers are easy to set but also easy to ignore. My solution is to make myself a massive nag screen that will flash every hour while I&rsquo;m at work.</p>
 
-<p><em>Again, from the Windows command prompt:</em></p>
+<p><img src="pushitout.png" alt="Screenshot of nag screen" title="Screenshot of nag screen" /></p>
 
-<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted <b>-File</b> ".\broken.ps1"
-<span style="color: red;">I'm broken.
-At C:\broken.ps1:1 char:6
-+ throw &lt;&lt;&lt;&lt;  "I'm broken."
-    + CategoryInfo          : OperationStopped: (I'm broken.:String) [], RuntimeException
-    + FullyQualifiedErrorId : I'm broken.</span>
+<p>My strategy is working! I&rsquo;m 7 hours into my day and haven&rsquo;t missed a set. It feels great.</p>
 
-&gt; echo %errorlevel%
-0</code></pre>
+<h2 id="join-me">Join me!</h2>
 
-<p>Whoa! We still saw the error, but PowerShell returned a passing exit code. What the heck?! Yes, this is the wart.</p>
+<p>My nag screen is just a PowerShell script and scheduled task. It really couldn&rsquo;t be simpler. You don&rsquo;t even need to be a geek to figure this out.</p>
 
-<h3 id="a-workaround-for-file">A workaround for <code>-File</code></h3>
+<ol>
+<li><a href="pushitout.zip">Download the ZIP.</a></li>
+<li>Extract the files somewhere permanent. Moving them later will require you to manually update the scheduled task.</li>
+<li>Run <strong>pushitout.cmd</strong> to install the scheduled task.</li>
+<li>Run it again to see what it looks like.</li>
+</ol>
 
-<p><code>-File</code> allows you to pass in a script for PowerShell to execute, however terminating errors in the script will not cause PowerShell to return a failing exit code. I have no idea why this is the case. If you know why, please share!</p>
+<p>The default schedule is to nag you every day, every hour, between 8am and 5pm. Feel free to customize this to fit your schedule, <a href="http://www.howtogeek.com/123393/how-to-automatically-run-programs-and-set-reminders-with-the-windows-task-scheduler/">editing scheduled tasks is easy</a>.</p>
 
-<p>A workaround is to add a <code>trap</code> statement to the top of your PowerShell script. (Thanks, Chris Oldwood, for <a href="http://chrisoldwood.blogspot.com/2011/05/powershell-throwing-exceptions-exit.html">pointing this out</a>!)</p>
-
-<pre><code># broken.ps1
-
-trap
-{
-    Write-Error $_
-    exit 1
-}
-throw &quot;I'm broken.&quot;
-</code></pre>
-
-<p><em>From the Windows command prompt:</em></p>
-
-<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted <b>-File</b> ".\script.ps1"
-<span style="color: red;">C:\broken.ps1 : I'm broken.
-    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
-    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,broken.ps1</span>
-
-&gt; echo %errorlevel%
-1</code></pre>  
-
-<p>Notice that we got the correct exit code this time, but our error output didn&rsquo;t include as much detail. Specifically, we didn&rsquo;t get the line number of the error like we were getting in the previous tests. So it isn&rsquo;t a perfect workaround.</p>
-
-<p><strong>Remember.</strong> Use <code>-Command</code> instead of <code>-File</code> whenever possible. If for some reason you must use <code>-File</code> or your script needs to support being run that way, then use the trap workaround above.</p>
-
-<p><a id="command-parsererror"> </a></p>
-
-<h3 id="command-can-still-fail"><code>-Command</code> can still fail</h3>
-
-<p>I&rsquo;ve discovered that PowerShell will still exit with a success code (0) when a <code>ParserError</code> is thrown. Even when using <code>-Command</code>.</p>
-
-<p><em>From the Windows command prompt:</em></p>
-
-<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -Command "Write-Host 'You will never see this.'" <b>"\"</b>
-<span style="color: red;">The string starting:
-At line:1 char:39
-+ Write-Host 'You will never see this.'  &lt;&lt;&lt;&lt; "
-is missing the terminator: ".
-At line:1 char:40
-+ Write-Host 'You will never see this.' " &lt;&lt;&lt;&lt;
-    + CategoryInfo          : <b>ParserError</b>: (:String) [], ParentContainsErrorRecordException
-    + FullyQualifiedErrorId : TerminatorExpectedAtEndOfString</span>
-
-&gt; echo %errorlevel%
-0</code></pre>
-
-<p>I&rsquo;m not aware of any workaround for this behavior. This is very disturbing, because these parser errors can be caused by arguments (as I demonstrated above). This means there is no way to guarantee your script will exit with the correct code when it fails.</p>
-
-<p><em>Note: This was tested in PowerShell v2, on Windows 7 (x64).</em></p>
-
-<p>There are <a href="https://connect.microsoft.com/PowerShell/feedback/details/637113/powershell-command-line-exit-codes-inconsistency">other</a> <a href="https://connect.microsoft.com/PowerShell/feedback/details/638771/powershell-return-code-and-parameters">known</a> bugs with PowerShell&rsquo;s exit codes. Beware.</p>
-
-<h2 id="batch-files">Batch files</h2>
-
-<p>I mentioned early on that it is often necessary to wrap the execution of your PowerShell script in a batch file. Some common reasons for this might be:</p>
-
-<ul>
-<li>You want users of your script to be able to double-click to run it.</li>
-<li>Your build runner doesn&rsquo;t support execution of PowerShell scripts directly.</li>
-</ul>
-
-<p>Whatever the reason, writing a batch file wrapper for a PowerShell script is easy. You just need to make sure that your batch file properly returns the exit code from PowerShell. Otherwise, your PowerShell script might fail and your batch file would return a successful exit code (0).</p>
-
-<p><a id="bat-wrapper"> </a></p>
-
-<p><del>This is a safe template for you to use. Bookmark it.</del></p>
+<p>I&rsquo;d love to hear how this works out for you, let me know in the comments!</p>
 
 <blockquote>
-<p><strong>Update:</strong> I&rsquo;ve created a <em>much</em> better batch file wrapper for my PowerShell scripts. I recommend you ignore the one below and <strong><a href="/powershell-batch-file-wrapper">use my new one</a></strong> instead.</p>
+<p>Over achievers will notice that the <strong>Show-NagWindow.ps1</strong> script lets you
+customize the message, font, and colors by passing in different parameters.
+Edit the obvious parts of <strong>pushitout.cmd</strong> to customize the nag screen
+to your liking.</p>
+
+<p><strong>Works on my machine!</strong> &hellip; which happens to be running Windows 7,
+.NET 4.5 and PowerShell V3. You&rsquo;ll probably need admin rights on your
+machine in order to install the scheduled task.</p>
 </blockquote>
 
-<pre><code>:: script.bat
-
-@ECHO OFF
-PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted -Command &quot;&amp; %~d0%~p0%~n0.ps1&quot; %*
-EXIT /B %errorlevel%
-</code></pre>
-
-<p>This wrapper will execute the PowerShell script with the same file name (i.e., <code>script.ps1</code> if the batch file is named <code>script.bat</code>), and then exit with the same code that PowerShell exited with. It will also forward any arguments passed to the batch file, to the PowerShell script.</p>
-
-<p>Let&rsquo;s test it out.</p>
-
-<pre><code># script.ps1
-
-param($Arg1, $Arg2)
-Write-Host &quot;Arg 1: $Arg1&quot;
-Write-Host &quot;Arg 2: $Arg2&quot;
-</code></pre>
-
-<p><em>From the Windows command prompt:</em></p>
-
-<pre><code>&gt; script.bat happy scripting
-Arg 1: happy
-Arg 2: scripting
-</code></pre>
-
-<p>What if we want &ldquo;happy scripting&rdquo; to be passed as a single argument?</p>
-
-<pre><code>&gt; script.bat &quot;happy scripting&quot;
-Arg 1: happy
-Arg 2: scripting
-</code></pre>
-
-<p><a id="black-magic"> </a></p>
-
-<p>Well that didn&rsquo;t work at all. This is the secret recipe.</p>
-
-<pre><code>&gt; script.bat &quot;'Happy scripting with single '' and double \&quot; quotes!'&quot;
-Arg 1: Happy scripting with single ' and double &quot; quotes!
-Arg 2:
-</code></pre>
-
-<p>Please don&rsquo;t ask me to explain this black magic, I only know that it works. Much credit to <a href="http://stackoverflow.com/questions/6714165/powershell-stripping-double-quotes-from-command-line-arguments">this StackOverflow question</a> for helping me solve this!</p>
-
-<p>For comparison, here is how you would do it if you were executing the script from PowerShell, without using the batch file wrapper.</p>
-
-<p><em>From the PowerShell command prompt:</em></p>
-
-<pre><code>PS&gt; .\script.ps1 happy scripting
-Arg 1: happy
-Arg 2: scripting
-
-PS&gt; .\script.ps1 &quot;Happy scripting with single ' and double `&quot; quotes included!&quot;
-Arg 1: Happy scripting with single ' and double &quot; quotes included!
-Arg 2:
-</code></pre>
-
-<p>That&rsquo;s all folks!</p>
-
 
 </article>
 
@@ -661,304 +476,156 @@ Arg 2:
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim/">Syntax highlighting for Nginx in VIM</a>
+            <a href="http://joshua.poehls.me/2013/user-sign-up-and-email-confirmation-a-ux-boilerplate/">User sign up and email confirmation, a UX boilerplate</a>
             
         </h1>
         <p>
-            <time datetime="2012-06-10 00:00:00 &#43;0000 UTC" pubdate="pubdate">Sun, Jun 10, 2012</time>
+            <time datetime="2013-08-13 22:29:37 -0500 CDT" pubdate="pubdate">Tue, Aug 13, 2013</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim/">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/user-sign-up-and-email-confirmation-a-ux-boilerplate/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>Thanks to <a href="http://www.vim.org/scripts/script.php?script_id=1886">Evan Miller</a>, adding VIM syntax highlighting for Nginx config files is a breeze.</p>
-
-<p>First, install VIM if you haven&rsquo;t already. On Arch Linux, it goes like this:</p>
-
-<pre><code>&gt; pacman -Sy vim
-</code></pre>
-
-<p>Create a folder for your VIM syntax files.</p>
-
-<pre><code>&gt; mkdir -p ~/.vim/syntax/
-</code></pre>
-
-<p>Download the syntax highlighting plugin.</p>
-
-<pre><code>&gt; curl http://www.vim.org/scripts/download_script.php?src_id=14376 -o ~/.vim/syntax/nginx.vim
-</code></pre>
-
-<p>Add it to VIM&rsquo;s file type definitions. Make sure to adjust the path to your Nginx installation if you need to.</p>
-
-<pre><code>&gt; echo &quot;au BufRead,BufNewFile /etc/nginx/conf/* set ft=nginx&quot; &gt;&gt; ~/.vim/filetype.vim
-</code></pre>
-
-<p>Now enable syntax highlighting in your .vimrc file.</p>
-
-<pre><code>&gt; echo &quot;syntax enable&quot; &gt;&gt; ~/.vimrc
-</code></pre>
-
-<p>That&rsquo;s it. Now you&rsquo;ll have nice colors when you edit your Nginx configs with VIM!</p>
-
-<pre><code>&gt; vim /etc/nginx/conf/nginx.conf
-</code></pre>
-
-<figure >
-
-<img src="/2012/06/nginx-vim-colors.png" alt="Screenshot of VIM with syntax highlighting in an Nginx config file" />
-
-
-<figcaption>
-<p>
-Screenshot of VIM with syntax highlighting in an Nginx config file
-
-
-
-</p> 
-</figcaption>
-
-</figure>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git/">Storing your Raspberry Pi configuration in Git</a>
-            
-        </h1>
-        <p>
-            <time datetime="2012-06-08 00:00:00 &#43;0000 UTC" pubdate="pubdate">Fri, Jun 8, 2012</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>Storing your Raspberry Pi&rsquo;s configuration files in Git is a great way to protect yourself from really bad accidents. You get a backup of all your configs and revision control to rollback those nasty changes. Best of all, you don&rsquo;t have to manually create backup copies of each individual file. (<code>cp rc.conf rc.conf.bak</code> anyone?)</p>
-
-<p>I should note that I&rsquo;m running <a href="http://archlinuxarm.org">Arch Linux ARM</a>, but this should apply fairly equally to Debian and other distros.</p>
-
-<p>First, install <a href="http://git-scm.com">Git</a> (if you haven&rsquo;t already).</p>
-
-<pre><code>&gt; pacman -Sy git
-</code></pre>
-
-<p>Arch has a convention of storing all configuration files in <code>/etc</code>. So we will initialize our Git repo there.</p>
-
-<pre><code>&gt; cd /etc
-&gt; git init
-</code></pre>
-
-<p>We only want to store the configuration files that we&rsquo;ve actually changed in Git. We&rsquo;ll use a <code>.gitignore</code> file for that.</p>
-
-<pre><code>&gt; vim .gitignore
-</code></pre>
-
-<p>Here is what mine looks like right now.</p>
-
-<pre><code># Blacklist everything.
-*
-
-# Whitelist the files we care about.
-!rc.conf
-!rc.local
-!ntp.conf
-!resolv.conf
-
-!ddclient/
-!ddclient/ddclient.conf
-
-!nginx/
-!nginx/conf/
-!nginx/conf/nginx.conf
-</code></pre>
-
-<p>The <strong>!</strong> prefix negates the pattern, basically creating a whitelist. Cool, huh?</p>
-
-<p>Now we can do our initial commit.</p>
-
-<pre><code>&gt; git add -A
-&gt; git commit -m &quot;Added initial configs.&quot;
-</code></pre>
-
-<p>Remember to add any new config files to your <code>.gitignore</code> file and always commit your changes!</p>
-
-<p>For added security you should push your repository to <a href="http://git-scm.com/book/en/Git-Basics-Working-with-Remotes">a remote</a>. <a href="http://bitbucket.org">BitBucket</a> offers free private repositories, if you don&rsquo;t have a paid <a href="http://github.com">Github</a> account.</p>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/">Soft links, hard links, junctions, oh my! Symlinks on Windows, a how-to</a>
-            
-        </h1>
-        <p>
-            <time datetime="2012-06-07 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thu, Jun 7, 2012</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/</span>
+                <span class="printonly">http://joshua.poehls.me/2013/user-sign-up-and-email-confirmation-a-ux-boilerplate/</span>
             </a>
         </p>
     </header>
 
     
 
-<p>First, a quick definition of terms. There are three kinds of &ldquo;<a href="https://en.wikipedia.org/wiki/Symbolic_link">symlinks</a>&rdquo; on Windows.</p>
+<p>Sign up, confirm your email address, login. The three steps that almost all web apps share.</p>
+
+<p>It isn&rsquo;t hard to get this process right but it does take some planning. I&rsquo;ve had to implement this a lot so I finally decided to document it. This is my boilerplate for a user sign up process. The interaction flow that I use as the starting point for sign-ups in my apps. Along the way I&rsquo;ll point out some key UX (User eXperience) tips. I hope this saves you some time on your next project.</p>
+
+<blockquote>
+<p>The UI mockups are just that. Mockups. This post isn&rsquo;t about the UI of your pages but rather the flow and functionality. The mockups are intended to communicate features, not a specific design or layout.</p>
+</blockquote>
+
+<h2 id="login">Login</h2>
+
+<p>The login is so obvious that it is hardly worth mentioning.</p>
+
+<p><img src="login.png" alt="Login mockup" title="Login mockup" /></p>
 
 <ul>
-<li>soft links (also called symlinks, or symbolic links)</li>
-<li>hard links</li>
-<li>junctions (a type of soft link only for directories)</li>
+<li>Show friendly messages for invalid credentials.</li>
+<li>Don&rsquo;t make them re-enter their username on subsequent attempts.</li>
+<li>Set the initial focus to the username input. <strong>It&rsquo;s the little things.</strong></li>
+<li>Provide a link for the user to sign up. They may land on the login page but not have an account, make it easy on them.</li>
+<li>Provide a link for <em>resetting</em> their password.</li>
 </ul>
 
-<p>Soft links can be created for files or directories.</p>
+<blockquote>
+<p>You should never provide a password <strong>recovery</strong> link because you should NEVER be able to recover their password. <a href="http://codahale.com/how-to-safely-store-a-password/">How should you store passwords?</a></p>
+</blockquote>
 
-<p>Hard links can only be created for files.</p>
+<h2 id="sign-up">Sign Up</h2>
 
-<p>Both soft and hard links must be created on the same volume as the target. i.e. You can&rsquo;t link something on <code>C:\</code> to something on <code>D:\</code>.</p>
+<p>The sign up process is arguably the most important part of your app. This is the gateway through which all users must pass. Every failure means lost users.</p>
 
-<p>You can read more about hardlinks and junctions <a href="http://msdn.microsoft.com/en-us/library/aa365006%28VS.85%29.aspx">on MSDN</a>.</p>
+<p>I&rsquo;m going to simplify the sign up process to the absolute bare essentials.</p>
 
-<h3 id="deleting-links">Deleting Links</h3>
+<p><img src="signup.png" alt="Sign Up mockup" title="Sign Up mockup" /></p>
 
-<p>This is where the difference between soft and hard links is most evident.</p>
+<ul>
+<li>Show a friendly message and login link if the username is already linked to an account. If they click that login link, then navigate to the login form and pre-populate the username field.</li>
+<li>Provide a link for the user to login if they already have an account. Just because they are on the sign up page doesn&rsquo;t mean they don&rsquo;t have an account. Make it easy.</li>
+</ul>
 
-<p>Deleting the target will cause soft links to stop working. What it points to is gone. Hard links however will keep right on working until you delete the hard link itself. The hard link acts just like the original file, because for all intents and purposes, it is the original file.</p>
+<blockquote>
+<p>If you collect an email address during sign up then consider adding logic to suggest corrections to commonly misspelled domains. For example, if the user enters &ldquo;user@gnail.com&rdquo; you can ask, &ldquo;Did you mean: user@gmail.com?&ldquo;.</p>
 
-<h3 id="junctions">Junctions</h3>
+<p>You can <a href="http://blog.kicksend.com/how-we-decreased-sign-up-confirmation-email-bounces-by-50/">read more about this</a> or skip straight to the jQuery plugin, <a href="https://github.com/Kicksend/mailcheck">Mailcheck</a>.</p>
+</blockquote>
 
-<p>Windows also has another type of link just for directories, called Junctions.</p>
+<h2 id="confirmation-email">Confirmation email</h2>
 
-<p>Junctions look and act like soft links. The key difference is that they allow you to link directories that are located on different local volumes (but still on the same computer). You can&rsquo;t create a junction to a network location.</p>
+<blockquote>
+<p>I&rsquo;m going to assume your app requires a valid email address. Most do. If yours doesn&rsquo;t then your job just got a lot easier!</p>
+</blockquote>
 
-<h2 id="using-mklink">Using MKLINK</h2>
+<p>After signing up, the next page your users see is:</p>
 
-<p>Create a soft link to a directory.</p>
+<p><img src="thankyou.png" alt="Confirmation sent mockup" title="Confirmation sent mockup" /></p>
 
-<pre><code>c:\symlink_test&gt; mklink symlink_dir real_dir
-symbolic link created for symlink_dir &lt;&lt;===&gt;&gt; real_dir
-</code></pre>
+<ul>
+<li>Tell them what email address you sent the confirmation to.</li>
+<li>Tell them what to do with the message they receive.</li>
+</ul>
 
-<p>Create junction link to a directory.</p>
+<p>The confirmation email they receive:</p>
 
-<pre><code>c:\symlink_test&gt; mklink /J junction_dir real_dir
-Junction created for junction_dir &lt;&lt;===&gt;&gt; real_dir
-</code></pre>
+<p><img src="confirmation-email.png" alt="Confirmation email mockup" title="Confirmation email mockup" /></p>
 
-<p>Create a soft link to a file.</p>
+<ul>
+<li>Show the link URL if you are sending an HTML email. This will ensure that users with a plain text mail client can still see the link.</li>
+<li>Clicking the link should automatically log the user in. You had to have their credentials in order to send the email and the email has been verified - there is no reason not to login them in.</li>
+</ul>
 
-<pre><code>c:\symlink_test&gt; mklink symlink_file.txt real_file.txt
-symbolic link created for symlink_file.txt &lt;&lt;===&gt;&gt; real_file.txt
-</code></pre>
+<blockquote>
+<p>Ideally you should send the email with both a plain text and HTML body. This ensures that the user gets the best experience possible for their mail client. Read up on <a href="http://en.wikipedia.org/wiki/MIME#Alternative">MIME multipart/alternative</a> for more information.</p>
+</blockquote>
 
-<p>Create a hard link to a file.</p>
+<h2 id="they-didn-t-see-the-email">They didn&rsquo;t see the email</h2>
 
-<pre><code>c:\symlink_test&gt; mklink /H hardlink_file.txt real_file.txt
-Hardlink created for hardlink_file.txt &lt;&lt;===&gt;&gt; real_file.txt
-</code></pre>
+<p>There is always the chance that the user will not receive the confirmation email or that they will simply ignore it. We need to plan for this.</p>
 
-<p>What they look like.</p>
+<p>If they try to continue without confirming their address:</p>
 
-<pre><code>c:\symlink_test&gt; dir
-Volume in drive C is OS
-Volume Serial Number is 7688-08EC
+<p><img src="confirmation-needed.png" alt="Confirmation needed page mockup" title="Confirmation needed page mockup" /></p>
 
-Directory of c:\symlink_test
+<ul>
+<li>Tell them what the problem is, e.g. &ldquo;confirmation needed&rdquo;.</li>
+<li>Remind them what email address the confirmation was sent to.</li>
+<li>Tell them again what they should do with that message.</li>
+<li>Remind them to check their junk or spam folders and help them out with the search by telling them who the sender was.</li>
+<li>Give them an option to resend the message.</li>
+<li>Give them an option to change their email address.</li>
+</ul>
 
-06/07/2012  10:32 AM    &lt;DIR&gt;          .
-06/07/2012  10:32 AM    &lt;DIR&gt;          ..
-06/07/2012  09:51 AM                15 hardlink_file.txt
-06/07/2012  09:59 AM    &lt;JUNCTION&gt;     junction_dir [c:\symlink_test\real_dir]
-06/07/2012  09:47 AM    &lt;DIR&gt;          real_dir
-06/07/2012  09:51 AM                15 real_file.txt
-06/07/2012  10:00 AM    &lt;SYMLINKD&gt;     symlink_dir [real_dir]
-06/07/2012  10:31 AM    &lt;SYMLINK&gt;      symlink_file.txt [real_file.txt]
-               3 File(s)             30 bytes
-               5 Dir(s)  145,497,268,224 bytes free
-</code></pre>
+<h2 id="resending-the-confirmation">Resending the confirmation</h2>
 
-<figure >
+<p>Maybe the user&rsquo;s mail server was offline. Maybe they deleted your message without reading it. Maybe it got trapped by an over zealous spam filter. There are any number of ways the message might get lost. The ability to have it re-sent is a great UX booster that might just save you an otherwise lost user.</p>
 
-<img src="/2012/06/mklink/explorer-screenshot.png" alt="Screenshot of folder in Windows Explorer" />
+<p><img src="message-resent.png" alt="Confirmation message sent mockup" title="Confirmation message sent mockup" /></p>
 
+<h2 id="changing-their-email">Changing their email</h2>
 
-<figcaption>
-<p>
-Screenshot of folder in Windows Explorer
+<p>This is another little detail that can make a big difference. Maybe the user entered the wrong email. Maybe they just can&rsquo;t get that account to work and want to try another address. At this point there is little reason not to let them simply enter a different address. Let me explain:</p>
 
+<ul>
+<li><strong>Their account is already in an unconfirmed state.</strong> Since we have no way to know that the current (unconfirmed) email is valid, there isn&rsquo;t any harm in letting them change it to another email.</li>
+<li><strong>They already entered their username and password</strong>. Combined with the fact that the existing email is unconfirmed this should be reasonable enough verification of the user&rsquo;s identity.</li>
+</ul>
 
+<p><img src="change-email.png" alt="Change email mockup" title="Change email mockup" /></p>
 
-</p> 
-</figcaption>
+<ul>
+<li>Show them their current address on the change form.</li>
+</ul>
 
-</figure>
+<p>The confirmation should be sent to the new address and a friendly message shown once again.</p>
 
-<p><strong>Note for PowerShell users:</strong><br />
-MKLINK isn&rsquo;t an executable that you can just call from PowerShell. You have to call it through the command prompt.</p>
+<blockquote>
+<p>All previously sent confirmation links should be disabled at this point for security. You wouldn&rsquo;t want the wrong address to be confirmed, you only want the new one.</p>
+</blockquote>
 
-<pre><code>cmd /c mklink /D symlink_dir real_dir
-</code></pre>
+<p><img src="email-changed.png" alt="Email changed mockup" title="Email changed message mockup" /></p>
 
-<p>Alternatively, you can use <a href="https://gist.github.com/2891103">this module</a> I wrote that has native PowerShell wrappers for MKLINK.</p>
+<h2 id="that-s-all-folks">That&rsquo;s all folks</h2>
 
-<p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">Read about MKLINK on MSDN.</a></p>
+<p>That is my boilerplate. I believe it covers the requirements that nearly all sign up forms share and will keep at least this dude from having to rethink the process in the future.</p>
 
-<h2 id="using-fsutil">Using FSUTIL</h2>
+<p>In the end all is simple but we have a few guiding principles:</p>
 
-<p>FSUTIL is another way to create hard links (but not soft links). This is the same as <code>mklink /H</code>.</p>
+<ul>
+<li><strong>Be obvious.</strong> At every point give the user all the information they need to make a decision or take the required action.</li>
+<li><strong>Be simple.</strong> Keep all of your forms as lean as possible. Collect any extra profile or account information after the initial sign up. This keeps the barrier of entry as low as possible.</li>
+<li><strong>Be helpful.</strong> Give the user the ability to undo their mistakes and troubleshoot. Resending the confirmation and changing their email address being the prime examples.</li>
+<li><strong>Be easy.</strong> Whenever you can save the user a step, do it. Such as logging them automatically when they click the confirmation link.</li>
+</ul>
 
-<pre><code>c:\symlink_test&gt; where fsutil
-c:\Windows\System32\fsutil.exe
-
-c:\symlink_test&gt; fsutil hardlink create hardlink_file.txt real_file.txt
-Hardlink created for c:\symlink_test\hardlink_file.txt &lt;&lt;===&gt;&gt; c:\symlink_test\real_file.txt
-</code></pre>
-
-<p><a href="http://technet.microsoft.com/en-us/library/cc753059(v=WS.10).aspx">Read about FSUTIL on MSDN.</a></p>
-
-<h2 id="using-junction">Using Junction</h2>
-
-<p>Junction is a tool provided by Sysinternals and provides another way to create junctions. Same as <code>mklink /J</code>.
-It also has some other tools for working with junctions that I won&rsquo;t cover here.</p>
-
-<pre><code>c:\symlink_test&gt; junction junction_dir real_dir
-Junction v1.06 - Windows junction creator and reparse point viewer
-Copyright (C) 2000-2010 Mark Russinovich
-Sysinternals - www.sysinternals.com
-
-Created: c:\symlink_test\junction_dir
-Targetted at: c:\symlink_test\real_dir
-</code></pre>
-
-<p><a href="http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx">Download the Junction tool from Sysinternals.</a></p>
+<blockquote>
+<p>Feel free to use and tweak the <a href="http://balsamiq.com/">Balsamiq</a> mockups that I created for this post. You can <a href="mockups.bmml">download them here</a>.</p>
+</blockquote>
 
 
 </article>
@@ -975,190 +642,240 @@ Targetted at: c:\symlink_test\real_dir
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/">Can&#39;t access network resources over VPN connection on Mac OS X?</a>
+            <a href="http://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/">TableauKit: A PowerShell Module for Tableau</a>
             
         </h1>
         <p>
-            <time datetime="2012-04-18 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Apr 18, 2012</time>
+            <time datetime="2013-08-09 22:32:43 -0500 CDT" pubdate="pubdate">Fri, Aug 9, 2013</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>So you have your shiny OS X connected to a VPN, good deal! The problem is, you can&rsquo;t connect to any of the servers and workstations on the VPN. What could be wrong?</p>
-
-<p>It could be that OS X is still trying to find those machines on the internet instead of looking for them on the VPN connection. We can tell OS X to check the VPN connection first by giving it a higher priority than the other network connections on your Mac.</p>
-
-<p>To change the priority of your VPN connection:</p>
-
-<ol>
-<li>Choose Apple menu &gt; System Preferences and click Network.</li>
-<li>Choose Set Service Order from the Action pop-up menu (looks like a gear).</li>
-<li>Drag your VPN connection to the top of the list.</li>
-<li>Click OK, and then click Apply to make the new settings active.</li>
-</ol>
-
-<p>This solution saved my day when I couldn&rsquo;t Remote Desktop into my workstation over the VPN.</p>
-
-<p>For more information, refer to <a href="http://docs.info.apple.com/article.html?path=Mac/10.6/en/8853.html">Apple&rsquo;s documentation for this</a>.</p>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/">Use AutoHotkey to remap your numpad keys to something useful</a>
-            
-        </h1>
-        <p>
-            <time datetime="2011-12-14 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Dec 14, 2011</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/</span>
+                <span class="printonly">http://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/</span>
             </a>
         </p>
     </header>
 
     
 
-<p>Are you tired of having to remember that <code>ALT+0176</code> is the degree symbol <strong>&deg;</strong> ? Maybe there are other special characters that you want to be able to type easier.</p>
+<style>
+pre.powershell-result {
+    background-color: #012456;
+    color: #ffffff;
+}
+</style>
 
-<p>Personally it was the degree symbol that got me, and since I never use my numpad, I decided it would be much more useful if those keys actually entered stuff that I cared about.</p>
+<p>If you&rsquo;ve been following my <a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">Tableau via PowerShell</a> series then you already
+know there are a lot of cool things you can do with Tableau workbooks using
+PowerShell. Up until now I&rsquo;ve been sharing helper functions in a stand-alone
+fashion. No longer.</p>
 
-<p>Here is a quick tutorial in using AutoHotkey to remap one of your numpad keys to the degree symbol. Of course you can expand on this beginning easily to solve whatever woes you are having.</p>
+<p>I&rsquo;d like to introduce you to <a href="https://www.interworks.com/content/download-tableaukit">TableauKit</a>. A pure, script-based PowerShell
+module for working with Tableau files.</p>
 
-<p>Start out by going to <a href="http://www.autohotkey.com">the AutoHotkey website</a>.</p>
+<h2 id="say-what">Say what?</h2>
 
-<p>Download the <strong>AutoHotkey_L</strong> installer. This is the most recent version of AutoHotkey and specifically supports Unicode which is important for us.</p>
-
-<figure >
-
-<img src="/2011/12/autohotkey/Image4.png" alt="Screenshot of the AutoHotkey download page" />
-
-
-<figcaption>
-<p>
-Screenshot of the AutoHotkey download page
-
-
-
-</p> 
-</figcaption>
-
-</figure>
-
-<p>Run the installer and leave all the defaults.</p>
-
-<figure >
-
-<img src="/2011/12/autohotkey/Image3.png" alt="Screenshot of the AutoHotkey installer" />
-
-
-<figcaption>
-<p>
-Screenshot of the AutoHotkey installer
-
-
-
-</p> 
-</figcaption>
-
-</figure>
-
-<p>Look in your My Documents folder and open up <code>AutoHotkey.ahk</code> in a text editor that you can save as UTF-8 in.</p>
-
-<p>If you don&rsquo;t know what this means or don&rsquo;t have an editor that can do this then <a href="http://www.flos-freeware.ch/notepad2.html">download Notepad2</a> and open the file in that program.</p>
-
-<figure >
-
-<img src="/2011/12/autohotkey/Image5.png" alt="Screenshot of the AutoHotkey.ahk file in Windows Explorer" />
-
-
-<figcaption>
-<p>
-Screenshot of the AutoHotkey.ahk file in Windows Explorer
-
-
-
-</p> 
-</figcaption>
-
-</figure>
-
-<p>Now that you have <code>AutoHotkey.ahk</code> opened, delete everything in there (after reading it if you care) and paste the following in its place.</p>
-
-<pre><code>NumpadIns::
-Send &deg;
-return</code></pre>
-
-<p>Now save this file with <strong>UTF-8</strong> encoding. If you are using Notepad2 you can do this by going to <code>File | Encoding | UTF-8</code> and clicking <strong>Yes</strong> to the warning. Then click <code>File | Save</code> as usual.</p>
-
-<figure >
-
-<img src="/2011/12/autohotkey/Image.png" alt="Screenshot of saving the file with UTF-8 encoding" />
-
-
-<figcaption>
-<p>
-Screenshot of saving the file with UTF-8 encoding
-
-
-
-</p> 
-</figcaption>
-
-</figure>
-
-<p>Finally, run the <strong>AutoHotkey</strong> program from your Start Menu.</p>
-
-<figure >
-
-<img src="/2011/12/autohotkey/Image2.png" alt="Screenshot of AutoHotkey in the Start Menu" />
-
-
-<figcaption>
-<p>
-Screenshot of AutoHotkey in the Start Menu
-
-
-
-</p> 
-</figcaption>
-
-</figure>
-
-<h3 id="now-to-try-it-out">Now to try it out!</h3>
-
-<p>Put your focus in any text box. Anywhere. Go ahead. Now make sure you have NumLock turned OFF and hit the <code>0</code> key on your numpad.</p>
-
-<p>See what just happened? No, that&rsquo;s not a superscripted zero. That&rsquo;s a degree symbol. Now that they are easy to type you are going to have to learn what it is! ;)</p>
-
-<p>You can get a list of other special key names here: <a href="http://www.autohotkey.com/docs/KeyList.htm">http://www.autohotkey.com/docs/KeyList.htm</a></p>
-
-<p>This is just scratching the surface of what you can do with AutoHotkey scripts. Be sure to <a href="http://l.autohotkey.net/docs/">read up on the documentation</a> for more ideas. Knowledge is power!</p>
-
-<p>Here is a teaser of just a few of the tricks you can do:</p>
+<p>Today TableauKit is shipping with the following commands:</p>
 
 <ul>
-<li>Create global shortcuts to run programs (ex. <code>CTRL+Z</code> to open a browser and navigate to a specific website.)</li>
-<li>Replace acronyms or common spelling mistakes (ex. replace &ldquo;restraunt&rdquo; -&gt; &ldquo;restaurant&rdquo; automatically.)</li>
-<li>Toggle hidden files in Windows Explorer with a shortcut key.</li>
+<li><p><b>Get-TableauObject</b> - Gets a summary object for a workbook. The summary
+  contains things like the list of dashboards, worksheets, data sources, and
+  parameters in the workbook. It also contains metadata like the version of
+  Tableau that saved the workbook.</p>
+
+  <p>You can dig a bit deeper to find the
+  parameter values and which worksheets are included on specific dashboards.</p>
+  
+  <p><i>No XPath required!</i></p>
+</li>
+<li><b>Get-TableauXml</b> - Opens up a TWB or TWBX file and returns the workbook's
+  raw XML. <i>XPath Heaven.</i></li>
+
+<li><b>Export-Tableau</b> - Lets you save changes you've made to the workbook's
+  XML back into a new or existing TWB or TWBX file.</li>
 </ul>
 
+<p>You&rsquo;ll probably recognize <strong>Get-TableauXml</strong> and <strong>Export-Tableau</strong> from my
+<a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">previous</a> <a href="/2013/tableau-via-powershell-part-2-saving-changes/">posts</a> about them. They are much better than when you last
+met them, though! Several bugs have been fixed and the names are shorter now.</p>
+
+<p><strong>Get-TableauObject</strong> is all new. Just because you <em>can</em> dig through the
+workbook with XPath doesn&rsquo;t mean it&rsquo;s fun. This command provides quick access
+to the most common parts of a workbook. Don&rsquo;t worry, it also gives you the raw
+XML so you can go spelunking for the hard to find stuff!</p>
+
+<h2 id="no-really-what-can-it-do">No really, what can it do?</h2>
+
+<h3 id="find-workbooks-by-worksheet-name">Find workbooks by worksheet name</h3>
+
+<p>Can&rsquo;t remember which workbook contains that elusive &ldquo;Top 10 Hot Dogs&rdquo; worksheet?</p>
+
+<pre><code>Get-TableauObject *.twb, *.twbx |
+    where {
+        ($_.Worksheets | select -Expand DisplayName) -contains &quot;Top 10 Hot Dogs&quot;
+    } |
+    select FileName
+</code></pre>
+
+<pre class="powershell-result">
+FileName
+--------
+C:\users\jpoehls\desktop\result.twb
+C:\users\jpoehls\desktop\another-result.twbx
+</pre>
+
+<h3 id="analyze-connection-types">Analyze connection types</h3>
+
+<p>What types of connections do my workbooks use?</p>
+
+<pre><code>Get-TableauObject *.twb, *.twbx |
+    select -Expand DataSources |
+    group ConnectionType |
+    sort Count -Desc
+</code></pre>
+
+<pre class="powershell-result">
+Count Name
+----- ----
+   26 excel
+   12 sqlserver
+   10 csv
+    4
+    3 dataengine
+    3 msaccess
+    2 bigquery
+    1 firebird
+</pre>
+
+<h3 id="find-workbooks-by-connection-type">Find workbooks by connection type</h3>
+
+<p>Which workbooks use the Big Query connection?</p>
+
+<pre><code>Get-TableauObject *.twb, *.twbx |
+    where { ($_.DataSources | select -Expand ConnectionType) -eq &quot;bigquery&quot; } |
+    select FileName
+</code></pre>
+
+<pre class="powershell-result">
+FileName
+--------
+C:\users\jpoehls\desktop\Shakespeare.twb
+C:\users\jpoehls\desktop\Shakespeare_Extract.twb
+</pre>
+
+<h3 id="list-all-dashboard-worksheets">List all dashboard worksheets</h3>
+
+<p>Let&rsquo;s get a list of all dashboards and their worksheets for all
+of our workbooks.</p>
+
+<p>Oh, and we want that list presented in a GUI that we can
+use to further search and filter.</p>
+
+<pre><code>Get-TableauObject *.twb, *.twbx |
+    foreach { $workbook = $_; $_ } |
+    select -Expand Dashboards |
+    foreach { $dashboard = $_; $_ } |
+    select -Expand Worksheets |
+    select @{ Label=&quot;Dashboard&quot;; Expression={$dashboard.DisplayName} },
+           @{ Label=&quot;Worksheet&quot;; Expression={$_.DisplayName} },
+           @{ Label=&quot;File&quot;; Expression={$workbook.FileName} } |
+    Out-GridView
+</code></pre>
+
+<p><img src="tableaukit1.png" alt="Results Screenshot" title="Results Screenshot" /></p>
+
+<h3 id="find-worksheets-with-a-specific-column-filter">Find worksheets with a specific column filter</h3>
+
+<p>Looking for all the workbooks and worksheets that have a filter
+on your &ldquo;NextPaymentDate&rdquo; column? Sure, we can do that.</p>
+
+<blockquote>
+<p>This code is pretty ridiculous so I&rsquo;m going to break it up with annotations
+to make it easier to grok.</p>
+
+<p>This kind of query requires advanced knowledge of workbook internals and
+your mileage may vary if you run this against your own workbooks.</p>
+</blockquote>
+
+<pre data-language="powershell">
+# Name of the data source.
+$dataSource = "MonthlySummary (Landboss_com-Accounts)"
+# Name of column that has a filter on it.
+$column = "NextPaymentDate"
+
+# Read all the workbooks.
+Get-ChildItem *.twb , *.twbx |
+
+    # Save a reference to the file name.
+    foreach { $file = $_.FullName; $_ } |
+    Get-TableauXml |
+
+    # Find all worksheets with the data source we
+    # are looking for.
+    Select-Xml "/workbook/worksheets/worksheet/table/view/datasources/datasource" |
+    Select -Expand Node |
+    where {
+        $_.caption -eq $dataSource -or $_.name -eq $dataSource
+    } |
+    
+    # Save a reference to the data source's actual name
+    # for later parts of the pipeline.
+    foreach { $dataSourceName = $_.name; $_ } |
+    
+    # Find references to the column we are looking for.
+    # Note we're still inside the worksheet node.
+    Select-Xml "../../datasource-dependencies[@datasource='$dataSourceName']/column-instance[@column='[$column]']" |
+    Select -Expand Node |
+    
+    # Save a reference to the column's actual name
+    # for the next part of the pipeline.
+    foreach { $filterColumnName = $_.name; $_ } |
+    
+    # Find any filters on the worksheet that
+    # apply to the column we care about.
+    Select-Xml "../../filter[@column='[$dataSourceName].$filterColumnName']" |
+    select -Expand Node |
+    
+    # Traverse back to the worksheet node.
+    Select-Xml "../../.." |
+    select -Expand Node |
+    
+    # Build the final result display.
+    select @{ Label="Worksheet"; Expression={
+            if ($_.caption) { $_.caption }
+            else { $_.name }
+            }},
+            @{ Label="File"; Expression={$file} } 
+</pre>
+
+<pre class="powershell-result">
+Worksheet                 File                                       
+---------                 ----                                       
+Avg Monthly Income        C:\users\jpoehls\desktop\Landboss Income.twb
+Monthly Income by Account C:\users\jpoehls\desktop\Landboss Income.twb 
+</pre>
+
+<h3 id="you-can-do-anything">You can do anything!</h3>
+
+<p>Hopefully this has given you a glimpse at the power of querying your workbooks
+en masse. The queries are pretty gnarly so I definitely recommend wrapping
+anything you&rsquo;ll reuse into helper functions.</p>
+
+<h2 id="what-are-you-waiting-for-go-get-it">What are you waiting for? Go get it!</h2>
+
+<ul>
+<li><a href="https://www.interworks.com/content/download-tableaukit">Download it</a></li>
+</ul>
+
+<p>After you download it, check the README for detailed installation and usage instructions.</p>
+
+<p>TableauKit is a product of <a href="https://www.interworks.com">InterWorks</a>, a fantastic company that
+<a href="https://www.interworks.com/company/careers">you <em>really</em> want to work for</a>!</p>
+
+<h2 id="roadmap">Roadmap</h2>
+
+<p>The future is wide open for this. What kind of functionality would you like to
+see added? Let me know in the comments!</p>
+
 
 </article>
 
@@ -1174,97 +891,562 @@ Screenshot of AutoHotkey in the Start Menu
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2011/what-i-miss-in-vanilla-visual-studio/">What I miss in vanilla Visual Studio</a>
+            <a href="http://joshua.poehls.me/2013/tableau-via-powershell-part-2-saving-changes/">Tableau via PowerShell, Part 2: Saving Changes</a>
             
         </h1>
         <p>
-            <time datetime="2011-10-20 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thu, Oct 20, 2011</time>
+            <time datetime="2013-08-07 22:40:40 -0500 CDT" pubdate="pubdate">Wed, Aug 7, 2013</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2011/what-i-miss-in-vanilla-visual-studio/">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/tableau-via-powershell-part-2-saving-changes/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2011/what-i-miss-in-vanilla-visual-studio/</span>
+                <span class="printonly">http://joshua.poehls.me/2013/tableau-via-powershell-part-2-saving-changes/</span>
             </a>
         </p>
     </header>
 
-    <p>For the past week or so I&rsquo;ve gone without any Visual Studio enhancements. No <a href="http://www.jetbrains.com/resharper">ReSharper</a>. No <a href="http://www.devexpress.com/coderush">CodeRush</a>. I knew that I didn&rsquo;t leverage even a fraction of what these tools offer so I wanted to find out what I would miss.</p>
+    <blockquote>
+<p>This is part 2 of my mini-series on exploring Tableau workbooks with PowerShell. If you missed it, you should read <a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">Part 1: Opening Workbooks</a>, before continuing.</p>
+</blockquote>
 
-<p>Here&rsquo;s what I&rsquo;m missing the most. In no particular order.</p>
+<p>Welcome back! Last time I showed you how to open a Tableau workbook (TWB or TWBX) in PowerShell so you could start exploring the raw XML. Today I&rsquo;ll show the next logical thing, saving the changes you make.</p>
 
-<ol>
-<li><p><strong>Detection of errors</strong> <em>before</em> I compile.</p></li>
+<p>If you are only opening TWB files, then saving your changes couldn&rsquo;t be easier. Since TWBs are just XML files we can simply write it to a file, like so.</p>
 
-<li><p><strong>Shortcut for moving a class</strong> to its own file.</p>
+<pre>
+$workbook = Get-TableauWorkbookXml 'MyWorkbook.twb'
+$workbook.Save('ModifiedWorkbook.twb')
+</pre>
 
-<p>I like to build up features in the same file (for speed) and then refactor the classes into their own files later. A tedius process of copy/paste.</p></li>
+<p>Cake.</p>
 
-<li><p><strong>A rename function</strong> that is smart enough to rename the file as well.</p></li>
+<p>Saving changes back to a TWBX file is a bit more work but still totally doable. Let&rsquo;s write a new function, <code>Export-TableauPackagedWorkbook</code>. We will spice things up a bit by making this function smart. It&rsquo;ll take a few parameters to allow us to control exactly how we want the export to happen.</p>
 
-<li><p><strong>Unit Test debugger.</strong></p>
+<p>A <code>-Force</code> parameter will let us specify whether we want to overwrite the destination file if it already exists. By default we would be prompted. Note that this isn&rsquo;t a terribly useful parameter since it would replace the TWBX with an empty TWBX containing only the TWB.</p>
 
-<p>I don&rsquo;t mind running tests in the NUnit GUI, it even feels faster sometimes, but I miss the ability to step into my tests. I use this feature a lot for exploring APIs.</p></li>
+<p><code>-Update</code> will let us specify that we want to update the TWB inside the destination TWBX file if the destination file exists. This is the cool parameter because it lets us open an existing TWBX, make changes to the TWB inside, and then save those changes back out into the original TWBX.</p>
 
-<li><p><strong>Ability to generate constructors.</strong></p>
+<p>We will also support the common <code>-WhatIf</code> and <code>-Confirm</code> parameters that are so useful in PowerShell.</p>
 
-<p>Especially useful for creating custom exceptions where you want to implement all of the base constructors.</p></li>
+<p>Here is our function:</p>
 
-<li><p><strong>Fast code snippets.</strong></p>
+<blockquote>
+<p>If you find this helpful then check out <a href="/2013/tableaukit-powershell-module-for-tableau/">TableauKit</a>;
+a full on PowerShell module for working with Tableau files. It contains a new and improved
+version of the function below and much more.</p>
+</blockquote>
 
-<p>Visual Studio&rsquo;s built in snippets are functional, but slow to access compared to the alternatives so I ended up not using them. I definitely prefer CodeRush&rsquo;s snippets.</p></li>
-</ol>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2011/tortoise-svn-powershell-helper-function/">Tortoise SVN PowerShell helper function</a>
-            
-        </h1>
-        <p>
-            <time datetime="2011-10-12 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Oct 12, 2011</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2011/tortoise-svn-powershell-helper-function/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2011/tortoise-svn-powershell-helper-function/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>Do you work from the command line? Use PowerShell? SVN?</p>
-
-<p>While the SVN command line client is certainly usable, there are definitely times where a GUI is more convenient. Specifically during a commit where you want to easily check/uncheck files and view diffs.</p>
-
-<p>I got tired of having to open an explorer window to get into Tortoise SVN&rsquo;s commit screen so I wrote this helper function.</p>
-
-<p>Put this into your profile and you can start typing <code>tsvn commit</code> (or just <code>tsvn</code>) to open the Tortoise SVN commit dialog. Enjoy!</p>
-
-<pre><code># Helper function for opening the Tortoise SVN GUI from a PowerShell prompt.
-# Put this into your PowerShell profile.
-# Ensure Tortoise SVN is in your PATH (usually C:\Program Files\TortoiseSVN\bin) 
-function Svn-Tortoise([string]$Command = &quot;commit&quot;) {
+<pre data-language="powershell">
+function Export-TableauPackagedWorkbook {
 &lt;#
 .SYNOPSIS
-  Launches TortoiseSVN with the given command.
-  Opens the commit screen if no command is given.
-  
-  List of supported commands can be found at:
-  http://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-automation.html
+    Exports the workbook XML to a packaged workbook (TWBX) file.
+ 
+.PARAMETER Path
+    The literal file path to export to.
+ 
+.PARAMETER WorkbookXml
+    The workbook XML to export.
+ 
+.PARAMETER Update
+    Whether to update the TWB inside the destination TWBX file
+    if the destination file exists.
+ 
+.PARAMETER Force
+    Whether to overwrite the destination TWBX file if it exists.
+    By default, you will be prompted whether to overwrite any
+    existing file.
+ 
+.NOTES
+    Author: Joshua Poehls ({{site.url}})
 #&gt;
-  TortoiseProc.exe /command:$Command /path:&quot;$pwd&quot;
+    [CmdletBinding(
+        SupportsShouldProcess=$true
+    )]
+    param(
+        [Parameter(
+            Position=0,
+            Mandatory=$true
+        )]
+        [string]$Path,
+ 
+        [Parameter(
+            Position=1,
+            Mandatory=$true,
+            ValueFromPipeline=$true
+        )]
+        [xml]$WorkbookXml,
+ 
+        [switch]$Update,
+        [switch]$Force
+    )
+ 
+    begin {
+        $originalCurrentDirectory = [System.Environment]::CurrentDirectory
+ 
+        # System.IO.Compression.FileSystem requires at least .NET 4.5
+        [System.Reflection.Assembly]::LoadWithPartialName("System.IO.Compression") | Out-Null
+    }
+ 
+    process {
+        [System.Environment]::CurrentDirectory = (Get-Location).Path
+        $entryName = [System.IO.Path]::GetFileNameWithoutExtension($Path) + '.twb'
+        $createNewTwbx = $false
+       
+        if (Test-Path $Path) {
+            if ($Update -or $Force -or $PSCmdlet.ShouldContinue('Overwrite existing file?', 'Confirm')) {
+                if ($Update) {
+                    if ($PSCmdlet.ShouldProcess($Path, 'Update TWB in packaged workbook')) {
+ 
+                        [System.IO.FileStream]$fileStream = $null
+                        [System.IO.Compression.ZipArchive]$zip = $null
+                        try {
+                            $fileStream = New-Object System.IO.FileStream -ArgumentList $Path, ([System.IO.FileMode]::Open), ([System.IO.FileAccess]::ReadWrite), ([System.IO.FileShare]::Read)
+                            $zip = New-Object System.IO.Compression.ZipArchive -ArgumentList $fileStream, ([System.IO.Compression.ZipArchiveMode]::Update)
+ 
+                            # Locate the existing TWB entry and remove it.
+                            $entry = $zip.Entries |
+                                where {
+                                    # Look for a .twb file at the root level of the archive.
+                                    $_.FullName -eq $_.Name -and ([System.IO.Path]::GetExtension($_.Name)) -eq '.twb'
+                                } |
+                                select -First 1
+                            if ($entry) {
+                                $entry.Delete()
+                            }
+ 
+                            $entry = $zip.CreateEntry($entryName, ([System.IO.Compression.CompressionLevel]::Optimal))
+                            [System.IO.Stream]$entryStream = $null
+                            try {
+                                $entryStream = $entry.Open()
+                                $WorkbookXml.Save($entryStream)
+                            }
+                            finally {
+                                if ($entryStream) {
+                                    $entryStream.Dispose()
+                                }
+                            }
+                        }
+                        finally {
+                            if ($zip) {
+                                $zip.Dispose()
+                            }
+                            if ($fileStream) {
+                                $fileStream.Dispose()
+                            }
+                        }
+                    }
+                }
+                else {
+                    if ($PSCmdlet.ShouldProcess($Path, 'Replace existing packaged workbook')) {
+                        # delete existing TWBX
+                        Remove-Item $Path -ErrorAction Stop #TODO: Figure out how to pass WhatIf and Confirm to this
+                        
+                        $createNewTwbx = $true
+                    }
+                }
+            }
+        }
+        else {
+            if ($PSCmdlet.ShouldProcess($Path, 'Export packaged workbook')) {
+                $createNewTwbx = $true
+            }
+        }
+ 
+        if ($createNewTwbx) {
+            [System.IO.FileStream]$fileStream = $null
+            [System.IO.Compression.ZipArchive]$zip = $null
+            try {
+                $fileStream = New-Object System.IO.FileStream -ArgumentList $Path, ([System.IO.FileMode]::CreateNew), ([System.IO.FileAccess]::ReadWrite), ([System.IO.FileShare]::None)
+                $zip = New-Object System.IO.Compression.ZipArchive -ArgumentList $fileStream, ([System.IO.Compression.ZipArchiveMode]::Update)
+ 
+                $entry = $zip.CreateEntry($entryName, ([System.IO.Compression.CompressionLevel]::Optimal))
+                [System.IO.Stream]$entryStream = $null
+                try {
+                    $entryStream = $entry.Open()
+                    $WorkbookXml.Save($entryStream)
+                }
+                finally {
+                    if ($entryStream) {
+                        $entryStream.Dispose()
+                    }
+               }
+            }
+            finally {
+                if ($zip) {
+                    $zip.Dispose()
+                }
+                if ($fileStream) {
+                    $fileStream.Dispose()
+                }
+            }
+        }
+    }
+ 
+    end {
+        [System.Environment]::CurrentDirectory = $originalCurrentDirectory
+    }
 }
-Set-Alias tsvn &quot;Svn-Tortoise&quot;
-</code></pre>
+</pre>
+
+<p>Not too bad. Here are some quick usage examples.</p>
+
+<p><strong>Convert a TWB into a TWBX</strong></p>
+
+<pre>
+$workbook = Get-TableauWorkbookXml 'MyWorkbook.twb'
+$workbook | Export-TableauPackagedWorkbook 'MyPackagedWorkbook.twbx'
+</pre>
+
+<p><strong>Update an existing TWBX</strong></p>
+
+<pre>
+$workbook = Get-TableauWorkbookXml 'MyPackagedWorkbook.twbx'
+# TODO: Make some changes to the workbook XML
+$workbook | Export-TableauPackagedWorkbook 'MyPackagedWorkbook.twbx' -Update
+</pre>
+
+<p>Leave me a comment if you have any questions about working with Tableau workbooks in PowerShell. Maybe I&rsquo;ll cover your topic in the next post!</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/go-beginners-iota-enumerations/">Go Beginners: Iota Enumerations</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-07-28 22:26:07 -0500 CDT" pubdate="pubdate">Sun, Jul 28, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/go-beginners-iota-enumerations/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/go-beginners-iota-enumerations/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Enum constants in Go have a super power. As opposed to C# where you only have two options for enums, either you assign each value yourself or let the compiler increment each value by one, Go has a third option.</p>
+
+<p><strong>Auto-incremented enum in C#</strong></p>
+
+<pre data-language="csharp">
+enum Example
+{
+     One = 1,
+     Two,
+     Three
+}
+</pre>
+
+<p>Go&rsquo;s third option is that you can make use of repeating expressions. This works because of Go&rsquo;s <code>iota</code> enumerator. The best example can by found in <a href="http://golang.org/doc/effective_go.html#constants">the Effective Go docs</a>.</p>
+
+<pre data-language="go">
+type ByteSize float64
+
+const (
+     _           = iota // ignore first value by assigning to blank identifier
+     KB ByteSize = 1 &lt;&lt; (10 * iota)
+     MB
+     GB
+     TB
+     PB
+     EB
+     ZB
+     YB
+) 
+</pre>
+
+<p><code>iota</code> is only valid when assigning constants and with each <code>const</code> block it starts out life with a value of zero. Each time it is used it is incremented by one.</p>
+
+<p>In the example above, the first constant is <code>_ = iota</code>. <code>_</code> is a throwaway variable in Go so we are ignoring the first value of <code>iota</code> (zero) and starting with a value of 1 on the next line.</p>
+
+<p><code>KB</code> is assigned an expression that uses <code>iota</code>: <code>1 &lt;&lt; (10 * iota</code>. The subsequent constants don&rsquo;t have any explicit value so Go repeats the last assignment. Thus, repeating expressions. Because <code>iota</code> increments each time, we end up with a very useful pattern generator.</p>
+
+<p>Flag enumerations are a great use of this. In C# it is a manual process to assign each flag a value that increments in powers of 2.</p>
+
+<pre data-language="csharp">
+[Flags]
+enum FlagExample : int
+{
+     Zero = 0,
+     Two = 2,
+     Four = 4,
+     Eight = 8
+}
+</pre>
+
+<p><code>iota</code> makes this much simpler in Go.</p>
+
+<pre data-language="go">
+const FlagExample (
+     Zero = 1 &lt;&lt; iota
+     Two
+     Four
+     Eight
+)
+</pre>
+
+<p>Of course you don&rsquo;t have to use <code>iota</code> at all if you don&rsquo;t want to.</p>
+
+<pre data-language="go">
+const Example (
+     One = 1
+     Two = 2
+     Four = 4
+)
+</pre>
+
+<p>Be sure and <a href="http://golang.org/doc/effective_go.html#constants">read the docs</a> for even more info. Also, <a href="http://play.golang.org/p/ASLfPwNc2S">here&rsquo;s a playground example</a> of what we&rsquo;ve covered.</p>
+
+<p><strong>Go</strong> forth and code.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">Tableau via PowerShell, Part 1: Opening Workbooks</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-07-25 22:36:58 -0500 CDT" pubdate="pubdate">Thu, Jul 25, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>In this mini-series I&rsquo;m going to show you some cookbook style examples for using PowerShell to explore your Tableau workbooks. Follow along, this is going to be fun!</p>
+
+<p>Tableau workbooks (TWB files) are just XML files. Packaged workbooks (TWBX files) are just ZIP files that contain a TWB and various assets, like data extracts for example.</p>
+
+<p>This is wonderful because it means it is very easy to go spelunking through workbook files without a <strong>gui</strong>de.</p>
+
+<h2 id="opening-workbooks">Opening Workbooks</h2>
+
+<p>I mentioned that TWB files are just XML files and that TWBX files are ZIP files that contain a TWB. This means we need different logic for opening a TWB vs a TWBX. Let&rsquo;s write a simple little PowerShell function to fix that. We&rsquo;ll call this function <code>Get-TableauWorkbookXml</code> and it will take a file path and return the workbook&rsquo;s XML. It will abstract away the different ahandling of TWB and TWBX files for us.</p>
+
+<blockquote>
+<p>If you find this helpful then check out <a href="/2013/tableaukit-a-powershell-module-for-tableau/">TableauKit</a>;
+a full on PowerShell module for working with Tableau files. It contains a new and improved
+version of the function below and much more.</p>
+</blockquote>
+
+<pre data-language="powershell">
+function Get-TableauWorkbookXml {
+&lt;#
+.SYNOPSIS
+    Gets the workbook XML from a specified TWB or TWBX file.
+
+.PARAMETER Path
+    The literal file path of the TWB or TWBX file.
+
+.NOTES
+    Author: Joshua Poehls ({{site.url}})
+#&gt;
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true, ValueFromPipeline=$true)]
+        [string]$Path
+    )
+
+    begin {
+        $originalCurrentDirectory = [System.Environment]::CurrentDirectory
+
+        # System.IO.Compression.FileSystem requires at least .NET 4.5
+        [System.Reflection.Assembly]::LoadWithPartialName("System.IO.Compression") | Out-Null
+    }
+
+    process {
+        [System.Environment]::CurrentDirectory = (Get-Location).Path
+        $extension = [System.IO.Path]::GetExtension($Path)
+        if ($extension -eq ".twb") {
+            return [xml](Get-Content -LiteralPath $Path)
+        }
+        elseif ($extension -eq ".twbx") {
+            $archiveStream = $null
+            $archive = $null
+            $reader = $null
+
+            try {
+                $archiveStream = New-Object System.IO.FileStream($Path, [System.IO.FileMode]::Open)
+                $archive = New-Object System.IO.Compression.ZipArchive($archiveStream)
+                $twbEntry = ($archive.Entries | Where-Object { $_.FullName -eq $_.Name -and [System.IO.Path]::GetExtension($_.Name) -eq ".twb" })[0]
+                $reader = New-Object System.IO.StreamReader $twbEntry.Open()
+
+                [xml]$xml = $reader.ReadToEnd()
+                return $xml
+            }
+            finally {
+                if ($reader -ne $null) {
+                    $reader.Dispose()
+                }
+                if ($archive -ne $null) {
+                    $archive.Dispose()
+                }
+                if ($archiveStream -ne $null) {
+                    $archiveStream.Dispose()
+                }
+            }
+        }
+        else {
+            throw "Unknown file type. Expected a TWB or TWBX file extension."
+        }
+    }
+
+    end {
+        [System.Environment]::CurrentDirectory = $originalCurrentDirectory
+    }
+}
+</pre>
+
+<p>Let&rsquo;s try it out from PowerShell.</p>
+
+<p><code>Get-TableauWorkbookXml .\MyWorkbook.twb</code></p>
+
+<p>TWBX files are just as easy.</p>
+
+<p><code>Get-TableauWorkbookXml .\MyPackagedWorkbook.twbx</code></p>
+
+<p>Cool, right? How about opening a bunch of workbooks at once? This is PowerShell after all.</p>
+
+<p><code>Get-ChildItem *.twb* | Get-TableauWorkbookXml</code></p>
+
+<p>Continue the adventure with <a href="/2013/tableau-via-powershell-part-2-saving-changes/">Part 2: Saving Changes</a>.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/errorlevel-is-not-errorlevel/">ERRORLEVEL is not %ERRORLEVEL%</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-07-25 22:18:36 -0500 CDT" pubdate="pubdate">Thu, Jul 25, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/errorlevel-is-not-errorlevel/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/errorlevel-is-not-errorlevel/</span>
+            </a>
+        </p>
+    </header>
+
+    <p><strong>DO</strong> use <code>IF ERRORLEVEL 1 ECHO error level is 1 or more</code> to check for errors
+in your batch/command line scripts.</p>
+
+<p><strong>DO NOT</strong> use <code>IF %ERRORLEVEL% NEQ 0 ECHO error level is not equal to 0</code>.</p>
+
+<p>Most of the time <code>%ERRORLEVEL%</code> will be what you expect but it isn&rsquo;t guaranteed.
+<code>%ERRORLEVEL%</code> is simply an environment variable like any other. It just happens to fallback to returning the <code>ERRORLEVEL</code> value if an environment variable with that name isn&rsquo;t defined.</p>
+
+<p>This is how I lost about an hour of my morning. Fortunately Google guided me to <a href="http://blogs.msdn.com/b/oldnewthing/archive/2008/09/26/8965755.aspx">this excellent post</a> and saved
+my sanity.</p>
+
+<p>Remember <code>%ERRORLEVEL%</code> is not the same as <code>ERRORLEVEL</code>.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/first-steps-in-go-a-scoreboard-app/">First Steps in Go: A Scoreboard App</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-06-06 22:15:33 -0500 CDT" pubdate="pubdate">Thu, Jun 6, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/first-steps-in-go-a-scoreboard-app/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/first-steps-in-go-a-scoreboard-app/</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>Mostly I just read about new programming languages. Call it a hobby. Only once in awhile am I struck with enough interest to want to try something out on a real project. <a href="http://golang.org">Go</a> is the most recent of such interests. As someone who loves a lot about <a href="http://nodejs.org">Node.js</a>, I&rsquo;m looking forward to seeing how Go compares and whether it solves my Node and JavaScript pain points.</p>
+
+<p><strong>Scores</strong> is my first app in Go. It is a very simple scoreboard app for &ldquo;tracking personal records between friends&rdquo;. You define a record like &ldquo;max push-ups&rdquo; and you create a scoreboard for it. The scoreboard is specific to your group of friends or &ldquo;team&rdquo;.</p>
+
+<p>You <a href="http://scores.zduck.com/test/push-ups">try out a test scoreboard</a> or dive in and <a href="http://scores.zduck.com">create your own board</a>.</p>
+
+<p><img src="s1.png" alt="Screenshot of test scoreboard" /></p>
+
+<p>Anyone with the URL of your scoreboard can post scores. Only the top 10 scores are kept. Obviously it is wide open to trolls so you probably won&rsquo;t want to share your scoreboard URL publicly.</p>
+
+<p><img src="s2.png" alt="Screenshot of scores homepage" /></p>
+
+<p>I think this is a pretty fun and useful app and I&rsquo;d love to know what you think! Please take it for a run, invite your friends to compete with you for a high score.</p>
+
+<p><img src="s3.png" alt="Screenshot of empty scoreboard" /></p>
+
+<p>If it gains some interest then my plan is to keep this running and improve the code overtime as I learn more Go. Honestly, the improvement part will probably happen regardless. The primary goal of this project is to try out Go in a real app and I&rsquo;ve already got a laundry list of things to improve.</p>
+
+<p>I encourage you to <a href="http://github.com/jpoehls/scores">read the source</a> and comment. <strong>Please, do not take this as a great example of idiomatic Go code.</strong> This is a work in process from someone learning the language. Take it as such.</p>
+
+<h2 id="why-go">Why Go?</h2>
+
+<p>You may be curious about what attracted me to Go. It is a very simple language. In a way, it was designed to have a lack of features rather than an abundance. While many languages take the stance that giving the developer more ways to do something makes their job easier, Go says this is wrong. Less is more. More features introduce disparate coding styles and make it difficult to maintain consistency. You can look at 2 or 10 different projects in some languages and feel, largely, like you are reading 2 or 10 different languages simple due to style changes or which features of the language the APIs are designed around.</p>
+
+<p>In short, Go was designed to make developer&rsquo;s quality of life better. Clearer code, faster builds, great tooling.</p>
+
+<p>I&rsquo;m a sucker for simplicity and I&rsquo;m a big sucker for great tooling. Developer tooling is a passion of mine and Go has made this a top priority. Built-in <a href="http://blog.golang.org/profiling-go-programs">memory and CPU profiler</a>, <a href="http://golang.org/doc/articles/race_detector.html">deadlock and race detection</a>, <a href="http://golang.org/doc/articles/godoc_documenting_go_code.html">documentation generator</a> that supports <a href="http://golang.org/pkg/strings/#Split">executable example code</a>, built-in <a href="http://golang.org/pkg/testing/">testing and benchmarking</a>, a Go language <a href="http://golang.org/pkg/go/">parser and lexer in the standard library</a>; these things excite me.</p>
+
+<p>I&rsquo;m not going to elaborate more on Go because, honestly, I&rsquo;m a total noob. I&rsquo;ve been following the project for awhile but only started writing code recently and am just now working on an actual app. Thus, my opinions on the language and its benefits over the long-haul are very weak. Try it for yourself and make your own opinions.</p>
+
+<p>If this sounds interesting to you then I encourage you to watch a couple of videos to get a feel for the philosophy and tooling of Go.</p>
+
+<ul>
+<li><a href="https://vimeo.com/53221558">Go: a simple programming environment</a> - Andrew Gerrand, November 2012</li>
+<li><a href="http://www.infoq.com/presentations/Go-Google">Go at Google</a> - Rob Pike, October 2012</li>
+</ul>
+
+<p>So, what do you think of Go? Let me know! And don&rsquo;t forget to <a href="http://scores.zduck.com">create a scoreboard</a> and let me know what you think of that as well!</p>
 
 
 </article>

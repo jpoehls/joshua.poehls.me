@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thoughts</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2013/benchmarking-scripts-and-programs-with-powershell/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.59.0" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='///fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/benchmarking-scripts-and-programs-with-powershell/">Benchmarking scripts and programs with PowerShell</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-01-24 21:23:08 -0500 -0500" pubdate="pubdate">Thu, Jan 24, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/benchmarking-scripts-and-programs-with-powershell/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/benchmarking-scripts-and-programs-with-powershell/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>UNIX has the <code>time</code> command that will measure the execution time of a program. Timings are returned for the wall clock and CPU time. It looks something like this.</p>
+
+<pre>
+<b>$</b> time ping google.com -c 1
+<span class="comment">PING google.com (74.125.225.232) 56(84) bytes of data.
+64 bytes from dfw06s26-in-f8.1e100.net (74.125.225.232): icmp_req=1 ttl=54 time=19.7 ms
+
+--- google.com ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 19.767/19.767/19.767/0.000ms</span>
+
+real   0m0.173s
+user   0m0.010s
+sys    0m0.100s
+</pre>
+
+<p>The <code>real</code>, <code>user</code>, and <code>sys</code> information at the end is the output from <code>time</code>. StackOverflow has a <a href="http://stackoverflow.com/questions/556405/what-do-real-user-and-sys-mean-in-the-output-of-time1/556411#556411">great explanation</a> of what those values mean.</p>
+
+<p>PowerShell&rsquo;s equivalent of <code>time</code> is <code>Measure-Command</code>. Unfortunately it only measures wall clock time. It also swallows the output of the command you are measuring.</p>
+
+<pre>
+<b>PS&gt;</b> Measure-Command { ping google.com -n 1 }
+Days              : 0
+Hours             : 0
+Minutes           : 0
+Seconds           : 0
+Milliseconds      : 282
+Ticks             : 2822765
+TotalDays         : 3.26708912037037E-06
+TotalHours        : 7.84101388888889E-05
+TotalMinutes      : 0.00470460833333333
+TotalSeconds      : 0.2822765
+TotalMilliseconds : 282.2765
+</pre>
+
+<p>You might prefer calling <code>ToString()</code> on the result to make it more readable.</p>
+
+<pre>
+<b>PS&gt;</b> (Measure-Command { ping google.com -n 1 }).ToString()
+00:00:00.2822765
+</pre>
+
+<p>One thing that <code>time</code> and <code>Measure-Command</code> have in common is that neither of them is well suited to benchmarking. That is, running the same command multiple times and providing statistics on the timings of those runs.</p>
+
+<p>Enter <code>Benchmark-Command</code>. This PowerShell function does exactly that.</p>
+
+<pre>
+<b>PS&gt;</b> Benchmark-Command { ping google.com -n 1 } -Samples 3
+<span class="comment">Pinging google.com [74.125.225.226] with 32 bytes of data:
+Reply from 74.125.225.226: bytes=32 time=20ms TTL=54
+
+Ping statistics for 74.125.225.226:
+    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 20ms, Maximum = 20ms, Average = 20ms
+
+Pinging google.com [74.125.225.226] with 32 bytes of data:
+Reply from 74.125.225.226: bytes=32 time=17ms TTL=54
+
+Ping statistics for 74.125.225.226:
+    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 17ms, Maximum = 17ms, Average = 17ms
+
+Pinging google.com [74.125.225.226] with 32 bytes of data:
+Reply from 74.125.225.226: bytes=32 time=18ms TTL=54
+
+Ping statistics for 74.125.225.226:
+    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 18ms, Maximum = 18ms, Average = 18ms</span>
+
+Avg: 56.2542ms
+Min: 49.542ms
+Max: 66.7821ms
+</pre>
+
+<p>We can also swallow the command output if we want a more minimal display. This is very useful when taking a higher number of samples.</p>
+
+<pre>
+<b>PS&gt;</b> Benchmark-Command { ping -n 1 google.com } -Samples 50 -Silent
+..................................................
+Avg: 46.9643ms
+Min: 39.887ms
+Max: 74.8587ms
+</pre>
+
+<p>Import this in your profile and alias it to <code>time</code> and you get a nice counterpart to UNIX&rsquo;s <code>time</code> command with a few more bells and whistles.</p>
+
+<pre data-language="powershell">
+# Microsoft.PowerShell_profile.ps1
+
+Import-Module benchmark.psm1
+Set-Alias time Benchmark-Command
+</pre>
+
+<pre data-language="powershell">
+# benchmark.psm1
+# Exports: Benchmark-Command
+
+function Benchmark-Command ([ScriptBlock]$Expression, [int]$Samples = 1, [Switch]$Silent, [Switch]$Long) {
+&lt;#
+.SYNOPSIS
+  Runs the given script block and returns the execution duration.
+  Hat tip to StackOverflow. http://stackoverflow.com/questions/3513650/timing-a-commands-execution-in-powershell
+  
+.EXAMPLE
+  Benchmark-Command { ping -n 1 google.com }
+#&gt;
+  $timings = @()
+  do {
+    $sw = New-Object Diagnostics.Stopwatch
+    if ($Silent) {
+      $sw.Start()
+      $null = &amp; $Expression
+      $sw.Stop()
+      Write-Host "." -NoNewLine
+    }
+    else {
+      $sw.Start()
+      &amp; $Expression
+      $sw.Stop()
+    }
+    $timings += $sw.Elapsed
+    
+    $Samples--
+  }
+  while ($Samples -gt 0)
+  
+  Write-Host
+  
+  $stats = $timings | Measure-Object -Average -Minimum -Maximum -Property Ticks
+  
+  # Print the full timespan if the $Long switch was given.
+  if ($Long) {  
+    Write-Host "Avg: $((New-Object System.TimeSpan $stats.Average).ToString())"
+    Write-Host "Min: $((New-Object System.TimeSpan $stats.Minimum).ToString())"
+    Write-Host "Max: $((New-Object System.TimeSpan $stats.Maximum).ToString())"
+  }
+  else {
+    # Otherwise just print the milliseconds which is easier to read.
+    Write-Host "Avg: $((New-Object System.TimeSpan $stats.Average).TotalMilliseconds)ms"
+    Write-Host "Min: $((New-Object System.TimeSpan $stats.Minimum).TotalMilliseconds)ms"
+    Write-Host "Max: $((New-Object System.TimeSpan $stats.Maximum).TotalMilliseconds)ms"
+  }
+}
+
+Export-ModuleMember Benchmark-Command
+</pre>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

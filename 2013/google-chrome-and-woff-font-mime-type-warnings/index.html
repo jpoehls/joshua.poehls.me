@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thoughts</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2013/google-chrome-and-woff-font-mime-type-warnings/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.59.0" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='///fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/google-chrome-and-woff-font-mime-type-warnings/">Google Chrome and WOFF font MIME type warnings</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-03-15 22:00:31 -0500 CDT" pubdate="pubdate">Fri, Mar 15, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/google-chrome-and-woff-font-mime-type-warnings/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/google-chrome-and-woff-font-mime-type-warnings/</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>If you are getting warnings like <strong>Resource interpreted as Font but transferred with MIME type font/x-woff</strong> in Google Chrome then it means your web server is serving the font with the wrong MIME type.</p>
+
+<p>It took awhile for the WOFF font format to get an approved MIME type so there are several variations hanging around.</p>
+
+<ul>
+<li><code>font/x-woff</code></li>
+<li><code>font/woff</code></li>
+<li><code>application/x-font-woff</code></li>
+</ul>
+
+<p>Thank God an official type <a href="http://www.w3.org/TR/WOFF/#appendix-b">was finally decided on</a>, <code>application/font-woff</code>.</p>
+
+<p>Unfortunately, Google Chrome (as of 26 beta) still expects you to use <code>application/x-font-woff</code> and doesn&rsquo;t recognize <code>application/font-woff</code> as a valid MIME type. This <a href="https://bugs.webkit.org/show_bug.cgi?id=111418">has been fixed</a> in the WebKit trunk but hasn&rsquo;t been merged into Chrome yet. The <a href="https://code.google.com/p/chromium/issues/detail?id=178823">Chromium bug report</a> has been closed so it should be coming soon.</p>
+
+<p>Until it is merged into a Chrome release you have a couple of options.</p>
+
+<ol>
+<li>You can switch to <code>application/x-font-woff</code> which will fix the Chrome warnings but isn&rsquo;t the approved MIME type. You&rsquo;ll need to change it again later.</li>
+<li>You can switch to <code>application/font-woff</code> which will continue to cause warnings in Chrome but is the approved MIME type. Obviously the warnings will go away once the WebKit fix has been merged into Chrome but this will take a few months to make it into a release.</li>
+</ol>
+
+<p>Since the warnings are only annoying I would recommend switching to the approved MIME type right away. The warnings will resolve themselves in time.</p>
+
+<h3 id="iis-express">IIS Express</h3>
+
+<p>The steps to fix this will vary by web server but for IIS Express this is how you&rsquo;d do it.</p>
+
+<ol>
+<li>Open <code>~/Documents/IISExpress/config/applicationhost.config</code></li>
+<li>Search for <strong>&rdquo;.woff&rdquo;</strong> and you&rsquo;ll find a line like this:<br />
+<code>&lt;mimeMap fileExtension=&quot;.woff&quot; mimeType=&quot;font/x-woff&quot; /&gt;</code></li>
+<li>Change <strong>mimeType</strong> to <code>application/font-woff</code><br />
+<code>&lt;mimeMap fileExtension=&quot;.woff&quot; mimeType=&quot;application/font-woff&quot; /&gt;</code></li>
+<li>Restart your IIS Express site.</li>
+</ol>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thoughts</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/post/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.59.0" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='///fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	<section id="posts">
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/benchmarking-scripts-and-programs-with-powershell/">Benchmarking scripts and programs with PowerShell</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-01-24 21:23:08 -0500 -0500" pubdate="pubdate">Thu, Jan 24, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/benchmarking-scripts-and-programs-with-powershell/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/benchmarking-scripts-and-programs-with-powershell/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>UNIX has the <code>time</code> command that will measure the execution time of a program. Timings are returned for the wall clock and CPU time. It looks something like this.</p>
+
+<pre>
+<b>$</b> time ping google.com -c 1
+<span class="comment">PING google.com (74.125.225.232) 56(84) bytes of data.
+64 bytes from dfw06s26-in-f8.1e100.net (74.125.225.232): icmp_req=1 ttl=54 time=19.7 ms
+
+--- google.com ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 19.767/19.767/19.767/0.000ms</span>
+
+real   0m0.173s
+user   0m0.010s
+sys    0m0.100s
+</pre>
+
+<p>The <code>real</code>, <code>user</code>, and <code>sys</code> information at the end is the output from <code>time</code>. StackOverflow has a <a href="http://stackoverflow.com/questions/556405/what-do-real-user-and-sys-mean-in-the-output-of-time1/556411#556411">great explanation</a> of what those values mean.</p>
+
+<p>PowerShell&rsquo;s equivalent of <code>time</code> is <code>Measure-Command</code>. Unfortunately it only measures wall clock time. It also swallows the output of the command you are measuring.</p>
+
+<pre>
+<b>PS&gt;</b> Measure-Command { ping google.com -n 1 }
+Days              : 0
+Hours             : 0
+Minutes           : 0
+Seconds           : 0
+Milliseconds      : 282
+Ticks             : 2822765
+TotalDays         : 3.26708912037037E-06
+TotalHours        : 7.84101388888889E-05
+TotalMinutes      : 0.00470460833333333
+TotalSeconds      : 0.2822765
+TotalMilliseconds : 282.2765
+</pre>
+
+<p>You might prefer calling <code>ToString()</code> on the result to make it more readable.</p>
+
+<pre>
+<b>PS&gt;</b> (Measure-Command { ping google.com -n 1 }).ToString()
+00:00:00.2822765
+</pre>
+
+<p>One thing that <code>time</code> and <code>Measure-Command</code> have in common is that neither of them is well suited to benchmarking. That is, running the same command multiple times and providing statistics on the timings of those runs.</p>
+
+<p>Enter <code>Benchmark-Command</code>. This PowerShell function does exactly that.</p>
+
+<pre>
+<b>PS&gt;</b> Benchmark-Command { ping google.com -n 1 } -Samples 3
+<span class="comment">Pinging google.com [74.125.225.226] with 32 bytes of data:
+Reply from 74.125.225.226: bytes=32 time=20ms TTL=54
+
+Ping statistics for 74.125.225.226:
+    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 20ms, Maximum = 20ms, Average = 20ms
+
+Pinging google.com [74.125.225.226] with 32 bytes of data:
+Reply from 74.125.225.226: bytes=32 time=17ms TTL=54
+
+Ping statistics for 74.125.225.226:
+    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 17ms, Maximum = 17ms, Average = 17ms
+
+Pinging google.com [74.125.225.226] with 32 bytes of data:
+Reply from 74.125.225.226: bytes=32 time=18ms TTL=54
+
+Ping statistics for 74.125.225.226:
+    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 18ms, Maximum = 18ms, Average = 18ms</span>
+
+Avg: 56.2542ms
+Min: 49.542ms
+Max: 66.7821ms
+</pre>
+
+<p>We can also swallow the command output if we want a more minimal display. This is very useful when taking a higher number of samples.</p>
+
+<pre>
+<b>PS&gt;</b> Benchmark-Command { ping -n 1 google.com } -Samples 50 -Silent
+..................................................
+Avg: 46.9643ms
+Min: 39.887ms
+Max: 74.8587ms
+</pre>
+
+<p>Import this in your profile and alias it to <code>time</code> and you get a nice counterpart to UNIX&rsquo;s <code>time</code> command with a few more bells and whistles.</p>
+
+<pre data-language="powershell">
+# Microsoft.PowerShell_profile.ps1
+
+Import-Module benchmark.psm1
+Set-Alias time Benchmark-Command
+</pre>
+
+<pre data-language="powershell">
+# benchmark.psm1
+# Exports: Benchmark-Command
+
+function Benchmark-Command ([ScriptBlock]$Expression, [int]$Samples = 1, [Switch]$Silent, [Switch]$Long) {
+&lt;#
+.SYNOPSIS
+  Runs the given script block and returns the execution duration.
+  Hat tip to StackOverflow. http://stackoverflow.com/questions/3513650/timing-a-commands-execution-in-powershell
+  
+.EXAMPLE
+  Benchmark-Command { ping -n 1 google.com }
+#&gt;
+  $timings = @()
+  do {
+    $sw = New-Object Diagnostics.Stopwatch
+    if ($Silent) {
+      $sw.Start()
+      $null = &amp; $Expression
+      $sw.Stop()
+      Write-Host "." -NoNewLine
+    }
+    else {
+      $sw.Start()
+      &amp; $Expression
+      $sw.Stop()
+    }
+    $timings += $sw.Elapsed
+    
+    $Samples--
+  }
+  while ($Samples -gt 0)
+  
+  Write-Host
+  
+  $stats = $timings | Measure-Object -Average -Minimum -Maximum -Property Ticks
+  
+  # Print the full timespan if the $Long switch was given.
+  if ($Long) {  
+    Write-Host "Avg: $((New-Object System.TimeSpan $stats.Average).ToString())"
+    Write-Host "Min: $((New-Object System.TimeSpan $stats.Minimum).ToString())"
+    Write-Host "Max: $((New-Object System.TimeSpan $stats.Maximum).ToString())"
+  }
+  else {
+    # Otherwise just print the milliseconds which is easier to read.
+    Write-Host "Avg: $((New-Object System.TimeSpan $stats.Average).TotalMilliseconds)ms"
+    Write-Host "Min: $((New-Object System.TimeSpan $stats.Minimum).TotalMilliseconds)ms"
+    Write-Host "Max: $((New-Object System.TimeSpan $stats.Maximum).TotalMilliseconds)ms"
+  }
+}
+
+Export-ModuleMember Benchmark-Command
+</pre>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/an-mklink-powershell-module/">An MKLINK PowerShell Module</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-01-22 21:07:03 -0500 -0500" pubdate="pubdate">Tue, Jan 22, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/an-mklink-powershell-module/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/an-mklink-powershell-module/</span>
+            </a>
+        </p>
+    </header>
+
+    <p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">MKLINK</a> is a very useful utility on Windows. Unfortunately there aren&rsquo;t any native PowerShell functions that replace it so we still have to shell out to the command prompt.</p>
+
+<p>This can be made less painful with a helper function that will pipe all arguments to the MKLINK command.</p>
+
+<pre><code class="language-powershell">function mklink { cmd /c mklink $args }
+</code></pre>
+
+<p>Personally though, I prefer to use native PowerShell functions whenever possible so I put together a module that provides wrappers for the key functionality of MKLINK.</p>
+
+<p>Usage looks like this:</p>
+
+<pre>
+<b>New-Symlink</b> &lt;link_path&gt; &lt;target_path&gt; &lt;force?&gt;
+<b>New-Hardlink</b> &lt;link_path&gt; &lt;target_path&gt; &lt;force?&gt;
+<b>New-Junction</b> &lt;link_path&gt; &lt;target_path&gt; &lt;force?&gt;
+<b>mklink</b> &lt;args&gt; <i># raw pipe to mklink</i>
+</pre>
+
+<p>Import this module in your profile and you&rsquo;ll have it whenever you need it.</p>
+
+<pre><code class="language-powershell"># Microsoft.PowerShell_profile.ps1
+
+Import-Module mklink.psm1
+</code></pre>
+
+<pre><code class="language-powershell"># mklink.psm1
+# Exports: New-Symlink, New-Hardlink, New-Junction, mklink
+
+function Force-Resolve-Path {
+    &lt;#
+    .SYNOPSIS
+        Calls Resolve-Path but works for files that don't exist.
+    .REMARKS
+        From http://devhawk.net/2010/01/21/fixing-powershells-busted-resolve-path-cmdlet/
+    #&gt;
+    param (
+        [string] $FileName
+    )
+    
+    $FileName = Resolve-Path $FileName -ErrorAction SilentlyContinue `
+                                       -ErrorVariable _frperror
+    if (-not($FileName)) {
+        $FileName = $_frperror[0].TargetObject
+    }
+    
+    return $FileName
+}
+
+function New-Symlink {
+    &lt;#
+    .SYNOPSIS
+        Creates a symbolic link.
+    #&gt;
+    param (
+        [Parameter(Position=0, Mandatory=$true)]
+        [string] $Link,
+        [Parameter(Position=1, Mandatory=$true)]
+        [string] $Target,
+        [Parameter(Position=2)]
+        [switch] $Force
+    )
+
+    Invoke-MKLINK -Link $Link -Target $Target -Symlink -Force $Force
+}
+
+function New-Hardlink {
+    &lt;#
+    .SYNOPSIS
+        Creates a hard link.
+    #&gt;
+    param (
+        [Parameter(Position=0, Mandatory=$true)]
+        [string] $Link,
+        [Parameter(Position=1, Mandatory=$true)]
+        [string] $Target,
+        [Parameter(Position=2)]
+        [switch] $Force
+    )
+
+    Invoke-MKLINK -Link $Link -Target $Target -HardLink -Force $Force
+}
+
+function New-Junction {
+    &lt;#
+    .SYNOPSIS
+        Creates a directory junction.
+    #&gt;
+    param (
+        [Parameter(Position=0, Mandatory=$true)]
+        [string] $Link,
+        [Parameter(Position=1, Mandatory=$true)]
+        [string] $Target,
+        [Parameter(Position=2)]
+        [switch] $Force
+    )
+
+    Invoke-MKLINK -Link $Link -Target $Target -Junction -Force $Force
+}
+
+function Invoke-MKLINK {
+    &lt;#
+    .SYNOPSIS
+        Creates a symbolic link, hard link, or directory junction.
+    #&gt;
+    [CmdletBinding(DefaultParameterSetName = &quot;Symlink&quot;)]
+    param (
+        [Parameter(Position=0, Mandatory=$true)]
+        [string] $Link,
+        [Parameter(Position=1, Mandatory=$true)]
+        [string] $Target,
+
+        [Parameter(ParameterSetName = &quot;Symlink&quot;)]
+        [switch] $Symlink = $true,
+        [Parameter(ParameterSetName = &quot;HardLink&quot;)]
+        [switch] $HardLink,
+        [Parameter(ParameterSetName = &quot;Junction&quot;)]
+        [switch] $Junction,
+        [Parameter()]
+        [bool] $Force
+    )
+    
+    # Resolve the paths incase a relative path was passed in.
+    $Link = (Force-Resolve-Path $Link)
+    $Target = (Force-Resolve-Path $Target)
+
+    # Ensure target exists.
+    if (-not(Test-Path $Target)) {
+        throw &quot;Target does not exist.`nTarget: $Target&quot;
+    }
+
+    # Ensure link does not exist.
+    if (Test-Path $Link) {
+        if ($Force) {
+            Remove-Item $Link -Recurse -Force
+        }
+        else {
+            throw &quot;A file or directory already exists at the link path.`nLink: $Link&quot;
+        }
+    }
+
+    $isDirectory = (Get-Item $Target).PSIsContainer
+    $mklinkArg = &quot;&quot;
+
+    if ($Symlink -and $isDirectory) {
+        $mkLinkArg = &quot;/D&quot;
+    }
+
+    if ($Junction) {
+        # Ensure we are linking a directory. (Junctions don't work for files.)
+        if (-not($isDirectory)) {
+            throw &quot;The target is a file. Junctions cannot be created for files.`nTarget: $Target&quot;
+        }
+
+        $mklinkArg = &quot;/J&quot;
+    }
+
+    if ($HardLink) {
+        # Ensure we are linking a file. (Hard links don't work for directories.)
+        if ($isDirectory) {
+            throw &quot;The target is a directory. Hard links cannot be created for directories.`nTarget: $Target&quot;
+        }
+
+        $mkLinkArg = &quot;/H&quot;
+    }
+
+    # Capture the MKLINK output so we can return it properly.
+    # Includes a redirect of STDERR to STDOUT so we can capture it as well.
+    $output = cmd /c mklink $mkLinkArg `&quot;$Link`&quot; `&quot;$Target`&quot; 2&gt;&amp;1
+
+    if ($lastExitCode -ne 0) {
+        throw &quot;MKLINK failed. Exit code: $lastExitCode`n$output&quot;
+    }
+    else {
+        Write-Output $output
+    }
+}
+
+function mklink {
+    &lt;#
+    .SYNOPSIS
+        Helper function for calling mklink directly.
+        All arguments are piped through to mklink.
+        
+        Hat tip to http://stackoverflow.com/questions/894430/powershell-hard-and-soft-links#comment9823010_5549583
+    #&gt;
+    cmd /c mklink $args
+}
+
+Export-ModuleMember New-Symlink, New-Hardlink, New-Junction, mklink
+</code></pre>
+
+<p>I&rsquo;ve heard it rumored that the <a href="http://pscx.codeplex.com/">PowerShell Community Extensions</a> project has a lot of these functions as well, and more. It might be worth looking into if you want a more robust solution.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/">Killing Processes In Disconnected Terminal Service Sessions</a>
+            
+        </h1>
+        <p>
+            <time datetime="2012-12-12 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Dec 12, 2012</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Usually it is best to configure your terminal service policy to log out disconnected sessions, however there may be cases where you only want to kill specific applications when the user disconnects.</p>
+
+<p>This is easy to do with a PowerShell script that you run periodically as a scheduled task. The processes won&rsquo;t be killed <em>immediately</em> when the user disconnects but will be killed shortly after.</p>
+
+<p>This script will, by default, only kill the OUTLOOK processes in disconnected sessions after waiting 15 seconds for it to gracefully close. It is trivial to tweak the script to kill whichever processes you care about.</p>
+
+<pre><code># kill-processes.ps1
+
+# This script supports being run with -WhatIf and -Confirm parameters.
+[CmdletBinding(SupportsShouldProcess=$true, ConfirmImpact='Medium')]
+param (
+    # Regex of the states that should be included in the process killing field.
+    [string]$IncludeStates = '^(Disc)$', # Only DISCONNECTED sessions by default.
+    # Regex of the processes to kill
+    [string]$KillProcesses = '^(OUTLOOK)$', # Only OUTLOOK by default.
+    [int]$GracefulTimeout = 15 # Number of seconds to wait for a graceful shutdown before forcefully closing the program.
+)
+
+function Get-Sessions
+{
+    # `query session` is the same as `qwinsta`
+
+    # `query session`: http://technet.microsoft.com/en-us/library/cc785434(v=ws.10).aspx
+
+    # Possible session states:
+    &lt;#
+    http://support.microsoft.com/kb/186592
+    Active. The session is connected and active.
+    Conn.   The session is connected. No user is logged on.
+    ConnQ.  The session is in the process of connecting. If this state
+            continues, it indicates a problem with the connection.
+    Shadow. The session is shadowing another session.
+    Listen. The session is ready to accept a client connection.
+    Disc.   The session is disconnected.
+    Idle.   The session is initialized.
+    Down.   The session is down, indicating the session failed to initialize correctly.
+    Init.   The session is initializing.
+    #&gt;
+
+    # Snippet from http://poshcode.org/3062
+    # Parses the output of `qwinsta` into PowerShell objects.
+    $c = query session 2&gt;&amp;1 | where {$_.gettype().equals([string]) }
+
+    $starters = New-Object psobject -Property @{&quot;SessionName&quot; = 0; &quot;Username&quot; = 0; &quot;ID&quot; = 0; &quot;State&quot; = 0; &quot;Type&quot; = 0; &quot;Device&quot; = 0;};
+     
+    foreach($line in $c) {
+         try {
+             if($line.trim().substring(0, $line.trim().indexof(&quot; &quot;)) -eq &quot;SESSIONNAME&quot;) {
+                $starters.Username = $line.indexof(&quot;USERNAME&quot;);
+                $starters.ID = $line.indexof(&quot;ID&quot;);
+                $starters.State = $line.indexof(&quot;STATE&quot;);
+                $starters.Type = $line.indexof(&quot;TYPE&quot;);
+                $starters.Device = $line.indexof(&quot;DEVICE&quot;);
+                continue;
+            }
+           
+            New-Object psobject -Property @{
+                &quot;SessionName&quot; = $line.trim().substring(0, $line.trim().indexof(&quot; &quot;)).trim(&quot;&gt;&quot;)
+                ;&quot;Username&quot; = $line.Substring($starters.Username, $line.IndexOf(&quot; &quot;, $starters.Username) - $starters.Username)
+                ;&quot;ID&quot; = $line.Substring($line.IndexOf(&quot; &quot;, $starters.Username), $starters.ID - $line.IndexOf(&quot; &quot;, $starters.Username) + 2).trim()
+                ;&quot;State&quot; = $line.Substring($starters.State, $line.IndexOf(&quot; &quot;, $starters.State)-$starters.State).trim()
+                ;&quot;Type&quot; = $line.Substring($starters.Type, $starters.Device - $starters.Type).trim()
+                ;&quot;Device&quot; = $line.Substring($starters.Device).trim()
+            }
+        } catch {
+            throw $_;
+            #$e = $_;
+            #Write-Error -Exception $e.Exception -Message $e.PSMessageDetails;
+        }
+    }
+}
+
+# Helper function for getting the singular or plural form of
+# a word based on the given count.
+# Because we want proper log messages.
+function Get-ProperWord([string]$singularWord, [int]$count) {
+    if ($count -eq 0 -or $count -gt 1) {
+        if ($singularWord.EndsWith(&quot;s&quot;)) {
+            return &quot;$($singularWord)es&quot;;
+        }
+        else {
+            return &quot;$($singularWord)s&quot;;
+        }
+    }
+    else {
+        return $singularWord;
+    }
+}
+
+# Get a list of all terminal sessions that are in the state we care about.
+$IncludedSessions = Get-Sessions `
+                        | Where { $_.State -match $IncludeStates } `
+                        | Select -ExpandProperty ID
+
+# Get a list of all processes in one of those terminal sessions
+# that match a process we want to kill.
+$SessionProcesses = $IncludedSessions `
+    | % { $id = $_;
+          Get-Process `
+            | Where { $_.SessionID -eq $id -and $_.Name -match $KillProcesses } }
+
+# Get some words to use in log output.
+$wordSecond = $(Get-ProperWord 'second' $GracefulTimeout)
+$wordProcess = $(Get-ProperWord 'process' $SessionProcesses.Length)
+
+if ($SessionProcesses.Length -gt 0) {
+    # Initiate a graceful shutdown of the processes.
+    # http://powershell.com/cs/blogs/tips/archive/2010/05/27/stopping-programs-gracefully.aspx
+    Write-Output &quot;Gracefully closing $($SessionProcesses.Length) $wordProcess&quot;
+    $SessionProcesses `
+        | % { if ($PSCmdlet.ShouldProcess(&quot;$($_.Name) ($($_.Id))&quot;, &quot;CloseMainWindow&quot;)) { $_.CloseMainWindow() } } `
+        | Out-Null
+
+    # Wait X seconds for the programs to close gracefully.
+    Write-Output &quot;Waiting $GracefulTimeout $wordSecond for the $wordProcess to close&quot;
+    if ($GracefulTimeout -gt 0) {
+        if ($PSCmdlet.ShouldProcess(&quot;Current Process&quot;, &quot;Start-Sleep&quot;)) {
+            Start-Sleep -Seconds $GracefulTimeout
+        }
+    }
+
+    # Force any remaining processes to close, the hard way.
+    Write-Output &quot;Forcefully closing any remaining processes&quot;
+    $SessionProcesses `
+        | Where { $_.HasExited -ne $true } `
+        | Stop-Process -ErrorAction SilentlyContinue
+}
+else {
+    Write-Output &quot;No processes to close&quot;
+}
+</code></pre>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2012/crime-rates-are-dropping/">Crime Rates Are Dropping</a>
+            
+        </h1>
+        <p>
+            <time datetime="2012-08-13 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Aug 13, 2012</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/crime-rates-are-dropping/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2012/crime-rates-are-dropping/</span>
+            </a>
+        </p>
+    </header>
+
+    
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load('visualization', '1', {packages: ['corechart']});
+    </script>
+
+    <p>We all know the news is biased. Media slants to the left or the right. Bias is natural
+    and very difficult to avoid.</p>
+
+    <p>I don't read the news much but the recent public shootings in Aurora, Colorado
+    and at the Sikh temple in Wisconsin have made my social media feeds flutter with the topic of gun control with
+    points from all sides.</p>
+
+    <p>Today I listened to <a href="http://www.dancarlin.com/disp.php/csarchive/Show-234---Aiming-for-Effectiveness/guns-shootings-firearms">an episode of Common Sense with Dan Carlin</a>, a podcast
+    that I occasionally listen to and always enjoy. He does a good job, in my opinion, of thinking
+    about situations from both sides of the fence.</p>
+
+    <p>Dan listed several statistics from the <ACRONYM title="Department of Justice">DOJ's</ACRONYM>
+    website. Some I expected, but a few caught me off guard.</p>
+
+    <p>As I said, media is slanted, we know this. So when I hear how our country is violent and things are
+    worse than ever, I figure it isn't nearly that bad. But, I do figure it is worse than it was <i>to
+    some degree</i>. Well the numbers don't seem to agree.</p>
+
+    <p>In fact, it would seem that this country has never been a safer place.</p>
+
+    <p>The chart above was just for 2005 and doesn't give you much for comparison. Here are the numbers for victims of all types of crime for 1993 and 2010. See for yourself.</p>
+
+    <script type="text/javascript">
+      function drawVisualization() {
+        // Create and populate the data table.
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Violent Victimization', 'Rape/Sexual Assault', 'Robbery', 'Aggravated Assault', 'Simple Assault', 'Property Victimization', 'Household Burglary', 'Motor Vehicle Theft', 'Theft'],
+          ['2003',  16822618,               898239,                1752667,   3481055,              10690657,         35093887,                 6378721,              1921179,               26793987],
+          ['2010',  4935983,                268574,                568510,    857751,               3241148,          15411610,                 3176181,              606991,                11628437]
+        ]);
+      
+        // Create and draw the visualization.
+        var ac = new google.visualization.ComboChart(document.getElementById('visualization'));
+        ac.draw(data, {
+          title : 'Bureau of Justice Statistics - Victimization by Type',
+          width: 600,
+          height: 400,
+          vAxis: {title: "Victims"},
+          hAxis: {title: "Year"},
+          seriesType: "bars",
+          series: {5: {type: "line"}}
+        });
+
+        document.getElementById('visualization').style.backgroundImage = 'none';
+      }
+      
+
+      google.setOnLoadCallback(drawVisualization);
+    </script>
+
+    <div id="visualization" style="width: 600px; height: 400px; background-image: url(/2012/08/crime-rates-are-dropping.png);"></div>
+
+    <p style="font-size: .8em;">Bureau of Justice Statistics.
+      Generated using the <a href="http://bjs.ojp.usdoj.gov/index.cfm?ty=nvat">NCVS Victimization Analysis Tool</a> at <a href="www.bjs.gov">www.bjs.gov</a>. 13-Aug-12
+    </p>
+
+    <p>This isn't an opinion or bias, just facts.
+        Crime is going down, not up. As of 2010, violent crime specifically was a mere 29% of what it was just 17 years prior. That is a massive drop.</p>
+
+    <p>I'm not saying that this is good enough, that we should stop trying. What I am saying is that things are a
+        heck of a lot better than they were.</p>
+
+    <p>I don't believe the solution to violence in America will be as simple as banning weapons. Just like
+        I wouldn't propose banning phones as a solution to the telling of lies. Medium is not cause. We need to be
+        more creative when trying to solve this problem.</p>
+
+    <table border="0" cellpadding="10" cellspacing="20" style="margin-top: 5em; font-size: .8em; font-family: courier new, courier;">
+      <caption>Raw data for the Bureau of Justice Statistics<br/>Victimization by Type</caption>
+      <tr>
+        <th>&nbsp;</th>
+        <th>1993</th>
+        <th>2010</th>
+      </tr>
+      <tr>
+        <td>Violent Victimization</td>
+        <td>16,822,618</td>
+        <td>4,935,983</td>
+      </tr>
+      <tr>
+        <td>Rape/Sexual Assault</td>
+        <td>898,239</td>
+        <td>268,574</td>
+      </tr>
+      <tr>
+        <td>Robbery</td>
+        <td>1,752,667</td>
+        <td>568,510</td>
+      </tr>
+      <tr>
+        <td>Aggravated Assault</td>
+        <td>3,481,055</td>
+        <td>857,751</td>
+      </tr>
+      <tr>
+        <td>Simple Assault</td>
+        <td>10,690,657</td>
+        <td>3,241,148</td>
+      </tr>
+      <tr>
+        <td>Property Victimization</td>
+        <td>35,093,887</td>
+        <td>15,411,610</td>
+      </tr>
+      <tr>
+        <td>Household Burglary</td>
+        <td>6,378,721</td>
+        <td>3,176,181</td>
+      </tr>
+      <tr>
+        <td>Motor Vehicle Theft</td>
+        <td>1,921,179</td>
+        <td>606,991</td>
+      </tr>
+      <tr>
+        <td>Theft</td>
+        <td>26,793,987</td>
+        <td>11,628,437</td>
+      </tr>
+    </table>
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2012/powershell-batch-files-exit-codes/">PowerShell, batch files, and exit codes. Recipes &amp; Secrets.</a>
+            
+        </h1>
+        <p>
+            <time datetime="2012-06-23 10:43:31 -0600 -0600" pubdate="pubdate">Sat, Jun 23, 2012</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/powershell-batch-files-exit-codes/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2012/powershell-batch-files-exit-codes/</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<h2 id="tl-dr">TL;DR;</h2>
+
+<blockquote>
+<p><strong>Update:</strong> If you want to save some time, skip reading this and just use my <a href="/powershell-script-boilerplate">PowerShell Script Boilerplate</a>. It includes an excellent batch file wrapper, argument escaping, and error code bubbling.</p>
+</blockquote>
+
+<p><code>PowerShell.exe</code> doesn&rsquo;t return correct exit codes when using the <code>-File</code> option. Use <code>-Command</code> instead. <em>(<a href="https://connect.microsoft.com/PowerShell/feedback/details/750653/powershell-exe-doesn-t-return-correct-exit-codes-when-using-the-file-option">Vote for this issue</a> on Microsoft Connect.)</em></p>
+
+<p><a href="#bat-wrapper">This</a> is a batch file wrapper for executing PowerShell scripts. It forwards arguments to PowerShell and correctly bubbles up the exit code (when it can).</p>
+
+<p><code>PowerShell.exe</code> still <a href="#command-parsererror">returns a passing (0) exit code when a <code>ParserError</code> is thrown</a>. Even when using <code>-Command</code>. I haven&rsquo;t found a workaround for this. <em>(<a href="https://connect.microsoft.com/PowerShell/feedback/details/750654/powershell-exe-returns-a-passing-0-exit-code-when-a-parsererror-is-thrown">Vote for this issue</a> on Microsoft Connect.)</em></p>
+
+<p>You can use <a href="#black-magic">black magic</a> to include spaces and quotes in the arguments you pass through the batch file wrapper to PowerShell.</p>
+
+<h2 id="powershell">PowerShell</h2>
+
+<p>PowerShell is a great scripting environment, and it is my preferred tool for writing build scripts for .NET apps. Exit codes are vital in build scripts because they are how your Continuous Integration server knows whether the build passed or failed.</p>
+
+<p>This is a <strike>quick</strike> tour of working with exit codes in PowerShell scripts and batch files. I&rsquo;m including batch files because they are often necessary to wrap the execution of your PowerShell scripts.</p>
+
+<p>Let&rsquo;s start easy. Say you need to run a command line app or batch file from your PowerShell script. How can you check the exit code of that process?</p>
+
+<pre><code># script.ps1
+
+cmd /C exit 1
+Write-Host $LastExitCode    # 1
+</code></pre>
+
+<p><code>$LastExitCode</code> is a special variable that holds the exit code of the last Windows based program that was run. So says <a href="http://technet.microsoft.com/en-us/library/dd347675.aspx">the documentation</a>.</p>
+
+<p>Remember though, <code>$LastExitCode</code> doesn&rsquo;t do squat for PowerShell commands. Use <code>$?</code> for that.</p>
+
+<pre><code># script.ps1
+
+Get-ChildItem &quot;C:\&quot;
+Write-Host $?    # True
+
+Get-ChildItem &quot;Z:\some\non-existant\path&quot;
+Write-Host $?    # False
+</code></pre>
+
+<p>Anytime you run an external command like this, you need to check the exit code and throw an exception if needed. Otherwise the PowerShell script will keep right on trucking after a failure.</p>
+
+<pre><code># script.ps1
+
+cmd /C exit 1
+if ($LastExitCode -ne 0) {
+    throw &quot;Command failed with exit code $LastExitCode.&quot;
+}
+Write-Host &quot;You'll never see this.&quot;
+</code></pre>
+
+<p>Writing these assertions all the time will get old. Fortunately you can use a helper function, like this one found in the <a href="http://github.com/psake/psake">excellent psake project</a>.</p>
+
+<pre><code># script.ps1
+
+function Exec
+{
+    [CmdletBinding()]
+    param (
+        [Parameter(Position=0, Mandatory=1)]
+        [scriptblock]$Command,
+        [Parameter(Position=1, Mandatory=0)]
+        [string]$ErrorMessage = &quot;Execution of command failed.`n$Command&quot;
+    )
+    &amp; $Command
+    if ($LastExitCode -ne 0) {
+        throw &quot;Exec: $ErrorMessage&quot;
+    }
+}
+
+Exec { cmd /C exit 1 }
+Write-Host &quot;You'll never see this.&quot;
+</code></pre>
+
+<h3 id="throwing-exit-codes">Throwing &amp; exit codes</h3>
+
+<p>The <code>throw</code> keyword is how you generate a terminating error in PowerShell. It will, sometimes, cause your PowerShell script to return a failing exit code (1). Wait, when does it <em>not</em> cause a failing exit code, you ask? This is where PowerShell&rsquo;s warts start to show. Let me demonstrate some scenarios.</p>
+
+<pre><code># broken.ps1
+
+throw &quot;I'm broken&quot;
+</code></pre>
+
+<p><em>From the PowerShell command prompt:</em></p>
+
+<pre><code>PS&gt; .\broken.ps1
+<span style="color: red;">I'm broken.
+At C:\broken.ps1:1 char:6
++ throw &lt;&lt;&lt;&lt;  "I'm broken."
+    + CategoryInfo          : OperationStopped: (I'm broken.:String) [], RuntimeException
+    + FullyQualifiedErrorId : I'm broken.</span>
+    
+PS&gt; $LastExitCode
+1</code></pre>
+
+<p><em>From the Windows command prompt:</em></p>
+
+<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted -Command ".\broken.ps1"
+<span style="color: red;">I'm broken.
+At C:\broken.ps1:1 char:6
++ throw &lt;&lt;&lt;&lt;  "I'm broken."
+    + CategoryInfo          : OperationStopped: (I'm broken.:String) [], RuntimeException
+    + FullyQualifiedErrorId : I'm broken.</span>
+    
+&gt; echo %errorlevel%
+1</code></pre>
+
+<p>That worked, too. Good.</p>
+
+<p><em>Again, from the Windows command prompt:</em></p>
+
+<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted <b>-File</b> ".\broken.ps1"
+<span style="color: red;">I'm broken.
+At C:\broken.ps1:1 char:6
++ throw &lt;&lt;&lt;&lt;  "I'm broken."
+    + CategoryInfo          : OperationStopped: (I'm broken.:String) [], RuntimeException
+    + FullyQualifiedErrorId : I'm broken.</span>
+
+&gt; echo %errorlevel%
+0</code></pre>
+
+<p>Whoa! We still saw the error, but PowerShell returned a passing exit code. What the heck?! Yes, this is the wart.</p>
+
+<h3 id="a-workaround-for-file">A workaround for <code>-File</code></h3>
+
+<p><code>-File</code> allows you to pass in a script for PowerShell to execute, however terminating errors in the script will not cause PowerShell to return a failing exit code. I have no idea why this is the case. If you know why, please share!</p>
+
+<p>A workaround is to add a <code>trap</code> statement to the top of your PowerShell script. (Thanks, Chris Oldwood, for <a href="http://chrisoldwood.blogspot.com/2011/05/powershell-throwing-exceptions-exit.html">pointing this out</a>!)</p>
+
+<pre><code># broken.ps1
+
+trap
+{
+    Write-Error $_
+    exit 1
+}
+throw &quot;I'm broken.&quot;
+</code></pre>
+
+<p><em>From the Windows command prompt:</em></p>
+
+<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted <b>-File</b> ".\script.ps1"
+<span style="color: red;">C:\broken.ps1 : I'm broken.
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
+    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,broken.ps1</span>
+
+&gt; echo %errorlevel%
+1</code></pre>  
+
+<p>Notice that we got the correct exit code this time, but our error output didn&rsquo;t include as much detail. Specifically, we didn&rsquo;t get the line number of the error like we were getting in the previous tests. So it isn&rsquo;t a perfect workaround.</p>
+
+<p><strong>Remember.</strong> Use <code>-Command</code> instead of <code>-File</code> whenever possible. If for some reason you must use <code>-File</code> or your script needs to support being run that way, then use the trap workaround above.</p>
+
+<p><a id="command-parsererror"> </a></p>
+
+<h3 id="command-can-still-fail"><code>-Command</code> can still fail</h3>
+
+<p>I&rsquo;ve discovered that PowerShell will still exit with a success code (0) when a <code>ParserError</code> is thrown. Even when using <code>-Command</code>.</p>
+
+<p><em>From the Windows command prompt:</em></p>
+
+<pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -Command "Write-Host 'You will never see this.'" <b>"\"</b>
+<span style="color: red;">The string starting:
+At line:1 char:39
++ Write-Host 'You will never see this.'  &lt;&lt;&lt;&lt; "
+is missing the terminator: ".
+At line:1 char:40
++ Write-Host 'You will never see this.' " &lt;&lt;&lt;&lt;
+    + CategoryInfo          : <b>ParserError</b>: (:String) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : TerminatorExpectedAtEndOfString</span>
+
+&gt; echo %errorlevel%
+0</code></pre>
+
+<p>I&rsquo;m not aware of any workaround for this behavior. This is very disturbing, because these parser errors can be caused by arguments (as I demonstrated above). This means there is no way to guarantee your script will exit with the correct code when it fails.</p>
+
+<p><em>Note: This was tested in PowerShell v2, on Windows 7 (x64).</em></p>
+
+<p>There are <a href="https://connect.microsoft.com/PowerShell/feedback/details/637113/powershell-command-line-exit-codes-inconsistency">other</a> <a href="https://connect.microsoft.com/PowerShell/feedback/details/638771/powershell-return-code-and-parameters">known</a> bugs with PowerShell&rsquo;s exit codes. Beware.</p>
+
+<h2 id="batch-files">Batch files</h2>
+
+<p>I mentioned early on that it is often necessary to wrap the execution of your PowerShell script in a batch file. Some common reasons for this might be:</p>
+
+<ul>
+<li>You want users of your script to be able to double-click to run it.</li>
+<li>Your build runner doesn&rsquo;t support execution of PowerShell scripts directly.</li>
+</ul>
+
+<p>Whatever the reason, writing a batch file wrapper for a PowerShell script is easy. You just need to make sure that your batch file properly returns the exit code from PowerShell. Otherwise, your PowerShell script might fail and your batch file would return a successful exit code (0).</p>
+
+<p><a id="bat-wrapper"> </a></p>
+
+<p><del>This is a safe template for you to use. Bookmark it.</del></p>
+
+<blockquote>
+<p><strong>Update:</strong> I&rsquo;ve created a <em>much</em> better batch file wrapper for my PowerShell scripts. I recommend you ignore the one below and <strong><a href="/powershell-batch-file-wrapper">use my new one</a></strong> instead.</p>
+</blockquote>
+
+<pre><code>:: script.bat
+
+@ECHO OFF
+PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted -Command &quot;&amp; %~d0%~p0%~n0.ps1&quot; %*
+EXIT /B %errorlevel%
+</code></pre>
+
+<p>This wrapper will execute the PowerShell script with the same file name (i.e., <code>script.ps1</code> if the batch file is named <code>script.bat</code>), and then exit with the same code that PowerShell exited with. It will also forward any arguments passed to the batch file, to the PowerShell script.</p>
+
+<p>Let&rsquo;s test it out.</p>
+
+<pre><code># script.ps1
+
+param($Arg1, $Arg2)
+Write-Host &quot;Arg 1: $Arg1&quot;
+Write-Host &quot;Arg 2: $Arg2&quot;
+</code></pre>
+
+<p><em>From the Windows command prompt:</em></p>
+
+<pre><code>&gt; script.bat happy scripting
+Arg 1: happy
+Arg 2: scripting
+</code></pre>
+
+<p>What if we want &ldquo;happy scripting&rdquo; to be passed as a single argument?</p>
+
+<pre><code>&gt; script.bat &quot;happy scripting&quot;
+Arg 1: happy
+Arg 2: scripting
+</code></pre>
+
+<p><a id="black-magic"> </a></p>
+
+<p>Well that didn&rsquo;t work at all. This is the secret recipe.</p>
+
+<pre><code>&gt; script.bat &quot;'Happy scripting with single '' and double \&quot; quotes!'&quot;
+Arg 1: Happy scripting with single ' and double &quot; quotes!
+Arg 2:
+</code></pre>
+
+<p>Please don&rsquo;t ask me to explain this black magic, I only know that it works. Much credit to <a href="http://stackoverflow.com/questions/6714165/powershell-stripping-double-quotes-from-command-line-arguments">this StackOverflow question</a> for helping me solve this!</p>
+
+<p>For comparison, here is how you would do it if you were executing the script from PowerShell, without using the batch file wrapper.</p>
+
+<p><em>From the PowerShell command prompt:</em></p>
+
+<pre><code>PS&gt; .\script.ps1 happy scripting
+Arg 1: happy
+Arg 2: scripting
+
+PS&gt; .\script.ps1 &quot;Happy scripting with single ' and double `&quot; quotes included!&quot;
+Arg 1: Happy scripting with single ' and double &quot; quotes included!
+Arg 2:
+</code></pre>
+
+<p>That&rsquo;s all folks!</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim/">Syntax highlighting for Nginx in VIM</a>
+            
+        </h1>
+        <p>
+            <time datetime="2012-06-10 00:00:00 &#43;0000 UTC" pubdate="pubdate">Sun, Jun 10, 2012</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Thanks to <a href="http://www.vim.org/scripts/script.php?script_id=1886">Evan Miller</a>, adding VIM syntax highlighting for Nginx config files is a breeze.</p>
+
+<p>First, install VIM if you haven&rsquo;t already. On Arch Linux, it goes like this:</p>
+
+<pre><code>&gt; pacman -Sy vim
+</code></pre>
+
+<p>Create a folder for your VIM syntax files.</p>
+
+<pre><code>&gt; mkdir -p ~/.vim/syntax/
+</code></pre>
+
+<p>Download the syntax highlighting plugin.</p>
+
+<pre><code>&gt; curl http://www.vim.org/scripts/download_script.php?src_id=14376 -o ~/.vim/syntax/nginx.vim
+</code></pre>
+
+<p>Add it to VIM&rsquo;s file type definitions. Make sure to adjust the path to your Nginx installation if you need to.</p>
+
+<pre><code>&gt; echo &quot;au BufRead,BufNewFile /etc/nginx/conf/* set ft=nginx&quot; &gt;&gt; ~/.vim/filetype.vim
+</code></pre>
+
+<p>Now enable syntax highlighting in your .vimrc file.</p>
+
+<pre><code>&gt; echo &quot;syntax enable&quot; &gt;&gt; ~/.vimrc
+</code></pre>
+
+<p>That&rsquo;s it. Now you&rsquo;ll have nice colors when you edit your Nginx configs with VIM!</p>
+
+<pre><code>&gt; vim /etc/nginx/conf/nginx.conf
+</code></pre>
+
+<figure >
+
+<img src="/2012/06/nginx-vim-colors.png" alt="Screenshot of VIM with syntax highlighting in an Nginx config file" />
+
+
+<figcaption>
+<p>
+Screenshot of VIM with syntax highlighting in an Nginx config file
+
+
+
+</p> 
+</figcaption>
+
+</figure>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git/">Storing your Raspberry Pi configuration in Git</a>
+            
+        </h1>
+        <p>
+            <time datetime="2012-06-08 00:00:00 &#43;0000 UTC" pubdate="pubdate">Fri, Jun 8, 2012</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Storing your Raspberry Pi&rsquo;s configuration files in Git is a great way to protect yourself from really bad accidents. You get a backup of all your configs and revision control to rollback those nasty changes. Best of all, you don&rsquo;t have to manually create backup copies of each individual file. (<code>cp rc.conf rc.conf.bak</code> anyone?)</p>
+
+<p>I should note that I&rsquo;m running <a href="http://archlinuxarm.org">Arch Linux ARM</a>, but this should apply fairly equally to Debian and other distros.</p>
+
+<p>First, install <a href="http://git-scm.com">Git</a> (if you haven&rsquo;t already).</p>
+
+<pre><code>&gt; pacman -Sy git
+</code></pre>
+
+<p>Arch has a convention of storing all configuration files in <code>/etc</code>. So we will initialize our Git repo there.</p>
+
+<pre><code>&gt; cd /etc
+&gt; git init
+</code></pre>
+
+<p>We only want to store the configuration files that we&rsquo;ve actually changed in Git. We&rsquo;ll use a <code>.gitignore</code> file for that.</p>
+
+<pre><code>&gt; vim .gitignore
+</code></pre>
+
+<p>Here is what mine looks like right now.</p>
+
+<pre><code># Blacklist everything.
+*
+
+# Whitelist the files we care about.
+!rc.conf
+!rc.local
+!ntp.conf
+!resolv.conf
+
+!ddclient/
+!ddclient/ddclient.conf
+
+!nginx/
+!nginx/conf/
+!nginx/conf/nginx.conf
+</code></pre>
+
+<p>The <strong>!</strong> prefix negates the pattern, basically creating a whitelist. Cool, huh?</p>
+
+<p>Now we can do our initial commit.</p>
+
+<pre><code>&gt; git add -A
+&gt; git commit -m &quot;Added initial configs.&quot;
+</code></pre>
+
+<p>Remember to add any new config files to your <code>.gitignore</code> file and always commit your changes!</p>
+
+<p>For added security you should push your repository to <a href="http://git-scm.com/book/en/Git-Basics-Working-with-Remotes">a remote</a>. <a href="http://bitbucket.org">BitBucket</a> offers free private repositories, if you don&rsquo;t have a paid <a href="http://github.com">Github</a> account.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/">Soft links, hard links, junctions, oh my! Symlinks on Windows, a how-to</a>
+            
+        </h1>
+        <p>
+            <time datetime="2012-06-07 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thu, Jun 7, 2012</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>First, a quick definition of terms. There are three kinds of &ldquo;<a href="https://en.wikipedia.org/wiki/Symbolic_link">symlinks</a>&rdquo; on Windows.</p>
+
+<ul>
+<li>soft links (also called symlinks, or symbolic links)</li>
+<li>hard links</li>
+<li>junctions (a type of soft link only for directories)</li>
+</ul>
+
+<p>Soft links can be created for files or directories.</p>
+
+<p>Hard links can only be created for files.</p>
+
+<p>Both soft and hard links must be created on the same volume as the target. i.e. You can&rsquo;t link something on <code>C:\</code> to something on <code>D:\</code>.</p>
+
+<p>You can read more about hardlinks and junctions <a href="http://msdn.microsoft.com/en-us/library/aa365006%28VS.85%29.aspx">on MSDN</a>.</p>
+
+<h3 id="deleting-links">Deleting Links</h3>
+
+<p>This is where the difference between soft and hard links is most evident.</p>
+
+<p>Deleting the target will cause soft links to stop working. What it points to is gone. Hard links however will keep right on working until you delete the hard link itself. The hard link acts just like the original file, because for all intents and purposes, it is the original file.</p>
+
+<h3 id="junctions">Junctions</h3>
+
+<p>Windows also has another type of link just for directories, called Junctions.</p>
+
+<p>Junctions look and act like soft links. The key difference is that they allow you to link directories that are located on different local volumes (but still on the same computer). You can&rsquo;t create a junction to a network location.</p>
+
+<h2 id="using-mklink">Using MKLINK</h2>
+
+<p>Create a soft link to a directory.</p>
+
+<pre><code>c:\symlink_test&gt; mklink symlink_dir real_dir
+symbolic link created for symlink_dir &lt;&lt;===&gt;&gt; real_dir
+</code></pre>
+
+<p>Create junction link to a directory.</p>
+
+<pre><code>c:\symlink_test&gt; mklink /J junction_dir real_dir
+Junction created for junction_dir &lt;&lt;===&gt;&gt; real_dir
+</code></pre>
+
+<p>Create a soft link to a file.</p>
+
+<pre><code>c:\symlink_test&gt; mklink symlink_file.txt real_file.txt
+symbolic link created for symlink_file.txt &lt;&lt;===&gt;&gt; real_file.txt
+</code></pre>
+
+<p>Create a hard link to a file.</p>
+
+<pre><code>c:\symlink_test&gt; mklink /H hardlink_file.txt real_file.txt
+Hardlink created for hardlink_file.txt &lt;&lt;===&gt;&gt; real_file.txt
+</code></pre>
+
+<p>What they look like.</p>
+
+<pre><code>c:\symlink_test&gt; dir
+Volume in drive C is OS
+Volume Serial Number is 7688-08EC
+
+Directory of c:\symlink_test
+
+06/07/2012  10:32 AM    &lt;DIR&gt;          .
+06/07/2012  10:32 AM    &lt;DIR&gt;          ..
+06/07/2012  09:51 AM                15 hardlink_file.txt
+06/07/2012  09:59 AM    &lt;JUNCTION&gt;     junction_dir [c:\symlink_test\real_dir]
+06/07/2012  09:47 AM    &lt;DIR&gt;          real_dir
+06/07/2012  09:51 AM                15 real_file.txt
+06/07/2012  10:00 AM    &lt;SYMLINKD&gt;     symlink_dir [real_dir]
+06/07/2012  10:31 AM    &lt;SYMLINK&gt;      symlink_file.txt [real_file.txt]
+               3 File(s)             30 bytes
+               5 Dir(s)  145,497,268,224 bytes free
+</code></pre>
+
+<figure >
+
+<img src="/2012/06/mklink/explorer-screenshot.png" alt="Screenshot of folder in Windows Explorer" />
+
+
+<figcaption>
+<p>
+Screenshot of folder in Windows Explorer
+
+
+
+</p> 
+</figcaption>
+
+</figure>
+
+<p><strong>Note for PowerShell users:</strong><br />
+MKLINK isn&rsquo;t an executable that you can just call from PowerShell. You have to call it through the command prompt.</p>
+
+<pre><code>cmd /c mklink /D symlink_dir real_dir
+</code></pre>
+
+<p>Alternatively, you can use <a href="https://gist.github.com/2891103">this module</a> I wrote that has native PowerShell wrappers for MKLINK.</p>
+
+<p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">Read about MKLINK on MSDN.</a></p>
+
+<h2 id="using-fsutil">Using FSUTIL</h2>
+
+<p>FSUTIL is another way to create hard links (but not soft links). This is the same as <code>mklink /H</code>.</p>
+
+<pre><code>c:\symlink_test&gt; where fsutil
+c:\Windows\System32\fsutil.exe
+
+c:\symlink_test&gt; fsutil hardlink create hardlink_file.txt real_file.txt
+Hardlink created for c:\symlink_test\hardlink_file.txt &lt;&lt;===&gt;&gt; c:\symlink_test\real_file.txt
+</code></pre>
+
+<p><a href="http://technet.microsoft.com/en-us/library/cc753059(v=WS.10).aspx">Read about FSUTIL on MSDN.</a></p>
+
+<h2 id="using-junction">Using Junction</h2>
+
+<p>Junction is a tool provided by Sysinternals and provides another way to create junctions. Same as <code>mklink /J</code>.
+It also has some other tools for working with junctions that I won&rsquo;t cover here.</p>
+
+<pre><code>c:\symlink_test&gt; junction junction_dir real_dir
+Junction v1.06 - Windows junction creator and reparse point viewer
+Copyright (C) 2000-2010 Mark Russinovich
+Sysinternals - www.sysinternals.com
+
+Created: c:\symlink_test\junction_dir
+Targetted at: c:\symlink_test\real_dir
+</code></pre>
+
+<p><a href="http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx">Download the Junction tool from Sysinternals.</a></p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/">Can&#39;t access network resources over VPN connection on Mac OS X?</a>
+            
+        </h1>
+        <p>
+            <time datetime="2012-04-18 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Apr 18, 2012</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>So you have your shiny OS X connected to a VPN, good deal! The problem is, you can&rsquo;t connect to any of the servers and workstations on the VPN. What could be wrong?</p>
+
+<p>It could be that OS X is still trying to find those machines on the internet instead of looking for them on the VPN connection. We can tell OS X to check the VPN connection first by giving it a higher priority than the other network connections on your Mac.</p>
+
+<p>To change the priority of your VPN connection:</p>
+
+<ol>
+<li>Choose Apple menu &gt; System Preferences and click Network.</li>
+<li>Choose Set Service Order from the Action pop-up menu (looks like a gear).</li>
+<li>Drag your VPN connection to the top of the list.</li>
+<li>Click OK, and then click Apply to make the new settings active.</li>
+</ol>
+
+<p>This solution saved my day when I couldn&rsquo;t Remote Desktop into my workstation over the VPN.</p>
+
+<p>For more information, refer to <a href="http://docs.info.apple.com/article.html?path=Mac/10.6/en/8853.html">Apple&rsquo;s documentation for this</a>.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/">Use AutoHotkey to remap your numpad keys to something useful</a>
+            
+        </h1>
+        <p>
+            <time datetime="2011-12-14 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Dec 14, 2011</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>Are you tired of having to remember that <code>ALT+0176</code> is the degree symbol <strong>&deg;</strong> ? Maybe there are other special characters that you want to be able to type easier.</p>
+
+<p>Personally it was the degree symbol that got me, and since I never use my numpad, I decided it would be much more useful if those keys actually entered stuff that I cared about.</p>
+
+<p>Here is a quick tutorial in using AutoHotkey to remap one of your numpad keys to the degree symbol. Of course you can expand on this beginning easily to solve whatever woes you are having.</p>
+
+<p>Start out by going to <a href="http://www.autohotkey.com">the AutoHotkey website</a>.</p>
+
+<p>Download the <strong>AutoHotkey_L</strong> installer. This is the most recent version of AutoHotkey and specifically supports Unicode which is important for us.</p>
+
+<figure >
+
+<img src="/2011/12/autohotkey/Image4.png" alt="Screenshot of the AutoHotkey download page" />
+
+
+<figcaption>
+<p>
+Screenshot of the AutoHotkey download page
+
+
+
+</p> 
+</figcaption>
+
+</figure>
+
+<p>Run the installer and leave all the defaults.</p>
+
+<figure >
+
+<img src="/2011/12/autohotkey/Image3.png" alt="Screenshot of the AutoHotkey installer" />
+
+
+<figcaption>
+<p>
+Screenshot of the AutoHotkey installer
+
+
+
+</p> 
+</figcaption>
+
+</figure>
+
+<p>Look in your My Documents folder and open up <code>AutoHotkey.ahk</code> in a text editor that you can save as UTF-8 in.</p>
+
+<p>If you don&rsquo;t know what this means or don&rsquo;t have an editor that can do this then <a href="http://www.flos-freeware.ch/notepad2.html">download Notepad2</a> and open the file in that program.</p>
+
+<figure >
+
+<img src="/2011/12/autohotkey/Image5.png" alt="Screenshot of the AutoHotkey.ahk file in Windows Explorer" />
+
+
+<figcaption>
+<p>
+Screenshot of the AutoHotkey.ahk file in Windows Explorer
+
+
+
+</p> 
+</figcaption>
+
+</figure>
+
+<p>Now that you have <code>AutoHotkey.ahk</code> opened, delete everything in there (after reading it if you care) and paste the following in its place.</p>
+
+<pre><code>NumpadIns::
+Send &deg;
+return</code></pre>
+
+<p>Now save this file with <strong>UTF-8</strong> encoding. If you are using Notepad2 you can do this by going to <code>File | Encoding | UTF-8</code> and clicking <strong>Yes</strong> to the warning. Then click <code>File | Save</code> as usual.</p>
+
+<figure >
+
+<img src="/2011/12/autohotkey/Image.png" alt="Screenshot of saving the file with UTF-8 encoding" />
+
+
+<figcaption>
+<p>
+Screenshot of saving the file with UTF-8 encoding
+
+
+
+</p> 
+</figcaption>
+
+</figure>
+
+<p>Finally, run the <strong>AutoHotkey</strong> program from your Start Menu.</p>
+
+<figure >
+
+<img src="/2011/12/autohotkey/Image2.png" alt="Screenshot of AutoHotkey in the Start Menu" />
+
+
+<figcaption>
+<p>
+Screenshot of AutoHotkey in the Start Menu
+
+
+
+</p> 
+</figcaption>
+
+</figure>
+
+<h3 id="now-to-try-it-out">Now to try it out!</h3>
+
+<p>Put your focus in any text box. Anywhere. Go ahead. Now make sure you have NumLock turned OFF and hit the <code>0</code> key on your numpad.</p>
+
+<p>See what just happened? No, that&rsquo;s not a superscripted zero. That&rsquo;s a degree symbol. Now that they are easy to type you are going to have to learn what it is! ;)</p>
+
+<p>You can get a list of other special key names here: <a href="http://www.autohotkey.com/docs/KeyList.htm">http://www.autohotkey.com/docs/KeyList.htm</a></p>
+
+<p>This is just scratching the surface of what you can do with AutoHotkey scripts. Be sure to <a href="http://l.autohotkey.net/docs/">read up on the documentation</a> for more ideas. Knowledge is power!</p>
+
+<p>Here is a teaser of just a few of the tricks you can do:</p>
+
+<ul>
+<li>Create global shortcuts to run programs (ex. <code>CTRL+Z</code> to open a browser and navigate to a specific website.)</li>
+<li>Replace acronyms or common spelling mistakes (ex. replace &ldquo;restraunt&rdquo; -&gt; &ldquo;restaurant&rdquo; automatically.)</li>
+<li>Toggle hidden files in Windows Explorer with a shortcut key.</li>
+</ul>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	</section>
+
+</div>
+
+<nav class="pagination">
+
+	<a href="/post/page/7/" aria-label="Earlier Posts"><span aria-hidden="true">&laquo; Earlier Posts</span></a>
+
+
+	
+		&nbsp;&nbsp;
+	
+
+
+	<a href="/post/page/5/" aria-label="Recent Posts"><span aria-hidden="true">Recent Posts &raquo;</span></a>
+
+</nav>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

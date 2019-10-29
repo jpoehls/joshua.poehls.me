@@ -60,65 +60,68 @@
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2011/take-your-powershell-profile-everywhere-with-dropbox/">Take your PowerShell profile everywhere with Dropbox</a>
+            <a href="http://joshua.poehls.me/2013/does-your-business-need-a-website/">Does your business need a website?</a>
             
         </h1>
         <p>
-            <time datetime="2011-03-25 00:00:00 &#43;0000 UTC" pubdate="pubdate">Fri, Mar 25, 2011</time>
+            <time datetime="2013-04-10 22:12:02 -0500 CDT" pubdate="pubdate">Wed, Apr 10, 2013</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2011/take-your-powershell-profile-everywhere-with-dropbox/">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/does-your-business-need-a-website/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2011/take-your-powershell-profile-everywhere-with-dropbox/</span>
+                <span class="printonly">http://joshua.poehls.me/2013/does-your-business-need-a-website/</span>
             </a>
         </p>
     </header>
 
-    
+    <p>A friend got me thinking about this today. Does a business' website design matter? Does a business even need a website?</p>
 
-<p>I&rsquo;ll cover these prerequisites in brief, but for this tip I&rsquo;m going to assume a few things:</p>
+<p><blockquote class="twitter-tweet"><p>Question: Does website design matter to you? Maybe I&rsquo;m a snob but I&rsquo;m turned away from a business/person if they have an ugly website.</p>&mdash; Joshua Steubing (@joshuasteubing) <a href="https://twitter.com/joshuasteubing/status/321968615702282241">April 10, 2013</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p>The answer strongly depends on the type of business we are talking about. If the business offers digital services of any kind, then obviously they need a website and their design is going to play a huge role in their success. The real interesting discussion begins when we talk about brick and mortar businesses that don't offer any digital services.</p>
+
+<p>Let's talk about those brick and mortar businesses. Let's assume a few motivations for them wanting an online presence.</p>
 
 <ul>
-<li>You are running Windows and have <a href="http://msdn.microsoft.com/en-us/library/aa973757.aspx">PowerShell</a> installed.</li>
-<li>You are familiar enough with PowerShell to care about your <a href="http://msdn.microsoft.com/en-us/library/bb613488.aspx">$PROFILE</a>.</li>
+<li>The Yellow Pages are dead; people find businesses by looking online.</li>
+<li>Provide customers a way to contact them with questions or feedback.</li>
+<li>Provide information about their business and services, including:
+<ul>
+<li>Hours of operation</li>
+<li>Location and phone number, with directions</li>
+<li>A menu (for restaurants)</li>
+<li>General description of services</li>
+<li>Photos of their work or their business</li>
+</ul></li>
 </ul>
 
-<h3 id="what-is-powershell">What is PowerShell?</h3>
+<p>The first instinct might be to create a website for the business that provides this information. That might not be the best course of action, though. Think about this - how will prospective customers be looking for your business? Sure, googling for local services is definitely a thing and could result in your website being found. However, that isn't the best way to surface yourself as a local business in searches.</p>
 
-<p>In short, PowerShell is a new scripting language from Microsoft designed to replace the use of batch files and VBScript for administrating and automating Windows machines. The language leverages the .NET Framework such that anything you can do with .NET you can do with PowerShell. Typically you will be using PowerShell from the command line but there are lots of other ways to use it.</p>
+<p>Also, website design is hard. Let's not confuse the subject, making a website is dead easy. Anyone can do it. Making a website that is aesthetically well designed, surfaces information in an intuitive way, is compatible with and responsive to the myriad of devices on the market (phones, tablets, laptops, touch screens, etc), is optimized for SEO, accessibility for impaired users, integrates well with social services using things like <a href="/2013/open-graph-twitter-cards-and-your-blog">Open Graph protocol</a> - this is hard. These are all things that are involved in designing a modern website that represents your business well and is accessible to your potential customers. Creating this kind of online presence is non-trivial.</p>
 
-<h3 id="what-is-a-powershell-profile">What is a PowerShell profile?</h3>
+<p>Sure, you can find templates that will help with a lot of this, but no template can write your copy, take quality photos, digitize your logo, etc. And many templates need tweaking to ensure the SEO, accessibility, and social integrations work and work well. If you don't know what you are doing then the end product will look like you didn't know what you were doing in one way or another.</p>
 
-<p>PowerShell has the concept of a script that will run each time you launch PowerShell. This is a really handy place to put any functions that you want to be available all the time. Initialize some variables, create some aliases, anything you do here will be there when you need it.</p>
+<p>Not all businesses need a robust modern website, though. As much as it hurts me to admit that. However, all businesses should understand what such a website is and what it involves. They should see examples. They should know that this is possible and a marketing tool that is available to their competitors. If it is decided that such work isn't warranted, then fair enough.</p>
 
-<h3 id="what-are-we-doing-here">What are we doing here?</h3>
+<p>We need to dispel with the myth that websites are easy and any teenager with a keyboard can do it. They can, but the end result will reflect such. Just like any teenager with a hammer can be a carpenter. Web design is skilled technical work. There are DIY dog house kits available just like there are DIY website kits but don't confuse that with a professionally built product.</p>
 
-<p>I&rsquo;m going to give you one possible solution for keeping all of your scripts and settings (i.e. your profile) in sync no matter which computer you are on. No copy/pasting. No more wearing that USB dongle around your neck - seriously, that just <em>screams</em> geek.</p>
+<p>Now that it is clear that a website isn't necessarily a simple thing, let's revisit the question of whether a website is even necessary. I mentioned earlier that a website wasn't the best way to surface yourself as a local business online. There are a lot of places online for your business to market itself and Google (and other search engines) will rank you higher in results if you do.</p>
 
-<p>Most steps have a sample PowerShell command that will do the trick. So fire up PowerShell and put on your scripting hat &lsquo;cuz here we go!</p>
+<p>What am I talking about? All of these sites have a way for businesses to register themselves and maintain their presence. Your business is likely already on these sites and you don't know it. They might have incorrect information or no information. You should look!</p>
 
-<ol>
-<li><p><strong><a href="http://db.tt/i03IdN4">Get Dropbox</a>.</strong><br />
-Among other things, Dropbox makes keeping your files in sync across computers dead simple. If you aren&rsquo;t using it you should be. It&rsquo;s just that good.</p></li>
+<ul>
+<li><a href="https://www.google.com/business/placesforbusiness/">Google</a></li>
+<li><a href="https://biz.yelp.com/support">Yelp</a></li>
+<li><a href="http://www.urbanspoon.com/faq#faq-question-65">Urbanspoon</a></li>
+<li><a href="https://www.facebook.com/business/">Facebook</a></li>
+<li><a href="http://business.foursquare.com/">Foursquare</a></li>
+</ul>
 
-<li><p><strong>Create a folder in Dropbox to hold your scripts.</strong></p>
+<p>I would argue that many businesses would be best served by simply managing their presence on these sites. This is where potential customers are most likely to find you online. You can provide all of the basic information about your business including hours, location, phone number, and menus in a standard way that is intuitive to users. Your customers can provide feedback and reviews about your services that help others decide whether you are a good fit for them. These services are how your customers expect to be able to interact with your business online.</p>
 
-<p><code>PS&gt; New-Item $dropbox\scripts</code></p>
+<p>A website for a brick and mortar business is simply icing on the cake. Even if you have a website you'll want to look good on these other sites as well because that is probably the first place a potential customer will find you. When it comes to bang for the buck you can't beat leveraging all of these amazing sites that customers already use every day. Let them do the hard part of marketing your business and let you focus on making customers happy.</p>
 
-<p><em>Anywhere you see <code>$dropbox</code>, assume this to be the path to your Dropbox folder. By default on Windows 7 this is <code>%USERPROFILE%\Dropbox</code>.</em></p></li>
-
-<li><p><strong>Copy your profile <code>ps1</code> file into your new scripts folder.</strong></p>
-
-<p><code>PS&gt; Copy-Item $PROFILE $dropbox\scripts\profile.ps1</code></p></li>
-
-<li><p><strong>Edit your profile <code>ps1</code> file (the original one) and &ldquo;dot source&rdquo; the one in your Dropbox folder.</strong></p>
-
-<p><code>PS&gt; &quot;. $dropbox\scripts\profile.ps1&quot; &gt; $PROFILE</code></p></li>
-</ol>
-
-<p><strong>Pro Tip!</strong> As an alternative to dot sourcing your profile from Dropbox, you could instead <a href="/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows/">create a symlink</a> to it.</p>
-
-<pre><code>PS&gt; /cmd /c mklink `&quot;$PROFILE`&quot; `&quot;$dropbox\scripts\profile.ps1`&quot;
-</code></pre>
+<p>If you have a business and have questions or need help in this area, contact me and I'll either help you out or get you in touch with someone who can.</p>
 
 
 </article>
@@ -135,41 +138,62 @@ Among other things, Dropbox makes keeping your files in sync across computers de
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2010/installing-ruby-and-the-devkit-on-windows/">Installing Ruby (and the DevKit) on Windows</a>
+            <a href="http://joshua.poehls.me/2013/initiation-into-mechanical-keyboard-geekdom/">Initiation into mechanical keyboard geekdom</a>
             
         </h1>
         <p>
-            <time datetime="2010-11-11 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thu, Nov 11, 2010</time>
+            <time datetime="2013-04-09 22:08:30 -0500 CDT" pubdate="pubdate">Tue, Apr 9, 2013</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2010/installing-ruby-and-the-devkit-on-windows/">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/initiation-into-mechanical-keyboard-geekdom/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2010/installing-ruby-and-the-devkit-on-windows/</span>
+                <span class="printonly">http://joshua.poehls.me/2013/initiation-into-mechanical-keyboard-geekdom/</span>
             </a>
         </p>
     </header>
 
-    <p>Here&rsquo;s my recipe for a painfree installation of Ruby on Windows.</p>
+    
 
-<ol>
-<li>Use the RubyInstaller from <a href="http://www.ruby-lang.org/en/downloads/">www.ruby-lang.org</a>.
-I used Ruby 1.9.2-p0.</li>
-<li>Install the Ruby DevKit by following the instructions in the <a href="https://github.com/oneclick/rubyinstaller/wiki/development-kit">Installation Overview</a>.
-I used version DevKit-4.5.0-20100819-1536-sfx.</li>
-</ol>
+<p>A laptop style short keyed keyboard has been my instrument of choice for years now. They are easy to type on and fast. I gave up the stock Dell keyboards years ago for a bare bones Logitech.</p>
 
-<p>The DevKit is needed so that you can install gems that need to build native extensions.
-Without it when you try to <code>gem install jekyll</code> you will see an error like this:</p>
+<p><img src="logitech.png" alt="Old Logitech keyboard" title="My old Logitech keyboard" /></p>
 
-<pre><code>ERROR: Error installing jekyll:
-ERROR: Failed to build gem native extension.
+<p>A few months ago I started digging into mechanical keyboards. They had caught my attention and suddenly I <em>really</em> wanted one. I was ready for a new keyboard, as you can see my Logitech is positively filthy. Why clean it when you can buy a new one, right?</p>
 
-'make' is not recognized as an internal or external command,
-operable program or batch file.
-</code></pre>
+<p>After a lot of research into the <a href="http://mechanicalkeyboards.com/faqs.php?faq=mechanical_switch_difference">various mechanical switches</a> and watching many YouTube videos, I finally decided. I ordered my first mechanical keyboard from, fittingly enough, <a href="http://mechanicalkeyboards.com/">MechanicalKeyboards.com</a>.</p>
 
-<p>After installing DevKit <code>gem install jekyll</code> will work like a champ.</p>
+<p>My new <a href="http://duckychannel.com.tw/en/DK9087_shine2.html">Ducky DK9087 Shine 2</a> arrived and it was love at first press. I&rsquo;m still training my fingers to the slightly different layout but this thing is amazing.</p>
 
-<p>Good luck!</p>
+<p>Buying this keyboard has been like buying new shoes. You stand straighter, walk taller, type faster, feel better.</p>
+
+<p><img src="ducky1.png" alt="New Ducky keyboard" title="New Ducky keyboard" /></p>
+
+<p><img src="ducky2.png" alt="New Ducky keyboard" title="New Ducky keyboard" /></p>
+
+<p>A quick breakdown is in order:</p>
+
+<ul>
+<li>Those funky etches you see on the keys? That&rsquo;s Chinese, or rather <a href="https://en.wikipedia.org/wiki/Bopomofo">zhuyin</a> which is a phonetic system for transcribing Chinese. I opted for the Chinese version of the keyboard which is identical to the US version except that it adds these additional characters to the keys.</li>
+<li>I got the green LEDs but they make the board with blue, white, yellow, and red as well. It was a tough decision!</li>
+<li>The LEDs have 5 brightness levels ranging from humane to blinding. You can even program which keys are lit up and save them as presets.</li>
+<li>All of the standard media keys are there. Play, pause, stop, volume, mute, and skip.</li>
+<li>The finish is a very subtle matte. No glossy fingerprint attractor here!</li>
+</ul>
+
+<p><img src="ducky3.png" alt="New Ducky keyboard" title="New Ducky keyboard" /></p>
+
+<p>I opted for the Cherry MX Brown switches which are a good middle ground between the Blue (more clicky) and Red (linear). They feel perfect. I also got the Tenkeyless version of the board because I never use the 10-key and wanted a super short keyboard that wouldn&rsquo;t push my mouse out of the way.</p>
+
+<p><img src="ducky4.png" alt="New Ducky keyboard" title="New Ducky keyboard" /></p>
+
+<p>What is the typing like? Oh, so sweet. Each press resonates and builds a rhythm in your fingers. It is like switching from organ keys to real piano keys. You feel the depth and play with new feeling. If typing is your art then you absolutely must try this quality instrument!</p>
+
+<p>I went out on a limb and bought this thing without ever having tried it in person. I totally scored. If you have never considered a mechanical keyboard before then I seriously recommend you check it out. Take the plunge, go get one!</p>
+
+<h3 id="edit">Edit</h3>
+
+<p>I just ran across these photos of <a href="http://www.flickr.com/photos/mashby/sets/72157633200776744/">the MechanicalKeyboards.com display room</a>.
+They were taken when a <a href="http://geekhack.org/index.php?topic=38767.msg847189#msg847189">GeekHack Meetup toured the facility</a>.
+So cool!</p>
 
 
 </article>
@@ -186,161 +210,485 @@ operable program or batch file.
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2010/ria-services-lessons-learned-while-getting-started/">RIA Services - Lessons Learned While Getting Started</a>
+            <a href="http://joshua.poehls.me/2013/non-enumerable-properties-in-javascript/">Non-enumerable properties in JavaScript</a>
             
         </h1>
         <p>
-            <time datetime="2010-05-17 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, May 17, 2010</time>
+            <time datetime="2013-03-28 22:06:19 -0500 CDT" pubdate="pubdate">Thu, Mar 28, 2013</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2010/ria-services-lessons-learned-while-getting-started/">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/non-enumerable-properties-in-javascript/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2010/ria-services-lessons-learned-while-getting-started/</span>
+                <span class="printonly">http://joshua.poehls.me/2013/non-enumerable-properties-in-javascript/</span>
             </a>
         </p>
     </header>
 
     
 
-<p>Recently my company has been working on a rewrite of one of our line-of-business applications. We have decided to leverage RIA Services in the new application. At the moment we are also using Entity Framework; that may or may not change.</p>
+<p>It isn&rsquo;t very common in the wild but JavaScript (as of ES5) does support non-enumerable properties.
+That is to say, objects can have properties that don&rsquo;t show up when you do a <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Statements/for...in"><code>for...in</code></a> loop over the object or use <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/keys"><code>Object.keys()</code></a> to get an array of property names.</p>
 
-<p>Here are a few lessons I&rsquo;ve learned so far when working with RIA Services.</p>
+<p>I spent way too long tonight figuring out why a property was not being
+included in the <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/JSON/stringify"><code>JSON.stringify()</code></a> output because I didn&rsquo;t remember that this was possible. You see, <code>stringify()</code> works by enumerating the object&rsquo;s properties.
+So it makes sense that non-enumerable properties would be ignored.</p>
 
-<h3 id="potentially-massive-in-terms-of-lines-of-code-logic-domain-services">Potentially massive (in terms of lines of code &amp; logic) domain services</h3>
+<p>Let me explain.</p>
 
-<p>RIA doesn&rsquo;t handle multiple domain services well. What I mean by this is that an entity cannot be shared between multiple services. This means that in most cases you are going to have domain services with lots of methods. Worst case, think having an insert, update and delete method for each entity in your domain.</p>
+<pre data-language="javascript">
+var person = { age: 18 };
+person.name = 'Joshua';
+person['color'] = 'Red';
 
-<p><strong>Lesson:</strong> Accept that having lots of methods in your domain service is inevitable.</p>
+Object.keys(person); // ['age', 'name', 'color']
+</pre>
 
-<p><strong>Aid:</strong> Keep the methods slim by not putting any business or data access logic in them.</p>
+<p>That is how you typically create and assign properties. We know that they are enumerable because they show up when you call <code>Object.keys(person)</code>.</p>
 
-<h3 id="shared-database-entity-temptation">Shared database entity temptation</h3>
+<p>To create a non-enumerable property we have to use <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty"><code>Object.defineProperty()</code></a>. A special method for creating properties on an object.</p>
 
-<p><code>LinqToEntitiesDomainService&lt;&gt;</code> wraps up your Entity Framework ObjectContext and lets you access it directory in your domain service. There is also a <code>LinqToSqlDomainService&lt;&gt;</code>. This makes it really tempting to simply return your Entity Framework or LINQ to SQL entities from your domain service methods. This is <a href="http://davybrion.com/blog/2010/05/why-you-shouldnt-expose-your-entities-through-your-services/">a very bad idea</a>.</p>
+<pre data-language="javascript">
+var person = { age: 18 };
+Object.defineProperty(person, 'name', { value: 'Joshua', enumerable: false });
 
-<p><strong>Lesson:</strong> Don&rsquo;t return your database entities from your domain service.</p>
+person.name; // 'Joshua'
+Object.keys(person); // ['age']
+</pre>
 
-<p><strong>Aids:</strong></p>
+<p>See there? Our <code>name</code> property didn&rsquo;t show up because it wasn&rsquo;t enumerable. Consequently, doing <code>JSON.stringify(person)</code> would not include the <code>name</code> property either.</p>
+
+<p>Hopefully this will help you the next time a property is missing from your stringified object and you can&rsquo;t figure out why. Good luck!</p>
+
+<h3 id="bonus">Bonus!</h3>
+
+<p><code>Object.defineProperty()</code> is also how you create <strong>read-only</strong> properties. Didn&rsquo;t know you could do that in JavaScript? Time to <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty">study up</a>!</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/google-chrome-and-woff-font-mime-type-warnings/">Google Chrome and WOFF font MIME type warnings</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-03-15 22:00:31 -0500 CDT" pubdate="pubdate">Fri, Mar 15, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/google-chrome-and-woff-font-mime-type-warnings/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/google-chrome-and-woff-font-mime-type-warnings/</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>If you are getting warnings like <strong>Resource interpreted as Font but transferred with MIME type font/x-woff</strong> in Google Chrome then it means your web server is serving the font with the wrong MIME type.</p>
+
+<p>It took awhile for the WOFF font format to get an approved MIME type so there are several variations hanging around.</p>
 
 <ul>
-<li>Create a new DTO (Data Transfer Object) for each entity you need to return from your domain service.</li>
-<li>Make sure your domain service operations return these DTOs and <em>not</em> the entities that Entity Framework or LINQ to SQL generate for you.</li>
+<li><code>font/x-woff</code></li>
+<li><code>font/woff</code></li>
+<li><code>application/x-font-woff</code></li>
 </ul>
 
-<h3 id="domainservice-submit-summary"><code>DomainService.Submit()</code> summary</h3>
+<p>Thank God an official type <a href="http://www.w3.org/TR/WOFF/#appendix-b">was finally decided on</a>, <code>application/font-woff</code>.</p>
 
-<p>When your client application makes changes and then calls <code>SubmitChanges()</code> on the client-side, RIA Services sends this set of changes to the server as a ChangeSet. This ChangeSet will include deletes, updates and inserts - basically anything your client did before calling <code>SubmitChanges()</code>.</p>
+<p>Unfortunately, Google Chrome (as of 26 beta) still expects you to use <code>application/x-font-woff</code> and doesn&rsquo;t recognize <code>application/font-woff</code> as a valid MIME type. This <a href="https://bugs.webkit.org/show_bug.cgi?id=111418">has been fixed</a> in the WebKit trunk but hasn&rsquo;t been merged into Chrome yet. The <a href="https://code.google.com/p/chromium/issues/detail?id=178823">Chromium bug report</a> has been closed so it should be coming soon.</p>
 
-<p>[<code>DomainService</code>][1] is the base class that all RIA Services inherit from. This includes the <code>LinqToEntitiesDomainService&lt;&gt;</code> and <code>LinqToSqlDomainService&lt;&gt;</code> classes.</p>
+<p>Until it is merged into a Chrome release you have a couple of options.</p>
 
-<p>This base class has a <code>Submit()</code> method. This is basically what is being called when your client calls <code>Submit()</code>. The DomainService&rsquo;s <code>Submit()</code> method handles parsing that set of changes and invoking the methods on your domain service that you have written to handle the inserts, updates and deletes of your entities.</p>
+<ol>
+<li>You can switch to <code>application/x-font-woff</code> which will fix the Chrome warnings but isn&rsquo;t the approved MIME type. You&rsquo;ll need to change it again later.</li>
+<li>You can switch to <code>application/font-woff</code> which will continue to cause warnings in Chrome but is the approved MIME type. Obviously the warnings will go away once the WebKit fix has been merged into Chrome but this will take a few months to make it into a release.</li>
+</ol>
 
-<p>Think of the <code>Submit()</code> method as a router that takes all the changes and routes them to the specific operations that need to happen in order to persist those changes to your backing data store.</p>
+<p>Since the warnings are only annoying I would recommend switching to the approved MIME type right away. The warnings will resolve themselves in time.</p>
 
-<h3 id="using-daos-or-repositories">Using DAOs (or Repositories)</h3>
+<h3 id="iis-express">IIS Express</h3>
 
-<p>I realized early on that I didn&rsquo;t want to shove all my data access code directly into my domain service methods. I like to isolate the code that talks to the database in DAOs (Data Access Objects). These DAOs act as a weld point between the world of my database and the world of my application. This makes it easier for me to handle inevitable database changes or to switch out my entire data access strategy without having to rewrite the whole application. (<a href="http://davybrion.com/blog/2010/05/why-you-shouldnt-expose-your-entities-through-your-services/">See why.</a>)</p>
+<p>The steps to fix this will vary by web server but for IIS Express this is how you&rsquo;d do it.</p>
 
-<p>At first I thought that to use my DAOs I couldn&rsquo;t/shouldn&rsquo;t use a <code>LinqToEntitiesDomainService&lt;&gt;</code> and should instead just inherit from <code>DomainService</code>. So this is how I started and I had my DAO methods handle the creation (and disposing) of my <code>ObjectContext</code> as needed.</p>
+<ol>
+<li>Open <code>~/Documents/IISExpress/config/applicationhost.config</code></li>
+<li>Search for <strong>&rdquo;.woff&rdquo;</strong> and you&rsquo;ll find a line like this:<br />
+<code>&lt;mimeMap fileExtension=&quot;.woff&quot; mimeType=&quot;font/x-woff&quot; /&gt;</code></li>
+<li>Change <strong>mimeType</strong> to <code>application/font-woff</code><br />
+<code>&lt;mimeMap fileExtension=&quot;.woff&quot; mimeType=&quot;application/font-woff&quot; /&gt;</code></li>
+<li>Restart your IIS Express site.</li>
+</ol>
 
-<p>Come to find out, this works; however, it isn&rsquo;t the best way to do things. As I said before, RIA Services will ask your domain service to process a whole set of changes at once. If you have 5 changes to save, do you really want to create a new <code>ObjectContext</code> for each one? Or would you rather create the <code>ObjectContext</code> once, do the 5 changes and then save them all at once to the database?</p>
 
-<p>Here&rsquo;s what I ended up doing:</p>
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/jquery-css-clip-animation-plugin/">jQuery CSS Clip Animation Plugin</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-03-06 21:58:15 -0500 -0500" pubdate="pubdate">Wed, Mar 6, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/jquery-css-clip-animation-plugin/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/jquery-css-clip-animation-plugin/</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>Yesterday I needed to animate the CSS <a href="https://developer.mozilla.org/en-US/docs/CSS/clip">clip property</a> using jQuery.
+<a href="http://api.jquery.com/animate/"><code>jQuery.animate()</code></a> doesn&rsquo;t support this natively so I went searching for a plugin.
+I found exactly what I needed in <a href="http://www.overset.com/2008/08/07/jquery-css-clip-animation-plugin/">a simple plugin by Jim Palmer</a>, unfortunately it hasn&rsquo;t been updated to work with jQuery 1.8.0+.</p>
+
+<p>So here you go, a forked and updated copy of the plugin which will work with jQuery 1.8.0+.</p>
+
+<p>Changes include:</p>
 
 <ul>
-<li>Went back to using <code>LinqToEntitiesDomainService&lt;&gt;</code> as my base class.</li>
-<li>Updated my DAO constructors to take an instance of the <code>ObjectContext</code>.</li>
+<li>Support for jQuery 1.8.0+</li>
+<li>Support for the element&rsquo;s initial clip value to be specified via a stylesheet instead of an inline style</li>
+<li>Support for decimal clip values (thanks to a comment by Manoel Quirino Neto)</li>
+<li>Type checking <code>fx.end</code> to guard against errors in some scenarios</li>
+<li>Support for IE8</li>
 </ul>
 
-<p>The <code>LinqToEntitiesDomainService&lt;&gt;</code> will handle creating my <code>ObjectContext</code> as well as calling <code>SaveChanges()</code> on it when all the changes have been processed. This is much more efficient.</p>
+<p>The element you are animating <strong>must</strong> have a <code>clip</code> style specified. Otherwise, usage is as you would expect.</p>
 
-<h3 id="in-code">In code</h3>
+<pre data-language="html">
+&lt;div class="element" style="clip: rect(0px 155px 31px 0px);"&gt;
+    content to be clipped
+&lt;/div&gt;
+</pre>
 
-<p>Here&rsquo;s a code example of what I discovered:</p>
+<pre data-language="javascript">
+$('.element').animate({
+    clip: 'rect(0px 155px 31px 146px)'
+}, 500);
+</pre>
 
-<p>This is bad.</p>
+<p>Refer <a href="http://www.overset.com/2008/08/07/jquery-css-clip-animation-plugin/">the original plugin</a> for a demo or to give credit to the author.</p>
 
-<pre><code>public class PersonDomainService : DomainService
-{
-    public void UpdatePerson(Person dto)
-    {
-        var dao = new PersonDao();
-        dao.Update(dto);
+<pre data-language="javascript">
+/*
+* jquery.animate.clip.js
+*
+* jQuery css clip animation support -- Joshua Poehls
+* version 0.1.4
+
+* forked from Jim Palmer&#39;s plugin http://www.overset.com/2008/08/07/jquery-css-clip-animation-plugin/
+* idea spawned from jquery.color.js by John Resig
+* Released under the MIT license.
+*/
+(function (jQuery) {
+
+    function getStyle(elem, name) {
+        return (elem.currentStyle &amp;&amp; elem.currentStyle[name]) || elem.style[name];
     }
-}
 
-public class PersonDao
-{
-    public void Update(Person dto)
-    {
-        using (var context = new MyObjectContext())
-        {
-            var existingPerson = _context.People.Where(p =&gt; p.ID == dto.ID).SingleOrDefault();
-            if (existingPerson != null)
-            {
-                existingPerson.Name = dto.Name;
+    function getClip(elem) {
+        var cssClip = jQuery(elem).css(&#39;clip&#39;) || &#39;&#39;;
+
+        if (!cssClip) {
+            // Try to get the clip rect another way for IE8.
+            // This is a workaround for jQuery&#39;s css(&#39;clip&#39;) returning undefined
+            // when the clip is defined in an external stylesheet in IE8. -JPOEHLS
+            var pieces = {
+                top: getStyle(elem, &#39;clipTop&#39;),
+                right: getStyle(elem, &#39;clipRight&#39;),
+                bottom: getStyle(elem, &#39;clipBottom&#39;),
+                left: getStyle(elem, &#39;clipLeft&#39;)
+            };
+
+            if (pieces.top &amp;&amp; pieces.right &amp;&amp; pieces.bottom &amp;&amp; pieces.left) {
+                cssClip = &#39;rect(&#39; + pieces.top + &#39; &#39; + pieces.right + &#39; &#39; + pieces.bottom + &#39; &#39; + pieces.left + &#39;)&#39;;
             }
         }
-    }
-}
-</code></pre>
 
-<p>This is good.</p>
-
-<pre><code>public class PersonDomainService : LinqToEntitiesDomainService&lt;MyObjectContext&gt;
-{
-    public void UpdatePerson(Person dto)
-    {
-        var dao = new PersonDao(ObjectContext);
-        dao.Update(dto);
+        // Strip commas and return.
+        return cssClip.replace(/,/g, &#39; &#39;);
     }
 
-    public override bool Submit(ChangeSet changeSet)
-    {
-        //  base.Submit() is what will take all the changes in the ChangeSet
-        //  and call your insert, update and delete methods for each one.
-        //  When this is all done, the ObjectContext.SaveChanges() method
-        //  will  be called.
-        return base.Submit(changeSet);
-    }
-}
+    jQuery.fx.step.clip = function (fx) {
+        if (fx.pos === 0) {
+            var cRE = /rect\(([0-9\.]{1,})(px|em)[,]?\s+([0-9\.]{1,})(px|em)[,]?\s+([0-9\.]{1,})(px|em)[,]?\s+([0-9\.]{1,})(px|em)\)/;
 
-public class PersonDao
-{
-    private readonly MyObjectContext _context;
-    public PersonDao(MyObjectContext context)
-    {
-        _context = context;
-    }
-
-    public void Update(Person dto)
-    {
-        var existingPerson = _context.People.Where(p =&gt; p.ID == dto.ID).SingleOrDefault();
-        if (existingPerson != null)
-        {
-            existingPerson.Name = dto.Name;
+            fx.start = cRE.exec(getClip(fx.elem));
+            if (typeof fx.end === &#39;string&#39;) {
+                fx.end = cRE.exec(fx.end.replace(/,/g, &#39; &#39;));
+            }
+        }
+        if (fx.start &amp;&amp; fx.end) {
+            var sarr = new Array(), earr = new Array(), spos = fx.start.length, epos = fx.end.length,
+                emOffset = fx.start[ss + 1] == &#39;em&#39; ? (parseInt($(fx.elem).css(&#39;fontSize&#39;)) * 1.333 * parseInt(fx.start[ss])) : 1;
+            for (var ss = 1; ss &lt; spos; ss += 2) { sarr.push(parseInt(emOffset * fx.start[ss])); }
+            for (var es = 1; es &lt; epos; es += 2) { earr.push(parseInt(emOffset * fx.end[es])); }
+            fx.elem.style.clip = &#39;rect(&#39; +
+                parseInt((fx.pos * (earr[0] - sarr[0])) + sarr[0]) + &#39;px &#39; +
+                parseInt((fx.pos * (earr[1] - sarr[1])) + sarr[1]) + &#39;px &#39; +
+                parseInt((fx.pos * (earr[2] - sarr[2])) + sarr[2]) + &#39;px &#39; +
+                parseInt((fx.pos * (earr[3] - sarr[3])) + sarr[3]) + &#39;px)&#39;;
         }
     }
+})(jQuery);
+</pre>
+
+<h3 id="updated-to-0-1-4">Updated to 0.1.4</h3>
+
+<p>I updated the plugin to support IE8. This entailed adding a fallback for when <code>$('...').css('clip')</code> returns <code>undefined</code> which it does in IE8 when the <code>clip</code> style is defined in an external stylesheet.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/single-day-of-eternity/">Single day of eternity</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-02-26 21:55:57 -0500 -0500" pubdate="pubdate">Tue, Feb 26, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/single-day-of-eternity/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/single-day-of-eternity/</span>
+            </a>
+        </p>
+    </header>
+
+    <blockquote>
+<p>High up in the North in the land called Svithjod, there stands a rock.
+It is a hundred miles high and a hundred miles wide.
+Once every thousand years a little bird comes to this rock to sharpen its beak.
+When the rock has thus been worn away, then a single day of eternity will have gone by.</p>
+</blockquote>
+
+<p>-<a href="http://books.google.com/books?id=RskHAAAAIAAJ&amp;pg=PA1#v=onepage&amp;q&amp;f=false">Hendrik Willem Van Loon</a></p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/using-unix-terminal-shortcuts-in-the-windows-command-prompt/">Using Unix terminal shortcuts in the Windows command prompt</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-02-20 21:52:29 -0500 -0500" pubdate="pubdate">Wed, Feb 20, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/using-unix-terminal-shortcuts-in-the-windows-command-prompt/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/using-unix-terminal-shortcuts-in-the-windows-command-prompt/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Unix terminals have a few basic keyboard shortcuts.</p>
+
+<ul>
+<li><code>CTRL+L</code> to clear the window</li>
+<li><code>CTRL+D</code> to close the window</li>
+<li><code>CTRL+V</code> to paste text</li>
+</ul>
+
+<p>The Windows command prompt doesn&rsquo;t support these by default but we can fix that with <a href="http://www.autohotkey.com">AutoHotkey</a>.</p>
+
+<p><em>If you don&rsquo;t already have it installed, you can follow the steps in <a href="/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/">my blog post</a>.</em></p>
+
+<p>Add this magic to your AutoHotkey script to enable these shortcuts in the Windows command prompt and PowerShell.</p>
+
+<pre>#IfWinActive ahk_class ConsoleWindowClass
+^L::SendInput , {Esc}cls{Enter}
+^D::SendInput , {Esc}exit{Enter}
+^V::SendInput , {Raw}%clipboard%
+#IfWinActive</pre>
+
+<p>Back away from the mouse, my friends.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/using-enum-flags-to-model-user-roles-in-csharp-and-sql/">Using enum flags to model user roles in C#, SQL, and Go</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-02-12 21:48:50 -0500 -0500" pubdate="pubdate">Tue, Feb 12, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/using-enum-flags-to-model-user-roles-in-csharp-and-sql/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/using-enum-flags-to-model-user-roles-in-csharp-and-sql/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Using an enum flags property to hold users&rsquo; roles is just one trick
+I&rsquo;ve learned from <a href="https://twitter.com/SeiginoRaikou">@SeiginoRaikou</a>,
+one of my co-geniuses at <a href="https://www.interworks.com/">InterWorks</a>.</p>
+
+<p>Historically I have always modeled user roles with a <code>Role</code> table
+and a many-to-many relationship with my <code>User</code> table.</p>
+
+<pre>    +-------------------+
+    | User              |
+    |-------------------|
+    | UserId   : int    +-------------+---------------+
+    | UserName : varchar|             | UserRole      |
+    +-------------------+             |---------------|
+                                      + UserId : int  |
+    +-------------------+             + RoleId : int  |
+    | Role              |             |---------------+
+    |-------------------|             |
+    | RoleId   : int    +-------------+
+    | RoleName : varchar|
+    +-------------------+</pre>
+
+<p>Compared to a flags enum approach this is downright wasteful.
+With flags, there is only ever one column to work with and it is an integer.
+No second table. No joins or second query.</p>
+
+<pre>    +--------------------+
+    | User               |
+    |--------------------|
+    | UserId   : int     |
+    | UserName : varchar |
+    | Roles    : int     |
+    +--------------------+</pre>
+
+<p>Modeling this in C# is easy.</p>
+
+<pre data-language="csharp">
+[Flags] // Values must always be powers of two
+enum UserRole : int {
+  Employee = 1,
+  Manager = 2,
+  Admin = 4
 }
-</code></pre>
 
-<h3 id="further-reading">Further Reading</h3>
+class User {
+  public UserRole Role { get; set; }
+ 
+  public void AddRole(UserRole roleToAdd) {
+    this.Role |= roleToAdd;
+  }
+ 
+  public void RemoveRole(UserRole roleToRemove) {
+    this.Role &amp;= ~roleToRemove;
+  }
+  
+  public bool IsInRole(UserRole roleToCheck) {
+    return this.Role.HasFlag(roleToCheck);
+  }
+}
+</pre>
 
-<p>Here are some things I&rsquo;ve found helpful thus far:</p>
+<p>Flag enumerations are just as accessible in SQL.</p>
 
-<ul>
-<li><a href="http://blogs.msdn.com/brada/archive/2009/03/17/mix09-building-amazing-business-applications-with-silverlight-3.aspx">Brad Abrams&rsquo; entire series on Building Amazing Business Applications with Silverlight 3</a></li>
-<li><a href="http://blogs.msdn.com/brada/archive/2010/03/15/silverlight-4-ria-services-ready-for-business-index.aspx">Brad Abrams&rsquo; Silveright 4 + RIA Services series</a></li>
-<li><a href="http://bradabrams.sys-con.com/node/1049931/mobile">Example of using a DataSet with RIA Services</a> - This is what opened my eyes to the true purpose of the <code>Submit()</code> method in the <code>DomainService</code>.</li>
-<li><a href="http://blogs.msdn.com/deepm/archive/2009/11/20/wcf-ria-services-presentation-model-explained.aspx">Example of returning DTOs from your domain service</a></li>
-<li><a href="http://blogs.msdn.com/digital_ruminations/archive/2009/11/18/composition-support-in-ria-services.aspx">Example of Composition support in RIA Services</a></li>
-<li><a href="http://www.nikhilk.net">Nikhil Kothari&rsquo;s</a></li>
-<li><a href="http://live.visitmix.com/MIX10/Sessions/CL09">MIX10 talk on Developing with WCF RIA Services Quickly and Effectively</a></li>
-<li><a href="http://kevindockx.blogspot.com/2009/07/working-with-ria-services-2-change-sets.html">Good blog post describing Change Sets in detail</a></li>
+<pre data-language="sql">
+-- Add users to the Admin role
+UPDATE [User] SET [Roles] = ([Roles] | 4)
 
-<li><p><a href="http://www.google.com">Google</a> &ndash;  &lsquo;nuff said.</p>
+-- Remove users from the Admin role
+UPDATE [User] SET [Roles] = ([Roles] - ([Roles] &amp; 4))
 
-<p>[1]: <a href="http://msdn.microsoft.com/en-us/library/ee707373(VS.91).aspx">http://msdn.microsoft.com/en-us/library/ee707373(VS.91).aspx</a></p></li>
-</ul>
+-- Find all users in the Admin role
+SELECT * FROM [User] WHERE [Roles] &amp; 4 &lt;&gt; 0
+</pre>
+
+<p>Go forth and simplify, my friends.</p>
+
+<p><strong>Update for Go</strong></p>
+
+<p>Bonus! Here is how you might model this in <a href="http://www.golang.org">Go</a>.</p>
+
+<pre data-language="golang">
+type User struct {
+    Roles    Roles
+}
+
+type Roles uint
+
+const (
+    // Roles must be powers of two.
+    RoleEmployee Roles = 1
+    RoleManager        = 2
+    RoleAdmin          = 4
+)
+
+func (user *User) AddRole(role Roles) {
+  user.Roles |= role
+}
+
+func (user *User) RemoveRole(role Roles) {
+  user.Roles &amp;^= role
+}
+
+func (user *User) IsInRole(role Roles) bool {
+  return (user.Roles &amp; role) != 0
+}
+</pre>
+
+<p>An even cleaner way would be to use <a href="http://golang.org/pkg/builtin/#iota"><code>iota</code></a> to have Go automatically assign the flag values in powers of two. You can see this method used by Go&rsquo;s own <a href="http://golang.org/pkg/text/tabwriter/#pkg-constants">text/tabwriter</a> package.</p>
+
+<pre data-language="golang">
+const (
+  // Roles must be powers of two.
+  RoleEmployee Roles = 1 &lt;&lt; iota
+  RoleManager
+  RoleAdmin
+)
+</pre>
 
 
 </article>
@@ -357,68 +705,153 @@ public class PersonDao
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2010/why-i-love-silverlight/">Why I Love Silverlight</a>
+            <a href="http://joshua.poehls.me/2013/open-graph-twitter-cards-and-your-blog/">Open Graph Twitter Cards and Your Blog</a>
             
         </h1>
         <p>
-            <time datetime="2010-01-06 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Jan 6, 2010</time>
+            <time datetime="2013-02-01 21:43:53 -0500 -0500" pubdate="pubdate">Fri, Feb 1, 2013</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2010/why-i-love-silverlight/">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/open-graph-twitter-cards-and-your-blog/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2010/why-i-love-silverlight/</span>
+                <span class="printonly">http://joshua.poehls.me/2013/open-graph-twitter-cards-and-your-blog/</span>
             </a>
         </p>
     </header>
 
     
 
-<h3 id="update-on-june-9th-2012">Update on June 9th, 2012</h3>
+<p>Have you ever wondered why some web pages have a great preview when linked on Twitter, Facebook, or Google+ while others look so lacking?</p>
 
-<p>It is now the year 2012. All of the previous love I had for Silverlight has long since moved on to web standards, specifically HTML5. I don&rsquo;t miss Silverlight, even a little bit.
-Even so. I will leave this post around for fun.</p>
+<style>
+    .carousel {
+        width: 600px;
+        margin: 0 auto;
+    }
+    .carousel img {
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+</style>
 
-<p>&hellip;</p>
+<div class="carousel">
+    <img alt="Screenshot of Facebook link previews" src="fb-vs.png" style="width: 450px" />
 
-<p>Silverlight is at the top of my &ldquo;to learn&rdquo; list this year.
-I&rsquo;m already pretty familiar with the basics but now I need
-to dig in and write some real apps using it.</p>
+    <img alt="Screenshot of Google+ link previews" src="g-vs.png" style="width: 450px" />
 
-<p>This afternoon I decided to outline why I&rsquo;m so excited about
-Silverlight. Enjoy.</p>
+    <img alt="Screenshot of Twitter link previews" src="tw-vs.png" style="width: 450px" />
+</div>
+
+<div style="clear: both;"></div>
+
+<p>What you are seeing are formats such as the <a href="http://ogp.me/">Open Graph protocol</a> and <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a> at work.</p>
+
+<p>Open Graph is an open source protocol originally created by Facebook that allows your web page to describe itself using meta-tags. When people link to your web page on Facebook or Google+, these meta-tags will be parsed and used to display a snippet of content from your web page. Without these tags, the parser has to guess what to display.</p>
+
+<p>Twitter Cards let you attach a summary to any tweet that contains a link to your web page. Twitter Cards use their own set of meta-tags but will fallback to using the Open Graph meta-tags in some cases.</p>
+
+<h2 id="adding-open-graph">Adding Open Graph</h2>
+
+<p>Adding Open Graph tags to your pages is an easy way to enhance their display on both Google+ and Facebook.</p>
+
+<h3 id="to-your-home-page">&hellip;to your home page</h3>
+
+<p>Open Graph requires you to import a namespace of sorts. You do this by adding a <code>prefix</code> attribute to your <code>&lt;html&gt;</code> tag.</p>
+
+<pre data-language="html">
+&lt;html prefix="og: http://ogp.me/ns#"&gt;
+</pre>
+
+<p>Every page is required to have a set of basic properties. Your blog&rsquo;s home page should have the following meta-tags inside the <code>&lt;head&gt;</code> tag.</p>
+
+<pre data-language="html">
+&lt;meta property="og:type" content="website" /&gt;
+&lt;meta property="og:title" content="Zduck - Joshua Poehls" /&gt;
+&lt;meta property="og:image" content="http://zduck.com/logo.png" /&gt;
+&lt;meta property="og:url" content="http://zduck.com" /&gt;
+</pre>
+
+<p>The <code>og:url</code> property is the canonical URL of the current page. If there are multiple URLs a user could use to visit your page (e.g. www.zduck.com and zduck.com), this should contain the preferred URL.</p>
+
+<h3 id="to-your-posts">&hellip;to your posts</h3>
+
+<p>The properties on your individual post pages will be slightly different. Open Graph calls a blog post an <em>article</em> and we&rsquo;ll need to import the namespace for the <a href="http://ogp.me/#type_article">article object type</a>.</p>
+
+<pre data-language="html">
+&lt;html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#"&gt;
+</pre>
+
+<pre data-language="html">
+&lt;meta property="og:type" content="article" /&gt;
+&lt;meta property="og:site_name" content="Zduck - Joshua Poehls" /&gt;
+&lt;meta property="og:title" content="Title of my blog post" /&gt;
+&lt;meta property="og:image" content="http://zduck.com/mypost/image.png" /&gt;
+&lt;meta property="og:url" content="http://zduck.com/mypost" /&gt;
+&lt;meta property="og:description" content="One or two sentence description or summary of my blog post" /&gt;
+&lt;meta property="article:published_time" content="2013-01-28" /&gt;
+</pre>
+
+<p><code>article:published_time</code> needs to be an <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> formatted timestamp. It&rsquo;ll look something like <code>2013-01-28</code> or <code>2013-01-28T00:37Z</code> if you include the UTC time.</p>
+
+<p>If you use categories or tags then you can include properties for those as well.</p>
+
+<pre data-language="html">
+&lt;meta property="article:tag" content="Category 1" /&gt;
+&lt;meta property="article:tag" content="Category 2" /&gt;
+</pre>
+
+<p>Facebook <a href="https://developers.facebook.com/docs/technical-guides/opengraph/built-in-objects/#article">requires</a> your <code>og:image</code> to be at least 50px by 50px but prefers a minimum of 200px by 200px. It is a good idea to create a separate copy of your image specifically sized for Facebook.</p>
+
+<h2 id="adding-twitter-cards">Adding Twitter Cards</h2>
+
+<p>Twitter Cards have their own set of meta-tags that you are required to add to your page. Unlike Open Graph, you aren&rsquo;t required to import the namespace prefix on your page.</p>
+
+<pre data-language="html">
+&lt;meta name="twitter:card" content="summary" /&gt;
+&lt;meta name="twitter:title" content="Title of my blog post" /&gt;
+&lt;meta name="twitter:url" content="http://zduck.com/mypost" /&gt;
+&lt;meta name="twitter:image" content="http://zduck.com/mypost/twitter-image.png" /&gt;
+&lt;meta name="twitter:description" content="One or two sentence description or summary of my blog post" /&gt;
+</pre>
+
+<p>If you have a Twitter account then you can link to it as the author of the article.</p>
+
+<pre data-language="html">
+&lt;meta name="twitter:creator" content="@JoshuaPoehls" /&gt;
+</pre>
+
+<p>And if you have an account that represents your blog you can link to it as the publisher of the article.</p>
+
+<pre data-language="html">
+&lt;meta name="twitter:site" content="@MyBlog" /&gt;
+</pre>
+
+<p>Twitter Cards require a <code>twitter:url</code> but will fallback to <code>og:url</code> if it isn&rsquo;t found. Twitter also has fallbacks for <code>twitter:image</code> to <code>og:image</code>, <code>twitter:title</code> to <code>og:title</code>, and <code>twitter:description</code> to <code>og:description</code>. If you already have the Open Graph properties on your page then there isn&rsquo;t much point in duplicating them for Twitter unless you want to change how the information is displayed on Twitter specifically.</p>
+
+<p>Twitter requires your images to be 120px by 120px and will resize and crop any image that is too large. It is a good idea  to have a copy of your image sized for Twitter and use the <code>twitter:image</code> tag in addition to <code>og:image</code>.</p>
+
+<p><em>Remember that to light up Twitter Cards for your website you have to <a href="https://dev.twitter.com/docs/cards">apply for participation</a> with Twitter.</em></p>
+
+<h2 id="further-reading">Further Reading</h2>
+
+<p>Both the Open Graph protocol and Twitter Cards support a lot more than what I&rsquo;ve covered. These formats have a lot to offer beyond the world of blogging. Do yourself a favor and skim the <a href="http://ogp.me/">Open Graph protocol</a> and <a href="https://dev.twitter.com/docs/cards">Twitter Card documentation</a> for an idea of all they can do.</p>
+
+<p>Also, while Google+ supports the Open Graph protocol it actually prefers <a href="http://schema.org">schema.org microdata</a> for <a href="https://developers.google.com/+/plugins/snippet/">building its snippets</a>. Google, Yahoo!, Bing, and other search engines also use schema.org microdata to better represent your pages in search results. That is a topic for another time.</p>
+
+<p>Facebook also <a href="https://developers.facebook.com/docs/technical-guides/opengraph/">has documentation</a> regarding their use of the Open Graph protocol.</p>
+
+<h2 id="testing-tools">Testing Tools</h2>
+
+<p>Make sure you&rsquo;ve implemented the meta-tags correctly by using a few tools to check your pages.</p>
 
 <ul>
-<li><strong>Cross-platform.</strong> Microsoft supports Silverlight on Windows and Mac.
-This is ground breaking for me. I can write applications using .NET and they will
-run on a Mac. Score.
-<a href="http://www.go-mono.com/moonlight/">Moonlight</a> also enables some
-Silverlight support on Linux. As of this writing I believe they support Silverlight 2.</li>
-<li><strong>Rapid development.</strong> Not <em>my</em> rapid development but Microsoft&rsquo;s! Microsoft has been
-ramping up Silverlight at a phenomenal rate. This says a lot. At the very least it
-says Silverlight is here to stay. More than that, it says if Silverlight isn&rsquo;t
-a viable medium for your application now&hellip; it probably will be soon.</li>
-<li><strong>Web technology.</strong> I&rsquo;ve ventured into WinForms and desktop apps since my beginnings
-as a web developer, but I still favor the always up-to-date, easy deployment and
-lack of client install that web applications offer. Being a web technology,
-Silverlight brings all this to the table.</li>
-<li><strong>User experience and easy UI building.</strong> Another reason I prefer web apps is that I
-prefer building my UI in HTML/CSS instead of with WinForms/GDI. Designing a unique and creative UI
-in WinForms is very difficult. Restyling controls, complex layouts, and theming an application
-are all painful in WinForms but very natural and easy with HTML/CSS.</li>
+<li><a href="https://dev.twitter.com/docs/cards/preview">Twitter Card Preview</a></li>
+<li><a href="http://www.google.com/webmasters/tools/richsnippets">Google Rich Snippets</a></li>
+<li><a href="https://developers.facebook.com/tools/debug">Facebook Debugger</a></li>
 </ul>
 
-<p>XAML is what makes this so much better in Silverlight. The often annoyingly verbose
-   syntax aside, you get all the easy creativity and power of HTML/CSS.
-*  <strong>Offline and out of browser.</strong> Silverlight apps can be installed to run offline
-   and out of browser on users&rsquo; machines. Remember, this isn&rsquo;t just on Windows, either.
-   Mac and Linux users get to share the love. This is the feature that makes me
-   say Auf Wiedersehen to WinForms and even WPF. Not only do I get
-   all the deployment and easy update benefits of a web app, but I can also interact with
-   the user&rsquo;s desktop, have shortcuts, file associations, and drag &amp; drop, just like a native
-   application.</p>
+<h2 id="bonus-tip">Bonus Tip</h2>
 
-<p>WPF may be the next WinForms, but for me, Silverlight is the next WinForms and the next ASP.NET.
-Sure Silverlight won&rsquo;t work for everything but this year I&rsquo;m hoping
-to make Silverlight my MasterCard. As in, &ldquo;&hellip;for everything else, there&rsquo;s <del>MasterCard</del> Silverlight.&rdquo;</p>
+<p>You can <a href="https://developers.facebook.com/docs/insights/#claiming_a_domain">claim your domain</a> with Facebook and use their <a href="www.facebook.com/insights">Insights</a> dashboard to see how well your links are doing.</p>
 
 
 </article>
@@ -435,343 +868,126 @@ to make Silverlight my MasterCard. As in, &ldquo;&hellip;for everything else, th
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2009/installing-python-pygments-on-windows/">Installing Python Pygments on Windows</a>
+            <a href="http://joshua.poehls.me/2013/using-bookmarks-to-quickly-navigate-in-powershell/">Using bookmarks to quickly navigate in PowerShell</a>
             
         </h1>
         <p>
-            <time datetime="2009-10-25 00:00:00 &#43;0000 UTC" pubdate="pubdate">Sun, Oct 25, 2009</time>
+            <time datetime="2013-01-31 21:32:57 -0500 -0500" pubdate="pubdate">Thu, Jan 31, 2013</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2009/installing-python-pygments-on-windows/">
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/using-bookmarks-to-quickly-navigate-in-powershell/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2009/installing-python-pygments-on-windows/</span>
+                <span class="printonly">http://joshua.poehls.me/2013/using-bookmarks-to-quickly-navigate-in-powershell/</span>
             </a>
         </p>
     </header>
 
-    <p>While I was updating this blog to use <a href="http://www.jekyllrb.com">Jekyll</a>,
-I wanted to enable some nice syntax highlighting for any code snippets I may post.
-Jekyll provides support for this through <a href="http://pygments.org/">Pygments</a> which is
-a pretty mature and widely used syntax highlighter built on Python.</p>
-
-<p>I find it a little ironic that I need to install Python to enable a feature in a Ruby program.
-Though it is nice to see that the Jekyll team isn&rsquo;t afraid to leverage great tools even if they
-aren&rsquo;t written in Ruby.</p>
-
-<p>I should note that this is my first experience doing anything with Python. That said, here
-are the steps I fumbled through to install Pygments. This is officially the first
-Python egg I&rsquo;ve ever hatched.</p>
-
-<p>What the heck is an egg? Eggs are one way to package up
-a group of Python scripts for easy distribution. This makes
-eggs the equivelant of <a href="http://en.wikipedia.org/wiki/RubyGems">Ruby gems</a>.</p>
-
-<p>To create or install eggs you need to have
-<a href="http://pypi.python.org/pypi/setuptools">easy_install</a> installed.</p>
-
-<p>Here are the steps I took to do that.</p>
-
-<ol>
-<li><p>Download ez_setup.py from <a href="http://peak.telecommunity.com/dist/ez_setup.py">http://peak.telecommunity.com/dist/ez_setup.py</a>
-&gt; <strong>Note:</strong> The official documenation for easy_install can be found at
-&gt; <a href="http://peak.telecommunity.com/DevCenter/EasyInstall">http://peak.telecommunity.com/DevCenter/EasyInstall</a>.</p></li>
-
-<li><p>From the command line run: <code>python ez_setup.py</code>.
-This will put an easy_install.exe file (and related scripts) in your <code>C:\Python2x\Scripts</code> folder.</p></li>
-</ol>
-
-<blockquote>
-<p><strong>Note:</strong> If your Python scripts folder is not already in your
-<a href="http://en.wikipedia.org/wiki/PATH_(variable)">PATH environment variable</a> you
-may want to add it. This will make it easier to run scripts from that directory later on.</p>
-</blockquote>
-
-<p>Now that easy_install is available, I can download and install the Pygments egg that I need.</p>
-
-<ol>
-<li><p>Download the latest Pygments egg for your version of Python from <a href="http://pygments.org/download">http://pygments.org/download</a></p></li>
-
-<li><p>From the command line run: <code>easy_install Pygments-x.y.z-pyX.egg</code>.</p></li>
-
-<li><p>This will put add a &lsquo;pygmentize&rsquo; script to your default Python scripts folder (probably C:\Python2x\Script).</p></li>
-</ol>
-
-<p>And that&rsquo;s it. Of course after going through all of that I discovered that
-there is <a href="http://github.com/mojombo/jekyll/issues/#issue/76">a bug</a> in
-the current release of Jekyll that breaks its pygments support on Windows.
-Fortunately someone has fixed this bug in <a href="http://github.com/mojombo/jekyll/issues/#issue/76">a fork of Jekyll</a>
-but I haven&rsquo;t gotten around to trying that out yet. So for now I have no fancy syntax highlighting, but I did learn
-how to install an egg!</p>
-
-<p>You can find much more knowledgable information on Python Eggs
-<a href="http://mrtopf.de/blog/python_zope/a-small-introduction-to-python-eggs/">here</a>
-and <a href="http://mxm-mad-science.blogspot.com/2008/02/python-eggs-simple-introduction.html">here</a>.</p>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2009/from-windows-live-mesh-to-dropbox/">From Windows Live Mesh to Dropbox</a>
-            
-        </h1>
-        <p>
-            <time datetime="2009-10-12 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Oct 12, 2009</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2009/from-windows-live-mesh-to-dropbox/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2009/from-windows-live-mesh-to-dropbox/</span>
-            </a>
-        </p>
-    </header>
-
-    
-
-<p>The other night I received a recommendation to try out Dropbox.
-If you don&rsquo;t know what Dropbox is, here&rsquo;s the short of it.
-Post-install, you&rsquo;ll see a &ldquo;My Dropbox&rdquo; folder on your desktop
-(or wherever you chose to place it) and anything you put in there gets
-automagically sync&rsquo;d with every other computer you have Dropbox installed on.</p>
-
-<p>From random documents and OneNote Notebooks to my <a href="http://www.keepass.info">Keepass</a>
-Database and books I&rsquo;m reading, I have quite a few files that I like to
-have access to no matter which computer I&rsquo;m on. I could use a thumb drive
-for this&hellip; and I have in the past, but the convenience of having everything
-synchronized automatically for me and not having to remember to carry
-around the thumb drive is too much to pass up.</p>
-
-<p>For the past 6 months or so I&rsquo;ve been using Windows Live Mesh to
-synchronize these files between my computers. Before that I was
-using Windows Live Sync. I&rsquo;m actually still using Live Sync for
-some things (more on that later) but I have made the switch from Mesh
-to Dropbox. Bottom line, Dropbox &ldquo;just works&rdquo; and it keeps me in the
-loop while it&rsquo;s doing it. Let me explain.</p>
-
-<h2 id="windows-live-mesh">Windows Live Mesh</h2>
-
-<p>This is Microsoft&rsquo;s vision for your personal cloud.
-You get 5GB of online storage known as your Live Desktop.
-You get file synchronization between your computers (just like Live Sync).
-And you get remote desktop baked in.</p>
-
-<p>Mesh is still a beta product and things seem to be moving slowly
-on it judging by the sparse updates and lack of news via the blogging community.</p>
-
-<figure >
-
-<img src="/2009/10/livemesh-dropbox/mesh_live_desktop.jpg"  />
-
-
-</figure>
-
-<p>The best part of Mesh is that in addition to syncing folders
-across your computer, you can <em>optionally</em> have it sync the folder
-to your Live Desktop. Anything in your Live Desktop is available from any
-web connected computer and this is very handy. Don&rsquo;t miss the key word though.
-<strong>Optional</strong>. This is very important because I may have 20+ GB of music that
-I want to sync between my computers, but I don&rsquo;t want that eating
-up my 5GB of cloud space. With Mesh, this is easily handled by configuring
-exactly which devices you want to sync each folder with. Guess what?
-Your Live Desktop shows up as a device!</p>
-
-<figure >
-
-<img src="/2009/10/livemesh-dropbox/mesh_folder_share_config.png"  />
-
-
-</figure>
-
-<p>What&rsquo;s the catch? Well for me the whole syncing part was too opaque.
-I never felt like I really &lsquo;knew&rsquo; if my latest changes had been sync&rsquo;d
-yet or not. Even with the fancy News sidebar that Mesh attaches to each
-of your sync&rsquo;d folders.</p>
-
-<figure >
-
-<img src="/2009/10/livemesh-dropbox/mesh_log_small.jpg"  />
-
-
-</figure>
-
-<p>All too often I would update files and trust Mesh to sync them only
-to find out later that Mesh never picked up on the changes. Maybe it&rsquo;s
-just the fancy UI they&rsquo;ve given it, but I don&rsquo;t feel like the News pane
-is giving me all the details about which files have been uploaded, when,
-and which ones are still in progress.</p>
-
-<p>Maybe if Mesh had been faithful in keeping my files in sync I wouldn&rsquo;t
-care about seeing these details. Unfortunately it failed me and now I want
-to see everything.</p>
-
-<p>I only used the built in remote desktop a couple of times but I was
-impressed that it worked pretty well, even when the computer I was connecting
-to was behind a proxy.</p>
-
-<h2 id="dropbox">Dropbox</h2>
-
-<p>Whereas Mesh and Live Sync allow you to synchronize multiple folders
-between your computers, Dropbox only syncs one folder. Your My Dropbox folder.
-This was a small adjustment for me to make but it was worth it.</p>
-
-<p>Dropbox is completely cross platform with support for Windows, Mac, Linux,
-iPhone and other mobile phones. I only care about Windows and the iPhone though.</p>
-
-<p>I get 2GB free from Dropbox which is plenty for my critical files.
-Unlike Mesh, you can&rsquo;t choose to <em>not</em> have some files sync&rsquo;d to the cloud.
-Everything in your My Dropbox goes to the cloud, as well as your other computers.
-This is the only thing that I see Mesh having an upper hand in and its
-actually the reason I&rsquo;m still using Live Sync for some things.</p>
-
-<p>The Windows client for Dropbox is perfect. I get status overlays on all
-of the files and folders in My Dropbox that indicates whether they are
-up-to-date or downloading (+1 for acting like TortoiseSVN!). I get real-time
-balloon messages from my notification area whenever a file is changed, even
-when it&rsquo;s on another computer. For instance if I update a file on my desktop,
-I&rsquo;ll get a notification as soon as my laptop receives the update. This does
-wonders for making me feel &ldquo;in the loop&rdquo; and confident that my files are being
-kept up-to-date.</p>
-
-<figure >
-
-<img src="/2009/10/livemesh-dropbox/dropbox_status_overlays.png"  />
-
-
-</figure>
-
-<p>Dropbox has the cloud part covered by letting you login and access all your
-files via the browser. On top of this, they also keep past versions of your
-files (think shadow copy) as backups.</p>
-
-<p>The iPhone application (free) is a real work of art. I expected slow and
-clunky and I got fast and simple. Once you login you see a list of all your
-files and folders alphabetized. If its a file type that the iPhone supports
-(i.e photos or Office docs) you can open it up right on your phone. You can
-also add photos to your dropbox from your iPhone.</p>
-
-<p>Of course all of these apps offer great support for sharing files with
-your friends and colleagues, but Dropbox offers one stand out feature here.
-In addition to being able to share specific folders with friends, they give
-you a built-in Public folder that you can drop any file into, then right-click
-on the file to select an option to Copy a Public Link to that file. You can
-send this link to anyone and they&rsquo;ll be able to access the file. This enables
-a very quick workflow for sharing documents.</p>
-
-<h2 id="windows-live-sync">Windows Live Sync</h2>
-
-<p>This one has been around for awhile and (unlike Mesh) its <em>not</em> a beta.
-Also unlike Mesh, this one hasn&rsquo;t lost my confidence.</p>
-
-<p>There is no cloud storage with Live Sync. It only syncs directly between
-your computers peer-to-peer style. This means to stay up to date your
-computers really need be online all the time. When you change a file on
-computer A it checks if computer B is online and if so it will upload
-directly from A to B. If computer B is offline, it doesn&rsquo;t get the update.
-When computer B comes back online it will look for updates from A, if A is
-offline it won&rsquo;t get updates until it comes back.</p>
-
-<p>Oh, and it has an activity log:</p>
-
-<figure >
-
-<img src="/2009/10/livemesh-dropbox/live_sync_activity.png"  />
-
-
-</figure>
-
-<p>No cloud storage means no piddly size limitations. Well, sort of.
-You are limited to syncing 20 folders (top-level folders, this doesn&rsquo;t
-include children) with up to 20,000 files in each. I&rsquo;m not sure what the
-per-file size limits are.</p>
-
-<p>I mentioned above that I&rsquo;m still using Live Sync in addition to Dropbox.
-This is for 2 reasons:</p>
-
-<ol>
-<li>I have a <code>C:\tools</code> folder that I want to sync. I don&rsquo;t want this
-to become <code>C:\My Dropbox\tools</code>.</li>
-<li>I have some larger files (like music) that I don&rsquo;t care if its
-stored in the cloud, I just want it sync&rsquo;d. If I used Dropbox
-for this my free storage limits would have run out within the first hour&hellip;
-<br /></li>
-</ol>
-
-<p>At the end of the day, if you need to sync files between computers,
-I highly recommend either Dropbox or Windows Live Sync. As for Live Mesh?
-This is admittedly still a BETA product and it acts like one. I&rsquo;d wait until
-it&rsquo;s more mature before going this route.</p>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2007/recursively-deleting-files-with-powershell/">Recursively deleting files with PowerShell</a>
-            
-        </h1>
-        <p>
-            <time datetime="2007-04-23 10:43:31 -0600 -0600" pubdate="pubdate">Mon, Apr 23, 2007</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2007/recursively-deleting-files-with-powershell/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2007/recursively-deleting-files-with-powershell/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>So out of all the things I don&rsquo;t know, PowerShell is the one thing that made it to the top of my To Learn stack. Last week I ordered <a href="http://www.amazon.com/Windows-PowerShell-Action-Bruce-Payette/dp/1932394907/ref=pd_bbs_sr_1/102-7531966-1417704?ie=UTF8&amp;s=books&amp;qid=1177382702&amp;sr=8-1">PowerShell In Action</a>, it hasn&rsquo;t arrived yet but I&rsquo;ve already read about 100 pages out of the PDF (don&rsquo;t ask). The book is very well written and describes the core concepts of PowerShell very well.</p>
-
-<p>Having (almost) never written a batch file in my life it is taking a bit for me to wrap my head around the basics but so far I love it. Compiling C# apps to do simple tasks like iterate directory structures and process files has always annoyed me. There is just too much overhead in having to compile and manage both the source code an executable when you only need the code once (until tomorrow comes).</p>
-
-<p>I just want to create a script and run it. No compilation, no exe. Oh, and since I&rsquo;ve been completely spoiled by the .NET Framework I want access to all that too. PowerShell fits the bill.</p>
-
-<p>My first task. Find all files with an extension of <code>*.bak</code> on my <code>C:\</code> drive and delete them.</p>
-
-<pre><code>#  move to C: drive
-cd c:\
-
-#  list all files in C:
-dir
-
-#  list all *.BAK files in C:
-dir *.BAK
-
-#  do it recursively
-dir -recurse -filter *.BAK
-</code></pre>
-
-<p>Ok, so now that I&rsquo;ve got PowerShell spinning through my entire <code>C:\</code> drive, how do I stop it? You can always kill the process but I was in a pretty good mood today and decided to be nice. This is likely to be one of the most important things you learn about PowerShell so remember it well&hellip;</p>
-
-<p><code>CTRL+C</code></p>
-
-<p>That will halt execution of whatever PowerShell is doing and get you back to a prompt. Very handy for people like me who like tend to hit <code>[Enter]</code> before thinking about how long it might take to run.</p>
-
-<blockquote>
-<p><strong>TIP:</strong> <code>dir</code> (along with <code>ls</code>) is just an alias for the <code>Get-ChildItem</code> command.<br />
-You can get the full syntax for this command by running <code>Get-Help dir</code>.</p>
-</blockquote>
-
-<p>And if you want to delete all those <code>*.BAK</code> files you just found? Just pipe your <code>dir</code> to <code>del</code> (which is an alias for <code>Remove-Item</code>).</p>
-
-<p><code>dir -recurse -filter *.BAK | del</code></p>
+    <p>There are a few folders that I spend a lot of time and it is surprisingly slow to type <code>cd c:\path\to\my\project</code> many times a day. I solved this by creating a module that allows me to bookmark directories and navigate to them using aliases. Simply put, I can shorten the previous command to <code>g project</code>.</p>
+
+<p>Usage looks like this:</p>
+
+<pre>
+<b>Set-Bookmark</b> &lt;name&gt; &lt;path&gt;
+<b>Get-Bookmark</b> <i># to list all</i>
+<b>Get-Bookmark</b> &lt;name&gt;
+<b>Remove-Bookmark</b> &lt;name&gt;
+<b>Clear-Bookmarks</b>
+<b>Invoke-Bookmark</b> &lt;name&gt;
+</pre>
+
+<p>I alias <code>Invoke-Bookmark</code> as <code>g</code> for speed.</p>
+
+<p>All you have to do is import the module in your profile and initialize your bookmarks.</p>
+
+<pre data-language="powershell">
+# Microsoft.PowerShell_profile.ps1
+
+Import-Module bookmarks.psm1
+Set-Alias g Invoke-Bookmark
+
+Set-Bookmark project c:\path\to\my\project
+</pre>
+
+<p>Here is the module. Happy bookmarking!</p>
+
+<pre data-language="powershell">
+# bookmarks.psm1
+# Exports: Set-Bookmark, Get-Bookmark, Remove-Bookmark, Clear-Bookmarks, Invoke-Bookmark
+
+# holds hash of bookmarked locations
+$_bookmarks = @{}
+
+function Get-Bookmark() {
+  Write-Output ($_bookmarks.GetEnumerator() | sort Name)
+}
+
+function Remove-Bookmark($key) {
+&lt;#
+.SYNOPSIS
+  Removes the bookmark with the given key.
+#&gt;
+  if ($_bookmarks.keys -contains $key) {
+    $_bookmarks.remove($key)
+  }
+}
+
+function Clear-Bookmarks() {
+&lt;#
+.SYNOPSIS
+  Clears all bookmarks.
+#&gt;
+  $_bookmarks.Clear()
+}
+
+function Set-Bookmark($key, $location) {
+&lt;#
+.SYNOPSIS
+  Bookmarks the given location or the current location (Get-Location).
+#&gt;
+  # bookmark the current location if a specific path wasn't specified
+  if ($location -eq $null) {
+    $location = (Get-Location).Path
+  }
+
+  # make sure we haven't already bookmarked this location (no need to clutter things)
+  if ($_bookmarks.values -contains $location) {
+    Write-Warning ("Already bookmarked as: " + ($_bookmarks.keys | where { $_bookmarks[$_] -eq $location }))
+    return
+  }
+
+  # if no specific key was specified then auto-set the key to the next bookmark number
+  if ($key -eq $null) {
+    $existingNumbers = ($_bookmarks.keys | Sort-Object -Descending | where { $_ -is [int] })
+    if ($existingNumbers.length -gt 0) {
+      $key = $existingNumbers[0] + 1
+    }
+    else {
+      $key = 1
+    }
+  }
+
+  $_bookmarks[$key] = $location
+}
+
+function Invoke-Bookmark($key) {
+&lt;#
+.SYNOPSIS
+  Goes to the location specified by the given bookmark.
+#&gt;
+  if ([string]::IsNullOrEmpty($key)) {
+    Get-Bookmark
+    return
+  }
+
+  if ($_bookmarks.keys -contains $key) {
+    Push-Location $_bookmarks[$key]
+  }
+  else {
+    Write-Warning "No bookmark set for the key: $key"
+  }
+}
+
+Export-ModuleMember Get-Bookmark, Remove-Bookmark, Clear-Bookmarks, Set-Bookmark, Invoke-Bookmark
+</pre>
 
 
 </article>
@@ -787,6 +1003,12 @@ You can get the full syntax for this command by running <code>Get-Help dir</code
 
 <nav class="pagination">
 
+	<a href="/page/6/" aria-label="Earlier Posts"><span aria-hidden="true">&laquo; Earlier Posts</span></a>
+
+
+	
+		&nbsp;&nbsp;
+	
 
 
 	<a href="/page/4/" aria-label="Recent Posts"><span aria-hidden="true">Recent Posts &raquo;</span></a>

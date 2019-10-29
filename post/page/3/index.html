@@ -60,6 +60,65 @@
     <header>
         <h1>
             
+            <a href="http://english.stackexchange.com/a/37204">Starting Sentences With I.E. or E.G.</a> <span class="subtle symbol">&#10230;</span>
+            
+        </h1>
+        <p>
+            <time datetime="2014-09-25 13:48:49 -0500 CDT" pubdate="pubdate">Thu, Sep 25, 2014</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/09/ie-eg-sentences/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2014/09/ie-eg-sentences/</span>
+            </a>
+        </p>
+    </header>
+
+    <blockquote>
+<p>A parenthetical statement that is a complete sentence should begin with a capital.</p>
+</blockquote>
+
+<p>I used to debate this everytime I&rsquo;d use i.e. or e.g. in my writing. Not anymore!</p>
+
+<p>Right way:</p>
+
+<blockquote>
+<p>E.g., this is a proper example.</p>
+
+<p>I.e., something like this is correct.</p>
+</blockquote>
+
+<p>Wrong way: <sup class="footnote-ref" id="fnref:fn1"><a href="#fn:fn1">1</a></sup></p>
+
+<blockquote>
+<p>e.g., This is a bad example.</p>
+</blockquote>
+
+<p>Apparently it is also good practice to <a href="http://english.stackexchange.com/a/16215">include the comma</a>.</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:fn1">Sadly this is how I&rsquo;ve usually written it, except I almost always left off the comma.
+ <a class="footnote-return" href="#fnref:fn1">↩</a></li>
+</ol>
+</div>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="http://joshua.poehls.me/2014/09/hello-world/">Hello World</a>
             
         </h1>
@@ -704,6 +763,118 @@ vet:
     <header>
         <h1>
             
+            <a href="http://joshua.poehls.me/2013/detecting-zip-files-with-powershell/">Detecting ZIP files with PowerShell</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-12-22 22:23:43 -0500 -0500" pubdate="pubdate">Sun, Dec 22, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/detecting-zip-files-with-powershell/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/detecting-zip-files-with-powershell/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Have you heard of <a href="http://en.wikipedia.org/wiki/Magic_number_(programming)#Magic_numbers_in_files">magic numbers</a>? Some file formats are designed such that files are always saved with a specific byte sequence in the header. JPEG, PDF, and ZIP are all such formats.</p>
+
+<p>You <em>could</em> look for ZIP files by searching for all files with a <code>.zip</code> extension but a better way would be to look for all files that have <code>50 4b 03 04</code> as the first 4 bytes of the file. <a href="http://stackoverflow.com/a/1887113/31308">All ZIP files will start with those bytes.</a> Not all ZIP files have the <code>.zip</code> extension.</p>
+
+<p>Here&rsquo;s a <code>Test-ZipFile</code> PowerShell cmdlet that will return true or false whether the specified file has this magic header. You may also note that this cmdlet is a good citizen by <a href="http://stackoverflow.com/a/8506768">accepting file path input in an idiomatic way</a>.</p>
+
+<blockquote>
+<p>This cmdlet is also a great example of accepting <code>-Path</code> and <code>-LiteralPath</code> arguments in an idiomatic way. Including wildcard support for <code>-Path</code>.</p>
+</blockquote>
+
+<p><a href="https://github.com/jpoehls/Poshato/blob/master/Test-ZipFile.ps1">View on GitHub &#8594;</a></p>
+
+<pre><code>function Test-ZipFile
+{
+&lt;#
+.SYNOPSIS
+    Tests for the magic ZIP file header bytes.
+
+.DESCRIPTION
+    Inspired by http://stackoverflow.com/a/1887113/31308
+#&gt;
+    [CmdletBinding()]
+    param(
+        [Parameter(
+            ParameterSetName  = &quot;Path&quot;,
+            Mandatory = $true,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [string[]]$Path,
+
+        [Alias(&quot;PSPath&quot;)]
+        [Parameter(
+            ParameterSetName = &quot;LiteralPath&quot;,
+            Mandatory = $true,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [string[]]$LiteralPath
+    )
+
+    process {
+        $provider = $null
+
+        # Only expand wildcards if the -Path parameter was used.
+        if ($PSCmdlet.ParameterSetName -eq &quot;Path&quot;) {
+            $filePaths = $PSCmdlet.GetResolvedProviderPathFromPSPath($Path, [ref]$provider)
+        }
+        elseif ($PSCmdlet.ParameterSetName -eq &quot;LiteralPath&quot;) {
+            $filePaths = $PSCmdlet.GetResolvedProviderPathFromPSPath($LiteralPath, [ref]$provider)
+        }
+
+        foreach ($filePath in $filePaths) {
+            $isZip = $false
+            try {
+                $stream = New-Object System.IO.StreamReader -ArgumentList @($filePath)
+                $reader = New-Object System.IO.BinaryReader -ArgumentList @($stream.BaseStream)
+                $bytes = $reader.ReadBytes(4)
+                if ($bytes.Length -eq 4) {
+                    if ($bytes[0] -eq 80 -and
+                        $bytes[1] -eq 75 -and
+                        $bytes[2] -eq 3 -and
+                        $bytes[3] -eq 4) {
+                        $isZip = $true
+                    }
+                }
+            }
+            finally {
+                if ($reader) {
+                    $reader.Dispose()
+                }
+                if ($stream) {
+                    $stream.Dispose()
+                }
+            }
+
+            Write-Output $isZip
+        }
+    }
+}
+</code></pre>
+
+<p><em><code>Test-ZipFile</code> is part of <a href="http://github.com/jpoehls/poshato">Poshato</a>, my personal PowerShell module of miscellaneous goodness.</em></p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="http://joshua.poehls.me/powershell-script-module-boilerplate/">PowerShell Script Module Boilerplate</a>
             
         </h1>
@@ -872,356 +1043,6 @@ Move-Item $zipFileName $dist -Force
 
 I use a very similar file structure for [PowerShell Binary Modules][binary_module] but they do introduce more complexity into the release script. I'll be covering my binary module boilerplate in a future post. 
 -->
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/powershell-batch-file-wrapper/">PowerShell Batch File Wrapper</a>
-            
-        </h1>
-        <p>
-            <time datetime="2013-12-18 10:43:31 -0600 CST" pubdate="pubdate">Wed, Dec 18, 2013</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/powershell-batch-file-wrapper/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/powershell-batch-file-wrapper/</span>
-            </a>
-        </p>
-    </header>
-
-    
-
-<p>Sometimes you want a <code>.cmd</code> wrapper for your PowerShell script. Usually for me this is so people who aren&rsquo;t familiar with the command line can double-click to execute the script.</p>
-
-<p>This batch file should be saved alongside your PowerShell script, like so.</p>
-
-<pre><code>.\
- |- my_script.ps1
- |- my_script.cmd
-</code></pre>
-
-<p><code>my_script.cmd</code> will execute the same named <code>.ps1</code> file in the same directory, so <code>my_script.ps1</code> in this case. Any arguments passed to <code>my_script.cmd</code> will pass-through to the PowerShell script.</p>
-
-<pre><code>@ECHO OFF
-
-SET SCRIPTNAME=%~d0%~p0%~n0.ps1
-SET ARGS=%*
-IF [%ARGS%] NEQ [] GOTO ESCAPE_ARGS
-
-:POWERSHELL
-PowerShell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -Command &quot;&amp; { $ErrorActionPreference = 'Stop'; &amp; '%SCRIPTNAME%' @args; EXIT $LASTEXITCODE }&quot; %ARGS%
-EXIT /B %ERRORLEVEL%
-
-:ESCAPE_ARGS
-SET ARGS=%ARGS:&quot;=\&quot;%
-SET ARGS=%ARGS:`=``%
-SET ARGS=%ARGS:'=`'%
-SET ARGS=%ARGS:$=`$%
-SET ARGS=%ARGS:{=`}%
-SET ARGS=%ARGS:}=`}%
-SET ARGS=%ARGS:(=`(%
-SET ARGS=%ARGS:)=`)%
-SET ARGS=%ARGS:,=`,%
-SET ARGS=%ARGS:^%=%
-
-GOTO POWERSHELL
-</code></pre>
-
-<h2 id="what-s-going-on-here">What&rsquo;s going on here?</h2>
-
-<ul>
-<li><code>%SCRIPTNAME%</code> variable holds the name of the PowerShell script to execute. <code>%~d0%~p0%~n0</code> magic gets the full path of the
-current batch script without the file extension. By specifying the full path of the PowerShell script
-like this we can guarantee that it is always executed from the right place
-no matter what your working directory is.</li>
-<li>Escapes special characters in the arguments so that they are passed to PowerShell as you would expect.</li>
-<li>Runs <code>PowerShell.exe</code> with:
-
-<ul>
-<li><code>-NoProfile</code> to improve startup performance. Scripts you are distributing
-shouldn&rsquo;t rely on anything in your profile anyway.</li>
-<li><code>-NonInteractive</code> because usually my scripts don&rsquo;t need input from the user.</li>
-<li><code>-ExecutionPolicy Unrestricted</code> to ensure that the PowerShell script can
-be executed regardless of the machine&rsquo;s default Execution Policy.</li>
-<li><code>-Command</code> syntax for executing the command ensures that PowerShell
-returns the correct exit code from your script.
-Using <code>-Command</code> with <code>$ErrorActionPreference = 'Stop'</code> also ensures that
-errors thrown from your script cause PowerShell.exe to return a failing
-exit code (1). <a href="/2012/powershell-batch-files-exit-codes/">PowerShell is quite buggy when it comes to bubbling exit
-codes.</a>
-This is the safest method I&rsquo;ve found.</li>
-</ul></li>
-</ul>
-
-<h2 id="batch-file-tips">Batch file tips</h2>
-
-<h3 id="special-characters-in-arguments">Special characters in arguments</h3>
-
-<p>Remember that certain special characters need to be escaped in arguments passed to the batch file. These characters are: <code>^  &amp;  &lt;  &gt;  /?</code>. Note that <code>/?</code> is a sequence and is recognized as a help flag when passed to a batch file.</p>
-
-<blockquote>
-<p><code>my_script.cmd &quot;I &quot;&quot;am&quot;&quot; quoted&quot;</code> passes a single argument <code>I &quot;am&quot; quoted</code> to PowerShell.</p>
-
-<p><code>my_script.cmd &quot;^&amp;&lt;&gt;/?&quot;</code> passes <code>^&amp;&lt;&gt;/?</code></p>
-</blockquote>
-
-<h3 id="environment-variable-expansion">Environment variable expansion</h3>
-
-<p>Environment variables get automatically expanded in batch file arguments.</p>
-
-<blockquote>
-<p><code>my_script.cmd %PROGRAMFILES%</code> passes <code>C:\Program Files</code></p>
-</blockquote>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/">Differential backups using 7-zip and PowerShell</a>
-            
-        </h1>
-        <p>
-            <time datetime="2013-12-10 23:04:50 -0500 -0500" pubdate="pubdate">Tue, Dec 10, 2013</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/</span>
-            </a>
-        </p>
-    </header>
-
-    
-
-<p>Backups are like changing the oil on your car. It&rsquo;s the best thing you can do to extend the life of your engine and the best thing you can do to save yourself when your hard drive crashes, gets stolen, or otherwise corrupted.</p>
-
-<p>I work remotely and needed a backup strategy for my work laptop. My company encourages you to keep critical client files and such in your personal share on the network. Most of our employees work in office so this is perfectly reasonable as the norm. (Though I bet a ton of stuff still ends up on local machines!) As a remotee however, this isn&rsquo;t practical for reasons that are hopefully obvious to everyone.</p>
-
-<p>There are as many backup strategies, scripts, and apps as there are computers. Today though, it was PowerShell to the rescue with the help of trusty <a href="http://www.7-zip.org">7-zip</a> (command line version) and <a href="http://technet.microsoft.com/en-us/library/cc733145.aspx">robocopy</a>.</p>
-
-<p><strong>Requirements</strong></p>
-
-<ul>
-<li>I&rsquo;m not concerned with a full system backup. No need to image my hard drive, I only want to backup a specific set of directories that contain my working files.</li>
-<li>I need to backup to a local drive.</li>
-<li>I need to upload backups to my user share on the company network.</li>
-<li>I need a scheduled task that will perform the backup on a regular basis.</li>
-</ul>
-
-<p><strong>Implementation details</strong></p>
-
-<ul>
-<li>Differential backups. Because I&rsquo;ll be uploading these over a VPN, I want them to be as small as possible. Differential backups will allow me to upload a full backup once (or occasionally) and then upload much small backups daily.</li>
-<li>LZMA compression. I&rsquo;ll sacrifice some speed during the backup stage but save a ton of time on the upload by compressing my backups using 7-zips LZMA (7z) compression format.</li>
-<li>Local hard drive space is limited so I&rsquo;ll only keep the most recent backup locally. I&rsquo;ll keep past backups on the company network and manually prune old ones when needed. This will be a casual safety net if I ever need to roll back to a specific point in time.</li>
-</ul>
-
-<p><strong>Results</strong></p>
-
-<p>Here&rsquo;s what it looks like.</p>
-
-<p>I&rsquo;ll store my most recent backups locally in <strong>C:\backup</strong>. Timestamps in the names keep everything straight. Each backup has an accompanying log file.</p>
-
-<p><img src="backup-folder.png" alt="Screenshot of backup folder" title="Screenshot of backup folder" /></p>
-
-<p>My backup script is stored in <a href="https://db.tt/i03IdN4">Dropbox</a>.</p>
-
-<ul>
-<li><code>backup.ps1</code> - The meat of the backup script. The various *.cmd scripts are just wrappers that pass this the appropriate arguments.</li>
-<li><code>upload-backup.cmd</code> - Starts uploading all existing backups to the company network.</li>
-<li><code>full-backup.cmd</code> - Starts a full backup.</li>
-<li><code>diff-backup.cmd</code> - Starts a differential backup.</li>
-<li><code>includes.txt</code> - A list of directory and file paths to include in the backup. This is passed to 7-zip.</li>
-<li><code>excludes.txt</code> - A list of directory and file paths to exclude from the backup. This is also passed to 7-zip.</li>
-</ul>
-
-<p><img src="script-folder.png" alt="Screenshot of script folder" title="Screenshot of script folder" /></p>
-
-<p>I have a Windows Scheduled Task that runs a differential backup (<code>diff-backup.cmd</code>) hourly. The differential backup is usually pretty fast, so running hourly is no problem.</p>
-
-<p>I have another task that runs the upload (<code>upload-backup.cmd</code>) once a day when I am connected to the VPN. Task Scheduler is supposedly smart enough to only run the task if the VPN connection is available and to retry on a regular basis if it isn&rsquo;t. I&rsquo;ve never used this feature before so we&rsquo;ll see how it goes. I can always fall back to manually running this via a desktop shortcut.</p>
-
-<h2 id="the-script">The Script</h2>
-
-<p>My script isn&rsquo;t suited to sharing verbatim but I do want to share the good parts.</p>
-
-<h3 id="selecting-the-most-recent-full-backup">Selecting the most recent full backup</h3>
-
-<p>Differential backups have to be based on a full backup. The script is smart enough to find the most recent full backup file and use it as the base.</p>
-
-<pre><code class="language-powershell"># Find the most recent full backup.
-# Depends on Get-ChildItem returning the items sorted in ascending order (oldest backups first).
-$fullBackup = Get-ChildItem -File -Path &quot;$backupOutputPath\backup-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9].7z&quot; | select -Last 1 -ExpandProperty FullName
-if (-not ($fullBackup) -or -not (Test-Path $fullBackup -PathType Leaf)) {
-	throw &quot;No full backup was found. Must have a full backup before performing a differential.&quot;
-}
-</code></pre>
-
-<h3 id="7-zip-args-for-a-full-backup">7-zip args for a full backup</h3>
-
-<pre><code class="language-powershell">$7zipArgs = @(
-	&quot;a&quot;;                          # Create an archive.
-	&quot;-t7z&quot;;                       # Use the 7z format.
-	&quot;-mx=7&quot;;                      # Use a level 7 &quot;high&quot; compression.
-	&quot;-xr!thumbs.db&quot;;              # Exclude thumbs.db files wherever they are found.
-	&quot;-xr!*.log&quot;;                  # Exclude all *.log files as well.
-	&quot;-xr-@`&quot;`&quot;$excludesFile`&quot;`&quot;&quot;; # Exclude all paths in my excludes.txt file.
-	&quot;-ir-@`&quot;`&quot;$includesFile`&quot;`&quot;&quot;; # Include all paths in my includes.txt file.
-	&quot;$outputFile&quot;;                # Output file path (a *.7z file).
-)
-</code></pre>
-
-<p>Notice that I doubled some quotation marks for the excludes and includes arguments. This escaping is necessary to ensure the path I&rsquo;m passing in works even if it has spaces in it.</p>
-
-<h3 id="7-zip-args-for-a-differential-backup">7-zip args for a differential backup</h3>
-
-<pre><code class="language-powershell">$7zipArgs = @(
-	&quot;u&quot;;                                    # Update an archive. Slightly confusing since we'll be saving those updates to a new archive file.
-	&quot;$fullBackupPath&quot;;                      # Path of the full backup we are creating a differential for.
-	&quot;-t7z&quot;;
-	&quot;-mx=7&quot;;
-	&quot;-xr!thumbs.db&quot;;
-	&quot;-xr!*.log&quot;;
-	&quot;-xr-@`&quot;`&quot;$excludesFile`&quot;`&quot;&quot;;
-	&quot;-ir-@`&quot;`&quot;$includesFile`&quot;`&quot;&quot;;
-	&quot;-u-&quot;;                                  # Don't update the original archive (the full backup).
-	&quot;-up0q3r2x2y2z0w2!`&quot;`&quot;$outputFile`&quot;`&quot;&quot;; # Flags to specify how the archive should be updated and the output file path (a *.7z file).
-)
-</code></pre>
-
-<p>The last argument there is a doosey. Here&rsquo;s what those flags mean.</p>
-
-<ul>
-<li><code>-u</code> - Starts the &ldquo;update options&rdquo; which follow.</li>
-<li>Each letter represents a state of a file either in the base archive (our full backup) or on disk (the files we&rsquo;re backing up).
-
-<ul>
-<li><code>p</code> - File exists in archive, but isn&rsquo;t in any of the include file paths. The file is no longer included in the backup (includes.txt probably changed).</li>
-<li><code>q</code> - File exists in archive, but doesn&rsquo;t exists on disk. The file has been deleted since the full backup.</li>
-<li><code>r</code> - File doesn&rsquo;t exist in archive, but exists on disk. The file is new since the full backup.</li>
-<li><code>x</code> - File in archive is newer than the file on disk. (Odd.)</li>
-<li><code>y</code> - File in archive is older than the file on disk. The file has been updated since the full backup.</li>
-<li><code>z</code> - File in archive is same as the file on disk.</li>
-<li><code>w</code> - Cannot be detected which file is newer (times are the same, sizes are different).</li>
-</ul></li>
-<li>After each of those letters is a number that represents what action to take on files matching that state.
-
-<ul>
-<li><code>0</code> - Ignore file. Don&rsquo;t include it in the backup.</li>
-<li><em><code>1</code> - Copy file. Copy it from the old archive to the new. From our full backup to our new differential backup.</em></li>
-<li><code>2</code> - Compress. Include the file from disk in our new differential backup.</li>
-<li><code>3</code> - Create an anti-item. This is a feature only supported by 7z archives and basically puts a marker in the archive saying that this file has been deleted. If you extract this archive into a directory where this file exists then it will be deleted during the extraction.</li>
-</ul></li>
-<li>Everything after the ! is specifying the output file path.</li>
-</ul>
-
-<p><em>You can read more about 7-zip&rsquo;s options in their documentation.</em></p>
-
-<h3 id="watching-for-exit-codes">Watching for exit codes</h3>
-
-<p>I want my backup to fail if 7-zip fails.</p>
-
-<pre><code class="language-powershell">&amp; $7zip @7zipArgs | Tee-Object -LiteralPath $logFile
-if ($LASTEXITCODE -gt 1) # Ignores warnings which use exit code 1.
-{
-	throw &quot;7zip failed with exit code $LASTEXITCODE&quot;
-}
-</code></pre>
-
-<h3 id="log-7-zip-output-to-both-the-console-and-log-file">Log 7-zip output to both the console and log file</h3>
-
-<p>Did you notice <a href="http://technet.microsoft.com/en-us/library/hh849937.aspx"><code>Tee-Object</code></a> in the above snippet? That&rsquo;s what handles this. The only downside is that your console output will be laggy due to PowerShell buffering the pipeline.</p>
-
-<h3 id="deleting-old-backups">Deleting old backups</h3>
-
-<p>Remember, I&rsquo;m only keeping the most recent full backup and most recent differential backup files locally. My script automatically deletes old backup files after a new backup is successful. This is the magic used to delete the old differential backups when a new one finishes.</p>
-
-<pre><code class="language-powershell"># Clean up old differential backup files.
-# Only keep the most recent differential backup.
-# Depends on Get-ChildItem returning the items sorted in ascending order (oldest backups first).
-$allDiffBackups = Get-ChildItem -File -Path &quot;$backupOutputPath\backup-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]-diff-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9].7z&quot;
-if ($allDiffBackups -is [array] ) {
-	[Array]:: Reverse($allDiffBackups)
-	$allDiffBackups | select -Skip 1 | % {
-		Write-Host &quot;Deleting old differential backup. File: $($_.FullName)&quot;
-		# Remove the matching log file.
-		Remove-Item -LiteralPath ([System.IO.Path ]::ChangeExtension($_.FullName, &quot;.log&quot;)) -ErrorAction SilentlyContinue
-		$_
-	} | Remove-Item
-} 
-</code></pre>
-
-<h3 id="robocopy-args-to-upload-the-backups">Robocopy args to upload the backups</h3>
-
-<pre><code class="language-powershell">$robocopyArgs = @(
-	&quot;$backupOutputPath&quot;; # Source path
-	&quot;$networkDestPath&quot;;  # Destination path
-	&quot;/Z&quot;;                # Use restartable mode when transferring files.
-	&quot;/FP&quot;;               # Log the full paths to files.
-	&quot;/NP&quot;;               # Don't log progress percentages.
-	&quot;/X&quot;;                # Log a list of 'extra' files that exist in the destination but not locally.
-	&quot;/UNILOG+$logfile&quot;;  # Append to the specified log file.
-	&quot;/TEE&quot;;              # Send output to the console in addition to the log file.
-)
-</code></pre>
-
-<p>Those arguments will perform a shallow copy of all files in the source folder to the destination.</p>
-
-<p>Note that since robocopy supports the <code>/UNILOG+</code> and <code>/TEE</code> arguments I don&rsquo;t have to use <code>Tee-Object</code> to append to the log file.</p>
-
-<p>Once again, I&rsquo;ll make sure the copy is successful and fail the script if the copy fails.</p>
-
-<pre><code class="language-powershell">&amp; $robocopy @robocopyArgs
-if ($LASTEXITCODE -ge 8) # exit code when files failed to copy
-{
-	# robocopy exit codes: http://support.microsoft.com/kb/954404
-	throw &quot;robocopy failed with exit code $LASTEXITCODE&quot;
-}
-</code></pre>
-
-<h3 id="passing-args-from-powershell-to-executables">Passing args from PowerShell to executables</h3>
-
-<p>There are a million ways, of course, but my favorite is to put the arguments into an array and let PowerShell splat them. I really like how this keeps the script readable even when you are passing a ton of arguments around.</p>
-
-<pre><code class="language-powershell">$cmdArgs = @(
-	&quot;/E&quot;;
-	&quot;/UNILOG+$logfile&quot;;
-) 
-
-&amp; some_application.exe @cmdArgs
-</code></pre>
-
-<p>The only thing to be aware of here is that if one of your <code>$cmdArg</code> items contains a SPACE then PowerShell will automatically wrap the argument in double quotes when passing it to the executable.</p>
-
-<blockquote>
-<p>If you are having trouble getting your quotes and other special characters escaped properly, I&rsquo;ve written <a href="http://github.com/jpoehls/echoargs">several EchoArgs apps</a> to help. They just echo back the arguments passed in so you can see how they are being received.</p>
-</blockquote>
-
-<h2 id="epilogue">Epilogue</h2>
-
-<p>Hopefully this will help you get a jump start on your own backup strategy. Please, hit me up in the comments if you have any questions.</p>
 
 
 </article>

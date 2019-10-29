@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thoughts</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2013/using-bookmarks-to-quickly-navigate-in-powershell/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.59.0" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='///fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/using-bookmarks-to-quickly-navigate-in-powershell/">Using bookmarks to quickly navigate in PowerShell</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-01-31 21:32:57 -0500 -0500" pubdate="pubdate">Thu, Jan 31, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/using-bookmarks-to-quickly-navigate-in-powershell/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/using-bookmarks-to-quickly-navigate-in-powershell/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>There are a few folders that I spend a lot of time and it is surprisingly slow to type <code>cd c:\path\to\my\project</code> many times a day. I solved this by creating a module that allows me to bookmark directories and navigate to them using aliases. Simply put, I can shorten the previous command to <code>g project</code>.</p>
+
+<p>Usage looks like this:</p>
+
+<pre>
+<b>Set-Bookmark</b> &lt;name&gt; &lt;path&gt;
+<b>Get-Bookmark</b> <i># to list all</i>
+<b>Get-Bookmark</b> &lt;name&gt;
+<b>Remove-Bookmark</b> &lt;name&gt;
+<b>Clear-Bookmarks</b>
+<b>Invoke-Bookmark</b> &lt;name&gt;
+</pre>
+
+<p>I alias <code>Invoke-Bookmark</code> as <code>g</code> for speed.</p>
+
+<p>All you have to do is import the module in your profile and initialize your bookmarks.</p>
+
+<pre data-language="powershell">
+# Microsoft.PowerShell_profile.ps1
+
+Import-Module bookmarks.psm1
+Set-Alias g Invoke-Bookmark
+
+Set-Bookmark project c:\path\to\my\project
+</pre>
+
+<p>Here is the module. Happy bookmarking!</p>
+
+<pre data-language="powershell">
+# bookmarks.psm1
+# Exports: Set-Bookmark, Get-Bookmark, Remove-Bookmark, Clear-Bookmarks, Invoke-Bookmark
+
+# holds hash of bookmarked locations
+$_bookmarks = @{}
+
+function Get-Bookmark() {
+  Write-Output ($_bookmarks.GetEnumerator() | sort Name)
+}
+
+function Remove-Bookmark($key) {
+&lt;#
+.SYNOPSIS
+  Removes the bookmark with the given key.
+#&gt;
+  if ($_bookmarks.keys -contains $key) {
+    $_bookmarks.remove($key)
+  }
+}
+
+function Clear-Bookmarks() {
+&lt;#
+.SYNOPSIS
+  Clears all bookmarks.
+#&gt;
+  $_bookmarks.Clear()
+}
+
+function Set-Bookmark($key, $location) {
+&lt;#
+.SYNOPSIS
+  Bookmarks the given location or the current location (Get-Location).
+#&gt;
+  # bookmark the current location if a specific path wasn't specified
+  if ($location -eq $null) {
+    $location = (Get-Location).Path
+  }
+
+  # make sure we haven't already bookmarked this location (no need to clutter things)
+  if ($_bookmarks.values -contains $location) {
+    Write-Warning ("Already bookmarked as: " + ($_bookmarks.keys | where { $_bookmarks[$_] -eq $location }))
+    return
+  }
+
+  # if no specific key was specified then auto-set the key to the next bookmark number
+  if ($key -eq $null) {
+    $existingNumbers = ($_bookmarks.keys | Sort-Object -Descending | where { $_ -is [int] })
+    if ($existingNumbers.length -gt 0) {
+      $key = $existingNumbers[0] + 1
+    }
+    else {
+      $key = 1
+    }
+  }
+
+  $_bookmarks[$key] = $location
+}
+
+function Invoke-Bookmark($key) {
+&lt;#
+.SYNOPSIS
+  Goes to the location specified by the given bookmark.
+#&gt;
+  if ([string]::IsNullOrEmpty($key)) {
+    Get-Bookmark
+    return
+  }
+
+  if ($_bookmarks.keys -contains $key) {
+    Push-Location $_bookmarks[$key]
+  }
+  else {
+    Write-Warning "No bookmark set for the key: $key"
+  }
+}
+
+Export-ModuleMember Get-Bookmark, Remove-Bookmark, Clear-Bookmarks, Set-Bookmark, Invoke-Bookmark
+</pre>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

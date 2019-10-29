@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thoughts</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2013/push-it-out-push-ups-every-hour./">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.59.0" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='///fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/push-it-out-push-ups-every-hour./">Push it out! Push ups every hour.</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-08-23 22:20:56 -0500 CDT" pubdate="pubdate">Fri, Aug 23, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/push-it-out-push-ups-every-hour./">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/push-it-out-push-ups-every-hour./</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p><strong>Push ups. Every hour, on the hour. Can you handle it?</strong></p>
+
+<p>I&rsquo;ve been motivated by <a href="http://www.steubing.me">a friend</a> to start this challenge. Every hour, on the hour, I&rsquo;m going to drop and do a set of push ups.</p>
+
+<p>Remembering is the hardest part. Timers are easy to set but also easy to ignore. My solution is to make myself a massive nag screen that will flash every hour while I&rsquo;m at work.</p>
+
+<p><img src="pushitout.png" alt="Screenshot of nag screen" title="Screenshot of nag screen" /></p>
+
+<p>My strategy is working! I&rsquo;m 7 hours into my day and haven&rsquo;t missed a set. It feels great.</p>
+
+<h2 id="join-me">Join me!</h2>
+
+<p>My nag screen is just a PowerShell script and scheduled task. It really couldn&rsquo;t be simpler. You don&rsquo;t even need to be a geek to figure this out.</p>
+
+<ol>
+<li><a href="pushitout.zip">Download the ZIP.</a></li>
+<li>Extract the files somewhere permanent. Moving them later will require you to manually update the scheduled task.</li>
+<li>Run <strong>pushitout.cmd</strong> to install the scheduled task.</li>
+<li>Run it again to see what it looks like.</li>
+</ol>
+
+<p>The default schedule is to nag you every day, every hour, between 8am and 5pm. Feel free to customize this to fit your schedule, <a href="http://www.howtogeek.com/123393/how-to-automatically-run-programs-and-set-reminders-with-the-windows-task-scheduler/">editing scheduled tasks is easy</a>.</p>
+
+<p>I&rsquo;d love to hear how this works out for you, let me know in the comments!</p>
+
+<blockquote>
+<p>Over achievers will notice that the <strong>Show-NagWindow.ps1</strong> script lets you
+customize the message, font, and colors by passing in different parameters.
+Edit the obvious parts of <strong>pushitout.cmd</strong> to customize the nag screen
+to your liking.</p>
+
+<p><strong>Works on my machine!</strong> &hellip; which happens to be running Windows 7,
+.NET 4.5 and PowerShell V3. You&rsquo;ll probably need admin rights on your
+machine in order to install the scheduled task.</p>
+</blockquote>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

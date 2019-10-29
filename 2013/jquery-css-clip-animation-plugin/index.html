@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thoughts</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2013/jquery-css-clip-animation-plugin/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.59.0" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='///fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/jquery-css-clip-animation-plugin/">jQuery CSS Clip Animation Plugin</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-03-06 21:58:15 -0500 -0500" pubdate="pubdate">Wed, Mar 6, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/jquery-css-clip-animation-plugin/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/jquery-css-clip-animation-plugin/</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>Yesterday I needed to animate the CSS <a href="https://developer.mozilla.org/en-US/docs/CSS/clip">clip property</a> using jQuery.
+<a href="http://api.jquery.com/animate/"><code>jQuery.animate()</code></a> doesn&rsquo;t support this natively so I went searching for a plugin.
+I found exactly what I needed in <a href="http://www.overset.com/2008/08/07/jquery-css-clip-animation-plugin/">a simple plugin by Jim Palmer</a>, unfortunately it hasn&rsquo;t been updated to work with jQuery 1.8.0+.</p>
+
+<p>So here you go, a forked and updated copy of the plugin which will work with jQuery 1.8.0+.</p>
+
+<p>Changes include:</p>
+
+<ul>
+<li>Support for jQuery 1.8.0+</li>
+<li>Support for the element&rsquo;s initial clip value to be specified via a stylesheet instead of an inline style</li>
+<li>Support for decimal clip values (thanks to a comment by Manoel Quirino Neto)</li>
+<li>Type checking <code>fx.end</code> to guard against errors in some scenarios</li>
+<li>Support for IE8</li>
+</ul>
+
+<p>The element you are animating <strong>must</strong> have a <code>clip</code> style specified. Otherwise, usage is as you would expect.</p>
+
+<pre data-language="html">
+&lt;div class="element" style="clip: rect(0px 155px 31px 0px);"&gt;
+    content to be clipped
+&lt;/div&gt;
+</pre>
+
+<pre data-language="javascript">
+$('.element').animate({
+    clip: 'rect(0px 155px 31px 146px)'
+}, 500);
+</pre>
+
+<p>Refer <a href="http://www.overset.com/2008/08/07/jquery-css-clip-animation-plugin/">the original plugin</a> for a demo or to give credit to the author.</p>
+
+<pre data-language="javascript">
+/*
+* jquery.animate.clip.js
+*
+* jQuery css clip animation support -- Joshua Poehls
+* version 0.1.4
+
+* forked from Jim Palmer&#39;s plugin http://www.overset.com/2008/08/07/jquery-css-clip-animation-plugin/
+* idea spawned from jquery.color.js by John Resig
+* Released under the MIT license.
+*/
+(function (jQuery) {
+
+    function getStyle(elem, name) {
+        return (elem.currentStyle &amp;&amp; elem.currentStyle[name]) || elem.style[name];
+    }
+
+    function getClip(elem) {
+        var cssClip = jQuery(elem).css(&#39;clip&#39;) || &#39;&#39;;
+
+        if (!cssClip) {
+            // Try to get the clip rect another way for IE8.
+            // This is a workaround for jQuery&#39;s css(&#39;clip&#39;) returning undefined
+            // when the clip is defined in an external stylesheet in IE8. -JPOEHLS
+            var pieces = {
+                top: getStyle(elem, &#39;clipTop&#39;),
+                right: getStyle(elem, &#39;clipRight&#39;),
+                bottom: getStyle(elem, &#39;clipBottom&#39;),
+                left: getStyle(elem, &#39;clipLeft&#39;)
+            };
+
+            if (pieces.top &amp;&amp; pieces.right &amp;&amp; pieces.bottom &amp;&amp; pieces.left) {
+                cssClip = &#39;rect(&#39; + pieces.top + &#39; &#39; + pieces.right + &#39; &#39; + pieces.bottom + &#39; &#39; + pieces.left + &#39;)&#39;;
+            }
+        }
+
+        // Strip commas and return.
+        return cssClip.replace(/,/g, &#39; &#39;);
+    }
+
+    jQuery.fx.step.clip = function (fx) {
+        if (fx.pos === 0) {
+            var cRE = /rect\(([0-9\.]{1,})(px|em)[,]?\s+([0-9\.]{1,})(px|em)[,]?\s+([0-9\.]{1,})(px|em)[,]?\s+([0-9\.]{1,})(px|em)\)/;
+
+            fx.start = cRE.exec(getClip(fx.elem));
+            if (typeof fx.end === &#39;string&#39;) {
+                fx.end = cRE.exec(fx.end.replace(/,/g, &#39; &#39;));
+            }
+        }
+        if (fx.start &amp;&amp; fx.end) {
+            var sarr = new Array(), earr = new Array(), spos = fx.start.length, epos = fx.end.length,
+                emOffset = fx.start[ss + 1] == &#39;em&#39; ? (parseInt($(fx.elem).css(&#39;fontSize&#39;)) * 1.333 * parseInt(fx.start[ss])) : 1;
+            for (var ss = 1; ss &lt; spos; ss += 2) { sarr.push(parseInt(emOffset * fx.start[ss])); }
+            for (var es = 1; es &lt; epos; es += 2) { earr.push(parseInt(emOffset * fx.end[es])); }
+            fx.elem.style.clip = &#39;rect(&#39; +
+                parseInt((fx.pos * (earr[0] - sarr[0])) + sarr[0]) + &#39;px &#39; +
+                parseInt((fx.pos * (earr[1] - sarr[1])) + sarr[1]) + &#39;px &#39; +
+                parseInt((fx.pos * (earr[2] - sarr[2])) + sarr[2]) + &#39;px &#39; +
+                parseInt((fx.pos * (earr[3] - sarr[3])) + sarr[3]) + &#39;px)&#39;;
+        }
+    }
+})(jQuery);
+</pre>
+
+<h3 id="updated-to-0-1-4">Updated to 0.1.4</h3>
+
+<p>I updated the plugin to support IE8. This entailed adding a fallback for when <code>$('...').css('clip')</code> returns <code>undefined</code> which it does in IE8 when the <code>clip</code> style is defined in an external stylesheet.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

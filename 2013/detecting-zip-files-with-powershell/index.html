@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thoughts</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2013/detecting-zip-files-with-powershell/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.59.0" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='///fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/detecting-zip-files-with-powershell/">Detecting ZIP files with PowerShell</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-12-22 22:23:43 -0500 -0500" pubdate="pubdate">Sun, Dec 22, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/detecting-zip-files-with-powershell/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/detecting-zip-files-with-powershell/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Have you heard of <a href="http://en.wikipedia.org/wiki/Magic_number_(programming)#Magic_numbers_in_files">magic numbers</a>? Some file formats are designed such that files are always saved with a specific byte sequence in the header. JPEG, PDF, and ZIP are all such formats.</p>
+
+<p>You <em>could</em> look for ZIP files by searching for all files with a <code>.zip</code> extension but a better way would be to look for all files that have <code>50 4b 03 04</code> as the first 4 bytes of the file. <a href="http://stackoverflow.com/a/1887113/31308">All ZIP files will start with those bytes.</a> Not all ZIP files have the <code>.zip</code> extension.</p>
+
+<p>Here&rsquo;s a <code>Test-ZipFile</code> PowerShell cmdlet that will return true or false whether the specified file has this magic header. You may also note that this cmdlet is a good citizen by <a href="http://stackoverflow.com/a/8506768">accepting file path input in an idiomatic way</a>.</p>
+
+<blockquote>
+<p>This cmdlet is also a great example of accepting <code>-Path</code> and <code>-LiteralPath</code> arguments in an idiomatic way. Including wildcard support for <code>-Path</code>.</p>
+</blockquote>
+
+<p><a href="https://github.com/jpoehls/Poshato/blob/master/Test-ZipFile.ps1">View on GitHub &#8594;</a></p>
+
+<pre><code>function Test-ZipFile
+{
+&lt;#
+.SYNOPSIS
+    Tests for the magic ZIP file header bytes.
+
+.DESCRIPTION
+    Inspired by http://stackoverflow.com/a/1887113/31308
+#&gt;
+    [CmdletBinding()]
+    param(
+        [Parameter(
+            ParameterSetName  = &quot;Path&quot;,
+            Mandatory = $true,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [string[]]$Path,
+
+        [Alias(&quot;PSPath&quot;)]
+        [Parameter(
+            ParameterSetName = &quot;LiteralPath&quot;,
+            Mandatory = $true,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [string[]]$LiteralPath
+    )
+
+    process {
+        $provider = $null
+
+        # Only expand wildcards if the -Path parameter was used.
+        if ($PSCmdlet.ParameterSetName -eq &quot;Path&quot;) {
+            $filePaths = $PSCmdlet.GetResolvedProviderPathFromPSPath($Path, [ref]$provider)
+        }
+        elseif ($PSCmdlet.ParameterSetName -eq &quot;LiteralPath&quot;) {
+            $filePaths = $PSCmdlet.GetResolvedProviderPathFromPSPath($LiteralPath, [ref]$provider)
+        }
+
+        foreach ($filePath in $filePaths) {
+            $isZip = $false
+            try {
+                $stream = New-Object System.IO.StreamReader -ArgumentList @($filePath)
+                $reader = New-Object System.IO.BinaryReader -ArgumentList @($stream.BaseStream)
+                $bytes = $reader.ReadBytes(4)
+                if ($bytes.Length -eq 4) {
+                    if ($bytes[0] -eq 80 -and
+                        $bytes[1] -eq 75 -and
+                        $bytes[2] -eq 3 -and
+                        $bytes[3] -eq 4) {
+                        $isZip = $true
+                    }
+                }
+            }
+            finally {
+                if ($reader) {
+                    $reader.Dispose()
+                }
+                if ($stream) {
+                    $stream.Dispose()
+                }
+            }
+
+            Write-Output $isZip
+        }
+    }
+}
+</code></pre>
+
+<p><em><code>Test-ZipFile</code> is part of <a href="http://github.com/jpoehls/poshato">Poshato</a>, my personal PowerShell module of miscellaneous goodness.</em></p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

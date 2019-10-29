@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thoughts</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/2013/first-steps-in-go-a-scoreboard-app/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.59.0" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='///fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	
+
+	<section id="posts">
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2013/first-steps-in-go-a-scoreboard-app/">First Steps in Go: A Scoreboard App</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-06-06 22:15:33 -0500 CDT" pubdate="pubdate">Thu, Jun 6, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/first-steps-in-go-a-scoreboard-app/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/first-steps-in-go-a-scoreboard-app/</span>
+            </a>
+        </p>
+    </header>
+
+    
+
+<p>Mostly I just read about new programming languages. Call it a hobby. Only once in awhile am I struck with enough interest to want to try something out on a real project. <a href="http://golang.org">Go</a> is the most recent of such interests. As someone who loves a lot about <a href="http://nodejs.org">Node.js</a>, I&rsquo;m looking forward to seeing how Go compares and whether it solves my Node and JavaScript pain points.</p>
+
+<p><strong>Scores</strong> is my first app in Go. It is a very simple scoreboard app for &ldquo;tracking personal records between friends&rdquo;. You define a record like &ldquo;max push-ups&rdquo; and you create a scoreboard for it. The scoreboard is specific to your group of friends or &ldquo;team&rdquo;.</p>
+
+<p>You <a href="http://scores.zduck.com/test/push-ups">try out a test scoreboard</a> or dive in and <a href="http://scores.zduck.com">create your own board</a>.</p>
+
+<p><img src="s1.png" alt="Screenshot of test scoreboard" /></p>
+
+<p>Anyone with the URL of your scoreboard can post scores. Only the top 10 scores are kept. Obviously it is wide open to trolls so you probably won&rsquo;t want to share your scoreboard URL publicly.</p>
+
+<p><img src="s2.png" alt="Screenshot of scores homepage" /></p>
+
+<p>I think this is a pretty fun and useful app and I&rsquo;d love to know what you think! Please take it for a run, invite your friends to compete with you for a high score.</p>
+
+<p><img src="s3.png" alt="Screenshot of empty scoreboard" /></p>
+
+<p>If it gains some interest then my plan is to keep this running and improve the code overtime as I learn more Go. Honestly, the improvement part will probably happen regardless. The primary goal of this project is to try out Go in a real app and I&rsquo;ve already got a laundry list of things to improve.</p>
+
+<p>I encourage you to <a href="http://github.com/jpoehls/scores">read the source</a> and comment. <strong>Please, do not take this as a great example of idiomatic Go code.</strong> This is a work in process from someone learning the language. Take it as such.</p>
+
+<h2 id="why-go">Why Go?</h2>
+
+<p>You may be curious about what attracted me to Go. It is a very simple language. In a way, it was designed to have a lack of features rather than an abundance. While many languages take the stance that giving the developer more ways to do something makes their job easier, Go says this is wrong. Less is more. More features introduce disparate coding styles and make it difficult to maintain consistency. You can look at 2 or 10 different projects in some languages and feel, largely, like you are reading 2 or 10 different languages simple due to style changes or which features of the language the APIs are designed around.</p>
+
+<p>In short, Go was designed to make developer&rsquo;s quality of life better. Clearer code, faster builds, great tooling.</p>
+
+<p>I&rsquo;m a sucker for simplicity and I&rsquo;m a big sucker for great tooling. Developer tooling is a passion of mine and Go has made this a top priority. Built-in <a href="http://blog.golang.org/profiling-go-programs">memory and CPU profiler</a>, <a href="http://golang.org/doc/articles/race_detector.html">deadlock and race detection</a>, <a href="http://golang.org/doc/articles/godoc_documenting_go_code.html">documentation generator</a> that supports <a href="http://golang.org/pkg/strings/#Split">executable example code</a>, built-in <a href="http://golang.org/pkg/testing/">testing and benchmarking</a>, a Go language <a href="http://golang.org/pkg/go/">parser and lexer in the standard library</a>; these things excite me.</p>
+
+<p>I&rsquo;m not going to elaborate more on Go because, honestly, I&rsquo;m a total noob. I&rsquo;ve been following the project for awhile but only started writing code recently and am just now working on an actual app. Thus, my opinions on the language and its benefits over the long-haul are very weak. Try it for yourself and make your own opinions.</p>
+
+<p>If this sounds interesting to you then I encourage you to watch a couple of videos to get a feel for the philosophy and tooling of Go.</p>
+
+<ul>
+<li><a href="https://vimeo.com/53221558">Go: a simple programming environment</a> - Andrew Gerrand, November 2012</li>
+<li><a href="http://www.infoq.com/presentations/Go-Google">Go at Google</a> - Rob Pike, October 2012</li>
+</ul>
+
+<p>So, what do you think of Go? Let me know! And don&rsquo;t forget to <a href="http://scores.zduck.com">create a scoreboard</a> and let me know what you think of that as well!</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	</section>
+
+	
+
+</div>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

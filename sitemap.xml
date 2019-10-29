@@ -3,17 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://joshua.poehls.me/tags/jason-derouchie/</loc>
-    <lastmod>2018-11-14T13:41:40-05:00</lastmod>
+    <loc>http://joshua.poehls.me/</loc>
+    <lastmod>2019-10-28T22:04:38-05:00</lastmod>
   </url>
   
   <url>
-    <loc>http://joshua.poehls.me/</loc>
-    <lastmod>2018-11-14T13:41:40-05:00</lastmod>
+    <loc>http://joshua.poehls.me/tags/nodejs/</loc>
+    <lastmod>2019-10-28T22:04:38-05:00</lastmod>
   </url>
   
   <url>
     <loc>http://joshua.poehls.me/post/</loc>
+    <lastmod>2019-10-28T22:04:38-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2019/substacks-philosophy-of-small-things/</loc>
+    <lastmod>2019-10-28T22:04:38-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/tags/jason-derouchie/</loc>
     <lastmod>2018-11-14T13:41:40-05:00</lastmod>
   </url>
   
@@ -298,6 +308,11 @@
   </url>
   
   <url>
+    <loc>http://joshua.poehls.me/2013/detecting-zip-files-with-powershell/</loc>
+    <lastmod>2013-12-22T22:23:43-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://joshua.poehls.me/powershell-script-module-boilerplate/</loc>
     <lastmod>2013-12-21T10:43:31-06:00</lastmod>
   </url>
@@ -310,6 +325,166 @@
   <url>
     <loc>http://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/</loc>
     <lastmod>2013-12-10T23:04:50-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/push-it-out-push-ups-every-hour./</loc>
+    <lastmod>2013-08-23T22:20:56-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/user-sign-up-and-email-confirmation-a-ux-boilerplate/</loc>
+    <lastmod>2013-08-13T22:29:37-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/tags/ux/</loc>
+    <lastmod>2013-08-13T22:29:37-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/tags/web/</loc>
+    <lastmod>2013-08-13T22:29:37-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/tags/tableau/</loc>
+    <lastmod>2013-08-09T22:32:43-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/</loc>
+    <lastmod>2013-08-09T22:32:43-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/tableau-via-powershell-part-2-saving-changes/</loc>
+    <lastmod>2013-08-07T22:40:40-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/go-beginners-iota-enumerations/</loc>
+    <lastmod>2013-07-28T22:26:07-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/</loc>
+    <lastmod>2013-07-25T22:36:58-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/errorlevel-is-not-errorlevel/</loc>
+    <lastmod>2013-07-25T22:18:36-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/first-steps-in-go-a-scoreboard-app/</loc>
+    <lastmod>2013-06-06T22:15:33-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/does-your-business-need-a-website/</loc>
+    <lastmod>2013-04-10T22:12:02-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/tags/gear/</loc>
+    <lastmod>2013-04-09T22:08:30-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/initiation-into-mechanical-keyboard-geekdom/</loc>
+    <lastmod>2013-04-09T22:08:30-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/tags/keyboard/</loc>
+    <lastmod>2013-04-09T22:08:30-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/tags/javascript/</loc>
+    <lastmod>2013-03-28T22:06:19-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/non-enumerable-properties-in-javascript/</loc>
+    <lastmod>2013-03-28T22:06:19-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/tags/css/</loc>
+    <lastmod>2013-03-15T22:00:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/google-chrome-and-woff-font-mime-type-warnings/</loc>
+    <lastmod>2013-03-15T22:00:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/tags/jquery/</loc>
+    <lastmod>2013-03-06T21:58:15-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/jquery-css-clip-animation-plugin/</loc>
+    <lastmod>2013-03-06T21:58:15-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/tags/quote/</loc>
+    <lastmod>2013-02-26T21:55:57-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/single-day-of-eternity/</loc>
+    <lastmod>2013-02-26T21:55:57-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/tags/autohotkey/</loc>
+    <lastmod>2013-02-20T21:52:29-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/using-unix-terminal-shortcuts-in-the-windows-command-prompt/</loc>
+    <lastmod>2013-02-20T21:52:29-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/tags/csharp/</loc>
+    <lastmod>2013-02-12T21:48:50-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/tags/sql/</loc>
+    <lastmod>2013-02-12T21:48:50-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/using-enum-flags-to-model-user-roles-in-csharp-and-sql/</loc>
+    <lastmod>2013-02-12T21:48:50-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/open-graph-twitter-cards-and-your-blog/</loc>
+    <lastmod>2013-02-01T21:43:53-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/using-bookmarks-to-quickly-navigate-in-powershell/</loc>
+    <lastmod>2013-01-31T21:32:57-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/benchmarking-scripts-and-programs-with-powershell/</loc>
+    <lastmod>2013-01-24T21:23:08-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://joshua.poehls.me/2013/an-mklink-powershell-module/</loc>
+    <lastmod>2013-01-22T21:07:03-05:00</lastmod>
   </url>
   
   <url>
@@ -390,11 +565,6 @@
   <url>
     <loc>http://joshua.poehls.me/tags/vpn/</loc>
     <lastmod>2012-04-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://joshua.poehls.me/tags/autohotkey/</loc>
-    <lastmod>2011-12-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>

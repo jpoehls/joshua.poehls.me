@@ -4,12 +4,68 @@
   <rights>Copyright (c) 2014-2018 Joshua Poehls. All rights reserved.</rights>
   <link rel="self" href="http://joshua.poehls.me/feed.xml"/>
   <link href="http://joshua.poehls.me/"/>
-  <updated>2018-11-14T13:41:40-05:00</updated>
+  <updated>2019-10-28T22:04:38-05:00</updated>
   <author>
     <name>Joshua Poehls</name>
   </author>
   <id>http://joshua.poehls.me/</id>
 
+  
+  <entry>
+    <title>Substack&#39;s philosophy of small things</title>
+    <link href="http://joshua.poehls.me/2019/substacks-philosophy-of-small-things/"/>
+    <id>http://joshua.poehls.me/2019/substacks-philosophy-of-small-things/</id>
+    <updated>2019-10-28T22:04:38-05:00</updated>
+    
+    <category term="nodejs" />
+    
+    <content type="html">&lt;p&gt;
+  Those of you who follow the &lt;a href=&#39;http://nodejs.org&#39;&gt;Node.js&lt;/a&gt; community at all
+  will recognize &lt;a href=&#39;http://twitter.com/substack&#39;&gt;substack&lt;/a&gt; as one of the most prolific
+  package authors on &lt;a href=&#39;https://npmjs.org/~substack&#39;&gt;NPM&lt;/a&gt;.
+  You have probably also picked up on the fact that he is a big fan of small packages.
+&lt;/p&gt;
+
+&lt;p&gt;
+  I ran across this interview the other day and I think substack communicates
+  his &amp;#8220;small things&amp;#8221; philosophy well. Simply put,
+  the UNIX philosophy works. Do one thing, do it well, and it will stand the test of time.
+&lt;/p&gt;
+
+&lt;p&gt;
+  &lt;a href=&#34;https://en.wikipedia.org/wiki/Single_responsibility_principle&#34;&gt;SRP&lt;/a&gt; for all the things!
+  Once you learn to break up your projects into isolated chunks, the next step is to learn how to
+  break up your monolithic app into coordinating services. It&#39;s all the same principle, and it works well.
+&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Paraphrased from the video.&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;
+    If you want to be writing things that people will still be using in 20 years,
+    you&amp;#8217;ve really gotta only do one thing. If you try to do other things, somebody else
+    will come along and do that one thing way better because they focused more.
+    So you&amp;#8217;re just wasting your time by writing big things because they won&amp;#8217;t be
+    with us in the future. It&amp;#8217;s really wasted effort.
+  &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div&gt;
+  &lt;iframe src=&#34;http://player.vimeo.com/video/56219478&#34;
+          width=&#34;500&#34;
+          height=&#34;281&#34;
+          frameborder=&#34;0&#34;
+          webkitAllowFullScreen=&#34;webkitAllowFullScreen&#34;
+          mozallowfullscreen=&#34;mozallowfullscreen&#34;
+          allowFullScreen=&#34;allowFullScreen&#34;&gt;&lt;/iframe&gt;
+  &lt;p&gt;
+    &lt;a href=&#34;http://vimeo.com/56219478&#34;&gt;Substack - Small things&lt;/a&gt;
+    from &lt;a href=&#34;http://vimeo.com/mikeal&#34;&gt;mikeal&lt;/a&gt;
+    on &lt;a href=&#34;http://vimeo.com&#34;&gt;Vimeo&lt;/a&gt;.
+  &lt;/p&gt;
+&lt;/div&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Resources for Studying Zephaniah</title>
@@ -929,39 +985,6 @@ Renzo Gracie on MMA Hour Episode 249
  &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn2&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>The World&#39;s Loudest Sound</title>
-    <link href="http://joshua.poehls.me/2014/10/worlds-loudest-sound/"/>
-    <id>http://joshua.poehls.me/2014/10/worlds-loudest-sound/</id>
-    <updated>2014-10-02T14:03:07-05:00</updated>
-    
-    <category term="sound" />
-    <category term="science" />
-    
-    <content type="html">&lt;figure &gt;
-
-&lt;img src=&#34;http://joshua.poehls.me/2014/10/worlds-loudest-sound/krakatoa.jpg&#34; alt=&#34;Krakatoa&#34; /&gt;
-
-
-&lt;figcaption&gt;
-&lt;p&gt;
-Krakatoa
-
-
-
-&lt;/p&gt; 
-&lt;/figcaption&gt;
-
-&lt;/figure&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;The sound made by the Krakatoa volcanic eruption in 1883 was so loud it ruptured eardrums of people 40 miles away, travelled around the world four times, and &lt;a href=&#34;http://nautil.us/blog/the-sound-so-loud-that-it-circled-the-earth-four-times&#34;&gt;was clearly heard 3,000 miles away&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This is the most amazing thing you&amp;rsquo;ll read today.&lt;/p&gt;
 </content>
   </entry>
   
