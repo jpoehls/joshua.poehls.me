@@ -1,6 +1,6 @@
 ---
 title: "Substack's philosophy of small things"
-date: 2019-10-28T22:04:38-05:00
+date: 2013-03-22T22:04:38-05:00
 tags:
 - nodejs
 ---
