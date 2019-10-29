@@ -1,0 +1,52 @@
+---
+title: "Substack's philosophy of small things"
+date: 2019-10-28T22:04:38-05:00
+tags:
+- nodejs
+---
+
+<p>
+  Those of you who follow the <a href='http://nodejs.org'>Node.js</a> community at all
+  will recognize <a href='http://twitter.com/substack'>substack</a> as one of the most prolific
+  package authors on <a href='https://npmjs.org/~substack'>NPM</a>.
+  You have probably also picked up on the fact that he is a big fan of small packages.
+</p>
+
+<p>
+  I ran across this interview the other day and I think substack communicates
+  his &#8220;small things&#8221; philosophy well. Simply put,
+  the UNIX philosophy works. Do one thing, do it well, and it will stand the test of time.
+</p>
+
+<p>
+  <a href="https://en.wikipedia.org/wiki/Single_responsibility_principle">SRP</a> for all the things!
+  Once you learn to break up your projects into isolated chunks, the next step is to learn how to
+  break up your monolithic app into coordinating services. It's all the same principle, and it works well.
+</p>
+
+<p><em>Paraphrased from the video.</em></p>
+
+<blockquote>
+  <p>
+    If you want to be writing things that people will still be using in 20 years,
+    you&#8217;ve really gotta only do one thing. If you try to do other things, somebody else
+    will come along and do that one thing way better because they focused more.
+    So you&#8217;re just wasting your time by writing big things because they won&#8217;t be
+    with us in the future. It&#8217;s really wasted effort.
+  </p>
+</blockquote>
+
+<div>
+  <iframe src="http://player.vimeo.com/video/56219478"
+          width="500"
+          height="281"
+          frameborder="0"
+          webkitAllowFullScreen="webkitAllowFullScreen"
+          mozallowfullscreen="mozallowfullscreen"
+          allowFullScreen="allowFullScreen"></iframe>
+  <p>
+    <a href="http://vimeo.com/56219478">Substack - Small things</a>
+    from <a href="http://vimeo.com/mikeal">mikeal</a>
+    on <a href="http://vimeo.com">Vimeo</a>.
+  </p>
+</div>
