@@ -6,8 +6,8 @@ tags:
 ---
 
 <p>
-  Those of you who follow the <a href='http://nodejs.org'>Node.js</a> community at all
-  will recognize <a href='http://twitter.com/substack'>substack</a> as one of the most prolific
+  Those of you who follow the <a href='https://nodejs.org'>Node.js</a> community at all
+  will recognize <a href='https://twitter.com/substack'>substack</a> as one of the most prolific
   package authors on <a href='https://npmjs.org/~substack'>NPM</a>.
   You have probably also picked up on the fact that he is a big fan of small packages.
 </p>
@@ -37,7 +37,7 @@ tags:
 </blockquote>
 
 <div>
-  <iframe src="http://player.vimeo.com/video/56219478"
+  <iframe src="https://player.vimeo.com/video/56219478"
           width="500"
           height="281"
           frameborder="0"
@@ -45,8 +45,8 @@ tags:
           mozallowfullscreen="mozallowfullscreen"
           allowFullScreen="allowFullScreen"></iframe>
   <p>
-    <a href="http://vimeo.com/56219478">Substack - Small things</a>
-    from <a href="http://vimeo.com/mikeal">mikeal</a>
-    on <a href="http://vimeo.com">Vimeo</a>.
+    <a href="https://vimeo.com/56219478">Substack - Small things</a>
+    from <a href="https://vimeo.com/mikeal">mikeal</a>
+    on <a href="https://vimeo.com">Vimeo</a>.
   </p>
 </div>
