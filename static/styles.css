@@ -58,6 +58,7 @@ h1 {
 
 ul {
 	list-style-type: disc;
+	margin-left: 1em;
 }
 
 ul li ul {
@@ -119,16 +120,15 @@ footer p {
 /* Blockquotes
 ************************************************** */
 blockquote {
-	font-size: .95em;
+	font-size: 1em;
 	margin: 0 1em;
-	padding: 0.5em 1em;
+	padding: 0.25em 1em;
 	background: #f9f9f9;
-	border-left: 2px solid #333;
+	border-left: 2px solid #adadad;
 }
 
 #posts blockquote p {
-	font-size: .95em;
-	text-indent: 0em;
+	font-size: 1em;
 }
 
 blockquote > blockquote {
@@ -203,6 +203,7 @@ pre > code {
 pre {
 	padding: 1em;
 	background-color: #f9f9f9;
+	text-indent: 0;
 }
 pre, code {
 	font-family: 'Inconsolata', monospace;
@@ -276,8 +277,10 @@ pre, code {
 #posts p, #posts div {
 	margin-top: 1.3em;
 	margin-bottom: 1.3em;
-	font-size: .95em;
-	text-indent: 1em;
+	font-size: 1em;
+	line-height: 1.8em;
+	text-indent: -1em;
+	padding-left: 1em;
 }
 
 #posts h1 {
