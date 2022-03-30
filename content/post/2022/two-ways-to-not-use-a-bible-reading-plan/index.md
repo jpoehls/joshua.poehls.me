@@ -19,7 +19,7 @@ If that sounds like you, I have two strategies that may help. I've been using on
 
 I've been using the iOS *Reminders* app as my primary Bible reading list (or *plan*) for at least a couple years. It works great!
 
-{{% img src="reminders.png" caption="My Bible Reading list in the iOS Reminders app" %}}
+{{% img src="/two-ways-to-not-use-a-bible-reading-plan/reminders.png" caption="My Bible Reading list in the iOS Reminders app" %}}
 
 1. My *Bible Reading 📖* list has an item for each book of the Bible. 
 2. When I finish a book, I mark it off.
@@ -49,7 +49,7 @@ If the *Reminders* app method is simple and pragmatic, the spreadsheet method is
 
 The *Log* sheet is simple data entry. When I read a book, I add a line. If I only read a few chapters, I add a line and make note of the chapter I stopped at. This is my "bookmark".
 
-{{% img src="log.png" caption="My reading log spreadsheet" %}}
+{{% img src="/two-ways-to-not-use-a-bible-reading-plan/log.png" caption="My reading log spreadsheet" %}}
 
 ## Per Book Summary
 
@@ -59,7 +59,7 @@ The *Books* sheet is a read-only dashboard that shows my progress across all boo
 * The date I last read any portion of the book. This is <span style="background-color: #76e15f;">green</span> if I read it this year or <span style="color: #dd4040;">red</span> if it has been over a year. 
 * The date I last finished the book. This has the same <span style="background-color: #76e15f;">green</span> or <span style="color: #dd4040;">red</span> highlight. There's no highlight if I finished it last year - that'd be too much visual noise. 
 
-{{% img src="books.png" caption="My book summary spreadsheet" %}}
+{{% img src="/two-ways-to-not-use-a-bible-reading-plan/books.png" caption="My book summary spreadsheet" %}}
 
 I use this sheet for two scenarios:
 
@@ -70,7 +70,7 @@ I use this sheet for two scenarios:
 
 Finally, the *Years* sheet is a read-only dashboard of my overall Bible reading progress rolled up by year. 
 
-{{% img src="years.png" caption="My year summary spreadsheet" %}}
+{{% img src="/two-ways-to-not-use-a-bible-reading-plan/years.png" caption="My year summary spreadsheet" %}}
 
 If my goal is to read the Bible in a year, this sheet keeps me on target with my current progress and a projection of how many chapters per day I need to read in order to finish on time. 
 
