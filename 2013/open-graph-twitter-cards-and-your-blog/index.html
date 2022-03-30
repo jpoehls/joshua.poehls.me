@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2013/open-graph-twitter-cards-and-your-blog/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -74,68 +74,48 @@
         </p>
     </header>
 
-    
-
-<p>Have you ever wondered why some web pages have a great preview when linked on Twitter, Facebook, or Google+ while others look so lacking?</p>
-
+    <p>Have you ever wondered why some web pages have a great preview when linked on Twitter, Facebook, or Google+ while others look so lacking?</p>
 <style>
-    .carousel {
-        width: 600px;
-        margin: 0 auto;
-    }
-    .carousel img {
-        display: inline-block;
-        margin-bottom: 20px;
-    }
+	.carousel {
+		width: 600px;
+		margin: 0 auto;
+	}
+	.carousel img {
+		display: inline-block;
+		margin-bottom: 20px;
+	}
 </style>
-
 <div class="carousel">
-    <img alt="Screenshot of Facebook link previews" src="fb-vs.png" style="width: 450px" />
+	<img alt="Screenshot of Facebook link previews" src="fb-vs.png" style="width: 450px" />
+<pre><code>&lt;img alt=&quot;Screenshot of Google+ link previews&quot; src=&quot;g-vs.png&quot; style=&quot;width: 450px&quot; /&gt;
 
-    <img alt="Screenshot of Google+ link previews" src="g-vs.png" style="width: 450px" />
-
-    <img alt="Screenshot of Twitter link previews" src="tw-vs.png" style="width: 450px" />
+&lt;img alt=&quot;Screenshot of Twitter link previews&quot; src=&quot;tw-vs.png&quot; style=&quot;width: 450px&quot; /&gt;
+</code></pre>
 </div>
-
 <div style="clear: both;"></div>
-
 <p>What you are seeing are formats such as the <a href="http://ogp.me/">Open Graph protocol</a> and <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a> at work.</p>
-
 <p>Open Graph is an open source protocol originally created by Facebook that allows your web page to describe itself using meta-tags. When people link to your web page on Facebook or Google+, these meta-tags will be parsed and used to display a snippet of content from your web page. Without these tags, the parser has to guess what to display.</p>
-
 <p>Twitter Cards let you attach a summary to any tweet that contains a link to your web page. Twitter Cards use their own set of meta-tags but will fallback to using the Open Graph meta-tags in some cases.</p>
-
 <h2 id="adding-open-graph">Adding Open Graph</h2>
-
 <p>Adding Open Graph tags to your pages is an easy way to enhance their display on both Google+ and Facebook.</p>
-
 <h3 id="to-your-home-page">&hellip;to your home page</h3>
-
 <p>Open Graph requires you to import a namespace of sorts. You do this by adding a <code>prefix</code> attribute to your <code>&lt;html&gt;</code> tag.</p>
-
 <pre data-language="html">
 &lt;html prefix="og: http://ogp.me/ns#"&gt;
 </pre>
-
 <p>Every page is required to have a set of basic properties. Your blog&rsquo;s home page should have the following meta-tags inside the <code>&lt;head&gt;</code> tag.</p>
-
 <pre data-language="html">
 &lt;meta property="og:type" content="website" /&gt;
 &lt;meta property="og:title" content="Zduck - Joshua Poehls" /&gt;
 &lt;meta property="og:image" content="http://zduck.com/logo.png" /&gt;
 &lt;meta property="og:url" content="http://zduck.com" /&gt;
 </pre>
-
-<p>The <code>og:url</code> property is the canonical URL of the current page. If there are multiple URLs a user could use to visit your page (e.g. www.zduck.com and zduck.com), this should contain the preferred URL.</p>
-
+<p>The <code>og:url</code> property is the canonical URL of the current page. If there are multiple URLs a user could use to visit your page (e.g. <a href="http://www.zduck.com">www.zduck.com</a> and zduck.com), this should contain the preferred URL.</p>
 <h3 id="to-your-posts">&hellip;to your posts</h3>
-
 <p>The properties on your individual post pages will be slightly different. Open Graph calls a blog post an <em>article</em> and we&rsquo;ll need to import the namespace for the <a href="http://ogp.me/#type_article">article object type</a>.</p>
-
 <pre data-language="html">
 &lt;html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#"&gt;
 </pre>
-
 <pre data-language="html">
 &lt;meta property="og:type" content="article" /&gt;
 &lt;meta property="og:site_name" content="Zduck - Joshua Poehls" /&gt;
@@ -145,22 +125,15 @@
 &lt;meta property="og:description" content="One or two sentence description or summary of my blog post" /&gt;
 &lt;meta property="article:published_time" content="2013-01-28" /&gt;
 </pre>
-
 <p><code>article:published_time</code> needs to be an <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> formatted timestamp. It&rsquo;ll look something like <code>2013-01-28</code> or <code>2013-01-28T00:37Z</code> if you include the UTC time.</p>
-
 <p>If you use categories or tags then you can include properties for those as well.</p>
-
 <pre data-language="html">
 &lt;meta property="article:tag" content="Category 1" /&gt;
 &lt;meta property="article:tag" content="Category 2" /&gt;
 </pre>
-
 <p>Facebook <a href="https://developers.facebook.com/docs/technical-guides/opengraph/built-in-objects/#article">requires</a> your <code>og:image</code> to be at least 50px by 50px but prefers a minimum of 200px by 200px. It is a good idea to create a separate copy of your image specifically sized for Facebook.</p>
-
 <h2 id="adding-twitter-cards">Adding Twitter Cards</h2>
-
 <p>Twitter Cards have their own set of meta-tags that you are required to add to your page. Unlike Open Graph, you aren&rsquo;t required to import the namespace prefix on your page.</p>
-
 <pre data-language="html">
 &lt;meta name="twitter:card" content="summary" /&gt;
 &lt;meta name="twitter:title" content="Title of my blog post" /&gt;
@@ -168,45 +141,29 @@
 &lt;meta name="twitter:image" content="http://zduck.com/mypost/twitter-image.png" /&gt;
 &lt;meta name="twitter:description" content="One or two sentence description or summary of my blog post" /&gt;
 </pre>
-
 <p>If you have a Twitter account then you can link to it as the author of the article.</p>
-
 <pre data-language="html">
 &lt;meta name="twitter:creator" content="@JoshuaPoehls" /&gt;
 </pre>
-
 <p>And if you have an account that represents your blog you can link to it as the publisher of the article.</p>
-
 <pre data-language="html">
 &lt;meta name="twitter:site" content="@MyBlog" /&gt;
 </pre>
-
 <p>Twitter Cards require a <code>twitter:url</code> but will fallback to <code>og:url</code> if it isn&rsquo;t found. Twitter also has fallbacks for <code>twitter:image</code> to <code>og:image</code>, <code>twitter:title</code> to <code>og:title</code>, and <code>twitter:description</code> to <code>og:description</code>. If you already have the Open Graph properties on your page then there isn&rsquo;t much point in duplicating them for Twitter unless you want to change how the information is displayed on Twitter specifically.</p>
-
 <p>Twitter requires your images to be 120px by 120px and will resize and crop any image that is too large. It is a good idea  to have a copy of your image sized for Twitter and use the <code>twitter:image</code> tag in addition to <code>og:image</code>.</p>
-
 <p><em>Remember that to light up Twitter Cards for your website you have to <a href="https://dev.twitter.com/docs/cards">apply for participation</a> with Twitter.</em></p>
-
 <h2 id="further-reading">Further Reading</h2>
-
 <p>Both the Open Graph protocol and Twitter Cards support a lot more than what I&rsquo;ve covered. These formats have a lot to offer beyond the world of blogging. Do yourself a favor and skim the <a href="http://ogp.me/">Open Graph protocol</a> and <a href="https://dev.twitter.com/docs/cards">Twitter Card documentation</a> for an idea of all they can do.</p>
-
 <p>Also, while Google+ supports the Open Graph protocol it actually prefers <a href="http://schema.org">schema.org microdata</a> for <a href="https://developers.google.com/+/plugins/snippet/">building its snippets</a>. Google, Yahoo!, Bing, and other search engines also use schema.org microdata to better represent your pages in search results. That is a topic for another time.</p>
-
 <p>Facebook also <a href="https://developers.facebook.com/docs/technical-guides/opengraph/">has documentation</a> regarding their use of the Open Graph protocol.</p>
-
 <h2 id="testing-tools">Testing Tools</h2>
-
 <p>Make sure you&rsquo;ve implemented the meta-tags correctly by using a few tools to check your pages.</p>
-
 <ul>
 <li><a href="https://dev.twitter.com/docs/cards/preview">Twitter Card Preview</a></li>
 <li><a href="http://www.google.com/webmasters/tools/richsnippets">Google Rich Snippets</a></li>
 <li><a href="https://developers.facebook.com/tools/debug">Facebook Debugger</a></li>
 </ul>
-
 <h2 id="bonus-tip">Bonus Tip</h2>
-
 <p>You can <a href="https://developers.facebook.com/docs/insights/#claiming_a_domain">claim your domain</a> with Facebook and use their <a href="www.facebook.com/insights">Insights</a> dashboard to see how well your links are doing.</p>
 
 
@@ -225,7 +182,7 @@
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

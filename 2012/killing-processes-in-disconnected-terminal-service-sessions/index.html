@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -75,11 +75,8 @@
     </header>
 
     <p>Usually it is best to configure your terminal service policy to log out disconnected sessions, however there may be cases where you only want to kill specific applications when the user disconnects.</p>
-
 <p>This is easy to do with a PowerShell script that you run periodically as a scheduled task. The processes won&rsquo;t be killed <em>immediately</em> when the user disconnects but will be killed shortly after.</p>
-
 <p>This script will, by default, only kill the OUTLOOK processes in disconnected sessions after waiting 15 seconds for it to gracefully close. It is trivial to tweak the script to kill whichever processes you care about.</p>
-
 <pre><code># kill-processes.ps1
 
 # This script supports being run with -WhatIf and -Confirm parameters.
@@ -206,7 +203,6 @@ else {
 }
 </code></pre>
 
-
 </article>
 
 <div class="fin symbol">&#10687;</div>
@@ -222,7 +218,7 @@ else {
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

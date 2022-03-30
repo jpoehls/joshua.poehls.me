@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2013/tableau-via-powershell-part-2-saving-changes/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -77,34 +77,23 @@
     <blockquote>
 <p>This is part 2 of my mini-series on exploring Tableau workbooks with PowerShell. If you missed it, you should read <a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">Part 1: Opening Workbooks</a>, before continuing.</p>
 </blockquote>
-
 <p>Welcome back! Last time I showed you how to open a Tableau workbook (TWB or TWBX) in PowerShell so you could start exploring the raw XML. Today I&rsquo;ll show the next logical thing, saving the changes you make.</p>
-
 <p>If you are only opening TWB files, then saving your changes couldn&rsquo;t be easier. Since TWBs are just XML files we can simply write it to a file, like so.</p>
-
 <pre>
 $workbook = Get-TableauWorkbookXml 'MyWorkbook.twb'
 $workbook.Save('ModifiedWorkbook.twb')
 </pre>
-
 <p>Cake.</p>
-
 <p>Saving changes back to a TWBX file is a bit more work but still totally doable. Let&rsquo;s write a new function, <code>Export-TableauPackagedWorkbook</code>. We will spice things up a bit by making this function smart. It&rsquo;ll take a few parameters to allow us to control exactly how we want the export to happen.</p>
-
 <p>A <code>-Force</code> parameter will let us specify whether we want to overwrite the destination file if it already exists. By default we would be prompted. Note that this isn&rsquo;t a terribly useful parameter since it would replace the TWBX with an empty TWBX containing only the TWB.</p>
-
 <p><code>-Update</code> will let us specify that we want to update the TWB inside the destination TWBX file if the destination file exists. This is the cool parameter because it lets us open an existing TWBX, make changes to the TWB inside, and then save those changes back out into the original TWBX.</p>
-
 <p>We will also support the common <code>-WhatIf</code> and <code>-Confirm</code> parameters that are so useful in PowerShell.</p>
-
 <p>Here is our function:</p>
-
 <blockquote>
 <p>If you find this helpful then check out <a href="/2013/tableaukit-powershell-module-for-tableau/">TableauKit</a>;
 a full on PowerShell module for working with Tableau files. It contains a new and improved
 version of the function below and much more.</p>
 </blockquote>
-
 <pre data-language="powershell">
 function Export-TableauPackagedWorkbook {
 &lt;#
@@ -257,24 +246,18 @@ function Export-TableauPackagedWorkbook {
     }
 }
 </pre>
-
 <p>Not too bad. Here are some quick usage examples.</p>
-
 <p><strong>Convert a TWB into a TWBX</strong></p>
-
 <pre>
 $workbook = Get-TableauWorkbookXml 'MyWorkbook.twb'
 $workbook | Export-TableauPackagedWorkbook 'MyPackagedWorkbook.twbx'
 </pre>
-
 <p><strong>Update an existing TWBX</strong></p>
-
 <pre>
 $workbook = Get-TableauWorkbookXml 'MyPackagedWorkbook.twbx'
 # TODO: Make some changes to the workbook XML
 $workbook | Export-TableauPackagedWorkbook 'MyPackagedWorkbook.twbx' -Update
 </pre>
-
 <p>Leave me a comment if you have any questions about working with Tableau workbooks in PowerShell. Maybe I&rsquo;ll cover your topic in the next post!</p>
 
 
@@ -293,7 +276,7 @@ $workbook | Export-TableauPackagedWorkbook 'MyPackagedWorkbook.twbx' -Update
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

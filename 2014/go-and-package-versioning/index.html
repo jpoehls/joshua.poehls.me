@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2014/go-and-package-versioning/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -74,99 +74,60 @@
         </p>
     </header>
 
-    
-
-<p><em>I&rsquo;ve been working with Go on personal projects for several months. During that time, Go&rsquo;s intended strategy for package management and versioning has largely eluded me. My understanding really started to come together over the past week which is why I wrote about my <a href="/2014/go-project-structure-and-dependencies">Go Project Structure</a> and now am writing about package versioning.</em></p>
-
+    <p><em>I&rsquo;ve been working with Go on personal projects for several months. During that time, Go&rsquo;s intended strategy for package management and versioning has largely eluded me. My understanding really started to come together over the past week which is why I wrote about my <a href="/2014/go-project-structure-and-dependencies">Go Project Structure</a> and now am writing about package versioning.</em></p>
 <p><em>My goal with this post is to help others who, like myself, have had a hard time reconciling Go&rsquo;s approach to package dependencies and versioning with that of other languages.</em></p>
-
 <h2 id="import-paths-and-go-get">Import Paths and <code>go get</code></h2>
-
 <p>Other languages, particularly recent ones, tend to have a package manager that the community has adopted as defacto standard. Ruby has <a href="http://rubygems.org">gems</a>. Node has <a href="https://www.npmjs.org">npm</a>. .NET has <a href="http://www.nuget.org">NuGet</a>. Perl has <a href="http://www.cpan.org">CPAN</a>. Haskell has <a href="http://hackage.haskell.org">Hackage</a>. All of these have something in common; <strong>they are all a central package hosting repository.</strong></p>
-
 <p><strong>Go&rsquo;s package manager is the <code>go get</code> command and it is completely decentralized.</strong></p>
-
 <p>How does this work?</p>
-
 <p>When you reference a package in your Go source code you use an import path that usually looks like a URL. e.g. <code>github.com/jpoehls/gophermail</code>. When you <code>go build</code> your code the Go tool uses this path to find the package in your <a href="http://golang.org/cmd/go/#hdr-GOPATH_environment_variable">GOPATH</a>. If it can&rsquo;t find the package the build fails. So how do you pull down the package?</p>
-
 <ol>
 <li>Manually. You can <code>git clone</code> the package into your GOPATH.</li>
 <li>Use <a href="http://golang.org/cmd/go/#hdr-Download_and_install_packages_and_dependencies"><code>go get</code></a>. This is where the URL import path convention is leveraged. <code>go get</code> simply <a href="http://godoc.org/code.google.com/p/go/src/cmd/go#hdr-Remote_import_paths">treats the import path as a URL</a> and attempts to retrieve it via HTTP or HTTPS. It is smart enough to handle Git, Mercurial, Bazaar, and Subversion. Go has special support for common hosts like GitHub and Bitbucket, but you can use it with any host and even custom URLs.</li>
 </ol>
-
 <h2 id="finding-packages">Finding Packages</h2>
-
 <p>As a <a href="http://babygopher.org">Baby Gopher</a> you may find it hard to locate packages that you need. e.g. &ldquo;What&rsquo;s a good image resizing package?&rdquo; You feel lost without a central repository to search.</p>
-
 <p>Sites like <a href="http://godoc.org">GoDoc.org</a> <a href="http://go-search.org">Go-Search.org</a> fill the role of a central repository in this regard. They don&rsquo;t host the packages but they index all packages stored on various hosting sites. GitHub, Bitbucket, etc. They even include packages from your custom servers.</p>
-
 <p>So to answer the question, &ldquo;what&rsquo;s a good image resizing package&rdquo;, all you have to do is a simple search.</p>
-
 <ul>
 <li><a href="http://godoc.org/?q=image+resize">http://godoc.org/?q=image+resize</a></li>
 <li><a href="http://go-search.org/search?q=image+resize">http://go-search.org/search?q=image+resize</a></li>
 </ul>
-
 <blockquote>
 <p>GoDoc.org was recently <a href="https://groups.google.com/d/topic/golang-nuts/_rbVuzl-OqA/discussion">adopted into the Go project</a> which is very, very cool.</p>
 </blockquote>
-
 <h2 id="package-versioning">Package Versioning</h2>
-
 <p><code>go get</code> <em>is</em> the Go package manager. We&rsquo;ve seen how it works in a completely decentralized way and how package discovery still possible without a central package hosting repository.</p>
-
 <p>Besides locating and downloading packages, the other big role of a package manager is handling multiple versions of the same package. Go takes the most minimal and pragmatic approach of any package manager. There is no such thing as multiple versions of a Go package.</p>
-
 <p><code>go get</code> always pulls from the HEAD of the default branch in the repository. Always. This has two important implications.</p>
-
 <blockquote>
 <p>This isn&rsquo;t always true. If your repository has certain special branches then <code>go get</code> will pull from them instead. Specifically, if you have a <code>go1</code> branch and are running Go 1+ it will pull from that branch.</p>
 </blockquote>
-
 <ol>
 <li>As a package author, you must adhere to the stable HEAD philosophy. Your default branch must always be the stable, released version of your package. You must do work in feature branches and only merge when ready to release.</li>
 <li>New major versions of your package must have their own repository. Put simply, each major version of your package (following <a href="http://semver.org">semantic versioning</a>) would have its own repository and thus its own import path. e.g. <code>github.com/jpoehls/gophermail-v1</code> and <code>github.com/jpoehls/gophermail-v2</code>.</li>
 </ol>
-
 <p>It&rsquo;s that simple.</p>
-
 <p>Another way to phrase this is that each import path must point to a stable API. Major version bumps are for backwards incompatible API changes and thus each major version is a distinct stable API. In the Go world this warrants a distinct import path and because <code>go get</code> ties import paths to VCS repositories, it means a distinct repository.</p>
-
 <blockquote>
 <p>This is exactly the explanation I wish was in the Go docs. They kind of dance around the idea but it isn&rsquo;t stated as clearly as it could be IMO. This is the epiphany that I needed to really understand how Go works.</p>
 </blockquote>
-
-<h2 id="version-2-0-new-repository">Version 2.0? New Repository.</h2>
-
+<h2 id="version-20-new-repository">Version 2.0? New Repository.</h2>
 <p>As someone building an application in Go, the above philosophy really doesn&rsquo;t have a downside. Every import path is a stable API. There are no version numbers to worry about. Awesome!</p>
-
 <blockquote>
 <p>I think this must have been the Go author&rsquo;s focus when designing <code>go get</code>. It is a solid and simple design for Go applications. I love it. It&rsquo;s only frustrating from the package authoring point of view, which I&rsquo;ll elaborate on below.</p>
 </blockquote>
-
 <p>The frustration lies with the authoring of packages. Putting different versions of your package in separate repositories is simply not the standard workflow. The standard flow is to maintain tags or branches for each version of your package.</p>
-
 <p>As a package author, you think about your repository as the top level of your project and the ecosystem supports this (think GitHub). I&rsquo;ll use <a href="http://github.com/jpoehls/gophermail">gophermail</a> as an example. I can tag bugs with version numbers and organize them into release milestones, moving features from V1 to V2, etc. I might use GitHub Pages to serve a website for the project and host the documentation.</p>
-
 <p>Go shatters this world view by forcing you to break your project into multiple repositories as soon as you want a version 2.0. The level of abstraction is simply moved from the branch level to the repository level and the ecosystem doesn&rsquo;t cater to this methodology.</p>
-
 <p>The biggest hurdle is just understanding that this is the case. That this is how Go works.</p>
-
 <p>The downside is all in code organization preference. The industry standard is to use tags and branches for marking multiple versions. Not separate repositories. <code>go get</code> thinks of branches as being used solely to target different versions of Go (i.e. the special <code>go1</code> branch) and, honestly, I think that&rsquo;s a pretty ugly hack on their part.</p>
-
 <h2 id="multiple-versions-in-a-single-repository">Multiple Versions in a Single Repository</h2>
-
 <p>There is a workaround that will allow you to keep multiple versions of your package in the same repository and use branches/tags for differentiating between them.</p>
-
 <p><code>go get</code> supports custom URLs and you can use this to insert a version number into your package&rsquo;s import path. Granted, this is non-trivial. It means writing and hosting a proxy service that parses URL and proxies the requests to the applicable branch/tag of your repository.</p>
-
 <p>Fortunately, someone has already done the hard work for us. <a href="http://gopkg.in">GoPkg.in</a> does exactly what I&rsquo;ve described.</p>
-
 <p>I&rsquo;m taking advantage of this for my gophermail package. All it means is that instead of people using <code>github.com/jpoehls/gophermail</code> to import my package, they use <code>gopkg.in/jpoehls/gophermail.v0</code>. The <code>.v0</code> is because gophermail hasn&rsquo;t reached 1.0 yet. When I release 1.0 and declare a stable API, the import path will change to <code>gopkg.in/jpoehls/gophermail.v1</code>.</p>
-
 <p><a href="http://gopkg.in">GoPkg.in</a> is a fantastic service and I encourage anyone with a Go package to use it. All you have to do is tell your users to use the <code>gopkg.in</code> import path for your package. If this gets wide enough attention, hopefully similar functionality will be adopted into <code>go get</code> itself.</p>
-
 <blockquote>
 <p>My dream is for <code>go get</code> to support a version number component in the import path. So <code>github.com/jpoehls/gophermail</code> would fetch the HEAD of the repository as it does today. <code>github.com/jpoehls/gophermail#v1</code> would fetch the <code>v1</code> branch or tag.</p>
 </blockquote>
@@ -187,7 +148,7 @@
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

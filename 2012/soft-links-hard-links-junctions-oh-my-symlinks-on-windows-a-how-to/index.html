@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows-a-how-to/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -74,64 +74,36 @@
         </p>
     </header>
 
-    
-
-<p>First, a quick definition of terms. There are three kinds of &ldquo;<a href="https://en.wikipedia.org/wiki/Symbolic_link">symlinks</a>&rdquo; on Windows.</p>
-
+    <p>First, a quick definition of terms. There are three kinds of &ldquo;<a href="https://en.wikipedia.org/wiki/Symbolic_link">symlinks</a>&rdquo; on Windows.</p>
 <ul>
 <li>soft links (also called symlinks, or symbolic links)</li>
 <li>hard links</li>
 <li>junctions (a type of soft link only for directories)</li>
 </ul>
-
 <p>Soft links can be created for files or directories.</p>
-
 <p>Hard links can only be created for files.</p>
-
 <p>Both soft and hard links must be created on the same volume as the target. i.e. You can&rsquo;t link something on <code>C:\</code> to something on <code>D:\</code>.</p>
-
 <p>You can read more about hardlinks and junctions <a href="http://msdn.microsoft.com/en-us/library/aa365006%28VS.85%29.aspx">on MSDN</a>.</p>
-
 <h3 id="deleting-links">Deleting Links</h3>
-
 <p>This is where the difference between soft and hard links is most evident.</p>
-
 <p>Deleting the target will cause soft links to stop working. What it points to is gone. Hard links however will keep right on working until you delete the hard link itself. The hard link acts just like the original file, because for all intents and purposes, it is the original file.</p>
-
 <h3 id="junctions">Junctions</h3>
-
 <p>Windows also has another type of link just for directories, called Junctions.</p>
-
 <p>Junctions look and act like soft links. The key difference is that they allow you to link directories that are located on different local volumes (but still on the same computer). You can&rsquo;t create a junction to a network location.</p>
-
 <h2 id="using-mklink">Using MKLINK</h2>
-
 <p>Create a soft link to a directory.</p>
-
 <pre><code>c:\symlink_test&gt; mklink symlink_dir real_dir
 symbolic link created for symlink_dir &lt;&lt;===&gt;&gt; real_dir
-</code></pre>
-
-<p>Create junction link to a directory.</p>
-
+</code></pre><p>Create junction link to a directory.</p>
 <pre><code>c:\symlink_test&gt; mklink /J junction_dir real_dir
 Junction created for junction_dir &lt;&lt;===&gt;&gt; real_dir
-</code></pre>
-
-<p>Create a soft link to a file.</p>
-
+</code></pre><p>Create a soft link to a file.</p>
 <pre><code>c:\symlink_test&gt; mklink symlink_file.txt real_file.txt
 symbolic link created for symlink_file.txt &lt;&lt;===&gt;&gt; real_file.txt
-</code></pre>
-
-<p>Create a hard link to a file.</p>
-
+</code></pre><p>Create a hard link to a file.</p>
 <pre><code>c:\symlink_test&gt; mklink /H hardlink_file.txt real_file.txt
 Hardlink created for hardlink_file.txt &lt;&lt;===&gt;&gt; real_file.txt
-</code></pre>
-
-<p>What they look like.</p>
-
+</code></pre><p>What they look like.</p>
 <pre><code>c:\symlink_test&gt; dir
 Volume in drive C is OS
 Volume Serial Number is 7688-08EC
@@ -148,52 +120,30 @@ Directory of c:\symlink_test
 06/07/2012  10:31 AM    &lt;SYMLINK&gt;      symlink_file.txt [real_file.txt]
                3 File(s)             30 bytes
                5 Dir(s)  145,497,268,224 bytes free
-</code></pre>
-
-<figure >
-
-<img src="/2012/06/mklink/explorer-screenshot.png" alt="Screenshot of folder in Windows Explorer" />
-
-
+</code></pre><figure >
+<p><img src="/2012/06/mklink/explorer-screenshot.png" alt="Screenshot of folder in Windows Explorer" /></p>
 <figcaption>
 <p>
 Screenshot of folder in Windows Explorer
-
-
-
 </p> 
 </figcaption>
-
 </figure>
-
-<p><strong>Note for PowerShell users:</strong><br />
+<p><strong>Note for PowerShell users:</strong><br>
 MKLINK isn&rsquo;t an executable that you can just call from PowerShell. You have to call it through the command prompt.</p>
-
 <pre><code>cmd /c mklink /D symlink_dir real_dir
-</code></pre>
-
-<p>Alternatively, you can use <a href="https://gist.github.com/2891103">this module</a> I wrote that has native PowerShell wrappers for MKLINK.</p>
-
+</code></pre><p>Alternatively, you can use <a href="https://gist.github.com/2891103">this module</a> I wrote that has native PowerShell wrappers for MKLINK.</p>
 <p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">Read about MKLINK on MSDN.</a></p>
-
 <h2 id="using-fsutil">Using FSUTIL</h2>
-
 <p>FSUTIL is another way to create hard links (but not soft links). This is the same as <code>mklink /H</code>.</p>
-
 <pre><code>c:\symlink_test&gt; where fsutil
 c:\Windows\System32\fsutil.exe
 
 c:\symlink_test&gt; fsutil hardlink create hardlink_file.txt real_file.txt
 Hardlink created for c:\symlink_test\hardlink_file.txt &lt;&lt;===&gt;&gt; c:\symlink_test\real_file.txt
-</code></pre>
-
-<p><a href="http://technet.microsoft.com/en-us/library/cc753059(v=WS.10).aspx">Read about FSUTIL on MSDN.</a></p>
-
+</code></pre><p><a href="http://technet.microsoft.com/en-us/library/cc753059(v=WS.10).aspx">Read about FSUTIL on MSDN.</a></p>
 <h2 id="using-junction">Using Junction</h2>
-
 <p>Junction is a tool provided by Sysinternals and provides another way to create junctions. Same as <code>mklink /J</code>.
 It also has some other tools for working with junctions that I won&rsquo;t cover here.</p>
-
 <pre><code>c:\symlink_test&gt; junction junction_dir real_dir
 Junction v1.06 - Windows junction creator and reparse point viewer
 Copyright (C) 2000-2010 Mark Russinovich
@@ -201,9 +151,7 @@ Sysinternals - www.sysinternals.com
 
 Created: c:\symlink_test\junction_dir
 Targetted at: c:\symlink_test\real_dir
-</code></pre>
-
-<p><a href="http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx">Download the Junction tool from Sysinternals.</a></p>
+</code></pre><p><a href="http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx">Download the Junction tool from Sysinternals.</a></p>
 
 
 </article>
@@ -221,7 +169,7 @@ Targetted at: c:\symlink_test\real_dir
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2013/jquery-css-clip-animation-plugin/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -74,16 +74,11 @@
         </p>
     </header>
 
-    
-
-<p>Yesterday I needed to animate the CSS <a href="https://developer.mozilla.org/en-US/docs/CSS/clip">clip property</a> using jQuery.
+    <p>Yesterday I needed to animate the CSS <a href="https://developer.mozilla.org/en-US/docs/CSS/clip">clip property</a> using jQuery.
 <a href="http://api.jquery.com/animate/"><code>jQuery.animate()</code></a> doesn&rsquo;t support this natively so I went searching for a plugin.
 I found exactly what I needed in <a href="http://www.overset.com/2008/08/07/jquery-css-clip-animation-plugin/">a simple plugin by Jim Palmer</a>, unfortunately it hasn&rsquo;t been updated to work with jQuery 1.8.0+.</p>
-
 <p>So here you go, a forked and updated copy of the plugin which will work with jQuery 1.8.0+.</p>
-
 <p>Changes include:</p>
-
 <ul>
 <li>Support for jQuery 1.8.0+</li>
 <li>Support for the element&rsquo;s initial clip value to be specified via a stylesheet instead of an inline style</li>
@@ -91,23 +86,18 @@ I found exactly what I needed in <a href="http://www.overset.com/2008/08/07/jque
 <li>Type checking <code>fx.end</code> to guard against errors in some scenarios</li>
 <li>Support for IE8</li>
 </ul>
-
 <p>The element you are animating <strong>must</strong> have a <code>clip</code> style specified. Otherwise, usage is as you would expect.</p>
-
 <pre data-language="html">
 &lt;div class="element" style="clip: rect(0px 155px 31px 0px);"&gt;
     content to be clipped
 &lt;/div&gt;
 </pre>
-
 <pre data-language="javascript">
 $('.element').animate({
     clip: 'rect(0px 155px 31px 146px)'
 }, 500);
 </pre>
-
 <p>Refer <a href="http://www.overset.com/2008/08/07/jquery-css-clip-animation-plugin/">the original plugin</a> for a demo or to give credit to the author.</p>
-
 <pre data-language="javascript">
 /*
 * jquery.animate.clip.js
@@ -171,9 +161,7 @@ $('.element').animate({
     }
 })(jQuery);
 </pre>
-
-<h3 id="updated-to-0-1-4">Updated to 0.1.4</h3>
-
+<h3 id="updated-to-014">Updated to 0.1.4</h3>
 <p>I updated the plugin to support IE8. This entailed adding a fallback for when <code>$('...').css('clip')</code> returns <code>undefined</code> which it does in IE8 when the <code>clip</code> style is defined in an external stylesheet.</p>
 
 
@@ -192,7 +180,7 @@ $('.element').animate({
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

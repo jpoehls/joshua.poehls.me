@@ -4,12 +4,105 @@
   <rights>Copyright (c) 2014-2018 Joshua Poehls. All rights reserved.</rights>
   <link rel="self" href="http://joshua.poehls.me/feed.xml"/>
   <link href="http://joshua.poehls.me/"/>
-  <updated>2019-10-28T23:03:55-05:00</updated>
+  <updated>2022-03-29T07:52:10-05:00</updated>
   <author>
     <name>Joshua Poehls</name>
   </author>
   <id>http://joshua.poehls.me/</id>
 
+  
+  <entry>
+    <title>Two Ways To Not Use A Bible Reading Plan</title>
+    <link href="http://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/"/>
+    <id>http://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/</id>
+    <updated>2022-03-29T07:52:10-05:00</updated>
+    
+    <category term="scripture" />
+    
+    <content type="html">&lt;p&gt;Here&amp;rsquo;s the idea.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;You want to read your Bible in roughly a year. Or at least you want to make steady progress.&lt;/li&gt;
+&lt;li&gt;You don&amp;rsquo;t like being tied to a specific reading plan. You like the flexibility to pick what book to read next.&lt;/li&gt;
+&lt;li&gt;You want to make sure you actually &lt;em&gt;do&lt;/em&gt; read through the whole Bible. Without a plan, it is easy to end up rotating through your favorite books and avoid others longer than you realize.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If that sounds like you, I have two strategies that may help. I&amp;rsquo;ve been using one of these for a couple years now, and the other is fairly recent.&lt;/p&gt;
+&lt;h1 id=&#34;reminders-app&#34;&gt;Reminders App&lt;/h1&gt;
+&lt;p&gt;I&amp;rsquo;ve been using the iOS &lt;em&gt;Reminders&lt;/em&gt; app as my primary Bible reading list (or &lt;em&gt;plan&lt;/em&gt;) for at least a couple years. It works great!&lt;/p&gt;
+&lt;figure &gt;
+&lt;p&gt;&lt;img src=&#34;reminders.png&#34; alt=&#34;My Bible Reading list in the iOS Reminders app&#34; /&gt;&lt;/p&gt;
+&lt;figcaption&gt;
+&lt;p&gt;
+My Bible Reading list in the iOS Reminders app
+&lt;/p&gt; 
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;ol&gt;
+&lt;li&gt;My &lt;em&gt;Bible Reading 📖&lt;/em&gt; list has an item for each book of the Bible.&lt;/li&gt;
+&lt;li&gt;When I finish a book, I mark it off.&lt;/li&gt;
+&lt;li&gt;I pick my next book from one of the remaining, usually.&lt;/li&gt;
+&lt;li&gt;When all books are marked off, I reset the list by unmarking them all and start again!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This basic method gives you:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Flexibility to pick your reading order.&lt;/li&gt;
+&lt;li&gt;Guard rails to help you cycle through the whole Bible without overly favoring certain books.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I also do a few extra things with this method to get more value:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I put the total chapters in each book as part of the reminder item. Sometimes this helps me pick which book to read next (easy ones!).&lt;/li&gt;
+&lt;li&gt;I put my current chapter in the reminder as well. This is how I &amp;ldquo;bookmark&amp;rdquo; my place in long books such as &lt;em&gt;Psalms&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Finally, I use the notes or description to keep track of each time I finish reading the book. I type in the month and year, and sometimes the translation I read from.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you tend to read from a variety of physical Bibles or apps, one of the surprising benefits of this method is that your progress and &amp;ldquo;bookmarks&amp;rdquo; are agnostic. No matter where you are reading, your progress tracking is consistent.&lt;/p&gt;
+&lt;h1 id=&#34;spreadsheets&#34;&gt;Spreadsheets!&lt;/h1&gt;
+&lt;p&gt;If the &lt;em&gt;Reminders&lt;/em&gt; app method is simple and pragmatic, the spreadsheet method is its polar opposite. I&amp;rsquo;ve been fiddling with a collection of spreadsheets for tracking my Bible reading in a way that gives me more insight (in a data geek sense).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Skip ahead and &lt;a href=&#34;https://docs.google.com/spreadsheets/d/1xxPRrcZ87AF0x1Y4_eYollwGE1hxJ-_NOt2nqYoIYOY/edit?usp=sharing&#34;&gt;go look through the Google Sheet&lt;/a&gt; yourself. Feel free to copy it for your own use.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;entering-data&#34;&gt;Entering Data&lt;/h2&gt;
+&lt;p&gt;The &lt;em&gt;Log&lt;/em&gt; sheet is simple data entry. When I read a book, I add a line. If I only read a few chapters, I add a line and make note of the chapter I stopped at. This is my &amp;ldquo;bookmark&amp;rdquo;.&lt;/p&gt;
+&lt;figure &gt;
+&lt;p&gt;&lt;img src=&#34;log.png&#34; alt=&#34;My reading log spreadsheet&#34; /&gt;&lt;/p&gt;
+&lt;figcaption&gt;
+&lt;p&gt;
+My reading log spreadsheet
+&lt;/p&gt; 
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;per-book-summary&#34;&gt;Per Book Summary&lt;/h2&gt;
+&lt;p&gt;The &lt;em&gt;Books&lt;/em&gt; sheet is a read-only dashboard that shows my progress across all books in the Bible.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;What chapter I am on (my bookmark). Find &lt;em&gt;Psalms&lt;/em&gt; in the screenshot and look for the yellow box.&lt;/li&gt;
+&lt;li&gt;The date I last read any portion of the book. This is &lt;span style=&#34;background-color: #76e15f;&#34;&gt;green&lt;/span&gt; if I read it this year or &lt;span style=&#34;color: #dd4040;&#34;&gt;red&lt;/span&gt; if it has been over a year.&lt;/li&gt;
+&lt;li&gt;The date I last finished the book. This has the same &lt;span style=&#34;background-color: #76e15f;&#34;&gt;green&lt;/span&gt; or &lt;span style=&#34;color: #dd4040;&#34;&gt;red&lt;/span&gt; highlight. There&amp;rsquo;s no highlight if I finished it last year - that&amp;rsquo;d be too much visual noise.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure &gt;
+&lt;p&gt;&lt;img src=&#34;books.png&#34; alt=&#34;My book summary spreadsheet&#34; /&gt;&lt;/p&gt;
+&lt;figcaption&gt;
+&lt;p&gt;
+My book summary spreadsheet
+&lt;/p&gt; 
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;I use this sheet for two scenarios:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;To find my place (or bookmark) for books I&amp;rsquo;m currently reading. E.g., &lt;em&gt;Psalms&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;To pick which book to read next. The &lt;span style=&#34;color: #dd4040;&#34;&gt;red&lt;/span&gt; highlights are clues that I haven&amp;rsquo;t read a book in a while and should consider it!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;per-year-summary&#34;&gt;Per Year Summary&lt;/h2&gt;
+&lt;p&gt;Finally, the &lt;em&gt;Years&lt;/em&gt; sheet is a read-only dashboard of my overall Bible reading progress rolled up by year.&lt;/p&gt;
+&lt;figure &gt;
+&lt;p&gt;&lt;img src=&#34;years.png&#34; alt=&#34;My year summary spreadsheet&#34; /&gt;&lt;/p&gt;
+&lt;figcaption&gt;
+&lt;p&gt;
+My year summary spreadsheet
+&lt;/p&gt; 
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;If my goal is to read the Bible in a year, this sheet keeps me on target with my current progress and a projection of how many chapters per day I need to read in order to finish on time.&lt;/p&gt;
+&lt;p&gt;I can also see my track record from previous years as a motivation. The last time I read the Bible in a year was in 2017. I&amp;rsquo;m long over due!&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Parse .NET TimeSpans in a Tableau Calculated Field</title>
@@ -23,9 +116,7 @@
     <category term="regex" />
     
     <content type="html">&lt;p&gt;Here&amp;rsquo;s a formula you can use to create a calculated field in &lt;a href=&#34;https://tableau.com&#34;&gt;Tableau&lt;/a&gt; for converting strings in the format of .NET &lt;code&gt;TimeSpan&lt;/code&gt; values to a total number of seconds.&lt;/p&gt;
-
 &lt;p&gt;Given a string &lt;code&gt;79.23:08:01.3976607&lt;/code&gt; (79 days, 23 hours, 8 minutes, 1.3976607 seconds), it would return the total number of seconds.&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;IF ISNULL([TimeSpan]) THEN
    NULL
 ELSE
@@ -34,8 +125,7 @@ ELSE
    + (INT(REGEXP_EXTRACT_NTH([TimeSpan], &amp;quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&amp;quot;, 4)) * 60)
    + FLOAT(REGEXP_EXTRACT_NTH([TimeSpan], &amp;quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&amp;quot;, 5))
 END
-&lt;/code&gt;&lt;/pre&gt;
-</content>
+&lt;/code&gt;&lt;/pre&gt;</content>
   </entry>
   
   <entry>
@@ -49,19 +139,14 @@ END
     <category term="jason-derouchie" />
     
     <content type="html">&lt;p&gt;I&amp;rsquo;ve been studying through Zephaniah recently, prompted by the recently released &lt;em&gt;&lt;a href=&#34;https://www.amazon.com/ESV-Expository-Commentary-7-Daniel-Malachi/dp/1433546523?&amp;amp;_encoding=UTF8&amp;amp;tag=poehls-20&amp;amp;linkCode=ur2&amp;amp;linkId=f84fa13acb18f9e11c227fc183537e37&amp;amp;camp=1789&amp;amp;creative=9325&#34;&gt;ESV Expository Commentary (Volume 7): Daniel–Malachi&lt;/a&gt;&lt;/em&gt;. The commentary on Zephaniah is written by Jason DeRouchie who I&amp;rsquo;ve been following since his &lt;em&gt;&lt;a href=&#34;https://www.amazon.com/How-Understand-Apply-Old-Testament/dp/1629952451?&amp;amp;_encoding=UTF8&amp;amp;tag=poehls-20&amp;amp;linkCode=ur2&amp;amp;linkId=3aea9f4d4504f9ceb5bb219392214716&amp;amp;camp=1789&amp;amp;creative=9325&#34;&gt;How to Understand and Apply the Old Testament&lt;/a&gt;&lt;/em&gt;, which is fantastic.&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;Andy Naselli&amp;rsquo;s companion volume, &lt;em&gt;&lt;a href=&#34;https://www.amazon.com/How-Understand-Apply-New-Testament/dp/1629952486?&amp;amp;_encoding=UTF8&amp;amp;tag=poehls-20&amp;amp;linkCode=ur2&amp;amp;linkId=1b2956844e522127703e788ed3967077&amp;amp;camp=1789&amp;amp;creative=9325&#34;&gt;How to Understand and Apply the New Testament&lt;/a&gt;&lt;/em&gt;, is equally fantastic. I read it first and I&amp;rsquo;m still working through DeRouchie&amp;rsquo;s volume.&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;Jason DeRouchie has taught though Zephaniah &lt;a href=&#34;https://jasonderouchie.com/a-number-of-studies-on-zephaniah/&#34;&gt;several times&lt;/a&gt;, including &lt;a href=&#34;https://jasonderouchie.com/derouchie-zephaniah-audio-lectures/&#34;&gt;15 lectures&lt;/a&gt; given to his adult Sunday School class at Bethlehem Baptist Church in the Fall of 2015. I&amp;rsquo;ve compiled the audio recordings from those lectures into a podcast feed for easy listening.&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://gist.github.com/jpoehls/b85b800e364358d93ac7a4a4e746d3db/raw/feed.xml&#34;&gt;Subscribe to the podcast feed&lt;/a&gt; for &lt;em&gt;Zephaniah Lectures (Fall 2015) - Jason DeRouchie&lt;/em&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;Here are some other links that I&amp;rsquo;ve found useful for studying  Zephaniah:&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;The Bible Project&amp;rsquo;s &lt;a href=&#34;https://thebibleproject.com/explore/zephaniah/&#34;&gt;Read Scripture: Zephaniah&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Jason DeRouchie&amp;rsquo;s &lt;a href=&#34;https://jasonderouchie.com/wp-content/uploads/2018/09/2018-Zephaniah-ESVEC7-DeRouchie.pdf&#34;&gt;commentary on Zephaniah (PDF)&lt;/a&gt; from the &lt;em&gt;&lt;a href=&#34;https://www.amazon.com/ESV-Expository-Commentary-7-Daniel-Malachi/dp/1433546523?&amp;amp;_encoding=UTF8&amp;amp;tag=poehls-20&amp;amp;linkCode=ur2&amp;amp;linkId=f84fa13acb18f9e11c227fc183537e37&amp;amp;camp=1789&amp;amp;creative=9325&#34;&gt;ESV Expository Commentary (Volume 7): Daniel–Malachi&lt;/a&gt;&lt;/em&gt;&lt;/li&gt;
@@ -80,28 +165,18 @@ END
     <category term="greek" />
     <category term="scripture" />
     
-    <content type="html">
-
-&lt;p&gt;I recently discovered an excellent narration of the Greek New Testament. It is freely available for download and streaming; the links are below.&lt;/p&gt;
-
+    <content type="html">&lt;p&gt;I recently discovered an excellent narration of the Greek New Testament. It is freely available for download and streaming; the links are below.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=-BfYa4QM2dc&amp;amp;list=PL40D66708671D260F&#34;&gt;Stream on YouTube&lt;/a&gt; with text that follows the audio&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://bit.ly/KoineGreekNT-mp3&#34;&gt;Download the MP3s&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://biblia.com/books/tr1894mr&#34;&gt;Read along at Biblia.com&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;After finding these recordings on YouTube I had to dig around to find who to cite as the narrator. According to &lt;a href=&#34;https://christthetruth.net/2012/06/23/free-greek-audio-bible/&#34;&gt;a post on Glen Scrivener’s blog&lt;/a&gt;, the narration is by Theo Karvounakis and the recordings are being released into the public domain by he and Matthias Müller.&lt;/p&gt;
-
 &lt;p&gt;The readings &lt;a href=&#34;https://www.youtube.com/watch?v=7Nwmwi01AWg&amp;amp;lc=UgwXRj1oN5t6C5aKVIx4AaABAg&#34;&gt;are from&lt;/a&gt; &lt;em&gt;Scrivener’s Textus Receptus (1894 edition)&lt;/em&gt; published by the Trinitarian Bible Society, the text of which is also in the public domain.&lt;/p&gt;
-
 &lt;p&gt;I’ve listened to a bit from &lt;em&gt;The Gospel of Matthew&lt;/em&gt; and &lt;em&gt;The Gospel of John&lt;/em&gt; and the production quality is very good. Theo Karvounakis reads in a modern Greek pronunciation that is easy to understand and listen to.&lt;/p&gt;
-
 &lt;h2 id=&#34;the-gospel-of-john-a-podcast&#34;&gt;The Gospel of John: A Podcast?&lt;/h2&gt;
-
 &lt;p&gt;I’ve experimented with creating a podcast feed for these recordings so that they are easy to stream on the go. I like to listen to spoken audio in &lt;a href=&#34;https://overcast.fm&#34;&gt;Overcast&lt;/a&gt; as much as possible because of the excellent Smart Speed and Voice Boost features that trim up the excess silence and enhance the audio quality so much.&lt;/p&gt;
-
 &lt;p&gt;I started by making a feed for &lt;em&gt;The Gospel of John&lt;/em&gt; by uploading the MP3s to the Internet Archive and hosting the podcast RSS feed on GitHub. Use the links below to subscribe. If this is useful to you then I’d love &lt;a href=&#34;http://joshua.poehls.me/contact&#34;&gt;to hear your feedback&lt;/a&gt;.&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://gist.github.com/jpoehls/aba41a9f0827fe2369df68b307988b3d&#34;&gt;Read the readme&lt;/a&gt; for the podcast feed&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://gist.github.com/jpoehls/aba41a9f0827fe2369df68b307988b3d/raw/feed.xml&#34;&gt;Subscribe to the RSS feed&lt;/a&gt;&lt;/li&gt;
@@ -120,38 +195,23 @@ END
     <category term="quotes" />
     
     <content type="html">&lt;p&gt;&lt;a href=&#34;http://www.vangoghletters.org&#34;&gt;Vincent van Gogh - The Letters&lt;/a&gt; is an amazing archive of documents. Searchable, with facsimiles, translations, and including even the original sketches. Van Gogh seems like a fascinating person and the letters contain some gems.&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;Someone has a great fire in his soul and nobody ever comes to warm themselves at it, and passers-by see nothing but a little smoke at the top of the chimney and then go on their way.&lt;/p&gt;
-
 &lt;p&gt;&amp;ndash; Vincent van Gogh, &lt;a href=&#34;http://www.vangoghletters.org/vg/letters/let155/letter.html&#34;&gt;Letter no. 155 (June 1880)&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;figure &gt;
-
-&lt;img src=&#34;http://joshua.poehls.me/2017/vgletter.jpg&#34; alt=&#34;Facsimile of a letter from Vincent van Gogh&#34; /&gt;
-
-
+&lt;p&gt;&lt;img src=&#34;http://joshua.poehls.me/2017/vgletter.jpg&#34; alt=&#34;Facsimile of a letter from Vincent van Gogh&#34; /&gt;&lt;/p&gt;
 &lt;figcaption&gt;
 &lt;p&gt;
 Facsimile of a letter from Vincent van Gogh
-
-
-
 &lt;/p&gt; 
 &lt;/figcaption&gt;
-
 &lt;/figure&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;What am I in the eyes of most people? A nonentity or an oddity or a disagreeable person — someone who has and will have no position in society, in short a little lower than the lowest.&lt;/p&gt;
-
 &lt;p&gt;Very well — assuming that everything is indeed like that, then through my work I’d like to show what there is in the heart of such an oddity, such a nobody.&lt;/p&gt;
-
 &lt;p&gt;This is my ambition, which is based less on resentment than on love in spite of everything, based more on a feeling of serenity than on passion.&lt;/p&gt;
-
 &lt;p&gt;Even though I’m often in a mess, inside me there’s still a calm, pure harmony and music. In the poorest little house, in the filthiest corner, I see paintings or drawings. And my mind turns in that direction as if with an irresistible urge. As time passes, other things are increasingly excluded, and the more they are the faster my eyes see the picturesque. Art demands persistent work, work in spite of everything, and unceasing observation.&lt;/p&gt;
-
 &lt;p&gt;&amp;ndash; Vincent van Gogh, &lt;a href=&#34;http://www.vangoghletters.org/vg/letters/let249/letter.html&#34;&gt;Letter to Theo van Gogh from The Hague (21 July 1882)&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 </content>
@@ -168,63 +228,55 @@ Facsimile of a letter from Vincent van Gogh
     <category term="tim-mackie" />
     
     <content type="html">&lt;p&gt;&lt;em&gt;Justice&lt;/em&gt; has been a recurring theme that stands out to me as I read the Bible. This video from &lt;a href=&#34;https://thebibleproject.com/&#34;&gt;The Bible Project&lt;/a&gt; is really helpful to understand the biblical themes righteousness and justice.&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;Humans are set apart from all other creatures as the &lt;em&gt;image of God&lt;/em&gt;&amp;hellip; This identity is the bedrock of the Bible&amp;rsquo;s view of justice. All humans are equal before God and have the right to be treated with dignity and fairness, no matter who you are.&lt;/p&gt;
-
 &lt;p&gt;Doing righteousness&amp;hellip; what comes to mind is, being a good person. But what does that even mean, &amp;ldquo;being good&amp;rdquo;?&lt;/p&gt;
-
 &lt;p&gt;The biblical hebrew word for &lt;em&gt;righteousness&lt;/em&gt; is &lt;a href=&#34;https://www.blueletterbible.org/lang/lexicon/lexicon.cfm?strongs=H6666&#34;&gt;&lt;em&gt;tsĕdaqah&lt;/em&gt;&lt;/a&gt;. It&amp;rsquo;s more specific. It&amp;rsquo;s an ethical standard that refers to right relationships &lt;em&gt;between people&lt;/em&gt;. It&amp;rsquo;s about treating others &lt;em&gt;as the image of God&lt;/em&gt;. With the God given dignity they deserve.&lt;/p&gt;
-
 &lt;p&gt;And this word &lt;em&gt;justice&lt;/em&gt;, it&amp;rsquo;s the hebrew word &lt;a href=&#34;https://www.blueletterbible.org/lang/lexicon/lexicon.cfm?t=nasb&amp;amp;strongs=h4941&#34;&gt;&lt;em&gt;mishpat&lt;/em&gt;&lt;/a&gt;. It &lt;em&gt;can&lt;/em&gt; refer to retributive justice&amp;hellip; yet most often in the Bible, &lt;em&gt;mishpat&lt;/em&gt; refers to &lt;em&gt;restorative&lt;/em&gt; justice. It means going a step further. Actually seeking out vulnerable people who are being taken advantage of and helping them out. &amp;hellip;It means taking steps to advocate for the vulnerable, and changing social structures to &lt;em&gt;prevent&lt;/em&gt; injustice.&lt;/p&gt;
 &lt;/blockquote&gt;
-
 
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
   &lt;iframe src=&#34;https://www.youtube.com/embed/A14THPoc4-4&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 
-
 &lt;blockquote&gt;
-&lt;p&gt;Open your mouth for the mute,&lt;br /&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;for the rights of all who are destitute.&lt;br /&gt;
-Open your mouth, judge righteously,&lt;br /&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;defend the rights of the poor and needy.&lt;br /&gt;
+&lt;p&gt;Open your mouth for the mute,&lt;br&gt;
+    for the rights of all who are destitute.&lt;br&gt;
+Open your mouth, judge righteously,&lt;br&gt;
+    defend the rights of the poor and needy.&lt;br&gt;
 &amp;ndash; &lt;a href=&#34;https://www.esv.org/Proverbs+31:8/&#34;&gt;Proverbs 31:8-9&lt;/a&gt; (ESV)&lt;/p&gt;
-
-&lt;p&gt;Thus says the LORD: Do justice and righteousness, and deliver from the hand of the oppressor him who has been robbed. And do no wrong or violence to the resident alien, the fatherless, and the widow, nor shed innocent blood in this place.&lt;br /&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Thus says the LORD: Do justice and righteousness, and deliver from the hand of the oppressor him who has been robbed. And do no wrong or violence to the resident alien, the fatherless, and the widow, nor shed innocent blood in this place.&lt;br&gt;
 &amp;ndash; &lt;a href=&#34;https://www.esv.org/Jeremiah+22:3/&#34;&gt;Jeremiah 22:3&lt;/a&gt; (ESV)&lt;/p&gt;
-
-&lt;p&gt;[The LORD,]&lt;br /&gt;
-who executes justice for the oppressed,&lt;br /&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;who gives food to the hungry.&lt;/p&gt;
-
-&lt;p&gt;The LORD sets the prisoners free;&lt;br /&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;the LORD opens the eyes of the blind.&lt;br /&gt;
-The LORD lifts up those who are bowed down;&lt;br /&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;the LORD loves the righteous.&lt;br /&gt;
-The LORD watches over the sojourners;&lt;br /&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;he upholds the widow and the fatherless,&lt;br /&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;but the way of the wicked he brings to ruin.&lt;br /&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[The LORD,]&lt;br&gt;
+who executes justice for the oppressed,&lt;br&gt;
+    who gives food to the hungry.&lt;/p&gt;
+&lt;p&gt;The LORD sets the prisoners free;&lt;br&gt;
+    the LORD opens the eyes of the blind.&lt;br&gt;
+The LORD lifts up those who are bowed down;&lt;br&gt;
+    the LORD loves the righteous.&lt;br&gt;
+The LORD watches over the sojourners;&lt;br&gt;
+    he upholds the widow and the fatherless,&lt;br&gt;
+    but the way of the wicked he brings to ruin.&lt;br&gt;
 &amp;ndash; &lt;a href=&#34;https://www.esv.org/Psalm+146:7/&#34;&gt;Psalm 146:7-9&lt;/a&gt; (ESV)&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;The behind-the-scenes is pretty cool as well.&lt;/p&gt;
-
 
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
   &lt;iframe src=&#34;https://www.youtube.com/embed/9U9nxG544Gk&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
 &lt;/div&gt;
 
-
 &lt;blockquote&gt;
-&lt;p&gt;Did not your father eat and drink&lt;br /&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;and do justice and righteousness?&lt;br /&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Then it was well with him.&lt;br /&gt;
-He judged the cause of the poor and needy;&lt;br /&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;then it was well.&lt;br /&gt;
-&lt;strong&gt;Is not this to know me?&lt;/strong&gt;&lt;br /&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;declares the LORD.&lt;br /&gt;
+&lt;p&gt;Did not your father eat and drink&lt;br&gt;
+    and do justice and righteousness?&lt;br&gt;
+    Then it was well with him.&lt;br&gt;
+He judged the cause of the poor and needy;&lt;br&gt;
+    then it was well.&lt;br&gt;
+&lt;strong&gt;Is not this to know me?&lt;/strong&gt;&lt;br&gt;
+    declares the LORD.&lt;br&gt;
 &amp;ndash; &lt;a href=&#34;https://www.esv.org/Jeremiah+22:15/&#34;&gt;Jeremiah 22:15-16&lt;/a&gt; (ESV)&lt;/p&gt;
 &lt;/blockquote&gt;
 </content>
@@ -240,10 +292,8 @@ He judged the cause of the poor and needy;&lt;br /&gt;
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;My desire is to think clearly about concepts and then communicate them intuitively to others. I am particularly interested in the ideas and advancements that affect our lives spiritually and emotionally.&lt;/p&gt;
-
 &lt;p&gt;&amp;ndash; Jonathan Collins, co-founder of &lt;a href=&#34;https://thebibleproject.com/&#34;&gt;The Bible Project&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;Source: &lt;a href=&#34;http://www.jonpdx.com/&#34;&gt;http://www.jonpdx.com/&lt;/a&gt;&lt;/p&gt;
 </content>
   </entry>
@@ -256,10 +306,7 @@ He judged the cause of the poor and needy;&lt;br /&gt;
     
     <category term="powershell" />
     
-    <content type="html">
-
-&lt;p&gt;This post is as much for me as it is for you. I write a lot of PowerShell scripts and they tend to follow a certain pattern. This is my personal boilerplate for PowerShell scripts.&lt;/p&gt;
-
+    <content type="html">&lt;p&gt;This post is as much for me as it is for you. I write a lot of PowerShell scripts and they tend to follow a certain pattern. This is my personal boilerplate for PowerShell scripts.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;#Requires -Version 3
 Set-StrictMode -Version Latest
 $ErrorActionPreference = &amp;quot;Stop&amp;quot;
@@ -282,18 +329,16 @@ finally
     Write-Output &amp;quot;Done. Elapsed time: $($stopwatch.Elapsed)&amp;quot;
 }
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;what-s-going-on-here&#34;&gt;What&amp;rsquo;s going on here?&lt;/h2&gt;
-
+&lt;h2 id=&#34;whats-going-on-here&#34;&gt;What&amp;rsquo;s going on here?&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Enables &lt;code&gt;StrictMode&lt;/code&gt; to enforce some best practices. &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn1&#34;&gt;&lt;a href=&#34;#fn:fn1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;
-
+&lt;li&gt;Enables &lt;code&gt;StrictMode&lt;/code&gt; to enforce some best practices. &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;
 &lt;ul&gt;
 &lt;li&gt;Prevents use of variables that have not been initialized.&lt;/li&gt;
 &lt;li&gt;Cannot call non-existent properties on objects.&lt;/li&gt;
 &lt;li&gt;Disallows calling a function like a method, e.g., &lt;code&gt;Do-Something(1 2)&lt;/code&gt; instead of &lt;code&gt;Do-Something 1 2&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Prohibits creating variables without a name.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Sets &lt;code&gt;$ErrorActionPreference&lt;/code&gt; so that unhandled exceptions will halt
 the script execution. By default, PowerShell will roll on when an exceptions
 is thrown and this statement makes my scripts safe by default.&lt;/li&gt;
@@ -304,19 +349,17 @@ This may be different than the working directory.&lt;/li&gt;
 a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the script finishes.&lt;/li&gt;
 &lt;li&gt;The &lt;code&gt;try...finally&lt;/code&gt; ensures that the elapsed time will output even if the script throws an exception.&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;Need to wrap your PowerShells script with a batch file? Grab my &lt;a href=&#34;http://joshua.poehls.me/powershell-batch-file-wrapper&#34;&gt;PowerShell batch file wrapper&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
+&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn:fn1&#34;&gt;&lt;a href=&#34;http://blogs.technet.com/b/heyscriptingguy/archive/2014/12/03/enforce-better-script-practices-by-using-set-strictmode.aspx&#34;&gt;Read more about this&lt;/a&gt; on the &amp;ldquo;Hey, Scripting Guy!&amp;rdquo; blog.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn1&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;&lt;a href=&#34;http://blogs.technet.com/b/heyscriptingguy/archive/2014/12/03/enforce-better-script-practices-by-using-set-strictmode.aspx&#34;&gt;Read more about this&lt;/a&gt; on the &amp;ldquo;Hey, Scripting Guy!&amp;rdquo; blog.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;
+&lt;/section&gt;
 </content>
   </entry>
   
@@ -329,22 +372,13 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
     <category term="bible quiz" />
     <category term="scripture" />
     
-    <content type="html">
-
-&lt;p&gt;Hundreds of verses forgotten. Yep, that&amp;rsquo;s what happen to me. I joined up with our church&amp;rsquo;s Bible Quiz team as a teen and memorized hundreds of verses for competition. Looking back, it is one of my favorite things I did growing up. Unfortunately, that was many years ago and with little practice comes much forgetfulness.&lt;/p&gt;
-
+    <content type="html">&lt;p&gt;Hundreds of verses forgotten. Yep, that&amp;rsquo;s what happen to me. I joined up with our church&amp;rsquo;s Bible Quiz team as a teen and memorized hundreds of verses for competition. Looking back, it is one of my favorite things I did growing up. Unfortunately, that was many years ago and with little practice comes much forgetfulness.&lt;/p&gt;
 &lt;p&gt;I kicked off 2016 by starting &lt;a href=&#34;http://fighterverses.com&#34;&gt;Fighter Verses&lt;/a&gt;. This is my attempt to get back into the practice of memorizing scripture. One of the ways I ingrain verses in my mind is to break them apart and mentally quiz myself. Quoting it backwards and forwards, so to speak, as I answer questions about the passage. It really works.&lt;/p&gt;
-
 &lt;p&gt;So, dear readers, I present to you some Bible Quiz style questions I&amp;rsquo;ve been drilling for the first couple Fighter Verses. Let me know if you find these helpful!&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;deuteronomy-10-12-13&#34;&gt;Deuteronomy 10:12-13&lt;/h2&gt;
-
+&lt;hr&gt;
+&lt;h2 id=&#34;deuteronomy-1012-13&#34;&gt;Deuteronomy 10:12-13&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;And now, Israel, what doth the LORD thy God require of thee, but to fear the LORD thy God, to walk in all his ways, and to love him, and to serve the LORD thy God with all thy heart and with all thy soul, To keep the commandments of the LORD, and his statutes, which I command thee this day for thy good?&lt;/em&gt;&lt;/p&gt;
-
 &lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; What does the LORD require of Israel, according to Deuteronomy 10:12-13?&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;To fear the LORD thy God.&lt;/li&gt;
@@ -354,46 +388,32 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
 &lt;li&gt;To keep the commandments of the LORD and his statutes.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; What reason is Israel given for keeping the LORD&amp;rsquo;s commandments and statutes, according to Deuteronomy 10:13?&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;It is for their own good.&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; What is Israel told to do &amp;ldquo;for their own good&amp;rdquo;, according to Deuteronomy 10:13?&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;Keep the commandments of the LORD&lt;/li&gt;
 &lt;li&gt;and his statutes.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
-
-&lt;h2 id=&#34;deuteronomy-7-9&#34;&gt;Deuteronomy 7:9&lt;/h2&gt;
-
+&lt;h2 id=&#34;deuteronomy-79&#34;&gt;Deuteronomy 7:9&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;Know therefore that the LORD thy God, he is God, the faithful God, which keepeth covenant and mercy with them that love him and keep his commandments to a thousand generations;&lt;/em&gt;&lt;/p&gt;
-
 &lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; What attribute of God is mentioned in Deuteronomy 7:9?&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;His faithfulness.&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; What is commanded to be known in Deuteronomy 7:9?&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;That the LORD thy God, he is God.&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; What does God promise to keep with them that love him, according to Deuteronomy 7:9?&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;Covenant and mercy.&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;&lt;strong&gt;Q:&lt;/strong&gt; Who does God promise to keep covenant and mercy with, according to Deuteronomy 7:9?&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;Them that love him&lt;/li&gt;
@@ -401,9 +421,7 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
 &lt;li&gt;to a thousand generations.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
+&lt;hr&gt;
 &lt;p&gt;&lt;em&gt;Verses are quoted from the King James Version.&lt;/em&gt;&lt;/p&gt;
 </content>
   </entry>
@@ -416,46 +434,44 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
     
     <category term="scripture" />
     
-    <content type="html">&lt;p&gt;I call heaven and earth to record this day against you, that &lt;strong&gt;I have set before you life and death&lt;/strong&gt;, blessing and cursing: therefore choose life, that both thou and thy seed may live:&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn1&#34;&gt;&lt;a href=&#34;#fn:fn1&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;And if it seem evil unto you to serve the LORD, &lt;strong&gt;choose you this day whom ye will serve&lt;/strong&gt;; &amp;hellip;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn2&#34;&gt;&lt;a href=&#34;#fn:fn2&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;If ye will fear the LORD, and serve him, and obey his voice,&lt;/strong&gt; and not rebel against the commandment of the LORD, then shall both ye and also the king that reigneth over you continue following the LORD your God:&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn3&#34;&gt;&lt;a href=&#34;#fn:fn3&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;For &lt;strong&gt;God hath not given us the spirit of fear&lt;/strong&gt;; but of power, and of love, and of a sound mind.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn4&#34;&gt;&lt;a href=&#34;#fn:fn4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;These things I have spoken unto you, that in me ye might have peace. In the world ye shall have tribulation: but &lt;strong&gt;be of good cheer&lt;/strong&gt;; I have overcome the world.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn5&#34;&gt;&lt;a href=&#34;#fn:fn5&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;Ye are of God, little children, and have overcome them: because &lt;strong&gt;greater is he that is in you&lt;/strong&gt;, than he that is in the world.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn6&#34;&gt;&lt;a href=&#34;#fn:fn6&#34;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;So that we may boldly say, &lt;strong&gt;The Lord is my helper&lt;/strong&gt;, and I will not fear what man shall do unto me.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn7&#34;&gt;&lt;a href=&#34;#fn:fn7&#34;&gt;7&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;The LORD is on my side;&lt;/strong&gt; I will not fear: what can man do unto me?&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn8&#34;&gt;&lt;a href=&#34;#fn:fn8&#34;&gt;8&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
+    <content type="html">&lt;p&gt;I call heaven and earth to record this day against you, that &lt;strong&gt;I have set before you life and death&lt;/strong&gt;, blessing and cursing: therefore choose life, that both thou and thy seed may live:&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;And if it seem evil unto you to serve the LORD, &lt;strong&gt;choose you this day whom ye will serve&lt;/strong&gt;; &amp;hellip;&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;If ye will fear the LORD, and serve him, and obey his voice,&lt;/strong&gt; and not rebel against the commandment of the LORD, then shall both ye and also the king that reigneth over you continue following the LORD your God:&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;For &lt;strong&gt;God hath not given us the spirit of fear&lt;/strong&gt;; but of power, and of love, and of a sound mind.&lt;sup id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;These things I have spoken unto you, that in me ye might have peace. In the world ye shall have tribulation: but &lt;strong&gt;be of good cheer&lt;/strong&gt;; I have overcome the world.&lt;sup id=&#34;fnref:5&#34;&gt;&lt;a href=&#34;#fn:5&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;Ye are of God, little children, and have overcome them: because &lt;strong&gt;greater is he that is in you&lt;/strong&gt;, than he that is in the world.&lt;sup id=&#34;fnref:6&#34;&gt;&lt;a href=&#34;#fn:6&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;So that we may boldly say, &lt;strong&gt;The Lord is my helper&lt;/strong&gt;, and I will not fear what man shall do unto me.&lt;sup id=&#34;fnref:7&#34;&gt;&lt;a href=&#34;#fn:7&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;7&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The LORD is on my side;&lt;/strong&gt; I will not fear: what can man do unto me?&lt;sup id=&#34;fnref:8&#34;&gt;&lt;a href=&#34;#fn:8&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;8&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;These quotations are all from the KJV.&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
+&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn:fn1&#34;&gt;Deu 30:19
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn1&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:fn2&#34;&gt;Jos 24:15
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn2&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:fn3&#34;&gt;1Sa 12:14
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn3&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:fn4&#34;&gt;2Ti 1:7
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn4&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:fn5&#34;&gt;Jhn 16:33
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn5&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:fn6&#34;&gt;1Jo 4:4
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn6&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:fn7&#34;&gt;Heb 13:6
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn7&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:fn8&#34;&gt;Psa 118:6
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn8&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;Deu 30:19&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:2&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;Jos 24:15&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:3&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;1Sa 12:14&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:4&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;2Ti 1:7&amp;#160;&lt;a href=&#34;#fnref:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:5&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;Jhn 16:33&amp;#160;&lt;a href=&#34;#fnref:5&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:6&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;1Jo 4:4&amp;#160;&lt;a href=&#34;#fnref:6&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:7&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;Heb 13:6&amp;#160;&lt;a href=&#34;#fnref:7&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id=&#34;fn:8&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;p&gt;Psa 118:6&amp;#160;&lt;a href=&#34;#fnref:8&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;
+&lt;/section&gt;
 </content>
   </entry>
   
@@ -469,29 +485,20 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;&amp;ldquo;It is not to be expected that we should love God supremely if we have not known him to be more desirable than all other things.&amp;rdquo; So wrote the great hymn writer Isaac Watts. And of course, he was quite right, for we always love what seems most attractive to us.&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;But what kind of God could outstrip the attractions of all other things? Could any unitary, single-person god do so? Hardly, or at least not for long. Single-person gods must, by definition, have spent eternity in absolute solitude. Before creation, having no other persons with whom they could commune, they must have been entirely alone.&lt;/p&gt;
-
 &lt;p&gt;Love for others, then, cannot go very deep in them if they can go for eternity without it. And so, not being essentially loving, such gods are inevitably less than lovely. They may demand our worship, but they cannot win our hearts. They must be served with gritted teeth.&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;Just imagine for a moment a single-person god. Having been alone for eternity, would it want fellowship with us? It seems most unlikely. Would it even know what fellowship was? Almost certainly not. Such a god might allow us to live under its rule and protection, but little more.&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;But if God is a Father, whose very life has been about loving and delighting in His precious Son, then you begin to see a God who would have far more intimate and marvelous aims, aims to draw us into His life and joy, to embrace us with the very love He has for His dear Son.&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;The Trinity, then, is not some awkward add-on to God, the optional extra nobody should want. No, God is beautiful, desirable, and life-giving precisely because He is the Father, the Son, and the Spirit.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -506,226 +513,115 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
     
     <category term="martin-luther" />
     
-    <content type="html">
-
-&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-
+    <content type="html">&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;Early in the year 1535, Peter Beskendorf, a barber and an old friend of Luther&amp;rsquo;s, asked Dr. Luther for suggestions concerning prayer. Luther responded with an open letter titled, &lt;em&gt;How One Should Pray, for Master Peter the Barber&lt;/em&gt;. This letter is as follows.&lt;/p&gt;
-
 &lt;p&gt;&lt;em&gt;Paraphrased introduction from Paster Wolfmueller of Hope Lutheran Church, Aurora, CO. 2006.&lt;/em&gt;&lt;/p&gt;
-
 &lt;figure &gt;
-
-&lt;img src=&#34;http://joshua.poehls.me/2015/luther-and-friends-praying.jpg&#34; alt=&#34;Luther and Friends Pray at the Bedside of Melancthon&#34; /&gt;
-
-
+&lt;p&gt;&lt;img src=&#34;http://joshua.poehls.me/2015/luther-and-friends-praying.jpg&#34; alt=&#34;Luther and Friends Pray at the Bedside of Melancthon&#34; /&gt;&lt;/p&gt;
 &lt;figcaption&gt;
 &lt;p&gt;
 Luther and Friends Pray at the Bedside of Melancthon
-
-
-
 &lt;/p&gt; 
 &lt;/figcaption&gt;
-
 &lt;/figure&gt;
-
 &lt;h1 id=&#34;how-one-should-pray&#34;&gt;How One Should Pray&lt;/h1&gt;
-
 &lt;p&gt;I will tell you as best I can what I do personally when I pray. May our dear Lord grant to you and to everybody to do it better than I! Amen.&lt;/p&gt;
-
 &lt;p&gt;First, when I feel that I have become cool and joyless in prayer because of other tasks or thoughts (for the flesh and the devil always impede and obstruct prayer), I take my little psalter, hurry to my room, or, if it be the day and hour for it, to the church where a congregation is assembled and, as time permits, I say quietly to myself and word-for-word the Ten Commandments, the Creed, and, if I have time, some words of Christ or of Paul, or some psalms, just as a child might do.&lt;/p&gt;
-
 &lt;p&gt;It is a good thing to let prayer be the first business of the morning and the last at night. Guard yourself carefully against those false, deluding ideas which tell you, &amp;ldquo;Wait a little while. I will pray in an hour; first I must attend to this or that.&amp;rdquo; Such thoughts get you away from prayer into other affairs which so hold your attention and involve you that nothing comes of prayer for that day.&lt;/p&gt;
-
 &lt;p&gt;It may well be that you may have some tasks which are as good or better than prayer, especially in an emergency. There is a saying ascribed to St. Jerome that everything a believer does is prayer and a proverb, &amp;ldquo;He who works faithfully prays twice.&amp;rdquo; This can be said because a believer fears and honors God in his work and remembers the commandment not to wrong anyone, or to try to steal, defraud, or cheat. Such thoughts and such faith undoubtedly transform his work into prayer and a sacrifice of praise.&lt;/p&gt;
-
 &lt;p&gt;On the other hand it is also true that the work of an unbeliever is outright cursing and so he who works faithlessly curses twice. While he does his work his thoughts are occupied with a neglect of God and violation of his law, how to take advantage of his neighbor, how to steal from him and defraud him. What else can such thoughts be but out and out curses against God and man, which makes one&amp;rsquo;s work and effort a double curse by which a man curses himself. In the end they are beggars and bunglers. It is of such continual prayer that Christ says in Luke 11, &amp;ldquo;Pray without ceasing,&amp;rdquo; because one must unceasingly guard against sin and wrongdoing, something one cannot do unless one fears God and keeps his commandment in mind, as Psalm 1 says, &amp;ldquo;Blessed is he who meditates upon his law day and night.&amp;rdquo;&lt;/p&gt;
-
 &lt;p&gt;Yet we must be careful not to break the habit of true prayer and imagine other works to be necessary which, after all, are nothing of the kind. Thus at the end we become lax and lazy, cool and listless toward prayer. The devil who besets us is not lazy or careless, and our flesh is too ready and eager to sin and is disinclined to the spirit of prayer.&lt;/p&gt;
-
-&lt;h2 id=&#34;praying-the-lord-s-prayer&#34;&gt;Praying the Lord&amp;rsquo;s Prayer&lt;/h2&gt;
-
+&lt;h2 id=&#34;praying-the-lords-prayer&#34;&gt;Praying the Lord&amp;rsquo;s Prayer&lt;/h2&gt;
 &lt;p&gt;When your heart has been warmed by such recitation to yourself and is intent upon the matter, kneel or stand with your hands folded and your eyes toward heaven and speak or think as briefly as you can:&lt;/p&gt;
-
 &lt;p&gt;O Heavenly Father, dear God, I am a poor unworthy sinner. I do not deserve to raise my eyes or hands toward thee or to pray. But because thou hast commanded us all to pray and hast promised to hear us and through thy dear Son Jesus Christ hast taught us both how and what to pray, I come to thee in obedience to thy word, trusting in thy gracious promise. I pray in the name of my Lord Jesus Christ together with all thy saints and Christians on earth as he has taught us: Our Father who art, etc., through the whole prayer, word for word.&lt;/p&gt;
-
 &lt;h3 id=&#34;the-first-petition-hallowed-be-thy-name&#34;&gt;The First Petition: Hallowed Be Thy Name&lt;/h3&gt;
-
 &lt;p&gt;Then repeat one part or as much as you wish, perhaps the first petition: &amp;ldquo;Hallowed be thy name,&amp;rdquo; and say: &amp;ldquo;Yes, Lord God, dear Father, hallowed be thy name, both in us and throughout the whole world. Destroy and root out the abominations, idolatry, and heresy of the Turk, the pope, and all false teachers and fanatics who wrongly use thy name and in scandalous ways take it in vain and horribly blaspheme it. They insistently boast that they teach thy word and the laws of the church, though they really use the devil&amp;rsquo;s deceit and trickery in thy name to wretchedly seduce many poor souls throughout the world, even killing and shedding much innocent blood, and in such persecution they believe that they render thee a divine service.&lt;/p&gt;
-
 &lt;p&gt;Dear Lord God, convert and restrain. Convert those who are still to be converted that they with us and we with them may hallow and praise thy name, both with true and pure doctrine and with a good and holy life. Restrain those who are unwilling to be converted so that they be forced to cease from misusing, defiling, and dishonoring thy holy name and from misleading the poor people. Amen.&amp;rdquo;&lt;/p&gt;
-
 &lt;h3 id=&#34;the-second-petition-thy-kingdom-come&#34;&gt;The Second Petition: Thy Kingdom Come&lt;/h3&gt;
-
 &lt;p&gt;The second petition: &amp;ldquo;Thy kingdom come.&amp;rdquo; Say: &amp;ldquo;O dear Lord, God and Father, thou seest how worldly wisdom and reason not only profane thy name and ascribe the honor due to thee to lies and to the devil, but how they also take the power, might, wealth and glory which thou hast given them on earth for ruling the world and thus serving thee, and use it in their own ambition to oppose thy kingdom. They are many and mighty; they plague and hinder the tiny flock of thy kingdom who are weak, despised, and few. They will not tolerate thy flock on earth and think that by plaguing them they render a great and godly service to thee. Dear Lord, God and Father, convert them and defend us. Convert those who are still to become children and members of thy kingdom so that they with us and we with them may serve thee in thy kingdom in true faith and unfeigned love and that from thy kingdom which has begun, we may enter into thy eternal kingdom. Defend us against those who will not turn away their might and power from the destruction of thy kingdom so that when they are east down from their thrones and humbled, they will have to cease from their efforts. Amen.&amp;rdquo;&lt;/p&gt;
-
 &lt;h3 id=&#34;the-third-petition-thy-will-be-done&#34;&gt;The Third Petition: Thy Will Be Done&lt;/h3&gt;
-
 &lt;p&gt;The third petition. &amp;ldquo;Thy will be done on earth as it is in heaven.&amp;rdquo; Say: &amp;ldquo;O dear Lord, God and Father, thou knowest that the world, if it cannot destroy thy name or root out thy kingdom, is busy day and night with wicked tricks and schemes, strange conspiracies and intrigue, huddling together in secret counsel, giving mutual encouragement and support, raging and threatening and going about with every evil intention to destroy thy name, word, kingdom, and children. Therefore, dear Lord, God and Father, convert them and defend us. Convert those who have yet to acknowledge thy good will that they with us and we with them may obey thy will and for thy sake gladly, patiently, and joyously bear every evil, cross, and adversity, and thereby acknowledge, test, and experience thy benign, gracious, and perfect will. But defend us against those who in their rage, fury, hate, threats, and evil desires do not cease to do us harm. Make their wicked schemes, tricks, and devices to come to nothing so that these may be turned against them, as we sing in Psalm 7.&amp;rdquo;&lt;/p&gt;
-
 &lt;h3 id=&#34;the-fourth-petition-give-us-this-day-our-daily-bread&#34;&gt;The Fourth Petition: Give Us This Day Our Daily Bread&lt;/h3&gt;
-
 &lt;p&gt;The fourth petition. &amp;ldquo;Give us this day our daily bread.&amp;rdquo; Say: &amp;ldquo;Dear Lord, God and Father, grant us thy blessing also in this temporal and physical life. Graciously grant us blessed peace. Protect us against war and disorder. Grant to our dear emperor fortune and success against his enemies. Grant him wisdom and understanding to rule over his earthly kingdom in peace and prosperity. Grant to all kings, princes, and rulers good counsel and the will to preserve their domains and their subjects in tranquility and justice. Especially aid and guide our dear prince N., under whose protection and shelter thou dost maintain us, so that he may be protected against all harm and reign blessedly, secure from evil tongues and disloyal people. Grant to all his subjects grace to serve him loyally and obediently. Grant to every estate-townsman or farmer-to be diligent and to display charity and loyalty toward each other. Give us favorable weather and good harvest. I commend to thee my house and property, wife and child. Grant that I may manage them well, supporting and educating them as a Christian should. Defend us against the Destroyer and all his wicked angels who would do us harm and mischief in this life. Amen.&amp;rdquo;&lt;/p&gt;
-
 &lt;h3 id=&#34;the-fifth-petition-forgive-us-our-trespasses&#34;&gt;The Fifth Petition: Forgive Us Our Trespasses&lt;/h3&gt;
-
 &lt;p&gt;The fifth petition. &amp;ldquo;Forgive us our trespasses as we forgive those who trespass against us.&amp;rdquo; Say: &amp;ldquo;O dear Lord, God and Father, enter not into judgment against us because no man living is justified before thee. Do not count it against us as a sin that we are so unthankful for thine ineffable goodness, spiritual and physical, or that we stray into sin many times every day, more often than we can know or recognize, Psalm 19. Do not look upon how good or how wicked we have been but only upon the infinite compassion which thou hast bestowed upon us in Christ, thy dear Son. Grant forgiveness also to those who have harmed or wronged us, as we forgive them from our hearts. They inflict the greatest injury upon themselves by arousing thy anger in their actions toward us. We are not helped by their ruin; we would much rather that they be saved with us. Amen.&amp;rdquo; (Anyone who feels unable to forgive, let him ask for grace so that he can forgive; but that belongs in a sermon.)&lt;/p&gt;
-
 &lt;h3 id=&#34;the-sixth-petition-lead-us-not-into-temptation&#34;&gt;The Sixth Petition: Lead Us Not Into Temptation&lt;/h3&gt;
-
 &lt;p&gt;The sixth petition. &amp;ldquo;And lead us not into temptation.&amp;rdquo; Say: &amp;ldquo;O dear Lord, Father and God, keep us fit and alert, eager and diligent in thy word and service, so that we do not become complacent, lazy, and slothful as though we had already achieved everything. In that way the fearful devil cannot fall upon us, surprise us, and deprive us of thy precious word or stir up strife and factions among us and lead us into other sin and disgrace, both spiritually and physically. Rather grant us wisdom and strength through thy spirit that we may valiantly resist him and gain the victory. Amen.&amp;rdquo;&lt;/p&gt;
-
 &lt;h3 id=&#34;the-seventh-petition-but-deliver-us-from-evil&#34;&gt;The Seventh Petition: But Deliver Us From Evil&lt;/h3&gt;
-
 &lt;p&gt;The seventh petition. &amp;ldquo;But deliver us from evil.&amp;rdquo; Say: &amp;ldquo;O dear Lord, God and Father, this wretched life is so full of misery and calamity, of danger and uncertainty, so full of malice and faithlessness (as St. Paul says, &amp;ldquo;The days are evil&amp;rdquo;) that we might rightfully grow weary of life and long for death. But thou, dear Father, knowest our frailty; therefore help us to pass in safety through so much wickedness and villainy; and, when our last hour comes, in thy mercy grant us a blessed departure from this vale of sorrows so that in the face of death we do not become fearful or despondent but in firm faith commit our souls into thy hands. Amen.&amp;rdquo;&lt;/p&gt;
-
 &lt;h3 id=&#34;amen&#34;&gt;Amen&lt;/h3&gt;
-
 &lt;p&gt;Finally, mark this, that you must always speak the Amen firmly. Never doubt that God in his mercy will surely hear you and say &amp;ldquo;yes&amp;rdquo; to your prayers. Never think that you are kneeling or standing alone, rather think that the whole of Christendom, all devout Christians, are standing there beside you and you are standing among them in a common, united petition which God cannot disdain. Do not leave your prayer without having said or thought, &amp;ldquo;Very well, God has heard my prayer; this I know as a certainty and a truth.&amp;rdquo; That is what Amen means.&lt;/p&gt;
-
 &lt;p&gt;You should also know that I do not want you to recite all these words in your prayer. That would make it nothing but idle chatter and prattle, read word for word out of a book as were the rosaries by the laity and the prayers of the priests and monks. Rather do I want your heart to be stirred and guided concerning the thoughts which ought to be comprehended in the Lord&amp;rsquo;s Prayer. These thoughts may be expressed, if your heart is rightly warmed and inclined toward prayer, in many different ways and with more words or fewer. I do not bind myself to such words or syllables, but say my prayers in one fashion today, in another tomorrow, depending upon my mood and feeling. I stay however, as nearly as I can, with the same general thoughts and ideas. It may happen occasionally that I may get lost among so many ideas in one petition that I forego the other six. If such an abundance of good thoughts comes to us we ought to disregard the other petitions, make room for such thoughts, listen in silence, and under no circumstances obstruct them. The Holy Spirit himself preaches here, and one word of his sermon is far better than a thousand of our prayers. Many times I have learned more from one prayer than I might have learned from much reading and speculation.&lt;/p&gt;
-
 &lt;h2 id=&#34;an-eagerness-for-prayer&#34;&gt;An Eagerness for Prayer&lt;/h2&gt;
-
 &lt;p&gt;It is of great importance that the heart be made ready and eager for prayer. As the Preacher says, &amp;ldquo;Prepare your heart for prayer, and do not tempt God&amp;rdquo;. What else is it but tempting God when your mouth babbles and the mind wanders to other thoughts? Like the priest who prayed, &amp;ldquo;Deus in adjutorium meum intende. Farmhand, did you unhitch the horses? Domine ad adjuvandum me festina. Maid, go out and milk the cow. Gloria patti et filio et spiritui sancto. Hurry up, boy, I wish the ague would take you!&amp;rdquo; I have heard many such prayers in my experience under the papacy; most of their prayers are of this sort. This is blasphemy and it would be better if they played at it if they cannot or do not care to do better. In my day I have prayed many such canonical hours myself, regrettably, and in such a manner that the psalm or the allotted time came to an end before I even realized whether I was at the beginning or in the middle.&lt;/p&gt;
-
 &lt;p&gt;Though not all of them blurt out the words as did the above-mentioned cleric and mix business and prayer, they do it by the thoughts in their hearts. They jump from one thing to another in their thoughts and when it is all over they do not know what they have done or what they talked about. They start with Laudate and right away they are in a fool&amp;rsquo;s paradise. It seems to me that if someone could see what arises as prayer from a cold and unattentive heart he would conclude that he had never seen a more ridiculous kind of buffoonery. But, praise God, it is now clear to me that a person who forgets what he has said has not prayed well. In a good prayer one fully remembers every word and thought from the beginning to the end of the prayer.&lt;/p&gt;
-
 &lt;p&gt;So, a good and attentive barber keeps his thoughts, attention, and eyes on the razor and hair and does not forget how far he has gotten with his shaving or cutting. If he wants to engage in too much conversation or let his mind wander or look somewhere else he is likely to cut his customer&amp;rsquo;s mouth, nose, or even his throat. Thus if anything is to be done well, it requires the full attention of all one&amp;rsquo;s senses and members, as the proverb says, &amp;ldquo;Pluribus intentus, minor est ad singula sensus&amp;rdquo;-&amp;ldquo;He who thinks of many things, thinks of nothing and does nothing right.&amp;rdquo; How much more does prayer call for concentration and singleness of heart if it is to be a good prayer!&lt;/p&gt;
-
 &lt;p&gt;This in short is the way I use the Lord&amp;rsquo;s Prayer when I pray it. To this day I suckle at the Lord&amp;rsquo;s Prayer like a child, and as an old man eat and drink from it and never get my fill. It is the very best prayer, even better than the psalter, which is so very dear to me. It is surely evident that a real master composed and taught it. What a great pity that the prayer of such a master is prattled and chattered so irreverently all over the world! How many pray the Lord&amp;rsquo;s Prayer several thousand times in the course of a year, and if they were to keep on doing so for a thousand years they would not have tasted nor prayed one iota, one dot, of it! In a word, the Lord&amp;rsquo;s Prayer is the greatest martyr on earth (as are the name and word of God). Everybody tortures and abuses it; few take comfort and joy in its proper use.&lt;/p&gt;
-
 &lt;h2 id=&#34;praying-the-ten-commandments-a-garland-of-four-strands&#34;&gt;Praying the Ten Commandments: A Garland of Four Strands&lt;/h2&gt;
-
 &lt;p&gt;If I have had time and opportunity to go through the Lord&amp;rsquo;s Prayer, I do the same with the Ten Commandments. I take one part after another and free myself as much as possible from distractions in order to pray. I divide each commandment into four parts, thereby fashioning a garland of four strands. That is, I think of each commandment as, first, instruction, which is really what it is intended to be, and consider what the Lord God demands of me so earnestly. Second, I turn it into a thanksgiving; third, a confession; and fourth, a prayer.&lt;/p&gt;
-
 &lt;h3 id=&#34;the-first-commandment-you-shall-have-no-other-gods&#34;&gt;The First Commandment: You Shall Have No Other Gods&lt;/h3&gt;
-
 &lt;p&gt;I do so in thoughts or words such as these: &amp;ldquo;I am the Lord your God, etc. You shall have no other gods before me,&amp;rdquo; etc. Here I earnestly consider that God expects and teaches me to trust him sincerely in all things and that it is his most earnest purpose to be my God. I must think of him in this way at the risk of losing eternal salvation. My heart must not build upon anything else or trust in any other thing, be it wealth, prestige, wisdom, might, piety, or anything else. Second, I give thanks for his infinite compassion by which he has come to me in such a fatherly way and, unasked, unbidden, and unmerited, has offered to be my God, to care for me, and to be my comfort, guardian, help, and strength in every time of need. We poor mortals have sought so many gods and would have to seek them still if he did not enable us to hear him openly tell us in our own language that he intends to be our God. How could we ever-in all eternity-thank him enough! Third, I confess and acknowledge my great sin and ingratitude for having so shamefully despised such sublime teachings and such a precious gift throughout my whole life, and for having fearfully provoked his wrath by countless acts of idolatry. I repent of these and ask for his grace. Fourth, I pray and say: &amp;ldquo;O my God and Lord, help me by thy grace to learn and understand thy commandments more fully every day and to live by them in sincere confidence. Preserve my heart so that I shall never again become forgetful and ungrateful, that I may never seek after other gods or other consolation on earth or in any creature, but cling truly and solely to thee, my only God. Amen, dear Lord God and Father. Amen.&amp;rdquo;&lt;/p&gt;
-
 &lt;h3 id=&#34;the-second-commandment-you-shall-not-misuse-the-name-of-the-lord-your-god&#34;&gt;The Second Commandment: You Shall Not Misuse the Name of the Lord Your God&lt;/h3&gt;
-
 &lt;p&gt;Afterward, if time and inclination permit, the Second Commandment likewise in four strands, like this: &amp;ldquo;You shall not take the name of the Lord your God in vain,&amp;rdquo; etc. First, I learn that I must keep God&amp;rsquo;s name in honor, holiness, and beauty; not to swear, curse, not to be boastful or seek honor and repute for myself, but humbly to invoke his name, to pray, praise, and extol it, and to let it be my only honor and glory that he is my God and that I am his lowly creature and unworthy servant. Second, I give thanks to him for these precious gifts, that he has revealed his name to me and bestowed it upon me, that I can glory in his name and be called God&amp;rsquo;s servant and creature, etc., that his name is my refuge like a mighty fortress to which the righteous man can flee and find protection, as Solomon says. Third, I confess and acknowledge that I have grievously and shamefully sinned against this commandment all my life. I have not only failed to invoke, extol, and honor his holy name, but have also been ungrateful for such gifts and have, by swearing, lying, and betraying, misused them in the pursuit of shame and sin. This I bitterly regret and ask grace and forgiveness, etc. Fourth, I ask for help and strength henceforth to learn this commandment and to be preserved from such evil ingratitude, abuse, and sin against his name, and that I may be found grateful in revering and honoring his name.&lt;/p&gt;
-
 &lt;p&gt;I repeat here what I previously said in reference to the Lord&amp;rsquo;s Prayer: if in the midst of such thoughts the Holy Spirit begins to preach in your heart with rich, enlightening thoughts, honor him by letting go of this written scheme; be still and listen to him who can do better than you can. Remember what he says and note it well and you will behold wondrous things in the law of God, as David says.&lt;/p&gt;
-
 &lt;h3 id=&#34;the-third-commandment-remember-the-sabbath-day-to-keep-it-holy&#34;&gt;The Third Commandment: Remember the Sabbath Day to Keep It Holy&lt;/h3&gt;
-
 &lt;p&gt;The Third Commandment: &amp;ldquo;Remember the sabbath day, to keep it holy.&amp;rdquo; I learn from this, first of all, that the sabbath day has not been instituted for the sake of being idle or indulging in worldly pleasures, but in order that we may keep it holy. However, it is not sanctified by our works and actions- our works are not holy-but by the word of God, which alone is wholly pure and sacred and which sanctifies everything that comes in contact with it, be it time, place, person, labor, rest, etc. According to St. Paul, who says that every creature is consecrated by word and prayer, I Timothy 4, our works are consecrated through the word. I realize therefore that on the sabbath I must, above all, hear and contemplate God&amp;rsquo;s word. Thereafter I should give thanks in my own words, praise God for all his benefits, and pray for myself and for the whole world. He who so conducts himself on the sabbath day keeps it holy. He who fails to do so is worse than the person who works on the sabbath.&lt;/p&gt;
-
 &lt;p&gt;Second, I thank God in this commandment for his great and beautiful goodness and grace which he has given us in the preaching of his word. And he has instructed us to make use of it, especially on the sabbath day, for the meditation of the human heart can never exhaust such a treasure. His word is the only light in the darkness of this life, a word of life, consolation, and supreme blessedness. Where this precious and saving word is absent, nothing remains but a fearsome and terrifying darkness, error and faction, death and every calamity, and the tyranny of the devil himself, as we can see with our own eyes every day.&lt;/p&gt;
-
 &lt;p&gt;Third, I confess and acknowledge great sin and wicked ingratitude on my part because all my life I have made disgraceful use of the sabbath and have thereby despised his precious and dear word in a wretched way. I have been too lazy, listless, and uninterested to listen to it, let alone to have desired it sincerely or to have been grateful for it. I have let my dear God proclaim his word to me in vain, have dismissed the noble treasure, and have trampled it underfoot. He has tolerated this in his great and divine mercy and has not ceased in his fatherly, divine love and faithfulness to keep on preaching to me and calling me to the salvation of my soul. For this I repent and ask for grace and forgiveness.&lt;/p&gt;
-
 &lt;p&gt;Fourth, I pray for myself and for the whole world that the gracious Father may preserve us in his holy word and not withdraw it from us because of our sin, ingratitude, and laziness. May he preserve us from factious spirits and false teachers, and may he send faithful and honest laborers into his harvest, that is, devout pastors and preachers. May he grant us grace humbly to hear, accept, and honor their words as his own words and to offer our sincere thanks and praise.&lt;/p&gt;
-
 &lt;h3 id=&#34;the-fourth-commandment-honor-your-father-and-your-mother&#34;&gt;The Fourth Commandment: Honor Your Father and Your Mother&lt;/h3&gt;
-
 &lt;p&gt;The Fourth Commandment: &amp;ldquo;Honor your father and your mother.&amp;rdquo; First, I learn to acknowledge God, my Greater; how wondrously he has created me, body and soul; and how he has given me life through my parents and has ins ed in them the desire to care for me, the fruit of their bodies, with all their power. He has brought me into this world, has sustained and cared for me, nurtured and educated me with great diligence, carefulness, and concern, through danger, trouble, and hard work. To this moment he protects me, his creature, and helps me in countless dangers and troubles. It is as though he were creating me anew every moment. But the devil does not willingly concede us one single moment of life.&lt;/p&gt;
-
 &lt;p&gt;Second, I thank the rich and gracious Greater on behalf of myself and all the world that he has established and assured in the commandment the increase and preservation of the human race, that is, of households and of states. Without these two institutions or governments the world could not exist a single year, because without government there can be no peace, and where there is no peace there can be no family; without family, children cannot be begotten or raised, and fatherhood and motherhood would cease to be. It is the purpose of this commandment to guard and preserve both family and state, to admonish children and subjects to be obedient, and to enforce it, too, and to let no violation go unpunished-otherwise children would have disrupted the family long ago by their disobedience, and subjects would have disorganized the state and laid it to waste for they outnumber parents and rulers. There are no words to fully describe the benefit of this commandment.&lt;/p&gt;
-
 &lt;p&gt;Third, I confess and lament my wicked disobedience and sin; in defiance of God&amp;rsquo;s commandment I have not honored or obeyed my parents; I have often provoked and offended them, have been impatient with their parental discipline, have been resentful and scornful of their loving admonition and have rather gone along with loose company and evil companions. God himself condemns such disobedient children and withholds from them a long life; many of them succumb and perish in disgrace before they reach adulthood. Whoever does not obey father and mother must obey the executioner or otherwise come, through God&amp;rsquo;s wrath, to an evil end, etc. Of all this I repent and ask for grace and forgiveness.&lt;/p&gt;
-
 &lt;p&gt;Fourth, I pray for myself and for all the world that God would bestow his grace and pour his blessing richly upon the family and the state. Grant that from this time on we may be devout, honor our parents, obey our superiors, and resist the devil when he entices us to be disobedient and rebellious, and so may we help improve home and nation by our actions and thus preserve the peace, all to the praise and glory of God for our own benefit and for the prosperity of all. Grant that we may acknowledge these his gifts and be thankful for them.&lt;/p&gt;
-
 &lt;p&gt;At this point we should add a prayer for our parents and superiors, that God may grant them understanding and wisdom to govern and rule us in peace and happiness. May he preserve them from tyranny, from riot and fury, and turn them to honor God&amp;rsquo;s word and not oppress it, nor persecute anyone or do injustice. Such excellent gifts must be sought by prayer, as St. Paul teaches; otherwise the devil will reign in the palace and everything fall into chaos and confusion.&lt;/p&gt;
-
 &lt;p&gt;If you are a father or mother, you should at this point remember your children and the workers in your household. Pray earnestly to the dear Father, who has set you in an office of honor in his name and intends that you be honored by the name &amp;ldquo;father.&amp;rdquo; Ask that he grant you grace and blessing to look after and support your wife, children, and servants in a godly and Christian manner. May he give you wisdom and strength to train them well in heart and will to follow your instruction with obedience. Both are God&amp;rsquo;s gifts, your children and the way they flourish, that they turn out well and that they remain so. Otherwise the home is nothing but a pigsty and school for rascals, as one can see among the uncouth and godless.&lt;/p&gt;
-
 &lt;h3 id=&#34;the-fifth-commandment-you-shall-not-kill&#34;&gt;The Fifth Commandment: You Shall Not Kill&lt;/h3&gt;
-
 &lt;p&gt;The Fifth Commandment: &amp;ldquo;You shall not kill.&amp;rdquo; Here I learn, first of all, that God desires me to love my neighbor, so that I do him no bodily harm, either by word or action, neither injure nor take revenge upon him in anger, vexation, envy, hatred, or for any evil reason, but realize that I am obliged to assist and counsel him in every bodily need. In this commandment God commands me to protect my neighbor&amp;rsquo;s body and in turn commands my neighbor to protect my own. As Sirach says, &amp;ldquo;He has committed to each of us his neighbor&amp;rdquo;.&lt;/p&gt;
-
 &lt;p&gt;Second, I give thanks for such ineffable love, providence, and faithfulness toward me by which he has placed this mighty shield and wall to protect my physical safety. All are obliged to care for me and protect me, and I, in turn, must behave likewise toward others. He upholds this command and, where it is not observed, he has established the sword as punishment for those who do not live up to it. Were it not for this excellent commandment and ordinance, the devil would instigate such a massacre among men that no one could live in safety for a single hour-as happens when God becomes angry and inflicts punishment upon a disobedient and ungrateful world.&lt;/p&gt;
-
 &lt;p&gt;Third, I confess and lament my own wickedness and that of the world, not only that we are so terribly ungrateful for such fatherly love and solicitude toward us-but what is especially scandalous, that we do not acknowledge this commandment and teaching, are unwilling to learn it, and neglect it as though it did not concern us or we had no part in it. We amble along complacently, feel no remorse that in defiance of this commandment we neglect our neighbor, and, yes, we desert him, persecute, injure, or even kill him in our thoughts. We indulge in anger, rage, and villainy as though we were doing a fine and noble thing. Really, it is high time that we started to deplore and bewail how much we have acted like rogues and like unseeing, unruly, and unfeeling persons who kick, scratch, tear, and devour one another like furious beasts and pay no heed to this serious and divine command, etc.&lt;/p&gt;
-
 &lt;p&gt;Fourth, I pray the dear Father to lead us to an understanding of this his sacred commandment and to help us keep it and live in accordance with it. May he preserve us from the murderer who is the master of every form of murder and violence. May he grant us his grace that we and all others may treat each other in kindly, gentle, charitable ways, forgiving one another from the heart, bearing each other&amp;rsquo;s faults and shortcomings in a Christian and brotherly manner, and thus living together in true peace and concord, as the commandment teaches and requires us to do.&lt;/p&gt;
-
 &lt;h3 id=&#34;the-sixth-commandment-you-shall-not-commit-adultery&#34;&gt;The Sixth Commandment: You Shall Not Commit Adultery&lt;/h3&gt;
-
 &lt;p&gt;The Sixth Commandment: &amp;ldquo;You shall not commit adultery.&amp;rdquo; Here I learn once more what God intends and expects me to do, namely, to live chastely, decently, and temperately, both in thoughts and in words and actions, and not to disgrace any man&amp;rsquo;s wife, daughter, or maidservant. More than this, I ought to assist, save, protect, and guard marriage and decency to the best of my ability; I should silence the idle thoughts of those who want to destroy and slander their reputation. All this I am obliged to do, and God expects me not only to leave my neighbor&amp;rsquo;s wife and family unmolested, but I owe it to my neighbor to preserve and protect his good character and honor, just as I would want my neighbor to do for me and mine in keeping with this commandment.&lt;/p&gt;
-
 &lt;p&gt;Second, I thank my faithful and dear Father for his grace and benevolence by which he accepts my husband, son, servant, wife, daughter, maidservant into his care and protection and forbids so sternly and firmly anything that would bring them into disrepute. He protects and upholds this commandment and does not leave violations unpunished, even though he himself has to act if someone disregards and violates the commandment and precept. No one escapes him; he must either pay the penalty or eventually atone for such lust in the fires of hell. God desires chastity and will not tolerate adultery. That can be seen every day when the impenitent and profligate are overtaken by the wrath of God and perish miserably. Otherwise it would be impossible to guard one&amp;rsquo;s wife, child, and servants against the devil&amp;rsquo;s filthiness for a single hour or preserve them in honor and decency. What would happen would be unbridled immorality and beastliness, as happens when God in his wrath withdraws his hand and permits everything to go to wrack and ruin.&lt;/p&gt;
-
 &lt;p&gt;Third, I confess and acknowledge my sin, my own and that of all the world, how I have sinned against this commandment my whole life in thought, word, and action. Not only have I been ungrateful for these excellent teachings and gifts, but I have complained and rebelled against the divine requirement of such decency and chastity, that God has not permitted all sorts of fornication and rascality to go unchecked and unpunished. He will not allow marriage to be despised, ridiculed, or condemned, etc. Sins against this commandment are, above all others, the grossest and most conspicuous and cannot be covered up or whitewashed. For this I am sorry, etc.&lt;/p&gt;
-
 &lt;p&gt;Fourth, I pray for myself and all the world that God may grant us grace to keep this commandment gladly and cheerfully in order that we might ourselves live in chastity and also help and support others to do likewise.&lt;/p&gt;
-
 &lt;p&gt;Then I continue with the other commandments as I have time or opportunity or am in the mood for it. As I have said before, I do not want anyone to feel bound by my words or thoughts. I only want to offer an example for those who may wish to follow it; let anyone improve it who is able to do so and let him meditate either upon all commandments at one time or on as many as he may desire. For the mind, once it is seriously occupied with a matter, be it good or evil, can ponder more in one moment than the tongue can recite in ten hours or the pen write in ten days. There is something quick, subtle, and mighty about the mind and soul. It is able to review the Ten Commandments in their fourfold aspect very rapidly if it wants to do so and is in earnest.&lt;/p&gt;
-
 &lt;h3 id=&#34;the-seventh-commandment-you-shall-not-steal&#34;&gt;The Seventh Commandment: You Shall Not Steal&lt;/h3&gt;
-
 &lt;p&gt;The Seventh Commandment: &amp;ldquo;You shall not steal.&amp;rdquo; First, I can learn here that I must not take my neighbor&amp;rsquo;s property from him or possess it against his will, either in secret or openly. I must not be false or dishonest in business, service, or work, nor profit by fraud, but must support myself by the sweat of my brow and eat my bread in honor. Furthermore, I must see to it that in any of the above-named ways my neighbor is not defrauded, just as I wish for myself. I also learn in this commandment that God, in his fatherly solicitude, sets a protective hedge around my goods and solemnly prohibits anyone to steal from me. Where that is ignored, he has imposed a penalty and has placed the gallows and the rope in the hands of Jack the hangman. Where that cannot be done, God himself metes out punishment and they become beggars in the end, as the proverb says, &amp;ldquo;Who steals in his youth, goes begging in old age,&amp;rdquo; or, &amp;ldquo;Stolen gain goes down the drain.&amp;rdquo;&lt;/p&gt;
-
 &lt;p&gt;In addition I give thanks for his steadfast goodness in that he has given such excellent teachings, assurance, and protection to me and to all the world. If it were not for his protection, not a penny or a crumb of bread would be left in the house.&lt;/p&gt;
-
 &lt;p&gt;Third, I confess my sins and ingratitude in such instances where I have wronged, deprived, or cheated anyone in my life.&lt;/p&gt;
-
 &lt;p&gt;Fourth, I ask that he grant to me and all the world grace to learn from this commandment, to ponder it, and to become better people, so that there may be less theft, robbery, usury, cheating, and injustice and that the Judgment Day, for which all saints and the whole creation pray, Romans 8, shall soon bring this to an end. Amen&lt;/p&gt;
-
 &lt;h3 id=&#34;the-eighth-commandment-you-shall-not-bear-false-witness&#34;&gt;The Eighth Commandment: You Shall Not Bear False Witness&lt;/h3&gt;
-
 &lt;p&gt;The Eighth Commandment: &amp;ldquo;You shall not bear false witness.&amp;rdquo; This teaches us, first of all, to be truthful to each other, to shun lies and calumnies, to be glad to speak well of each other, and to delight in hearing what is good about others. Thus a wall has been built around our good reputation and integrity to protect it against malicious gossip and deceitful tongues; God will not let that go unpunished, as he has said in the other commandments.&lt;/p&gt;
-
 &lt;p&gt;We owe him thanks both for the teachings and the protection which he has graciously provided for us.&lt;/p&gt;
-
 &lt;p&gt;Third, we confess and ask forgiveness that we have spent our lives in ingratitude and sin and have maligned our neighbor with false and wicked talk, though we owe him the same preservation of honor and integrity which we desire for ourselves.&lt;/p&gt;
-
 &lt;p&gt;Fourth, we ask for help from now on to keep the commandment and for a healing tongue, etc.&lt;/p&gt;
-
 &lt;h3 id=&#34;the-ninth-and-tenth-commandments-you-shall-not-covet&#34;&gt;The Ninth and Tenth Commandments: You Shall Not Covet&lt;/h3&gt;
-
 &lt;p&gt;The Ninth and Tenth Commandments: &amp;ldquo;You shall not covet your neighbor&amp;rsquo;s house.&amp;rdquo; Similarly, &amp;ldquo;his wife,&amp;rdquo; etc.&lt;/p&gt;
-
 &lt;p&gt;This teaches us first that we shall not dispossess our neighbor of his goods under pretense of legal claims, or lure away, alienate, or extort what is his, but help him to keep what is his, just as we wish to be done for ourselves. It is also a protection against the subtleties and chicaneries of shrewd manipulators who will receive their punishment in the end.&lt;/p&gt;
-
 &lt;p&gt;Second, we should render thanks to him.&lt;/p&gt;
-
 &lt;p&gt;Third, we should repentantly and sorrowfully confess our sins.&lt;/p&gt;
-
 &lt;p&gt;Fourth, we should ask for help and strength devoutly to keep such divine commandments&lt;/p&gt;
-
 &lt;h3 id=&#34;conclusion-of-the-ten-commandments&#34;&gt;Conclusion of the Ten Commandments&lt;/h3&gt;
-
 &lt;p&gt;These are the Ten Commandments in their fourfold aspect, namely, as a school text, song book, penitential book, and prayer book. They are intended to help the heart come to itself and grow zealous in prayer. Take care, however, not to undertake all of this or so much that one becomes weary in spirit. Likewise, a good prayer should not be lengthy or drawn out, but frequent and ardent. It is enough to consider one section or half a section which kindles a fire in the heart. This the Spirit will grant us and continually instruct us in when, by God&amp;rsquo;s word, our hearts have been cleared and freed of outside thoughts and concerns.&lt;/p&gt;
-
 &lt;p&gt;Nothing can be said here about the part of faith and Holy Scriptures because there would be no end to what could be said. With practice one can take the Ten Commandments on one day, a psalm or chapter of Holy Scripture the next day, and use them as flint and steel to kindle a flame in the heart.&lt;/p&gt;
-
 &lt;h2 id=&#34;a-simple-exercise-for-contemplating-the-creed&#34;&gt;A Simple Exercise for Contemplating the Creed&lt;/h2&gt;
-
 &lt;p&gt;If you have more time, or the inclination, you may treat the Creed in the same manner and make it into a garland of four strands. The Creed, however, consists of three main parts or articles, corresponding to the three Persons of the Divine Majesty, as it has been so divided in the Catechism and elsewhere.&lt;/p&gt;
-
 &lt;h3 id=&#34;the-first-article-of-creation-i-believe-in-god-the-father-almighty-maker-of-heaven-and-earth&#34;&gt;The First Article of Creation: &amp;ldquo;I believe in God the Father Almighty, maker of heaven and earth.&amp;rdquo;&lt;/h3&gt;
-
 &lt;p&gt;Here, first of all, a great light shines into your heart if you permit it to and teaches you in a few words what all the languages of the world and a multitude of books cannot describe or fathom in words, namely, who you are, whence you came, whence came heaven and earth. You are God&amp;rsquo;s creation, his handiwork, his workmanship. That is, of yourself and in yourself you are nothing, can do nothing, know nothing, are capable of nothing. What were you a thousand years ago? What were heaven and earth six thousand years ago? Nothing, just as that which will never be created is nothing. But what you are, know, can do, and can achieve is God&amp;rsquo;s creation, as you confess by word of mouth. Therefore you have nothing to boast of before God except that you are nothing and he is your Creator who can annihilate you at any moment. Reason knows nothing of such a light. Many great people have sought to know what heaven and earth, man and creatures are and have found no answer. But here it is declared and faith affirms that God has created everything out of nothing. Here is the soul&amp;rsquo;s garden of pleasure, along whose paths we enjoy the works of God-but it would take too long to describe all that.&lt;/p&gt;
-
 &lt;p&gt;Furthermore, we should give thanks to God that in his kindness he has created us out of nothing and provides for our daily needs out of nothing-has made us to be such excellent beings with body and soul, intelligence, five senses, and has ordained us to be masters of earth, of fish, bird, and beast, etc. Here consider Genesis, chapters one to three.&lt;/p&gt;
-
 &lt;p&gt;Third, we should confess and lament our lack of faith and gratitude in failing to take this to heart, or to believe, ponder, and acknowledge it, and having been more stupid than unthinking beasts.&lt;/p&gt;
-
 &lt;p&gt;Fourth, we pray for a true and confident faith that sincerely esteems and trusts God to be our Creator, as this article declares.&lt;/p&gt;
-
 &lt;h3 id=&#34;the-second-article-of-redemption-and-in-jesus-christ-his-only-son-our-lord-etc&#34;&gt;The Second Article of Redemption: &amp;ldquo;And in Jesus Christ, his only Son, our Lord,&amp;rdquo; etc.&lt;/h3&gt;
-
 &lt;p&gt;Again a great light shines forth and teaches us how Christ, God&amp;rsquo;s Son, has redeemed us from death which, after the creation, had become our lot through Adam&amp;rsquo;s fall and in which we would have perished eternally. Now think: just as in the first article you were to consider yourself one of God&amp;rsquo;s creatures and not doubt it, now you must think of yourself as one of the redeemed and never doubt that. Emphasize one word above all others, for instance, Jesus Christ, our Lord. Likewise, suffered for us, died for us, arose for us. All this is ours and pertains to us; that us includes yourself, as the word of God declares.&lt;/p&gt;
-
 &lt;p&gt;Second, you must be sincerely grateful for such grace and rejoice in your salvation.&lt;/p&gt;
-
 &lt;p&gt;Third, you must sorrowfully lament and confess your wicked unbelief and mistrust of such a gift. Oh, what thoughts will come to mind-the idolatry you have practiced repeatedly, how much you have made of praying to the saints and of innumerable good works of yours which have opposed such salvation.&lt;/p&gt;
-
 &lt;p&gt;Fourth, pray now that God will preserve you from this time forward to the end in true and pure faith in Christ our Lord.&lt;/p&gt;
-
 &lt;h3 id=&#34;the-third-article-of-sanctification-i-believe-in-the-holy-spirit-etc&#34;&gt;The Third Article of Sanctification: &amp;ldquo;I believe in the Holy Spirit,&amp;rdquo; etc.&lt;/h3&gt;
-
 &lt;p&gt;This is the third great light which teaches us where such a Creator and Redeemer may be found and plainly encountered in this world, and what this will all come to in the end. Much could be said about this, but here is a summary: Where the holy Christian church exists, there we can find God the Creator, God the Redeemer, God the Holy Spirit, that is, him who daily sanctifies us through the forgiveness of sins, etc. The church exists where the word of God concerning such faith is rightly preached and confessed.&lt;/p&gt;
-
 &lt;p&gt;Again you have occasion here to ponder long about everything that the Holy Spirit accomplishes in the church every day, etc. Therefore be thankful that you have been called and have come into such a church. Confess and lament your lack of faith and gratitude, that you have neglected all this, and pray for a true and steadfast faith that will remain and endure until you come to that place where all endures forever, that is, beyond the resurrection from the dead, in life eternal. Amen.&lt;/p&gt;
-
-&lt;hr /&gt;
-
+&lt;hr&gt;
 &lt;p&gt;This letter is widely reproduced, including J. J. Pelikan, H. C. Oswald &amp;amp; H. T. Lehmann, Eds., Luther&amp;rsquo;s Works, American Edition, Vol. 43. &amp;ldquo;Devotional Writings II&amp;rdquo; (Philadelphia: Fortress Press, and St. Louis: Concordia Publishing House, 1968).&lt;/p&gt;
 </content>
   </entry>
@@ -738,49 +634,36 @@ Luther and Friends Pray at the Bedside of Melancthon
     
     <category term="powershell" />
     
-    <content type="html">
-
-&lt;p&gt;This is a list of resources that should help anyone interested in PowerShell.&lt;/p&gt;
-
+    <content type="html">&lt;p&gt;This is a list of resources that should help anyone interested in PowerShell.&lt;/p&gt;
 &lt;h2 id=&#34;editors-and-ides&#34;&gt;Editors and IDEs&lt;/h2&gt;
-
 &lt;ul&gt;
 &lt;li&gt;PowerShell ISE
-
 &lt;ul&gt;
 &lt;li&gt;Launch by running the &lt;code&gt;ise&lt;/code&gt; command from any PowerShell prompt, or by going to Start | Run&amp;hellip; (or &lt;code&gt;WIN+R&lt;/code&gt;) and entering &lt;code&gt;powershell_ise&lt;/code&gt;.&lt;/li&gt;
 &lt;li&gt;Tips and tricks on the &lt;a href=&#34;http://blogs.technet.com/b/heyscriptingguy/archive/tags/windows+powershell+ise/&#34;&gt;Hey, Scripting Guy! blog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;Visual Studio via &lt;a href=&#34;http://visualstudiogallery.msdn.microsoft.com/c9eb3ba8-0c59-4944-9a62-6eee37294597&#34;&gt;PowerShell Tools for Visual Studio&lt;/a&gt; (&lt;a href=&#34;https://github.com/adamdriscoll/poshtools&#34;&gt;on GitHub&lt;/a&gt;)&lt;/li&gt;
 &lt;li&gt;Sublime Text via the &lt;a href=&#34;https://github.com/SublimeText/PowerShell&#34;&gt;PowerShell package&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;h2 id=&#34;articles&#34;&gt;Articles&lt;/h2&gt;
-
 &lt;p&gt;I few articles I&amp;rsquo;ve written to help you get started.&lt;/p&gt;
-
 &lt;ul&gt;
 &lt;li&gt;My boilerplate for &lt;a href=&#34;http://joshua.poehls.me/powershell-script-boilerplate&#34;&gt;scripts&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;My boilerplate for &lt;a href=&#34;http://joshua.poehls.me/powershell-script-module-boilerplate&#34;&gt;script modules&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://joshua.poehls.me/2012/powershell-batch-files-exit-codes&#34;&gt;Deep dive into PowerShell exit codes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://zduck.com/2011/scripting-tips-take-your-powershell-profile-everywhere-with-dropbox/&#34;&gt;How to store your profile in Dropbox&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;h2 id=&#34;videos&#34;&gt;Videos&lt;/h2&gt;
-
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/MDC-B340#fbid=48_8oesWS8j&#34;&gt;Windows PowerShell Unplugged&lt;/a&gt; with Jeffery Snover. &lt;strong&gt;Essential watching for beginners.&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://channel9.msdn.com/Events/TechEd/NorthAmerica/2013/MDC-B400#fbid=48_8oesWS8j&#34;&gt;Advanced Automation Using Windows PowerShell&lt;/a&gt; with Don Jones and Jeffery Snover&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;h2 id=&#34;books&#34;&gt;Books&lt;/h2&gt;
-
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://www.amazon.com/gp/product/1935182137/ref=as_li_ss_il?ie=UTF8&amp;amp;camp=1789&amp;amp;creative=390957&amp;amp;creativeASIN=1935182137&amp;amp;linkCode=as2&amp;amp;tag=zduck-20&#34;&gt;Windows PowerShell in Action, Second Edition&lt;/a&gt; by Bruce Payette&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;h2 id=&#34;community-resources&#34;&gt;Community Resources&lt;/h2&gt;
-
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;http://blogs.msdn.com/b/powershell/&#34;&gt;Windows PowerShell blog&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://blogs.technet.com/b/heyscriptingguy/&#34;&gt;Hey, Scripting Guy! blog&lt;/a&gt;&lt;/li&gt;
@@ -801,15 +684,11 @@ Luther and Friends Pray at the Bedside of Melancthon
     <category term="golang" />
     
     <content type="html">&lt;p&gt;Here&amp;rsquo;s a little gift for my fellow &lt;a href=&#34;http://dayoneapp.com&#34;&gt;Day One&lt;/a&gt; aficionados who also happen to use &lt;a href=&#34;http://golang.org&#34;&gt;Go&lt;/a&gt;.&lt;/p&gt;
-
 &lt;p&gt;&lt;strong&gt;A Go package for reading Day One journal files!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;#11089; &lt;a href=&#34;http://github.com/jpoehls/go-dayone&#34;&gt;Source&lt;/a&gt;
-&amp;nbsp;
-&amp;#11089; &lt;a href=&#34;http://godoc.org/github.com/jpoehls/go-dayone&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
-
+&lt;p&gt;⭑ &lt;a href=&#34;http://github.com/jpoehls/go-dayone&#34;&gt;Source&lt;/a&gt;
+ 
+⭑ &lt;a href=&#34;http://godoc.org/github.com/jpoehls/go-dayone&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;It&amp;rsquo;s as easy as:&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;import &amp;quot;github.com/jpoehls/go-dayone&amp;quot;
 
 j := dayone.NewJournal(&amp;quot;/Users/{me}/Dropbox/Apps/Day One/Journal.dayone&amp;quot;)
@@ -826,9 +705,7 @@ err := j.Read(func(e *Entry, err error) error {
 if err != nil {
 	panic(err)
 }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;I&amp;rsquo;d like to add support for creating and editing entries in the future. Contributions welcome, just hit me up!&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;I&amp;rsquo;d like to add support for creating and editing entries in the future. Contributions welcome, just hit me up!&lt;/p&gt;
 </content>
   </entry>
   
@@ -840,122 +717,46 @@ if err != nil {
     
     <category term="war" />
     
-    <content type="html">
-
-&lt;p&gt;Have you read The Intercept&amp;rsquo;s &lt;a href=&#34;https://firstlook.org/theintercept/2014/11/18/media-outlets-continue-describe-unknown-drone-victims-militants/&#34;&gt;article on US drone strikes&lt;/a&gt; and the media&amp;rsquo;s coverage of them in the US? If you are an American, you should.&lt;/p&gt;
-
+    <content type="html">&lt;p&gt;Have you read The Intercept&amp;rsquo;s &lt;a href=&#34;https://firstlook.org/theintercept/2014/11/18/media-outlets-continue-describe-unknown-drone-victims-militants/&#34;&gt;article on US drone strikes&lt;/a&gt; and the media&amp;rsquo;s coverage of them in the US? If you are an American, you should.&lt;/p&gt;
 &lt;p&gt;Let me be clear; I&amp;rsquo;m horrified. There is so much that is completely wrong here that it is hard to begin.&lt;/p&gt;
-
 &lt;p&gt;&lt;a href=&#34;https://firstlook.org/theintercept/2014/11/18/media-outlets-continue-describe-unknown-drone-victims-militants/&#34;&gt;Read the article.&lt;/a&gt; Read it twice.&lt;/p&gt;
-
 &lt;h2 id=&#34;on-target-selection&#34;&gt;On Target Selection&lt;/h2&gt;
-
 &lt;blockquote&gt;
-&lt;p&gt;It has been more than two years since The New York Times revealed that &amp;ldquo;Mr. Obama embraced a disputed method for counting civilian casualties&amp;rdquo; of his drone strikes which &amp;ldquo;in effect &lt;strong&gt;counts all military-age males in a strike zone as combatants &amp;hellip; . unless there is explicit intelligence posthumously proving them innocent&lt;/strong&gt;.&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;It has been more than two years since The New York Times revealed that &amp;ldquo;Mr. Obama embraced a disputed method for counting civilian casualties&amp;rdquo; of his drone strikes which &amp;ldquo;in effect &lt;strong&gt;counts all military-age males in a strike zone as combatants . . . . unless there is explicit intelligence posthumously proving them innocent&lt;/strong&gt;.&amp;rdquo;&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;Shoot first, ask questions later. Except nobody is asking questions.&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;&amp;hellip; targeting decisions can even be made by &lt;strong&gt;nothing more than metadata analysis&lt;/strong&gt; and SIM card use.&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;We don&amp;rsquo;t want the NSA even &lt;em&gt;storing&lt;/em&gt; our own metadata. How would you like them to assassinate based solely on that metadata? Oh, and if they do that by blowing up your whole family, so be it.&lt;/p&gt;
-
 &lt;p&gt;Remember, &amp;ldquo;targeting decisions&amp;rdquo; means capital punishment. And not just for the intended target but also for a wide margin of collateral damage. &lt;a href=&#34;http://www.thebureauinvestigates.com/2014/10/16/only-4-of-drone-victims-in-pakistan-named-as-al-qaeda-members/&#34;&gt;Far less than half of drone casualities are confirmed militants&lt;/a&gt;.&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;The &lt;strong&gt;tactic of drone-killing first responders and rescuers&lt;/strong&gt; who come to the scene of drone attacks or even mourners at funerals of drone victims&amp;hellip;&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;Read that again.&lt;/p&gt;
-
 &lt;h2 id=&#34;on-public-perception&#34;&gt;On Public Perception&lt;/h2&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;&amp;hellip;if a drone missile killed an innocent adult male civilian, such as a vegetable vender or a fruit seller, the victim&amp;rsquo;s long hair and beard would be enough to stereotype him as a militant.&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;p&gt;Sorry, we&amp;rsquo;re too busy being &lt;a href=&#34;http://www.newstatesman.com/culture/2014/11/shirtgate-newflash-wearing-terrible-shirt-doesnt-make-you-terrible-person&#34;&gt;offended by the t-shirts people wear&lt;/a&gt;.&lt;/p&gt;
-
 &lt;h2 id=&#34;on-psychological-effects&#34;&gt;On Psychological Effects&lt;/h2&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;A 2012 report from Stanford and NYU Law School clinics, &amp;ldquo;Living Under Drones,&amp;rdquo; documented that &amp;ldquo;US drone strike policies cause considerable and under-accounted-for harm to the daily lives of ordinary civilians, beyond death and physical injury&amp;rdquo; – specifically, they &amp;ldquo;hover twenty-four hours a day over communities in northwest Pakistan, striking homes, vehicles, and public spaces without warning. Their presence terrorizes men, women, and children, giving rise to anxiety and psychological trauma among civilian communities.&amp;rdquo;&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;Being attacked by a drone is not the same as being bombed by a jet. With drones, there is typically a much longer prelude to violence. Above North Waziristan, &lt;strong&gt;drones circled for hours, or even days, before striking&lt;/strong&gt;. People below looked up to watch the machines, hovering at about twenty thousand feet, capable of unleashing fire at any moment, like dragon&amp;rsquo;s breath. &amp;ldquo;Drones may kill relatively few, but they terrify many more,&amp;rdquo; Malik Jalal, a tribal leader in North Waziristan, told me. &amp;ldquo;They turned the people into psychiatric patients.&amp;rdquo;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/blockquote&gt;
-
 &lt;h2 id=&#34;on-terrorism&#34;&gt;On Terrorism&lt;/h2&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;The U.S. Joint Chiefs of Staff just released their annual &amp;ldquo;counterterrorism&amp;rdquo; report and it defined &amp;ldquo;terrorism&amp;rdquo; this way:&lt;/p&gt;
-
 &lt;blockquote&gt;
 &lt;p&gt;Terrorism is the unlawful use of violence or threat of violence, often motivated by religious, political, or other ideological beliefs, to instill fear and coerce governments or societies in pursuit of goals that are usually political.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/blockquote&gt;
-
-&lt;p&gt;&lt;center&gt;&amp;mdash;&lt;/center&gt;&lt;/p&gt;
-
+&lt;center&gt;&amp;mdash;&lt;/center&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Given their intended effects - both physical and psychological - on entire populations, is there any serious doubt that continual, sustained drone warfare in places such as Pakistan and Yemen meet the U.S.&amp;rsquo;s formal definition of &amp;ldquo;terrorism&amp;rdquo; found in its latest strategy document?&lt;/p&gt;
 &lt;/blockquote&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>The MMA Hour - 249 - Renzo Gracie</title>
-    <link href="http://joshua.poehls.me/2014/10/mma-hour-249-renzo-gracie/"/>
-    <id>http://joshua.poehls.me/2014/10/mma-hour-249-renzo-gracie/</id>
-    <updated>2014-10-02T15:03:13-05:00</updated>
-    
-    <category term="bjj" />
-    <category term="mma" />
-    <category term="interview" />
-    
-    <content type="html">&lt;figure &gt;
-&lt;a href=&#34;http://www.mmafighting.com/2014/9/30/6872803/the-mma-hour-249-renzo-gracie&#34;&gt;
-&lt;img src=&#34;http://joshua.poehls.me/2014/10/mma-hour-249-renzo-gracie/renzo.jpg&#34; alt=&#34;Renzo Gracie on MMA Hour Episode 249&#34; /&gt;
-&lt;/a&gt;
-
-&lt;figcaption&gt;
-&lt;p&gt;
-Renzo Gracie on MMA Hour Episode 249
-
-
-
-&lt;/p&gt; 
-&lt;/figcaption&gt;
-
-&lt;/figure&gt;
-
-&lt;p&gt;I listened to &lt;a href=&#34;http://www.mmafighting.com/2014/9/30/6872803/the-mma-hour-249-renzo-gracie&#34;&gt;the Renzo interview on MMA Hour&lt;/a&gt; this morning; an amazing interview. &lt;a href=&#34;https://twitter.com/renzograciebjj&#34;&gt;Renzo&lt;/a&gt; seems like a great person and several of his comments really touched me. Lots of great stories and true respect as he talks about various people and competitors. Getting exposed to people like this is one of the reasons I love BJJ. There is a strong sense of honor and respect in the community that I don’t see in my own everyday life. It’s an inspiring influence.&lt;/p&gt;
-
-&lt;p&gt;Just stop reading and &lt;a href=&#34;http://www.mmafighting.com/2014/9/30/6872803/the-mma-hour-249-renzo-gracie&#34;&gt;go listen to it&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;One part that stood out the most to me was when he talked about how in this country (America), “nobody wants to &lt;strong&gt;do&lt;/strong&gt;.”&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn2&#34;&gt;&lt;a href=&#34;#fn:fn2&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; He referenced a story about a woman who was raped in New York. “Fifty-two people heard her scream.” Nobody helped. “Everybody assumed, you gonna take care, not me.”&lt;/p&gt;
-
-&lt;p&gt;In contrast, he told about a time when he was in Brazil driving with his wife and kids and saw a guy hit a woman.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;When he hit her I stopped and I jumped to beat him up. When I get there I had to save him because the mob was lynching him. And this was in the space of ten seconds.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;People jumped out of their cars to get this guy. Just because he hit a woman. Renzo’s wife said, “I can’t believe, you get out to hit him and you drive him home now!” Renzo replied, “you gotta do what is right.”&lt;/p&gt;
-
-&lt;p&gt;When I look at myself I see more of the guy who would drive on by. I want to become the guy who stops to help.&lt;/p&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
-&lt;ol&gt;
-&lt;li id=&#34;fn:fn2&#34;&gt;Skip to around 52 minutes into the interview for this story.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn2&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
 </content>
   </entry>
   

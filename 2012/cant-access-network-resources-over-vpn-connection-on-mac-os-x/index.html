@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -75,20 +75,15 @@
     </header>
 
     <p>So you have your shiny OS X connected to a VPN, good deal! The problem is, you can&rsquo;t connect to any of the servers and workstations on the VPN. What could be wrong?</p>
-
 <p>It could be that OS X is still trying to find those machines on the internet instead of looking for them on the VPN connection. We can tell OS X to check the VPN connection first by giving it a higher priority than the other network connections on your Mac.</p>
-
 <p>To change the priority of your VPN connection:</p>
-
 <ol>
 <li>Choose Apple menu &gt; System Preferences and click Network.</li>
 <li>Choose Set Service Order from the Action pop-up menu (looks like a gear).</li>
 <li>Drag your VPN connection to the top of the list.</li>
 <li>Click OK, and then click Apply to make the new settings active.</li>
 </ol>
-
 <p>This solution saved my day when I couldn&rsquo;t Remote Desktop into my workstation over the VPN.</p>
-
 <p>For more information, refer to <a href="http://docs.info.apple.com/article.html?path=Mac/10.6/en/8853.html">Apple&rsquo;s documentation for this</a>.</p>
 
 
@@ -107,7 +102,7 @@
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

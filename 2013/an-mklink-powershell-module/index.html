@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2013/an-mklink-powershell-module/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -75,197 +75,185 @@
     </header>
 
     <p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">MKLINK</a> is a very useful utility on Windows. Unfortunately there aren&rsquo;t any native PowerShell functions that replace it so we still have to shell out to the command prompt.</p>
-
 <p>This can be made less painful with a helper function that will pipe all arguments to the MKLINK command.</p>
-
-<pre><code class="language-powershell">function mklink { cmd /c mklink $args }
-</code></pre>
-
-<p>Personally though, I prefer to use native PowerShell functions whenever possible so I put together a module that provides wrappers for the key functionality of MKLINK.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> mklink { cmd /c mklink $args }
+</code></pre></div><p>Personally though, I prefer to use native PowerShell functions whenever possible so I put together a module that provides wrappers for the key functionality of MKLINK.</p>
 <p>Usage looks like this:</p>
-
 <pre>
 <b>New-Symlink</b> &lt;link_path&gt; &lt;target_path&gt; &lt;force?&gt;
 <b>New-Hardlink</b> &lt;link_path&gt; &lt;target_path&gt; &lt;force?&gt;
 <b>New-Junction</b> &lt;link_path&gt; &lt;target_path&gt; &lt;force?&gt;
 <b>mklink</b> &lt;args&gt; <i># raw pipe to mklink</i>
 </pre>
-
 <p>Import this module in your profile and you&rsquo;ll have it whenever you need it.</p>
-
-<pre><code class="language-powershell"># Microsoft.PowerShell_profile.ps1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Microsoft.PowerShell_profile.ps1</span>
 
 Import-Module mklink.psm1
-</code></pre>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># mklink.psm1</span>
+<span style="color:#75715e"># Exports: New-Symlink, New-Hardlink, New-Junction, mklink</span>
 
-<pre><code class="language-powershell"># mklink.psm1
-# Exports: New-Symlink, New-Hardlink, New-Junction, mklink
-
-function Force-Resolve-Path {
-    &lt;#
-    .SYNOPSIS
-        Calls Resolve-Path but works for files that don't exist.
-    .REMARKS
-        From http://devhawk.net/2010/01/21/fixing-powershells-busted-resolve-path-cmdlet/
-    #&gt;
-    param (
-        [string] $FileName
+<span style="color:#66d9ef">function</span> Force-Resolve-Path {
+    <span style="color:#75715e">&lt;#
+</span><span style="color:#75715e">    </span><span style="color:#e6db74">.SYNOPSIS</span><span style="color:#75715e">
+</span><span style="color:#75715e">        Calls Resolve-Path but works for files that don&#39;t exist.
+</span><span style="color:#75715e">    .REMARKS
+</span><span style="color:#75715e">        From http://devhawk.net/2010/01/21/fixing-powershells-busted-resolve-path-cmdlet/
+</span><span style="color:#75715e">    #&gt;</span>
+    <span style="color:#66d9ef">param</span> (
+        <span style="color:#66d9ef">[string]</span> $FileName
     )
     
     $FileName = Resolve-Path $FileName -ErrorAction SilentlyContinue `
                                        -ErrorVariable _frperror
-    if (-not($FileName)) {
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span>($FileName)) {
         $FileName = $_frperror[0].TargetObject
     }
     
-    return $FileName
+    <span style="color:#66d9ef">return</span> $FileName
 }
 
-function New-Symlink {
-    &lt;#
-    .SYNOPSIS
-        Creates a symbolic link.
-    #&gt;
-    param (
-        [Parameter(Position=0, Mandatory=$true)]
-        [string] $Link,
-        [Parameter(Position=1, Mandatory=$true)]
-        [string] $Target,
-        [Parameter(Position=2)]
-        [switch] $Force
+<span style="color:#66d9ef">function</span> New-Symlink {
+    <span style="color:#75715e">&lt;#
+</span><span style="color:#75715e">    </span><span style="color:#e6db74">.SYNOPSIS</span><span style="color:#75715e">
+</span><span style="color:#75715e">        Creates a symbolic link.
+</span><span style="color:#75715e">    #&gt;</span>
+    <span style="color:#66d9ef">param</span> (
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=0, <span style="color:#66d9ef">Mandatory</span>=$true)]
+        <span style="color:#66d9ef">[string]</span> $Link,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=1, <span style="color:#66d9ef">Mandatory</span>=$true)]
+        <span style="color:#66d9ef">[string]</span> $Target,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=2)]
+        <span style="color:#66d9ef">[switch]</span> $Force
     )
 
     Invoke-MKLINK -Link $Link -Target $Target -Symlink -Force $Force
 }
 
-function New-Hardlink {
-    &lt;#
-    .SYNOPSIS
-        Creates a hard link.
-    #&gt;
-    param (
-        [Parameter(Position=0, Mandatory=$true)]
-        [string] $Link,
-        [Parameter(Position=1, Mandatory=$true)]
-        [string] $Target,
-        [Parameter(Position=2)]
-        [switch] $Force
+<span style="color:#66d9ef">function</span> New-Hardlink {
+    <span style="color:#75715e">&lt;#
+</span><span style="color:#75715e">    </span><span style="color:#e6db74">.SYNOPSIS</span><span style="color:#75715e">
+</span><span style="color:#75715e">        Creates a hard link.
+</span><span style="color:#75715e">    #&gt;</span>
+    <span style="color:#66d9ef">param</span> (
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=0, <span style="color:#66d9ef">Mandatory</span>=$true)]
+        <span style="color:#66d9ef">[string]</span> $Link,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=1, <span style="color:#66d9ef">Mandatory</span>=$true)]
+        <span style="color:#66d9ef">[string]</span> $Target,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=2)]
+        <span style="color:#66d9ef">[switch]</span> $Force
     )
 
     Invoke-MKLINK -Link $Link -Target $Target -HardLink -Force $Force
 }
 
-function New-Junction {
-    &lt;#
-    .SYNOPSIS
-        Creates a directory junction.
-    #&gt;
-    param (
-        [Parameter(Position=0, Mandatory=$true)]
-        [string] $Link,
-        [Parameter(Position=1, Mandatory=$true)]
-        [string] $Target,
-        [Parameter(Position=2)]
-        [switch] $Force
+<span style="color:#66d9ef">function</span> New-Junction {
+    <span style="color:#75715e">&lt;#
+</span><span style="color:#75715e">    </span><span style="color:#e6db74">.SYNOPSIS</span><span style="color:#75715e">
+</span><span style="color:#75715e">        Creates a directory junction.
+</span><span style="color:#75715e">    #&gt;</span>
+    <span style="color:#66d9ef">param</span> (
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=0, <span style="color:#66d9ef">Mandatory</span>=$true)]
+        <span style="color:#66d9ef">[string]</span> $Link,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=1, <span style="color:#66d9ef">Mandatory</span>=$true)]
+        <span style="color:#66d9ef">[string]</span> $Target,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=2)]
+        <span style="color:#66d9ef">[switch]</span> $Force
     )
 
     Invoke-MKLINK -Link $Link -Target $Target -Junction -Force $Force
 }
 
-function Invoke-MKLINK {
-    &lt;#
-    .SYNOPSIS
-        Creates a symbolic link, hard link, or directory junction.
-    #&gt;
-    [CmdletBinding(DefaultParameterSetName = &quot;Symlink&quot;)]
-    param (
-        [Parameter(Position=0, Mandatory=$true)]
-        [string] $Link,
-        [Parameter(Position=1, Mandatory=$true)]
-        [string] $Target,
+<span style="color:#66d9ef">function</span> Invoke-MKLINK {
+    <span style="color:#75715e">&lt;#
+</span><span style="color:#75715e">    </span><span style="color:#e6db74">.SYNOPSIS</span><span style="color:#75715e">
+</span><span style="color:#75715e">        Creates a symbolic link, hard link, or directory junction.
+</span><span style="color:#75715e">    #&gt;</span>
+    [<span style="color:#66d9ef">CmdletBinding</span>(DefaultParameterSetName = <span style="color:#e6db74">&#34;Symlink&#34;</span>)]
+    <span style="color:#66d9ef">param</span> (
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=0, <span style="color:#66d9ef">Mandatory</span>=$true)]
+        <span style="color:#66d9ef">[string]</span> $Link,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=1, <span style="color:#66d9ef">Mandatory</span>=$true)]
+        <span style="color:#66d9ef">[string]</span> $Target,
 
-        [Parameter(ParameterSetName = &quot;Symlink&quot;)]
-        [switch] $Symlink = $true,
-        [Parameter(ParameterSetName = &quot;HardLink&quot;)]
-        [switch] $HardLink,
-        [Parameter(ParameterSetName = &quot;Junction&quot;)]
-        [switch] $Junction,
-        [Parameter()]
-        [bool] $Force
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">ParameterSetName</span> = <span style="color:#e6db74">&#34;Symlink&#34;</span>)]
+        <span style="color:#66d9ef">[switch]</span> $Symlink = $true,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">ParameterSetName</span> = <span style="color:#e6db74">&#34;HardLink&#34;</span>)]
+        <span style="color:#66d9ef">[switch]</span> $HardLink,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">ParameterSetName</span> = <span style="color:#e6db74">&#34;Junction&#34;</span>)]
+        <span style="color:#66d9ef">[switch]</span> $Junction,
+        [<span style="color:#66d9ef">Parameter</span>()]
+        <span style="color:#66d9ef">[bool]</span> $Force
     )
     
-    # Resolve the paths incase a relative path was passed in.
+    <span style="color:#75715e"># Resolve the paths incase a relative path was passed in.</span>
     $Link = (Force-Resolve-Path $Link)
     $Target = (Force-Resolve-Path $Target)
 
-    # Ensure target exists.
-    if (-not(Test-Path $Target)) {
-        throw &quot;Target does not exist.`nTarget: $Target&quot;
+    <span style="color:#75715e"># Ensure target exists.</span>
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span>(Test-Path $Target)) {
+        <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;Target does not exist.</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">Target: $Target&#34;</span>
     }
 
-    # Ensure link does not exist.
-    if (Test-Path $Link) {
-        if ($Force) {
+    <span style="color:#75715e"># Ensure link does not exist.</span>
+    <span style="color:#66d9ef">if</span> (Test-Path $Link) {
+        <span style="color:#66d9ef">if</span> ($Force) {
             Remove-Item $Link -Recurse -Force
         }
-        else {
-            throw &quot;A file or directory already exists at the link path.`nLink: $Link&quot;
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;A file or directory already exists at the link path.</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">Link: $Link&#34;</span>
         }
     }
 
     $isDirectory = (Get-Item $Target).PSIsContainer
-    $mklinkArg = &quot;&quot;
+    $mklinkArg = <span style="color:#e6db74">&#34;&#34;</span>
 
-    if ($Symlink -and $isDirectory) {
-        $mkLinkArg = &quot;/D&quot;
+    <span style="color:#66d9ef">if</span> ($Symlink <span style="color:#f92672">-and</span> $isDirectory) {
+        $mkLinkArg = <span style="color:#e6db74">&#34;/D&#34;</span>
     }
 
-    if ($Junction) {
-        # Ensure we are linking a directory. (Junctions don't work for files.)
-        if (-not($isDirectory)) {
-            throw &quot;The target is a file. Junctions cannot be created for files.`nTarget: $Target&quot;
+    <span style="color:#66d9ef">if</span> ($Junction) {
+        <span style="color:#75715e"># Ensure we are linking a directory. (Junctions don&#39;t work for files.)</span>
+        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span>($isDirectory)) {
+            <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;The target is a file. Junctions cannot be created for files.</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">Target: $Target&#34;</span>
         }
 
-        $mklinkArg = &quot;/J&quot;
+        $mklinkArg = <span style="color:#e6db74">&#34;/J&#34;</span>
     }
 
-    if ($HardLink) {
-        # Ensure we are linking a file. (Hard links don't work for directories.)
-        if ($isDirectory) {
-            throw &quot;The target is a directory. Hard links cannot be created for directories.`nTarget: $Target&quot;
+    <span style="color:#66d9ef">if</span> ($HardLink) {
+        <span style="color:#75715e"># Ensure we are linking a file. (Hard links don&#39;t work for directories.)</span>
+        <span style="color:#66d9ef">if</span> ($isDirectory) {
+            <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;The target is a directory. Hard links cannot be created for directories.</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">Target: $Target&#34;</span>
         }
 
-        $mkLinkArg = &quot;/H&quot;
+        $mkLinkArg = <span style="color:#e6db74">&#34;/H&#34;</span>
     }
 
-    # Capture the MKLINK output so we can return it properly.
-    # Includes a redirect of STDERR to STDOUT so we can capture it as well.
-    $output = cmd /c mklink $mkLinkArg `&quot;$Link`&quot; `&quot;$Target`&quot; 2&gt;&amp;1
+    <span style="color:#75715e"># Capture the MKLINK output so we can return it properly.</span>
+    <span style="color:#75715e"># Includes a redirect of STDERR to STDOUT so we can capture it as well.</span>
+    $output = cmd /c mklink $mkLinkArg `&#34;$Link`&#34; `&#34;$Target`&#34; 2&gt;&amp;1
 
-    if ($lastExitCode -ne 0) {
-        throw &quot;MKLINK failed. Exit code: $lastExitCode`n$output&quot;
+    <span style="color:#66d9ef">if</span> ($lastExitCode <span style="color:#f92672">-ne</span> 0) {
+        <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;MKLINK failed. Exit code: $lastExitCode</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">$output&#34;</span>
     }
-    else {
+    <span style="color:#66d9ef">else</span> {
         Write-Output $output
     }
 }
 
-function mklink {
-    &lt;#
-    .SYNOPSIS
-        Helper function for calling mklink directly.
-        All arguments are piped through to mklink.
-        
-        Hat tip to http://stackoverflow.com/questions/894430/powershell-hard-and-soft-links#comment9823010_5549583
-    #&gt;
+<span style="color:#66d9ef">function</span> mklink {
+    <span style="color:#75715e">&lt;#
+</span><span style="color:#75715e">    </span><span style="color:#e6db74">.SYNOPSIS</span><span style="color:#75715e">
+</span><span style="color:#75715e">        Helper function for calling mklink directly.
+</span><span style="color:#75715e">        All arguments are piped through to mklink.
+</span><span style="color:#75715e">        
+</span><span style="color:#75715e">        Hat tip to http://stackoverflow.com/questions/894430/powershell-hard-and-soft-links#comment9823010_5549583
+</span><span style="color:#75715e">    #&gt;</span>
     cmd /c mklink $args
 }
 
 Export-ModuleMember New-Symlink, New-Hardlink, New-Junction, mklink
-</code></pre>
-
-<p>I&rsquo;ve heard it rumored that the <a href="http://pscx.codeplex.com/">PowerShell Community Extensions</a> project has a lot of these functions as well, and more. It might be worth looking into if you want a more robust solution.</p>
+</code></pre></div><p>I&rsquo;ve heard it rumored that the <a href="http://pscx.codeplex.com/">PowerShell Community Extensions</a> project has a lot of these functions as well, and more. It might be worth looking into if you want a more robust solution.</p>
 
 
 </article>
@@ -283,7 +271,7 @@ Export-ModuleMember New-Symlink, New-Hardlink, New-Junction, mklink
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

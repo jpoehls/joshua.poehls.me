@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2014/04/go-101-string-or-byte-slice/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -74,53 +74,33 @@
         </p>
     </header>
 
-    
-
-<p>One of the first things you&rsquo;ll notice in Go is that two different types are commonly used for representing text. <code>string</code> and <code>[]byte</code>. A quick example is the <a href="http://golang.org/pkg/regexp/#Regexp.FindAll">regexp package</a> which has functions for both <code>string</code> and <code>[]byte</code>.</p>
-
+    <p>One of the first things you&rsquo;ll notice in Go is that two different types are commonly used for representing text. <code>string</code> and <code>[]byte</code>. A quick example is the <a href="http://golang.org/pkg/regexp/#Regexp.FindAll">regexp package</a> which has functions for both <code>string</code> and <code>[]byte</code>.</p>
 <h2 id="what-is-the-difference">What is the difference?</h2>
-
 <p><code>string</code> is immutable and <code>[]byte</code> is mutable. Both can contain arbitrary bytes.</p>
-
 <p>The name &ldquo;string&rdquo; implies unicode text but this is not enforced. Operating on <code>string</code> is like operating on <code>[]byte</code>. You are working with bytes not characters.</p>
-
 <p>They are nearly identical and differ only in mutability. The <a href="http://golang.org/pkg/strings/"><code>strings</code></a> and <a href="http://golang.org/pkg/bytes/"><code>bytes</code></a> packages are nearly identical apart from the type that they use.</p>
-
 <blockquote>
 <p><strong>Q:</strong> If strings are just arbitrary bytes, then how do you work with characters?</p>
-
 <p><strong>A:</strong> What you are thinking of as a character, Go calls a <a href="http://golang.org/ref/spec#Rune_literals">rune</a>. One way to iterate the characters in a string is to use the <code>for...range</code> loop. Range will parse the string as UTF-8 and iterate the runes. Read <a href="http://golang.org/doc/effective_go.html#for">the <code>for</code> loop</a> section of Effective Go for more information.</p>
 </blockquote>
-
 <h2 id="when-to-use-string">When to use <code>string</code>?</h2>
-
 <p>Ask not when to use <code>string</code> but rather, when to use <code>[]byte</code>. Always start with <code>string</code> and switch to <code>[]byte</code> when justified.</p>
-
 <h2 id="when-to-use-byte">When to use <code>[]byte</code>?</h2>
-
 <p>Use <code>[]byte</code> when you need to make many changes to a string. Since <code>string</code> is immutable, any change will allocate a new <code>string</code>. You can get better performance by using <code>[]byte</code> and avoiding the allocations.</p>
-
 <blockquote>
 <p>C# perspective: <code>[]byte</code> is to <a href="http://msdn.microsoft.com/en-us/library/system.text.stringbuilder(v=vs.110).aspx"><code>System.StringBuilder</code></a> as <code>string</code> is to <a href="http://msdn.microsoft.com/en-us/library/system.string(v=vs.110).aspx"><code>System.String</code></a> when it comes to performance.</p>
 </blockquote>
-
 <p>Even if your code isn&rsquo;t directly manipulating the string, you may want to use <code>[]byte</code> if you are using packages which require it so you can avoid the conversion.</p>
-
 <p>Converting to and from <code>[]byte</code> is easy. Just remember that each conversion creates a copy of the value.</p>
-
 <pre><code>s := &quot;some string&quot;
 b := []byte(s) // convert string -&gt; []byte
 s2 := string(b) // convert []byte -&gt; string
 </code></pre>
-
 <blockquote>
 <p>Converting to/from <code>string</code> and <code>[]byte</code> copies the entire value. Using lots of type conversions in your code is typically a warning sign that you need to reevaluate the types you are using. You want to minimize conversions both for performance and clean code.</p>
 </blockquote>
-
 <h2 id="more-about-strings">More about strings</h2>
-
 <p>The Go blog has posted in detail about <a href="http://blog.golang.org/strings">strings, bytes, runes, and characters in Go</a>. You should definitely read that post to fully understand the topic.</p>
-
 <p><strong>Update:</strong> Thanks to <a href="https://twitter.com/mholt6">@mholt6</a> for reviewing the post and helping improve it!</p>
 
 
@@ -139,7 +119,7 @@ s2 := string(b) // convert []byte -&gt; string
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

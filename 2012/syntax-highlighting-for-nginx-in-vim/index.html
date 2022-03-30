@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2012/syntax-highlighting-for-nginx-in-vim/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -75,53 +75,26 @@
     </header>
 
     <p>Thanks to <a href="http://www.vim.org/scripts/script.php?script_id=1886">Evan Miller</a>, adding VIM syntax highlighting for Nginx config files is a breeze.</p>
-
 <p>First, install VIM if you haven&rsquo;t already. On Arch Linux, it goes like this:</p>
-
 <pre><code>&gt; pacman -Sy vim
-</code></pre>
-
-<p>Create a folder for your VIM syntax files.</p>
-
+</code></pre><p>Create a folder for your VIM syntax files.</p>
 <pre><code>&gt; mkdir -p ~/.vim/syntax/
-</code></pre>
-
-<p>Download the syntax highlighting plugin.</p>
-
+</code></pre><p>Download the syntax highlighting plugin.</p>
 <pre><code>&gt; curl http://www.vim.org/scripts/download_script.php?src_id=14376 -o ~/.vim/syntax/nginx.vim
-</code></pre>
-
-<p>Add it to VIM&rsquo;s file type definitions. Make sure to adjust the path to your Nginx installation if you need to.</p>
-
+</code></pre><p>Add it to VIM&rsquo;s file type definitions. Make sure to adjust the path to your Nginx installation if you need to.</p>
 <pre><code>&gt; echo &quot;au BufRead,BufNewFile /etc/nginx/conf/* set ft=nginx&quot; &gt;&gt; ~/.vim/filetype.vim
-</code></pre>
-
-<p>Now enable syntax highlighting in your .vimrc file.</p>
-
+</code></pre><p>Now enable syntax highlighting in your .vimrc file.</p>
 <pre><code>&gt; echo &quot;syntax enable&quot; &gt;&gt; ~/.vimrc
-</code></pre>
-
-<p>That&rsquo;s it. Now you&rsquo;ll have nice colors when you edit your Nginx configs with VIM!</p>
-
+</code></pre><p>That&rsquo;s it. Now you&rsquo;ll have nice colors when you edit your Nginx configs with VIM!</p>
 <pre><code>&gt; vim /etc/nginx/conf/nginx.conf
-</code></pre>
-
-<figure >
-
-<img src="/2012/06/nginx-vim-colors.png" alt="Screenshot of VIM with syntax highlighting in an Nginx config file" />
-
-
+</code></pre><figure >
+<p><img src="/2012/06/nginx-vim-colors.png" alt="Screenshot of VIM with syntax highlighting in an Nginx config file" /></p>
 <figcaption>
 <p>
 Screenshot of VIM with syntax highlighting in an Nginx config file
-
-
-
 </p> 
 </figcaption>
-
 </figure>
-
 
 </article>
 
@@ -138,7 +111,7 @@ Screenshot of VIM with syntax highlighting in an Nginx config file
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

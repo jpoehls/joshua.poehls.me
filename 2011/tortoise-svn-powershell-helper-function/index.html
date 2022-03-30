@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2011/tortoise-svn-powershell-helper-function/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -75,13 +75,9 @@
     </header>
 
     <p>Do you work from the command line? Use PowerShell? SVN?</p>
-
 <p>While the SVN command line client is certainly usable, there are definitely times where a GUI is more convenient. Specifically during a commit where you want to easily check/uncheck files and view diffs.</p>
-
 <p>I got tired of having to open an explorer window to get into Tortoise SVN&rsquo;s commit screen so I wrote this helper function.</p>
-
 <p>Put this into your profile and you can start typing <code>tsvn commit</code> (or just <code>tsvn</code>) to open the Tortoise SVN commit dialog. Enjoy!</p>
-
 <pre><code># Helper function for opening the Tortoise SVN GUI from a PowerShell prompt.
 # Put this into your PowerShell profile.
 # Ensure Tortoise SVN is in your PATH (usually C:\Program Files\TortoiseSVN\bin) 
@@ -99,7 +95,6 @@ function Svn-Tortoise([string]$Command = &quot;commit&quot;) {
 Set-Alias tsvn &quot;Svn-Tortoise&quot;
 </code></pre>
 
-
 </article>
 
 <div class="fin symbol">&#10687;</div>
@@ -115,7 +110,7 @@ Set-Alias tsvn &quot;Svn-Tortoise&quot;
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

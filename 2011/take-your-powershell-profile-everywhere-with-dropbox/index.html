@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2011/take-your-powershell-profile-everywhere-with-dropbox/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -74,53 +74,40 @@
         </p>
     </header>
 
-    
-
-<p>I&rsquo;ll cover these prerequisites in brief, but for this tip I&rsquo;m going to assume a few things:</p>
-
+    <p>I&rsquo;ll cover these prerequisites in brief, but for this tip I&rsquo;m going to assume a few things:</p>
 <ul>
 <li>You are running Windows and have <a href="http://msdn.microsoft.com/en-us/library/aa973757.aspx">PowerShell</a> installed.</li>
 <li>You are familiar enough with PowerShell to care about your <a href="http://msdn.microsoft.com/en-us/library/bb613488.aspx">$PROFILE</a>.</li>
 </ul>
-
 <h3 id="what-is-powershell">What is PowerShell?</h3>
-
 <p>In short, PowerShell is a new scripting language from Microsoft designed to replace the use of batch files and VBScript for administrating and automating Windows machines. The language leverages the .NET Framework such that anything you can do with .NET you can do with PowerShell. Typically you will be using PowerShell from the command line but there are lots of other ways to use it.</p>
-
 <h3 id="what-is-a-powershell-profile">What is a PowerShell profile?</h3>
-
 <p>PowerShell has the concept of a script that will run each time you launch PowerShell. This is a really handy place to put any functions that you want to be available all the time. Initialize some variables, create some aliases, anything you do here will be there when you need it.</p>
-
 <h3 id="what-are-we-doing-here">What are we doing here?</h3>
-
 <p>I&rsquo;m going to give you one possible solution for keeping all of your scripts and settings (i.e. your profile) in sync no matter which computer you are on. No copy/pasting. No more wearing that USB dongle around your neck - seriously, that just <em>screams</em> geek.</p>
-
 <p>Most steps have a sample PowerShell command that will do the trick. So fire up PowerShell and put on your scripting hat &lsquo;cuz here we go!</p>
-
 <ol>
-<li><p><strong><a href="http://db.tt/i03IdN4">Get Dropbox</a>.</strong><br />
-Among other things, Dropbox makes keeping your files in sync across computers dead simple. If you aren&rsquo;t using it you should be. It&rsquo;s just that good.</p></li>
-
-<li><p><strong>Create a folder in Dropbox to hold your scripts.</strong></p>
-
+<li>
+<p><strong><a href="http://db.tt/i03IdN4">Get Dropbox</a>.</strong><br>
+Among other things, Dropbox makes keeping your files in sync across computers dead simple. If you aren&rsquo;t using it you should be. It&rsquo;s just that good.</p>
+</li>
+<li>
+<p><strong>Create a folder in Dropbox to hold your scripts.</strong></p>
 <p><code>PS&gt; New-Item $dropbox\scripts</code></p>
-
-<p><em>Anywhere you see <code>$dropbox</code>, assume this to be the path to your Dropbox folder. By default on Windows 7 this is <code>%USERPROFILE%\Dropbox</code>.</em></p></li>
-
-<li><p><strong>Copy your profile <code>ps1</code> file into your new scripts folder.</strong></p>
-
-<p><code>PS&gt; Copy-Item $PROFILE $dropbox\scripts\profile.ps1</code></p></li>
-
-<li><p><strong>Edit your profile <code>ps1</code> file (the original one) and &ldquo;dot source&rdquo; the one in your Dropbox folder.</strong></p>
-
-<p><code>PS&gt; &quot;. $dropbox\scripts\profile.ps1&quot; &gt; $PROFILE</code></p></li>
+<p><em>Anywhere you see <code>$dropbox</code>, assume this to be the path to your Dropbox folder. By default on Windows 7 this is <code>%USERPROFILE%\Dropbox</code>.</em></p>
+</li>
+<li>
+<p><strong>Copy your profile <code>ps1</code> file into your new scripts folder.</strong></p>
+<p><code>PS&gt; Copy-Item $PROFILE $dropbox\scripts\profile.ps1</code></p>
+</li>
+<li>
+<p><strong>Edit your profile <code>ps1</code> file (the original one) and &ldquo;dot source&rdquo; the one in your Dropbox folder.</strong></p>
+<p><code>PS&gt; &quot;. $dropbox\scripts\profile.ps1&quot; &gt; $PROFILE</code></p>
+</li>
 </ol>
-
 <p><strong>Pro Tip!</strong> As an alternative to dot sourcing your profile from Dropbox, you could instead <a href="/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows/">create a symlink</a> to it.</p>
-
 <pre><code>PS&gt; /cmd /c mklink `&quot;$PROFILE`&quot; `&quot;$dropbox\scripts\profile.ps1`&quot;
 </code></pre>
-
 
 </article>
 
@@ -137,7 +124,7 @@ Among other things, Dropbox makes keeping your files in sync across computers de
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

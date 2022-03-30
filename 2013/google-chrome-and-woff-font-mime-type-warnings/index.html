@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2013/google-chrome-and-woff-font-mime-type-warnings/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -74,40 +74,28 @@
         </p>
     </header>
 
-    
-
-<p>If you are getting warnings like <strong>Resource interpreted as Font but transferred with MIME type font/x-woff</strong> in Google Chrome then it means your web server is serving the font with the wrong MIME type.</p>
-
+    <p>If you are getting warnings like <strong>Resource interpreted as Font but transferred with MIME type font/x-woff</strong> in Google Chrome then it means your web server is serving the font with the wrong MIME type.</p>
 <p>It took awhile for the WOFF font format to get an approved MIME type so there are several variations hanging around.</p>
-
 <ul>
 <li><code>font/x-woff</code></li>
 <li><code>font/woff</code></li>
 <li><code>application/x-font-woff</code></li>
 </ul>
-
 <p>Thank God an official type <a href="http://www.w3.org/TR/WOFF/#appendix-b">was finally decided on</a>, <code>application/font-woff</code>.</p>
-
 <p>Unfortunately, Google Chrome (as of 26 beta) still expects you to use <code>application/x-font-woff</code> and doesn&rsquo;t recognize <code>application/font-woff</code> as a valid MIME type. This <a href="https://bugs.webkit.org/show_bug.cgi?id=111418">has been fixed</a> in the WebKit trunk but hasn&rsquo;t been merged into Chrome yet. The <a href="https://code.google.com/p/chromium/issues/detail?id=178823">Chromium bug report</a> has been closed so it should be coming soon.</p>
-
 <p>Until it is merged into a Chrome release you have a couple of options.</p>
-
 <ol>
 <li>You can switch to <code>application/x-font-woff</code> which will fix the Chrome warnings but isn&rsquo;t the approved MIME type. You&rsquo;ll need to change it again later.</li>
 <li>You can switch to <code>application/font-woff</code> which will continue to cause warnings in Chrome but is the approved MIME type. Obviously the warnings will go away once the WebKit fix has been merged into Chrome but this will take a few months to make it into a release.</li>
 </ol>
-
 <p>Since the warnings are only annoying I would recommend switching to the approved MIME type right away. The warnings will resolve themselves in time.</p>
-
 <h3 id="iis-express">IIS Express</h3>
-
 <p>The steps to fix this will vary by web server but for IIS Express this is how you&rsquo;d do it.</p>
-
 <ol>
 <li>Open <code>~/Documents/IISExpress/config/applicationhost.config</code></li>
-<li>Search for <strong>&rdquo;.woff&rdquo;</strong> and you&rsquo;ll find a line like this:<br />
+<li>Search for <strong>&quot;.woff&quot;</strong> and you&rsquo;ll find a line like this:<br>
 <code>&lt;mimeMap fileExtension=&quot;.woff&quot; mimeType=&quot;font/x-woff&quot; /&gt;</code></li>
-<li>Change <strong>mimeType</strong> to <code>application/font-woff</code><br />
+<li>Change <strong>mimeType</strong> to <code>application/font-woff</code><br>
 <code>&lt;mimeMap fileExtension=&quot;.woff&quot; mimeType=&quot;application/font-woff&quot; /&gt;</code></li>
 <li>Restart your IIS Express site.</li>
 </ol>
@@ -128,7 +116,7 @@
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

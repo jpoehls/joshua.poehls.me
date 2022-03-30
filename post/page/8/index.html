@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<title>joshua poehls | silent thoughts</title>
+
+<link rel="canonical" href="http://joshua.poehls.me/post/">
+<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
+<meta name="generator" content="Hugo 0.84.1" />
+
+
+<link rel="stylesheet" href="/normalize.css">
+<link rel="stylesheet" href="/skeleton.css">
+<link rel="stylesheet" href="/styles.css">
+
+
+<link href='///fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<link href='///fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
+
+</head>
+<body lang="en-US">
+
+<header id="masthead">
+	<div class="container">
+		<div class="row">
+			<div class="twelve columns">
+				<h1>
+					<small>I am</small>
+					<a href="/">Joshua Poehls</a>.
+					<small class="contact-link"><a href="/contact">Say hello</a></small>
+					<small class="archives-link"><a href="/archives">Archives</a></small>
+					<span class="aka">(not so) silent thoughts</span>
+				</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+
+
+<div class="container">
+
+	<section id="posts">
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
+            <a href="http://joshua.poehls.me/2007/recursively-deleting-files-with-powershell/">Recursively deleting files with PowerShell</a>
+            
+        </h1>
+        <p>
+            <time datetime="2007-04-23 10:43:31 -0600 -0600" pubdate="pubdate">Mon, Apr 23, 2007</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2007/recursively-deleting-files-with-powershell/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2007/recursively-deleting-files-with-powershell/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>So out of all the things I don&rsquo;t know, PowerShell is the one thing that made it to the top of my To Learn stack. Last week I ordered <a href="http://www.amazon.com/Windows-PowerShell-Action-Bruce-Payette/dp/1932394907/ref=pd_bbs_sr_1/102-7531966-1417704?ie=UTF8&amp;s=books&amp;qid=1177382702&amp;sr=8-1">PowerShell In Action</a>, it hasn&rsquo;t arrived yet but I&rsquo;ve already read about 100 pages out of the PDF (don&rsquo;t ask). The book is very well written and describes the core concepts of PowerShell very well.</p>
+<p>Having (almost) never written a batch file in my life it is taking a bit for me to wrap my head around the basics but so far I love it. Compiling C# apps to do simple tasks like iterate directory structures and process files has always annoyed me. There is just too much overhead in having to compile and manage both the source code an executable when you only need the code once (until tomorrow comes).</p>
+<p>I just want to create a script and run it. No compilation, no exe. Oh, and since I&rsquo;ve been completely spoiled by the .NET Framework I want access to all that too. PowerShell fits the bill.</p>
+<p>My first task. Find all files with an extension of <code>*.bak</code> on my <code>C:\</code> drive and delete them.</p>
+<pre><code>#  move to C: drive
+cd c:\
+
+#  list all files in C:
+dir
+
+#  list all *.BAK files in C:
+dir *.BAK
+
+#  do it recursively
+dir -recurse -filter *.BAK
+</code></pre><p>Ok, so now that I&rsquo;ve got PowerShell spinning through my entire <code>C:\</code> drive, how do I stop it? You can always kill the process but I was in a pretty good mood today and decided to be nice. This is likely to be one of the most important things you learn about PowerShell so remember it well&hellip;</p>
+<p><code>CTRL+C</code></p>
+<p>That will halt execution of whatever PowerShell is doing and get you back to a prompt. Very handy for people like me who like tend to hit <code>[Enter]</code> before thinking about how long it might take to run.</p>
+<blockquote>
+<p><strong>TIP:</strong> <code>dir</code> (along with <code>ls</code>) is just an alias for the <code>Get-ChildItem</code> command.<br>
+You can get the full syntax for this command by running <code>Get-Help dir</code>.</p>
+</blockquote>
+<p>And if you want to delete all those <code>*.BAK</code> files you just found? Just pipe your <code>dir</code> to <code>del</code> (which is an alias for <code>Remove-Item</code>).</p>
+<p><code>dir -recurse -filter *.BAK | del</code></p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	</section>
+
+</div>
+
+<nav class="pagination">
+
+
+
+	<a href="/post/page/7/" aria-label="Recent Posts"><span aria-hidden="true">Recent Posts &raquo;</span></a>
+
+</nav>
+
+<footer>
+<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Browse the <a href="/archives">archives</a> if you're bored.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-55160531-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

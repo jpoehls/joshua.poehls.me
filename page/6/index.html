@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -60,6 +60,126 @@
     <header>
         <h1>
             
+            <a href="http://joshua.poehls.me/2013/open-graph-twitter-cards-and-your-blog/">Open Graph Twitter Cards and Your Blog</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-02-01 21:43:53 -0500 -0500" pubdate="pubdate">Fri, Feb 1, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/open-graph-twitter-cards-and-your-blog/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/2013/open-graph-twitter-cards-and-your-blog/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>Have you ever wondered why some web pages have a great preview when linked on Twitter, Facebook, or Google+ while others look so lacking?</p>
+<style>
+	.carousel {
+		width: 600px;
+		margin: 0 auto;
+	}
+	.carousel img {
+		display: inline-block;
+		margin-bottom: 20px;
+	}
+</style>
+<div class="carousel">
+	<img alt="Screenshot of Facebook link previews" src="fb-vs.png" style="width: 450px" />
+<pre><code>&lt;img alt=&quot;Screenshot of Google+ link previews&quot; src=&quot;g-vs.png&quot; style=&quot;width: 450px&quot; /&gt;
+
+&lt;img alt=&quot;Screenshot of Twitter link previews&quot; src=&quot;tw-vs.png&quot; style=&quot;width: 450px&quot; /&gt;
+</code></pre>
+</div>
+<div style="clear: both;"></div>
+<p>What you are seeing are formats such as the <a href="http://ogp.me/">Open Graph protocol</a> and <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a> at work.</p>
+<p>Open Graph is an open source protocol originally created by Facebook that allows your web page to describe itself using meta-tags. When people link to your web page on Facebook or Google+, these meta-tags will be parsed and used to display a snippet of content from your web page. Without these tags, the parser has to guess what to display.</p>
+<p>Twitter Cards let you attach a summary to any tweet that contains a link to your web page. Twitter Cards use their own set of meta-tags but will fallback to using the Open Graph meta-tags in some cases.</p>
+<h2 id="adding-open-graph">Adding Open Graph</h2>
+<p>Adding Open Graph tags to your pages is an easy way to enhance their display on both Google+ and Facebook.</p>
+<h3 id="to-your-home-page">&hellip;to your home page</h3>
+<p>Open Graph requires you to import a namespace of sorts. You do this by adding a <code>prefix</code> attribute to your <code>&lt;html&gt;</code> tag.</p>
+<pre data-language="html">
+&lt;html prefix="og: http://ogp.me/ns#"&gt;
+</pre>
+<p>Every page is required to have a set of basic properties. Your blog&rsquo;s home page should have the following meta-tags inside the <code>&lt;head&gt;</code> tag.</p>
+<pre data-language="html">
+&lt;meta property="og:type" content="website" /&gt;
+&lt;meta property="og:title" content="Zduck - Joshua Poehls" /&gt;
+&lt;meta property="og:image" content="http://zduck.com/logo.png" /&gt;
+&lt;meta property="og:url" content="http://zduck.com" /&gt;
+</pre>
+<p>The <code>og:url</code> property is the canonical URL of the current page. If there are multiple URLs a user could use to visit your page (e.g. <a href="http://www.zduck.com">www.zduck.com</a> and zduck.com), this should contain the preferred URL.</p>
+<h3 id="to-your-posts">&hellip;to your posts</h3>
+<p>The properties on your individual post pages will be slightly different. Open Graph calls a blog post an <em>article</em> and we&rsquo;ll need to import the namespace for the <a href="http://ogp.me/#type_article">article object type</a>.</p>
+<pre data-language="html">
+&lt;html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#"&gt;
+</pre>
+<pre data-language="html">
+&lt;meta property="og:type" content="article" /&gt;
+&lt;meta property="og:site_name" content="Zduck - Joshua Poehls" /&gt;
+&lt;meta property="og:title" content="Title of my blog post" /&gt;
+&lt;meta property="og:image" content="http://zduck.com/mypost/image.png" /&gt;
+&lt;meta property="og:url" content="http://zduck.com/mypost" /&gt;
+&lt;meta property="og:description" content="One or two sentence description or summary of my blog post" /&gt;
+&lt;meta property="article:published_time" content="2013-01-28" /&gt;
+</pre>
+<p><code>article:published_time</code> needs to be an <a href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> formatted timestamp. It&rsquo;ll look something like <code>2013-01-28</code> or <code>2013-01-28T00:37Z</code> if you include the UTC time.</p>
+<p>If you use categories or tags then you can include properties for those as well.</p>
+<pre data-language="html">
+&lt;meta property="article:tag" content="Category 1" /&gt;
+&lt;meta property="article:tag" content="Category 2" /&gt;
+</pre>
+<p>Facebook <a href="https://developers.facebook.com/docs/technical-guides/opengraph/built-in-objects/#article">requires</a> your <code>og:image</code> to be at least 50px by 50px but prefers a minimum of 200px by 200px. It is a good idea to create a separate copy of your image specifically sized for Facebook.</p>
+<h2 id="adding-twitter-cards">Adding Twitter Cards</h2>
+<p>Twitter Cards have their own set of meta-tags that you are required to add to your page. Unlike Open Graph, you aren&rsquo;t required to import the namespace prefix on your page.</p>
+<pre data-language="html">
+&lt;meta name="twitter:card" content="summary" /&gt;
+&lt;meta name="twitter:title" content="Title of my blog post" /&gt;
+&lt;meta name="twitter:url" content="http://zduck.com/mypost" /&gt;
+&lt;meta name="twitter:image" content="http://zduck.com/mypost/twitter-image.png" /&gt;
+&lt;meta name="twitter:description" content="One or two sentence description or summary of my blog post" /&gt;
+</pre>
+<p>If you have a Twitter account then you can link to it as the author of the article.</p>
+<pre data-language="html">
+&lt;meta name="twitter:creator" content="@JoshuaPoehls" /&gt;
+</pre>
+<p>And if you have an account that represents your blog you can link to it as the publisher of the article.</p>
+<pre data-language="html">
+&lt;meta name="twitter:site" content="@MyBlog" /&gt;
+</pre>
+<p>Twitter Cards require a <code>twitter:url</code> but will fallback to <code>og:url</code> if it isn&rsquo;t found. Twitter also has fallbacks for <code>twitter:image</code> to <code>og:image</code>, <code>twitter:title</code> to <code>og:title</code>, and <code>twitter:description</code> to <code>og:description</code>. If you already have the Open Graph properties on your page then there isn&rsquo;t much point in duplicating them for Twitter unless you want to change how the information is displayed on Twitter specifically.</p>
+<p>Twitter requires your images to be 120px by 120px and will resize and crop any image that is too large. It is a good idea  to have a copy of your image sized for Twitter and use the <code>twitter:image</code> tag in addition to <code>og:image</code>.</p>
+<p><em>Remember that to light up Twitter Cards for your website you have to <a href="https://dev.twitter.com/docs/cards">apply for participation</a> with Twitter.</em></p>
+<h2 id="further-reading">Further Reading</h2>
+<p>Both the Open Graph protocol and Twitter Cards support a lot more than what I&rsquo;ve covered. These formats have a lot to offer beyond the world of blogging. Do yourself a favor and skim the <a href="http://ogp.me/">Open Graph protocol</a> and <a href="https://dev.twitter.com/docs/cards">Twitter Card documentation</a> for an idea of all they can do.</p>
+<p>Also, while Google+ supports the Open Graph protocol it actually prefers <a href="http://schema.org">schema.org microdata</a> for <a href="https://developers.google.com/+/plugins/snippet/">building its snippets</a>. Google, Yahoo!, Bing, and other search engines also use schema.org microdata to better represent your pages in search results. That is a topic for another time.</p>
+<p>Facebook also <a href="https://developers.facebook.com/docs/technical-guides/opengraph/">has documentation</a> regarding their use of the Open Graph protocol.</p>
+<h2 id="testing-tools">Testing Tools</h2>
+<p>Make sure you&rsquo;ve implemented the meta-tags correctly by using a few tools to check your pages.</p>
+<ul>
+<li><a href="https://dev.twitter.com/docs/cards/preview">Twitter Card Preview</a></li>
+<li><a href="http://www.google.com/webmasters/tools/richsnippets">Google Rich Snippets</a></li>
+<li><a href="https://developers.facebook.com/tools/debug">Facebook Debugger</a></li>
+</ul>
+<h2 id="bonus-tip">Bonus Tip</h2>
+<p>You can <a href="https://developers.facebook.com/docs/insights/#claiming_a_domain">claim your domain</a> with Facebook and use their <a href="www.facebook.com/insights">Insights</a> dashboard to see how well your links are doing.</p>
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="http://joshua.poehls.me/2013/using-bookmarks-to-quickly-navigate-in-powershell/">Using bookmarks to quickly navigate in PowerShell</a>
             
         </h1>
@@ -74,9 +194,7 @@
     </header>
 
     <p>There are a few folders that I spend a lot of time and it is surprisingly slow to type <code>cd c:\path\to\my\project</code> many times a day. I solved this by creating a module that allows me to bookmark directories and navigate to them using aliases. Simply put, I can shorten the previous command to <code>g project</code>.</p>
-
 <p>Usage looks like this:</p>
-
 <pre>
 <b>Set-Bookmark</b> &lt;name&gt; &lt;path&gt;
 <b>Get-Bookmark</b> <i># to list all</i>
@@ -85,11 +203,8 @@
 <b>Clear-Bookmarks</b>
 <b>Invoke-Bookmark</b> &lt;name&gt;
 </pre>
-
 <p>I alias <code>Invoke-Bookmark</code> as <code>g</code> for speed.</p>
-
 <p>All you have to do is import the module in your profile and initialize your bookmarks.</p>
-
 <pre data-language="powershell">
 # Microsoft.PowerShell_profile.ps1
 
@@ -98,9 +213,7 @@ Set-Alias g Invoke-Bookmark
 
 Set-Bookmark project c:\path\to\my\project
 </pre>
-
 <p>Here is the module. Happy bookmarking!</p>
-
 <pre data-language="powershell">
 # bookmarks.psm1
 # Exports: Set-Bookmark, Get-Bookmark, Remove-Bookmark, Clear-Bookmarks, Invoke-Bookmark
@@ -210,7 +323,6 @@ Export-ModuleMember Get-Bookmark, Remove-Bookmark, Clear-Bookmarks, Set-Bookmark
     </header>
 
     <p>UNIX has the <code>time</code> command that will measure the execution time of a program. Timings are returned for the wall clock and CPU time. It looks something like this.</p>
-
 <pre>
 <b>$</b> time ping google.com -c 1
 <span class="comment">PING google.com (74.125.225.232) 56(84) bytes of data.
@@ -224,11 +336,8 @@ real   0m0.173s
 user   0m0.010s
 sys    0m0.100s
 </pre>
-
 <p>The <code>real</code>, <code>user</code>, and <code>sys</code> information at the end is the output from <code>time</code>. StackOverflow has a <a href="http://stackoverflow.com/questions/556405/what-do-real-user-and-sys-mean-in-the-output-of-time1/556411#556411">great explanation</a> of what those values mean.</p>
-
 <p>PowerShell&rsquo;s equivalent of <code>time</code> is <code>Measure-Command</code>. Unfortunately it only measures wall clock time. It also swallows the output of the command you are measuring.</p>
-
 <pre>
 <b>PS&gt;</b> Measure-Command { ping google.com -n 1 }
 Days              : 0
@@ -243,18 +352,13 @@ TotalMinutes      : 0.00470460833333333
 TotalSeconds      : 0.2822765
 TotalMilliseconds : 282.2765
 </pre>
-
 <p>You might prefer calling <code>ToString()</code> on the result to make it more readable.</p>
-
 <pre>
 <b>PS&gt;</b> (Measure-Command { ping google.com -n 1 }).ToString()
 00:00:00.2822765
 </pre>
-
 <p>One thing that <code>time</code> and <code>Measure-Command</code> have in common is that neither of them is well suited to benchmarking. That is, running the same command multiple times and providing statistics on the timings of those runs.</p>
-
 <p>Enter <code>Benchmark-Command</code>. This PowerShell function does exactly that.</p>
-
 <pre>
 <b>PS&gt;</b> Benchmark-Command { ping google.com -n 1 } -Samples 3
 <span class="comment">Pinging google.com [74.125.225.226] with 32 bytes of data:
@@ -285,9 +389,7 @@ Avg: 56.2542ms
 Min: 49.542ms
 Max: 66.7821ms
 </pre>
-
 <p>We can also swallow the command output if we want a more minimal display. This is very useful when taking a higher number of samples.</p>
-
 <pre>
 <b>PS&gt;</b> Benchmark-Command { ping -n 1 google.com } -Samples 50 -Silent
 ..................................................
@@ -295,16 +397,13 @@ Avg: 46.9643ms
 Min: 39.887ms
 Max: 74.8587ms
 </pre>
-
 <p>Import this in your profile and alias it to <code>time</code> and you get a nice counterpart to UNIX&rsquo;s <code>time</code> command with a few more bells and whistles.</p>
-
 <pre data-language="powershell">
 # Microsoft.PowerShell_profile.ps1
 
 Import-Module benchmark.psm1
 Set-Alias time Benchmark-Command
 </pre>
-
 <pre data-language="powershell">
 # benchmark.psm1
 # Exports: Benchmark-Command
@@ -357,7 +456,8 @@ function Benchmark-Command ([ScriptBlock]$Expression, [int]$Samples = 1, [Switch
 }
 
 Export-ModuleMember Benchmark-Command
-</pre>
+</pre><blockquote>
+</blockquote>
 
 
 </article>
@@ -388,197 +488,185 @@ Export-ModuleMember Benchmark-Command
     </header>
 
     <p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">MKLINK</a> is a very useful utility on Windows. Unfortunately there aren&rsquo;t any native PowerShell functions that replace it so we still have to shell out to the command prompt.</p>
-
 <p>This can be made less painful with a helper function that will pipe all arguments to the MKLINK command.</p>
-
-<pre><code class="language-powershell">function mklink { cmd /c mklink $args }
-</code></pre>
-
-<p>Personally though, I prefer to use native PowerShell functions whenever possible so I put together a module that provides wrappers for the key functionality of MKLINK.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#66d9ef">function</span> mklink { cmd /c mklink $args }
+</code></pre></div><p>Personally though, I prefer to use native PowerShell functions whenever possible so I put together a module that provides wrappers for the key functionality of MKLINK.</p>
 <p>Usage looks like this:</p>
-
 <pre>
 <b>New-Symlink</b> &lt;link_path&gt; &lt;target_path&gt; &lt;force?&gt;
 <b>New-Hardlink</b> &lt;link_path&gt; &lt;target_path&gt; &lt;force?&gt;
 <b>New-Junction</b> &lt;link_path&gt; &lt;target_path&gt; &lt;force?&gt;
 <b>mklink</b> &lt;args&gt; <i># raw pipe to mklink</i>
 </pre>
-
 <p>Import this module in your profile and you&rsquo;ll have it whenever you need it.</p>
-
-<pre><code class="language-powershell"># Microsoft.PowerShell_profile.ps1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Microsoft.PowerShell_profile.ps1</span>
 
 Import-Module mklink.psm1
-</code></pre>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># mklink.psm1</span>
+<span style="color:#75715e"># Exports: New-Symlink, New-Hardlink, New-Junction, mklink</span>
 
-<pre><code class="language-powershell"># mklink.psm1
-# Exports: New-Symlink, New-Hardlink, New-Junction, mklink
-
-function Force-Resolve-Path {
-    &lt;#
-    .SYNOPSIS
-        Calls Resolve-Path but works for files that don't exist.
-    .REMARKS
-        From http://devhawk.net/2010/01/21/fixing-powershells-busted-resolve-path-cmdlet/
-    #&gt;
-    param (
-        [string] $FileName
+<span style="color:#66d9ef">function</span> Force-Resolve-Path {
+    <span style="color:#75715e">&lt;#
+</span><span style="color:#75715e">    </span><span style="color:#e6db74">.SYNOPSIS</span><span style="color:#75715e">
+</span><span style="color:#75715e">        Calls Resolve-Path but works for files that don&#39;t exist.
+</span><span style="color:#75715e">    .REMARKS
+</span><span style="color:#75715e">        From http://devhawk.net/2010/01/21/fixing-powershells-busted-resolve-path-cmdlet/
+</span><span style="color:#75715e">    #&gt;</span>
+    <span style="color:#66d9ef">param</span> (
+        <span style="color:#66d9ef">[string]</span> $FileName
     )
     
     $FileName = Resolve-Path $FileName -ErrorAction SilentlyContinue `
                                        -ErrorVariable _frperror
-    if (-not($FileName)) {
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span>($FileName)) {
         $FileName = $_frperror[0].TargetObject
     }
     
-    return $FileName
+    <span style="color:#66d9ef">return</span> $FileName
 }
 
-function New-Symlink {
-    &lt;#
-    .SYNOPSIS
-        Creates a symbolic link.
-    #&gt;
-    param (
-        [Parameter(Position=0, Mandatory=$true)]
-        [string] $Link,
-        [Parameter(Position=1, Mandatory=$true)]
-        [string] $Target,
-        [Parameter(Position=2)]
-        [switch] $Force
+<span style="color:#66d9ef">function</span> New-Symlink {
+    <span style="color:#75715e">&lt;#
+</span><span style="color:#75715e">    </span><span style="color:#e6db74">.SYNOPSIS</span><span style="color:#75715e">
+</span><span style="color:#75715e">        Creates a symbolic link.
+</span><span style="color:#75715e">    #&gt;</span>
+    <span style="color:#66d9ef">param</span> (
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=0, <span style="color:#66d9ef">Mandatory</span>=$true)]
+        <span style="color:#66d9ef">[string]</span> $Link,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=1, <span style="color:#66d9ef">Mandatory</span>=$true)]
+        <span style="color:#66d9ef">[string]</span> $Target,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=2)]
+        <span style="color:#66d9ef">[switch]</span> $Force
     )
 
     Invoke-MKLINK -Link $Link -Target $Target -Symlink -Force $Force
 }
 
-function New-Hardlink {
-    &lt;#
-    .SYNOPSIS
-        Creates a hard link.
-    #&gt;
-    param (
-        [Parameter(Position=0, Mandatory=$true)]
-        [string] $Link,
-        [Parameter(Position=1, Mandatory=$true)]
-        [string] $Target,
-        [Parameter(Position=2)]
-        [switch] $Force
+<span style="color:#66d9ef">function</span> New-Hardlink {
+    <span style="color:#75715e">&lt;#
+</span><span style="color:#75715e">    </span><span style="color:#e6db74">.SYNOPSIS</span><span style="color:#75715e">
+</span><span style="color:#75715e">        Creates a hard link.
+</span><span style="color:#75715e">    #&gt;</span>
+    <span style="color:#66d9ef">param</span> (
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=0, <span style="color:#66d9ef">Mandatory</span>=$true)]
+        <span style="color:#66d9ef">[string]</span> $Link,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=1, <span style="color:#66d9ef">Mandatory</span>=$true)]
+        <span style="color:#66d9ef">[string]</span> $Target,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=2)]
+        <span style="color:#66d9ef">[switch]</span> $Force
     )
 
     Invoke-MKLINK -Link $Link -Target $Target -HardLink -Force $Force
 }
 
-function New-Junction {
-    &lt;#
-    .SYNOPSIS
-        Creates a directory junction.
-    #&gt;
-    param (
-        [Parameter(Position=0, Mandatory=$true)]
-        [string] $Link,
-        [Parameter(Position=1, Mandatory=$true)]
-        [string] $Target,
-        [Parameter(Position=2)]
-        [switch] $Force
+<span style="color:#66d9ef">function</span> New-Junction {
+    <span style="color:#75715e">&lt;#
+</span><span style="color:#75715e">    </span><span style="color:#e6db74">.SYNOPSIS</span><span style="color:#75715e">
+</span><span style="color:#75715e">        Creates a directory junction.
+</span><span style="color:#75715e">    #&gt;</span>
+    <span style="color:#66d9ef">param</span> (
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=0, <span style="color:#66d9ef">Mandatory</span>=$true)]
+        <span style="color:#66d9ef">[string]</span> $Link,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=1, <span style="color:#66d9ef">Mandatory</span>=$true)]
+        <span style="color:#66d9ef">[string]</span> $Target,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=2)]
+        <span style="color:#66d9ef">[switch]</span> $Force
     )
 
     Invoke-MKLINK -Link $Link -Target $Target -Junction -Force $Force
 }
 
-function Invoke-MKLINK {
-    &lt;#
-    .SYNOPSIS
-        Creates a symbolic link, hard link, or directory junction.
-    #&gt;
-    [CmdletBinding(DefaultParameterSetName = &quot;Symlink&quot;)]
-    param (
-        [Parameter(Position=0, Mandatory=$true)]
-        [string] $Link,
-        [Parameter(Position=1, Mandatory=$true)]
-        [string] $Target,
+<span style="color:#66d9ef">function</span> Invoke-MKLINK {
+    <span style="color:#75715e">&lt;#
+</span><span style="color:#75715e">    </span><span style="color:#e6db74">.SYNOPSIS</span><span style="color:#75715e">
+</span><span style="color:#75715e">        Creates a symbolic link, hard link, or directory junction.
+</span><span style="color:#75715e">    #&gt;</span>
+    [<span style="color:#66d9ef">CmdletBinding</span>(DefaultParameterSetName = <span style="color:#e6db74">&#34;Symlink&#34;</span>)]
+    <span style="color:#66d9ef">param</span> (
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=0, <span style="color:#66d9ef">Mandatory</span>=$true)]
+        <span style="color:#66d9ef">[string]</span> $Link,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">Position</span>=1, <span style="color:#66d9ef">Mandatory</span>=$true)]
+        <span style="color:#66d9ef">[string]</span> $Target,
 
-        [Parameter(ParameterSetName = &quot;Symlink&quot;)]
-        [switch] $Symlink = $true,
-        [Parameter(ParameterSetName = &quot;HardLink&quot;)]
-        [switch] $HardLink,
-        [Parameter(ParameterSetName = &quot;Junction&quot;)]
-        [switch] $Junction,
-        [Parameter()]
-        [bool] $Force
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">ParameterSetName</span> = <span style="color:#e6db74">&#34;Symlink&#34;</span>)]
+        <span style="color:#66d9ef">[switch]</span> $Symlink = $true,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">ParameterSetName</span> = <span style="color:#e6db74">&#34;HardLink&#34;</span>)]
+        <span style="color:#66d9ef">[switch]</span> $HardLink,
+        [<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">ParameterSetName</span> = <span style="color:#e6db74">&#34;Junction&#34;</span>)]
+        <span style="color:#66d9ef">[switch]</span> $Junction,
+        [<span style="color:#66d9ef">Parameter</span>()]
+        <span style="color:#66d9ef">[bool]</span> $Force
     )
     
-    # Resolve the paths incase a relative path was passed in.
+    <span style="color:#75715e"># Resolve the paths incase a relative path was passed in.</span>
     $Link = (Force-Resolve-Path $Link)
     $Target = (Force-Resolve-Path $Target)
 
-    # Ensure target exists.
-    if (-not(Test-Path $Target)) {
-        throw &quot;Target does not exist.`nTarget: $Target&quot;
+    <span style="color:#75715e"># Ensure target exists.</span>
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span>(Test-Path $Target)) {
+        <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;Target does not exist.</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">Target: $Target&#34;</span>
     }
 
-    # Ensure link does not exist.
-    if (Test-Path $Link) {
-        if ($Force) {
+    <span style="color:#75715e"># Ensure link does not exist.</span>
+    <span style="color:#66d9ef">if</span> (Test-Path $Link) {
+        <span style="color:#66d9ef">if</span> ($Force) {
             Remove-Item $Link -Recurse -Force
         }
-        else {
-            throw &quot;A file or directory already exists at the link path.`nLink: $Link&quot;
+        <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;A file or directory already exists at the link path.</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">Link: $Link&#34;</span>
         }
     }
 
     $isDirectory = (Get-Item $Target).PSIsContainer
-    $mklinkArg = &quot;&quot;
+    $mklinkArg = <span style="color:#e6db74">&#34;&#34;</span>
 
-    if ($Symlink -and $isDirectory) {
-        $mkLinkArg = &quot;/D&quot;
+    <span style="color:#66d9ef">if</span> ($Symlink <span style="color:#f92672">-and</span> $isDirectory) {
+        $mkLinkArg = <span style="color:#e6db74">&#34;/D&#34;</span>
     }
 
-    if ($Junction) {
-        # Ensure we are linking a directory. (Junctions don't work for files.)
-        if (-not($isDirectory)) {
-            throw &quot;The target is a file. Junctions cannot be created for files.`nTarget: $Target&quot;
+    <span style="color:#66d9ef">if</span> ($Junction) {
+        <span style="color:#75715e"># Ensure we are linking a directory. (Junctions don&#39;t work for files.)</span>
+        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span>($isDirectory)) {
+            <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;The target is a file. Junctions cannot be created for files.</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">Target: $Target&#34;</span>
         }
 
-        $mklinkArg = &quot;/J&quot;
+        $mklinkArg = <span style="color:#e6db74">&#34;/J&#34;</span>
     }
 
-    if ($HardLink) {
-        # Ensure we are linking a file. (Hard links don't work for directories.)
-        if ($isDirectory) {
-            throw &quot;The target is a directory. Hard links cannot be created for directories.`nTarget: $Target&quot;
+    <span style="color:#66d9ef">if</span> ($HardLink) {
+        <span style="color:#75715e"># Ensure we are linking a file. (Hard links don&#39;t work for directories.)</span>
+        <span style="color:#66d9ef">if</span> ($isDirectory) {
+            <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;The target is a directory. Hard links cannot be created for directories.</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">Target: $Target&#34;</span>
         }
 
-        $mkLinkArg = &quot;/H&quot;
+        $mkLinkArg = <span style="color:#e6db74">&#34;/H&#34;</span>
     }
 
-    # Capture the MKLINK output so we can return it properly.
-    # Includes a redirect of STDERR to STDOUT so we can capture it as well.
-    $output = cmd /c mklink $mkLinkArg `&quot;$Link`&quot; `&quot;$Target`&quot; 2&gt;&amp;1
+    <span style="color:#75715e"># Capture the MKLINK output so we can return it properly.</span>
+    <span style="color:#75715e"># Includes a redirect of STDERR to STDOUT so we can capture it as well.</span>
+    $output = cmd /c mklink $mkLinkArg `&#34;$Link`&#34; `&#34;$Target`&#34; 2&gt;&amp;1
 
-    if ($lastExitCode -ne 0) {
-        throw &quot;MKLINK failed. Exit code: $lastExitCode`n$output&quot;
+    <span style="color:#66d9ef">if</span> ($lastExitCode <span style="color:#f92672">-ne</span> 0) {
+        <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;MKLINK failed. Exit code: $lastExitCode</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">$output&#34;</span>
     }
-    else {
+    <span style="color:#66d9ef">else</span> {
         Write-Output $output
     }
 }
 
-function mklink {
-    &lt;#
-    .SYNOPSIS
-        Helper function for calling mklink directly.
-        All arguments are piped through to mklink.
-        
-        Hat tip to http://stackoverflow.com/questions/894430/powershell-hard-and-soft-links#comment9823010_5549583
-    #&gt;
+<span style="color:#66d9ef">function</span> mklink {
+    <span style="color:#75715e">&lt;#
+</span><span style="color:#75715e">    </span><span style="color:#e6db74">.SYNOPSIS</span><span style="color:#75715e">
+</span><span style="color:#75715e">        Helper function for calling mklink directly.
+</span><span style="color:#75715e">        All arguments are piped through to mklink.
+</span><span style="color:#75715e">        
+</span><span style="color:#75715e">        Hat tip to http://stackoverflow.com/questions/894430/powershell-hard-and-soft-links#comment9823010_5549583
+</span><span style="color:#75715e">    #&gt;</span>
     cmd /c mklink $args
 }
 
 Export-ModuleMember New-Symlink, New-Hardlink, New-Junction, mklink
-</code></pre>
-
-<p>I&rsquo;ve heard it rumored that the <a href="http://pscx.codeplex.com/">PowerShell Community Extensions</a> project has a lot of these functions as well, and more. It might be worth looking into if you want a more robust solution.</p>
+</code></pre></div><p>I&rsquo;ve heard it rumored that the <a href="http://pscx.codeplex.com/">PowerShell Community Extensions</a> project has a lot of these functions as well, and more. It might be worth looking into if you want a more robust solution.</p>
 
 
 </article>
@@ -609,11 +697,8 @@ Export-ModuleMember New-Symlink, New-Hardlink, New-Junction, mklink
     </header>
 
     <p>Usually it is best to configure your terminal service policy to log out disconnected sessions, however there may be cases where you only want to kill specific applications when the user disconnects.</p>
-
 <p>This is easy to do with a PowerShell script that you run periodically as a scheduled task. The processes won&rsquo;t be killed <em>immediately</em> when the user disconnects but will be killed shortly after.</p>
-
 <p>This script will, by default, only kill the OUTLOOK processes in disconnected sessions after waiting 15 seconds for it to gracefully close. It is trivial to tweak the script to kill whichever processes you care about.</p>
-
 <pre><code># kill-processes.ps1
 
 # This script supports being run with -WhatIf and -Confirm parameters.
@@ -739,7 +824,6 @@ else {
     Write-Output &quot;No processes to close&quot;
 }
 </code></pre>
-
 
 </article>
 
@@ -921,40 +1005,24 @@ else {
         </p>
     </header>
 
-    
-
-<h2 id="tl-dr">TL;DR;</h2>
-
+    <h2 id="tldr">TL;DR;</h2>
 <blockquote>
 <p><strong>Update:</strong> If you want to save some time, skip reading this and just use my <a href="/powershell-script-boilerplate">PowerShell Script Boilerplate</a>. It includes an excellent batch file wrapper, argument escaping, and error code bubbling.</p>
 </blockquote>
-
 <p><code>PowerShell.exe</code> doesn&rsquo;t return correct exit codes when using the <code>-File</code> option. Use <code>-Command</code> instead. <em>(<a href="https://connect.microsoft.com/PowerShell/feedback/details/750653/powershell-exe-doesn-t-return-correct-exit-codes-when-using-the-file-option">Vote for this issue</a> on Microsoft Connect.)</em></p>
-
 <p><a href="#bat-wrapper">This</a> is a batch file wrapper for executing PowerShell scripts. It forwards arguments to PowerShell and correctly bubbles up the exit code (when it can).</p>
-
 <p><code>PowerShell.exe</code> still <a href="#command-parsererror">returns a passing (0) exit code when a <code>ParserError</code> is thrown</a>. Even when using <code>-Command</code>. I haven&rsquo;t found a workaround for this. <em>(<a href="https://connect.microsoft.com/PowerShell/feedback/details/750654/powershell-exe-returns-a-passing-0-exit-code-when-a-parsererror-is-thrown">Vote for this issue</a> on Microsoft Connect.)</em></p>
-
 <p>You can use <a href="#black-magic">black magic</a> to include spaces and quotes in the arguments you pass through the batch file wrapper to PowerShell.</p>
-
 <h2 id="powershell">PowerShell</h2>
-
 <p>PowerShell is a great scripting environment, and it is my preferred tool for writing build scripts for .NET apps. Exit codes are vital in build scripts because they are how your Continuous Integration server knows whether the build passed or failed.</p>
-
 <p>This is a <strike>quick</strike> tour of working with exit codes in PowerShell scripts and batch files. I&rsquo;m including batch files because they are often necessary to wrap the execution of your PowerShell scripts.</p>
-
 <p>Let&rsquo;s start easy. Say you need to run a command line app or batch file from your PowerShell script. How can you check the exit code of that process?</p>
-
 <pre><code># script.ps1
 
 cmd /C exit 1
 Write-Host $LastExitCode    # 1
-</code></pre>
-
-<p><code>$LastExitCode</code> is a special variable that holds the exit code of the last Windows based program that was run. So says <a href="http://technet.microsoft.com/en-us/library/dd347675.aspx">the documentation</a>.</p>
-
+</code></pre><p><code>$LastExitCode</code> is a special variable that holds the exit code of the last Windows based program that was run. So says <a href="http://technet.microsoft.com/en-us/library/dd347675.aspx">the documentation</a>.</p>
 <p>Remember though, <code>$LastExitCode</code> doesn&rsquo;t do squat for PowerShell commands. Use <code>$?</code> for that.</p>
-
 <pre><code># script.ps1
 
 Get-ChildItem &quot;C:\&quot;
@@ -962,10 +1030,7 @@ Write-Host $?    # True
 
 Get-ChildItem &quot;Z:\some\non-existant\path&quot;
 Write-Host $?    # False
-</code></pre>
-
-<p>Anytime you run an external command like this, you need to check the exit code and throw an exception if needed. Otherwise the PowerShell script will keep right on trucking after a failure.</p>
-
+</code></pre><p>Anytime you run an external command like this, you need to check the exit code and throw an exception if needed. Otherwise the PowerShell script will keep right on trucking after a failure.</p>
 <pre><code># script.ps1
 
 cmd /C exit 1
@@ -973,10 +1038,7 @@ if ($LastExitCode -ne 0) {
     throw &quot;Command failed with exit code $LastExitCode.&quot;
 }
 Write-Host &quot;You'll never see this.&quot;
-</code></pre>
-
-<p>Writing these assertions all the time will get old. Fortunately you can use a helper function, like this one found in the <a href="http://github.com/psake/psake">excellent psake project</a>.</p>
-
+</code></pre><p>Writing these assertions all the time will get old. Fortunately you can use a helper function, like this one found in the <a href="http://github.com/psake/psake">excellent psake project</a>.</p>
 <pre><code># script.ps1
 
 function Exec
@@ -996,19 +1058,12 @@ function Exec
 
 Exec { cmd /C exit 1 }
 Write-Host &quot;You'll never see this.&quot;
-</code></pre>
-
-<h3 id="throwing-exit-codes">Throwing &amp; exit codes</h3>
-
+</code></pre><h3 id="throwing--exit-codes">Throwing &amp; exit codes</h3>
 <p>The <code>throw</code> keyword is how you generate a terminating error in PowerShell. It will, sometimes, cause your PowerShell script to return a failing exit code (1). Wait, when does it <em>not</em> cause a failing exit code, you ask? This is where PowerShell&rsquo;s warts start to show. Let me demonstrate some scenarios.</p>
-
 <pre><code># broken.ps1
 
 throw &quot;I'm broken&quot;
-</code></pre>
-
-<p><em>From the PowerShell command prompt:</em></p>
-
+</code></pre><p><em>From the PowerShell command prompt:</em></p>
 <pre><code>PS&gt; .\broken.ps1
 <span style="color: red;">I'm broken.
 At C:\broken.ps1:1 char:6
@@ -1018,9 +1073,7 @@ At C:\broken.ps1:1 char:6
     
 PS&gt; $LastExitCode
 1</code></pre>
-
 <p><em>From the Windows command prompt:</em></p>
-
 <pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted -Command ".\broken.ps1"
 <span style="color: red;">I'm broken.
 At C:\broken.ps1:1 char:6
@@ -1030,11 +1083,8 @@ At C:\broken.ps1:1 char:6
     
 &gt; echo %errorlevel%
 1</code></pre>
-
 <p>That worked, too. Good.</p>
-
 <p><em>Again, from the Windows command prompt:</em></p>
-
 <pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted <b>-File</b> ".\broken.ps1"
 <span style="color: red;">I'm broken.
 At C:\broken.ps1:1 char:6
@@ -1044,15 +1094,10 @@ At C:\broken.ps1:1 char:6
 
 &gt; echo %errorlevel%
 0</code></pre>
-
 <p>Whoa! We still saw the error, but PowerShell returned a passing exit code. What the heck?! Yes, this is the wart.</p>
-
-<h3 id="a-workaround-for-file">A workaround for <code>-File</code></h3>
-
+<h3 id="a-workaround-for--file">A workaround for <code>-File</code></h3>
 <p><code>-File</code> allows you to pass in a script for PowerShell to execute, however terminating errors in the script will not cause PowerShell to return a failing exit code. I have no idea why this is the case. If you know why, please share!</p>
-
 <p>A workaround is to add a <code>trap</code> statement to the top of your PowerShell script. (Thanks, Chris Oldwood, for <a href="http://chrisoldwood.blogspot.com/2011/05/powershell-throwing-exceptions-exit.html">pointing this out</a>!)</p>
-
 <pre><code># broken.ps1
 
 trap
@@ -1061,10 +1106,7 @@ trap
     exit 1
 }
 throw &quot;I'm broken.&quot;
-</code></pre>
-
-<p><em>From the Windows command prompt:</em></p>
-
+</code></pre><p><em>From the Windows command prompt:</em></p>
 <pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted <b>-File</b> ".\script.ps1"
 <span style="color: red;">C:\broken.ps1 : I'm broken.
     + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException
@@ -1072,19 +1114,12 @@ throw &quot;I'm broken.&quot;
 
 &gt; echo %errorlevel%
 1</code></pre>  
-
 <p>Notice that we got the correct exit code this time, but our error output didn&rsquo;t include as much detail. Specifically, we didn&rsquo;t get the line number of the error like we were getting in the previous tests. So it isn&rsquo;t a perfect workaround.</p>
-
 <p><strong>Remember.</strong> Use <code>-Command</code> instead of <code>-File</code> whenever possible. If for some reason you must use <code>-File</code> or your script needs to support being run that way, then use the trap workaround above.</p>
-
 <p><a id="command-parsererror"> </a></p>
-
-<h3 id="command-can-still-fail"><code>-Command</code> can still fail</h3>
-
+<h3 id="-command-can-still-fail"><code>-Command</code> can still fail</h3>
 <p>I&rsquo;ve discovered that PowerShell will still exit with a success code (0) when a <code>ParserError</code> is thrown. Even when using <code>-Command</code>.</p>
-
 <p><em>From the Windows command prompt:</em></p>
-
 <pre><code>&gt; PowerShell.exe -NoProfile -NonInteractive -Command "Write-Host 'You will never see this.'" <b>"\"</b>
 <span style="color: red;">The string starting:
 At line:1 char:39
@@ -1097,79 +1132,49 @@ At line:1 char:40
 
 &gt; echo %errorlevel%
 0</code></pre>
-
 <p>I&rsquo;m not aware of any workaround for this behavior. This is very disturbing, because these parser errors can be caused by arguments (as I demonstrated above). This means there is no way to guarantee your script will exit with the correct code when it fails.</p>
-
 <p><em>Note: This was tested in PowerShell v2, on Windows 7 (x64).</em></p>
-
 <p>There are <a href="https://connect.microsoft.com/PowerShell/feedback/details/637113/powershell-command-line-exit-codes-inconsistency">other</a> <a href="https://connect.microsoft.com/PowerShell/feedback/details/638771/powershell-return-code-and-parameters">known</a> bugs with PowerShell&rsquo;s exit codes. Beware.</p>
-
 <h2 id="batch-files">Batch files</h2>
-
 <p>I mentioned early on that it is often necessary to wrap the execution of your PowerShell script in a batch file. Some common reasons for this might be:</p>
-
 <ul>
 <li>You want users of your script to be able to double-click to run it.</li>
 <li>Your build runner doesn&rsquo;t support execution of PowerShell scripts directly.</li>
 </ul>
-
 <p>Whatever the reason, writing a batch file wrapper for a PowerShell script is easy. You just need to make sure that your batch file properly returns the exit code from PowerShell. Otherwise, your PowerShell script might fail and your batch file would return a successful exit code (0).</p>
-
 <p><a id="bat-wrapper"> </a></p>
-
 <p><del>This is a safe template for you to use. Bookmark it.</del></p>
-
 <blockquote>
 <p><strong>Update:</strong> I&rsquo;ve created a <em>much</em> better batch file wrapper for my PowerShell scripts. I recommend you ignore the one below and <strong><a href="/powershell-batch-file-wrapper">use my new one</a></strong> instead.</p>
 </blockquote>
-
 <pre><code>:: script.bat
 
 @ECHO OFF
 PowerShell.exe -NoProfile -NonInteractive -ExecutionPolicy unrestricted -Command &quot;&amp; %~d0%~p0%~n0.ps1&quot; %*
 EXIT /B %errorlevel%
-</code></pre>
-
-<p>This wrapper will execute the PowerShell script with the same file name (i.e., <code>script.ps1</code> if the batch file is named <code>script.bat</code>), and then exit with the same code that PowerShell exited with. It will also forward any arguments passed to the batch file, to the PowerShell script.</p>
-
+</code></pre><p>This wrapper will execute the PowerShell script with the same file name (i.e., <code>script.ps1</code> if the batch file is named <code>script.bat</code>), and then exit with the same code that PowerShell exited with. It will also forward any arguments passed to the batch file, to the PowerShell script.</p>
 <p>Let&rsquo;s test it out.</p>
-
 <pre><code># script.ps1
 
 param($Arg1, $Arg2)
 Write-Host &quot;Arg 1: $Arg1&quot;
 Write-Host &quot;Arg 2: $Arg2&quot;
-</code></pre>
-
-<p><em>From the Windows command prompt:</em></p>
-
+</code></pre><p><em>From the Windows command prompt:</em></p>
 <pre><code>&gt; script.bat happy scripting
 Arg 1: happy
 Arg 2: scripting
-</code></pre>
-
-<p>What if we want &ldquo;happy scripting&rdquo; to be passed as a single argument?</p>
-
+</code></pre><p>What if we want &ldquo;happy scripting&rdquo; to be passed as a single argument?</p>
 <pre><code>&gt; script.bat &quot;happy scripting&quot;
 Arg 1: happy
 Arg 2: scripting
-</code></pre>
-
-<p><a id="black-magic"> </a></p>
-
+</code></pre><p><a id="black-magic"> </a></p>
 <p>Well that didn&rsquo;t work at all. This is the secret recipe.</p>
-
 <pre><code>&gt; script.bat &quot;'Happy scripting with single '' and double \&quot; quotes!'&quot;
 Arg 1: Happy scripting with single ' and double &quot; quotes!
 Arg 2:
-</code></pre>
-
-<p>Please don&rsquo;t ask me to explain this black magic, I only know that it works. Much credit to <a href="http://stackoverflow.com/questions/6714165/powershell-stripping-double-quotes-from-command-line-arguments">this StackOverflow question</a> for helping me solve this!</p>
-
+</code></pre><p>Please don&rsquo;t ask me to explain this black magic, I only know that it works. Much credit to <a href="http://stackoverflow.com/questions/6714165/powershell-stripping-double-quotes-from-command-line-arguments">this StackOverflow question</a> for helping me solve this!</p>
 <p>For comparison, here is how you would do it if you were executing the script from PowerShell, without using the batch file wrapper.</p>
-
 <p><em>From the PowerShell command prompt:</em></p>
-
 <pre><code>PS&gt; .\script.ps1 happy scripting
 Arg 1: happy
 Arg 2: scripting
@@ -1177,9 +1182,7 @@ Arg 2: scripting
 PS&gt; .\script.ps1 &quot;Happy scripting with single ' and double `&quot; quotes included!&quot;
 Arg 1: Happy scripting with single ' and double &quot; quotes included!
 Arg 2:
-</code></pre>
-
-<p>That&rsquo;s all folks!</p>
+</code></pre><p>That&rsquo;s all folks!</p>
 
 
 </article>
@@ -1210,53 +1213,26 @@ Arg 2:
     </header>
 
     <p>Thanks to <a href="http://www.vim.org/scripts/script.php?script_id=1886">Evan Miller</a>, adding VIM syntax highlighting for Nginx config files is a breeze.</p>
-
 <p>First, install VIM if you haven&rsquo;t already. On Arch Linux, it goes like this:</p>
-
 <pre><code>&gt; pacman -Sy vim
-</code></pre>
-
-<p>Create a folder for your VIM syntax files.</p>
-
+</code></pre><p>Create a folder for your VIM syntax files.</p>
 <pre><code>&gt; mkdir -p ~/.vim/syntax/
-</code></pre>
-
-<p>Download the syntax highlighting plugin.</p>
-
+</code></pre><p>Download the syntax highlighting plugin.</p>
 <pre><code>&gt; curl http://www.vim.org/scripts/download_script.php?src_id=14376 -o ~/.vim/syntax/nginx.vim
-</code></pre>
-
-<p>Add it to VIM&rsquo;s file type definitions. Make sure to adjust the path to your Nginx installation if you need to.</p>
-
+</code></pre><p>Add it to VIM&rsquo;s file type definitions. Make sure to adjust the path to your Nginx installation if you need to.</p>
 <pre><code>&gt; echo &quot;au BufRead,BufNewFile /etc/nginx/conf/* set ft=nginx&quot; &gt;&gt; ~/.vim/filetype.vim
-</code></pre>
-
-<p>Now enable syntax highlighting in your .vimrc file.</p>
-
+</code></pre><p>Now enable syntax highlighting in your .vimrc file.</p>
 <pre><code>&gt; echo &quot;syntax enable&quot; &gt;&gt; ~/.vimrc
-</code></pre>
-
-<p>That&rsquo;s it. Now you&rsquo;ll have nice colors when you edit your Nginx configs with VIM!</p>
-
+</code></pre><p>That&rsquo;s it. Now you&rsquo;ll have nice colors when you edit your Nginx configs with VIM!</p>
 <pre><code>&gt; vim /etc/nginx/conf/nginx.conf
-</code></pre>
-
-<figure >
-
-<img src="/2012/06/nginx-vim-colors.png" alt="Screenshot of VIM with syntax highlighting in an Nginx config file" />
-
-
+</code></pre><figure >
+<p><img src="/2012/06/nginx-vim-colors.png" alt="Screenshot of VIM with syntax highlighting in an Nginx config file" /></p>
 <figcaption>
 <p>
 Screenshot of VIM with syntax highlighting in an Nginx config file
-
-
-
 </p> 
 </figcaption>
-
 </figure>
-
 
 </article>
 
@@ -1286,27 +1262,15 @@ Screenshot of VIM with syntax highlighting in an Nginx config file
     </header>
 
     <p>Storing your Raspberry Pi&rsquo;s configuration files in Git is a great way to protect yourself from really bad accidents. You get a backup of all your configs and revision control to rollback those nasty changes. Best of all, you don&rsquo;t have to manually create backup copies of each individual file. (<code>cp rc.conf rc.conf.bak</code> anyone?)</p>
-
 <p>I should note that I&rsquo;m running <a href="http://archlinuxarm.org">Arch Linux ARM</a>, but this should apply fairly equally to Debian and other distros.</p>
-
 <p>First, install <a href="http://git-scm.com">Git</a> (if you haven&rsquo;t already).</p>
-
 <pre><code>&gt; pacman -Sy git
-</code></pre>
-
-<p>Arch has a convention of storing all configuration files in <code>/etc</code>. So we will initialize our Git repo there.</p>
-
+</code></pre><p>Arch has a convention of storing all configuration files in <code>/etc</code>. So we will initialize our Git repo there.</p>
 <pre><code>&gt; cd /etc
 &gt; git init
-</code></pre>
-
-<p>We only want to store the configuration files that we&rsquo;ve actually changed in Git. We&rsquo;ll use a <code>.gitignore</code> file for that.</p>
-
+</code></pre><p>We only want to store the configuration files that we&rsquo;ve actually changed in Git. We&rsquo;ll use a <code>.gitignore</code> file for that.</p>
 <pre><code>&gt; vim .gitignore
-</code></pre>
-
-<p>Here is what mine looks like right now.</p>
-
+</code></pre><p>Here is what mine looks like right now.</p>
 <pre><code># Blacklist everything.
 *
 
@@ -1322,18 +1286,11 @@ Screenshot of VIM with syntax highlighting in an Nginx config file
 !nginx/
 !nginx/conf/
 !nginx/conf/nginx.conf
-</code></pre>
-
-<p>The <strong>!</strong> prefix negates the pattern, basically creating a whitelist. Cool, huh?</p>
-
+</code></pre><p>The <strong>!</strong> prefix negates the pattern, basically creating a whitelist. Cool, huh?</p>
 <p>Now we can do our initial commit.</p>
-
 <pre><code>&gt; git add -A
 &gt; git commit -m &quot;Added initial configs.&quot;
-</code></pre>
-
-<p>Remember to add any new config files to your <code>.gitignore</code> file and always commit your changes!</p>
-
+</code></pre><p>Remember to add any new config files to your <code>.gitignore</code> file and always commit your changes!</p>
 <p>For added security you should push your repository to <a href="http://git-scm.com/book/en/Git-Basics-Working-with-Remotes">a remote</a>. <a href="http://bitbucket.org">BitBucket</a> offers free private repositories, if you don&rsquo;t have a paid <a href="http://github.com">Github</a> account.</p>
 
 
@@ -1364,64 +1321,36 @@ Screenshot of VIM with syntax highlighting in an Nginx config file
         </p>
     </header>
 
-    
-
-<p>First, a quick definition of terms. There are three kinds of &ldquo;<a href="https://en.wikipedia.org/wiki/Symbolic_link">symlinks</a>&rdquo; on Windows.</p>
-
+    <p>First, a quick definition of terms. There are three kinds of &ldquo;<a href="https://en.wikipedia.org/wiki/Symbolic_link">symlinks</a>&rdquo; on Windows.</p>
 <ul>
 <li>soft links (also called symlinks, or symbolic links)</li>
 <li>hard links</li>
 <li>junctions (a type of soft link only for directories)</li>
 </ul>
-
 <p>Soft links can be created for files or directories.</p>
-
 <p>Hard links can only be created for files.</p>
-
 <p>Both soft and hard links must be created on the same volume as the target. i.e. You can&rsquo;t link something on <code>C:\</code> to something on <code>D:\</code>.</p>
-
 <p>You can read more about hardlinks and junctions <a href="http://msdn.microsoft.com/en-us/library/aa365006%28VS.85%29.aspx">on MSDN</a>.</p>
-
 <h3 id="deleting-links">Deleting Links</h3>
-
 <p>This is where the difference between soft and hard links is most evident.</p>
-
 <p>Deleting the target will cause soft links to stop working. What it points to is gone. Hard links however will keep right on working until you delete the hard link itself. The hard link acts just like the original file, because for all intents and purposes, it is the original file.</p>
-
 <h3 id="junctions">Junctions</h3>
-
 <p>Windows also has another type of link just for directories, called Junctions.</p>
-
 <p>Junctions look and act like soft links. The key difference is that they allow you to link directories that are located on different local volumes (but still on the same computer). You can&rsquo;t create a junction to a network location.</p>
-
 <h2 id="using-mklink">Using MKLINK</h2>
-
 <p>Create a soft link to a directory.</p>
-
 <pre><code>c:\symlink_test&gt; mklink symlink_dir real_dir
 symbolic link created for symlink_dir &lt;&lt;===&gt;&gt; real_dir
-</code></pre>
-
-<p>Create junction link to a directory.</p>
-
+</code></pre><p>Create junction link to a directory.</p>
 <pre><code>c:\symlink_test&gt; mklink /J junction_dir real_dir
 Junction created for junction_dir &lt;&lt;===&gt;&gt; real_dir
-</code></pre>
-
-<p>Create a soft link to a file.</p>
-
+</code></pre><p>Create a soft link to a file.</p>
 <pre><code>c:\symlink_test&gt; mklink symlink_file.txt real_file.txt
 symbolic link created for symlink_file.txt &lt;&lt;===&gt;&gt; real_file.txt
-</code></pre>
-
-<p>Create a hard link to a file.</p>
-
+</code></pre><p>Create a hard link to a file.</p>
 <pre><code>c:\symlink_test&gt; mklink /H hardlink_file.txt real_file.txt
 Hardlink created for hardlink_file.txt &lt;&lt;===&gt;&gt; real_file.txt
-</code></pre>
-
-<p>What they look like.</p>
-
+</code></pre><p>What they look like.</p>
 <pre><code>c:\symlink_test&gt; dir
 Volume in drive C is OS
 Volume Serial Number is 7688-08EC
@@ -1438,52 +1367,30 @@ Directory of c:\symlink_test
 06/07/2012  10:31 AM    &lt;SYMLINK&gt;      symlink_file.txt [real_file.txt]
                3 File(s)             30 bytes
                5 Dir(s)  145,497,268,224 bytes free
-</code></pre>
-
-<figure >
-
-<img src="/2012/06/mklink/explorer-screenshot.png" alt="Screenshot of folder in Windows Explorer" />
-
-
+</code></pre><figure >
+<p><img src="/2012/06/mklink/explorer-screenshot.png" alt="Screenshot of folder in Windows Explorer" /></p>
 <figcaption>
 <p>
 Screenshot of folder in Windows Explorer
-
-
-
 </p> 
 </figcaption>
-
 </figure>
-
-<p><strong>Note for PowerShell users:</strong><br />
+<p><strong>Note for PowerShell users:</strong><br>
 MKLINK isn&rsquo;t an executable that you can just call from PowerShell. You have to call it through the command prompt.</p>
-
 <pre><code>cmd /c mklink /D symlink_dir real_dir
-</code></pre>
-
-<p>Alternatively, you can use <a href="https://gist.github.com/2891103">this module</a> I wrote that has native PowerShell wrappers for MKLINK.</p>
-
+</code></pre><p>Alternatively, you can use <a href="https://gist.github.com/2891103">this module</a> I wrote that has native PowerShell wrappers for MKLINK.</p>
 <p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">Read about MKLINK on MSDN.</a></p>
-
 <h2 id="using-fsutil">Using FSUTIL</h2>
-
 <p>FSUTIL is another way to create hard links (but not soft links). This is the same as <code>mklink /H</code>.</p>
-
 <pre><code>c:\symlink_test&gt; where fsutil
 c:\Windows\System32\fsutil.exe
 
 c:\symlink_test&gt; fsutil hardlink create hardlink_file.txt real_file.txt
 Hardlink created for c:\symlink_test\hardlink_file.txt &lt;&lt;===&gt;&gt; c:\symlink_test\real_file.txt
-</code></pre>
-
-<p><a href="http://technet.microsoft.com/en-us/library/cc753059(v=WS.10).aspx">Read about FSUTIL on MSDN.</a></p>
-
+</code></pre><p><a href="http://technet.microsoft.com/en-us/library/cc753059(v=WS.10).aspx">Read about FSUTIL on MSDN.</a></p>
 <h2 id="using-junction">Using Junction</h2>
-
 <p>Junction is a tool provided by Sysinternals and provides another way to create junctions. Same as <code>mklink /J</code>.
 It also has some other tools for working with junctions that I won&rsquo;t cover here.</p>
-
 <pre><code>c:\symlink_test&gt; junction junction_dir real_dir
 Junction v1.06 - Windows junction creator and reparse point viewer
 Copyright (C) 2000-2010 Mark Russinovich
@@ -1491,54 +1398,7 @@ Sysinternals - www.sysinternals.com
 
 Created: c:\symlink_test\junction_dir
 Targetted at: c:\symlink_test\real_dir
-</code></pre>
-
-<p><a href="http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx">Download the Junction tool from Sysinternals.</a></p>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/">Can&#39;t access network resources over VPN connection on Mac OS X?</a>
-            
-        </h1>
-        <p>
-            <time datetime="2012-04-18 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Apr 18, 2012</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>So you have your shiny OS X connected to a VPN, good deal! The problem is, you can&rsquo;t connect to any of the servers and workstations on the VPN. What could be wrong?</p>
-
-<p>It could be that OS X is still trying to find those machines on the internet instead of looking for them on the VPN connection. We can tell OS X to check the VPN connection first by giving it a higher priority than the other network connections on your Mac.</p>
-
-<p>To change the priority of your VPN connection:</p>
-
-<ol>
-<li>Choose Apple menu &gt; System Preferences and click Network.</li>
-<li>Choose Set Service Order from the Action pop-up menu (looks like a gear).</li>
-<li>Drag your VPN connection to the top of the list.</li>
-<li>Click OK, and then click Apply to make the new settings active.</li>
-</ol>
-
-<p>This solution saved my day when I couldn&rsquo;t Remote Desktop into my workstation over the VPN.</p>
-
-<p>For more information, refer to <a href="http://docs.info.apple.com/article.html?path=Mac/10.6/en/8853.html">Apple&rsquo;s documentation for this</a>.</p>
+</code></pre><p><a href="http://technet.microsoft.com/en-us/sysinternals/bb896768.aspx">Download the Junction tool from Sysinternals.</a></p>
 
 
 </article>
@@ -1569,7 +1429,7 @@ Targetted at: c:\symlink_test\real_dir
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

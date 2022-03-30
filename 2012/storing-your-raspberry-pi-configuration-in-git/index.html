@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2012/storing-your-raspberry-pi-configuration-in-git/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -75,27 +75,15 @@
     </header>
 
     <p>Storing your Raspberry Pi&rsquo;s configuration files in Git is a great way to protect yourself from really bad accidents. You get a backup of all your configs and revision control to rollback those nasty changes. Best of all, you don&rsquo;t have to manually create backup copies of each individual file. (<code>cp rc.conf rc.conf.bak</code> anyone?)</p>
-
 <p>I should note that I&rsquo;m running <a href="http://archlinuxarm.org">Arch Linux ARM</a>, but this should apply fairly equally to Debian and other distros.</p>
-
 <p>First, install <a href="http://git-scm.com">Git</a> (if you haven&rsquo;t already).</p>
-
 <pre><code>&gt; pacman -Sy git
-</code></pre>
-
-<p>Arch has a convention of storing all configuration files in <code>/etc</code>. So we will initialize our Git repo there.</p>
-
+</code></pre><p>Arch has a convention of storing all configuration files in <code>/etc</code>. So we will initialize our Git repo there.</p>
 <pre><code>&gt; cd /etc
 &gt; git init
-</code></pre>
-
-<p>We only want to store the configuration files that we&rsquo;ve actually changed in Git. We&rsquo;ll use a <code>.gitignore</code> file for that.</p>
-
+</code></pre><p>We only want to store the configuration files that we&rsquo;ve actually changed in Git. We&rsquo;ll use a <code>.gitignore</code> file for that.</p>
 <pre><code>&gt; vim .gitignore
-</code></pre>
-
-<p>Here is what mine looks like right now.</p>
-
+</code></pre><p>Here is what mine looks like right now.</p>
 <pre><code># Blacklist everything.
 *
 
@@ -111,18 +99,11 @@
 !nginx/
 !nginx/conf/
 !nginx/conf/nginx.conf
-</code></pre>
-
-<p>The <strong>!</strong> prefix negates the pattern, basically creating a whitelist. Cool, huh?</p>
-
+</code></pre><p>The <strong>!</strong> prefix negates the pattern, basically creating a whitelist. Cool, huh?</p>
 <p>Now we can do our initial commit.</p>
-
 <pre><code>&gt; git add -A
 &gt; git commit -m &quot;Added initial configs.&quot;
-</code></pre>
-
-<p>Remember to add any new config files to your <code>.gitignore</code> file and always commit your changes!</p>
-
+</code></pre><p>Remember to add any new config files to your <code>.gitignore</code> file and always commit your changes!</p>
 <p>For added security you should push your repository to <a href="http://git-scm.com/book/en/Git-Basics-Working-with-Remotes">a remote</a>. <a href="http://bitbucket.org">BitBucket</a> offers free private repositories, if you don&rsquo;t have a paid <a href="http://github.com">Github</a> account.</p>
 
 
@@ -141,7 +122,7 @@
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

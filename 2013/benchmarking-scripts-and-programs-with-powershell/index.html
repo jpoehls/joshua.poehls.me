@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2013/benchmarking-scripts-and-programs-with-powershell/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -75,7 +75,6 @@
     </header>
 
     <p>UNIX has the <code>time</code> command that will measure the execution time of a program. Timings are returned for the wall clock and CPU time. It looks something like this.</p>
-
 <pre>
 <b>$</b> time ping google.com -c 1
 <span class="comment">PING google.com (74.125.225.232) 56(84) bytes of data.
@@ -89,11 +88,8 @@ real   0m0.173s
 user   0m0.010s
 sys    0m0.100s
 </pre>
-
 <p>The <code>real</code>, <code>user</code>, and <code>sys</code> information at the end is the output from <code>time</code>. StackOverflow has a <a href="http://stackoverflow.com/questions/556405/what-do-real-user-and-sys-mean-in-the-output-of-time1/556411#556411">great explanation</a> of what those values mean.</p>
-
 <p>PowerShell&rsquo;s equivalent of <code>time</code> is <code>Measure-Command</code>. Unfortunately it only measures wall clock time. It also swallows the output of the command you are measuring.</p>
-
 <pre>
 <b>PS&gt;</b> Measure-Command { ping google.com -n 1 }
 Days              : 0
@@ -108,18 +104,13 @@ TotalMinutes      : 0.00470460833333333
 TotalSeconds      : 0.2822765
 TotalMilliseconds : 282.2765
 </pre>
-
 <p>You might prefer calling <code>ToString()</code> on the result to make it more readable.</p>
-
 <pre>
 <b>PS&gt;</b> (Measure-Command { ping google.com -n 1 }).ToString()
 00:00:00.2822765
 </pre>
-
 <p>One thing that <code>time</code> and <code>Measure-Command</code> have in common is that neither of them is well suited to benchmarking. That is, running the same command multiple times and providing statistics on the timings of those runs.</p>
-
 <p>Enter <code>Benchmark-Command</code>. This PowerShell function does exactly that.</p>
-
 <pre>
 <b>PS&gt;</b> Benchmark-Command { ping google.com -n 1 } -Samples 3
 <span class="comment">Pinging google.com [74.125.225.226] with 32 bytes of data:
@@ -150,9 +141,7 @@ Avg: 56.2542ms
 Min: 49.542ms
 Max: 66.7821ms
 </pre>
-
 <p>We can also swallow the command output if we want a more minimal display. This is very useful when taking a higher number of samples.</p>
-
 <pre>
 <b>PS&gt;</b> Benchmark-Command { ping -n 1 google.com } -Samples 50 -Silent
 ..................................................
@@ -160,16 +149,13 @@ Avg: 46.9643ms
 Min: 39.887ms
 Max: 74.8587ms
 </pre>
-
 <p>Import this in your profile and alias it to <code>time</code> and you get a nice counterpart to UNIX&rsquo;s <code>time</code> command with a few more bells and whistles.</p>
-
 <pre data-language="powershell">
 # Microsoft.PowerShell_profile.ps1
 
 Import-Module benchmark.psm1
 Set-Alias time Benchmark-Command
 </pre>
-
 <pre data-language="powershell">
 # benchmark.psm1
 # Exports: Benchmark-Command
@@ -222,7 +208,8 @@ function Benchmark-Command ([ScriptBlock]$Expression, [int]$Samples = 1, [Switch
 }
 
 Export-ModuleMember Benchmark-Command
-</pre>
+</pre><blockquote>
+</blockquote>
 
 
 </article>
@@ -240,7 +227,7 @@ Export-ModuleMember Benchmark-Command
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

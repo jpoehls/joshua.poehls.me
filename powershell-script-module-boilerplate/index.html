@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/powershell-script-module-boilerplate/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -74,22 +74,13 @@
         </p>
     </header>
 
-    
-
-<p>One of the things I always look for when getting familiar with a new language or environment is examples of the physical file structure and logical organization of the code. How do you layout your project files? What is idiomatic?</p>
-
+    <p>One of the things I always look for when getting familiar with a new language or environment is examples of the physical file structure and logical organization of the code. How do you layout your project files? What is idiomatic?</p>
 <p>Unsurprisingly, this isn&rsquo;t always as simple as finding a few open-source projects on GitHub to reference. Believe it or not, there are a lot of pretty unorganized coders out there. I admit to being a bit OCD with my project structures. I like them clean, organized, and consistent.</p>
-
 <p>In this post I&rsquo;m going to cover my preferred boilerplate for <a href="http://msdn.microsoft.com/en-us/library/dd878340(v=vs.85).aspx">PowerShell Script Modules</a>.</p>
-
 <p>Script Modules are about as simple as it gets. Typically you have one or more PS1 or PSM1 files that contain your module&rsquo;s cmdlets. Beyond that you <em>should</em> have a <a href="http://msdn.microsoft.com/en-us/library/dd878337(v=vs.85).aspx">PSD1 manifest</a>.</p>
-
 <h2 id="fork-this">Fork this!</h2>
-
 <p>This entire boilerplate <a href="http://github.com/jpoehls/powershell-script-module-boilerplate">is on GitHub</a>. If you just want a solid starting point, download this repo. If you want to know more, keep reading.</p>
-
 <h2 id="file-structure">File Structure</h2>
-
 <pre><code>+- src/
 | +- source_file.ps1
 | +- ...
@@ -98,54 +89,42 @@
 +- LICENSE
 +- README.md
 </code></pre>
-
 <ul>
 <li><code>src/</code> contains the PS1, PSM1, PS1XML, and any other source files for the module.</li>
 <li><code>tools/</code> is where I put any meta scripts for the project. Usually there is just one script here that builds a release version of my module.</li>
 <li><code>LICENSE</code> - if your module is open-source, always specify what license you are releasing it under.</li>
 <li><code>README.md</code> - always have a README file. Even if it is only a one sentence description. <a href="http://daringfireball.net/projects/markdown/">Markdown</a> is a great format to use for this.</li>
 </ul>
-
 <h2 id="explicit-exports">Explicit Exports</h2>
-
 <p>By default, PowerShell will export all of the functions in your module. I recommend being explicit about this and always specifying which functions should be publically exported. This way it is easy to add private helper functions that are internal to your module without worrying about them being made public accidentally.</p>
-
 <p>You do this by calling <a href="http://technet.microsoft.com/en-us/library/hh849736.aspx"><code>Export-ModuleMember</code></a> at the bottom of your source file. If you have a <code>source.psm1</code> file that contains a <code>Show-Calendar</code> function that should be public, you would do something like this:</p>
-
 <pre><code># Show-Calendar.ps1
 #
 # Show-Calendar will be public.
 # Any other functions in this file will be private.
 
 function Show-Calendar {
-    # ...
+	# ...
 }
 
 Export-ModuleMember -Function Show-Calendar
 </code></pre>
-
-<p><a href="http://msdn.microsoft.com/en-us/library/dd878340(v=vs.85).aspx">Full example &#8594;</a></p>
-
+<p><a href="http://msdn.microsoft.com/en-us/library/dd878340(v=vs.85).aspx">Full example →</a></p>
 <h2 id="release-script">Release Script</h2>
-
 <p><strong>Every project should have a release script.</strong> You should never be manually building your distributable release. At a minimum my release script will:</p>
-
 <ol>
 <li>Generate the PSD1 manifest for my module.</li>
 <li>Save the manifest into a temporary <code>./dist</code> folder.</li>
 <li>Copy all of the module source files into <code>./dist</code>.</li>
 <li>Add all of the module&rsquo;s source files to a ZIP file ready for me to distribute.</li>
 </ol>
-
 <p>Here is what a simple <code>release.ps1</code> script might look like.</p>
-
-<p><a href="https://github.com/jpoehls/powershell-script-module-boilerplate/blob/master/tools/release.ps1">View on GitHub &#8594;</a></p>
-
+<p><a href="https://github.com/jpoehls/powershell-script-module-boilerplate/blob/master/tools/release.ps1">View on GitHub →</a></p>
 <pre><code>&lt;#
 .SYNOPSIS
-    Generates a manifest for the module
-    and bundles all of the module source files
-    and manifest into a distributable ZIP file.
+	Generates a manifest for the module
+	and bundles all of the module source files
+	and manifest into a distributable ZIP file.
 #&gt;
 
 [CmdletBinding()]
@@ -207,23 +186,16 @@ $includeBaseDirectory = $false
 
 Move-Item $zipFileName $dist -Force
 </code></pre>
-
 <h2 id="version-control">Version Control</h2>
-
 <p>Always exclude your <code>./dist</code> folder from source control. As a rule of thumb, you never want to store the build output of any project in source control.</p>
-
 <p>Depending on how you plan to release your module, you may prefer to exclude <code>*.psd1</code> manifest files from source control. This just keeps things clean and enforces that you use your release script to build the distributable.</p>
-
 <h2 id="good-examples">Good Examples</h2>
-
 <p>Here are a few open-source PowerShell modules that I&rsquo;ve found to be good examples to follow.</p>
-
 <ul>
 <li><a href="https://github.com/adamdriscoll/PoshInternals">PoshInternals</a> by Adam Driscoll</li>
 <li><a href="https://github.com/psake/psake">Psake</a> by James Kovacs</li>
 <li><a href="https://github.com/jpoehls/poshato">Poshato</a></li>
 </ul>
-
 <!--
 ## Binary Modules
 
@@ -246,7 +218,7 @@ I use a very similar file structure for [PowerShell Binary Modules][binary_modul
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

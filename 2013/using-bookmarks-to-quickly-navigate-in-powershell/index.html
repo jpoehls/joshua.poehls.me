@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2013/using-bookmarks-to-quickly-navigate-in-powershell/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -75,9 +75,7 @@
     </header>
 
     <p>There are a few folders that I spend a lot of time and it is surprisingly slow to type <code>cd c:\path\to\my\project</code> many times a day. I solved this by creating a module that allows me to bookmark directories and navigate to them using aliases. Simply put, I can shorten the previous command to <code>g project</code>.</p>
-
 <p>Usage looks like this:</p>
-
 <pre>
 <b>Set-Bookmark</b> &lt;name&gt; &lt;path&gt;
 <b>Get-Bookmark</b> <i># to list all</i>
@@ -86,11 +84,8 @@
 <b>Clear-Bookmarks</b>
 <b>Invoke-Bookmark</b> &lt;name&gt;
 </pre>
-
 <p>I alias <code>Invoke-Bookmark</code> as <code>g</code> for speed.</p>
-
 <p>All you have to do is import the module in your profile and initialize your bookmarks.</p>
-
 <pre data-language="powershell">
 # Microsoft.PowerShell_profile.ps1
 
@@ -99,9 +94,7 @@ Set-Alias g Invoke-Bookmark
 
 Set-Bookmark project c:\path\to\my\project
 </pre>
-
 <p>Here is the module. Happy bookmarking!</p>
-
 <pre data-language="powershell">
 # bookmarks.psm1
 # Exports: Set-Bookmark, Get-Bookmark, Remove-Bookmark, Clear-Bookmarks, Invoke-Bookmark
@@ -198,7 +191,7 @@ Export-ModuleMember Get-Bookmark, Remove-Bookmark, Clear-Bookmarks, Set-Bookmark
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

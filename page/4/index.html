@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -60,6 +60,162 @@
     <header>
         <h1>
             
+            <a href="http://joshua.poehls.me/powershell-script-module-boilerplate/">PowerShell Script Module Boilerplate</a>
+            
+        </h1>
+        <p>
+            <time datetime="2013-12-21 10:43:31 -0600 CST" pubdate="pubdate">Sat, Dec 21, 2013</time>
+            <span class="symbol">&#8226;</span>
+            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/powershell-script-module-boilerplate/">
+                <span class="noprint symbol">&#8734;</span>
+                <span class="printonly">http://joshua.poehls.me/powershell-script-module-boilerplate/</span>
+            </a>
+        </p>
+    </header>
+
+    <p>One of the things I always look for when getting familiar with a new language or environment is examples of the physical file structure and logical organization of the code. How do you layout your project files? What is idiomatic?</p>
+<p>Unsurprisingly, this isn&rsquo;t always as simple as finding a few open-source projects on GitHub to reference. Believe it or not, there are a lot of pretty unorganized coders out there. I admit to being a bit OCD with my project structures. I like them clean, organized, and consistent.</p>
+<p>In this post I&rsquo;m going to cover my preferred boilerplate for <a href="http://msdn.microsoft.com/en-us/library/dd878340(v=vs.85).aspx">PowerShell Script Modules</a>.</p>
+<p>Script Modules are about as simple as it gets. Typically you have one or more PS1 or PSM1 files that contain your module&rsquo;s cmdlets. Beyond that you <em>should</em> have a <a href="http://msdn.microsoft.com/en-us/library/dd878337(v=vs.85).aspx">PSD1 manifest</a>.</p>
+<h2 id="fork-this">Fork this!</h2>
+<p>This entire boilerplate <a href="http://github.com/jpoehls/powershell-script-module-boilerplate">is on GitHub</a>. If you just want a solid starting point, download this repo. If you want to know more, keep reading.</p>
+<h2 id="file-structure">File Structure</h2>
+<pre><code>+- src/
+| +- source_file.ps1
+| +- ...
++- tools/
+| +- release.ps1
++- LICENSE
++- README.md
+</code></pre>
+<ul>
+<li><code>src/</code> contains the PS1, PSM1, PS1XML, and any other source files for the module.</li>
+<li><code>tools/</code> is where I put any meta scripts for the project. Usually there is just one script here that builds a release version of my module.</li>
+<li><code>LICENSE</code> - if your module is open-source, always specify what license you are releasing it under.</li>
+<li><code>README.md</code> - always have a README file. Even if it is only a one sentence description. <a href="http://daringfireball.net/projects/markdown/">Markdown</a> is a great format to use for this.</li>
+</ul>
+<h2 id="explicit-exports">Explicit Exports</h2>
+<p>By default, PowerShell will export all of the functions in your module. I recommend being explicit about this and always specifying which functions should be publically exported. This way it is easy to add private helper functions that are internal to your module without worrying about them being made public accidentally.</p>
+<p>You do this by calling <a href="http://technet.microsoft.com/en-us/library/hh849736.aspx"><code>Export-ModuleMember</code></a> at the bottom of your source file. If you have a <code>source.psm1</code> file that contains a <code>Show-Calendar</code> function that should be public, you would do something like this:</p>
+<pre><code># Show-Calendar.ps1
+#
+# Show-Calendar will be public.
+# Any other functions in this file will be private.
+
+function Show-Calendar {
+	# ...
+}
+
+Export-ModuleMember -Function Show-Calendar
+</code></pre>
+<p><a href="http://msdn.microsoft.com/en-us/library/dd878340(v=vs.85).aspx">Full example →</a></p>
+<h2 id="release-script">Release Script</h2>
+<p><strong>Every project should have a release script.</strong> You should never be manually building your distributable release. At a minimum my release script will:</p>
+<ol>
+<li>Generate the PSD1 manifest for my module.</li>
+<li>Save the manifest into a temporary <code>./dist</code> folder.</li>
+<li>Copy all of the module source files into <code>./dist</code>.</li>
+<li>Add all of the module&rsquo;s source files to a ZIP file ready for me to distribute.</li>
+</ol>
+<p>Here is what a simple <code>release.ps1</code> script might look like.</p>
+<p><a href="https://github.com/jpoehls/powershell-script-module-boilerplate/blob/master/tools/release.ps1">View on GitHub →</a></p>
+<pre><code>&lt;#
+.SYNOPSIS
+	Generates a manifest for the module
+	and bundles all of the module source files
+	and manifest into a distributable ZIP file.
+#&gt;
+
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory = $true)]
+    [version]$ModuleVersion
+)
+
+$ErrorActionPreference = &quot;Stop&quot;
+
+Write-Host &quot;Building release for v$moduleVersion&quot;
+
+$scriptPath = Split-Path -LiteralPath $(if ($PSVersionTable.PSVersion.Major -ge 3) { $PSCommandPath } else { &amp; { $MyInvocation.ScriptName } })
+
+$src = (Join-Path (Split-Path $scriptPath) 'src')
+$dist = (Join-Path (Split-Path $scriptPath) 'dist')
+if (Test-Path $dist) {
+    Remove-Item $dist -Force -Recurse
+}
+New-Item $dist -ItemType Directory | Out-Null
+
+Write-Host &quot;Creating module manifest...&quot;
+
+$manifestFileName = Join-Path $dist 'YourModule.psd1'
+
+# TODO: Tweak the manifest to fit your module's needs.
+New-ModuleManifest `
+    -Path $manifestFileName `
+    -ModuleVersion $ModuleVersion `
+    -Guid fe524c79-95a6-4d02-8e15-30dddeb8c874 `
+    -Author 'Your Name' `
+    -CompanyName 'Your Company' `
+    -Copyright '(c) $((Get-Date).Year) Your Company. All rights reserved.' `
+    -Description 'Description of your module.' `
+    -PowerShellVersion '3.0' `
+    -DotNetFrameworkVersion '4.5' `
+    -NestedModules (Get-ChildItem $src -Exclude *.psd1 | % { $_.Name })
+
+Write-Host &quot;Creating release archive...&quot;
+
+# Copy the distributable files to the dist folder.
+Copy-Item -Path &quot;$src\*&quot; `
+          -Destination $dist `
+          -Recurse
+
+# Requires .NET 4.5
+[Reflection.Assembly]::LoadWithPartialName(&quot;System.IO.Compression.FileSystem&quot;) | Out-Null
+
+$zipFileName = Join-Path ([System.IO.Path]::GetDirectoryName($dist)) &quot;$([System.IO.Path]::GetFileNameWithoutExtension($manifestFileName))-$ModuleVersion.zip&quot;
+
+# Overwrite the ZIP if it already already exists.
+if (Test-Path $zipFileName) {
+    Remove-Item $zipFileName -Force
+}
+
+$compressionLevel = [System.IO.Compression.CompressionLevel]::Optimal
+$includeBaseDirectory = $false
+[System.IO.Compression.ZipFile]::CreateFromDirectory($dist, $zipFileName, $compressionLevel, $includeBaseDirectory)
+
+Move-Item $zipFileName $dist -Force
+</code></pre>
+<h2 id="version-control">Version Control</h2>
+<p>Always exclude your <code>./dist</code> folder from source control. As a rule of thumb, you never want to store the build output of any project in source control.</p>
+<p>Depending on how you plan to release your module, you may prefer to exclude <code>*.psd1</code> manifest files from source control. This just keeps things clean and enforces that you use your release script to build the distributable.</p>
+<h2 id="good-examples">Good Examples</h2>
+<p>Here are a few open-source PowerShell modules that I&rsquo;ve found to be good examples to follow.</p>
+<ul>
+<li><a href="https://github.com/adamdriscoll/PoshInternals">PoshInternals</a> by Adam Driscoll</li>
+<li><a href="https://github.com/psake/psake">Psake</a> by James Kovacs</li>
+<li><a href="https://github.com/jpoehls/poshato">Poshato</a></li>
+</ul>
+<!--
+## Binary Modules
+
+I use a very similar file structure for [PowerShell Binary Modules][binary_module] but they do introduce more complexity into the release script. I'll be covering my binary module boilerplate in a future post. 
+-->
+
+
+</article>
+
+<div class="fin symbol">&#10687;</div>
+
+</div>
+</div>
+	
+	<div class="row">
+<div class="twelve columns">
+
+<article class="post">
+    <header>
+        <h1>
+            
             <a href="http://joshua.poehls.me/powershell-batch-file-wrapper/">PowerShell Batch File Wrapper</a>
             
         </h1>
@@ -73,19 +229,13 @@
         </p>
     </header>
 
-    
-
-<p>Sometimes you want a <code>.cmd</code> wrapper for your PowerShell script. Usually for me this is so people who aren&rsquo;t familiar with the command line can double-click to execute the script.</p>
-
+    <p>Sometimes you want a <code>.cmd</code> wrapper for your PowerShell script. Usually for me this is so people who aren&rsquo;t familiar with the command line can double-click to execute the script.</p>
 <p>This batch file should be saved alongside your PowerShell script, like so.</p>
-
 <pre><code>.\
  |- my_script.ps1
  |- my_script.cmd
 </code></pre>
-
 <p><code>my_script.cmd</code> will execute the same named <code>.ps1</code> file in the same directory, so <code>my_script.ps1</code> in this case. Any arguments passed to <code>my_script.cmd</code> will pass-through to the PowerShell script.</p>
-
 <pre><code>@ECHO OFF
 
 SET SCRIPTNAME=%~d0%~p0%~n0.ps1
@@ -110,9 +260,7 @@ SET ARGS=%ARGS:^%=%
 
 GOTO POWERSHELL
 </code></pre>
-
-<h2 id="what-s-going-on-here">What&rsquo;s going on here?</h2>
-
+<h2 id="whats-going-on-here">What&rsquo;s going on here?</h2>
 <ul>
 <li><code>%SCRIPTNAME%</code> variable holds the name of the PowerShell script to execute. <code>%~d0%~p0%~n0</code> magic gets the full path of the
 current batch script without the file extension. By specifying the full path of the PowerShell script
@@ -120,7 +268,6 @@ like this we can guarantee that it is always executed from the right place
 no matter what your working directory is.</li>
 <li>Escapes special characters in the arguments so that they are passed to PowerShell as you would expect.</li>
 <li>Runs <code>PowerShell.exe</code> with:
-
 <ul>
 <li><code>-NoProfile</code> to improve startup performance. Scripts you are distributing
 shouldn&rsquo;t rely on anything in your profile anyway.</li>
@@ -131,28 +278,23 @@ be executed regardless of the machine&rsquo;s default Execution Policy.</li>
 returns the correct exit code from your script.
 Using <code>-Command</code> with <code>$ErrorActionPreference = 'Stop'</code> also ensures that
 errors thrown from your script cause PowerShell.exe to return a failing
-exit code (1). <a href="/2012/powershell-batch-files-exit-codes/">PowerShell is quite buggy when it comes to bubbling exit
+exit code (1). <a href="/2012/powershell-batch-files-exit-codes/">PowerShell is quite buggy when it comes to bubbling exit 
 codes.</a>
 This is the safest method I&rsquo;ve found.</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="batch-file-tips">Batch file tips</h2>
-
 <h3 id="special-characters-in-arguments">Special characters in arguments</h3>
-
 <p>Remember that certain special characters need to be escaped in arguments passed to the batch file. These characters are: <code>^  &amp;  &lt;  &gt;  /?</code>. Note that <code>/?</code> is a sequence and is recognized as a help flag when passed to a batch file.</p>
-
 <blockquote>
 <p><code>my_script.cmd &quot;I &quot;&quot;am&quot;&quot; quoted&quot;</code> passes a single argument <code>I &quot;am&quot; quoted</code> to PowerShell.</p>
-
+</blockquote>
+<blockquote>
 <p><code>my_script.cmd &quot;^&amp;&lt;&gt;/?&quot;</code> passes <code>^&amp;&lt;&gt;/?</code></p>
 </blockquote>
-
 <h3 id="environment-variable-expansion">Environment variable expansion</h3>
-
 <p>Environment variables get automatically expanded in batch file arguments.</p>
-
 <blockquote>
 <p><code>my_script.cmd %PROGRAMFILES%</code> passes <code>C:\Program Files</code></p>
 </blockquote>
@@ -185,41 +327,27 @@ This is the safest method I&rsquo;ve found.</li>
         </p>
     </header>
 
-    
-
-<p>Backups are like changing the oil on your car. It&rsquo;s the best thing you can do to extend the life of your engine and the best thing you can do to save yourself when your hard drive crashes, gets stolen, or otherwise corrupted.</p>
-
+    <p>Backups are like changing the oil on your car. It&rsquo;s the best thing you can do to extend the life of your engine and the best thing you can do to save yourself when your hard drive crashes, gets stolen, or otherwise corrupted.</p>
 <p>I work remotely and needed a backup strategy for my work laptop. My company encourages you to keep critical client files and such in your personal share on the network. Most of our employees work in office so this is perfectly reasonable as the norm. (Though I bet a ton of stuff still ends up on local machines!) As a remotee however, this isn&rsquo;t practical for reasons that are hopefully obvious to everyone.</p>
-
 <p>There are as many backup strategies, scripts, and apps as there are computers. Today though, it was PowerShell to the rescue with the help of trusty <a href="http://www.7-zip.org">7-zip</a> (command line version) and <a href="http://technet.microsoft.com/en-us/library/cc733145.aspx">robocopy</a>.</p>
-
 <p><strong>Requirements</strong></p>
-
 <ul>
 <li>I&rsquo;m not concerned with a full system backup. No need to image my hard drive, I only want to backup a specific set of directories that contain my working files.</li>
 <li>I need to backup to a local drive.</li>
 <li>I need to upload backups to my user share on the company network.</li>
 <li>I need a scheduled task that will perform the backup on a regular basis.</li>
 </ul>
-
 <p><strong>Implementation details</strong></p>
-
 <ul>
 <li>Differential backups. Because I&rsquo;ll be uploading these over a VPN, I want them to be as small as possible. Differential backups will allow me to upload a full backup once (or occasionally) and then upload much small backups daily.</li>
 <li>LZMA compression. I&rsquo;ll sacrifice some speed during the backup stage but save a ton of time on the upload by compressing my backups using 7-zips LZMA (7z) compression format.</li>
 <li>Local hard drive space is limited so I&rsquo;ll only keep the most recent backup locally. I&rsquo;ll keep past backups on the company network and manually prune old ones when needed. This will be a casual safety net if I ever need to roll back to a specific point in time.</li>
 </ul>
-
 <p><strong>Results</strong></p>
-
 <p>Here&rsquo;s what it looks like.</p>
-
 <p>I&rsquo;ll store my most recent backups locally in <strong>C:\backup</strong>. Timestamps in the names keep everything straight. Each backup has an accompanying log file.</p>
-
-<p><img src="backup-folder.png" alt="Screenshot of backup folder" title="Screenshot of backup folder" /></p>
-
+<p><img src="backup-folder.png" alt="Screenshot of backup folder" title="Screenshot of backup folder"></p>
 <p>My backup script is stored in <a href="https://db.tt/i03IdN4">Dropbox</a>.</p>
-
 <ul>
 <li><code>backup.ps1</code> - The meat of the backup script. The various *.cmd scripts are just wrappers that pass this the appropriate arguments.</li>
 <li><code>upload-backup.cmd</code> - Starts uploading all existing backups to the company network.</li>
@@ -228,67 +356,48 @@ This is the safest method I&rsquo;ve found.</li>
 <li><code>includes.txt</code> - A list of directory and file paths to include in the backup. This is passed to 7-zip.</li>
 <li><code>excludes.txt</code> - A list of directory and file paths to exclude from the backup. This is also passed to 7-zip.</li>
 </ul>
-
-<p><img src="script-folder.png" alt="Screenshot of script folder" title="Screenshot of script folder" /></p>
-
+<p><img src="script-folder.png" alt="Screenshot of script folder" title="Screenshot of script folder"></p>
 <p>I have a Windows Scheduled Task that runs a differential backup (<code>diff-backup.cmd</code>) hourly. The differential backup is usually pretty fast, so running hourly is no problem.</p>
-
 <p>I have another task that runs the upload (<code>upload-backup.cmd</code>) once a day when I am connected to the VPN. Task Scheduler is supposedly smart enough to only run the task if the VPN connection is available and to retry on a regular basis if it isn&rsquo;t. I&rsquo;ve never used this feature before so we&rsquo;ll see how it goes. I can always fall back to manually running this via a desktop shortcut.</p>
-
 <h2 id="the-script">The Script</h2>
-
 <p>My script isn&rsquo;t suited to sharing verbatim but I do want to share the good parts.</p>
-
 <h3 id="selecting-the-most-recent-full-backup">Selecting the most recent full backup</h3>
-
 <p>Differential backups have to be based on a full backup. The script is smart enough to find the most recent full backup file and use it as the base.</p>
-
-<pre><code class="language-powershell"># Find the most recent full backup.
-# Depends on Get-ChildItem returning the items sorted in ascending order (oldest backups first).
-$fullBackup = Get-ChildItem -File -Path &quot;$backupOutputPath\backup-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9].7z&quot; | select -Last 1 -ExpandProperty FullName
-if (-not ($fullBackup) -or -not (Test-Path $fullBackup -PathType Leaf)) {
-	throw &quot;No full backup was found. Must have a full backup before performing a differential.&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Find the most recent full backup.</span>
+<span style="color:#75715e"># Depends on Get-ChildItem returning the items sorted in ascending order (oldest backups first).</span>
+$fullBackup = Get-ChildItem <span style="color:#f92672">-File</span> -Path <span style="color:#e6db74">&#34;$backupOutputPath\backup-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9].7z&#34;</span> | select -Last 1 -ExpandProperty FullName
+<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> ($fullBackup) <span style="color:#f92672">-or</span> <span style="color:#f92672">-not</span> (Test-Path $fullBackup -PathType Leaf)) {
+	<span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;No full backup was found. Must have a full backup before performing a differential.&#34;</span>
 }
-</code></pre>
-
-<h3 id="7-zip-args-for-a-full-backup">7-zip args for a full backup</h3>
-
-<pre><code class="language-powershell">$7zipArgs = @(
-	&quot;a&quot;;                          # Create an archive.
-	&quot;-t7z&quot;;                       # Use the 7z format.
-	&quot;-mx=7&quot;;                      # Use a level 7 &quot;high&quot; compression.
-	&quot;-xr!thumbs.db&quot;;              # Exclude thumbs.db files wherever they are found.
-	&quot;-xr!*.log&quot;;                  # Exclude all *.log files as well.
-	&quot;-xr-@`&quot;`&quot;$excludesFile`&quot;`&quot;&quot;; # Exclude all paths in my excludes.txt file.
-	&quot;-ir-@`&quot;`&quot;$includesFile`&quot;`&quot;&quot;; # Include all paths in my includes.txt file.
-	&quot;$outputFile&quot;;                # Output file path (a *.7z file).
+</code></pre></div><h3 id="7-zip-args-for-a-full-backup">7-zip args for a full backup</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$7zipArgs = @(
+	<span style="color:#e6db74">&#34;a&#34;</span>;                          <span style="color:#75715e"># Create an archive.</span>
+	<span style="color:#e6db74">&#34;-t7z&#34;</span>;                       <span style="color:#75715e"># Use the 7z format.</span>
+	<span style="color:#e6db74">&#34;-mx=7&#34;</span>;                      <span style="color:#75715e"># Use a level 7 &#34;high&#34; compression.</span>
+	<span style="color:#e6db74">&#34;-xr!thumbs.db&#34;</span>;              <span style="color:#75715e"># Exclude thumbs.db files wherever they are found.</span>
+	<span style="color:#e6db74">&#34;-xr!*.log&#34;</span>;                  <span style="color:#75715e"># Exclude all *.log files as well.</span>
+	<span style="color:#e6db74">&#34;-xr-@</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">$excludesFile</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">&#34;</span>; <span style="color:#75715e"># Exclude all paths in my excludes.txt file.</span>
+	<span style="color:#e6db74">&#34;-ir-@</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">$includesFile</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">&#34;</span>; <span style="color:#75715e"># Include all paths in my includes.txt file.</span>
+	<span style="color:#e6db74">&#34;$outputFile&#34;</span>;                <span style="color:#75715e"># Output file path (a *.7z file).</span>
 )
-</code></pre>
-
-<p>Notice that I doubled some quotation marks for the excludes and includes arguments. This escaping is necessary to ensure the path I&rsquo;m passing in works even if it has spaces in it.</p>
-
+</code></pre></div><p>Notice that I doubled some quotation marks for the excludes and includes arguments. This escaping is necessary to ensure the path I&rsquo;m passing in works even if it has spaces in it.</p>
 <h3 id="7-zip-args-for-a-differential-backup">7-zip args for a differential backup</h3>
-
-<pre><code class="language-powershell">$7zipArgs = @(
-	&quot;u&quot;;                                    # Update an archive. Slightly confusing since we'll be saving those updates to a new archive file.
-	&quot;$fullBackupPath&quot;;                      # Path of the full backup we are creating a differential for.
-	&quot;-t7z&quot;;
-	&quot;-mx=7&quot;;
-	&quot;-xr!thumbs.db&quot;;
-	&quot;-xr!*.log&quot;;
-	&quot;-xr-@`&quot;`&quot;$excludesFile`&quot;`&quot;&quot;;
-	&quot;-ir-@`&quot;`&quot;$includesFile`&quot;`&quot;&quot;;
-	&quot;-u-&quot;;                                  # Don't update the original archive (the full backup).
-	&quot;-up0q3r2x2y2z0w2!`&quot;`&quot;$outputFile`&quot;`&quot;&quot;; # Flags to specify how the archive should be updated and the output file path (a *.7z file).
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$7zipArgs = @(
+	<span style="color:#e6db74">&#34;u&#34;</span>;                                    <span style="color:#75715e"># Update an archive. Slightly confusing since we&#39;ll be saving those updates to a new archive file.</span>
+	<span style="color:#e6db74">&#34;$fullBackupPath&#34;</span>;                      <span style="color:#75715e"># Path of the full backup we are creating a differential for.</span>
+	<span style="color:#e6db74">&#34;-t7z&#34;</span>;
+	<span style="color:#e6db74">&#34;-mx=7&#34;</span>;
+	<span style="color:#e6db74">&#34;-xr!thumbs.db&#34;</span>;
+	<span style="color:#e6db74">&#34;-xr!*.log&#34;</span>;
+	<span style="color:#e6db74">&#34;-xr-@</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">$excludesFile</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">&#34;</span>;
+	<span style="color:#e6db74">&#34;-ir-@</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">$includesFile</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">&#34;</span>;
+	<span style="color:#e6db74">&#34;-u-&#34;</span>;                                  <span style="color:#75715e"># Don&#39;t update the original archive (the full backup).</span>
+	<span style="color:#e6db74">&#34;-up0q3r2x2y2z0w2!</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">$outputFile</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">&#34;</span>; <span style="color:#75715e"># Flags to specify how the archive should be updated and the output file path (a *.7z file).</span>
 )
-</code></pre>
-
-<p>The last argument there is a doosey. Here&rsquo;s what those flags mean.</p>
-
+</code></pre></div><p>The last argument there is a doosey. Here&rsquo;s what those flags mean.</p>
 <ul>
 <li><code>-u</code> - Starts the &ldquo;update options&rdquo; which follow.</li>
 <li>Each letter represents a state of a file either in the base archive (our full backup) or on disk (the files we&rsquo;re backing up).
-
 <ul>
 <li><code>p</code> - File exists in archive, but isn&rsquo;t in any of the include file paths. The file is no longer included in the backup (includes.txt probably changed).</li>
 <li><code>q</code> - File exists in archive, but doesn&rsquo;t exists on disk. The file has been deleted since the full backup.</li>
@@ -297,102 +406,76 @@ if (-not ($fullBackup) -or -not (Test-Path $fullBackup -PathType Leaf)) {
 <li><code>y</code> - File in archive is older than the file on disk. The file has been updated since the full backup.</li>
 <li><code>z</code> - File in archive is same as the file on disk.</li>
 <li><code>w</code> - Cannot be detected which file is newer (times are the same, sizes are different).</li>
-</ul></li>
+</ul>
+</li>
 <li>After each of those letters is a number that represents what action to take on files matching that state.
-
 <ul>
 <li><code>0</code> - Ignore file. Don&rsquo;t include it in the backup.</li>
 <li><em><code>1</code> - Copy file. Copy it from the old archive to the new. From our full backup to our new differential backup.</em></li>
 <li><code>2</code> - Compress. Include the file from disk in our new differential backup.</li>
 <li><code>3</code> - Create an anti-item. This is a feature only supported by 7z archives and basically puts a marker in the archive saying that this file has been deleted. If you extract this archive into a directory where this file exists then it will be deleted during the extraction.</li>
-</ul></li>
+</ul>
+</li>
 <li>Everything after the ! is specifying the output file path.</li>
 </ul>
-
 <p><em>You can read more about 7-zip&rsquo;s options in their documentation.</em></p>
-
 <h3 id="watching-for-exit-codes">Watching for exit codes</h3>
-
 <p>I want my backup to fail if 7-zip fails.</p>
-
-<pre><code class="language-powershell">&amp; $7zip @7zipArgs | Tee-Object -LiteralPath $logFile
-if ($LASTEXITCODE -gt 1) # Ignores warnings which use exit code 1.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">&amp; $7zip @7zipArgs | Tee-Object -LiteralPath $logFile
+<span style="color:#66d9ef">if</span> ($LASTEXITCODE <span style="color:#f92672">-gt</span> 1) <span style="color:#75715e"># Ignores warnings which use exit code 1.</span>
 {
-	throw &quot;7zip failed with exit code $LASTEXITCODE&quot;
+	<span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;7zip failed with exit code $LASTEXITCODE&#34;</span>
 }
-</code></pre>
-
-<h3 id="log-7-zip-output-to-both-the-console-and-log-file">Log 7-zip output to both the console and log file</h3>
-
+</code></pre></div><h3 id="log-7-zip-output-to-both-the-console-and-log-file">Log 7-zip output to both the console and log file</h3>
 <p>Did you notice <a href="http://technet.microsoft.com/en-us/library/hh849937.aspx"><code>Tee-Object</code></a> in the above snippet? That&rsquo;s what handles this. The only downside is that your console output will be laggy due to PowerShell buffering the pipeline.</p>
-
 <h3 id="deleting-old-backups">Deleting old backups</h3>
-
 <p>Remember, I&rsquo;m only keeping the most recent full backup and most recent differential backup files locally. My script automatically deletes old backup files after a new backup is successful. This is the magic used to delete the old differential backups when a new one finishes.</p>
-
-<pre><code class="language-powershell"># Clean up old differential backup files.
-# Only keep the most recent differential backup.
-# Depends on Get-ChildItem returning the items sorted in ascending order (oldest backups first).
-$allDiffBackups = Get-ChildItem -File -Path &quot;$backupOutputPath\backup-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]-diff-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9].7z&quot;
-if ($allDiffBackups -is [array] ) {
-	[Array]:: Reverse($allDiffBackups)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Clean up old differential backup files.</span>
+<span style="color:#75715e"># Only keep the most recent differential backup.</span>
+<span style="color:#75715e"># Depends on Get-ChildItem returning the items sorted in ascending order (oldest backups first).</span>
+$allDiffBackups = Get-ChildItem <span style="color:#f92672">-File</span> -Path <span style="color:#e6db74">&#34;$backupOutputPath\backup-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]-diff-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9].7z&#34;</span>
+<span style="color:#66d9ef">if</span> ($allDiffBackups <span style="color:#f92672">-is</span> <span style="color:#66d9ef">[array]</span> ) {
+	<span style="color:#66d9ef">[Array]</span>:: Reverse($allDiffBackups)
 	$allDiffBackups | select -Skip 1 | % {
-		Write-Host &quot;Deleting old differential backup. File: $($_.FullName)&quot;
-		# Remove the matching log file.
-		Remove-Item -LiteralPath ([System.IO.Path ]::ChangeExtension($_.FullName, &quot;.log&quot;)) -ErrorAction SilentlyContinue
+		Write-Host <span style="color:#e6db74">&#34;Deleting old differential backup. File: </span>$($_.FullName)<span style="color:#e6db74">&#34;</span>
+		<span style="color:#75715e"># Remove the matching log file.</span>
+		Remove-Item -LiteralPath (<span style="color:#66d9ef">[System.IO.Path ]</span>::ChangeExtension($_.FullName, <span style="color:#e6db74">&#34;.log&#34;</span>)) -ErrorAction SilentlyContinue
 		$_
 	} | Remove-Item
 } 
-</code></pre>
-
-<h3 id="robocopy-args-to-upload-the-backups">Robocopy args to upload the backups</h3>
-
-<pre><code class="language-powershell">$robocopyArgs = @(
-	&quot;$backupOutputPath&quot;; # Source path
-	&quot;$networkDestPath&quot;;  # Destination path
-	&quot;/Z&quot;;                # Use restartable mode when transferring files.
-	&quot;/FP&quot;;               # Log the full paths to files.
-	&quot;/NP&quot;;               # Don't log progress percentages.
-	&quot;/X&quot;;                # Log a list of 'extra' files that exist in the destination but not locally.
-	&quot;/UNILOG+$logfile&quot;;  # Append to the specified log file.
-	&quot;/TEE&quot;;              # Send output to the console in addition to the log file.
+</code></pre></div><h3 id="robocopy-args-to-upload-the-backups">Robocopy args to upload the backups</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$robocopyArgs = @(
+	<span style="color:#e6db74">&#34;$backupOutputPath&#34;</span>; <span style="color:#75715e"># Source path</span>
+	<span style="color:#e6db74">&#34;$networkDestPath&#34;</span>;  <span style="color:#75715e"># Destination path</span>
+	<span style="color:#e6db74">&#34;/Z&#34;</span>;                <span style="color:#75715e"># Use restartable mode when transferring files.</span>
+	<span style="color:#e6db74">&#34;/FP&#34;</span>;               <span style="color:#75715e"># Log the full paths to files.</span>
+	<span style="color:#e6db74">&#34;/NP&#34;</span>;               <span style="color:#75715e"># Don&#39;t log progress percentages.</span>
+	<span style="color:#e6db74">&#34;/X&#34;</span>;                <span style="color:#75715e"># Log a list of &#39;extra&#39; files that exist in the destination but not locally.</span>
+	<span style="color:#e6db74">&#34;/UNILOG+$logfile&#34;</span>;  <span style="color:#75715e"># Append to the specified log file.</span>
+	<span style="color:#e6db74">&#34;/TEE&#34;</span>;              <span style="color:#75715e"># Send output to the console in addition to the log file.</span>
 )
-</code></pre>
-
-<p>Those arguments will perform a shallow copy of all files in the source folder to the destination.</p>
-
+</code></pre></div><p>Those arguments will perform a shallow copy of all files in the source folder to the destination.</p>
 <p>Note that since robocopy supports the <code>/UNILOG+</code> and <code>/TEE</code> arguments I don&rsquo;t have to use <code>Tee-Object</code> to append to the log file.</p>
-
 <p>Once again, I&rsquo;ll make sure the copy is successful and fail the script if the copy fails.</p>
-
-<pre><code class="language-powershell">&amp; $robocopy @robocopyArgs
-if ($LASTEXITCODE -ge 8) # exit code when files failed to copy
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">&amp; $robocopy @robocopyArgs
+<span style="color:#66d9ef">if</span> ($LASTEXITCODE <span style="color:#f92672">-ge</span> 8) <span style="color:#75715e"># exit code when files failed to copy</span>
 {
-	# robocopy exit codes: http://support.microsoft.com/kb/954404
-	throw &quot;robocopy failed with exit code $LASTEXITCODE&quot;
+	<span style="color:#75715e"># robocopy exit codes: http://support.microsoft.com/kb/954404</span>
+	<span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;robocopy failed with exit code $LASTEXITCODE&#34;</span>
 }
-</code></pre>
-
-<h3 id="passing-args-from-powershell-to-executables">Passing args from PowerShell to executables</h3>
-
+</code></pre></div><h3 id="passing-args-from-powershell-to-executables">Passing args from PowerShell to executables</h3>
 <p>There are a million ways, of course, but my favorite is to put the arguments into an array and let PowerShell splat them. I really like how this keeps the script readable even when you are passing a ton of arguments around.</p>
-
-<pre><code class="language-powershell">$cmdArgs = @(
-	&quot;/E&quot;;
-	&quot;/UNILOG+$logfile&quot;;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$cmdArgs = @(
+	<span style="color:#e6db74">&#34;/E&#34;</span>;
+	<span style="color:#e6db74">&#34;/UNILOG+$logfile&#34;</span>;
 ) 
 
 &amp; some_application.exe @cmdArgs
-</code></pre>
-
-<p>The only thing to be aware of here is that if one of your <code>$cmdArg</code> items contains a SPACE then PowerShell will automatically wrap the argument in double quotes when passing it to the executable.</p>
-
+</code></pre></div><p>The only thing to be aware of here is that if one of your <code>$cmdArg</code> items contains a SPACE then PowerShell will automatically wrap the argument in double quotes when passing it to the executable.</p>
 <blockquote>
 <p>If you are having trouble getting your quotes and other special characters escaped properly, I&rsquo;ve written <a href="http://github.com/jpoehls/echoargs">several EchoArgs apps</a> to help. They just echo back the arguments passed in so you can see how they are being received.</p>
 </blockquote>
-
 <h2 id="epilogue">Epilogue</h2>
-
 <p>Hopefully this will help you get a jump start on your own backup strategy. Please, hit me up in the comments if you have any questions.</p>
 
 
@@ -423,39 +506,26 @@ if ($LASTEXITCODE -ge 8) # exit code when files failed to copy
         </p>
     </header>
 
-    
-
-<p><strong>Push ups. Every hour, on the hour. Can you handle it?</strong></p>
-
+    <p><strong>Push ups. Every hour, on the hour. Can you handle it?</strong></p>
 <p>I&rsquo;ve been motivated by <a href="http://www.steubing.me">a friend</a> to start this challenge. Every hour, on the hour, I&rsquo;m going to drop and do a set of push ups.</p>
-
 <p>Remembering is the hardest part. Timers are easy to set but also easy to ignore. My solution is to make myself a massive nag screen that will flash every hour while I&rsquo;m at work.</p>
-
-<p><img src="pushitout.png" alt="Screenshot of nag screen" title="Screenshot of nag screen" /></p>
-
+<p><img src="pushitout.png" alt="Screenshot of nag screen" title="Screenshot of nag screen"></p>
 <p>My strategy is working! I&rsquo;m 7 hours into my day and haven&rsquo;t missed a set. It feels great.</p>
-
 <h2 id="join-me">Join me!</h2>
-
 <p>My nag screen is just a PowerShell script and scheduled task. It really couldn&rsquo;t be simpler. You don&rsquo;t even need to be a geek to figure this out.</p>
-
 <ol>
 <li><a href="pushitout.zip">Download the ZIP.</a></li>
 <li>Extract the files somewhere permanent. Moving them later will require you to manually update the scheduled task.</li>
 <li>Run <strong>pushitout.cmd</strong> to install the scheduled task.</li>
 <li>Run it again to see what it looks like.</li>
 </ol>
-
 <p>The default schedule is to nag you every day, every hour, between 8am and 5pm. Feel free to customize this to fit your schedule, <a href="http://www.howtogeek.com/123393/how-to-automatically-run-programs-and-set-reminders-with-the-windows-task-scheduler/">editing scheduled tasks is easy</a>.</p>
-
 <p>I&rsquo;d love to hear how this works out for you, let me know in the comments!</p>
-
 <blockquote>
 <p>Over achievers will notice that the <strong>Show-NagWindow.ps1</strong> script lets you
 customize the message, font, and colors by passing in different parameters.
 Edit the obvious parts of <strong>pushitout.cmd</strong> to customize the nag screen
 to your liking.</p>
-
 <p><strong>Works on my machine!</strong> &hellip; which happens to be running Windows 7,
 .NET 4.5 and PowerShell V3. You&rsquo;ll probably need admin rights on your
 machine in order to install the scheduled task.</p>
@@ -489,22 +559,14 @@ machine in order to install the scheduled task.</p>
         </p>
     </header>
 
-    
-
-<p>Sign up, confirm your email address, login. The three steps that almost all web apps share.</p>
-
+    <p>Sign up, confirm your email address, login. The three steps that almost all web apps share.</p>
 <p>It isn&rsquo;t hard to get this process right but it does take some planning. I&rsquo;ve had to implement this a lot so I finally decided to document it. This is my boilerplate for a user sign up process. The interaction flow that I use as the starting point for sign-ups in my apps. Along the way I&rsquo;ll point out some key UX (User eXperience) tips. I hope this saves you some time on your next project.</p>
-
 <blockquote>
 <p>The UI mockups are just that. Mockups. This post isn&rsquo;t about the UI of your pages but rather the flow and functionality. The mockups are intended to communicate features, not a specific design or layout.</p>
 </blockquote>
-
 <h2 id="login">Login</h2>
-
 <p>The login is so obvious that it is hardly worth mentioning.</p>
-
-<p><img src="login.png" alt="Login mockup" title="Login mockup" /></p>
-
+<p><img src="login.png" alt="Login mockup" title="Login mockup"></p>
 <ul>
 <li>Show friendly messages for invalid credentials.</li>
 <li>Don&rsquo;t make them re-enter their username on subsequent attempts.</li>
@@ -512,66 +574,44 @@ machine in order to install the scheduled task.</p>
 <li>Provide a link for the user to sign up. They may land on the login page but not have an account, make it easy on them.</li>
 <li>Provide a link for <em>resetting</em> their password.</li>
 </ul>
-
 <blockquote>
 <p>You should never provide a password <strong>recovery</strong> link because you should NEVER be able to recover their password. <a href="http://codahale.com/how-to-safely-store-a-password/">How should you store passwords?</a></p>
 </blockquote>
-
 <h2 id="sign-up">Sign Up</h2>
-
 <p>The sign up process is arguably the most important part of your app. This is the gateway through which all users must pass. Every failure means lost users.</p>
-
 <p>I&rsquo;m going to simplify the sign up process to the absolute bare essentials.</p>
-
-<p><img src="signup.png" alt="Sign Up mockup" title="Sign Up mockup" /></p>
-
+<p><img src="signup.png" alt="Sign Up mockup" title="Sign Up mockup"></p>
 <ul>
 <li>Show a friendly message and login link if the username is already linked to an account. If they click that login link, then navigate to the login form and pre-populate the username field.</li>
 <li>Provide a link for the user to login if they already have an account. Just because they are on the sign up page doesn&rsquo;t mean they don&rsquo;t have an account. Make it easy.</li>
 </ul>
-
 <blockquote>
-<p>If you collect an email address during sign up then consider adding logic to suggest corrections to commonly misspelled domains. For example, if the user enters &ldquo;user@gnail.com&rdquo; you can ask, &ldquo;Did you mean: user@gmail.com?&ldquo;.</p>
-
+<p>If you collect an email address during sign up then consider adding logic to suggest corrections to commonly misspelled domains. For example, if the user enters &ldquo;<a href="mailto:user@gnail.com">user@gnail.com</a>&rdquo; you can ask, &ldquo;Did you mean: <a href="mailto:user@gmail.com">user@gmail.com</a>?&rdquo;.</p>
 <p>You can <a href="http://blog.kicksend.com/how-we-decreased-sign-up-confirmation-email-bounces-by-50/">read more about this</a> or skip straight to the jQuery plugin, <a href="https://github.com/Kicksend/mailcheck">Mailcheck</a>.</p>
 </blockquote>
-
 <h2 id="confirmation-email">Confirmation email</h2>
-
 <blockquote>
 <p>I&rsquo;m going to assume your app requires a valid email address. Most do. If yours doesn&rsquo;t then your job just got a lot easier!</p>
 </blockquote>
-
 <p>After signing up, the next page your users see is:</p>
-
-<p><img src="thankyou.png" alt="Confirmation sent mockup" title="Confirmation sent mockup" /></p>
-
+<p><img src="thankyou.png" alt="Confirmation sent mockup" title="Confirmation sent mockup"></p>
 <ul>
 <li>Tell them what email address you sent the confirmation to.</li>
 <li>Tell them what to do with the message they receive.</li>
 </ul>
-
 <p>The confirmation email they receive:</p>
-
-<p><img src="confirmation-email.png" alt="Confirmation email mockup" title="Confirmation email mockup" /></p>
-
+<p><img src="confirmation-email.png" alt="Confirmation email mockup" title="Confirmation email mockup"></p>
 <ul>
 <li>Show the link URL if you are sending an HTML email. This will ensure that users with a plain text mail client can still see the link.</li>
 <li>Clicking the link should automatically log the user in. You had to have their credentials in order to send the email and the email has been verified - there is no reason not to login them in.</li>
 </ul>
-
 <blockquote>
 <p>Ideally you should send the email with both a plain text and HTML body. This ensures that the user gets the best experience possible for their mail client. Read up on <a href="http://en.wikipedia.org/wiki/MIME#Alternative">MIME multipart/alternative</a> for more information.</p>
 </blockquote>
-
-<h2 id="they-didn-t-see-the-email">They didn&rsquo;t see the email</h2>
-
+<h2 id="they-didnt-see-the-email">They didn&rsquo;t see the email</h2>
 <p>There is always the chance that the user will not receive the confirmation email or that they will simply ignore it. We need to plan for this.</p>
-
 <p>If they try to continue without confirming their address:</p>
-
-<p><img src="confirmation-needed.png" alt="Confirmation needed page mockup" title="Confirmation needed page mockup" /></p>
-
+<p><img src="confirmation-needed.png" alt="Confirmation needed page mockup" title="Confirmation needed page mockup"></p>
 <ul>
 <li>Tell them what the problem is, e.g. &ldquo;confirmation needed&rdquo;.</li>
 <li>Remind them what email address the confirmation was sent to.</li>
@@ -580,49 +620,33 @@ machine in order to install the scheduled task.</p>
 <li>Give them an option to resend the message.</li>
 <li>Give them an option to change their email address.</li>
 </ul>
-
 <h2 id="resending-the-confirmation">Resending the confirmation</h2>
-
 <p>Maybe the user&rsquo;s mail server was offline. Maybe they deleted your message without reading it. Maybe it got trapped by an over zealous spam filter. There are any number of ways the message might get lost. The ability to have it re-sent is a great UX booster that might just save you an otherwise lost user.</p>
-
-<p><img src="message-resent.png" alt="Confirmation message sent mockup" title="Confirmation message sent mockup" /></p>
-
+<p><img src="message-resent.png" alt="Confirmation message sent mockup" title="Confirmation message sent mockup"></p>
 <h2 id="changing-their-email">Changing their email</h2>
-
 <p>This is another little detail that can make a big difference. Maybe the user entered the wrong email. Maybe they just can&rsquo;t get that account to work and want to try another address. At this point there is little reason not to let them simply enter a different address. Let me explain:</p>
-
 <ul>
 <li><strong>Their account is already in an unconfirmed state.</strong> Since we have no way to know that the current (unconfirmed) email is valid, there isn&rsquo;t any harm in letting them change it to another email.</li>
 <li><strong>They already entered their username and password</strong>. Combined with the fact that the existing email is unconfirmed this should be reasonable enough verification of the user&rsquo;s identity.</li>
 </ul>
-
-<p><img src="change-email.png" alt="Change email mockup" title="Change email mockup" /></p>
-
+<p><img src="change-email.png" alt="Change email mockup" title="Change email mockup"></p>
 <ul>
 <li>Show them their current address on the change form.</li>
 </ul>
-
 <p>The confirmation should be sent to the new address and a friendly message shown once again.</p>
-
 <blockquote>
 <p>All previously sent confirmation links should be disabled at this point for security. You wouldn&rsquo;t want the wrong address to be confirmed, you only want the new one.</p>
 </blockquote>
-
-<p><img src="email-changed.png" alt="Email changed mockup" title="Email changed message mockup" /></p>
-
-<h2 id="that-s-all-folks">That&rsquo;s all folks</h2>
-
+<p><img src="email-changed.png" alt="Email changed mockup" title="Email changed message mockup"></p>
+<h2 id="thats-all-folks">That&rsquo;s all folks</h2>
 <p>That is my boilerplate. I believe it covers the requirements that nearly all sign up forms share and will keep at least this dude from having to rethink the process in the future.</p>
-
 <p>In the end all is simple but we have a few guiding principles:</p>
-
 <ul>
 <li><strong>Be obvious.</strong> At every point give the user all the information they need to make a decision or take the required action.</li>
 <li><strong>Be simple.</strong> Keep all of your forms as lean as possible. Collect any extra profile or account information after the initial sign up. This keeps the barrier of entry as low as possible.</li>
 <li><strong>Be helpful.</strong> Give the user the ability to undo their mistakes and troubleshoot. Resending the confirmation and changing their email address being the prime examples.</li>
 <li><strong>Be easy.</strong> Whenever you can save the user a step, do it. Such as logging them automatically when they click the confirmation link.</li>
 </ul>
-
 <blockquote>
 <p>Feel free to use and tweak the <a href="http://balsamiq.com/">Balsamiq</a> mockups that I created for this post. You can <a href="mockups.bmml">download them here</a>.</p>
 </blockquote>
@@ -655,84 +679,63 @@ machine in order to install the scheduled task.</p>
         </p>
     </header>
 
-    
-
-<style>
+    <style>
 pre.powershell-result {
-    background-color: #012456;
-    color: #ffffff;
+	background-color: #012456;
+	color: #ffffff;
 }
 </style>
-
 <p>If you&rsquo;ve been following my <a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">Tableau via PowerShell</a> series then you already
 know there are a lot of cool things you can do with Tableau workbooks using
 PowerShell. Up until now I&rsquo;ve been sharing helper functions in a stand-alone
 fashion. No longer.</p>
-
 <p>I&rsquo;d like to introduce you to <a href="https://www.interworks.com/content/download-tableaukit">TableauKit</a>. A pure, script-based PowerShell
 module for working with Tableau files.</p>
-
 <h2 id="say-what">Say what?</h2>
-
 <p>Today TableauKit is shipping with the following commands:</p>
-
 <ul>
 <li><p><b>Get-TableauObject</b> - Gets a summary object for a workbook. The summary
   contains things like the list of dashboards, worksheets, data sources, and
   parameters in the workbook. It also contains metadata like the version of
   Tableau that saved the workbook.</p>
-
   <p>You can dig a bit deeper to find the
   parameter values and which worksheets are included on specific dashboards.</p>
-  
   <p><i>No XPath required!</i></p>
 </li>
 <li><b>Get-TableauXml</b> - Opens up a TWB or TWBX file and returns the workbook's
   raw XML. <i>XPath Heaven.</i></li>
-
 <li><b>Export-Tableau</b> - Lets you save changes you've made to the workbook's
   XML back into a new or existing TWB or TWBX file.</li>
 </ul>
-
 <p>You&rsquo;ll probably recognize <strong>Get-TableauXml</strong> and <strong>Export-Tableau</strong> from my
 <a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">previous</a> <a href="/2013/tableau-via-powershell-part-2-saving-changes/">posts</a> about them. They are much better than when you last
 met them, though! Several bugs have been fixed and the names are shorter now.</p>
-
 <p><strong>Get-TableauObject</strong> is all new. Just because you <em>can</em> dig through the
 workbook with XPath doesn&rsquo;t mean it&rsquo;s fun. This command provides quick access
 to the most common parts of a workbook. Don&rsquo;t worry, it also gives you the raw
 XML so you can go spelunking for the hard to find stuff!</p>
-
 <h2 id="no-really-what-can-it-do">No really, what can it do?</h2>
-
 <h3 id="find-workbooks-by-worksheet-name">Find workbooks by worksheet name</h3>
-
 <p>Can&rsquo;t remember which workbook contains that elusive &ldquo;Top 10 Hot Dogs&rdquo; worksheet?</p>
-
 <pre><code>Get-TableauObject *.twb, *.twbx |
-    where {
+	where {
         ($_.Worksheets | select -Expand DisplayName) -contains &quot;Top 10 Hot Dogs&quot;
-    } |
-    select FileName
+	} |
+	select FileName
 </code></pre>
-
 <pre class="powershell-result">
 FileName
 --------
 C:\users\jpoehls\desktop\result.twb
 C:\users\jpoehls\desktop\another-result.twbx
 </pre>
-
 <h3 id="analyze-connection-types">Analyze connection types</h3>
-
 <p>What types of connections do my workbooks use?</p>
-
 <pre><code>Get-TableauObject *.twb, *.twbx |
-    select -Expand DataSources |
-    group ConnectionType |
-    sort Count -Desc
+	select -Expand DataSources |
+	group ConnectionType |
+	sort Count -Desc
 </code></pre>
-
 <pre class="powershell-result">
 Count Name
 ----- ----
@@ -745,57 +748,43 @@ Count Name
     2 bigquery
     1 firebird
 </pre>
-
 <h3 id="find-workbooks-by-connection-type">Find workbooks by connection type</h3>
-
 <p>Which workbooks use the Big Query connection?</p>
-
 <pre><code>Get-TableauObject *.twb, *.twbx |
-    where { ($_.DataSources | select -Expand ConnectionType) -eq &quot;bigquery&quot; } |
-    select FileName
+	where { ($_.DataSources | select -Expand ConnectionType) -eq &quot;bigquery&quot; } |
+	select FileName
 </code></pre>
-
 <pre class="powershell-result">
 FileName
 --------
 C:\users\jpoehls\desktop\Shakespeare.twb
 C:\users\jpoehls\desktop\Shakespeare_Extract.twb
 </pre>
-
 <h3 id="list-all-dashboard-worksheets">List all dashboard worksheets</h3>
-
 <p>Let&rsquo;s get a list of all dashboards and their worksheets for all
 of our workbooks.</p>
-
 <p>Oh, and we want that list presented in a GUI that we can
 use to further search and filter.</p>
-
 <pre><code>Get-TableauObject *.twb, *.twbx |
-    foreach { $workbook = $_; $_ } |
-    select -Expand Dashboards |
-    foreach { $dashboard = $_; $_ } |
-    select -Expand Worksheets |
-    select @{ Label=&quot;Dashboard&quot;; Expression={$dashboard.DisplayName} },
+	foreach { $workbook = $_; $_ } |
+	select -Expand Dashboards |
+	foreach { $dashboard = $_; $_ } |
+	select -Expand Worksheets |
+	select @{ Label=&quot;Dashboard&quot;; Expression={$dashboard.DisplayName} },
            @{ Label=&quot;Worksheet&quot;; Expression={$_.DisplayName} },
            @{ Label=&quot;File&quot;; Expression={$workbook.FileName} } |
-    Out-GridView
+	Out-GridView
 </code></pre>
-
-<p><img src="tableaukit1.png" alt="Results Screenshot" title="Results Screenshot" /></p>
-
+<p><img src="tableaukit1.png" alt="Results Screenshot" title="Results Screenshot"></p>
 <h3 id="find-worksheets-with-a-specific-column-filter">Find worksheets with a specific column filter</h3>
-
 <p>Looking for all the workbooks and worksheets that have a filter
 on your &ldquo;NextPaymentDate&rdquo; column? Sure, we can do that.</p>
-
 <blockquote>
 <p>This code is pretty ridiculous so I&rsquo;m going to break it up with annotations
 to make it easier to grok.</p>
-
 <p>This kind of query requires advanced knowledge of workbook internals and
 your mileage may vary if you run this against your own workbooks.</p>
 </blockquote>
-
 <pre data-language="powershell">
 # Name of the data source.
 $dataSource = "MonthlySummary (Landboss_com-Accounts)"
@@ -809,70 +798,61 @@ Get-ChildItem *.twb , *.twbx |
     foreach { $file = $_.FullName; $_ } |
     Get-TableauXml |
 
-    # Find all worksheets with the data source we
-    # are looking for.
-    Select-Xml "/workbook/worksheets/worksheet/table/view/datasources/datasource" |
-    Select -Expand Node |
-    where {
+	# Find all worksheets with the data source we
+	# are looking for.
+	Select-Xml "/workbook/worksheets/worksheet/table/view/datasources/datasource" |
+	Select -Expand Node |
+	where {
         $_.caption -eq $dataSource -or $_.name -eq $dataSource
     } |
     
     # Save a reference to the data source's actual name
     # for later parts of the pipeline.
-    foreach { $dataSourceName = $_.name; $_ } |
-    
-    # Find references to the column we are looking for.
-    # Note we're still inside the worksheet node.
-    Select-Xml "../../datasource-dependencies[@datasource='$dataSourceName']/column-instance[@column='[$column]']" |
-    Select -Expand Node |
+    foreach { $dataSourceName = $_.name; $_	} |
+	
+	# Find references to the column we are looking for.
+	# Note we're still inside the worksheet node.
+	Select-Xml "../../datasource-dependencies[@datasource='$dataSourceName']/column-instance[@column='[$column]']" |
+	Select -Expand Node |
     
     # Save a reference to the column's actual name
     # for the next part of the pipeline.
     foreach { $filterColumnName = $_.name; $_ } |
-    
-    # Find any filters on the worksheet that
-    # apply to the column we care about.
-    Select-Xml "../../filter[@column='[$dataSourceName].$filterColumnName']" |
-    select -Expand Node |
-    
-    # Traverse back to the worksheet node.
-    Select-Xml "../../.." |
-    select -Expand Node |
-    
-    # Build the final result display.
-    select @{ Label="Worksheet"; Expression={
-            if ($_.caption) { $_.caption }
-            else { $_.name }
-            }},
-            @{ Label="File"; Expression={$file} } 
+	
+	# Find any filters on the worksheet that
+	# apply to the column we care about.
+	Select-Xml "../../filter[@column='[$dataSourceName].$filterColumnName']" |
+	select -Expand Node |
+	
+	# Traverse back to the worksheet node.
+	Select-Xml "../../.." |
+	select -Expand Node |
+	
+	# Build the final result display.
+	select @{ Label="Worksheet"; Expression={
+        	if ($_.caption) { $_.caption }
+    		else { $_.name }
+			}},
+			@{ Label="File"; Expression={$file} } 
 </pre>
-
 <pre class="powershell-result">
 Worksheet                 File                                       
 ---------                 ----                                       
 Avg Monthly Income        C:\users\jpoehls\desktop\Landboss Income.twb
 Monthly Income by Account C:\users\jpoehls\desktop\Landboss Income.twb 
 </pre>
-
 <h3 id="you-can-do-anything">You can do anything!</h3>
-
 <p>Hopefully this has given you a glimpse at the power of querying your workbooks
 en masse. The queries are pretty gnarly so I definitely recommend wrapping
 anything you&rsquo;ll reuse into helper functions.</p>
-
 <h2 id="what-are-you-waiting-for-go-get-it">What are you waiting for? Go get it!</h2>
-
 <ul>
 <li><a href="https://www.interworks.com/content/download-tableaukit">Download it</a></li>
 </ul>
-
 <p>After you download it, check the README for detailed installation and usage instructions.</p>
-
 <p>TableauKit is a product of <a href="https://www.interworks.com">InterWorks</a>, a fantastic company that
 <a href="https://www.interworks.com/company/careers">you <em>really</em> want to work for</a>!</p>
-
 <h2 id="roadmap">Roadmap</h2>
-
 <p>The future is wide open for this. What kind of functionality would you like to
 see added? Let me know in the comments!</p>
 
@@ -907,34 +887,23 @@ see added? Let me know in the comments!</p>
     <blockquote>
 <p>This is part 2 of my mini-series on exploring Tableau workbooks with PowerShell. If you missed it, you should read <a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">Part 1: Opening Workbooks</a>, before continuing.</p>
 </blockquote>
-
 <p>Welcome back! Last time I showed you how to open a Tableau workbook (TWB or TWBX) in PowerShell so you could start exploring the raw XML. Today I&rsquo;ll show the next logical thing, saving the changes you make.</p>
-
 <p>If you are only opening TWB files, then saving your changes couldn&rsquo;t be easier. Since TWBs are just XML files we can simply write it to a file, like so.</p>
-
 <pre>
 $workbook = Get-TableauWorkbookXml 'MyWorkbook.twb'
 $workbook.Save('ModifiedWorkbook.twb')
 </pre>
-
 <p>Cake.</p>
-
 <p>Saving changes back to a TWBX file is a bit more work but still totally doable. Let&rsquo;s write a new function, <code>Export-TableauPackagedWorkbook</code>. We will spice things up a bit by making this function smart. It&rsquo;ll take a few parameters to allow us to control exactly how we want the export to happen.</p>
-
 <p>A <code>-Force</code> parameter will let us specify whether we want to overwrite the destination file if it already exists. By default we would be prompted. Note that this isn&rsquo;t a terribly useful parameter since it would replace the TWBX with an empty TWBX containing only the TWB.</p>
-
 <p><code>-Update</code> will let us specify that we want to update the TWB inside the destination TWBX file if the destination file exists. This is the cool parameter because it lets us open an existing TWBX, make changes to the TWB inside, and then save those changes back out into the original TWBX.</p>
-
 <p>We will also support the common <code>-WhatIf</code> and <code>-Confirm</code> parameters that are so useful in PowerShell.</p>
-
 <p>Here is our function:</p>
-
 <blockquote>
 <p>If you find this helpful then check out <a href="/2013/tableaukit-powershell-module-for-tableau/">TableauKit</a>;
 a full on PowerShell module for working with Tableau files. It contains a new and improved
 version of the function below and much more.</p>
 </blockquote>
-
 <pre data-language="powershell">
 function Export-TableauPackagedWorkbook {
 &lt;#
@@ -1087,24 +1056,18 @@ function Export-TableauPackagedWorkbook {
     }
 }
 </pre>
-
 <p>Not too bad. Here are some quick usage examples.</p>
-
 <p><strong>Convert a TWB into a TWBX</strong></p>
-
 <pre>
 $workbook = Get-TableauWorkbookXml 'MyWorkbook.twb'
 $workbook | Export-TableauPackagedWorkbook 'MyPackagedWorkbook.twbx'
 </pre>
-
 <p><strong>Update an existing TWBX</strong></p>
-
 <pre>
 $workbook = Get-TableauWorkbookXml 'MyPackagedWorkbook.twbx'
 # TODO: Make some changes to the workbook XML
 $workbook | Export-TableauPackagedWorkbook 'MyPackagedWorkbook.twbx' -Update
 </pre>
-
 <p>Leave me a comment if you have any questions about working with Tableau workbooks in PowerShell. Maybe I&rsquo;ll cover your topic in the next post!</p>
 
 
@@ -1136,9 +1099,7 @@ $workbook | Export-TableauPackagedWorkbook 'MyPackagedWorkbook.twbx' -Update
     </header>
 
     <p>Enum constants in Go have a super power. As opposed to C# where you only have two options for enums, either you assign each value yourself or let the compiler increment each value by one, Go has a third option.</p>
-
 <p><strong>Auto-incremented enum in C#</strong></p>
-
 <pre data-language="csharp">
 enum Example
 {
@@ -1147,9 +1108,7 @@ enum Example
      Three
 }
 </pre>
-
 <p>Go&rsquo;s third option is that you can make use of repeating expressions. This works because of Go&rsquo;s <code>iota</code> enumerator. The best example can by found in <a href="http://golang.org/doc/effective_go.html#constants">the Effective Go docs</a>.</p>
-
 <pre data-language="go">
 type ByteSize float64
 
@@ -1165,15 +1124,10 @@ const (
      YB
 ) 
 </pre>
-
 <p><code>iota</code> is only valid when assigning constants and with each <code>const</code> block it starts out life with a value of zero. Each time it is used it is incremented by one.</p>
-
 <p>In the example above, the first constant is <code>_ = iota</code>. <code>_</code> is a throwaway variable in Go so we are ignoring the first value of <code>iota</code> (zero) and starting with a value of 1 on the next line.</p>
-
 <p><code>KB</code> is assigned an expression that uses <code>iota</code>: <code>1 &lt;&lt; (10 * iota</code>. The subsequent constants don&rsquo;t have any explicit value so Go repeats the last assignment. Thus, repeating expressions. Because <code>iota</code> increments each time, we end up with a very useful pattern generator.</p>
-
 <p>Flag enumerations are a great use of this. In C# it is a manual process to assign each flag a value that increments in powers of 2.</p>
-
 <pre data-language="csharp">
 [Flags]
 enum FlagExample : int
@@ -1184,9 +1138,7 @@ enum FlagExample : int
      Eight = 8
 }
 </pre>
-
 <p><code>iota</code> makes this much simpler in Go.</p>
-
 <pre data-language="go">
 const FlagExample (
      Zero = 1 &lt;&lt; iota
@@ -1195,9 +1147,7 @@ const FlagExample (
      Eight
 )
 </pre>
-
 <p>Of course you don&rsquo;t have to use <code>iota</code> at all if you don&rsquo;t want to.</p>
-
 <pre data-language="go">
 const Example (
      One = 1
@@ -1205,9 +1155,7 @@ const Example (
      Four = 4
 )
 </pre>
-
 <p>Be sure and <a href="http://golang.org/doc/effective_go.html#constants">read the docs</a> for even more info. Also, <a href="http://play.golang.org/p/ASLfPwNc2S">here&rsquo;s a playground example</a> of what we&rsquo;ve covered.</p>
-
 <p><strong>Go</strong> forth and code.</p>
 
 
@@ -1238,24 +1186,16 @@ const Example (
         </p>
     </header>
 
-    
-
-<p>In this mini-series I&rsquo;m going to show you some cookbook style examples for using PowerShell to explore your Tableau workbooks. Follow along, this is going to be fun!</p>
-
+    <p>In this mini-series I&rsquo;m going to show you some cookbook style examples for using PowerShell to explore your Tableau workbooks. Follow along, this is going to be fun!</p>
 <p>Tableau workbooks (TWB files) are just XML files. Packaged workbooks (TWBX files) are just ZIP files that contain a TWB and various assets, like data extracts for example.</p>
-
 <p>This is wonderful because it means it is very easy to go spelunking through workbook files without a <strong>gui</strong>de.</p>
-
 <h2 id="opening-workbooks">Opening Workbooks</h2>
-
 <p>I mentioned that TWB files are just XML files and that TWBX files are ZIP files that contain a TWB. This means we need different logic for opening a TWB vs a TWBX. Let&rsquo;s write a simple little PowerShell function to fix that. We&rsquo;ll call this function <code>Get-TableauWorkbookXml</code> and it will take a file path and return the workbook&rsquo;s XML. It will abstract away the different ahandling of TWB and TWBX files for us.</p>
-
 <blockquote>
 <p>If you find this helpful then check out <a href="/2013/tableaukit-a-powershell-module-for-tableau/">TableauKit</a>;
 a full on PowerShell module for working with Tableau files. It contains a new and improved
 version of the function below and much more.</p>
 </blockquote>
-
 <pre data-language="powershell">
 function Get-TableauWorkbookXml {
 &lt;#
@@ -1323,19 +1263,12 @@ function Get-TableauWorkbookXml {
     }
 }
 </pre>
-
 <p>Let&rsquo;s try it out from PowerShell.</p>
-
 <p><code>Get-TableauWorkbookXml .\MyWorkbook.twb</code></p>
-
 <p>TWBX files are just as easy.</p>
-
 <p><code>Get-TableauWorkbookXml .\MyPackagedWorkbook.twbx</code></p>
-
 <p>Cool, right? How about opening a bunch of workbooks at once? This is PowerShell after all.</p>
-
 <p><code>Get-ChildItem *.twb* | Get-TableauWorkbookXml</code></p>
-
 <p>Continue the adventure with <a href="/2013/tableau-via-powershell-part-2-saving-changes/">Part 2: Saving Changes</a>.</p>
 
 
@@ -1368,85 +1301,12 @@ function Get-TableauWorkbookXml {
 
     <p><strong>DO</strong> use <code>IF ERRORLEVEL 1 ECHO error level is 1 or more</code> to check for errors
 in your batch/command line scripts.</p>
-
 <p><strong>DO NOT</strong> use <code>IF %ERRORLEVEL% NEQ 0 ECHO error level is not equal to 0</code>.</p>
-
 <p>Most of the time <code>%ERRORLEVEL%</code> will be what you expect but it isn&rsquo;t guaranteed.
 <code>%ERRORLEVEL%</code> is simply an environment variable like any other. It just happens to fallback to returning the <code>ERRORLEVEL</code> value if an environment variable with that name isn&rsquo;t defined.</p>
-
 <p>This is how I lost about an hour of my morning. Fortunately Google guided me to <a href="http://blogs.msdn.com/b/oldnewthing/archive/2008/09/26/8965755.aspx">this excellent post</a> and saved
 my sanity.</p>
-
 <p>Remember <code>%ERRORLEVEL%</code> is not the same as <code>ERRORLEVEL</code>.</p>
-
-
-</article>
-
-<div class="fin symbol">&#10687;</div>
-
-</div>
-</div>
-	
-	<div class="row">
-<div class="twelve columns">
-
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="http://joshua.poehls.me/2013/first-steps-in-go-a-scoreboard-app/">First Steps in Go: A Scoreboard App</a>
-            
-        </h1>
-        <p>
-            <time datetime="2013-06-06 22:15:33 -0500 CDT" pubdate="pubdate">Thu, Jun 6, 2013</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/first-steps-in-go-a-scoreboard-app/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2013/first-steps-in-go-a-scoreboard-app/</span>
-            </a>
-        </p>
-    </header>
-
-    
-
-<p>Mostly I just read about new programming languages. Call it a hobby. Only once in awhile am I struck with enough interest to want to try something out on a real project. <a href="http://golang.org">Go</a> is the most recent of such interests. As someone who loves a lot about <a href="http://nodejs.org">Node.js</a>, I&rsquo;m looking forward to seeing how Go compares and whether it solves my Node and JavaScript pain points.</p>
-
-<p><strong>Scores</strong> is my first app in Go. It is a very simple scoreboard app for &ldquo;tracking personal records between friends&rdquo;. You define a record like &ldquo;max push-ups&rdquo; and you create a scoreboard for it. The scoreboard is specific to your group of friends or &ldquo;team&rdquo;.</p>
-
-<p>You <a href="http://scores.zduck.com/test/push-ups">try out a test scoreboard</a> or dive in and <a href="http://scores.zduck.com">create your own board</a>.</p>
-
-<p><img src="s1.png" alt="Screenshot of test scoreboard" /></p>
-
-<p>Anyone with the URL of your scoreboard can post scores. Only the top 10 scores are kept. Obviously it is wide open to trolls so you probably won&rsquo;t want to share your scoreboard URL publicly.</p>
-
-<p><img src="s2.png" alt="Screenshot of scores homepage" /></p>
-
-<p>I think this is a pretty fun and useful app and I&rsquo;d love to know what you think! Please take it for a run, invite your friends to compete with you for a high score.</p>
-
-<p><img src="s3.png" alt="Screenshot of empty scoreboard" /></p>
-
-<p>If it gains some interest then my plan is to keep this running and improve the code overtime as I learn more Go. Honestly, the improvement part will probably happen regardless. The primary goal of this project is to try out Go in a real app and I&rsquo;ve already got a laundry list of things to improve.</p>
-
-<p>I encourage you to <a href="http://github.com/jpoehls/scores">read the source</a> and comment. <strong>Please, do not take this as a great example of idiomatic Go code.</strong> This is a work in process from someone learning the language. Take it as such.</p>
-
-<h2 id="why-go">Why Go?</h2>
-
-<p>You may be curious about what attracted me to Go. It is a very simple language. In a way, it was designed to have a lack of features rather than an abundance. While many languages take the stance that giving the developer more ways to do something makes their job easier, Go says this is wrong. Less is more. More features introduce disparate coding styles and make it difficult to maintain consistency. You can look at 2 or 10 different projects in some languages and feel, largely, like you are reading 2 or 10 different languages simple due to style changes or which features of the language the APIs are designed around.</p>
-
-<p>In short, Go was designed to make developer&rsquo;s quality of life better. Clearer code, faster builds, great tooling.</p>
-
-<p>I&rsquo;m a sucker for simplicity and I&rsquo;m a big sucker for great tooling. Developer tooling is a passion of mine and Go has made this a top priority. Built-in <a href="http://blog.golang.org/profiling-go-programs">memory and CPU profiler</a>, <a href="http://golang.org/doc/articles/race_detector.html">deadlock and race detection</a>, <a href="http://golang.org/doc/articles/godoc_documenting_go_code.html">documentation generator</a> that supports <a href="http://golang.org/pkg/strings/#Split">executable example code</a>, built-in <a href="http://golang.org/pkg/testing/">testing and benchmarking</a>, a Go language <a href="http://golang.org/pkg/go/">parser and lexer in the standard library</a>; these things excite me.</p>
-
-<p>I&rsquo;m not going to elaborate more on Go because, honestly, I&rsquo;m a total noob. I&rsquo;ve been following the project for awhile but only started writing code recently and am just now working on an actual app. Thus, my opinions on the language and its benefits over the long-haul are very weak. Try it for yourself and make your own opinions.</p>
-
-<p>If this sounds interesting to you then I encourage you to watch a couple of videos to get a feel for the philosophy and tooling of Go.</p>
-
-<ul>
-<li><a href="https://vimeo.com/53221558">Go: a simple programming environment</a> - Andrew Gerrand, November 2012</li>
-<li><a href="http://www.infoq.com/presentations/Go-Google">Go at Google</a> - Rob Pike, October 2012</li>
-</ul>
-
-<p>So, what do you think of Go? Let me know! And don&rsquo;t forget to <a href="http://scores.zduck.com">create a scoreboard</a> and let me know what you think of that as well!</p>
 
 
 </article>
@@ -1477,7 +1337,7 @@ my sanity.</p>
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

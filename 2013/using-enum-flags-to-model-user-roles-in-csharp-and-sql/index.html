@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2013/using-enum-flags-to-model-user-roles-in-csharp-and-sql/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -74,13 +74,11 @@
         </p>
     </header>
 
-    <p>Using an enum flags property to hold users&rsquo; roles is just one trick
+    <p>Using an enum flags property to hold users' roles is just one trick
 I&rsquo;ve learned from <a href="https://twitter.com/SeiginoRaikou">@SeiginoRaikou</a>,
 one of my co-geniuses at <a href="https://www.interworks.com/">InterWorks</a>.</p>
-
 <p>Historically I have always modeled user roles with a <code>Role</code> table
 and a many-to-many relationship with my <code>User</code> table.</p>
-
 <pre>    +-------------------+
     | User              |
     |-------------------|
@@ -94,11 +92,9 @@ and a many-to-many relationship with my <code>User</code> table.</p>
     | RoleId   : int    +-------------+
     | RoleName : varchar|
     +-------------------+</pre>
-
 <p>Compared to a flags enum approach this is downright wasteful.
 With flags, there is only ever one column to work with and it is an integer.
 No second table. No joins or second query.</p>
-
 <pre>    +--------------------+
     | User               |
     |--------------------|
@@ -106,9 +102,7 @@ No second table. No joins or second query.</p>
     | UserName : varchar |
     | Roles    : int     |
     +--------------------+</pre>
-
 <p>Modeling this in C# is easy.</p>
-
 <pre data-language="csharp">
 [Flags] // Values must always be powers of two
 enum UserRole : int {
@@ -133,9 +127,7 @@ class User {
   }
 }
 </pre>
-
 <p>Flag enumerations are just as accessible in SQL.</p>
-
 <pre data-language="sql">
 -- Add users to the Admin role
 UPDATE [User] SET [Roles] = ([Roles] | 4)
@@ -146,13 +138,9 @@ UPDATE [User] SET [Roles] = ([Roles] - ([Roles] &amp; 4))
 -- Find all users in the Admin role
 SELECT * FROM [User] WHERE [Roles] &amp; 4 &lt;&gt; 0
 </pre>
-
 <p>Go forth and simplify, my friends.</p>
-
 <p><strong>Update for Go</strong></p>
-
 <p>Bonus! Here is how you might model this in <a href="http://www.golang.org">Go</a>.</p>
-
 <pre data-language="golang">
 type User struct {
     Roles    Roles
@@ -179,9 +167,7 @@ func (user *User) IsInRole(role Roles) bool {
   return (user.Roles &amp; role) != 0
 }
 </pre>
-
 <p>An even cleaner way would be to use <a href="http://golang.org/pkg/builtin/#iota"><code>iota</code></a> to have Go automatically assign the flag values in powers of two. You can see this method used by Go&rsquo;s own <a href="http://golang.org/pkg/text/tabwriter/#pkg-constants">text/tabwriter</a> package.</p>
-
 <pre data-language="golang">
 const (
   // Roles must be powers of two.
@@ -189,7 +175,8 @@ const (
   RoleManager
   RoleAdmin
 )
-</pre>
+</pre><blockquote>
+</blockquote>
 
 
 </article>
@@ -207,7 +194,7 @@ const (
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

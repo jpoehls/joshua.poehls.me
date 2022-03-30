@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2014/04/go-conventions-constructors-and-overloads/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -75,7 +75,6 @@
     </header>
 
     <p>Go doesn&rsquo;t have constructors in the traditional sense. The convention is to make the zero value useful whenever possible.</p>
-
 <pre><code>type Person struct {
      Age int
 }
@@ -89,13 +88,10 @@ p2 := Person{} // type Person
 // You could also use `new` to allocate which returns a pointer
 p3 := new(Person) // type *Person
 </code></pre>
-
 <blockquote>
 <p>It is most common to use the struct initializer. e.g. <code>p := Person{}</code> or <code>p := &amp;Person{}</code> if you need the pointer.</p>
 </blockquote>
-
 <p>Sometimes you want special initialization logic. If your type is named <code>Person</code> then the convention would be create a function named <code>NewPerson</code> that returns a pointer to an initialized <code>Person</code> type.</p>
-
 <pre><code>func NewPerson(int age) *Person {
      p := Person{age}
      return &amp;p
@@ -103,9 +99,7 @@ p3 := new(Person) // type *Person
 
 myPerson := NewPerson(10) // type *Person
 </code></pre>
-
 <p>Multiple constructors can be implemented by having multiple initializer functions. Go doesn&rsquo;t support function overloads so you will need to name your functions intelligently.</p>
-
 <pre><code>import &quot;time&quot;
 
 func NewPersonAge(int age) *Person {
@@ -118,9 +112,7 @@ func NewPersonBirthYear(int birthYear) *Person {
      return &amp;p
 }
 </code></pre>
-
 <p><a href="http://golang.org/doc/effective_go.html#composite_literals">Read more</a> in Effective Go.</p>
-
 <p><strong>Update:</strong> Thanks to Joe Shaw for the comments! I&rsquo;ve updated the article with his suggestions.</p>
 
 
@@ -139,7 +131,7 @@ func NewPersonBirthYear(int birthYear) *Person {
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

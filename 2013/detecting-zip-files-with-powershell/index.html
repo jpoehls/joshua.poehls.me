@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2013/detecting-zip-files-with-powershell/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -75,17 +75,12 @@
     </header>
 
     <p>Have you heard of <a href="http://en.wikipedia.org/wiki/Magic_number_(programming)#Magic_numbers_in_files">magic numbers</a>? Some file formats are designed such that files are always saved with a specific byte sequence in the header. JPEG, PDF, and ZIP are all such formats.</p>
-
 <p>You <em>could</em> look for ZIP files by searching for all files with a <code>.zip</code> extension but a better way would be to look for all files that have <code>50 4b 03 04</code> as the first 4 bytes of the file. <a href="http://stackoverflow.com/a/1887113/31308">All ZIP files will start with those bytes.</a> Not all ZIP files have the <code>.zip</code> extension.</p>
-
 <p>Here&rsquo;s a <code>Test-ZipFile</code> PowerShell cmdlet that will return true or false whether the specified file has this magic header. You may also note that this cmdlet is a good citizen by <a href="http://stackoverflow.com/a/8506768">accepting file path input in an idiomatic way</a>.</p>
-
 <blockquote>
 <p>This cmdlet is also a great example of accepting <code>-Path</code> and <code>-LiteralPath</code> arguments in an idiomatic way. Including wildcard support for <code>-Path</code>.</p>
 </blockquote>
-
-<p><a href="https://github.com/jpoehls/Poshato/blob/master/Test-ZipFile.ps1">View on GitHub &#8594;</a></p>
-
+<p><a href="https://github.com/jpoehls/Poshato/blob/master/Test-ZipFile.ps1">View on GitHub →</a></p>
 <pre><code>function Test-ZipFile
 {
 &lt;#
@@ -95,8 +90,8 @@
 .DESCRIPTION
     Inspired by http://stackoverflow.com/a/1887113/31308
 #&gt;
-    [CmdletBinding()]
-    param(
+	[CmdletBinding()]
+	param(
         [Parameter(
             ParameterSetName  = &quot;Path&quot;,
             Mandatory = $true,
@@ -113,7 +108,7 @@
             ValueFromPipelineByPropertyName = $true
         )]
         [string[]]$LiteralPath
-    )
+	)
 
     process {
         $provider = $null
@@ -155,7 +150,6 @@
     }
 }
 </code></pre>
-
 <p><em><code>Test-ZipFile</code> is part of <a href="http://github.com/jpoehls/poshato">Poshato</a>, my personal PowerShell module of miscellaneous goodness.</em></p>
 
 
@@ -174,7 +168,7 @@
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

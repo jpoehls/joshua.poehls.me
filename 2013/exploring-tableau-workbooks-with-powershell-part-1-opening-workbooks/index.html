@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -74,24 +74,16 @@
         </p>
     </header>
 
-    
-
-<p>In this mini-series I&rsquo;m going to show you some cookbook style examples for using PowerShell to explore your Tableau workbooks. Follow along, this is going to be fun!</p>
-
+    <p>In this mini-series I&rsquo;m going to show you some cookbook style examples for using PowerShell to explore your Tableau workbooks. Follow along, this is going to be fun!</p>
 <p>Tableau workbooks (TWB files) are just XML files. Packaged workbooks (TWBX files) are just ZIP files that contain a TWB and various assets, like data extracts for example.</p>
-
 <p>This is wonderful because it means it is very easy to go spelunking through workbook files without a <strong>gui</strong>de.</p>
-
 <h2 id="opening-workbooks">Opening Workbooks</h2>
-
 <p>I mentioned that TWB files are just XML files and that TWBX files are ZIP files that contain a TWB. This means we need different logic for opening a TWB vs a TWBX. Let&rsquo;s write a simple little PowerShell function to fix that. We&rsquo;ll call this function <code>Get-TableauWorkbookXml</code> and it will take a file path and return the workbook&rsquo;s XML. It will abstract away the different ahandling of TWB and TWBX files for us.</p>
-
 <blockquote>
 <p>If you find this helpful then check out <a href="/2013/tableaukit-a-powershell-module-for-tableau/">TableauKit</a>;
 a full on PowerShell module for working with Tableau files. It contains a new and improved
 version of the function below and much more.</p>
 </blockquote>
-
 <pre data-language="powershell">
 function Get-TableauWorkbookXml {
 &lt;#
@@ -159,19 +151,12 @@ function Get-TableauWorkbookXml {
     }
 }
 </pre>
-
 <p>Let&rsquo;s try it out from PowerShell.</p>
-
 <p><code>Get-TableauWorkbookXml .\MyWorkbook.twb</code></p>
-
 <p>TWBX files are just as easy.</p>
-
 <p><code>Get-TableauWorkbookXml .\MyPackagedWorkbook.twbx</code></p>
-
 <p>Cool, right? How about opening a bunch of workbooks at once? This is PowerShell after all.</p>
-
 <p><code>Get-ChildItem *.twb* | Get-TableauWorkbookXml</code></p>
-
 <p>Continue the adventure with <a href="/2013/tableau-via-powershell-part-2-saving-changes/">Part 2: Saving Changes</a>.</p>
 
 
@@ -190,7 +175,7 @@ function Get-TableauWorkbookXml {
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

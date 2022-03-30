@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2013/non-enumerable-properties-in-javascript/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -74,17 +74,12 @@
         </p>
     </header>
 
-    
-
-<p>It isn&rsquo;t very common in the wild but JavaScript (as of ES5) does support non-enumerable properties.
+    <p>It isn&rsquo;t very common in the wild but JavaScript (as of ES5) does support non-enumerable properties.
 That is to say, objects can have properties that don&rsquo;t show up when you do a <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Statements/for...in"><code>for...in</code></a> loop over the object or use <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/keys"><code>Object.keys()</code></a> to get an array of property names.</p>
-
 <p>I spent way too long tonight figuring out why a property was not being
 included in the <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/JSON/stringify"><code>JSON.stringify()</code></a> output because I didn&rsquo;t remember that this was possible. You see, <code>stringify()</code> works by enumerating the object&rsquo;s properties.
 So it makes sense that non-enumerable properties would be ignored.</p>
-
 <p>Let me explain.</p>
-
 <pre data-language="javascript">
 var person = { age: 18 };
 person.name = 'Joshua';
@@ -92,11 +87,8 @@ person['color'] = 'Red';
 
 Object.keys(person); // ['age', 'name', 'color']
 </pre>
-
 <p>That is how you typically create and assign properties. We know that they are enumerable because they show up when you call <code>Object.keys(person)</code>.</p>
-
 <p>To create a non-enumerable property we have to use <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty"><code>Object.defineProperty()</code></a>. A special method for creating properties on an object.</p>
-
 <pre data-language="javascript">
 var person = { age: 18 };
 Object.defineProperty(person, 'name', { value: 'Joshua', enumerable: false });
@@ -104,13 +96,9 @@ Object.defineProperty(person, 'name', { value: 'Joshua', enumerable: false });
 person.name; // 'Joshua'
 Object.keys(person); // ['age']
 </pre>
-
 <p>See there? Our <code>name</code> property didn&rsquo;t show up because it wasn&rsquo;t enumerable. Consequently, doing <code>JSON.stringify(person)</code> would not include the <code>name</code> property either.</p>
-
 <p>Hopefully this will help you the next time a property is missing from your stringified object and you can&rsquo;t figure out why. Good luck!</p>
-
 <h3 id="bonus">Bonus!</h3>
-
 <p><code>Object.defineProperty()</code> is also how you create <strong>read-only</strong> properties. Didn&rsquo;t know you could do that in JavaScript? Time to <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty">study up</a>!</p>
 
 
@@ -129,7 +117,7 @@ Object.keys(person); // ['age']
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

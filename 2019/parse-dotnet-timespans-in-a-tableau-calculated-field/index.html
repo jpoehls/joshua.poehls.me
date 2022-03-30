@@ -6,7 +6,7 @@
 
 <link rel="canonical" href="http://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.59.0" />
+<meta name="generator" content="Hugo 0.84.1" />
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -75,9 +75,7 @@
     </header>
 
     <p>Here&rsquo;s a formula you can use to create a calculated field in <a href="https://tableau.com">Tableau</a> for converting strings in the format of .NET <code>TimeSpan</code> values to a total number of seconds.</p>
-
 <p>Given a string <code>79.23:08:01.3976607</code> (79 days, 23 hours, 8 minutes, 1.3976607 seconds), it would return the total number of seconds.</p>
-
 <pre><code>IF ISNULL([TimeSpan]) THEN
    NULL
 ELSE
@@ -87,7 +85,6 @@ ELSE
    + FLOAT(REGEXP_EXTRACT_NTH([TimeSpan], &quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&quot;, 5))
 END
 </code></pre>
-
 
 </article>
 
@@ -104,7 +101,7 @@ END
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2019&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>
