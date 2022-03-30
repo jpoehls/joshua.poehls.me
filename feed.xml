@@ -29,7 +29,7 @@
 &lt;h1 id=&#34;reminders-app&#34;&gt;Reminders App&lt;/h1&gt;
 &lt;p&gt;I&amp;rsquo;ve been using the iOS &lt;em&gt;Reminders&lt;/em&gt; app as my primary Bible reading list (or &lt;em&gt;plan&lt;/em&gt;) for at least a couple years. It works great!&lt;/p&gt;
 &lt;figure &gt;
-&lt;p&gt;&lt;img src=&#34;reminders.png&#34; alt=&#34;My Bible Reading list in the iOS Reminders app&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/reminders.png&#34; alt=&#34;My Bible Reading list in the iOS Reminders app&#34; /&gt;&lt;/p&gt;
 &lt;figcaption&gt;
 &lt;p&gt;
 My Bible Reading list in the iOS Reminders app
@@ -62,7 +62,7 @@ My Bible Reading list in the iOS Reminders app
 &lt;h2 id=&#34;entering-data&#34;&gt;Entering Data&lt;/h2&gt;
 &lt;p&gt;The &lt;em&gt;Log&lt;/em&gt; sheet is simple data entry. When I read a book, I add a line. If I only read a few chapters, I add a line and make note of the chapter I stopped at. This is my &amp;ldquo;bookmark&amp;rdquo;.&lt;/p&gt;
 &lt;figure &gt;
-&lt;p&gt;&lt;img src=&#34;log.png&#34; alt=&#34;My reading log spreadsheet&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/log.png&#34; alt=&#34;My reading log spreadsheet&#34; /&gt;&lt;/p&gt;
 &lt;figcaption&gt;
 &lt;p&gt;
 My reading log spreadsheet
@@ -77,7 +77,7 @@ My reading log spreadsheet
 &lt;li&gt;The date I last finished the book. This has the same &lt;span style=&#34;background-color: #76e15f;&#34;&gt;green&lt;/span&gt; or &lt;span style=&#34;color: #dd4040;&#34;&gt;red&lt;/span&gt; highlight. There&amp;rsquo;s no highlight if I finished it last year - that&amp;rsquo;d be too much visual noise.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure &gt;
-&lt;p&gt;&lt;img src=&#34;books.png&#34; alt=&#34;My book summary spreadsheet&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/books.png&#34; alt=&#34;My book summary spreadsheet&#34; /&gt;&lt;/p&gt;
 &lt;figcaption&gt;
 &lt;p&gt;
 My book summary spreadsheet
@@ -92,7 +92,7 @@ My book summary spreadsheet
 &lt;h2 id=&#34;per-year-summary&#34;&gt;Per Year Summary&lt;/h2&gt;
 &lt;p&gt;Finally, the &lt;em&gt;Years&lt;/em&gt; sheet is a read-only dashboard of my overall Bible reading progress rolled up by year.&lt;/p&gt;
 &lt;figure &gt;
-&lt;p&gt;&lt;img src=&#34;years.png&#34; alt=&#34;My year summary spreadsheet&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/years.png&#34; alt=&#34;My year summary spreadsheet&#34; /&gt;&lt;/p&gt;
 &lt;figcaption&gt;
 &lt;p&gt;
 My year summary spreadsheet
