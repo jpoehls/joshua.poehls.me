@@ -26,3 +26,6 @@ disableKinds = ["404", "taxonomyTerm"]
 [taxonomies]
 	tag = "tags"
 	series = "series"
+
+[markup.goldmark.renderer]
+	unsafe = true
