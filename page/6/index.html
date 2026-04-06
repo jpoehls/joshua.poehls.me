@@ -178,7 +178,7 @@ sys    0m0.100s
 	</header>
 	<div class="post-summary"><p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">MKLINK</a> is a very useful utility on Windows. Unfortunately there aren&rsquo;t any native PowerShell functions that replace it so we still have to shell out to the command prompt.</p>
 <p>This can be made less painful with a helper function that will pipe all arguments to the MKLINK command.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> mklink { cmd /c mklink $args }
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#cf222e">function</span><span style="color:#fff"> </span><span style="color:#6639ba">mklink</span> <span style="color:#1f2328">{</span> cmd <span style="color:#1f2328">/</span>c mklink <span style="color:#953800">$args</span> <span style="color:#1f2328">}</span>
 </span></span></code></pre></div><p>Personally though, I prefer to use native PowerShell functions whenever possible so I put together a module that provides wrappers for the key functionality of MKLINK.</p>
 	</div>
 	

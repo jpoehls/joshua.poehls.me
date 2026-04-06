@@ -84,11 +84,10 @@
 	</header>
 	<div class="post-summary"><p>Sometimes you want a <code>.cmd</code> wrapper for your PowerShell script. Usually for me this is so people who aren&rsquo;t familiar with the command line can double-click to execute the script.</p>
 <p>This batch file should be saved alongside your PowerShell script, like so.</p>
-<pre><code>.\
- |- my_script.ps1
- |- my_script.cmd
-</code></pre>
-<p><code>my_script.cmd</code> will execute the same named <code>.ps1</code> file in the same directory, so <code>my_script.ps1</code> in this case. Any arguments passed to <code>my_script.cmd</code> will pass-through to the PowerShell script.</p>
+<pre tabindex="0"><code>.\
+  |- my_script.ps1
+  |- my_script.cmd
+</code></pre><p><code>my_script.cmd</code> will execute the same named <code>.ps1</code> file in the same directory, so <code>my_script.ps1</code> in this case. Any arguments passed to <code>my_script.cmd</code> will pass-through to the PowerShell script.</p>
 	</div>
 	
 	<p class="post-read-more">

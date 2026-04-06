@@ -60,7 +60,7 @@
 
 	<p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">MKLINK</a> is a very useful utility on Windows. Unfortunately there aren&rsquo;t any native PowerShell functions that replace it so we still have to shell out to the command prompt.</p>
 <p>This can be made less painful with a helper function that will pipe all arguments to the MKLINK command.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> mklink { cmd /c mklink $args }
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#cf222e">function</span><span style="color:#fff"> </span><span style="color:#6639ba">mklink</span> <span style="color:#1f2328">{</span> cmd <span style="color:#1f2328">/</span>c mklink <span style="color:#953800">$args</span> <span style="color:#1f2328">}</span>
 </span></span></code></pre></div><p>Personally though, I prefer to use native PowerShell functions whenever possible so I put together a module that provides wrappers for the key functionality of MKLINK.</p>
 <p>Usage looks like this:</p>
 <pre>
@@ -70,173 +70,173 @@
 <b>mklink</b> &lt;args&gt; <i># raw pipe to mklink</i>
 </pre>
 <p>Import this module in your profile and you&rsquo;ll have it whenever you need it.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Microsoft.PowerShell_profile.ps1</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#57606a"># Microsoft.PowerShell_profile.ps1</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Import-Module mklink.psm1
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># mklink.psm1</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Exports: New-Symlink, New-Hardlink, New-Junction, mklink</span>
+</span></span><span style="display:flex;"><span><span style="color:#6639ba">Import-Module</span> mklink<span style="color:#1f2328">.</span>psm1
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#57606a"># mklink.psm1</span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a"># Exports: New-Symlink, New-Hardlink, New-Junction, mklink</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> Force-Resolve-Path {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;#
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    .</span><span style="color:#e6db74">SYNOPSIS</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        Calls Resolve-Path but works for files that don&#39;t exist.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    .REMARKS
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        From http://devhawk.net/2010/01/21/fixing-powershells-busted-resolve-path-cmdlet/
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    #&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">param</span> (
-</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">string</span>] $FileName
-</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span><span style="color:#cf222e">function</span><span style="color:#fff"> </span><span style="color:#6639ba">Force-Resolve-Path</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57606a">&lt;#
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">    .</span><span style="color:#0a3069">SYNOPSIS</span><span style="color:#57606a">
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">        Calls Resolve-Path but works for files that don&#39;t exist.
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">    .REMARKS
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">        From http://devhawk.net/2010/01/21/fixing-powershells-busted-resolve-path-cmdlet/
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">    #&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cf222e">param</span> <span style="color:#1f2328">(</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#0550ae">string</span><span style="color:#1f2328">]</span> <span style="color:#953800">$FileName</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">)</span>
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    $FileName = Resolve-Path $FileName -ErrorAction SilentlyContinue `
+</span></span><span style="display:flex;"><span>    <span style="color:#953800">$FileName</span> <span style="color:#1f2328">=</span> <span style="color:#6639ba">Resolve-Path</span> <span style="color:#953800">$FileName</span> -ErrorAction SilentlyContinue <span style="color:#1f2328">`</span>
 </span></span><span style="display:flex;"><span>                                       -ErrorVariable _frperror
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span>($FileName)) {
-</span></span><span style="display:flex;"><span>        $FileName = $_frperror[<span style="color:#ae81ff">0</span>].TargetObject
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cf222e">if</span> <span style="color:#1f2328">(</span><span style="color:#0550ae">-not</span><span style="color:#1f2328">(</span><span style="color:#953800">$FileName</span><span style="color:#1f2328">))</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#953800">$FileName</span> <span style="color:#1f2328">=</span> <span style="color:#953800">$_frperror</span><span style="color:#1f2328">[</span><span style="color:#0550ae">0</span><span style="color:#1f2328">].</span>TargetObject
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $FileName
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#cf222e">return</span> <span style="color:#953800">$FileName</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> New-Symlink {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;#
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    .</span><span style="color:#e6db74">SYNOPSIS</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        Creates a symbolic link.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    #&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">param</span> (
-</span></span><span style="display:flex;"><span>        [Parameter(<span style="color:#a6e22e">Position</span>=<span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">Mandatory</span>=$true)]
-</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">string</span>] $Link,
-</span></span><span style="display:flex;"><span>        [Parameter(<span style="color:#a6e22e">Position</span>=<span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">Mandatory</span>=$true)]
-</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">string</span>] $Target,
-</span></span><span style="display:flex;"><span>        [Parameter(<span style="color:#a6e22e">Position</span>=<span style="color:#ae81ff">2</span>)]
-</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">switch</span>] $Force
-</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span><span style="color:#cf222e">function</span><span style="color:#fff"> </span><span style="color:#6639ba">New-Symlink</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57606a">&lt;#
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">    .</span><span style="color:#0a3069">SYNOPSIS</span><span style="color:#57606a">
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">        Creates a symbolic link.
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">    #&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cf222e">param</span> <span style="color:#1f2328">(</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#6639ba">Parameter</span><span style="color:#1f2328">(</span><span style="color:#1f2328">Position</span><span style="color:#1f2328">=</span><span style="color:#0550ae">0</span><span style="color:#1f2328">,</span> <span style="color:#1f2328">Mandatory</span><span style="color:#1f2328">=</span><span style="color:#953800">$true</span><span style="color:#1f2328">)]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#0550ae">string</span><span style="color:#1f2328">]</span> <span style="color:#953800">$Link</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#6639ba">Parameter</span><span style="color:#1f2328">(</span><span style="color:#1f2328">Position</span><span style="color:#1f2328">=</span><span style="color:#0550ae">1</span><span style="color:#1f2328">,</span> <span style="color:#1f2328">Mandatory</span><span style="color:#1f2328">=</span><span style="color:#953800">$true</span><span style="color:#1f2328">)]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#0550ae">string</span><span style="color:#1f2328">]</span> <span style="color:#953800">$Target</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#6639ba">Parameter</span><span style="color:#1f2328">(</span><span style="color:#1f2328">Position</span><span style="color:#1f2328">=</span><span style="color:#0550ae">2</span><span style="color:#1f2328">)]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#0550ae">switch</span><span style="color:#1f2328">]</span> <span style="color:#953800">$Force</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    Invoke-MKLINK -Link $Link -Target $Target -Symlink -Force $Force
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#6639ba">Invoke-MKLINK</span> -Link <span style="color:#953800">$Link</span> -Target <span style="color:#953800">$Target</span> -Symlink -Force <span style="color:#953800">$Force</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> New-Hardlink {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;#
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    .</span><span style="color:#e6db74">SYNOPSIS</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        Creates a hard link.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    #&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">param</span> (
-</span></span><span style="display:flex;"><span>        [Parameter(<span style="color:#a6e22e">Position</span>=<span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">Mandatory</span>=$true)]
-</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">string</span>] $Link,
-</span></span><span style="display:flex;"><span>        [Parameter(<span style="color:#a6e22e">Position</span>=<span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">Mandatory</span>=$true)]
-</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">string</span>] $Target,
-</span></span><span style="display:flex;"><span>        [Parameter(<span style="color:#a6e22e">Position</span>=<span style="color:#ae81ff">2</span>)]
-</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">switch</span>] $Force
-</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span><span style="color:#cf222e">function</span><span style="color:#fff"> </span><span style="color:#6639ba">New-Hardlink</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57606a">&lt;#
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">    .</span><span style="color:#0a3069">SYNOPSIS</span><span style="color:#57606a">
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">        Creates a hard link.
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">    #&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cf222e">param</span> <span style="color:#1f2328">(</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#6639ba">Parameter</span><span style="color:#1f2328">(</span><span style="color:#1f2328">Position</span><span style="color:#1f2328">=</span><span style="color:#0550ae">0</span><span style="color:#1f2328">,</span> <span style="color:#1f2328">Mandatory</span><span style="color:#1f2328">=</span><span style="color:#953800">$true</span><span style="color:#1f2328">)]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#0550ae">string</span><span style="color:#1f2328">]</span> <span style="color:#953800">$Link</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#6639ba">Parameter</span><span style="color:#1f2328">(</span><span style="color:#1f2328">Position</span><span style="color:#1f2328">=</span><span style="color:#0550ae">1</span><span style="color:#1f2328">,</span> <span style="color:#1f2328">Mandatory</span><span style="color:#1f2328">=</span><span style="color:#953800">$true</span><span style="color:#1f2328">)]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#0550ae">string</span><span style="color:#1f2328">]</span> <span style="color:#953800">$Target</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#6639ba">Parameter</span><span style="color:#1f2328">(</span><span style="color:#1f2328">Position</span><span style="color:#1f2328">=</span><span style="color:#0550ae">2</span><span style="color:#1f2328">)]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#0550ae">switch</span><span style="color:#1f2328">]</span> <span style="color:#953800">$Force</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    Invoke-MKLINK -Link $Link -Target $Target -HardLink -Force $Force
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#6639ba">Invoke-MKLINK</span> -Link <span style="color:#953800">$Link</span> -Target <span style="color:#953800">$Target</span> -HardLink -Force <span style="color:#953800">$Force</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> New-Junction {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;#
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    .</span><span style="color:#e6db74">SYNOPSIS</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        Creates a directory junction.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    #&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">param</span> (
-</span></span><span style="display:flex;"><span>        [Parameter(<span style="color:#a6e22e">Position</span>=<span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">Mandatory</span>=$true)]
-</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">string</span>] $Link,
-</span></span><span style="display:flex;"><span>        [Parameter(<span style="color:#a6e22e">Position</span>=<span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">Mandatory</span>=$true)]
-</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">string</span>] $Target,
-</span></span><span style="display:flex;"><span>        [Parameter(<span style="color:#a6e22e">Position</span>=<span style="color:#ae81ff">2</span>)]
-</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">switch</span>] $Force
-</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span><span style="color:#cf222e">function</span><span style="color:#fff"> </span><span style="color:#6639ba">New-Junction</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57606a">&lt;#
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">    .</span><span style="color:#0a3069">SYNOPSIS</span><span style="color:#57606a">
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">        Creates a directory junction.
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">    #&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cf222e">param</span> <span style="color:#1f2328">(</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#6639ba">Parameter</span><span style="color:#1f2328">(</span><span style="color:#1f2328">Position</span><span style="color:#1f2328">=</span><span style="color:#0550ae">0</span><span style="color:#1f2328">,</span> <span style="color:#1f2328">Mandatory</span><span style="color:#1f2328">=</span><span style="color:#953800">$true</span><span style="color:#1f2328">)]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#0550ae">string</span><span style="color:#1f2328">]</span> <span style="color:#953800">$Link</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#6639ba">Parameter</span><span style="color:#1f2328">(</span><span style="color:#1f2328">Position</span><span style="color:#1f2328">=</span><span style="color:#0550ae">1</span><span style="color:#1f2328">,</span> <span style="color:#1f2328">Mandatory</span><span style="color:#1f2328">=</span><span style="color:#953800">$true</span><span style="color:#1f2328">)]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#0550ae">string</span><span style="color:#1f2328">]</span> <span style="color:#953800">$Target</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#6639ba">Parameter</span><span style="color:#1f2328">(</span><span style="color:#1f2328">Position</span><span style="color:#1f2328">=</span><span style="color:#0550ae">2</span><span style="color:#1f2328">)]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#0550ae">switch</span><span style="color:#1f2328">]</span> <span style="color:#953800">$Force</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    Invoke-MKLINK -Link $Link -Target $Target -Junction -Force $Force
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#6639ba">Invoke-MKLINK</span> -Link <span style="color:#953800">$Link</span> -Target <span style="color:#953800">$Target</span> -Junction -Force <span style="color:#953800">$Force</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> Invoke-MKLINK {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;#
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    .</span><span style="color:#e6db74">SYNOPSIS</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        Creates a symbolic link, hard link, or directory junction.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    #&gt;</span>
-</span></span><span style="display:flex;"><span>    [CmdletBinding(<span style="color:#a6e22e">DefaultParameterSetName</span> = <span style="color:#e6db74">&#34;Symlink&#34;</span>)]
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">param</span> (
-</span></span><span style="display:flex;"><span>        [Parameter(<span style="color:#a6e22e">Position</span>=<span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">Mandatory</span>=$true)]
-</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">string</span>] $Link,
-</span></span><span style="display:flex;"><span>        [Parameter(<span style="color:#a6e22e">Position</span>=<span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">Mandatory</span>=$true)]
-</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">string</span>] $Target,
+</span></span><span style="display:flex;"><span><span style="color:#cf222e">function</span><span style="color:#fff"> </span><span style="color:#6639ba">Invoke-MKLINK</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57606a">&lt;#
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">    .</span><span style="color:#0a3069">SYNOPSIS</span><span style="color:#57606a">
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">        Creates a symbolic link, hard link, or directory junction.
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">    #&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">[</span><span style="color:#6639ba">CmdletBinding</span><span style="color:#1f2328">(</span><span style="color:#1f2328">DefaultParameterSetName</span> <span style="color:#1f2328">=</span> <span style="color:#0a3069">&#34;Symlink&#34;</span><span style="color:#1f2328">)]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cf222e">param</span> <span style="color:#1f2328">(</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#6639ba">Parameter</span><span style="color:#1f2328">(</span><span style="color:#1f2328">Position</span><span style="color:#1f2328">=</span><span style="color:#0550ae">0</span><span style="color:#1f2328">,</span> <span style="color:#1f2328">Mandatory</span><span style="color:#1f2328">=</span><span style="color:#953800">$true</span><span style="color:#1f2328">)]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#0550ae">string</span><span style="color:#1f2328">]</span> <span style="color:#953800">$Link</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#6639ba">Parameter</span><span style="color:#1f2328">(</span><span style="color:#1f2328">Position</span><span style="color:#1f2328">=</span><span style="color:#0550ae">1</span><span style="color:#1f2328">,</span> <span style="color:#1f2328">Mandatory</span><span style="color:#1f2328">=</span><span style="color:#953800">$true</span><span style="color:#1f2328">)]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#0550ae">string</span><span style="color:#1f2328">]</span> <span style="color:#953800">$Target</span><span style="color:#1f2328">,</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        [Parameter(<span style="color:#a6e22e">ParameterSetName</span> = <span style="color:#e6db74">&#34;Symlink&#34;</span>)]
-</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">switch</span>] $Symlink = $true,
-</span></span><span style="display:flex;"><span>        [Parameter(<span style="color:#a6e22e">ParameterSetName</span> = <span style="color:#e6db74">&#34;HardLink&#34;</span>)]
-</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">switch</span>] $HardLink,
-</span></span><span style="display:flex;"><span>        [Parameter(<span style="color:#a6e22e">ParameterSetName</span> = <span style="color:#e6db74">&#34;Junction&#34;</span>)]
-</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">switch</span>] $Junction,
-</span></span><span style="display:flex;"><span>        [Parameter()]
-</span></span><span style="display:flex;"><span>        [<span style="color:#66d9ef">bool</span>] $Force
-</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#6639ba">Parameter</span><span style="color:#1f2328">(</span><span style="color:#1f2328">ParameterSetName</span> <span style="color:#1f2328">=</span> <span style="color:#0a3069">&#34;Symlink&#34;</span><span style="color:#1f2328">)]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#0550ae">switch</span><span style="color:#1f2328">]</span> <span style="color:#953800">$Symlink</span> <span style="color:#1f2328">=</span> <span style="color:#953800">$true</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#6639ba">Parameter</span><span style="color:#1f2328">(</span><span style="color:#1f2328">ParameterSetName</span> <span style="color:#1f2328">=</span> <span style="color:#0a3069">&#34;HardLink&#34;</span><span style="color:#1f2328">)]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#0550ae">switch</span><span style="color:#1f2328">]</span> <span style="color:#953800">$HardLink</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#6639ba">Parameter</span><span style="color:#1f2328">(</span><span style="color:#1f2328">ParameterSetName</span> <span style="color:#1f2328">=</span> <span style="color:#0a3069">&#34;Junction&#34;</span><span style="color:#1f2328">)]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#0550ae">switch</span><span style="color:#1f2328">]</span> <span style="color:#953800">$Junction</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#6639ba">Parameter</span><span style="color:#1f2328">()]</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">[</span><span style="color:#0550ae">bool</span><span style="color:#1f2328">]</span> <span style="color:#953800">$Force</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">)</span>
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Resolve the paths incase a relative path was passed in.</span>
-</span></span><span style="display:flex;"><span>    $Link = (Force-Resolve-Path $Link)
-</span></span><span style="display:flex;"><span>    $Target = (Force-Resolve-Path $Target)
+</span></span><span style="display:flex;"><span>    <span style="color:#57606a"># Resolve the paths incase a relative path was passed in.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#953800">$Link</span> <span style="color:#1f2328">=</span> <span style="color:#1f2328">(</span><span style="color:#6639ba">Force-Resolve</span>-Path <span style="color:#953800">$Link</span><span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#953800">$Target</span> <span style="color:#1f2328">=</span> <span style="color:#1f2328">(</span><span style="color:#6639ba">Force-Resolve</span>-Path <span style="color:#953800">$Target</span><span style="color:#1f2328">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Ensure target exists.</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span>(Test-Path $Target)) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;Target does not exist.</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">Target: </span>$Target<span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#57606a"># Ensure target exists.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cf222e">if</span> <span style="color:#1f2328">(</span><span style="color:#0550ae">-not</span><span style="color:#1f2328">(</span><span style="color:#6639ba">Test-Path</span> <span style="color:#953800">$Target</span><span style="color:#1f2328">))</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cf222e">throw</span> <span style="color:#0a3069">&#34;Target does not exist.</span><span style="color:#0a3069">`n</span><span style="color:#0a3069">Target: </span><span style="color:#953800">$Target</span><span style="color:#0a3069">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Ensure link does not exist.</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (Test-Path $Link) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($Force) {
-</span></span><span style="display:flex;"><span>            Remove-Item $Link -Recurse -Force
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;A file or directory already exists at the link path.</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">Link: </span>$Link<span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#57606a"># Ensure link does not exist.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cf222e">if</span> <span style="color:#1f2328">(</span><span style="color:#6639ba">Test-Path</span> <span style="color:#953800">$Link</span><span style="color:#1f2328">)</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cf222e">if</span> <span style="color:#1f2328">(</span><span style="color:#953800">$Force</span><span style="color:#1f2328">)</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#6639ba">Remove-Item</span> <span style="color:#953800">$Link</span> -Recurse -Force
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cf222e">else</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#cf222e">throw</span> <span style="color:#0a3069">&#34;A file or directory already exists at the link path.</span><span style="color:#0a3069">`n</span><span style="color:#0a3069">Link: </span><span style="color:#953800">$Link</span><span style="color:#0a3069">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    $isDirectory = (Get-Item $Target).PSIsContainer
-</span></span><span style="display:flex;"><span>    $mklinkArg = <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#953800">$isDirectory</span> <span style="color:#1f2328">=</span> <span style="color:#1f2328">(</span><span style="color:#6639ba">Get-Item</span> <span style="color:#953800">$Target</span><span style="color:#1f2328">).</span>PSIsContainer
+</span></span><span style="display:flex;"><span>    <span style="color:#953800">$mklinkArg</span> <span style="color:#1f2328">=</span> <span style="color:#0a3069">&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($Symlink <span style="color:#f92672">-and</span> $isDirectory) {
-</span></span><span style="display:flex;"><span>        $mkLinkArg = <span style="color:#e6db74">&#34;/D&#34;</span>
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#cf222e">if</span> <span style="color:#1f2328">(</span><span style="color:#953800">$Symlink</span> <span style="color:#0550ae">-and</span> <span style="color:#953800">$isDirectory</span><span style="color:#1f2328">)</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#953800">$mkLinkArg</span> <span style="color:#1f2328">=</span> <span style="color:#0a3069">&#34;/D&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($Junction) {
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Ensure we are linking a directory. (Junctions don&#39;t work for files.)</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span>($isDirectory)) {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;The target is a file. Junctions cannot be created for files.</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">Target: </span>$Target<span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    <span style="color:#cf222e">if</span> <span style="color:#1f2328">(</span><span style="color:#953800">$Junction</span><span style="color:#1f2328">)</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#57606a"># Ensure we are linking a directory. (Junctions don&#39;t work for files.)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cf222e">if</span> <span style="color:#1f2328">(</span><span style="color:#0550ae">-not</span><span style="color:#1f2328">(</span><span style="color:#953800">$isDirectory</span><span style="color:#1f2328">))</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#cf222e">throw</span> <span style="color:#0a3069">&#34;The target is a file. Junctions cannot be created for files.</span><span style="color:#0a3069">`n</span><span style="color:#0a3069">Target: </span><span style="color:#953800">$Target</span><span style="color:#0a3069">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        $mklinkArg = <span style="color:#e6db74">&#34;/J&#34;</span>
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>        <span style="color:#953800">$mklinkArg</span> <span style="color:#1f2328">=</span> <span style="color:#0a3069">&#34;/J&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($HardLink) {
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Ensure we are linking a file. (Hard links don&#39;t work for directories.)</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($isDirectory) {
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;The target is a directory. Hard links cannot be created for directories.</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">Target: </span>$Target<span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    <span style="color:#cf222e">if</span> <span style="color:#1f2328">(</span><span style="color:#953800">$HardLink</span><span style="color:#1f2328">)</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#57606a"># Ensure we are linking a file. (Hard links don&#39;t work for directories.)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cf222e">if</span> <span style="color:#1f2328">(</span><span style="color:#953800">$isDirectory</span><span style="color:#1f2328">)</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#cf222e">throw</span> <span style="color:#0a3069">&#34;The target is a directory. Hard links cannot be created for directories.</span><span style="color:#0a3069">`n</span><span style="color:#0a3069">Target: </span><span style="color:#953800">$Target</span><span style="color:#0a3069">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#1f2328">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        $mkLinkArg = <span style="color:#e6db74">&#34;/H&#34;</span>
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>        <span style="color:#953800">$mkLinkArg</span> <span style="color:#1f2328">=</span> <span style="color:#0a3069">&#34;/H&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Capture the MKLINK output so we can return it properly.</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Includes a redirect of STDERR to STDOUT so we can capture it as well.</span>
-</span></span><span style="display:flex;"><span>    $output = cmd /c mklink $mkLinkArg `&#34;$Link`&#34; `&#34;$Target`&#34; <span style="color:#ae81ff">2</span>&gt;&amp;<span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57606a"># Capture the MKLINK output so we can return it properly.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57606a"># Includes a redirect of STDERR to STDOUT so we can capture it as well.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#953800">$output</span> <span style="color:#1f2328">=</span> cmd <span style="color:#1f2328">/</span>c mklink <span style="color:#953800">$mkLinkArg</span> <span style="color:#1f2328">`&#34;</span><span style="color:#953800">$Link</span><span style="color:#1f2328">`&#34;</span> <span style="color:#1f2328">`&#34;</span><span style="color:#953800">$Target</span><span style="color:#1f2328">`&#34;</span> <span style="color:#0550ae">2</span><span style="color:#1f2328">&gt;&amp;</span><span style="color:#0550ae">1</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($lastExitCode <span style="color:#f92672">-ne</span> <span style="color:#ae81ff">0</span>) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;MKLINK failed. Exit code: </span>$lastExitCode<span style="color:#ae81ff">`n</span>$output<span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>        Write-Output $output
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#cf222e">if</span> <span style="color:#1f2328">(</span><span style="color:#953800">$lastExitCode</span> <span style="color:#0550ae">-ne</span> <span style="color:#0550ae">0</span><span style="color:#1f2328">)</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#cf222e">throw</span> <span style="color:#0a3069">&#34;MKLINK failed. Exit code: </span><span style="color:#953800">$lastExitCode</span><span style="color:#0a3069">`n</span><span style="color:#953800">$output</span><span style="color:#0a3069">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#cf222e">else</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#6639ba">Write-Output</span> <span style="color:#953800">$output</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> mklink {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;#
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    .</span><span style="color:#e6db74">SYNOPSIS</span><span style="color:#75715e">
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        Helper function for calling mklink directly.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        All arguments are piped through to mklink.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        Hat tip to http://stackoverflow.com/questions/894430/powershell-hard-and-soft-links#comment9823010_5549583
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    #&gt;</span>
-</span></span><span style="display:flex;"><span>    cmd /c mklink $args
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#cf222e">function</span><span style="color:#fff"> </span><span style="color:#6639ba">mklink</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57606a">&lt;#
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">    .</span><span style="color:#0a3069">SYNOPSIS</span><span style="color:#57606a">
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">        Helper function for calling mklink directly.
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">        All arguments are piped through to mklink.
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">        
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">        Hat tip to http://stackoverflow.com/questions/894430/powershell-hard-and-soft-links#comment9823010_5549583
+</span></span></span><span style="display:flex;"><span><span style="color:#57606a">    #&gt;</span>
+</span></span><span style="display:flex;"><span>    cmd <span style="color:#1f2328">/</span>c mklink <span style="color:#953800">$args</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Export-ModuleMember New-Symlink, New-Hardlink, New-Junction, mklink
+</span></span><span style="display:flex;"><span><span style="color:#6639ba">Export-ModuleMember</span> <span style="color:#6639ba">New-Symlink</span><span style="color:#1f2328">,</span> <span style="color:#6639ba">New-Hardlink</span><span style="color:#1f2328">,</span> <span style="color:#6639ba">New-Junction</span><span style="color:#1f2328">,</span> mklink
 </span></span></code></pre></div><p>I&rsquo;ve heard it rumored that the <a href="http://pscx.codeplex.com/">PowerShell Community Extensions</a> project has a lot of these functions as well, and more. It might be worth looking into if you want a more robust solution.</p>
 
 

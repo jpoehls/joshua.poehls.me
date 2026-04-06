@@ -423,28 +423,28 @@ He judged the cause of the poor and needy;<br>
 	</header>
 
 	<p>This post is as much for me as it is for you. I write a lot of PowerShell scripts and they tend to follow a certain pattern. This is my personal boilerplate for PowerShell scripts.</p>
-<p>#Requires -Version 3
-Set-StrictMode -Version Latest
-$ErrorActionPreference = &ldquo;Stop&rdquo;</p>
-<pre><code>$stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
-$scriptDir = Split-Path -LiteralPath $PSCommandPath
-$startingLoc = Get-Location
-Set-Location $scriptDir
-$startingDir = [System.Environment]::CurrentDirectory
-[System.Environment]::CurrentDirectory = $scriptDir
-
-try
-{
-    # TODO: Insert script here.
-}
-finally
-{
-    Set-Location $startingLoc
-    [System.Environment]::CurrentDirectory = $startingDir
-    Write-Output &quot;Done. Elapsed time: $($stopwatch.Elapsed)&quot;
-}
-</code></pre>
-<h2 id="whats-going-on-here">What&rsquo;s going on here?</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#57606a">#</span><span style="color:#cf222e">Requires</span><span style="color:#fff"> </span><span style="color:#cf222e">-Version</span><span style="color:#1f2328"> 3</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#6639ba">Set-StrictMode</span> -Version Latest
+</span></span><span style="display:flex;"><span><span style="color:#953800">$ErrorActionPreference</span> <span style="color:#1f2328">=</span> <span style="color:#0a3069">&#34;Stop&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#953800">$stopwatch</span> <span style="color:#1f2328">=</span> <span style="color:#1f2328">[</span><span style="color:#0550ae">System.Diagnostics.Stopwatch</span><span style="color:#1f2328">]::</span>StartNew<span style="color:#1f2328">()</span>
+</span></span><span style="display:flex;"><span><span style="color:#953800">$scriptDir</span> <span style="color:#1f2328">=</span> <span style="color:#6639ba">Split-Path</span> -LiteralPath <span style="color:#953800">$PSCommandPath</span>
+</span></span><span style="display:flex;"><span><span style="color:#953800">$startingLoc</span> <span style="color:#1f2328">=</span> <span style="color:#6639ba">Get-Location</span>
+</span></span><span style="display:flex;"><span><span style="color:#6639ba">Set-Location</span> <span style="color:#953800">$scriptDir</span>
+</span></span><span style="display:flex;"><span><span style="color:#953800">$startingDir</span> <span style="color:#1f2328">=</span> <span style="color:#1f2328">[</span><span style="color:#0550ae">System.Environment</span><span style="color:#1f2328">]::</span>CurrentDirectory
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">[</span><span style="color:#0550ae">System.Environment</span><span style="color:#1f2328">]::</span>CurrentDirectory <span style="color:#1f2328">=</span> <span style="color:#953800">$scriptDir</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#cf222e">try</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#57606a"># TODO: Insert script here.</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#cf222e">finally</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6639ba">Set-Location</span> <span style="color:#953800">$startingLoc</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#1f2328">[</span><span style="color:#0550ae">System.Environment</span><span style="color:#1f2328">]::</span>CurrentDirectory <span style="color:#1f2328">=</span> <span style="color:#953800">$startingDir</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#6639ba">Write-Output</span> <span style="color:#0a3069">&#34;Done. Elapsed time: </span><span style="color:#1f2328">$(</span><span style="color:#953800">$stopwatch</span><span style="color:#1f2328">.</span>Elapsed<span style="color:#1f2328">)</span><span style="color:#0a3069">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
+</span></span></code></pre></div><h2 id="whats-going-on-here">What&rsquo;s going on here?</h2>
 <ul>
 <li>Enables <code>StrictMode</code> to enforce some best practices. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>
 <ul>
@@ -464,9 +464,7 @@ This may be different than the working directory.</li>
 a <code>$stopwatch</code> that will output the elapsed time when the script finishes.</li>
 <li>The <code>try...finally</code> ensures that the elapsed time will output even if the script throws an exception.</li>
 </ul>
-<blockquote>
 <p>Need to wrap your PowerShells script with a batch file? Grab my <a href="/powershell-batch-file-wrapper">PowerShell batch file wrapper</a>.</p>
-</blockquote>
 <div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>

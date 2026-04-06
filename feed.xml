@@ -303,28 +303,28 @@ He judged the cause of the poor and needy;&lt;br&gt;
     <category term="powershell" />
     
     <content type="html">&lt;p&gt;This post is as much for me as it is for you. I write a lot of PowerShell scripts and they tend to follow a certain pattern. This is my personal boilerplate for PowerShell scripts.&lt;/p&gt;
-&lt;p&gt;#Requires -Version 3
-Set-StrictMode -Version Latest
-$ErrorActionPreference = &amp;ldquo;Stop&amp;rdquo;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
-$scriptDir = Split-Path -LiteralPath $PSCommandPath
-$startingLoc = Get-Location
-Set-Location $scriptDir
-$startingDir = [System.Environment]::CurrentDirectory
-[System.Environment]::CurrentDirectory = $scriptDir
-
-try
-{
-    # TODO: Insert script here.
-}
-finally
-{
-    Set-Location $startingLoc
-    [System.Environment]::CurrentDirectory = $startingDir
-    Write-Output &amp;quot;Done. Elapsed time: $($stopwatch.Elapsed)&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;whats-going-on-here&#34;&gt;What&amp;rsquo;s going on here?&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-powershell&#34; data-lang=&#34;powershell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#57606a&#34;&gt;#&lt;/span&gt;&lt;span style=&#34;color:#cf222e&#34;&gt;Requires&lt;/span&gt;&lt;span style=&#34;color:#fff&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#cf222e&#34;&gt;-Version&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt; 3&lt;/span&gt;&lt;span style=&#34;color:#fff&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6639ba&#34;&gt;Set-StrictMode&lt;/span&gt; -Version Latest
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#953800&#34;&gt;$ErrorActionPreference&lt;/span&gt; &lt;span style=&#34;color:#1f2328&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#0a3069&#34;&gt;&amp;#34;Stop&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#953800&#34;&gt;$stopwatch&lt;/span&gt; &lt;span style=&#34;color:#1f2328&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#1f2328&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#0550ae&#34;&gt;System.Diagnostics.Stopwatch&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;]::&lt;/span&gt;StartNew&lt;span style=&#34;color:#1f2328&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#953800&#34;&gt;$scriptDir&lt;/span&gt; &lt;span style=&#34;color:#1f2328&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#6639ba&#34;&gt;Split-Path&lt;/span&gt; -LiteralPath &lt;span style=&#34;color:#953800&#34;&gt;$PSCommandPath&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#953800&#34;&gt;$startingLoc&lt;/span&gt; &lt;span style=&#34;color:#1f2328&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#6639ba&#34;&gt;Get-Location&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6639ba&#34;&gt;Set-Location&lt;/span&gt; &lt;span style=&#34;color:#953800&#34;&gt;$scriptDir&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#953800&#34;&gt;$startingDir&lt;/span&gt; &lt;span style=&#34;color:#1f2328&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#1f2328&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#0550ae&#34;&gt;System.Environment&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;]::&lt;/span&gt;CurrentDirectory
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#0550ae&#34;&gt;System.Environment&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;]::&lt;/span&gt;CurrentDirectory &lt;span style=&#34;color:#1f2328&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#953800&#34;&gt;$scriptDir&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#cf222e&#34;&gt;try&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#57606a&#34;&gt;# TODO: Insert script here.&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#cf222e&#34;&gt;finally&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#6639ba&#34;&gt;Set-Location&lt;/span&gt; &lt;span style=&#34;color:#953800&#34;&gt;$startingLoc&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#1f2328&#34;&gt;[&lt;/span&gt;&lt;span style=&#34;color:#0550ae&#34;&gt;System.Environment&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;]::&lt;/span&gt;CurrentDirectory &lt;span style=&#34;color:#1f2328&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#953800&#34;&gt;$startingDir&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#6639ba&#34;&gt;Write-Output&lt;/span&gt; &lt;span style=&#34;color:#0a3069&#34;&gt;&amp;#34;Done. Elapsed time: &lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;$(&lt;/span&gt;&lt;span style=&#34;color:#953800&#34;&gt;$stopwatch&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;.&lt;/span&gt;Elapsed&lt;span style=&#34;color:#1f2328&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#0a3069&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;whats-going-on-here&#34;&gt;What&amp;rsquo;s going on here?&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Enables &lt;code&gt;StrictMode&lt;/code&gt; to enforce some best practices. &lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;
 &lt;ul&gt;
@@ -344,9 +344,7 @@ This may be different than the working directory.&lt;/li&gt;
 a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the script finishes.&lt;/li&gt;
 &lt;li&gt;The &lt;code&gt;try...finally&lt;/code&gt; ensures that the elapsed time will output even if the script throws an exception.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;blockquote&gt;
 &lt;p&gt;Need to wrap your PowerShells script with a batch file? Grab my &lt;a href=&#34;https://joshua.poehls.me/powershell-batch-file-wrapper&#34;&gt;PowerShell batch file wrapper&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
 &lt;hr&gt;
 &lt;ol&gt;
