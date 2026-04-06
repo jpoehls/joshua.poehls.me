@@ -15,76 +15,78 @@ Here's a `Test-ZipFile` PowerShell cmdlet that will return true or false whether
 
 [View on GitHub &#8594;](https://github.com/jpoehls/Poshato/blob/master/Test-ZipFile.ps1)
 
-	function Test-ZipFile
-	{
-	<#
-	.SYNOPSIS
-	    Tests for the magic ZIP file header bytes.
+```powershell
+function Test-ZipFile
+{
+<#
+.SYNOPSIS
+	Tests for the magic ZIP file header bytes.
 
-	.DESCRIPTION
-	    Inspired by http://stackoverflow.com/a/1887113/31308
-	#>
-		[CmdletBinding()]
-		param(
-			[Parameter(
-				ParameterSetName  = "Path",
-	            Mandatory = $true,
-				ValueFromPipeline = $true,
-				ValueFromPipelineByPropertyName = $true
-			)]
-			[string[]]$Path,
+.DESCRIPTION
+	Inspired by http://stackoverflow.com/a/1887113/31308
+#>
+	[CmdletBinding()]
+	param(
+		[Parameter(
+			ParameterSetName  = "Path",
+			Mandatory = $true,
+			ValueFromPipeline = $true,
+			ValueFromPipelineByPropertyName = $true
+		)]
+		[string[]]$Path,
 
-	        [Alias("PSPath")]
-			[Parameter(
-				ParameterSetName = "LiteralPath",
-	            Mandatory = $true,
-				ValueFromPipeline = $true,
-				ValueFromPipelineByPropertyName = $true
-			)]
-			[string[]]$LiteralPath
-		)
+		[Alias("PSPath")]
+		[Parameter(
+			ParameterSetName = "LiteralPath",
+			Mandatory = $true,
+			ValueFromPipeline = $true,
+			ValueFromPipelineByPropertyName = $true
+		)]
+		[string[]]$LiteralPath
+	)
 
-	    process {
-	        $provider = $null
+	process {
+		$provider = $null
 
-	        # Only expand wildcards if the -Path parameter was used.
-	        if ($PSCmdlet.ParameterSetName -eq "Path") {
-	            $filePaths = $PSCmdlet.GetResolvedProviderPathFromPSPath($Path, [ref]$provider)
-	        }
-	        elseif ($PSCmdlet.ParameterSetName -eq "LiteralPath") {
-	            $filePaths = $PSCmdlet.GetResolvedProviderPathFromPSPath($LiteralPath, [ref]$provider)
-	        }
+		# Only expand wildcards if the -Path parameter was used.
+		if ($PSCmdlet.ParameterSetName -eq "Path") {
+			$filePaths = $PSCmdlet.GetResolvedProviderPathFromPSPath($Path, [ref]$provider)
+		}
+		elseif ($PSCmdlet.ParameterSetName -eq "LiteralPath") {
+			$filePaths = $PSCmdlet.GetResolvedProviderPathFromPSPath($LiteralPath, [ref]$provider)
+		}
 
-	        foreach ($filePath in $filePaths) {
-	            $isZip = $false
-		        try {
-		            $stream = New-Object System.IO.StreamReader -ArgumentList @($filePath)
-		            $reader = New-Object System.IO.BinaryReader -ArgumentList @($stream.BaseStream)
-		            $bytes = $reader.ReadBytes(4)
-		            if ($bytes.Length -eq 4) {
-		                if ($bytes[0] -eq 80 -and
-		                    $bytes[1] -eq 75 -and
-		                    $bytes[2] -eq 3 -and
-		                    $bytes[3] -eq 4) {
-		                    $isZip = $true
-		                }
-		            }
-		        }
-		        finally {
-		            if ($reader) {
-		                $reader.Dispose()
-		            }
-		            if ($stream) {
-		                $stream.Dispose()
-		            }
-		        }
+		foreach ($filePath in $filePaths) {
+			$isZip = $false
+			try {
+				$stream = New-Object System.IO.StreamReader -ArgumentList @($filePath)
+				$reader = New-Object System.IO.BinaryReader -ArgumentList @($stream.BaseStream)
+				$bytes = $reader.ReadBytes(4)
+				if ($bytes.Length -eq 4) {
+					if ($bytes[0] -eq 80 -and
+						$bytes[1] -eq 75 -and
+						$bytes[2] -eq 3 -and
+						$bytes[3] -eq 4) {
+						$isZip = $true
+					}
+				}
+			}
+			finally {
+				if ($reader) {
+					$reader.Dispose()
+				}
+				if ($stream) {
+					$stream.Dispose()
+				}
+			}
 
-	            Write-Output $isZip
-	        }
-	    }
+			Write-Output $isZip
+		}
 	}
+}
+```
 
-_`Test-ZipFile` is part of [Poshato][poshato], my personal PowerShell module of miscellaneous goodness._
+`Test-ZipFile` is part of [Poshato][poshato], my personal PowerShell module of miscellaneous goodness.
 
 [magicnumbers]: http://en.wikipedia.org/wiki/Magic_number_(programming)#Magic_numbers_in_files
 [so]: http://stackoverflow.com/a/1887113/31308
