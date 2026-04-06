@@ -12,6 +12,8 @@ Use `<!--more-->` in the body to explicitly insert a breakpoint between the exce
 
 Use `tags` metadata as needed.
 
+Use `linkurl` metadata for posts which "share" an external article.
+
 ### Typography Styling
 
 Run the local Hugo server with drafts enabled: `hugo server -D`
