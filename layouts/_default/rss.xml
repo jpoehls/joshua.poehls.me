@@ -6,7 +6,7 @@
   <link href="{{.Permalink}}"/>
   <updated>{{.Date.Format "2006-01-02T15:04:05-07:00"}}</updated>
   <author>
-    <name>{{.Site.Author.name}}</name>
+    <name>{{ site.Params.author }}</name>
   </author>
   <id>{{.Permalink}}</id>
 

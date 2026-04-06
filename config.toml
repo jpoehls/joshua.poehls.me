@@ -1,16 +1,16 @@
-baseurl = "http://joshua.poehls.me"
+baseURL = "https://joshua.poehls.me/"
 languageCode = "en-us"
 title = "joshua poehls | silent thoughts"
 copyright = "Copyright (c) 2014-2018 Joshua Poehls. All rights reserved."
-metadataFormat = "yaml"
-
-paginate = 10
-paginatePath = "page"
 
 footnoteAnchorPrefix = "fn"
 footnoteReturnLinkContents = "↩"
 
-disableKinds = ["404", "taxonomyTerm"]
+disableKinds = ["404"]
+
+[pagination]
+pagerSize = 10
+path = "page"
 
 [outputFormats]
 [outputFormats.RSS]
@@ -20,8 +20,8 @@ disableKinds = ["404", "taxonomyTerm"]
 [permalinks]
 	post = "/:year/:slug"
 
-[author]
-	name = "Joshua Poehls"
+[params]
+author = "Joshua Poehls"
 
 [taxonomies]
 	tag = "tags"

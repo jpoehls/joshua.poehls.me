@@ -2,11 +2,11 @@
 
 <div class="container" id="page">
 
-{{ if eq .RelPermalink "/archives/" }}
+{{ if eq .Params.url "/archives" }}
 
 	<h2>Best Tags</h2>
 	<p>
-	{{ $recommended := .Site.Data.tags.recommended }}
+	{{ $recommended := hugo.Data.tags.recommended }}
 	{{ range $name, $pages := .Site.Taxonomies.tags }}
 		{{/* Inner loop because `if in $recommended $name` isn't working. */}}
 		{{ range $recommended }}
@@ -24,12 +24,13 @@
 
 	<h2>Series</h2>
 	<ul>
-	{{ $seriesData := .Site.Data.series }}
+	{{ $seriesData := hugo.Data.series }}
 	{{ range $name, $pages := .Site.Taxonomies.series }}
-		{{ if isset $seriesData $name }}
-			<h3><a href="../series/{{ $name | urlize }}">{{ (index $seriesData $name).title }}</a>
+		{{ $seriesKey := $name | urlize }}
+		{{ with index $seriesData $seriesKey }}
+			<h3><a href="../series/{{ $seriesKey }}">{{ .title }}</a>
 				<small>({{ len $pages }})</small></h3>
-			<p class="series-desc">{{ (index $seriesData $name).description }}</p>
+			<p class="series-desc">{{ .description }}</p>
 		{{ end }}
 	{{ end }}
 	</ul>
@@ -48,7 +49,7 @@
 
 {{ end }}
 
-{{ if eq .RelPermalink "/contact/" }}
+{{ if eq .Params.url "/contact" }}
 
 	<ul>
 		<li>Keybase: <a href="https://keybase.io/joshuapoehls">@joshuapoehls</a></li>

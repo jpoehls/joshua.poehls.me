@@ -8,10 +8,10 @@
 <div class="container">
 
 	{{/* if $seriesName }}
-		{{ if isset .Site.Data.series ($seriesName | urlize) }}
-			<p>{{ (index .Site.Data.series ($seriesName | urlize)).title }}</p>
-			<p>{{ (index .Site.Data.series ($seriesName | urlize)).description }}</p>
-			{{ safeHtml (index .Site.Data.series ($seriesName | urlize)).postPrefixHtml }}
+		{{ with index hugo.Data.series ($seriesName | urlize) }}
+			<p>{{ .title }}</p>
+			<p>{{ .description }}</p>
+			{{ .postPrefixHtml | safeHTML }}
 		{{ end }}
 	{{ end */}}
 
