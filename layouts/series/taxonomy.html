@@ -1,0 +1,25 @@
+{{ define "main" }}
+<div class="site-wrap">
+	<header class="taxonomy-list-header">
+		<h1 class="taxonomy-title taxonomy-title--list">{{ .Title }}</h1>
+		<p class="taxonomy-list-nav"><a href="{{ "archives" | relURL }}">Archives</a></p>
+	</header>
+
+	<nav aria-label="All series">
+		<ul class="archive-series-list taxonomy-series-list">
+			{{ $seriesData := hugo.Data.series }}
+			{{ range .Data.Terms.ByCount }}
+				{{ $seriesKey := .Page.Title | urlize }}
+				<li>
+					<h3><a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a>
+						<small>({{ .Count }})</small></h3>
+					{{ with index $seriesData $seriesKey }}
+					<p class="series-desc">{{ .description }}</p>
+					{{ end }}
+				</li>
+			{{ end }}
+		</ul>
+	</nav>
+	<div class="fin-symbol" aria-hidden="true"></div>
+</div>
+{{ end }}

@@ -1,45 +1,9 @@
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
-<title>{{.Site.Title}}</title>
-<!-- <base href="{{.Site.BaseURL}}"> -->
-<link rel="canonical" href="{{.Permalink}}">
-<link href="/feed.xml" rel="alternate" type="application/atom+xml" title="{{.Site.Title}}">
-{{ hugo.Generator }}
-
-<!-- CSS
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<link rel="stylesheet" href="/normalize.css">
-<link rel="stylesheet" href="/styles.css">
-
-<!-- Font
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<link href="https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,300;0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&family=Spectral:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
-
-<!-- Mobile Specific Metas
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Favicon
-–––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
-<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
-<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
-<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
-
-</head>
-<body lang="en-US">
-
-<header class="site-banner">
-	<div class="site-wrap">
-		<h1>
-			<small>I am</small>
-			<a href="/">Joshua Poehls</a>.
-			<small class="contact-link"><a href="/contact">Say hello</a></small>
-			<small class="archives-link"><a href="/archives">Archives</a></small>
-			<span class="aka">(not so) silent thoughts</span>
-		</h1>
-	</div>
-</header>
+<div class="site-wrap">
+	<h1>
+		<small>I am</small>
+		<a href="{{ "/" | relURL }}">Joshua Poehls</a>.
+		<small class="contact-link"><a href="{{ "contact" | relURL }}">Say hello</a></small>
+		<small class="archives-link"><a href="{{ "archives" | relURL }}">Archives</a></small>
+		<span class="aka">(not so) silent thoughts</span>
+	</h1>
+</div>

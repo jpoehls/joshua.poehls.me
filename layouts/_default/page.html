@@ -1,10 +1,4 @@
-{{partial "header.html" .}}
-
-{{/* $seriesName := "" }}
-{{ if .Params.series }}
-	{{ $seriesName = (index .Params.series 0) }}
-{{ end */}}
-
+{{ define "main" }}
 <div class="site-wrap">
 
 	{{/* if $seriesName }}
@@ -15,9 +9,7 @@
 		{{ end }}
 	{{ end */}}
 
-	<main>
-	{{partial "li.html" .}}
-	</main>
+	{{ partial "li.html" . }}
 
 	{{/* if $seriesName }}
 		<p>This is a post in the <b>{{ $seriesName }}</b> series.</p>
@@ -37,5 +29,4 @@
 	{{ end */}}
 
 </div>
-
-{{partial "footer.html" .}}
+{{ end }}

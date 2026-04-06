@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div class="site-wrap">
+	<header class="term-header">
+		<h1 id="term-page-title" class="taxonomy-title">
+			Posts tagged <span class="term">#{{ .Title | lower }}</span>
+			<span class="desc"><a href="{{ "archives" | relURL }}">other&nbsp;{{ .Data.Plural }}</a></span>
+		</h1>
+	</header>
+
+	<section class="term-posts" aria-labelledby="term-page-title">
+		{{ partial "taxonomy-term-posts.html" . }}
+	</section>
+	<div class="fin-symbol" aria-hidden="true"></div>
+</div>
+{{ end }}

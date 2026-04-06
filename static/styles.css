@@ -1,6 +1,6 @@
 /*
   Site styles (typography + layout). Pair with normalize.css only.
-  Regions: .site-banner, .site-wrap, main (post index/single vs other via :has(article.post))
+  Regions: .site-banner, .site-wrap, main in baseof (post index/single vs other via :has(article.post))
 
   Units:
   - rem — font sizes, layout width/padding, vertical rhythm (scales with root / user prefs).
@@ -44,6 +44,8 @@
 	--font-footnote: 1rem;
 	--font-figcaption: 0.875rem;
 	--font-fin: 2.5rem;
+	/* Glyph for .fin-symbol::before (U+29BF); change once for whole site */
+	--fin-symbol: "\29BF";
 	--font-footer: 1.125rem;
 
 	--wrap-max: 60rem;
@@ -170,6 +172,32 @@ h1.taxonomy-title .term {
 }
 
 .taxonomy-content {
+	margin-top: var(--space-xl);
+}
+
+.taxonomy-list-header {
+	margin-bottom: var(--space-md);
+}
+
+.taxonomy-list-nav {
+	margin: 0;
+	font-family: var(--font-sans);
+	font-size: 1rem;
+}
+
+.taxonomy-list-nav a {
+	color: var(--color-link);
+}
+
+.taxonomy-term-cloud {
+	margin-top: var(--space-md);
+}
+
+.term-header {
+	margin-bottom: 0;
+}
+
+.term-posts {
 	margin-top: var(--space-xl);
 }
 
@@ -408,9 +436,24 @@ main:not(:has(article.post)) h3 {
 	margin-bottom: var(--space-sm);
 }
 
+.archive-series-list {
+	list-style: none;
+	margin-left: 0;
+	padding-left: 0;
+}
+
+.archive-series-list li {
+	margin-bottom: var(--space-lg);
+}
+
+.archive-series-list li:last-child {
+	margin-bottom: 0;
+}
+
 .series-desc {
 	font-size: 1.0625rem;
-	margin-left: var(--space-xl);
+	margin-left: 0;
+	margin-top: var(--space-sm);
 }
 
 /* --- Blog posts & lists --- */
@@ -559,11 +602,16 @@ article.post table:not(.noborder) tbody td {
 	padding-bottom: 0.35rem;
 }
 
-.fin {
+.fin-symbol {
+	font-family: var(--font-sans);
 	text-align: center;
 	font-size: var(--font-fin) !important;
 	color: var(--color-muted);
 	margin-top: var(--space-md);
+}
+
+.fin-symbol::before {
+	content: var(--fin-symbol);
 }
 
 article.post .footnotes {

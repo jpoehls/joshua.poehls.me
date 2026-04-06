@@ -5,16 +5,16 @@
 		<p class="taxonomy-list-nav"><a href="{{ "archives" | relURL }}">Archives</a></p>
 	</header>
 
-	<section class="taxonomy-term-fallback" aria-label="{{ .Title }}">
-		<ul class="taxonomy-content">
-			{{ range .Data.Terms.Alphabetical }}
-			<li>
+	<nav class="taxonomy-term-cloud-nav" aria-label="All tags">
+		<p class="archive-tag-list taxonomy-term-cloud">
+			{{ range .Data.Terms.ByCount }}
+			<span>
 				<a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a>
 				<small>({{ .Count }})</small>
-			</li>
+			</span>
 			{{ end }}
-		</ul>
-	</section>
+		</p>
+	</nav>
 	<div class="fin-symbol" aria-hidden="true"></div>
 </div>
 {{ end }}

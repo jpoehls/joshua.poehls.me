@@ -1,15 +1,11 @@
-{{partial "header.html" .}}
-
-{{$pag := .Paginate (where .Site.RegularPages "Section" "post") }}
+{{ define "main" }}
+{{ $pag := .Paginate (where .Site.RegularPages "Section" "post") }}
 
 <div class="site-wrap">
-	<main>
-	{{range $pag.Pages}}
-	{{partial "li.html" .}}
-	{{end}}
-	</main>
+	{{ range $pag.Pages }}
+	{{ partial "li.html" . }}
+	{{ end }}
 
-	{{partial "posts-pager.html" $pag}}
+	{{ partial "posts-pager.html" $pag }}
 </div>
-
-{{partial "footer.html" .}}
+{{ end }}

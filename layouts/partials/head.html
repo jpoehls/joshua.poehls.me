@@ -1,0 +1,19 @@
+<meta charset="utf-8">
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ with .Title }}{{ . }} | {{ $.Site.Title }}{{ else }}{{ $.Site.Title }}{{ end }}{{ end }}</title>
+
+<link rel="canonical" href="{{ .Permalink }}">
+<link href="{{ "feed.xml" | relURL }}" rel="alternate" type="application/atom+xml" title="{{ .Site.Title }}">
+{{ hugo.Generator }}
+
+<link rel="stylesheet" href="{{ "normalize.css" | relURL }}">
+<link rel="stylesheet" href="{{ "styles.css" | relURL }}">
+
+<link href="https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,300;0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&family=Spectral:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="apple-touch-icon" href="{{ "touch-icon-iphone.png" | relURL }}" />
+<link rel="apple-touch-icon" sizes="76x76" href="{{ "touch-icon-ipad.png" | relURL }}" />
+<link rel="apple-touch-icon" sizes="120x120" href="{{ "touch-icon-iphone-retina.png" | relURL }}" />
+<link rel="apple-touch-icon" sizes="152x152" href="{{ "touch-icon-ipad-retina.png" | relURL }}" />
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "touch-icon-iphone-retinahd.png" | relURL }}">

@@ -1,10 +1,5 @@
-{{partial "header.html" .}}
-
+{{ define "main" }}
 <div class="site-wrap">
-	<main>
-
-{{ if eq .Params.url "/archives" }}
-
 	<h2>Best Tags</h2>
 	<p class="archive-tag-list">
 	{{ $recommended := hugo.Data.tags.recommended }}
@@ -24,14 +19,16 @@
 	</p>
 
 	<h2>Series</h2>
-	<ul>
+	<ul class="archive-series-list">
 	{{ $seriesData := hugo.Data.series }}
 	{{ range $name, $pages := .Site.Taxonomies.series }}
 		{{ $seriesKey := $name | urlize }}
 		{{ with index $seriesData $seriesKey }}
+		<li>
 			<h3><a href="../series/{{ $seriesKey }}">{{ .title }}</a>
 				<small>({{ len $pages }})</small></h3>
 			<p class="series-desc">{{ .description }}</p>
+		</li>
 		{{ end }}
 	{{ end }}
 	</ul>
@@ -47,18 +44,6 @@
 		</span>
 	{{ end }}
 	</p>
-
-{{ end }}
-
-{{ if eq .Params.url "/contact" }}
-
-	<ul>
-		<li>X (née): <a href="https://x.com/JoshuaPoehls">@joshuapoehls</a></li>
-	</ul>
-
-{{ end }}
-
-	</main>
+	<div class="fin-symbol" aria-hidden="true"></div>
 </div>
-
-{{partial "footer.html" .}}
+{{ end }}

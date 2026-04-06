@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="site-wrap">
+	<header class="term-header">
+		<h1 id="term-page-title" class="taxonomy-title">
+			Posts in series <span class="term">{{ .Title }}</span>
+			<span class="desc"><a href="{{ "archives" | relURL }}">other&nbsp;{{ .Data.Plural }}</a></span>
+		</h1>
+		{{ with index hugo.Data.series (.Title | urlize) }}
+		<p class="taxonomy-desc">{{ .description }}</p>
+		{{ end }}
+	</header>
+
+	<section class="term-posts" aria-labelledby="term-page-title">
+		{{ partial "taxonomy-term-posts.html" . }}
+	</section>
+	<div class="fin-symbol" aria-hidden="true"></div>
+</div>
+{{ end }}
