@@ -1,7 +1,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>{{.Site.Title}}</title>
   <icon>{{.Site.BaseURL}}touch-icon-iphone-retinahd.png</icon>
-  <rights>Copyright (c) 2014–{{ now.Format "2006" }} Joshua Poehls. All rights reserved.</rights>
+  <rights>Copyright (c) 2014–{{ now.Format "2006" }} {{ .Site.Params.author }}. All rights reserved.</rights>
   <link rel="self" href="{{.Permalink}}feed.xml"/>
   <link href="{{.Permalink}}"/>
   <updated>{{.Date.Format "2006-01-02T15:04:05-07:00"}}</updated>
@@ -19,7 +19,7 @@
     {{with .Params.series}}<category term="{{.}}" />{{end}}
     {{if .Params.tags}}{{range .Params.tags}}<category term="{{.}}" />
     {{end}}{{end}}
-    <content type="html">{{.Content | html}}</content>
+    <content type="html">{{ .Summary | html }}</content>
   </entry>
   {{end}}
 </feed>

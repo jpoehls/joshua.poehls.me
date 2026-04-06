@@ -1,9 +1,9 @@
 <div class="site-wrap">
 	<h1>
 		<small>I am</small>
-		<a href="{{ "/" | relURL }}">Joshua Poehls</a>.
+		<a href="{{ "/" | relURL }}">{{ .Site.Params.author }}</a>.
 		<small class="contact-link"><a href="{{ "contact" | relURL }}">Say hello</a></small>
 		<small class="archives-link"><a href="{{ "archives" | relURL }}">Archives</a></small>
-		<span class="aka">(not so) silent thoughts</span>
+		<span class="aka">{{ .Site.Params.tagline }}</span>
 	</h1>
 </div>

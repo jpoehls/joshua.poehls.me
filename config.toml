@@ -1,6 +1,6 @@
 baseURL = "https://joshua.poehls.me/"
 languageCode = "en-us"
-title = "joshua poehls | silent thoughts"
+title = "joshua poehls | (not so) silent thoughts"
 
 footnoteAnchorPrefix = "fn"
 footnoteReturnLinkContents = "↩"
@@ -21,6 +21,7 @@ path = "page"
 
 [params]
 author = "Joshua Poehls"
+tagline = "(not so) silent thoughts"
 
 [taxonomies]
 	tag = "tags"
