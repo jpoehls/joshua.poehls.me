@@ -320,17 +320,26 @@ blockquote > blockquote {
 }
 
 /* Adjacent blockquotes: short centered rule (CSS-only; no extra markup) */
-blockquote + blockquote {
-	margin-top: 0;
+blockquote:has(+ blockquote) {
+	margin-bottom: 0;
 }
 
-/* Add a centered rule between adjacent blockquotes so they are clearly distinguished visually */
+blockquote + blockquote {
+	margin-top: 0;
+	position: relative;
+	padding-top: calc(2 * var(--space-md));
+}
+
+/* Rule sits midway in padding-top: var(--space-md) above and below, matching ¶ rhythm */
 blockquote + blockquote::before {
 	content: "";
-	display: block;
+	position: absolute;
+	left: 50%;
+	top: calc(var(--space-md) - 0.5px);
 	width: 2.75rem;
-	margin: -1.5em auto var(--space-md);
-	border-top: 1px solid var(--color-border-quote);
+	height: 1px;
+	background: var(--color-border-quote);
+	transform: translateX(-50%);
 }
 
 blockquote > ul,
