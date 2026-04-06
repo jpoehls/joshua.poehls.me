@@ -19,7 +19,9 @@
 	--color-bg-subtle: #f9f9f9;
 	--color-banner: #efefef;
 	--color-banner-rule: #333;
-	--color-border-quote: #adadad;
+	/* Short centered rule between adjacent blockquotes; <hr> is longer, same look */
+	--rule-blockquote-separator-width: 2.75rem;
+	--rule-hr-width: min(34rem, 72%);
 	--color-code-text: #515151;
 	--font-serif: "Spectral", Georgia, "Times New Roman", serif;
 	--font-sans: "Georama", system-ui, sans-serif;
@@ -336,10 +338,37 @@ blockquote + blockquote::before {
 	position: absolute;
 	left: 50%;
 	top: calc(var(--space-md) - 0.5px);
-	width: 2.75rem;
-	height: 1px;
-	background: var(--color-border-quote);
+	width: var(--rule-blockquote-separator-width);
+	height: 0;
+	border-top: 1px dotted var(--color-muted);
 	transform: translateX(-50%);
+}
+
+/*
+  Same dotted look as adjacent-blockquote separator; wider band, not full measure.
+  Fixed-height box keeps var(--space-md) above and below the line; sibling rules
+  normalize margin collapse (e.g. headings, tables).
+*/
+hr {
+	border: 0;
+	margin: 0;
+	margin-inline: auto;
+	width: var(--rule-hr-width);
+	max-width: 100%;
+	height: calc(2 * var(--space-md) + 1px);
+	box-sizing: border-box;
+	background: transparent;
+	position: relative;
+}
+
+hr::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: calc(var(--space-md) - 0.5px);
+	height: 0;
+	border-top: 1px dotted var(--color-muted);
 }
 
 blockquote > ul,
@@ -619,6 +648,18 @@ article.post--excerpt .post-summary p:empty {
 	display: none;
 }
 
+article.post--excerpt .post-summary > *:has(+ hr) {
+	margin-bottom: 0;
+}
+
+article.post--excerpt .post-summary hr + * {
+	margin-top: var(--space-md);
+}
+
+article.post--excerpt .post-summary hr + hr {
+	margin-top: 0;
+}
+
 article.post--excerpt .excerpt-ellipsis {
 	white-space: nowrap;
 }
@@ -714,6 +755,22 @@ article.post table:not(.noborder) tbody th {
 article.post table:not(.noborder) tbody td {
 	padding-top: 0.35rem;
 	padding-bottom: 0.35rem;
+}
+
+/* Normalize margin collapse around <hr> so rhythm matches the rule’s internal padding */
+article.post > *:has(+ hr),
+main article:not(.post) > *:has(+ hr) {
+	margin-bottom: 0;
+}
+
+article.post hr + *,
+main article:not(.post) hr + * {
+	margin-top: var(--space-md);
+}
+
+article.post hr + hr,
+main article:not(.post) hr + hr {
+	margin-top: 0;
 }
 
 .fin-symbol {
