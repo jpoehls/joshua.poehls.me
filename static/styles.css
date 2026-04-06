@@ -398,6 +398,11 @@ a:hover {
 	background-color: var(--color-link-hover-bg);
 }
 
+/* Linked images (e.g. figure): keep hover highlight off the photo */
+a:has(img):hover {
+	background-color: transparent;
+}
+
 a:focus-visible {
 	outline: 2px solid var(--color-link);
 	outline-offset: 2px;
