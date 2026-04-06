@@ -27,6 +27,10 @@ Nullam non ligula non metus posuere efficitur.[^note1] Quisque aliquam libero ac
 
     Small caps rarely activate in browser fonts without OpenType features—here you just get whatever **Hugo + CSS** deliver. One more line with a hair space before punctuation: like ? (U+2009 before ?) to stress kerning gaps.
 
+# Level one heading with `codeSpan()` inside
+
+Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Curabitur blandit tempus porttitor. **Strong emphasis** and *italic* and ***both***. A `variable_name` in the flow of text.
+
 ## Level two heading with `codeSpan()` inside
 
 Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Curabitur blandit tempus porttitor. **Strong emphasis** and *italic* and ***both***. A `variable_name` in the flow of text.
