@@ -100,9 +100,7 @@
 b := []byte(s) // convert string -&gt; []byte
 s2 := string(b) // convert []byte -&gt; string
 </code></pre>
-<blockquote>
 <p>Converting to/from <code>string</code> and <code>[]byte</code> copies the entire value. Using lots of type conversions in your code is typically a warning sign that you need to reevaluate the types you are using. You want to minimize conversions both for performance and clean code.</p>
-</blockquote>
 <h2 id="more-about-strings">More about strings</h2>
 <p>The Go blog has posted in detail about <a href="http://blog.golang.org/strings">strings, bytes, runes, and characters in Go</a>. You should definitely read that post to fully understand the topic.</p>
 <p><strong>Update:</strong> Thanks to <a href="https://twitter.com/mholt6">@mholt6</a> for reviewing the post and helping improve it!</p>
