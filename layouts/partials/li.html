@@ -19,6 +19,17 @@
 
 	{{.Content}}
 
+	{{ with .GetTerms "tags" }}
+	<footer class="post-tags">
+		<h2 class="post-tags-heading">Tags</h2>
+		<ul class="post-tags-list">
+			{{ range . }}
+			<li><a href="{{ .RelPermalink }}">{{ .Title | lower }}</a></li>
+			{{ end }}
+		</ul>
+	</footer>
+	{{ end }}
+
 </article>
 
 <div class="fin-symbol" aria-hidden="true"></div>
