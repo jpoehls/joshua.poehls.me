@@ -9,6 +9,8 @@ tags:
 
 This post is as much for me as it is for you. I write a lot of PowerShell scripts and they tend to follow a certain pattern. This is my personal boilerplate for PowerShell scripts.
 
+<!--more-->
+
     #Requires -Version 3
     Set-StrictMode -Version Latest
     $ErrorActionPreference = "Stop"

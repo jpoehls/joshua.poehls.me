@@ -12,6 +12,8 @@ I recently discovered an excellent narration of the Greek New Testament. It is f
 - [Download the MP3s](http://bit.ly/KoineGreekNT-mp3)
 - [Read along at Biblia.com](https://biblia.com/books/tr1894mr)
 
+<!--more-->
+
 After finding these recordings on YouTube I had to dig around to find who to cite as the narrator. According to [a post on Glen Scrivener’s blog](https://christthetruth.net/2012/06/23/free-greek-audio-bible/), the narration is by Theo Karvounakis and the recordings are being released into the public domain by he and Matthias Müller.
 
 The readings [are from](https://www.youtube.com/watch?v=7Nwmwi01AWg&lc=UgwXRj1oN5t6C5aKVIx4AaABAg) *Scrivener’s Textus Receptus (1894 edition)* published by the Trinitarian Bible Society, the text of which is also in the public domain.

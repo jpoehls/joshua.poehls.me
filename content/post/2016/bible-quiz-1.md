@@ -10,6 +10,8 @@ series: Bible Quiz Questions
 
 Hundreds of verses forgotten. Yep, that's what happen to me. I joined up with our church's Bible Quiz team as a teen and memorized hundreds of verses for competition. Looking back, it is one of my favorite things I did growing up. Unfortunately, that was many years ago and with little practice comes much forgetfulness.
 
+<!--more-->
+
 I kicked off 2016 by starting [Fighter Verses](http://fighterverses.com). This is my attempt to get back into the practice of memorizing scripture. One of the ways I ingrain verses in my mind is to break them apart and mentally quiz myself. Quoting it backwards and forwards, so to speak, as I answer questions about the passage. It really works.
 
 So, dear readers, I present to you some Bible Quiz style questions I've been drilling for the first couple Fighter Verses. Let me know if you find these helpful!

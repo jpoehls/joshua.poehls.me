@@ -15,6 +15,8 @@ Here's the idea.
 
 If that sounds like you, I have two strategies that may help. I've been using one of these for a couple years now, and the other is fairly recent. 
 
+<!--more-->
+
 # Reminders App
 
 I've been using the iOS *Reminders* app as my primary Bible reading list (or *plan*) for at least a couple years. It works great!

@@ -11,6 +11,8 @@ tags:
 
 Here's a formula you can use to create a calculated field in [Tableau](https://tableau.com) for converting strings in the format of .NET `TimeSpan` values to a total number of seconds.
 
+<!--more-->
+
 Given a string `79.23:08:01.3976607` (79 days, 23 hours, 8 minutes, 1.3976607 seconds), it would return the total number of seconds.
 
 ```
