@@ -1,12 +1,21 @@
-<ul class="taxonomy-content">
+<table class="booktabs taxonomy-content">
+<thead>
+	<tr>
+		<th>Date</th>
+		<th>Title</th>
+	</tr>
+</thead>
+<tbody>
 	{{ range .Data.Pages }}
-	<li>
-		<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>
-		<span aria-hidden="true"> &mdash; </span>
-		<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-		{{ if .Params.linkurl }}
-		<a href="{{ .Params.linkurl }}" class="subtle symbol" aria-label="Linked resource">&#10230;</a>
-		{{ end }}
-	</li>
+	<tr>
+		<td width="100px" style="white-space: nowrap;"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time></td>
+		<td>
+			<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+			{{ if .Params.linkurl }}
+			<a href="{{ .Params.linkurl }}" class="subtle symbol" aria-label="Linked resource">&#10230;</a>
+			{{ end }}
+		</td>
+	</tr>
 	{{ end }}
-</ul>
+</tbody>
+</table>

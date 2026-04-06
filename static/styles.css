@@ -254,7 +254,7 @@ strong {
 	text-decoration: none;
 }
 
-.footnote-ref, .footnote-return {
+.footnote-ref, .footnote-return, .footnote-backref {
 	text-decoration: none;
 }
 
@@ -710,10 +710,11 @@ article.post figure a {
 }
 
 /*
-  Post tables: booktabs / journal-ish — strong top & bottom, thin rule under header,
-  no vertical rules, no zebra (matches typical modern LaTeX table packages).
+  Booktabs-style tables: strong top & bottom, thin rule under header, no vertical rules.
+  — In posts: every table except .noborder (legacy opt-out).
+  — Elsewhere: add class="booktabs" (and omit .noborder to keep styling).
 */
-article.post table:not(.noborder) {
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) {
 	width: 100%;
 	max-width: 100%;
 	margin: var(--space-lg) 0;
@@ -724,7 +725,7 @@ article.post table:not(.noborder) {
 	line-height: 1.45;
 }
 
-article.post table:not(.noborder) caption {
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) caption {
 	caption-side: top;
 	text-align: left;
 	font-family: var(--font-sans);
@@ -736,27 +737,27 @@ article.post table:not(.noborder) caption {
 	padding: 0;
 }
 
-article.post table:not(.noborder) th,
-article.post table:not(.noborder) td {
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) th,
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) td {
 	padding: 0.4rem 1rem 0.45rem 0;
 	vertical-align: top;
 	text-align: left;
 	border: 0;
 }
 
-article.post table:not(.noborder) thead th {
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) thead th {
 	font-family: var(--font-sans);
 	font-weight: var(--font-sans-weight-semibold);
 	border-bottom: var(--table-rule-thin) solid var(--color-text);
 	padding-bottom: 0.4rem;
 }
 
-article.post table:not(.noborder) tbody th {
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) tbody th {
 	font-family: var(--font-sans);
 	font-weight: var(--font-sans-weight-semibold);
 }
 
-article.post table:not(.noborder) tbody td {
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) tbody td {
 	padding-top: 0.35rem;
 	padding-bottom: 0.35rem;
 }
