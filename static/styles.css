@@ -38,10 +38,6 @@ h1.taxonomy-title .term {
 	margin-top: 2em;
 }
 
-.nowrap {
-	white-space: nowrap;
-}
-
 /* Fix line-height for lines with footnotes.
    http://discuss.gohugo.io/t/footnote-styling/114/6?u=joshuapoehls */
 sup, sub {
@@ -239,6 +235,15 @@ pre, code {
 ************************************************** */
 #page {
 	margin-top: 1.5em;
+}
+
+/* /archives tag rows: one flex item per tag; wraps between tags even when HTML is minified. */
+#page p.archive-tag-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	column-gap: 0.65em;
+	row-gap: 0.2em;
 }
 
 #page h2 {

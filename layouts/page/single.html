@@ -5,7 +5,7 @@
 {{ if eq .Params.url "/archives" }}
 
 	<h2>Best Tags</h2>
-	<p>
+	<p class="archive-tag-list">
 	{{ $recommended := hugo.Data.tags.recommended }}
 	{{ range $name, $pages := .Site.Taxonomies.tags }}
 		{{/* Inner loop because `if in $recommended $name` isn't working. */}}
@@ -13,7 +13,7 @@
 			{{ if eq . $name }}
 				{{ $pageCount := len $pages }}
 
-				<span class="nowrap" style="margin-left: .5em">
+				<span>
 					<a href="../tags/{{ $name | urlize }}">{{ $name }}</a>
 					<small>({{ $pageCount }})</small>
 				</span>
@@ -36,11 +36,11 @@
 	</ul>
 
 	<h2>All Tags</h2>
-	<p>
+	<p class="archive-tag-list">
 	{{ range $name, $pages := .Site.Taxonomies.tags }}
 		{{ $pageCount := len $pages }}
 
-		<span class="nowrap" style="margin-left: .5em">
+		<span>
 			<a href="../tags/{{ $name | urlize }}">{{ $name }}</a>
 			<small>({{ $pageCount }})</small>
 		</span>
