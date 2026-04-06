@@ -6,9 +6,9 @@ name: Deploy site to gh-pages
 
 on:
   workflow_dispatch:
-#  push:
-#    branches:
-#      - master
+  push:
+    branches:
+      - master
 
 concurrency:
   group: deploy-gh-pages
