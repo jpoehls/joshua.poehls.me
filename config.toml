@@ -9,10 +9,15 @@ disableKinds = ["404"]
 
 [outputs]
 	home = ["HTML", "RSS", "HUMANS"]
+	# Only home emits feed.xml; section/taxonomy/term RSS would duplicate it
+	section = ["HTML"]
+	taxonomy = ["HTML"]
+	term = ["HTML"]
 
 [pagination]
 pagerSize = 10
-path = "page"
+	# Not "page" — that collides with content/page/ (section index at /page/ vs pagers at /page/2/)
+path = "p"
 
 [mediaTypes]
 	[mediaTypes.'application/atom+xml']
