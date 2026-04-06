@@ -19,7 +19,9 @@
 	--color-bg-subtle: #f9f9f9;
 	--color-banner: #efefef;
 	--color-banner-rule: #333;
-	--color-border-quote: #adadad;
+	/* Short centered rule between adjacent blockquotes; <hr> is longer, same look */
+	--rule-blockquote-separator-width: 2.75rem;
+	--rule-hr-width: min(34rem, 72%);
 	--color-code-text: #515151;
 	--font-serif: "Spectral", Georgia, "Times New Roman", serif;
 	--font-sans: "Georama", system-ui, sans-serif;
@@ -250,11 +252,10 @@ strong {
 
 .permalink {
 	text-decoration: none;
-	border-bottom: none;
 }
 
-.footnote-return {
-	border-bottom: none;
+.footnote-ref, .footnote-return, .footnote-backref {
+	text-decoration: none;
 }
 
 nav.pagination {
@@ -291,8 +292,24 @@ article.post--excerpt .post-summary blockquote {
 	line-height: 1.32;
 }
 
-article.post blockquote p {
+/* Match in-quote ¶ rhythm to body; strip UA p margins so quote mb isn’t doubled before next ¶ */
+article.post blockquote p,
+article.post--excerpt .post-summary blockquote p {
 	font-size: inherit;
+	margin-top: 0;
+	margin-bottom: var(--space-md);
+}
+
+article.post blockquote p:last-child,
+article.post--excerpt .post-summary blockquote p:last-child {
+	margin-bottom: 0;
+}
+
+article.post blockquote > ul:last-child,
+article.post blockquote > ol:last-child,
+article.post--excerpt .post-summary blockquote > ul:last-child,
+article.post--excerpt .post-summary blockquote > ol:last-child {
+	margin-bottom: 0;
 }
 
 blockquote > blockquote {
@@ -303,17 +320,68 @@ blockquote > blockquote {
 	line-height: inherit;
 }
 
-cite {
-	margin: 0 var(--space-xl);
-	padding: 0;
-	margin-top: -0.5rem;
-	text-align: right;
-	display: block;
+/* Adjacent blockquotes: short centered rule (CSS-only; no extra markup) */
+blockquote:has(+ blockquote) {
+	margin-bottom: 0;
 }
 
-blockquote > ul {
+blockquote + blockquote {
+	margin-top: 0;
+	position: relative;
+	padding-top: calc(2 * var(--space-md));
+}
+
+/* Rule sits midway in padding-top: var(--space-md) above and below, matching ¶ rhythm */
+blockquote + blockquote::before {
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: calc(var(--space-md) - 0.5px);
+	width: var(--rule-blockquote-separator-width);
+	height: 0;
+	border-top: 1px dotted var(--color-muted);
+	transform: translateX(-50%);
+}
+
+/*
+  Same dotted look as adjacent-blockquote separator; wider band, not full measure.
+  Fixed-height box keeps var(--space-md) above and below the line; sibling rules
+  normalize margin collapse (e.g. headings, tables).
+*/
+hr {
+	border: 0;
+	margin: 0;
+	margin-inline: auto;
+	width: var(--rule-hr-width);
+	max-width: 100%;
+	height: calc(2 * var(--space-md) + 1px);
+	box-sizing: border-box;
+	background: transparent;
+	position: relative;
+}
+
+hr::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: calc(var(--space-md) - 0.5px);
+	height: 0;
+	border-top: 1px dotted var(--color-muted);
+}
+
+blockquote > ul,
+blockquote > ol {
 	margin-top: var(--space-md);
-	margin-bottom: 0;
+	margin-bottom: var(--space-md);
+}
+
+/* Blockquote already has horizontal padding; don’t double-indent a leading list */
+blockquote > ul:first-child,
+blockquote > ol:first-child {
+	margin-left: 0;
+	margin-top: 0;
+	padding-left: 1em;
 }
 
 /* --- Links --- */
@@ -321,12 +389,18 @@ a,
 .site-banner h1 .contact-link a,
 .site-banner h1 .archives-link a {
 	color: var(--color-link);
-	text-decoration: none;
-	border-bottom: 1px dotted var(--color-link);
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-decoration-style: dotted;
 }
 
 a:hover {
 	background-color: var(--color-link-hover-bg);
+}
+
+/* Linked images (e.g. figure): keep hover highlight off the photo */
+a:has(img):hover {
+	background-color: transparent;
 }
 
 a:focus-visible {
@@ -421,7 +495,6 @@ article.post code {
 
 .site-banner h1 a {
 	text-decoration: none;
-	border-bottom: none;
 	color: var(--color-muted);
 }
 
@@ -579,6 +652,18 @@ article.post--excerpt .post-summary p:empty {
 	display: none;
 }
 
+article.post--excerpt .post-summary > *:has(+ hr) {
+	margin-bottom: 0;
+}
+
+article.post--excerpt .post-summary hr + * {
+	margin-top: var(--space-md);
+}
+
+article.post--excerpt .post-summary hr + hr {
+	margin-top: 0;
+}
+
 article.post--excerpt .excerpt-ellipsis {
 	white-space: nowrap;
 }
@@ -625,10 +710,11 @@ article.post figure a {
 }
 
 /*
-  Post tables: booktabs / journal-ish — strong top & bottom, thin rule under header,
-  no vertical rules, no zebra (matches typical modern LaTeX table packages).
+  Booktabs-style tables: strong top & bottom, thin rule under header, no vertical rules.
+  — In posts: every table except .noborder (legacy opt-out).
+  — Elsewhere: add class="booktabs" (and omit .noborder to keep styling).
 */
-article.post table:not(.noborder) {
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) {
 	width: 100%;
 	max-width: 100%;
 	margin: var(--space-lg) 0;
@@ -639,7 +725,7 @@ article.post table:not(.noborder) {
 	line-height: 1.45;
 }
 
-article.post table:not(.noborder) caption {
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) caption {
 	caption-side: top;
 	text-align: left;
 	font-family: var(--font-sans);
@@ -651,29 +737,45 @@ article.post table:not(.noborder) caption {
 	padding: 0;
 }
 
-article.post table:not(.noborder) th,
-article.post table:not(.noborder) td {
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) th,
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) td {
 	padding: 0.4rem 1rem 0.45rem 0;
 	vertical-align: top;
 	text-align: left;
 	border: 0;
 }
 
-article.post table:not(.noborder) thead th {
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) thead th {
 	font-family: var(--font-sans);
 	font-weight: var(--font-sans-weight-semibold);
 	border-bottom: var(--table-rule-thin) solid var(--color-text);
 	padding-bottom: 0.4rem;
 }
 
-article.post table:not(.noborder) tbody th {
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) tbody th {
 	font-family: var(--font-sans);
 	font-weight: var(--font-sans-weight-semibold);
 }
 
-article.post table:not(.noborder) tbody td {
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) tbody td {
 	padding-top: 0.35rem;
 	padding-bottom: 0.35rem;
+}
+
+/* Normalize margin collapse around <hr> so rhythm matches the rule’s internal padding */
+article.post > *:has(+ hr),
+main article:not(.post) > *:has(+ hr) {
+	margin-bottom: 0;
+}
+
+article.post hr + *,
+main article:not(.post) hr + * {
+	margin-top: var(--space-md);
+}
+
+article.post hr + hr,
+main article:not(.post) hr + hr {
+	margin-top: 0;
 }
 
 .fin-symbol {
