@@ -471,9 +471,10 @@ article.post > p + p {
 	text-indent: 2em;
 }
 
-/* Space between title/meta and post body */
+/* Space between title/meta and post body; center title + date line */
 article.post header {
 	margin-bottom: var(--space-lg);
+	text-align: center;
 }
 
 /* Title in masthead of the card — not body heading rhythm */
@@ -489,6 +490,7 @@ article.post > h1 {
 	letter-spacing: 0;
 	margin-top: var(--space-heading-before);
 	margin-bottom: var(--space-heading-after);
+	text-align: center;
 }
 
 article.post h2,
@@ -502,6 +504,14 @@ article.post h6 {
 
 article.post h2 {
 	font-size: var(--font-post-h2);
+	text-align: center;
+}
+
+article.post h3,
+article.post h4,
+article.post h5,
+article.post h6 {
+	text-align: left;
 }
 
 article.post h3 {
