@@ -252,11 +252,10 @@ strong {
 
 .permalink {
 	text-decoration: none;
-	border-bottom: none;
 }
 
 .footnote-ref, .footnote-return {
-	border-bottom: none;
+	text-decoration: none;
 }
 
 nav.pagination {
@@ -390,8 +389,9 @@ a,
 .site-banner h1 .contact-link a,
 .site-banner h1 .archives-link a {
 	color: var(--color-link);
-	text-decoration: none;
-	border-bottom: 1px dotted var(--color-link);
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-decoration-style: dotted;
 }
 
 a:hover {
@@ -495,7 +495,6 @@ article.post code {
 
 .site-banner h1 a {
 	text-decoration: none;
-	border-bottom: none;
 	color: var(--color-muted);
 }
 
@@ -571,15 +570,6 @@ article.post header h1 {
 	margin-bottom: 0;
 	font-size: var(--font-post-h1);
 	letter-spacing: 0;
-}
-
-/* Excerpt: title → post (no rule). Full post: plain title unless linkurl → external link + dotted rule */
-article.post header h1 a.post-title-link {
-	border-bottom: 0;
-}
-
-article.post header h1 a.post-title-link--external {
-	border-bottom: 1px dotted var(--color-link);
 }
 
 /* Rare in-body # heading (direct child of article, not inside header) */
