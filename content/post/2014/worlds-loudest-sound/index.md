@@ -8,7 +8,7 @@ tags:
 - science
 ---
 
-{{% img src="/2014/10/worlds-loudest-sound/krakatoa.jpg" caption="Krakatoa" %}}
+{{% img src="krakatoa.jpg" caption="Krakatoa" %}}
 
 > The sound made by the Krakatoa volcanic eruption in 1883 was so loud it ruptured eardrums of people 40 miles away, travelled around the world four times, and [was clearly heard 3,000 miles away](http://nautil.us/blog/the-sound-so-loud-that-it-circled-the-earth-four-times).
 

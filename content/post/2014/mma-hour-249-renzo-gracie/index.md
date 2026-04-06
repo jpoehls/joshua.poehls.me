@@ -9,7 +9,7 @@ tags:
 - interview
 ---
 
-{{% img src="/2014/10/mma-hour-249-renzo-gracie/renzo.jpg" caption="Renzo Gracie on MMA Hour Episode 249" link="http://www.mmafighting.com/2014/9/30/6872803/the-mma-hour-249-renzo-gracie" %}}
+{{% img src="renzo.jpg" caption="Renzo Gracie on MMA Hour Episode 249" link="http://www.mmafighting.com/2014/9/30/6872803/the-mma-hour-249-renzo-gracie" %}}
 
 I listened to [the Renzo interview on MMA Hour][1] this morning; an amazing interview. [Renzo](https://twitter.com/renzograciebjj) seems like a great person and several of his comments really touched me. Lots of great stories and true respect as he talks about various people and competitors. Getting exposed to people like this is one of the reasons I love BJJ. There is a strong sense of honor and respect in the community that I don’t see in my own everyday life. It’s an inspiring influence.
 

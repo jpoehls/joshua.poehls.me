@@ -17,17 +17,17 @@ Start out by going to [the AutoHotkey website](http://www.autohotkey.com).
 
 Download the **AutoHotkey_L** installer. This is the most recent version of AutoHotkey and specifically supports Unicode which is important for us.
 
-{{% img src="/2011/12/autohotkey/Image4.png" caption="Screenshot of the AutoHotkey download page" %}}
+{{% img src="Image4.png" caption="Screenshot of the AutoHotkey download page" %}}
 
 Run the installer and leave all the defaults.
 
-{{% img src="/2011/12/autohotkey/Image3.png" caption="Screenshot of the AutoHotkey installer" %}}
+{{% img src="Image3.png" caption="Screenshot of the AutoHotkey installer" %}}
 
 Look in your My Documents folder and open up `AutoHotkey.ahk` in a text editor that you can save as UTF-8 in.
 
 If you don't know what this means or don't have an editor that can do this then [download Notepad2](http://www.flos-freeware.ch/notepad2.html) and open the file in that program.
 
-{{% img src="/2011/12/autohotkey/Image5.png" caption="Screenshot of the AutoHotkey.ahk file in Windows Explorer" %}}
+{{% img src="Image5.png" caption="Screenshot of the AutoHotkey.ahk file in Windows Explorer" %}}
 
 Now that you have `AutoHotkey.ahk` opened, delete everything in there (after reading it if you care) and paste the following in its place.
 
@@ -37,11 +37,11 @@ return</code></pre>
 
 Now save this file with **UTF-8** encoding. If you are using Notepad2 you can do this by going to `File | Encoding | UTF-8` and clicking **Yes** to the warning. Then click `File | Save` as usual.
 
-{{% img src="/2011/12/autohotkey/Image.png" caption="Screenshot of saving the file with UTF-8 encoding" %}}
+{{% img src="Image.png" caption="Screenshot of saving the file with UTF-8 encoding" %}}
 
 Finally, run the **AutoHotkey** program from your Start Menu.
 
-{{% img src="/2011/12/autohotkey/Image2.png" caption="Screenshot of AutoHotkey in the Start Menu" %}}
+{{% img src="Image2.png" caption="Screenshot of AutoHotkey in the Start Menu" %}}
 
 ### Now to try it out!
 
@@ -57,4 +57,5 @@ Here is a teaser of just a few of the tricks you can do:
 
 * Create global shortcuts to run programs (ex. `CTRL+Z` to open a browser and navigate to a specific website.)
 * Replace acronyms or common spelling mistakes (ex. replace "restraunt" -> "restaurant" automatically.)
+* Toggle hidden files in Windows Explorer with a shortcut key.
 * Toggle hidden files in Windows Explorer with a shortcut key.

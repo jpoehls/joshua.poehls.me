@@ -34,7 +34,7 @@ And you get remote desktop baked in.
 Mesh is still a beta product and things seem to be moving slowly
 on it judging by the sparse updates and lack of news via the blogging community.
 
-{{% img src="/2009/10/livemesh-dropbox/mesh_live_desktop.jpg" %}}
+{{% img src="mesh_live_desktop.jpg" %}}
 
 The best part of Mesh is that in addition to syncing folders
 across your computer, you can *optionally* have it sync the folder
@@ -46,14 +46,14 @@ up my 5GB of cloud space. With Mesh, this is easily handled by configuring
 exactly which devices you want to sync each folder with. Guess what?
 Your Live Desktop shows up as a device!
 
-{{% img src="/2009/10/livemesh-dropbox/mesh_folder_share_config.png" %}}
+{{% img src="mesh_folder_share_config.png" %}}
 
 What's the catch? Well for me the whole syncing part was too opaque.
 I never felt like I really 'knew' if my latest changes had been sync'd
 yet or not. Even with the fancy News sidebar that Mesh attaches to each
 of your sync'd folders.
 
-{{% img src="/2009/10/livemesh-dropbox/mesh_log_small.jpg" %}}
+{{% img src="mesh_log_small.jpg" %}}
 
 All too often I would update files and trust Mesh to sync them only
 to find out later that Mesh never picked up on the changes. Maybe it's
@@ -93,7 +93,7 @@ I'll get a notification as soon as my laptop receives the update. This does
 wonders for making me feel "in the loop" and confident that my files are being
 kept up-to-date.
 
-{{% img src="/2009/10/livemesh-dropbox/dropbox_status_overlays.png" %}}
+{{% img src="dropbox_status_overlays.png" %}}
 
 Dropbox has the cloud part covered by letting you login and access all your
 files via the browser. On top of this, they also keep past versions of your
@@ -128,7 +128,7 @@ offline it won't get updates until it comes back.
 
 Oh, and it has an activity log:
 
-{{% img src="/2009/10/livemesh-dropbox/live_sync_activity.png" %}}
+{{% img src="live_sync_activity.png" %}}
 
 No cloud storage means no piddly size limitations. Well, sort of.
 You are limited to syncing 20 folders (top-level folders, this doesn't
