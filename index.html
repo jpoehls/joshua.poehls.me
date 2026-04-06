@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <title>joshua poehls | silent thoughts</title>
 
-<link rel="canonical" href="http://joshua.poehls.me/">
+<link rel="canonical" href="https://joshua.poehls.me/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.84.1" />
+<meta name="generator" content="Hugo 0.160.0">
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -60,15 +60,15 @@
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/">Two Ways To Not Use A Bible Reading Plan</a>
+            <a href="https://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/">Two Ways To Not Use A Bible Reading Plan</a>
             
         </h1>
         <p>
             <time datetime="2022-03-29 07:52:10 -0500 CDT" pubdate="pubdate">Tue, Mar 29, 2022</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/">
+            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/</span>
+                <span class="printonly">https://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/</span>
             </a>
         </p>
     </header>
@@ -83,7 +83,7 @@
 <h1 id="reminders-app">Reminders App</h1>
 <p>I&rsquo;ve been using the iOS <em>Reminders</em> app as my primary Bible reading list (or <em>plan</em>) for at least a couple years. It works great!</p>
 <figure >
-<p><img src="/two-ways-to-not-use-a-bible-reading-plan/reminders.png" alt="My Bible Reading list in the iOS Reminders app" /></p>
+<img src="/two-ways-to-not-use-a-bible-reading-plan/reminders.png" alt="My Bible Reading list in the iOS Reminders app" />
 <figcaption>
 <p>
 My Bible Reading list in the iOS Reminders app
@@ -116,7 +116,7 @@ My Bible Reading list in the iOS Reminders app
 <h2 id="entering-data">Entering Data</h2>
 <p>The <em>Log</em> sheet is simple data entry. When I read a book, I add a line. If I only read a few chapters, I add a line and make note of the chapter I stopped at. This is my &ldquo;bookmark&rdquo;.</p>
 <figure >
-<p><img src="/two-ways-to-not-use-a-bible-reading-plan/log.png" alt="My reading log spreadsheet" /></p>
+<img src="/two-ways-to-not-use-a-bible-reading-plan/log.png" alt="My reading log spreadsheet" />
 <figcaption>
 <p>
 My reading log spreadsheet
@@ -131,7 +131,7 @@ My reading log spreadsheet
 <li>The date I last finished the book. This has the same <span style="background-color: #76e15f;">green</span> or <span style="color: #dd4040;">red</span> highlight. There&rsquo;s no highlight if I finished it last year - that&rsquo;d be too much visual noise.</li>
 </ul>
 <figure >
-<p><img src="/two-ways-to-not-use-a-bible-reading-plan/books.png" alt="My book summary spreadsheet" /></p>
+<img src="/two-ways-to-not-use-a-bible-reading-plan/books.png" alt="My book summary spreadsheet" />
 <figcaption>
 <p>
 My book summary spreadsheet
@@ -146,7 +146,7 @@ My book summary spreadsheet
 <h2 id="per-year-summary">Per Year Summary</h2>
 <p>Finally, the <em>Years</em> sheet is a read-only dashboard of my overall Bible reading progress rolled up by year.</p>
 <figure >
-<p><img src="/two-ways-to-not-use-a-bible-reading-plan/years.png" alt="My year summary spreadsheet" /></p>
+<img src="/two-ways-to-not-use-a-bible-reading-plan/years.png" alt="My year summary spreadsheet" />
 <figcaption>
 <p>
 My year summary spreadsheet
@@ -171,28 +171,28 @@ My year summary spreadsheet
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/">Parse .NET TimeSpans in a Tableau Calculated Field</a>
+            <a href="https://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/">Parse .NET TimeSpans in a Tableau Calculated Field</a>
             
         </h1>
         <p>
             <time datetime="2019-10-28 23:03:55 -0500 CDT" pubdate="pubdate">Mon, Oct 28, 2019</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/">
+            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/</span>
+                <span class="printonly">https://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/</span>
             </a>
         </p>
     </header>
 
     <p>Here&rsquo;s a formula you can use to create a calculated field in <a href="https://tableau.com">Tableau</a> for converting strings in the format of .NET <code>TimeSpan</code> values to a total number of seconds.</p>
 <p>Given a string <code>79.23:08:01.3976607</code> (79 days, 23 hours, 8 minutes, 1.3976607 seconds), it would return the total number of seconds.</p>
-<pre><code>IF ISNULL([TimeSpan]) THEN
+<pre tabindex="0"><code>IF ISNULL([TimeSpan]) THEN
    NULL
 ELSE
-   (IFNULL(INT(REGEXP_EXTRACT_NTH([TimeSpan], &quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&quot;, 2)), 0) * 86400)
-   + (INT(REGEXP_EXTRACT_NTH([TimeSpan], &quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&quot;, 3)) * 3600)
-   + (INT(REGEXP_EXTRACT_NTH([TimeSpan], &quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&quot;, 4)) * 60)
-   + FLOAT(REGEXP_EXTRACT_NTH([TimeSpan], &quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&quot;, 5))
+   (IFNULL(INT(REGEXP_EXTRACT_NTH([TimeSpan], &#34;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&#34;, 2)), 0) * 86400)
+   + (INT(REGEXP_EXTRACT_NTH([TimeSpan], &#34;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&#34;, 3)) * 3600)
+   + (INT(REGEXP_EXTRACT_NTH([TimeSpan], &#34;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&#34;, 4)) * 60)
+   + FLOAT(REGEXP_EXTRACT_NTH([TimeSpan], &#34;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&#34;, 5))
 END
 </code></pre>
 
@@ -210,15 +210,15 @@ END
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2018/resources-for-studying-zephaniah/">Resources for Studying Zephaniah</a>
+            <a href="https://joshua.poehls.me/2018/resources-for-studying-zephaniah/">Resources for Studying Zephaniah</a>
             
         </h1>
         <p>
             <time datetime="2018-11-14 13:41:40 -0500 -0500" pubdate="pubdate">Wed, Nov 14, 2018</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2018/resources-for-studying-zephaniah/">
+            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2018/resources-for-studying-zephaniah/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2018/resources-for-studying-zephaniah/</span>
+                <span class="printonly">https://joshua.poehls.me/2018/resources-for-studying-zephaniah/</span>
             </a>
         </p>
     </header>
@@ -254,15 +254,15 @@ END
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2018/greek-new-testament-narrated-by-theo-karvounakis/">Greek New Testament Narrated by Theo Karvounakis</a>
+            <a href="https://joshua.poehls.me/2018/greek-new-testament-narrated-by-theo-karvounakis/">Greek New Testament Narrated by Theo Karvounakis</a>
             
         </h1>
         <p>
             <time datetime="2018-09-24 09:52:40 -0500 CDT" pubdate="pubdate">Mon, Sep 24, 2018</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2018/greek-new-testament-narrated-by-theo-karvounakis/">
+            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2018/greek-new-testament-narrated-by-theo-karvounakis/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2018/greek-new-testament-narrated-by-theo-karvounakis/</span>
+                <span class="printonly">https://joshua.poehls.me/2018/greek-new-testament-narrated-by-theo-karvounakis/</span>
             </a>
         </p>
     </header>
@@ -299,15 +299,15 @@ END
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2017/vincent-van-gogh-the-letters/">Vincent van Gogh - The Letters</a>
+            <a href="https://joshua.poehls.me/2017/vincent-van-gogh-the-letters/">Vincent van Gogh - The Letters</a>
             
         </h1>
         <p>
             <time datetime="2017-11-10 08:54:57 -0600 CST" pubdate="pubdate">Fri, Nov 10, 2017</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2017/vincent-van-gogh-the-letters/">
+            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2017/vincent-van-gogh-the-letters/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2017/vincent-van-gogh-the-letters/</span>
+                <span class="printonly">https://joshua.poehls.me/2017/vincent-van-gogh-the-letters/</span>
             </a>
         </p>
     </header>
@@ -318,7 +318,7 @@ END
 <p>&ndash; Vincent van Gogh, <a href="http://www.vangoghletters.org/vg/letters/let155/letter.html">Letter no. 155 (June 1880)</a></p>
 </blockquote>
 <figure >
-<p><img src="/2017/vgletter.jpg" alt="Facsimile of a letter from Vincent van Gogh" /></p>
+<img src="/2017/vgletter.jpg" alt="Facsimile of a letter from Vincent van Gogh" />
 <figcaption>
 <p>
 Facsimile of a letter from Vincent van Gogh
@@ -348,15 +348,15 @@ Facsimile of a letter from Vincent van Gogh
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2017/the-bible-project-justice/">The Bible Project: Justice</a>
+            <a href="https://joshua.poehls.me/2017/the-bible-project-justice/">The Bible Project: Justice</a>
             
         </h1>
         <p>
             <time datetime="2017-11-07 13:19:24 -0600 CST" pubdate="pubdate">Tue, Nov 7, 2017</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2017/the-bible-project-justice/">
+            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2017/the-bible-project-justice/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2017/the-bible-project-justice/</span>
+                <span class="printonly">https://joshua.poehls.me/2017/the-bible-project-justice/</span>
             </a>
         </p>
     </header>
@@ -368,10 +368,9 @@ Facsimile of a letter from Vincent van Gogh
 <p>The biblical hebrew word for <em>righteousness</em> is <a href="https://www.blueletterbible.org/lang/lexicon/lexicon.cfm?strongs=H6666"><em>tsĕdaqah</em></a>. It&rsquo;s more specific. It&rsquo;s an ethical standard that refers to right relationships <em>between people</em>. It&rsquo;s about treating others <em>as the image of God</em>. With the God given dignity they deserve.</p>
 <p>And this word <em>justice</em>, it&rsquo;s the hebrew word <a href="https://www.blueletterbible.org/lang/lexicon/lexicon.cfm?t=nasb&amp;strongs=h4941"><em>mishpat</em></a>. It <em>can</em> refer to retributive justice&hellip; yet most often in the Bible, <em>mishpat</em> refers to <em>restorative</em> justice. It means going a step further. Actually seeking out vulnerable people who are being taken advantage of and helping them out. &hellip;It means taking steps to advocate for the vulnerable, and changing social structures to <em>prevent</em> injustice.</p>
 </blockquote>
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/A14THPoc4-4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/A14THPoc4-4?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
 
 <blockquote>
 <p>Open your mouth for the mute,<br>
@@ -398,10 +397,9 @@ The LORD watches over the sojourners;<br>
 &ndash; <a href="https://www.esv.org/Psalm+146:7/">Psalm 146:7-9</a> (ESV)</p>
 </blockquote>
 <p>The behind-the-scenes is pretty cool as well.</p>
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/9U9nxG544Gk" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/9U9nxG544Gk?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
 
 <blockquote>
 <p>Did not your father eat and drink<br>
@@ -429,15 +427,15 @@ He judged the cause of the poor and needy;<br>
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2017/think-clearly/">Think Clearly</a>
+            <a href="https://joshua.poehls.me/2017/think-clearly/">Think Clearly</a>
             
         </h1>
         <p>
             <time datetime="2017-11-06 22:36:19 -0600 CST" pubdate="pubdate">Mon, Nov 6, 2017</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2017/think-clearly/">
+            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2017/think-clearly/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2017/think-clearly/</span>
+                <span class="printonly">https://joshua.poehls.me/2017/think-clearly/</span>
             </a>
         </p>
     </header>
@@ -463,15 +461,15 @@ He judged the cause of the poor and needy;<br>
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/powershell-script-boilerplate/">PowerShell Script Boilerplate</a>
+            <a href="https://joshua.poehls.me/powershell-script-boilerplate/">PowerShell Script Boilerplate</a>
             
         </h1>
         <p>
             <time datetime="2017-11-06 01:18:00 -0600 CST" pubdate="pubdate">Mon, Nov 6, 2017</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/powershell-script-boilerplate/">
+            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/powershell-script-boilerplate/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/powershell-script-boilerplate/</span>
+                <span class="printonly">https://joshua.poehls.me/powershell-script-boilerplate/</span>
             </a>
         </p>
     </header>
@@ -522,14 +520,14 @@ a <code>$stopwatch</code> that will output the elapsed time when the script fini
 <blockquote>
 <p>Need to wrap your PowerShells script with a batch file? Grab my <a href="/powershell-batch-file-wrapper">PowerShell batch file wrapper</a>.</p>
 </blockquote>
-<section class="footnotes" role="doc-endnotes">
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
+<li id="fn:1">
 <p><a href="http://blogs.technet.com/b/heyscriptingguy/archive/2014/12/03/enforce-better-script-practices-by-using-set-strictmode.aspx">Read more about this</a> on the &ldquo;Hey, Scripting Guy!&rdquo; blog.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 
 
 </article>
@@ -546,15 +544,15 @@ a <code>$stopwatch</code> that will output the elapsed time when the script fini
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2016/01/bible-quiz-1/">Bible Quiz: Deu 7:9, 10:12-13</a>
+            <a href="https://joshua.poehls.me/2016/01/bible-quiz-1/">Bible Quiz: Deu 7:9, 10:12-13</a>
             
         </h1>
         <p>
             <time datetime="2016-01-18 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, Jan 18, 2016</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2016/01/bible-quiz-1/">
+            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2016/01/bible-quiz-1/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2016/01/bible-quiz-1/</span>
+                <span class="printonly">https://joshua.poehls.me/2016/01/bible-quiz-1/</span>
             </a>
         </p>
     </header>
@@ -626,15 +624,15 @@ a <code>$stopwatch</code> that will output the elapsed time when the script fini
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2016/09/fear-not/">Serve the LORD, Fear Not</a>
+            <a href="https://joshua.poehls.me/2016/09/fear-not/">Serve the LORD, Fear Not</a>
             
         </h1>
         <p>
             <time datetime="2015-09-16 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Sep 16, 2015</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2016/09/fear-not/">
+            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2016/09/fear-not/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2016/09/fear-not/</span>
+                <span class="printonly">https://joshua.poehls.me/2016/09/fear-not/</span>
             </a>
         </p>
     </header>
@@ -648,35 +646,35 @@ a <code>$stopwatch</code> that will output the elapsed time when the script fini
 <p>So that we may boldly say, <strong>The Lord is my helper</strong>, and I will not fear what man shall do unto me.<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup></p>
 <p><strong>The LORD is on my side;</strong> I will not fear: what can man do unto me?<sup id="fnref:8"><a href="#fn:8" class="footnote-ref" role="doc-noteref">8</a></sup></p>
 <p><em>These quotations are all from the KJV.</em></p>
-<section class="footnotes" role="doc-endnotes">
+<div class="footnotes" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn:1" role="doc-endnote">
+<li id="fn:1">
 <p>Deu 30:19&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:2" role="doc-endnote">
+<li id="fn:2">
 <p>Jos 24:15&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:3" role="doc-endnote">
+<li id="fn:3">
 <p>1Sa 12:14&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:4" role="doc-endnote">
+<li id="fn:4">
 <p>2Ti 1:7&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:5" role="doc-endnote">
+<li id="fn:5">
 <p>Jhn 16:33&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:6" role="doc-endnote">
+<li id="fn:6">
 <p>1Jo 4:4&#160;<a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:7" role="doc-endnote">
+<li id="fn:7">
 <p>Heb 13:6&#160;<a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
-<li id="fn:8" role="doc-endnote">
+<li id="fn:8">
 <p>Psa 118:6&#160;<a href="#fnref:8" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
-</section>
+</div>
 
 
 </article>
@@ -703,7 +701,7 @@ a <code>$stopwatch</code> that will output the elapsed time when the script fini
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2026&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

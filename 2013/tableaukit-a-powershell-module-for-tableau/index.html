@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <title>joshua poehls | silent thoughts</title>
 
-<link rel="canonical" href="http://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/">
+<link rel="canonical" href="https://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.84.1" />
+<meta name="generator" content="Hugo 0.160.0">
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -61,15 +61,15 @@
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/">TableauKit: A PowerShell Module for Tableau</a>
+            <a href="https://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/">TableauKit: A PowerShell Module for Tableau</a>
             
         </h1>
         <p>
             <time datetime="2013-08-09 22:32:43 -0500 CDT" pubdate="pubdate">Fri, Aug 9, 2013</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/">
+            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/</span>
+                <span class="printonly">https://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/</span>
             </a>
         </p>
     </header>
@@ -114,7 +114,7 @@ XML so you can go spelunking for the hard to find stuff!</p>
 <p>Can&rsquo;t remember which workbook contains that elusive &ldquo;Top 10 Hot Dogs&rdquo; worksheet?</p>
 <pre><code>Get-TableauObject *.twb, *.twbx |
 	where {
-        ($_.Worksheets | select -Expand DisplayName) -contains &quot;Top 10 Hot Dogs&quot;
+		($_.Worksheets | select -Expand DisplayName) -contains &quot;Top 10 Hot Dogs&quot;
 	} |
 	select FileName
 </code></pre>
@@ -166,8 +166,8 @@ use to further search and filter.</p>
 	foreach { $dashboard = $_; $_ } |
 	select -Expand Worksheets |
 	select @{ Label=&quot;Dashboard&quot;; Expression={$dashboard.DisplayName} },
-           @{ Label=&quot;Worksheet&quot;; Expression={$_.DisplayName} },
-           @{ Label=&quot;File&quot;; Expression={$workbook.FileName} } |
+	       @{ Label=&quot;Worksheet&quot;; Expression={$_.DisplayName} },
+	       @{ Label=&quot;File&quot;; Expression={$workbook.FileName} } |
 	Out-GridView
 </code></pre>
 <p><img src="tableaukit1.png" alt="Results Screenshot" title="Results Screenshot"></p>
@@ -267,7 +267,7 @@ see added? Let me know in the comments!</p>
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2026&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

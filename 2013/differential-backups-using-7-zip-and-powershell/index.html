@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <title>joshua poehls | silent thoughts</title>
 
-<link rel="canonical" href="http://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/">
+<link rel="canonical" href="https://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.84.1" />
+<meta name="generator" content="Hugo 0.160.0">
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -61,15 +61,15 @@
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/">Differential backups using 7-zip and PowerShell</a>
+            <a href="https://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/">Differential backups using 7-zip and PowerShell</a>
             
         </h1>
         <p>
             <time datetime="2013-12-10 23:04:50 -0500 -0500" pubdate="pubdate">Tue, Dec 10, 2013</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/">
+            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/</span>
+                <span class="printonly">https://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/</span>
             </a>
         </p>
     </header>
@@ -110,38 +110,38 @@
 <p>My script isn&rsquo;t suited to sharing verbatim but I do want to share the good parts.</p>
 <h3 id="selecting-the-most-recent-full-backup">Selecting the most recent full backup</h3>
 <p>Differential backups have to be based on a full backup. The script is smart enough to find the most recent full backup file and use it as the base.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Find the most recent full backup.</span>
-<span style="color:#75715e"># Depends on Get-ChildItem returning the items sorted in ascending order (oldest backups first).</span>
-$fullBackup = Get-ChildItem <span style="color:#f92672">-File</span> -Path <span style="color:#e6db74">&#34;$backupOutputPath\backup-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9].7z&#34;</span> | select -Last 1 -ExpandProperty FullName
-<span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> ($fullBackup) <span style="color:#f92672">-or</span> <span style="color:#f92672">-not</span> (Test-Path $fullBackup -PathType Leaf)) {
-	<span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;No full backup was found. Must have a full backup before performing a differential.&#34;</span>
-}
-</code></pre></div><h3 id="7-zip-args-for-a-full-backup">7-zip args for a full backup</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$7zipArgs = @(
-	<span style="color:#e6db74">&#34;a&#34;</span>;                          <span style="color:#75715e"># Create an archive.</span>
-	<span style="color:#e6db74">&#34;-t7z&#34;</span>;                       <span style="color:#75715e"># Use the 7z format.</span>
-	<span style="color:#e6db74">&#34;-mx=7&#34;</span>;                      <span style="color:#75715e"># Use a level 7 &#34;high&#34; compression.</span>
-	<span style="color:#e6db74">&#34;-xr!thumbs.db&#34;</span>;              <span style="color:#75715e"># Exclude thumbs.db files wherever they are found.</span>
-	<span style="color:#e6db74">&#34;-xr!*.log&#34;</span>;                  <span style="color:#75715e"># Exclude all *.log files as well.</span>
-	<span style="color:#e6db74">&#34;-xr-@</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">$excludesFile</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">&#34;</span>; <span style="color:#75715e"># Exclude all paths in my excludes.txt file.</span>
-	<span style="color:#e6db74">&#34;-ir-@</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">$includesFile</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">&#34;</span>; <span style="color:#75715e"># Include all paths in my includes.txt file.</span>
-	<span style="color:#e6db74">&#34;$outputFile&#34;</span>;                <span style="color:#75715e"># Output file path (a *.7z file).</span>
-)
-</code></pre></div><p>Notice that I doubled some quotation marks for the excludes and includes arguments. This escaping is necessary to ensure the path I&rsquo;m passing in works even if it has spaces in it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Find the most recent full backup.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Depends on Get-ChildItem returning the items sorted in ascending order (oldest backups first).</span>
+</span></span><span style="display:flex;"><span>$fullBackup = Get-ChildItem <span style="color:#f92672">-File</span> -Path <span style="color:#e6db74">&#34;</span>$backupOutputPath<span style="color:#e6db74">\backup-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9].7z&#34;</span> | select -Last <span style="color:#ae81ff">1</span> -ExpandProperty FullName
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#f92672">-not</span> ($fullBackup) <span style="color:#f92672">-or</span> <span style="color:#f92672">-not</span> (Test-Path $fullBackup -PathType Leaf)) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;No full backup was found. Must have a full backup before performing a differential.&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="7-zip-args-for-a-full-backup">7-zip args for a full backup</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>$7zipArgs = @(
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;a&#34;</span>;                          <span style="color:#75715e"># Create an archive.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;-t7z&#34;</span>;                       <span style="color:#75715e"># Use the 7z format.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;-mx=7&#34;</span>;                      <span style="color:#75715e"># Use a level 7 &#34;high&#34; compression.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;-xr!thumbs.db&#34;</span>;              <span style="color:#75715e"># Exclude thumbs.db files wherever they are found.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;-xr!*.log&#34;</span>;                  <span style="color:#75715e"># Exclude all *.log files as well.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;-xr-@</span><span style="color:#ae81ff">`&#34;`&#34;</span>$excludesFile<span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">&#34;</span>; <span style="color:#75715e"># Exclude all paths in my excludes.txt file.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;-ir-@</span><span style="color:#ae81ff">`&#34;`&#34;</span>$includesFile<span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">&#34;</span>; <span style="color:#75715e"># Include all paths in my includes.txt file.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;</span>$outputFile<span style="color:#e6db74">&#34;</span>;                <span style="color:#75715e"># Output file path (a *.7z file).</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>Notice that I doubled some quotation marks for the excludes and includes arguments. This escaping is necessary to ensure the path I&rsquo;m passing in works even if it has spaces in it.</p>
 <h3 id="7-zip-args-for-a-differential-backup">7-zip args for a differential backup</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$7zipArgs = @(
-	<span style="color:#e6db74">&#34;u&#34;</span>;                                    <span style="color:#75715e"># Update an archive. Slightly confusing since we&#39;ll be saving those updates to a new archive file.</span>
-	<span style="color:#e6db74">&#34;$fullBackupPath&#34;</span>;                      <span style="color:#75715e"># Path of the full backup we are creating a differential for.</span>
-	<span style="color:#e6db74">&#34;-t7z&#34;</span>;
-	<span style="color:#e6db74">&#34;-mx=7&#34;</span>;
-	<span style="color:#e6db74">&#34;-xr!thumbs.db&#34;</span>;
-	<span style="color:#e6db74">&#34;-xr!*.log&#34;</span>;
-	<span style="color:#e6db74">&#34;-xr-@</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">$excludesFile</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">&#34;</span>;
-	<span style="color:#e6db74">&#34;-ir-@</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">$includesFile</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">&#34;</span>;
-	<span style="color:#e6db74">&#34;-u-&#34;</span>;                                  <span style="color:#75715e"># Don&#39;t update the original archive (the full backup).</span>
-	<span style="color:#e6db74">&#34;-up0q3r2x2y2z0w2!</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">$outputFile</span><span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">&#34;</span>; <span style="color:#75715e"># Flags to specify how the archive should be updated and the output file path (a *.7z file).</span>
-)
-</code></pre></div><p>The last argument there is a doosey. Here&rsquo;s what those flags mean.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>$7zipArgs = @(
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;u&#34;</span>;                                    <span style="color:#75715e"># Update an archive. Slightly confusing since we&#39;ll be saving those updates to a new archive file.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;</span>$fullBackupPath<span style="color:#e6db74">&#34;</span>;                      <span style="color:#75715e"># Path of the full backup we are creating a differential for.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;-t7z&#34;</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;-mx=7&#34;</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;-xr!thumbs.db&#34;</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;-xr!*.log&#34;</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;-xr-@</span><span style="color:#ae81ff">`&#34;`&#34;</span>$excludesFile<span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">&#34;</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;-ir-@</span><span style="color:#ae81ff">`&#34;`&#34;</span>$includesFile<span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">&#34;</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;-u-&#34;</span>;                                  <span style="color:#75715e"># Don&#39;t update the original archive (the full backup).</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;-up0q3r2x2y2z0w2!</span><span style="color:#ae81ff">`&#34;`&#34;</span>$outputFile<span style="color:#ae81ff">`&#34;`&#34;</span><span style="color:#e6db74">&#34;</span>; <span style="color:#75715e"># Flags to specify how the archive should be updated and the output file path (a *.7z file).</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>The last argument there is a doosey. Here&rsquo;s what those flags mean.</p>
 <ul>
 <li><code>-u</code> - Starts the &ldquo;update options&rdquo; which follow.</li>
 <li>Each letter represents a state of a file either in the base archive (our full backup) or on disk (the files we&rsquo;re backing up).
@@ -168,57 +168,57 @@ $fullBackup = Get-ChildItem <span style="color:#f92672">-File</span> -Path <span
 <p><em>You can read more about 7-zip&rsquo;s options in their documentation.</em></p>
 <h3 id="watching-for-exit-codes">Watching for exit codes</h3>
 <p>I want my backup to fail if 7-zip fails.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">&amp; $7zip @7zipArgs | Tee-Object -LiteralPath $logFile
-<span style="color:#66d9ef">if</span> ($LASTEXITCODE <span style="color:#f92672">-gt</span> 1) <span style="color:#75715e"># Ignores warnings which use exit code 1.</span>
-{
-	<span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;7zip failed with exit code $LASTEXITCODE&#34;</span>
-}
-</code></pre></div><h3 id="log-7-zip-output-to-both-the-console-and-log-file">Log 7-zip output to both the console and log file</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>&amp; $7zip @7zipArgs | Tee-Object -LiteralPath $logFile
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($LASTEXITCODE <span style="color:#f92672">-gt</span> <span style="color:#ae81ff">1</span>) <span style="color:#75715e"># Ignores warnings which use exit code 1.</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;7zip failed with exit code </span>$LASTEXITCODE<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="log-7-zip-output-to-both-the-console-and-log-file">Log 7-zip output to both the console and log file</h3>
 <p>Did you notice <a href="http://technet.microsoft.com/en-us/library/hh849937.aspx"><code>Tee-Object</code></a> in the above snippet? That&rsquo;s what handles this. The only downside is that your console output will be laggy due to PowerShell buffering the pipeline.</p>
 <h3 id="deleting-old-backups">Deleting old backups</h3>
 <p>Remember, I&rsquo;m only keeping the most recent full backup and most recent differential backup files locally. My script automatically deletes old backup files after a new backup is successful. This is the magic used to delete the old differential backups when a new one finishes.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="color:#75715e"># Clean up old differential backup files.</span>
-<span style="color:#75715e"># Only keep the most recent differential backup.</span>
-<span style="color:#75715e"># Depends on Get-ChildItem returning the items sorted in ascending order (oldest backups first).</span>
-$allDiffBackups = Get-ChildItem <span style="color:#f92672">-File</span> -Path <span style="color:#e6db74">&#34;$backupOutputPath\backup-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]-diff-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9].7z&#34;</span>
-<span style="color:#66d9ef">if</span> ($allDiffBackups <span style="color:#f92672">-is</span> <span style="color:#66d9ef">[array]</span> ) {
-	<span style="color:#66d9ef">[Array]</span>:: Reverse($allDiffBackups)
-	$allDiffBackups | select -Skip 1 | % {
-		Write-Host <span style="color:#e6db74">&#34;Deleting old differential backup. File: </span>$($_.FullName)<span style="color:#e6db74">&#34;</span>
-		<span style="color:#75715e"># Remove the matching log file.</span>
-		Remove-Item -LiteralPath (<span style="color:#66d9ef">[System.IO.Path ]</span>::ChangeExtension($_.FullName, <span style="color:#e6db74">&#34;.log&#34;</span>)) -ErrorAction SilentlyContinue
-		$_
-	} | Remove-Item
-} 
-</code></pre></div><h3 id="robocopy-args-to-upload-the-backups">Robocopy args to upload the backups</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$robocopyArgs = @(
-	<span style="color:#e6db74">&#34;$backupOutputPath&#34;</span>; <span style="color:#75715e"># Source path</span>
-	<span style="color:#e6db74">&#34;$networkDestPath&#34;</span>;  <span style="color:#75715e"># Destination path</span>
-	<span style="color:#e6db74">&#34;/Z&#34;</span>;                <span style="color:#75715e"># Use restartable mode when transferring files.</span>
-	<span style="color:#e6db74">&#34;/FP&#34;</span>;               <span style="color:#75715e"># Log the full paths to files.</span>
-	<span style="color:#e6db74">&#34;/NP&#34;</span>;               <span style="color:#75715e"># Don&#39;t log progress percentages.</span>
-	<span style="color:#e6db74">&#34;/X&#34;</span>;                <span style="color:#75715e"># Log a list of &#39;extra&#39; files that exist in the destination but not locally.</span>
-	<span style="color:#e6db74">&#34;/UNILOG+$logfile&#34;</span>;  <span style="color:#75715e"># Append to the specified log file.</span>
-	<span style="color:#e6db74">&#34;/TEE&#34;</span>;              <span style="color:#75715e"># Send output to the console in addition to the log file.</span>
-)
-</code></pre></div><p>Those arguments will perform a shallow copy of all files in the source folder to the destination.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Clean up old differential backup files.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Only keep the most recent differential backup.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Depends on Get-ChildItem returning the items sorted in ascending order (oldest backups first).</span>
+</span></span><span style="display:flex;"><span>$allDiffBackups = Get-ChildItem <span style="color:#f92672">-File</span> -Path <span style="color:#e6db74">&#34;</span>$backupOutputPath<span style="color:#e6db74">\backup-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]-diff-[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9].7z&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($allDiffBackups <span style="color:#f92672">-is</span> [<span style="color:#66d9ef">array</span>] ) {
+</span></span><span style="display:flex;"><span>	[<span style="color:#66d9ef">Array</span>]:: Reverse($allDiffBackups)
+</span></span><span style="display:flex;"><span>	$allDiffBackups | select -Skip <span style="color:#ae81ff">1</span> | % {
+</span></span><span style="display:flex;"><span>		Write-Host <span style="color:#e6db74">&#34;Deleting old differential backup. File: </span>$($_.FullName)<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Remove the matching log file.</span>
+</span></span><span style="display:flex;"><span>		Remove-Item -LiteralPath ([<span style="color:#66d9ef">System.IO.Path </span>]::ChangeExtension($_.FullName, <span style="color:#e6db74">&#34;.log&#34;</span>)) -ErrorAction SilentlyContinue
+</span></span><span style="display:flex;"><span>		$_
+</span></span><span style="display:flex;"><span>	} | Remove-Item
+</span></span><span style="display:flex;"><span>} 
+</span></span></code></pre></div><h3 id="robocopy-args-to-upload-the-backups">Robocopy args to upload the backups</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>$robocopyArgs = @(
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;</span>$backupOutputPath<span style="color:#e6db74">&#34;</span>; <span style="color:#75715e"># Source path</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;</span>$networkDestPath<span style="color:#e6db74">&#34;</span>;  <span style="color:#75715e"># Destination path</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;/Z&#34;</span>;                <span style="color:#75715e"># Use restartable mode when transferring files.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;/FP&#34;</span>;               <span style="color:#75715e"># Log the full paths to files.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;/NP&#34;</span>;               <span style="color:#75715e"># Don&#39;t log progress percentages.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;/X&#34;</span>;                <span style="color:#75715e"># Log a list of &#39;extra&#39; files that exist in the destination but not locally.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;/UNILOG+</span>$logfile<span style="color:#e6db74">&#34;</span>;  <span style="color:#75715e"># Append to the specified log file.</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;/TEE&#34;</span>;              <span style="color:#75715e"># Send output to the console in addition to the log file.</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>Those arguments will perform a shallow copy of all files in the source folder to the destination.</p>
 <p>Note that since robocopy supports the <code>/UNILOG+</code> and <code>/TEE</code> arguments I don&rsquo;t have to use <code>Tee-Object</code> to append to the log file.</p>
 <p>Once again, I&rsquo;ll make sure the copy is successful and fail the script if the copy fails.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">&amp; $robocopy @robocopyArgs
-<span style="color:#66d9ef">if</span> ($LASTEXITCODE <span style="color:#f92672">-ge</span> 8) <span style="color:#75715e"># exit code when files failed to copy</span>
-{
-	<span style="color:#75715e"># robocopy exit codes: http://support.microsoft.com/kb/954404</span>
-	<span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;robocopy failed with exit code $LASTEXITCODE&#34;</span>
-}
-</code></pre></div><h3 id="passing-args-from-powershell-to-executables">Passing args from PowerShell to executables</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>&amp; $robocopy @robocopyArgs
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($LASTEXITCODE <span style="color:#f92672">-ge</span> <span style="color:#ae81ff">8</span>) <span style="color:#75715e"># exit code when files failed to copy</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># robocopy exit codes: http://support.microsoft.com/kb/954404</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">throw</span> <span style="color:#e6db74">&#34;robocopy failed with exit code </span>$LASTEXITCODE<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="passing-args-from-powershell-to-executables">Passing args from PowerShell to executables</h3>
 <p>There are a million ways, of course, but my favorite is to put the arguments into an array and let PowerShell splat them. I really like how this keeps the script readable even when you are passing a ton of arguments around.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$cmdArgs = @(
-	<span style="color:#e6db74">&#34;/E&#34;</span>;
-	<span style="color:#e6db74">&#34;/UNILOG+$logfile&#34;</span>;
-) 
-
-&amp; some_application.exe @cmdArgs
-</code></pre></div><p>The only thing to be aware of here is that if one of your <code>$cmdArg</code> items contains a SPACE then PowerShell will automatically wrap the argument in double quotes when passing it to the executable.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>$cmdArgs = @(
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;/E&#34;</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;/UNILOG+</span>$logfile<span style="color:#e6db74">&#34;</span>;
+</span></span><span style="display:flex;"><span>) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&amp; some_application.exe @cmdArgs
+</span></span></code></pre></div><p>The only thing to be aware of here is that if one of your <code>$cmdArg</code> items contains a SPACE then PowerShell will automatically wrap the argument in double quotes when passing it to the executable.</p>
 <blockquote>
 <p>If you are having trouble getting your quotes and other special characters escaped properly, I&rsquo;ve written <a href="http://github.com/jpoehls/echoargs">several EchoArgs apps</a> to help. They just echo back the arguments passed in so you can see how they are being received.</p>
 </blockquote>
@@ -241,7 +241,7 @@ $allDiffBackups = Get-ChildItem <span style="color:#f92672">-File</span> -Path <
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2026&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

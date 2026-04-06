@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <title>joshua poehls | silent thoughts</title>
 
-<link rel="canonical" href="http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/">
+<link rel="canonical" href="https://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.84.1" />
+<meta name="generator" content="Hugo 0.160.0">
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -61,15 +61,15 @@
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/">Killing Processes In Disconnected Terminal Service Sessions</a>
+            <a href="https://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/">Killing Processes In Disconnected Terminal Service Sessions</a>
             
         </h1>
         <p>
             <time datetime="2012-12-12 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wed, Dec 12, 2012</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/">
+            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/</span>
+                <span class="printonly">https://joshua.poehls.me/2012/killing-processes-in-disconnected-terminal-service-sessions/</span>
             </a>
         </p>
     </header>
@@ -77,15 +77,15 @@
     <p>Usually it is best to configure your terminal service policy to log out disconnected sessions, however there may be cases where you only want to kill specific applications when the user disconnects.</p>
 <p>This is easy to do with a PowerShell script that you run periodically as a scheduled task. The processes won&rsquo;t be killed <em>immediately</em> when the user disconnects but will be killed shortly after.</p>
 <p>This script will, by default, only kill the OUTLOOK processes in disconnected sessions after waiting 15 seconds for it to gracefully close. It is trivial to tweak the script to kill whichever processes you care about.</p>
-<pre><code># kill-processes.ps1
+<pre tabindex="0"><code># kill-processes.ps1
 
 # This script supports being run with -WhatIf and -Confirm parameters.
-[CmdletBinding(SupportsShouldProcess=$true, ConfirmImpact='Medium')]
+[CmdletBinding(SupportsShouldProcess=$true, ConfirmImpact=&#39;Medium&#39;)]
 param (
     # Regex of the states that should be included in the process killing field.
-    [string]$IncludeStates = '^(Disc)$', # Only DISCONNECTED sessions by default.
+    [string]$IncludeStates = &#39;^(Disc)$&#39;, # Only DISCONNECTED sessions by default.
     # Regex of the processes to kill
-    [string]$KillProcesses = '^(OUTLOOK)$', # Only OUTLOOK by default.
+    [string]$KillProcesses = &#39;^(OUTLOOK)$&#39;, # Only OUTLOOK by default.
     [int]$GracefulTimeout = 15 # Number of seconds to wait for a graceful shutdown before forcefully closing the program.
 )
 
@@ -114,26 +114,26 @@ function Get-Sessions
     # Parses the output of `qwinsta` into PowerShell objects.
     $c = query session 2&gt;&amp;1 | where {$_.gettype().equals([string]) }
 
-    $starters = New-Object psobject -Property @{&quot;SessionName&quot; = 0; &quot;Username&quot; = 0; &quot;ID&quot; = 0; &quot;State&quot; = 0; &quot;Type&quot; = 0; &quot;Device&quot; = 0;};
+    $starters = New-Object psobject -Property @{&#34;SessionName&#34; = 0; &#34;Username&#34; = 0; &#34;ID&#34; = 0; &#34;State&#34; = 0; &#34;Type&#34; = 0; &#34;Device&#34; = 0;};
      
     foreach($line in $c) {
          try {
-             if($line.trim().substring(0, $line.trim().indexof(&quot; &quot;)) -eq &quot;SESSIONNAME&quot;) {
-                $starters.Username = $line.indexof(&quot;USERNAME&quot;);
-                $starters.ID = $line.indexof(&quot;ID&quot;);
-                $starters.State = $line.indexof(&quot;STATE&quot;);
-                $starters.Type = $line.indexof(&quot;TYPE&quot;);
-                $starters.Device = $line.indexof(&quot;DEVICE&quot;);
+             if($line.trim().substring(0, $line.trim().indexof(&#34; &#34;)) -eq &#34;SESSIONNAME&#34;) {
+                $starters.Username = $line.indexof(&#34;USERNAME&#34;);
+                $starters.ID = $line.indexof(&#34;ID&#34;);
+                $starters.State = $line.indexof(&#34;STATE&#34;);
+                $starters.Type = $line.indexof(&#34;TYPE&#34;);
+                $starters.Device = $line.indexof(&#34;DEVICE&#34;);
                 continue;
             }
            
             New-Object psobject -Property @{
-                &quot;SessionName&quot; = $line.trim().substring(0, $line.trim().indexof(&quot; &quot;)).trim(&quot;&gt;&quot;)
-                ;&quot;Username&quot; = $line.Substring($starters.Username, $line.IndexOf(&quot; &quot;, $starters.Username) - $starters.Username)
-                ;&quot;ID&quot; = $line.Substring($line.IndexOf(&quot; &quot;, $starters.Username), $starters.ID - $line.IndexOf(&quot; &quot;, $starters.Username) + 2).trim()
-                ;&quot;State&quot; = $line.Substring($starters.State, $line.IndexOf(&quot; &quot;, $starters.State)-$starters.State).trim()
-                ;&quot;Type&quot; = $line.Substring($starters.Type, $starters.Device - $starters.Type).trim()
-                ;&quot;Device&quot; = $line.Substring($starters.Device).trim()
+                &#34;SessionName&#34; = $line.trim().substring(0, $line.trim().indexof(&#34; &#34;)).trim(&#34;&gt;&#34;)
+                ;&#34;Username&#34; = $line.Substring($starters.Username, $line.IndexOf(&#34; &#34;, $starters.Username) - $starters.Username)
+                ;&#34;ID&#34; = $line.Substring($line.IndexOf(&#34; &#34;, $starters.Username), $starters.ID - $line.IndexOf(&#34; &#34;, $starters.Username) + 2).trim()
+                ;&#34;State&#34; = $line.Substring($starters.State, $line.IndexOf(&#34; &#34;, $starters.State)-$starters.State).trim()
+                ;&#34;Type&#34; = $line.Substring($starters.Type, $starters.Device - $starters.Type).trim()
+                ;&#34;Device&#34; = $line.Substring($starters.Device).trim()
             }
         } catch {
             throw $_;
@@ -148,11 +148,11 @@ function Get-Sessions
 # Because we want proper log messages.
 function Get-ProperWord([string]$singularWord, [int]$count) {
     if ($count -eq 0 -or $count -gt 1) {
-        if ($singularWord.EndsWith(&quot;s&quot;)) {
-            return &quot;$($singularWord)es&quot;;
+        if ($singularWord.EndsWith(&#34;s&#34;)) {
+            return &#34;$($singularWord)es&#34;;
         }
         else {
-            return &quot;$($singularWord)s&quot;;
+            return &#34;$($singularWord)s&#34;;
         }
     }
     else {
@@ -173,33 +173,33 @@ $SessionProcesses = $IncludedSessions `
             | Where { $_.SessionID -eq $id -and $_.Name -match $KillProcesses } }
 
 # Get some words to use in log output.
-$wordSecond = $(Get-ProperWord 'second' $GracefulTimeout)
-$wordProcess = $(Get-ProperWord 'process' $SessionProcesses.Length)
+$wordSecond = $(Get-ProperWord &#39;second&#39; $GracefulTimeout)
+$wordProcess = $(Get-ProperWord &#39;process&#39; $SessionProcesses.Length)
 
 if ($SessionProcesses.Length -gt 0) {
     # Initiate a graceful shutdown of the processes.
     # http://powershell.com/cs/blogs/tips/archive/2010/05/27/stopping-programs-gracefully.aspx
-    Write-Output &quot;Gracefully closing $($SessionProcesses.Length) $wordProcess&quot;
+    Write-Output &#34;Gracefully closing $($SessionProcesses.Length) $wordProcess&#34;
     $SessionProcesses `
-        | % { if ($PSCmdlet.ShouldProcess(&quot;$($_.Name) ($($_.Id))&quot;, &quot;CloseMainWindow&quot;)) { $_.CloseMainWindow() } } `
+        | % { if ($PSCmdlet.ShouldProcess(&#34;$($_.Name) ($($_.Id))&#34;, &#34;CloseMainWindow&#34;)) { $_.CloseMainWindow() } } `
         | Out-Null
 
     # Wait X seconds for the programs to close gracefully.
-    Write-Output &quot;Waiting $GracefulTimeout $wordSecond for the $wordProcess to close&quot;
+    Write-Output &#34;Waiting $GracefulTimeout $wordSecond for the $wordProcess to close&#34;
     if ($GracefulTimeout -gt 0) {
-        if ($PSCmdlet.ShouldProcess(&quot;Current Process&quot;, &quot;Start-Sleep&quot;)) {
+        if ($PSCmdlet.ShouldProcess(&#34;Current Process&#34;, &#34;Start-Sleep&#34;)) {
             Start-Sleep -Seconds $GracefulTimeout
         }
     }
 
     # Force any remaining processes to close, the hard way.
-    Write-Output &quot;Forcefully closing any remaining processes&quot;
+    Write-Output &#34;Forcefully closing any remaining processes&#34;
     $SessionProcesses `
         | Where { $_.HasExited -ne $true } `
         | Stop-Process -ErrorAction SilentlyContinue
 }
 else {
-    Write-Output &quot;No processes to close&quot;
+    Write-Output &#34;No processes to close&#34;
 }
 </code></pre>
 
@@ -218,7 +218,7 @@ else {
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2026&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

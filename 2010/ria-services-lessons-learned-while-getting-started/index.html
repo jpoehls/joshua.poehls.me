@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <title>joshua poehls | silent thoughts</title>
 
-<link rel="canonical" href="http://joshua.poehls.me/2010/ria-services-lessons-learned-while-getting-started/">
+<link rel="canonical" href="https://joshua.poehls.me/2010/ria-services-lessons-learned-while-getting-started/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.84.1" />
+<meta name="generator" content="Hugo 0.160.0">
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -61,15 +61,15 @@
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2010/ria-services-lessons-learned-while-getting-started/">RIA Services - Lessons Learned While Getting Started</a>
+            <a href="https://joshua.poehls.me/2010/ria-services-lessons-learned-while-getting-started/">RIA Services - Lessons Learned While Getting Started</a>
             
         </h1>
         <p>
             <time datetime="2010-05-17 00:00:00 &#43;0000 UTC" pubdate="pubdate">Mon, May 17, 2010</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2010/ria-services-lessons-learned-while-getting-started/">
+            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2010/ria-services-lessons-learned-while-getting-started/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2010/ria-services-lessons-learned-while-getting-started/</span>
+                <span class="printonly">https://joshua.poehls.me/2010/ria-services-lessons-learned-while-getting-started/</span>
             </a>
         </p>
     </header>
@@ -106,7 +106,7 @@
 <h3 id="in-code">In code</h3>
 <p>Here&rsquo;s a code example of what I discovered:</p>
 <p>This is bad.</p>
-<pre><code>public class PersonDomainService : DomainService
+<pre tabindex="0"><code>public class PersonDomainService : DomainService
 {
     public void UpdatePerson(Person dto)
     {
@@ -130,7 +130,7 @@ public class PersonDao
     }
 }
 </code></pre><p>This is good.</p>
-<pre><code>public class PersonDomainService : LinqToEntitiesDomainService&lt;MyObjectContext&gt;
+<pre tabindex="0"><code>public class PersonDomainService : LinqToEntitiesDomainService&lt;MyObjectContext&gt;
 {
     public void UpdatePerson(Person dto)
     {
@@ -169,10 +169,10 @@ public class PersonDao
 <p>Here are some things I&rsquo;ve found helpful thus far:</p>
 <ul>
 <li>
-<p><a href="http://blogs.msdn.com/brada/archive/2009/03/17/mix09-building-amazing-business-applications-with-silverlight-3.aspx">Brad Abrams' entire series on Building Amazing Business Applications with Silverlight 3</a></p>
+<p><a href="http://blogs.msdn.com/brada/archive/2009/03/17/mix09-building-amazing-business-applications-with-silverlight-3.aspx">Brad Abrams&rsquo; entire series on Building Amazing Business Applications with Silverlight 3</a></p>
 </li>
 <li>
-<p><a href="http://blogs.msdn.com/brada/archive/2010/03/15/silverlight-4-ria-services-ready-for-business-index.aspx">Brad Abrams' Silveright 4 + RIA Services series</a></p>
+<p><a href="http://blogs.msdn.com/brada/archive/2010/03/15/silverlight-4-ria-services-ready-for-business-index.aspx">Brad Abrams&rsquo; Silveright 4 + RIA Services series</a></p>
 </li>
 <li>
 <p><a href="http://bradabrams.sys-con.com/node/1049931/mobile">Example of using a DataSet with RIA Services</a> - This is what opened my eyes to the true purpose of the <code>Submit()</code> method in the <code>DomainService</code>.</p>
@@ -193,7 +193,7 @@ public class PersonDao
 <p><a href="http://kevindockx.blogspot.com/2009/07/working-with-ria-services-2-change-sets.html">Good blog post describing Change Sets in detail</a></p>
 </li>
 <li>
-<p><a href="http://www.google.com">Google</a> &ndash;  &lsquo;nuff said.</p>
+<p><a href="http://www.google.com">Google</a> &ndash;  &rsquo;nuff said.</p>
 </li>
 </ul>
 
@@ -213,7 +213,7 @@ public class PersonDao
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2026&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

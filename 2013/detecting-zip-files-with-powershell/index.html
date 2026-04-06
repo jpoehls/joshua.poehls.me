@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <title>joshua poehls | silent thoughts</title>
 
-<link rel="canonical" href="http://joshua.poehls.me/2013/detecting-zip-files-with-powershell/">
+<link rel="canonical" href="https://joshua.poehls.me/2013/detecting-zip-files-with-powershell/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.84.1" />
+<meta name="generator" content="Hugo 0.160.0">
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -61,15 +61,15 @@
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2013/detecting-zip-files-with-powershell/">Detecting ZIP files with PowerShell</a>
+            <a href="https://joshua.poehls.me/2013/detecting-zip-files-with-powershell/">Detecting ZIP files with PowerShell</a>
             
         </h1>
         <p>
             <time datetime="2013-12-22 22:23:43 -0500 -0500" pubdate="pubdate">Sun, Dec 22, 2013</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2013/detecting-zip-files-with-powershell/">
+            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2013/detecting-zip-files-with-powershell/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2013/detecting-zip-files-with-powershell/</span>
+                <span class="printonly">https://joshua.poehls.me/2013/detecting-zip-files-with-powershell/</span>
             </a>
         </p>
     </header>
@@ -92,22 +92,22 @@
 #&gt;
 	[CmdletBinding()]
 	param(
-        [Parameter(
-            ParameterSetName  = &quot;Path&quot;,
+		[Parameter(
+			ParameterSetName  = &quot;Path&quot;,
             Mandatory = $true,
-            ValueFromPipeline = $true,
-            ValueFromPipelineByPropertyName = $true
-        )]
-        [string[]]$Path,
+			ValueFromPipeline = $true,
+			ValueFromPipelineByPropertyName = $true
+		)]
+		[string[]]$Path,
 
         [Alias(&quot;PSPath&quot;)]
-        [Parameter(
-            ParameterSetName = &quot;LiteralPath&quot;,
+		[Parameter(
+			ParameterSetName = &quot;LiteralPath&quot;,
             Mandatory = $true,
-            ValueFromPipeline = $true,
-            ValueFromPipelineByPropertyName = $true
-        )]
-        [string[]]$LiteralPath
+			ValueFromPipeline = $true,
+			ValueFromPipelineByPropertyName = $true
+		)]
+		[string[]]$LiteralPath
 	)
 
     process {
@@ -123,27 +123,27 @@
 
         foreach ($filePath in $filePaths) {
             $isZip = $false
-            try {
-                $stream = New-Object System.IO.StreamReader -ArgumentList @($filePath)
-                $reader = New-Object System.IO.BinaryReader -ArgumentList @($stream.BaseStream)
-                $bytes = $reader.ReadBytes(4)
-                if ($bytes.Length -eq 4) {
-                    if ($bytes[0] -eq 80 -and
-                        $bytes[1] -eq 75 -and
-                        $bytes[2] -eq 3 -and
-                        $bytes[3] -eq 4) {
-                        $isZip = $true
-                    }
-                }
-            }
-            finally {
-                if ($reader) {
-                    $reader.Dispose()
-                }
-                if ($stream) {
-                    $stream.Dispose()
-                }
-            }
+	        try {
+	            $stream = New-Object System.IO.StreamReader -ArgumentList @($filePath)
+	            $reader = New-Object System.IO.BinaryReader -ArgumentList @($stream.BaseStream)
+	            $bytes = $reader.ReadBytes(4)
+	            if ($bytes.Length -eq 4) {
+	                if ($bytes[0] -eq 80 -and
+	                    $bytes[1] -eq 75 -and
+	                    $bytes[2] -eq 3 -and
+	                    $bytes[3] -eq 4) {
+	                    $isZip = $true
+	                }
+	            }
+	        }
+	        finally {
+	            if ($reader) {
+	                $reader.Dispose()
+	            }
+	            if ($stream) {
+	                $stream.Dispose()
+	            }
+	        }
 
             Write-Output $isZip
         }
@@ -168,7 +168,7 @@
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2026&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

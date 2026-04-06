@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <title>joshua poehls | silent thoughts</title>
 
-<link rel="canonical" href="http://joshua.poehls.me/2014/go-project-structure-and-dependencies/">
+<link rel="canonical" href="https://joshua.poehls.me/2014/go-project-structure-and-dependencies/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
-<meta name="generator" content="Hugo 0.84.1" />
+<meta name="generator" content="Hugo 0.160.0">
 
 
 <link rel="stylesheet" href="/normalize.css">
@@ -61,15 +61,15 @@
     <header>
         <h1>
             
-            <a href="http://joshua.poehls.me/2014/go-project-structure-and-dependencies/">Go Project Structure and Dependencies</a>
+            <a href="https://joshua.poehls.me/2014/go-project-structure-and-dependencies/">Go Project Structure and Dependencies</a>
             
         </h1>
         <p>
             <time datetime="2014-03-21 21:48:59 -0500 CDT" pubdate="pubdate">Fri, Mar 21, 2014</time>
             <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="http://joshua.poehls.me/2014/go-project-structure-and-dependencies/">
+            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2014/go-project-structure-and-dependencies/">
                 <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">http://joshua.poehls.me/2014/go-project-structure-and-dependencies/</span>
+                <span class="printonly">https://joshua.poehls.me/2014/go-project-structure-and-dependencies/</span>
             </a>
         </p>
     </header>
@@ -99,7 +99,7 @@
 <p><strong>Solution:</strong></p>
 <p>For context, my system <code>GOPATH</code> is <code>~/mygo</code>.</p>
 <p>My project is at <code>~/mygo/src/bitbucket.org/USERNAME/PROJECT</code>.</p>
-<pre><code>~/mygo/src/bitbucket.org/USERNAME/PROJECT
+<pre tabindex="0"><code>~/mygo/src/bitbucket.org/USERNAME/PROJECT
 |-- .gitignore
 |-- README
 |-- Makefile
@@ -111,14 +111,14 @@
 |           |   `-- martini
 |           `-- jpoehls
 |               `-- gophermail
-|-- bin  # My app's binary output.
-|-- docs # My app's documentation.
-`-- src  # My app's source code.
+|-- bin  # My app&#39;s binary output.
+|-- docs # My app&#39;s documentation.
+`-- src  # My app&#39;s source code.
     |-- main_app
     |-- some_pkg
     `-- some_other_pkg
 </code></pre><p>My Makefile looks like this:</p>
-<pre><code>.PHONY: build doc fmt lint run test vendor_clean vendor_get vendor_update vet
+<pre tabindex="0"><code>.PHONY: build doc fmt lint run test vendor_clean vendor_get vendor_update vet
 
 # Prepend our _vendor directory to the system GOPATH
 # so that import path resolution will prioritize
@@ -153,7 +153,7 @@ vendor_clean:
 	rm -dRf ./_vendor/src
 
 # We have to set GOPATH to just the _vendor
-# directory to ensure that `go get` doesn't
+# directory to ensure that `go get` doesn&#39;t
 # update packages in our primary GOPATH instead.
 # This will happen if you already have the package
 # installed in GOPATH since `go get` will use
@@ -198,7 +198,7 @@ vet:
 <footer>
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
-<p>&copy;&nbsp;2014&ndash;2022&nbsp;Joshua&nbsp;Poehls.</p>
+<p>&copy;&nbsp;2014&ndash;2026&nbsp;Joshua&nbsp;Poehls.</p>
 </footer>
 
 <script>

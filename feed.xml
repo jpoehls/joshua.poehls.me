@@ -1,20 +1,20 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>joshua poehls | silent thoughts</title>
-  <icon>http://joshua.poehls.metouch-icon-iphone-retinahd.png</icon>
+  <icon>https://joshua.poehls.me/touch-icon-iphone-retinahd.png</icon>
   <rights>Copyright (c) 2014-2018 Joshua Poehls. All rights reserved.</rights>
-  <link rel="self" href="http://joshua.poehls.me/feed.xml"/>
-  <link href="http://joshua.poehls.me/"/>
+  <link rel="self" href="https://joshua.poehls.me/feed.xml"/>
+  <link href="https://joshua.poehls.me/"/>
   <updated>2022-03-29T07:52:10-05:00</updated>
   <author>
     <name>Joshua Poehls</name>
   </author>
-  <id>http://joshua.poehls.me/</id>
+  <id>https://joshua.poehls.me/</id>
 
   
   <entry>
     <title>Two Ways To Not Use A Bible Reading Plan</title>
-    <link href="http://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/"/>
-    <id>http://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/</id>
+    <link href="https://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/"/>
+    <id>https://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/</id>
     <updated>2022-03-29T07:52:10-05:00</updated>
     
     <category term="scripture" />
@@ -29,7 +29,7 @@
 &lt;h1 id=&#34;reminders-app&#34;&gt;Reminders App&lt;/h1&gt;
 &lt;p&gt;I&amp;rsquo;ve been using the iOS &lt;em&gt;Reminders&lt;/em&gt; app as my primary Bible reading list (or &lt;em&gt;plan&lt;/em&gt;) for at least a couple years. It works great!&lt;/p&gt;
 &lt;figure &gt;
-&lt;p&gt;&lt;img src=&#34;http://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/reminders.png&#34; alt=&#34;My Bible Reading list in the iOS Reminders app&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/reminders.png&#34; alt=&#34;My Bible Reading list in the iOS Reminders app&#34; /&gt;
 &lt;figcaption&gt;
 &lt;p&gt;
 My Bible Reading list in the iOS Reminders app
@@ -62,7 +62,7 @@ My Bible Reading list in the iOS Reminders app
 &lt;h2 id=&#34;entering-data&#34;&gt;Entering Data&lt;/h2&gt;
 &lt;p&gt;The &lt;em&gt;Log&lt;/em&gt; sheet is simple data entry. When I read a book, I add a line. If I only read a few chapters, I add a line and make note of the chapter I stopped at. This is my &amp;ldquo;bookmark&amp;rdquo;.&lt;/p&gt;
 &lt;figure &gt;
-&lt;p&gt;&lt;img src=&#34;http://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/log.png&#34; alt=&#34;My reading log spreadsheet&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/log.png&#34; alt=&#34;My reading log spreadsheet&#34; /&gt;
 &lt;figcaption&gt;
 &lt;p&gt;
 My reading log spreadsheet
@@ -77,7 +77,7 @@ My reading log spreadsheet
 &lt;li&gt;The date I last finished the book. This has the same &lt;span style=&#34;background-color: #76e15f;&#34;&gt;green&lt;/span&gt; or &lt;span style=&#34;color: #dd4040;&#34;&gt;red&lt;/span&gt; highlight. There&amp;rsquo;s no highlight if I finished it last year - that&amp;rsquo;d be too much visual noise.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure &gt;
-&lt;p&gt;&lt;img src=&#34;http://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/books.png&#34; alt=&#34;My book summary spreadsheet&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/books.png&#34; alt=&#34;My book summary spreadsheet&#34; /&gt;
 &lt;figcaption&gt;
 &lt;p&gt;
 My book summary spreadsheet
@@ -92,7 +92,7 @@ My book summary spreadsheet
 &lt;h2 id=&#34;per-year-summary&#34;&gt;Per Year Summary&lt;/h2&gt;
 &lt;p&gt;Finally, the &lt;em&gt;Years&lt;/em&gt; sheet is a read-only dashboard of my overall Bible reading progress rolled up by year.&lt;/p&gt;
 &lt;figure &gt;
-&lt;p&gt;&lt;img src=&#34;http://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/years.png&#34; alt=&#34;My year summary spreadsheet&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/years.png&#34; alt=&#34;My year summary spreadsheet&#34; /&gt;
 &lt;figcaption&gt;
 &lt;p&gt;
 My year summary spreadsheet
@@ -106,8 +106,8 @@ My year summary spreadsheet
   
   <entry>
     <title>Parse .NET TimeSpans in a Tableau Calculated Field</title>
-    <link href="http://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/"/>
-    <id>http://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/</id>
+    <link href="https://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/"/>
+    <id>https://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/</id>
     <updated>2019-10-28T23:03:55-05:00</updated>
     
     <category term="tableau" />
@@ -117,21 +117,21 @@ My year summary spreadsheet
     
     <content type="html">&lt;p&gt;Here&amp;rsquo;s a formula you can use to create a calculated field in &lt;a href=&#34;https://tableau.com&#34;&gt;Tableau&lt;/a&gt; for converting strings in the format of .NET &lt;code&gt;TimeSpan&lt;/code&gt; values to a total number of seconds.&lt;/p&gt;
 &lt;p&gt;Given a string &lt;code&gt;79.23:08:01.3976607&lt;/code&gt; (79 days, 23 hours, 8 minutes, 1.3976607 seconds), it would return the total number of seconds.&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;IF ISNULL([TimeSpan]) THEN
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;IF ISNULL([TimeSpan]) THEN
    NULL
 ELSE
-   (IFNULL(INT(REGEXP_EXTRACT_NTH([TimeSpan], &amp;quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&amp;quot;, 2)), 0) * 86400)
-   + (INT(REGEXP_EXTRACT_NTH([TimeSpan], &amp;quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&amp;quot;, 3)) * 3600)
-   + (INT(REGEXP_EXTRACT_NTH([TimeSpan], &amp;quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&amp;quot;, 4)) * 60)
-   + FLOAT(REGEXP_EXTRACT_NTH([TimeSpan], &amp;quot;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&amp;quot;, 5))
+   (IFNULL(INT(REGEXP_EXTRACT_NTH([TimeSpan], &amp;#34;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&amp;#34;, 2)), 0) * 86400)
+   + (INT(REGEXP_EXTRACT_NTH([TimeSpan], &amp;#34;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&amp;#34;, 3)) * 3600)
+   + (INT(REGEXP_EXTRACT_NTH([TimeSpan], &amp;#34;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&amp;#34;, 4)) * 60)
+   + FLOAT(REGEXP_EXTRACT_NTH([TimeSpan], &amp;#34;^((\d+)\.)?(\d+):(\d+):(\d+(\.(\d+))?)$&amp;#34;, 5))
 END
 &lt;/code&gt;&lt;/pre&gt;</content>
   </entry>
   
   <entry>
     <title>Resources for Studying Zephaniah</title>
-    <link href="http://joshua.poehls.me/2018/resources-for-studying-zephaniah/"/>
-    <id>http://joshua.poehls.me/2018/resources-for-studying-zephaniah/</id>
+    <link href="https://joshua.poehls.me/2018/resources-for-studying-zephaniah/"/>
+    <id>https://joshua.poehls.me/2018/resources-for-studying-zephaniah/</id>
     <updated>2018-11-14T13:41:40-05:00</updated>
     
     <category term="scripture" />
@@ -158,8 +158,8 @@ END
   
   <entry>
     <title>Greek New Testament Narrated by Theo Karvounakis</title>
-    <link href="http://joshua.poehls.me/2018/greek-new-testament-narrated-by-theo-karvounakis/"/>
-    <id>http://joshua.poehls.me/2018/greek-new-testament-narrated-by-theo-karvounakis/</id>
+    <link href="https://joshua.poehls.me/2018/greek-new-testament-narrated-by-theo-karvounakis/"/>
+    <id>https://joshua.poehls.me/2018/greek-new-testament-narrated-by-theo-karvounakis/</id>
     <updated>2018-09-24T09:52:40-05:00</updated>
     
     <category term="greek" />
@@ -176,7 +176,7 @@ END
 &lt;p&gt;I’ve listened to a bit from &lt;em&gt;The Gospel of Matthew&lt;/em&gt; and &lt;em&gt;The Gospel of John&lt;/em&gt; and the production quality is very good. Theo Karvounakis reads in a modern Greek pronunciation that is easy to understand and listen to.&lt;/p&gt;
 &lt;h2 id=&#34;the-gospel-of-john-a-podcast&#34;&gt;The Gospel of John: A Podcast?&lt;/h2&gt;
 &lt;p&gt;I’ve experimented with creating a podcast feed for these recordings so that they are easy to stream on the go. I like to listen to spoken audio in &lt;a href=&#34;https://overcast.fm&#34;&gt;Overcast&lt;/a&gt; as much as possible because of the excellent Smart Speed and Voice Boost features that trim up the excess silence and enhance the audio quality so much.&lt;/p&gt;
-&lt;p&gt;I started by making a feed for &lt;em&gt;The Gospel of John&lt;/em&gt; by uploading the MP3s to the Internet Archive and hosting the podcast RSS feed on GitHub. Use the links below to subscribe. If this is useful to you then I’d love &lt;a href=&#34;http://joshua.poehls.me/contact&#34;&gt;to hear your feedback&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I started by making a feed for &lt;em&gt;The Gospel of John&lt;/em&gt; by uploading the MP3s to the Internet Archive and hosting the podcast RSS feed on GitHub. Use the links below to subscribe. If this is useful to you then I’d love &lt;a href=&#34;https://joshua.poehls.me/contact&#34;&gt;to hear your feedback&lt;/a&gt;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://gist.github.com/jpoehls/aba41a9f0827fe2369df68b307988b3d&#34;&gt;Read the readme&lt;/a&gt; for the podcast feed&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://gist.github.com/jpoehls/aba41a9f0827fe2369df68b307988b3d/raw/feed.xml&#34;&gt;Subscribe to the RSS feed&lt;/a&gt;&lt;/li&gt;
@@ -186,8 +186,8 @@ END
   
   <entry>
     <title>Vincent van Gogh - The Letters</title>
-    <link href="http://joshua.poehls.me/2017/vincent-van-gogh-the-letters/"/>
-    <id>http://joshua.poehls.me/2017/vincent-van-gogh-the-letters/</id>
+    <link href="https://joshua.poehls.me/2017/vincent-van-gogh-the-letters/"/>
+    <id>https://joshua.poehls.me/2017/vincent-van-gogh-the-letters/</id>
     <updated>2017-11-10T08:54:57-06:00</updated>
     
     <category term="art" />
@@ -200,7 +200,7 @@ END
 &lt;p&gt;&amp;ndash; Vincent van Gogh, &lt;a href=&#34;http://www.vangoghletters.org/vg/letters/let155/letter.html&#34;&gt;Letter no. 155 (June 1880)&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;figure &gt;
-&lt;p&gt;&lt;img src=&#34;http://joshua.poehls.me/2017/vgletter.jpg&#34; alt=&#34;Facsimile of a letter from Vincent van Gogh&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://joshua.poehls.me/2017/vgletter.jpg&#34; alt=&#34;Facsimile of a letter from Vincent van Gogh&#34; /&gt;
 &lt;figcaption&gt;
 &lt;p&gt;
 Facsimile of a letter from Vincent van Gogh
@@ -219,8 +219,8 @@ Facsimile of a letter from Vincent van Gogh
   
   <entry>
     <title>The Bible Project: Justice</title>
-    <link href="http://joshua.poehls.me/2017/the-bible-project-justice/"/>
-    <id>http://joshua.poehls.me/2017/the-bible-project-justice/</id>
+    <link href="https://joshua.poehls.me/2017/the-bible-project-justice/"/>
+    <id>https://joshua.poehls.me/2017/the-bible-project-justice/</id>
     <updated>2017-11-07T13:19:24-06:00</updated>
     
     <category term="videos" />
@@ -234,10 +234,9 @@ Facsimile of a letter from Vincent van Gogh
 &lt;p&gt;The biblical hebrew word for &lt;em&gt;righteousness&lt;/em&gt; is &lt;a href=&#34;https://www.blueletterbible.org/lang/lexicon/lexicon.cfm?strongs=H6666&#34;&gt;&lt;em&gt;tsĕdaqah&lt;/em&gt;&lt;/a&gt;. It&amp;rsquo;s more specific. It&amp;rsquo;s an ethical standard that refers to right relationships &lt;em&gt;between people&lt;/em&gt;. It&amp;rsquo;s about treating others &lt;em&gt;as the image of God&lt;/em&gt;. With the God given dignity they deserve.&lt;/p&gt;
 &lt;p&gt;And this word &lt;em&gt;justice&lt;/em&gt;, it&amp;rsquo;s the hebrew word &lt;a href=&#34;https://www.blueletterbible.org/lang/lexicon/lexicon.cfm?t=nasb&amp;amp;strongs=h4941&#34;&gt;&lt;em&gt;mishpat&lt;/em&gt;&lt;/a&gt;. It &lt;em&gt;can&lt;/em&gt; refer to retributive justice&amp;hellip; yet most often in the Bible, &lt;em&gt;mishpat&lt;/em&gt; refers to &lt;em&gt;restorative&lt;/em&gt; justice. It means going a step further. Actually seeking out vulnerable people who are being taken advantage of and helping them out. &amp;hellip;It means taking steps to advocate for the vulnerable, and changing social structures to &lt;em&gt;prevent&lt;/em&gt; injustice.&lt;/p&gt;
 &lt;/blockquote&gt;
-
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;https://www.youtube.com/embed/A14THPoc4-4&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
+      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/A14THPoc4-4?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;
+    &lt;/div&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Open your mouth for the mute,&lt;br&gt;
@@ -264,10 +263,9 @@ The LORD watches over the sojourners;&lt;br&gt;
 &amp;ndash; &lt;a href=&#34;https://www.esv.org/Psalm+146:7/&#34;&gt;Psalm 146:7-9&lt;/a&gt; (ESV)&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;The behind-the-scenes is pretty cool as well.&lt;/p&gt;
-
 &lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;https://www.youtube.com/embed/9U9nxG544Gk&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
+      &lt;iframe allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen&#34; loading=&#34;eager&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; src=&#34;https://www.youtube.com/embed/9U9nxG544Gk?autoplay=0&amp;amp;controls=1&amp;amp;end=0&amp;amp;loop=0&amp;amp;mute=0&amp;amp;start=0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; title=&#34;YouTube video&#34;&gt;&lt;/iframe&gt;
+    &lt;/div&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Did not your father eat and drink&lt;br&gt;
@@ -284,8 +282,8 @@ He judged the cause of the poor and needy;&lt;br&gt;
   
   <entry>
     <title>Think Clearly</title>
-    <link href="http://joshua.poehls.me/2017/think-clearly/"/>
-    <id>http://joshua.poehls.me/2017/think-clearly/</id>
+    <link href="https://joshua.poehls.me/2017/think-clearly/"/>
+    <id>https://joshua.poehls.me/2017/think-clearly/</id>
     <updated>2017-11-06T22:36:19-06:00</updated>
     
     <category term="quotes" />
@@ -300,8 +298,8 @@ He judged the cause of the poor and needy;&lt;br&gt;
   
   <entry>
     <title>PowerShell Script Boilerplate</title>
-    <link href="http://joshua.poehls.me/powershell-script-boilerplate/"/>
-    <id>http://joshua.poehls.me/powershell-script-boilerplate/</id>
+    <link href="https://joshua.poehls.me/powershell-script-boilerplate/"/>
+    <id>https://joshua.poehls.me/powershell-script-boilerplate/</id>
     <updated>2017-11-06T01:18:00-06:00</updated>
     
     <category term="powershell" />
@@ -350,23 +348,23 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
 &lt;li&gt;The &lt;code&gt;try...finally&lt;/code&gt; ensures that the elapsed time will output even if the script throws an exception.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Need to wrap your PowerShells script with a batch file? Grab my &lt;a href=&#34;http://joshua.poehls.me/powershell-batch-file-wrapper&#34;&gt;PowerShell batch file wrapper&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Need to wrap your PowerShells script with a batch file? Grab my &lt;a href=&#34;https://joshua.poehls.me/powershell-batch-file-wrapper&#34;&gt;PowerShell batch file wrapper&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
 &lt;hr&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
 &lt;p&gt;&lt;a href=&#34;http://blogs.technet.com/b/heyscriptingguy/archive/2014/12/03/enforce-better-script-practices-by-using-set-strictmode.aspx&#34;&gt;Read more about this&lt;/a&gt; on the &amp;ldquo;Hey, Scripting Guy!&amp;rdquo; blog.&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/section&gt;
+&lt;/div&gt;
 </content>
   </entry>
   
   <entry>
     <title>Bible Quiz: Deu 7:9, 10:12-13</title>
-    <link href="http://joshua.poehls.me/2016/01/bible-quiz-1/"/>
-    <id>http://joshua.poehls.me/2016/01/bible-quiz-1/</id>
+    <link href="https://joshua.poehls.me/2016/01/bible-quiz-1/"/>
+    <id>https://joshua.poehls.me/2016/01/bible-quiz-1/</id>
     <updated>2016-01-18T00:00:00&#43;00:00</updated>
     <category term="Bible Quiz Questions" />
     <category term="bible quiz" />
@@ -428,8 +426,8 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
   
   <entry>
     <title>Serve the LORD, Fear Not</title>
-    <link href="http://joshua.poehls.me/2016/09/fear-not/"/>
-    <id>http://joshua.poehls.me/2016/09/fear-not/</id>
+    <link href="https://joshua.poehls.me/2016/09/fear-not/"/>
+    <id>https://joshua.poehls.me/2016/09/fear-not/</id>
     <updated>2015-09-16T00:00:00&#43;00:00</updated>
     
     <category term="scripture" />
@@ -443,42 +441,42 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
 &lt;p&gt;So that we may boldly say, &lt;strong&gt;The Lord is my helper&lt;/strong&gt;, and I will not fear what man shall do unto me.&lt;sup id=&#34;fnref:7&#34;&gt;&lt;a href=&#34;#fn:7&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;7&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The LORD is on my side;&lt;/strong&gt; I will not fear: what can man do unto me?&lt;sup id=&#34;fnref:8&#34;&gt;&lt;a href=&#34;#fn:8&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;8&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;These quotations are all from the KJV.&lt;/em&gt;&lt;/p&gt;
-&lt;section class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
 &lt;hr&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn:1&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
 &lt;p&gt;Deu 30:19&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id=&#34;fn:2&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;li id=&#34;fn:2&#34;&gt;
 &lt;p&gt;Jos 24:15&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id=&#34;fn:3&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;li id=&#34;fn:3&#34;&gt;
 &lt;p&gt;1Sa 12:14&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id=&#34;fn:4&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;li id=&#34;fn:4&#34;&gt;
 &lt;p&gt;2Ti 1:7&amp;#160;&lt;a href=&#34;#fnref:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id=&#34;fn:5&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;li id=&#34;fn:5&#34;&gt;
 &lt;p&gt;Jhn 16:33&amp;#160;&lt;a href=&#34;#fnref:5&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id=&#34;fn:6&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;li id=&#34;fn:6&#34;&gt;
 &lt;p&gt;1Jo 4:4&amp;#160;&lt;a href=&#34;#fnref:6&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id=&#34;fn:7&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;li id=&#34;fn:7&#34;&gt;
 &lt;p&gt;Heb 13:6&amp;#160;&lt;a href=&#34;#fnref:7&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li id=&#34;fn:8&#34; role=&#34;doc-endnote&#34;&gt;
+&lt;li id=&#34;fn:8&#34;&gt;
 &lt;p&gt;Psa 118:6&amp;#160;&lt;a href=&#34;#fnref:8&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/section&gt;
+&lt;/div&gt;
 </content>
   </entry>
   
   <entry>
     <title>Delighting in the Trinity</title>
-    <link href="http://joshua.poehls.me/2015/08/delighting-trinity/"/>
-    <id>http://joshua.poehls.me/2015/08/delighting-trinity/</id>
+    <link href="https://joshua.poehls.me/2015/08/delighting-trinity/"/>
+    <id>https://joshua.poehls.me/2015/08/delighting-trinity/</id>
     <updated>2015-08-10T00:00:00&#43;00:00</updated>
     
     
@@ -507,8 +505,8 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
   
   <entry>
     <title>A Simple Way to Pray: A Letter from Dr. Martin Luther</title>
-    <link href="http://joshua.poehls.me/2015/07/a-simple-way-to-pray-luther/"/>
-    <id>http://joshua.poehls.me/2015/07/a-simple-way-to-pray-luther/</id>
+    <link href="https://joshua.poehls.me/2015/07/a-simple-way-to-pray-luther/"/>
+    <id>https://joshua.poehls.me/2015/07/a-simple-way-to-pray-luther/</id>
     <updated>2015-07-03T00:00:00&#43;00:00</updated>
     
     <category term="martin-luther" />
@@ -517,7 +515,7 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
 &lt;p&gt;Early in the year 1535, Peter Beskendorf, a barber and an old friend of Luther&amp;rsquo;s, asked Dr. Luther for suggestions concerning prayer. Luther responded with an open letter titled, &lt;em&gt;How One Should Pray, for Master Peter the Barber&lt;/em&gt;. This letter is as follows.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Paraphrased introduction from Paster Wolfmueller of Hope Lutheran Church, Aurora, CO. 2006.&lt;/em&gt;&lt;/p&gt;
 &lt;figure &gt;
-&lt;p&gt;&lt;img src=&#34;http://joshua.poehls.me/2015/luther-and-friends-praying.jpg&#34; alt=&#34;Luther and Friends Pray at the Bedside of Melancthon&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;https://joshua.poehls.me/2015/luther-and-friends-praying.jpg&#34; alt=&#34;Luther and Friends Pray at the Bedside of Melancthon&#34; /&gt;
 &lt;figcaption&gt;
 &lt;p&gt;
 Luther and Friends Pray at the Bedside of Melancthon
@@ -628,8 +626,8 @@ Luther and Friends Pray at the Bedside of Melancthon
   
   <entry>
     <title>Resources for PowerShell users</title>
-    <link href="http://joshua.poehls.me/powershell-resources/"/>
-    <id>http://joshua.poehls.me/powershell-resources/</id>
+    <link href="https://joshua.poehls.me/powershell-resources/"/>
+    <id>https://joshua.poehls.me/powershell-resources/</id>
     <updated>2015-04-13T10:43:31-06:00</updated>
     
     <category term="powershell" />
@@ -649,9 +647,9 @@ Luther and Friends Pray at the Bedside of Melancthon
 &lt;h2 id=&#34;articles&#34;&gt;Articles&lt;/h2&gt;
 &lt;p&gt;I few articles I&amp;rsquo;ve written to help you get started.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;My boilerplate for &lt;a href=&#34;http://joshua.poehls.me/powershell-script-boilerplate&#34;&gt;scripts&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;My boilerplate for &lt;a href=&#34;http://joshua.poehls.me/powershell-script-module-boilerplate&#34;&gt;script modules&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://joshua.poehls.me/2012/powershell-batch-files-exit-codes&#34;&gt;Deep dive into PowerShell exit codes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;My boilerplate for &lt;a href=&#34;https://joshua.poehls.me/powershell-script-boilerplate&#34;&gt;scripts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;My boilerplate for &lt;a href=&#34;https://joshua.poehls.me/powershell-script-module-boilerplate&#34;&gt;script modules&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://joshua.poehls.me/2012/powershell-batch-files-exit-codes&#34;&gt;Deep dive into PowerShell exit codes&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://zduck.com/2011/scripting-tips-take-your-powershell-profile-everywhere-with-dropbox/&#34;&gt;How to store your profile in Dropbox&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;videos&#34;&gt;Videos&lt;/h2&gt;
@@ -677,8 +675,8 @@ Luther and Friends Pray at the Bedside of Melancthon
   
   <entry>
     <title>Reading Day One journals in Go</title>
-    <link href="http://joshua.poehls.me/2015/03/dayone-golang-package/"/>
-    <id>http://joshua.poehls.me/2015/03/dayone-golang-package/</id>
+    <link href="https://joshua.poehls.me/2015/03/dayone-golang-package/"/>
+    <id>https://joshua.poehls.me/2015/03/dayone-golang-package/</id>
     <updated>2015-03-14T10:43:31-06:00</updated>
     
     <category term="golang" />
@@ -689,9 +687,9 @@ Luther and Friends Pray at the Bedside of Melancthon
  
 ⭑ &lt;a href=&#34;http://godoc.org/github.com/jpoehls/go-dayone&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;It&amp;rsquo;s as easy as:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;import &amp;quot;github.com/jpoehls/go-dayone&amp;quot;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import &amp;#34;github.com/jpoehls/go-dayone&amp;#34;
 
-j := dayone.NewJournal(&amp;quot;/Users/{me}/Dropbox/Apps/Day One/Journal.dayone&amp;quot;)
+j := dayone.NewJournal(&amp;#34;/Users/{me}/Dropbox/Apps/Day One/Journal.dayone&amp;#34;)
 
 err := j.Read(func(e *Entry, err error) error {
 	if err != nil {
@@ -711,8 +709,8 @@ if err != nil {
   
   <entry>
     <title>Drone Strike Terrorism</title>
-    <link href="http://joshua.poehls.me/2014/11/drone-strike-terrorism/"/>
-    <id>http://joshua.poehls.me/2014/11/drone-strike-terrorism/</id>
+    <link href="https://joshua.poehls.me/2014/11/drone-strike-terrorism/"/>
+    <id>https://joshua.poehls.me/2014/11/drone-strike-terrorism/</id>
     <updated>2014-11-18T09:55:27-06:00</updated>
     
     <category term="war" />
