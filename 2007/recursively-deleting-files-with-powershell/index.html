@@ -1,78 +1,64 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-us" dir="ltr">
 <head>
-<meta charset="utf-8">
-<title>joshua poehls | silent thoughts</title>
+  <meta charset="utf-8">
+<title>Recursively deleting files with PowerShell | joshua poehls | silent thoughts</title>
 
 <link rel="canonical" href="https://joshua.poehls.me/2007/recursively-deleting-files-with-powershell/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
 <meta name="generator" content="Hugo 0.160.0">
 
-
 <link rel="stylesheet" href="/normalize.css">
-<link rel="stylesheet" href="/skeleton.css">
 <link rel="stylesheet" href="/styles.css">
 
-
-<link href="https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,300;0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&family=Spectral:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Spectral:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
-<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" />
 <link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
 <link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
 
 </head>
-<body lang="en-US">
+<body>
+  <header class="site-banner">
+    <div class="site-wrap">
+	<h1>
+		<small>I am</small>
+		<a href="/">Joshua Poehls</a>.
+		<small class="contact-link"><a href="/contact">Say hello</a></small>
+		<small class="archives-link"><a href="/archives">Archives</a></small>
+		<span class="aka">(not so) silent thoughts</span>
+	</h1>
+</div>
 
-<header id="masthead">
-	<div class="container">
-		<div class="row">
-			<div class="twelve columns">
-				<h1>
-					<small>I am</small>
-					<a href="/">Joshua Poehls</a>.
-					<small class="contact-link"><a href="/contact">Say hello</a></small>
-					<small class="archives-link"><a href="/archives">Archives</a></small>
-					<span class="aka">(not so) silent thoughts</span>
-				</h1>
-			</div>
-		</div>
-	</div>
-</header>
-
-
-
-<div class="container">
+  </header>
+  <main>
+    
+<div class="site-wrap">
 
 	
 
-	<section id="posts">
-	<div class="row">
-<div class="twelve columns">
+	<article class="post">
+	<header>
+		<h1>
+			
+			<a href="/2007/recursively-deleting-files-with-powershell/">Recursively deleting files with PowerShell</a>
+			
+		</h1>
+		<p>
+			<time datetime="2007-04-23 10:43:31 -0600 -0600" pubdate="pubdate">Monday, 23 April 2007</time>
+			<span class="symbol">&#8226;</span>
+			<a class="permalink" title="Permalink" href="/2007/recursively-deleting-files-with-powershell/">
+				<span class="noprint symbol">&#8734;</span>
+				<span class="printonly">/2007/recursively-deleting-files-with-powershell/</span>
+			</a>
+		</p>
+	</header>
 
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="https://joshua.poehls.me/2007/recursively-deleting-files-with-powershell/">Recursively deleting files with PowerShell</a>
-            
-        </h1>
-        <p>
-            <time datetime="2007-04-23 10:43:31 -0600 -0600" pubdate="pubdate">Mon, Apr 23, 2007</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2007/recursively-deleting-files-with-powershell/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">https://joshua.poehls.me/2007/recursively-deleting-files-with-powershell/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>So out of all the things I don&rsquo;t know, PowerShell is the one thing that made it to the top of my To Learn stack. Last week I ordered <a href="http://www.amazon.com/Windows-PowerShell-Action-Bruce-Payette/dp/1932394907/ref=pd_bbs_sr_1/102-7531966-1417704?ie=UTF8&amp;s=books&amp;qid=1177382702&amp;sr=8-1">PowerShell In Action</a>, it hasn&rsquo;t arrived yet but I&rsquo;ve already read about 100 pages out of the PDF (don&rsquo;t ask). The book is very well written and describes the core concepts of PowerShell very well.</p>
+	<p>So out of all the things I don&rsquo;t know, PowerShell is the one thing that made it to the top of my To Learn stack. Last week I ordered <a href="http://www.amazon.com/Windows-PowerShell-Action-Bruce-Payette/dp/1932394907/ref=pd_bbs_sr_1/102-7531966-1417704?ie=UTF8&amp;s=books&amp;qid=1177382702&amp;sr=8-1">PowerShell In Action</a>, it hasn&rsquo;t arrived yet but I&rsquo;ve already read about 100 pages out of the PDF (don&rsquo;t ask). The book is very well written and describes the core concepts of PowerShell very well.</p>
 <p>Having (almost) never written a batch file in my life it is taking a bit for me to wrap my head around the basics but so far I love it. Compiling C# apps to do simple tasks like iterate directory structures and process files has always annoyed me. There is just too much overhead in having to compile and manage both the source code an executable when you only need the code once (until tomorrow comes).</p>
 <p>I just want to create a script and run it. No compilation, no exe. Oh, and since I&rsquo;ve been completely spoiled by the .NET Framework I want access to all that too. PowerShell fits the bill.</p>
 <p>My first task. Find all files with an extension of <code>*.bak</code> on my <code>C:\</code> drive and delete them.</p>
@@ -100,21 +86,20 @@ You can get the full syntax for this command by running <code>Get-Help dir</code
 
 </article>
 
-<div class="fin symbol">&#10687;</div>
+<div class="fin-symbol" aria-hidden="true"></div>
 
-</div>
-</div>
-	</section>
 
 	
 
 </div>
 
-<footer>
+  </main>
+  <footer>
+    <div class="site-wrap">
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
 <p>&copy;&nbsp;2014&ndash;2026&nbsp;Joshua&nbsp;Poehls.</p>
-</footer>
+</div>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -126,5 +111,7 @@ You can get the full syntax for this command by running <code>Get-Help dir</code
   ga('send', 'pageview');
 
 </script>
+
+  </footer>
 </body>
 </html>

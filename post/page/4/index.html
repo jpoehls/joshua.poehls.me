@@ -1,77 +1,64 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en-us" dir="ltr">
 <head>
-<meta charset="utf-8">
-<title>joshua poehls | silent thoughts</title>
+  <meta charset="utf-8">
+<title>Posts | joshua poehls | silent thoughts</title>
 
 <link rel="canonical" href="https://joshua.poehls.me/post/">
 <link href="/feed.xml" rel="alternate" type="application/atom+xml" title="joshua poehls | silent thoughts">
 <meta name="generator" content="Hugo 0.160.0">
 
-
 <link rel="stylesheet" href="/normalize.css">
-<link rel="stylesheet" href="/skeleton.css">
 <link rel="stylesheet" href="/styles.css">
 
-
-<link href="https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,300;0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&family=Spectral:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Spectral:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-<link rel="apple-touch-icon" href="/touch-icon-iphone.png" /> 
-<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" /> 
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png" />
 <link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png" />
 <link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/touch-icon-iphone-retinahd.png">
 
 </head>
-<body lang="en-US">
+<body>
+  <header class="site-banner">
+    <div class="site-wrap">
+	<h1>
+		<small>I am</small>
+		<a href="/">Joshua Poehls</a>.
+		<small class="contact-link"><a href="/contact">Say hello</a></small>
+		<small class="archives-link"><a href="/archives">Archives</a></small>
+		<span class="aka">(not so) silent thoughts</span>
+	</h1>
+</div>
 
-<header id="masthead">
-	<div class="container">
-		<div class="row">
-			<div class="twelve columns">
-				<h1>
-					<small>I am</small>
-					<a href="/">Joshua Poehls</a>.
-					<small class="contact-link"><a href="/contact">Say hello</a></small>
-					<small class="archives-link"><a href="/archives">Archives</a></small>
-					<span class="aka">(not so) silent thoughts</span>
-				</h1>
-			</div>
-		</div>
-	</div>
-</header>
+  </header>
+  <main>
+    
 
 
-
-<div class="container">
-
-	<section id="posts">
+<div class="site-wrap">
 	
-	<div class="row">
-<div class="twelve columns">
+	<article class="post">
+	<header>
+		<h1>
+			
+			<a href="/powershell-script-module-boilerplate/">PowerShell Script Module Boilerplate</a>
+			
+		</h1>
+		<p>
+			<time datetime="2013-12-21 10:43:31 -0600 -0600" pubdate="pubdate">Saturday, 21 December 2013</time>
+			<span class="symbol">&#8226;</span>
+			<a class="permalink" title="Permalink" href="/powershell-script-module-boilerplate/">
+				<span class="noprint symbol">&#8734;</span>
+				<span class="printonly">/powershell-script-module-boilerplate/</span>
+			</a>
+		</p>
+	</header>
 
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="https://joshua.poehls.me/powershell-script-module-boilerplate/">PowerShell Script Module Boilerplate</a>
-            
-        </h1>
-        <p>
-            <time datetime="2013-12-21 10:43:31 -0600 -0600" pubdate="pubdate">Sat, Dec 21, 2013</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/powershell-script-module-boilerplate/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">https://joshua.poehls.me/powershell-script-module-boilerplate/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>One of the things I always look for when getting familiar with a new language or environment is examples of the physical file structure and logical organization of the code. How do you layout your project files? What is idiomatic?</p>
+	<p>One of the things I always look for when getting familiar with a new language or environment is examples of the physical file structure and logical organization of the code. How do you layout your project files? What is idiomatic?</p>
 <p>Unsurprisingly, this isn&rsquo;t always as simple as finding a few open-source projects on GitHub to reference. Believe it or not, there are a lot of pretty unorganized coders out there. I admit to being a bit OCD with my project structures. I like them clean, organized, and consistent.</p>
 <p>In this post I&rsquo;m going to cover my preferred boilerplate for <a href="http://msdn.microsoft.com/en-us/library/dd878340(v=vs.85).aspx">PowerShell Script Modules</a>.</p>
 <p>Script Modules are about as simple as it gets. Typically you have one or more PS1 or PSM1 files that contain your module&rsquo;s cmdlets. Beyond that you <em>should</em> have a <a href="http://msdn.microsoft.com/en-us/library/dd878337(v=vs.85).aspx">PSD1 manifest</a>.</p>
@@ -202,32 +189,27 @@ I use a very similar file structure for [PowerShell Binary Modules][binary_modul
 
 </article>
 
-<div class="fin symbol">&#10687;</div>
+<div class="fin-symbol" aria-hidden="true"></div>
 
-</div>
-</div>
 	
-	<div class="row">
-<div class="twelve columns">
+	<article class="post">
+	<header>
+		<h1>
+			
+			<a href="/powershell-batch-file-wrapper/">PowerShell Batch File Wrapper</a>
+			
+		</h1>
+		<p>
+			<time datetime="2013-12-18 10:43:31 -0600 -0600" pubdate="pubdate">Wednesday, 18 December 2013</time>
+			<span class="symbol">&#8226;</span>
+			<a class="permalink" title="Permalink" href="/powershell-batch-file-wrapper/">
+				<span class="noprint symbol">&#8734;</span>
+				<span class="printonly">/powershell-batch-file-wrapper/</span>
+			</a>
+		</p>
+	</header>
 
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="https://joshua.poehls.me/powershell-batch-file-wrapper/">PowerShell Batch File Wrapper</a>
-            
-        </h1>
-        <p>
-            <time datetime="2013-12-18 10:43:31 -0600 -0600" pubdate="pubdate">Wed, Dec 18, 2013</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/powershell-batch-file-wrapper/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">https://joshua.poehls.me/powershell-batch-file-wrapper/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>Sometimes you want a <code>.cmd</code> wrapper for your PowerShell script. Usually for me this is so people who aren&rsquo;t familiar with the command line can double-click to execute the script.</p>
+	<p>Sometimes you want a <code>.cmd</code> wrapper for your PowerShell script. Usually for me this is so people who aren&rsquo;t familiar with the command line can double-click to execute the script.</p>
 <p>This batch file should be saved alongside your PowerShell script, like so.</p>
 <pre><code>.\
  |- my_script.ps1
@@ -300,32 +282,27 @@ This is the safest method I&rsquo;ve found.</li>
 
 </article>
 
-<div class="fin symbol">&#10687;</div>
+<div class="fin-symbol" aria-hidden="true"></div>
 
-</div>
-</div>
 	
-	<div class="row">
-<div class="twelve columns">
+	<article class="post">
+	<header>
+		<h1>
+			
+			<a href="/2013/differential-backups-using-7-zip-and-powershell/">Differential backups using 7-zip and PowerShell</a>
+			
+		</h1>
+		<p>
+			<time datetime="2013-12-10 23:04:50 -0500 -0500" pubdate="pubdate">Tuesday, 10 December 2013</time>
+			<span class="symbol">&#8226;</span>
+			<a class="permalink" title="Permalink" href="/2013/differential-backups-using-7-zip-and-powershell/">
+				<span class="noprint symbol">&#8734;</span>
+				<span class="printonly">/2013/differential-backups-using-7-zip-and-powershell/</span>
+			</a>
+		</p>
+	</header>
 
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="https://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/">Differential backups using 7-zip and PowerShell</a>
-            
-        </h1>
-        <p>
-            <time datetime="2013-12-10 23:04:50 -0500 -0500" pubdate="pubdate">Tue, Dec 10, 2013</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">https://joshua.poehls.me/2013/differential-backups-using-7-zip-and-powershell/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>Backups are like changing the oil on your car. It&rsquo;s the best thing you can do to extend the life of your engine and the best thing you can do to save yourself when your hard drive crashes, gets stolen, or otherwise corrupted.</p>
+	<p>Backups are like changing the oil on your car. It&rsquo;s the best thing you can do to extend the life of your engine and the best thing you can do to save yourself when your hard drive crashes, gets stolen, or otherwise corrupted.</p>
 <p>I work remotely and needed a backup strategy for my work laptop. My company encourages you to keep critical client files and such in your personal share on the network. Most of our employees work in office so this is perfectly reasonable as the norm. (Though I bet a ton of stuff still ends up on local machines!) As a remotee however, this isn&rsquo;t practical for reasons that are hopefully obvious to everyone.</p>
 <p>There are as many backup strategies, scripts, and apps as there are computers. Today though, it was PowerShell to the rescue with the help of trusty <a href="http://www.7-zip.org">7-zip</a> (command line version) and <a href="http://technet.microsoft.com/en-us/library/cc733145.aspx">robocopy</a>.</p>
 <p><strong>Requirements</strong></p>
@@ -479,32 +456,27 @@ This is the safest method I&rsquo;ve found.</li>
 
 </article>
 
-<div class="fin symbol">&#10687;</div>
+<div class="fin-symbol" aria-hidden="true"></div>
 
-</div>
-</div>
 	
-	<div class="row">
-<div class="twelve columns">
+	<article class="post">
+	<header>
+		<h1>
+			
+			<a href="/2013/push-it-out-push-ups-every-hour./">Push it out! Push ups every hour.</a>
+			
+		</h1>
+		<p>
+			<time datetime="2013-08-23 22:20:56 -0500 -0500" pubdate="pubdate">Friday, 23 August 2013</time>
+			<span class="symbol">&#8226;</span>
+			<a class="permalink" title="Permalink" href="/2013/push-it-out-push-ups-every-hour./">
+				<span class="noprint symbol">&#8734;</span>
+				<span class="printonly">/2013/push-it-out-push-ups-every-hour./</span>
+			</a>
+		</p>
+	</header>
 
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="https://joshua.poehls.me/2013/push-it-out-push-ups-every-hour./">Push it out! Push ups every hour.</a>
-            
-        </h1>
-        <p>
-            <time datetime="2013-08-23 22:20:56 -0500 -0500" pubdate="pubdate">Fri, Aug 23, 2013</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2013/push-it-out-push-ups-every-hour./">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">https://joshua.poehls.me/2013/push-it-out-push-ups-every-hour./</span>
-            </a>
-        </p>
-    </header>
-
-    <p><strong>Push ups. Every hour, on the hour. Can you handle it?</strong></p>
+	<p><strong>Push ups. Every hour, on the hour. Can you handle it?</strong></p>
 <p>I&rsquo;ve been motivated by <a href="http://www.steubing.me">a friend</a> to start this challenge. Every hour, on the hour, I&rsquo;m going to drop and do a set of push ups.</p>
 <p>Remembering is the hardest part. Timers are easy to set but also easy to ignore. My solution is to make myself a massive nag screen that will flash every hour while I&rsquo;m at work.</p>
 <p><img src="pushitout.png" alt="Screenshot of nag screen" title="Screenshot of nag screen"></p>
@@ -532,32 +504,27 @@ machine in order to install the scheduled task.</p>
 
 </article>
 
-<div class="fin symbol">&#10687;</div>
+<div class="fin-symbol" aria-hidden="true"></div>
 
-</div>
-</div>
 	
-	<div class="row">
-<div class="twelve columns">
+	<article class="post">
+	<header>
+		<h1>
+			
+			<a href="/2013/user-sign-up-and-email-confirmation-a-ux-boilerplate/">User sign up and email confirmation, a UX boilerplate</a>
+			
+		</h1>
+		<p>
+			<time datetime="2013-08-13 22:29:37 -0500 -0500" pubdate="pubdate">Tuesday, 13 August 2013</time>
+			<span class="symbol">&#8226;</span>
+			<a class="permalink" title="Permalink" href="/2013/user-sign-up-and-email-confirmation-a-ux-boilerplate/">
+				<span class="noprint symbol">&#8734;</span>
+				<span class="printonly">/2013/user-sign-up-and-email-confirmation-a-ux-boilerplate/</span>
+			</a>
+		</p>
+	</header>
 
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="https://joshua.poehls.me/2013/user-sign-up-and-email-confirmation-a-ux-boilerplate/">User sign up and email confirmation, a UX boilerplate</a>
-            
-        </h1>
-        <p>
-            <time datetime="2013-08-13 22:29:37 -0500 -0500" pubdate="pubdate">Tue, Aug 13, 2013</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2013/user-sign-up-and-email-confirmation-a-ux-boilerplate/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">https://joshua.poehls.me/2013/user-sign-up-and-email-confirmation-a-ux-boilerplate/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>Sign up, confirm your email address, login. The three steps that almost all web apps share.</p>
+	<p>Sign up, confirm your email address, login. The three steps that almost all web apps share.</p>
 <p>It isn&rsquo;t hard to get this process right but it does take some planning. I&rsquo;ve had to implement this a lot so I finally decided to document it. This is my boilerplate for a user sign up process. The interaction flow that I use as the starting point for sign-ups in my apps. Along the way I&rsquo;ll point out some key UX (User eXperience) tips. I hope this saves you some time on your next project.</p>
 <blockquote>
 <p>The UI mockups are just that. Mockups. This post isn&rsquo;t about the UI of your pages but rather the flow and functionality. The mockups are intended to communicate features, not a specific design or layout.</p>
@@ -652,32 +619,27 @@ machine in order to install the scheduled task.</p>
 
 </article>
 
-<div class="fin symbol">&#10687;</div>
+<div class="fin-symbol" aria-hidden="true"></div>
 
-</div>
-</div>
 	
-	<div class="row">
-<div class="twelve columns">
+	<article class="post">
+	<header>
+		<h1>
+			
+			<a href="/2013/tableaukit-a-powershell-module-for-tableau/">TableauKit: A PowerShell Module for Tableau</a>
+			
+		</h1>
+		<p>
+			<time datetime="2013-08-09 22:32:43 -0500 -0500" pubdate="pubdate">Friday, 9 August 2013</time>
+			<span class="symbol">&#8226;</span>
+			<a class="permalink" title="Permalink" href="/2013/tableaukit-a-powershell-module-for-tableau/">
+				<span class="noprint symbol">&#8734;</span>
+				<span class="printonly">/2013/tableaukit-a-powershell-module-for-tableau/</span>
+			</a>
+		</p>
+	</header>
 
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="https://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/">TableauKit: A PowerShell Module for Tableau</a>
-            
-        </h1>
-        <p>
-            <time datetime="2013-08-09 22:32:43 -0500 -0500" pubdate="pubdate">Fri, Aug 9, 2013</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">https://joshua.poehls.me/2013/tableaukit-a-powershell-module-for-tableau/</span>
-            </a>
-        </p>
-    </header>
-
-    <style>
+	<style>
 pre.powershell-result {
 	background-color: #012456;
 	color: #ffffff;
@@ -857,32 +819,27 @@ see added? Let me know in the comments!</p>
 
 </article>
 
-<div class="fin symbol">&#10687;</div>
+<div class="fin-symbol" aria-hidden="true"></div>
 
-</div>
-</div>
 	
-	<div class="row">
-<div class="twelve columns">
+	<article class="post">
+	<header>
+		<h1>
+			
+			<a href="/2013/tableau-via-powershell-part-2-saving-changes/">Tableau via PowerShell, Part 2: Saving Changes</a>
+			
+		</h1>
+		<p>
+			<time datetime="2013-08-07 22:40:40 -0500 -0500" pubdate="pubdate">Wednesday, 7 August 2013</time>
+			<span class="symbol">&#8226;</span>
+			<a class="permalink" title="Permalink" href="/2013/tableau-via-powershell-part-2-saving-changes/">
+				<span class="noprint symbol">&#8734;</span>
+				<span class="printonly">/2013/tableau-via-powershell-part-2-saving-changes/</span>
+			</a>
+		</p>
+	</header>
 
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="https://joshua.poehls.me/2013/tableau-via-powershell-part-2-saving-changes/">Tableau via PowerShell, Part 2: Saving Changes</a>
-            
-        </h1>
-        <p>
-            <time datetime="2013-08-07 22:40:40 -0500 -0500" pubdate="pubdate">Wed, Aug 7, 2013</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2013/tableau-via-powershell-part-2-saving-changes/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">https://joshua.poehls.me/2013/tableau-via-powershell-part-2-saving-changes/</span>
-            </a>
-        </p>
-    </header>
-
-    <blockquote>
+	<blockquote>
 <p>This is part 2 of my mini-series on exploring Tableau workbooks with PowerShell. If you missed it, you should read <a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">Part 1: Opening Workbooks</a>, before continuing.</p>
 </blockquote>
 <p>Welcome back! Last time I showed you how to open a Tableau workbook (TWB or TWBX) in PowerShell so you could start exploring the raw XML. Today I&rsquo;ll show the next logical thing, saving the changes you make.</p>
@@ -1071,32 +1028,27 @@ $workbook | Export-TableauPackagedWorkbook 'MyPackagedWorkbook.twbx' -Update
 
 </article>
 
-<div class="fin symbol">&#10687;</div>
+<div class="fin-symbol" aria-hidden="true"></div>
 
-</div>
-</div>
 	
-	<div class="row">
-<div class="twelve columns">
+	<article class="post">
+	<header>
+		<h1>
+			
+			<a href="/2013/go-beginners-iota-enumerations/">Go Beginners: Iota Enumerations</a>
+			
+		</h1>
+		<p>
+			<time datetime="2013-07-28 22:26:07 -0500 -0500" pubdate="pubdate">Sunday, 28 July 2013</time>
+			<span class="symbol">&#8226;</span>
+			<a class="permalink" title="Permalink" href="/2013/go-beginners-iota-enumerations/">
+				<span class="noprint symbol">&#8734;</span>
+				<span class="printonly">/2013/go-beginners-iota-enumerations/</span>
+			</a>
+		</p>
+	</header>
 
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="https://joshua.poehls.me/2013/go-beginners-iota-enumerations/">Go Beginners: Iota Enumerations</a>
-            
-        </h1>
-        <p>
-            <time datetime="2013-07-28 22:26:07 -0500 -0500" pubdate="pubdate">Sun, Jul 28, 2013</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2013/go-beginners-iota-enumerations/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">https://joshua.poehls.me/2013/go-beginners-iota-enumerations/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>Enum constants in Go have a super power. As opposed to C# where you only have two options for enums, either you assign each value yourself or let the compiler increment each value by one, Go has a third option.</p>
+	<p>Enum constants in Go have a super power. As opposed to C# where you only have two options for enums, either you assign each value yourself or let the compiler increment each value by one, Go has a third option.</p>
 <p><strong>Auto-incremented enum in C#</strong></p>
 <pre data-language="csharp">
 enum Example
@@ -1159,32 +1111,27 @@ const Example (
 
 </article>
 
-<div class="fin symbol">&#10687;</div>
+<div class="fin-symbol" aria-hidden="true"></div>
 
-</div>
-</div>
 	
-	<div class="row">
-<div class="twelve columns">
+	<article class="post">
+	<header>
+		<h1>
+			
+			<a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">Tableau via PowerShell, Part 1: Opening Workbooks</a>
+			
+		</h1>
+		<p>
+			<time datetime="2013-07-25 22:36:58 -0500 -0500" pubdate="pubdate">Thursday, 25 July 2013</time>
+			<span class="symbol">&#8226;</span>
+			<a class="permalink" title="Permalink" href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">
+				<span class="noprint symbol">&#8734;</span>
+				<span class="printonly">/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/</span>
+			</a>
+		</p>
+	</header>
 
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="https://joshua.poehls.me/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">Tableau via PowerShell, Part 1: Opening Workbooks</a>
-            
-        </h1>
-        <p>
-            <time datetime="2013-07-25 22:36:58 -0500 -0500" pubdate="pubdate">Thu, Jul 25, 2013</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">https://joshua.poehls.me/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/</span>
-            </a>
-        </p>
-    </header>
-
-    <p>In this mini-series I&rsquo;m going to show you some cookbook style examples for using PowerShell to explore your Tableau workbooks. Follow along, this is going to be fun!</p>
+	<p>In this mini-series I&rsquo;m going to show you some cookbook style examples for using PowerShell to explore your Tableau workbooks. Follow along, this is going to be fun!</p>
 <p>Tableau workbooks (TWB files) are just XML files. Packaged workbooks (TWBX files) are just ZIP files that contain a TWB and various assets, like data extracts for example.</p>
 <p>This is wonderful because it means it is very easy to go spelunking through workbook files without a <strong>gui</strong>de.</p>
 <h2 id="opening-workbooks">Opening Workbooks</h2>
@@ -1272,32 +1219,27 @@ function Get-TableauWorkbookXml {
 
 </article>
 
-<div class="fin symbol">&#10687;</div>
+<div class="fin-symbol" aria-hidden="true"></div>
 
-</div>
-</div>
 	
-	<div class="row">
-<div class="twelve columns">
+	<article class="post">
+	<header>
+		<h1>
+			
+			<a href="/2013/errorlevel-is-not-errorlevel/">ERRORLEVEL is not %ERRORLEVEL%</a>
+			
+		</h1>
+		<p>
+			<time datetime="2013-07-25 22:18:36 -0500 -0500" pubdate="pubdate">Thursday, 25 July 2013</time>
+			<span class="symbol">&#8226;</span>
+			<a class="permalink" title="Permalink" href="/2013/errorlevel-is-not-errorlevel/">
+				<span class="noprint symbol">&#8734;</span>
+				<span class="printonly">/2013/errorlevel-is-not-errorlevel/</span>
+			</a>
+		</p>
+	</header>
 
-<article class="post">
-    <header>
-        <h1>
-            
-            <a href="https://joshua.poehls.me/2013/errorlevel-is-not-errorlevel/">ERRORLEVEL is not %ERRORLEVEL%</a>
-            
-        </h1>
-        <p>
-            <time datetime="2013-07-25 22:18:36 -0500 -0500" pubdate="pubdate">Thu, Jul 25, 2013</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="https://joshua.poehls.me/2013/errorlevel-is-not-errorlevel/">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">https://joshua.poehls.me/2013/errorlevel-is-not-errorlevel/</span>
-            </a>
-        </p>
-    </header>
-
-    <p><strong>DO</strong> use <code>IF ERRORLEVEL 1 ECHO error level is 1 or more</code> to check for errors
+	<p><strong>DO</strong> use <code>IF ERRORLEVEL 1 ECHO error level is 1 or more</code> to check for errors
 in your batch/command line scripts.</p>
 <p><strong>DO NOT</strong> use <code>IF %ERRORLEVEL% NEQ 0 ECHO error level is not equal to 0</code>.</p>
 <p>Most of the time <code>%ERRORLEVEL%</code> will be what you expect but it isn&rsquo;t guaranteed.
@@ -1309,16 +1251,11 @@ my sanity.</p>
 
 </article>
 
-<div class="fin symbol">&#10687;</div>
+<div class="fin-symbol" aria-hidden="true"></div>
 
-</div>
-</div>
 	
-	</section>
 
-</div>
-
-<nav class="pagination">
+	<nav class="pagination">
 
 	<a href="/post/page/5/" aria-label="Earlier Posts"><span aria-hidden="true">&laquo; Earlier Posts</span></a>
 
@@ -1331,12 +1268,15 @@ my sanity.</p>
 	<a href="/post/page/3/" aria-label="Recent Posts"><span aria-hidden="true">Recent Posts &raquo;</span></a>
 
 </nav>
+</div>
 
-<footer>
+  </main>
+  <footer>
+    <div class="site-wrap">
 <p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
 <p>&copy;&nbsp;2014&ndash;2026&nbsp;Joshua&nbsp;Poehls.</p>
-</footer>
+</div>
 
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -1348,5 +1288,7 @@ my sanity.</p>
   ga('send', 'pageview');
 
 </script>
+
+  </footer>
 </body>
 </html>
