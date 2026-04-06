@@ -1,2 +1,4 @@
 User-agent: *
 Disallow: /resume/
+
+Sitemap: https://joshua.poehls.me/sitemap.xml

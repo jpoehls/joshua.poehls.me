@@ -1,5 +1,5 @@
 /* TEAM */
 
-Creator:  Joshua Poehls
-Twitter:  @JoshuaPoehls
+Creator: Joshua Poehls
+X: @JoshuaPoehls
 Location: Earth
