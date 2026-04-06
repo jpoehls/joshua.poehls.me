@@ -392,6 +392,7 @@ a,
 	text-decoration: underline;
 	text-decoration-thickness: 1px;
 	text-decoration-style: dotted;
+	text-underline-offset: 2px;
 }
 
 a:hover {
@@ -565,6 +566,39 @@ article.post header {
 	text-align: center;
 }
 
+article.post .post-series-line {
+	margin: var(--space-lg) 0 0;
+	font-family: var(--font-sans);
+	font-size: 1rem;
+	font-weight: var(--font-sans-weight-medium);
+	line-height: 1.4;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--color-muted);
+}
+
+article.post .post-series-line__in {
+	margin-right: 0.4em;
+}
+
+article.post .post-series-line__name {
+	text-transform: none;
+	letter-spacing: 0;
+	font-size: 1.05em;
+	font-weight: var(--font-sans-weight-semibold);
+	color: var(--color-link);
+	text-decoration: none;
+	border-bottom: 1px dotted var(--color-link);
+}
+
+article.post .post-series-line__name:hover {
+	background-color: var(--color-link-hover-bg);
+}
+
+article.post .post-series-line + h1 {
+	margin-top: 0;
+}
+
 /* Title in masthead of the card — not body heading rhythm */
 article.post header h1 {
 	margin-bottom: 0;
@@ -626,6 +660,38 @@ article.post header p {
 	padding: 0;
 	font-size: var(--font-post-body);
 	text-indent: 0;
+}
+
+article.post .post-tags {
+	margin-top: var(--space-xl);
+	padding-top: var(--space-md);
+	border-top: 1px dotted var(--color-muted);
+	font-family: var(--font-sans);
+	text-align: center;
+}
+
+article.post .post-tags-heading {
+	margin: 0 0 var(--space-sm);
+	font-size: 0.75rem;
+	font-weight: var(--font-sans-weight-semibold);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--color-muted);
+}
+
+article.post .post-tags-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.35rem 0.75rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: var(--font-post-body);
+}
+
+article.post .post-tags-list a {
+	white-space: nowrap;
 }
 
 /* Home list: excerpt under title (Hugo .Summary) */

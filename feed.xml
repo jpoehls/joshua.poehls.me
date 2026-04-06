@@ -100,9 +100,8 @@
     <category term="quotes"/>
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;My desire is to think clearly about concepts and then communicate them intuitively to others. I am particularly interested in the ideas and advancements that affect our lives spiritually and emotionally.&lt;/p&gt;
-&lt;p&gt;&amp;ndash; Jonathan Collins, co-founder of &lt;a href=&#34;https://thebibleproject.com/&#34;&gt;The Bible Project&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Source: &lt;a href=&#34;http://www.jonpdx.com/&#34;&gt;http://www.jonpdx.com/&lt;/a&gt;&lt;/p&gt;</content>
+&lt;p&gt;—Jonathan Collins (co-founder of &lt;a href=&#34;https://thebibleproject.com/&#34;&gt;The Bible Project&lt;/a&gt;), &lt;a href=&#34;http://www.jonpdx.com/&#34;&gt;http://www.jonpdx.com/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content>
   </entry>
   <entry xml:base="https://joshua.poehls.me/powershell-script-boilerplate/">
     <title>PowerShell Script Boilerplate</title>
