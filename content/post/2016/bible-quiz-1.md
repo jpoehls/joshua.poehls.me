@@ -61,6 +61,4 @@ So, dear readers, I present to you some Bible Quiz style questions I've been dri
 > - and keep his commandments
 > - to a thousand generations.
 
----
-
 *Verses are quoted from the King James Version.*

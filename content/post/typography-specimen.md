@@ -9,7 +9,7 @@ tags:
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Short line.
 
-Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, [quis nostrud exercitation](https://example.com) ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[^long]
+Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, [quis nostrud exercitation](https://example.com) ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit, John 3:16, esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[^long]
 
 Nullam non ligula non metus posuere efficitur.[^note1] Quisque aliquam libero ac euismod pulvinar. Nunc luctus tincidunt nunc id ultrices. Ut gravida tincidunt urna, at placerat augue ullamcorper ac. Phasellus et arcu feugiat, gravida lorem et, dictum erat. Cras nec massa dolor. Sed quam metus, [vehicula auctor](https://example.com) porttitor non,[^note2] dictum a metus. Aenean luctus sodales felis, at blandit quam facilisis eu. Etiam varius vel arcu sed volutpat. Phasellus sagittis vitae diam at sagittis. Nulla et blandit elit. Nunc sed ipsum lectus. Maecenas iaculis vehicula rutrum. Praesent ornare, augue id gravida ultricies, mauris massa commodo enim, eget mollis magna libero vel quam. Phasellus rhoncus odio sem. Duis nulla mi, malesuada ut eros nec, sodales consectetur diam. 
 

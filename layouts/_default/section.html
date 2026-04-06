@@ -3,9 +3,10 @@
 
 <div class="site-wrap">
 	{{ range $pag.Pages }}
-	{{ partial "li.html" . }}
+	{{ partial "li-body.html" . }}
 	{{ end }}
 
 	{{ partial "posts-pager.html" $pag }}
+	{{ partial "bible-reftagger.html" . }}
 </div>
 {{ end }}
