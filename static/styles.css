@@ -573,6 +573,15 @@ article.post header h1 {
 	letter-spacing: 0;
 }
 
+/* Excerpt: title → post (no rule). Full post: plain title unless linkurl → external link + dotted rule */
+article.post header h1 a.post-title-link {
+	border-bottom: 0;
+}
+
+article.post header h1 a.post-title-link--external {
+	border-bottom: 1px dotted var(--color-link);
+}
+
 /* Rare in-body # heading (direct child of article, not inside header) */
 article.post > h1 {
 	font-size: var(--font-post-h1);
