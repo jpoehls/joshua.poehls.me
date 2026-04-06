@@ -3,7 +3,7 @@
 
 <div class="site-wrap">
 	{{ range $pag.Pages }}
-	{{ partial "li.html" . }}
+	{{ partial "li-excerpt.html" . }}
 	{{ end }}
 
 	{{ partial "posts-pager.html" $pag }}

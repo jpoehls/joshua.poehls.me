@@ -541,6 +541,43 @@ article.post header p {
 	text-indent: 0;
 }
 
+/* Home list: excerpt under title (Hugo .Summary) */
+article.post--excerpt .post-summary {
+	margin-top: var(--space-md);
+	font-size: var(--font-post-body);
+	line-height: 1.65;
+}
+
+article.post--excerpt .post-summary > :first-child {
+	margin-top: 0;
+}
+
+article.post--excerpt .post-summary p {
+	text-indent: 0;
+}
+
+article.post--excerpt .post-summary p + p {
+	margin-top: var(--space-sm);
+	text-indent: 0;
+}
+
+/* Home excerpts: Summary still includes Goldmark footnotes — hide refs + block (full post unchanged) */
+article.post--excerpt .post-summary sup:has(a.footnote-ref) {
+	display: none;
+}
+
+article.post--excerpt .post-summary .footnotes {
+	display: none;
+}
+
+article.post--excerpt .post-read-more {
+	margin-top: var(--space-md);
+	margin-bottom: 0;
+	text-align: center;
+	font-family: var(--font-sans);
+	font-size: var(--font-root);
+}
+
 article.post figure {
 	text-align: center;
 	margin-left: 0;
