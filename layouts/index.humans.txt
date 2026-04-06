@@ -1,0 +1,16 @@
+{{- /* https://humanstxt.org/ — plain text; emitted as /humans.txt */ -}}
+{{- $canonical := site.BaseURL | strings.TrimSuffix "/" -}}
+{{- $last := now -}}
+{{- with index site.RegularPages.ByLastmod.Reverse 0 -}}
+	{{- $last = .Lastmod -}}
+{{- end -}}
+/* TEAM */
+
+Creator: {{ site.Params.author }}
+X: @JoshuaPoehls
+Location: Earth
+
+/* SITE */
+
+Canonical URL: {{ $canonical }}
+Last update: {{ $last.Format "2006-01-02" }}

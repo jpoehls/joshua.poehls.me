@@ -7,6 +7,9 @@ footnoteReturnLinkContents = "↩"
 
 disableKinds = ["404"]
 
+[outputs]
+	home = ["HTML", "RSS", "HUMANS"]
+
 [pagination]
 pagerSize = 10
 path = "page"
@@ -19,6 +22,11 @@ path = "page"
 [outputFormats.RSS]
 	mediatype = "application/atom+xml"
 	baseName = "feed"
+
+[outputFormats.HUMANS]
+	mediaType = "text/plain"
+	baseName = "humans"
+	isPlainText = true
 
 [permalinks]
 	post = "/:year/:slug"
