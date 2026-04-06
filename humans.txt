@@ -3,3 +3,8 @@
 Creator: Joshua Poehls
 X: @JoshuaPoehls
 Location: Earth
+
+/* SITE */
+
+Canonical URL: https://joshua.poehls.me
+Last update: 2022-03-29
