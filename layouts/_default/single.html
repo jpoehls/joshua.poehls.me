@@ -5,7 +5,7 @@
 	{{ $seriesName = (index .Params.series 0) }}
 {{ end */}}
 
-<div class="container">
+<div class="site-wrap">
 
 	{{/* if $seriesName }}
 		{{ with index hugo.Data.series ($seriesName | urlize) }}
@@ -15,9 +15,9 @@
 		{{ end }}
 	{{ end */}}
 
-	<section id="posts">
+	<main>
 	{{partial "li.html" .}}
-	</section>
+	</main>
 
 	{{/* if $seriesName }}
 		<p>This is a post in the <b>{{ $seriesName }}</b> series.</p>

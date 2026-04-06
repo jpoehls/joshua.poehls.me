@@ -1,58 +1,195 @@
-body {
-	background-color: #fff;
-	color: #222;
+/*
+  Site styles (typography + layout). Pair with normalize.css only.
+  Regions: .site-banner, .site-wrap, main (post index/single vs other via :has(article.post))
 
-	font-family: 'Spectral', Georgia, 'Times New Roman', serif;
+  Units:
+  - rem — font sizes, layout width/padding, vertical rhythm (scales with root / user prefs).
+  - em  — only when size/spacing must track the parent’s font-size (e.g. .aka vs banner h1,
+          first-line indent vs paragraph, sup/sub nudge).
+  - px  — borders and focus rings (stay crisp).
+  - unitless — line-height.
+*/
+
+/* --- Tokens --- */
+:root {
+	--color-text: #222;
+	--color-muted: #888;
+	--color-link: #045fb4;
+	--color-link-hover-bg: #ffffaa;
+	--color-bg-subtle: #f9f9f9;
+	--color-banner: #efefef;
+	--color-banner-rule: #333;
+	--color-border-quote: #adadad;
+	--color-code-text: #515151;
+	--font-serif: "Spectral", Georgia, "Times New Roman", serif;
+	--font-sans: "Georama", system-ui, sans-serif;
+	--font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+	--font-root: 1.25rem;
+	/* Post body slightly above root (was 1.05em of root) */
+	--font-post-body: 1.3125rem;
+	/* Heading step (rem) ≈ former em × --font-root */
+	--font-banner-title: 1.875rem;
+	--font-taxonomy-title: 2.25rem;
+	--font-page-h2: 2.125rem;
+	--font-page-h3: 1.875rem;
+	--font-post-h1: 2rem;
+	--font-post-h2: 1.75rem;
+	--font-post-h3: 1.625rem;
+	--font-post-h4: 1.5rem;
+	--font-post-h5: 1.375rem;
+	--font-post-h6: 1.25rem;
+	--font-code: 1.0625rem;
+	--font-code-in-post: 0.95rem;
+	--font-footnote: 1rem;
+	--font-figcaption: 0.875rem;
+	--font-fin: 2.5rem;
+	--font-footer: 1.125rem;
+
+	--wrap-max: 60rem;
+	--wrap-pad: 1.25rem;
+
+	--space-xs: 0.25rem;
+	--space-sm: 0.5rem;
+	--space-md: 1rem;
+	--space-lg: 1.5rem;
+	--space-xl: 2rem;
+	/* Post headings: more air above (separate from prior block), tight below (lead into next ¶) */
+	--space-heading-before: 2.125rem;
+	--space-heading-after: 0.375rem;
+
+	/* Post tables: booktabs-style rules (LaTeX-like, no vertical rules) */
+	--table-rule-thick: 2px;
+	--table-rule-thin: 1px;
+}
+
+/* --- Reset helpers --- */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: var(--font-serif);
 	font-weight: 300;
-	font-size: 2rem;
-	word-wrap: break-word;
+	font-size: var(--font-root);
+	line-height: 1.65;
+	color: var(--color-text);
+	background: #fff;
+	overflow-wrap: break-word;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-sans);
+	letter-spacing: 0;
+	font-weight: 400;
+	margin-top: 0;
+}
+
+p {
+	margin-top: 0;
+}
+
+/* --- Layout --- */
+.site-wrap {
+	width: 100%;
+	max-width: var(--wrap-max);
+	margin-inline: auto;
+	padding-inline: var(--wrap-pad);
+}
+
+main {
+	display: block;
+	margin-inline: auto;
+}
+
+/* Post list / single: <article class="post"> inside main. Archives, contact, taxonomy: no article.post */
+main:has(article.post) {
+	margin-top: 0;
+	padding-block: 0 var(--space-sm);
+}
+
+main:not(:has(article.post)) {
+	margin-top: var(--space-lg);
 }
 
 .symbol {
-	font-family: 'Georama', system-ui, sans-serif;
+	font-family: var(--font-sans);
 }
 
-h1, h2, h3, h4, h5, h6, footer,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+footer,
 article.post figure figcaption {
-	font-family: 'Georama', system-ui, sans-serif;
+	font-family: var(--font-sans);
+}
+
+h1 {
+	margin-top: var(--space-lg);
 }
 
 h1.taxonomy-title {
-	font-size: 1.8em;
+	font-size: var(--font-taxonomy-title);
+	margin-top: 0;
 	margin-bottom: 0;
 }
+
 h1.taxonomy-title .desc {
 	margin-left: 1em;
 	margin-top: 0;
-	font-size: .6em;
+	font-size: 0.6em;
 }
+
 h1.taxonomy-title .term {
-	color: #777;
+	color: var(--color-muted);
 }
 
 .taxonomy-desc {
-	margin-top: 1em;
+	margin-top: var(--space-md);
 }
 
 .taxonomy-content {
-	margin-top: 2em;
+	margin-top: var(--space-xl);
 }
 
-/* Fix line-height for lines with footnotes.
-   http://discuss.gohugo.io/t/footnote-styling/114/6?u=joshuapoehls */
-sup, sub {
+/* Footnote refs: em tracks surrounding text size */
+sup,
+sub {
 	vertical-align: baseline;
 	position: relative;
-	top: -0.4em;
+	top: -0.35em;
 }
+
 sub {
-	top: 0.4em;
+	top: 0.35em;
 }
 
-h1 { margin-top: 1em; }
-h1, h2, h3, h4, h5, h6 { letter-spacing: 0; }
-
-ul, ol { margin-left: 2em; }
+ul,
+ol {
+	margin-left: var(--space-xl);
+	padding-left: 0;
+}
 
 ul {
 	list-style-type: disc;
@@ -62,18 +199,22 @@ ul li ul {
 	list-style-type: circle;
 }
 
-table.noborder td { border: 0; }
+table.noborder td {
+	border: 0;
+}
 
-i, em {
+i,
+em {
 	font-style: italic;
 }
 
-b, strong {
+b,
+strong {
 	font-weight: 600;
 }
 
 .subtle {
-	color: #888;
+	color: var(--color-muted);
 }
 
 .permalink {
@@ -87,225 +228,261 @@ b, strong {
 
 nav.pagination {
 	text-align: center;
-	margin-top: 1em;
-	margin-bottom: 2em;
+	margin-top: var(--space-md);
+	margin-bottom: var(--space-xl);
 }
 
 footer {
 	margin: 0 auto;
-	font-size: .9em;
-	color: #888;
+	font-size: var(--font-footer);
+	color: var(--color-muted);
 	font-weight: 300;
 	text-align: center;
 }
 
 footer p {
-	margin-bottom: .8em;
+	margin-bottom: 0.75rem;
 }
 
-/* Blockquotes
-************************************************** */
+/* --- Blockquotes --- */
 blockquote {
-	font-size: 1em;
-	margin: 0 1em;
-	padding: 0.25em 1em;
-	background: #f9f9f9;
-	border-left: 2px solid #adadad;
+	font-size: inherit;
+	margin: 0 var(--space-md);
+	padding: var(--space-xs) var(--space-md);
+	background: var(--color-bg-subtle);
+	border-left: 2px solid var(--color-border-quote);
 }
 
-#posts blockquote p {
-	font-size: 1em;
+article.post blockquote p {
+	font-size: inherit;
 }
 
 blockquote > blockquote {
-  border: 0;
-  padding: 0;
+	border: 0;
+	padding: 0;
 }
 
 cite {
-	margin: 0 2em;
+	margin: 0 var(--space-xl);
 	padding: 0;
-	margin-top: -.5em;
+	margin-top: -0.5rem;
 	text-align: right;
 	display: block;
 }
 
 blockquote > ul {
-	margin-top: 1em;
+	margin-top: var(--space-md);
 	margin-bottom: 0;
 }
 
-/* Links
-************************************************** */
+/* --- Links --- */
 a,
-#masthead h1 .contact-link a,
-#masthead h1 .archives-link a {
-	color: #045FB4;
+.site-banner h1 .contact-link a,
+.site-banner h1 .archives-link a {
+	color: var(--color-link);
 	text-decoration: none;
-	border-bottom: 1px dotted #045FB4;
+	border-bottom: 1px dotted var(--color-link);
 }
 
 a:hover {
-	background-color: #ffffaa;
+	background-color: var(--color-link-hover-bg);
 }
 
-/* Code
-************************************************** */
+a:focus-visible {
+	outline: 2px solid var(--color-link);
+	outline-offset: 2px;
+}
+
+/* --- Code: rem avoids compounding em inside scaled parents --- */
 a > code {
 	background-color: transparent !important;
 	border: 0;
 	border-radius: 0;
 	padding: 0;
 }
+
 a:hover > code {
 	background-color: transparent;
 }
 
-#posts h1 code,
-#posts h2 code,
-#posts h3 code,
-#posts h4 code,
-#posts h5 code,
-#posts h6 code {
+article.post h1 code,
+article.post h2 code,
+article.post h3 code,
+article.post h4 code,
+article.post h5 code,
+article.post h6 code {
 	background-color: transparent;
 	border: 0;
 	border-radius: 0;
 	padding: 0;
 }
 
-p code, li code {
-	background-color: #f9f9f9;
+p code,
+li code {
+	background-color: var(--color-bg-subtle);
 	border: 0;
 	border-radius: 0;
 }
+
 pre > code {
-	font-size: 1em;
-	color: #515151;
+	font-size: inherit;
+	color: var(--color-code-text);
 	background-color: transparent;
 	border: 0;
-	line-height: 1.2em;
-}
-pre {
-	padding: 1em;
-	background-color: #f9f9f9;
-	text-indent: 0;
-}
-pre, code {
-	font-family: 'IBM Plex Mono', ui-monospace, monospace;
-	font-size: 1.1em;
+	line-height: 1.45;
 }
 
-/* Site header
-************************************************** */
-#masthead {
+pre {
+	padding: var(--space-md);
+	background-color: var(--color-bg-subtle);
+	text-indent: 0;
+	overflow-x: auto;
+}
+
+pre,
+code {
+	font-family: var(--font-mono);
+	font-size: var(--font-code);
+}
+
+article.post code {
+	font-size: var(--font-code-in-post);
+}
+
+/* --- Banner --- */
+.site-banner {
 	position: relative;
 	display: block;
 	margin: 0;
 	padding: 0;
-	background-color: #efefef;
-	border-top: 5px solid #333;
+	background-color: var(--color-banner);
+	border-top: 5px solid var(--color-banner-rule);
 }
 
-#masthead h1 {
-	padding: .5em 0;
-	font-size: 1.5em;
+.site-banner h1 {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	column-gap: 0.35em;
+	row-gap: var(--space-xs);
+	padding: var(--space-sm) 0;
+	font-size: var(--font-banner-title);
 	font-weight: 300;
-	color: #888;
-	margin: 0 auto;
+	color: var(--color-muted);
+	margin: 0;
 	letter-spacing: 0;
 }
 
-#masthead h1 a {
-	text-decoration: none;
-	border-bottom: none;
-	color: #888;
+.site-banner h1 .aka {
+	font-size: 0.6em;
+	margin-left: auto;
 }
 
-#masthead h1 .aka {
-	font-size: .6em;
-	float: right;
+.site-banner h1 a {
+	text-decoration: none;
+	border-bottom: none;
+	color: var(--color-muted);
 }
 
 .contact-link,
 .archives-link {
-	margin-left: 1em;
+	margin-left: var(--space-md);
 }
 
-/* Other pages
-************************************************** */
-#page {
-	margin-top: 1.5em;
-}
-
-/* /archives tag rows: one flex item per tag; wraps between tags even when HTML is minified. */
-#page p.archive-tag-list {
+/* --- Static pages (archives, contact) --- */
+/* Archives (and any other main without posts): section titles & tag list */
+p.archive-tag-list {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: baseline;
 	column-gap: 0.65em;
-	row-gap: 0.2em;
+	row-gap: var(--space-xs);
 }
 
-#page h2 {
-	font-size: 1.7em;
+main:not(:has(article.post)) h2 {
+	font-size: var(--font-page-h2);
 }
 
-#page h3 {
-	font-size: 1.5em;
-	margin-bottom: .5em;
+main:not(:has(article.post)) h3 {
+	font-size: var(--font-page-h3);
+	margin-bottom: var(--space-sm);
 }
 
-#page .series-desc {
-	font-size: .85em;
-	margin-left: 2em;
+.series-desc {
+	font-size: 1.0625rem;
+	margin-left: var(--space-xl);
 }
 
-/* Posts
-************************************************** */
-#posts {
-	position: relative;
-	display: block;
-	margin: 0 auto;
+/* --- Blog posts & lists --- */
+article.post > p,
+article.post > div {
+	margin-top: 0;
+	margin-bottom: var(--space-md);
+	font-size: var(--font-post-body);
+	line-height: 1.65;
+	text-indent: 0;
 }
 
-#posts p, #posts div {
-	margin-top: 1.3em;
-	margin-bottom: 1.3em;
-	font-size: 1.05em;
-	line-height: 1.4em;
-	text-indent: 0em;
-}
-
-#posts p+p {
-	margin-top: -15px;
+/* Indent scales with paragraph font (typographic tradition) */
+article.post > p + p {
 	text-indent: 2em;
 }
 
-#posts code {
-	font-size: 0.9em;
+/* Space between title/meta and post body */
+article.post header {
+	margin-bottom: var(--space-lg);
 }
 
-#posts h1 {
+/* Title in masthead of the card — not body heading rhythm */
+article.post header h1 {
 	margin-bottom: 0;
-	font-size: 1.6em;
+	font-size: var(--font-post-h1);
 	letter-spacing: 0;
 }
 
-#posts h2 {
-	font-size: 1.4em;
-	margin-top: 1em;
-	margin-bottom: .5em;
+/* Rare in-body # heading (direct child of article, not inside header) */
+article.post > h1 {
+	font-size: var(--font-post-h1);
+	letter-spacing: 0;
+	margin-top: var(--space-heading-before);
+	margin-bottom: var(--space-heading-after);
 }
 
-#posts h3 { font-size: 1.3em; margin-top: 1em; }
-#posts h4 { font-size: 1.2em; }
-#posts h5 { font-size: 1.1em; }
-#posts h6 { font-size: 1.0em; font-weight: 400; }
+article.post h2,
+article.post h3,
+article.post h4,
+article.post h5,
+article.post h6 {
+	margin-top: var(--space-heading-before);
+	margin-bottom: var(--space-heading-after);
+}
 
-#posts article.post header p {
+article.post h2 {
+	font-size: var(--font-post-h2);
+}
+
+article.post h3 {
+	font-size: var(--font-post-h3);
+}
+
+article.post h4 {
+	font-size: var(--font-post-h4);
+}
+
+article.post h5 {
+	font-size: var(--font-post-h5);
+}
+
+article.post h6 {
+	font-size: var(--font-post-h6);
+	font-weight: 400;
+}
+
+article.post header p {
 	margin-top: 0;
+	margin-bottom: 0;
 	padding: 0;
-	font-size: 1em;
+	font-size: var(--font-post-body);
 	text-indent: 0;
 }
 
@@ -315,14 +492,10 @@ article.post figure {
 	margin-right: 0;
 }
 
-article.post figure img {
-	max-width: 100%;
-}
-
 article.post figure figcaption {
-	font-size: .7em;
+	font-size: var(--font-figcaption);
 	font-weight: 300;
-	color: #888;
+	color: var(--color-muted);
 }
 
 article.post figure figcaption p {
@@ -334,37 +507,97 @@ article.post figure a {
 	border: 0;
 }
 
+/*
+  Post tables: booktabs / journal-ish — strong top & bottom, thin rule under header,
+  no vertical rules, no zebra (matches typical modern LaTeX table packages).
+*/
+article.post table:not(.noborder) {
+	width: 100%;
+	max-width: 100%;
+	margin: var(--space-lg) 0;
+	border-collapse: collapse;
+	border-top: var(--table-rule-thick) solid var(--color-text);
+	border-bottom: var(--table-rule-thick) solid var(--color-text);
+	font-size: 0.94em;
+	line-height: 1.45;
+}
+
+article.post table:not(.noborder) caption {
+	caption-side: top;
+	text-align: left;
+	font-family: var(--font-sans);
+	font-size: 0.88rem;
+	font-style: italic;
+	font-weight: 400;
+	color: var(--color-muted);
+	margin-bottom: var(--space-sm);
+	padding: 0;
+}
+
+article.post table:not(.noborder) th,
+article.post table:not(.noborder) td {
+	padding: 0.4rem 1rem 0.45rem 0;
+	vertical-align: top;
+	text-align: left;
+	border: 0;
+}
+
+article.post table:not(.noborder) thead th {
+	font-family: var(--font-sans);
+	font-weight: 600;
+	border-bottom: var(--table-rule-thin) solid var(--color-text);
+	padding-bottom: 0.4rem;
+}
+
+article.post table:not(.noborder) tbody th {
+	font-family: var(--font-sans);
+	font-weight: 600;
+}
+
+article.post table:not(.noborder) tbody td {
+	padding-top: 0.35rem;
+	padding-bottom: 0.35rem;
+}
+
 .fin {
-	/* post separator */
-
 	text-align: center;
-	font-size: 2em !important;
-	color: #888;
-	margin-top: 1em;
+	font-size: var(--font-fin) !important;
+	color: var(--color-muted);
+	margin-top: var(--space-md);
 }
 
-#posts .footnotes {
-	font-size: .8em;
-	border-top: 1px dotted #888;
-	margin-top: 1em;
-	padding-top: 1em;
+article.post .footnotes {
+	font-size: var(--font-footnote);
+	border-top: 1px dotted var(--color-muted);
+	margin-top: var(--space-md);
+	padding-top: var(--space-md);
 }
 
-#posts .footnotes hr {
+article.post .footnotes hr {
 	display: none;
 }
 
-#posts .footnotes ol {
+article.post .footnotes ol {
 	list-style: decimal outside;
 }
 
-/* Print friendliness
-************************************************** */
-.printonly { display: none; }
+/* --- Print --- */
+.printonly {
+	display: none;
+}
 
 @media print {
-	.noprint { display: none; }
-	.printonly { display: inline; }
+	.noprint {
+		display: none;
+	}
 
-	a, a:active, a:visited { color: #888; }
+	.printonly {
+		display: inline;
+	}
+
+	a,
+	a:active,
+	a:visited {
+		color: var(--color-muted);
+	}
 }

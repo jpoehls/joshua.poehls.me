@@ -8,7 +8,7 @@ Run the local Hugo server with drafts enabled: `hugo server -D`
 
 Load the `/2026/typography-specimen` post which has examples of all the typography used on the site.
 
-Make changes to `styles.css`. Don't mess with the `normalize.css` or `skeleton.css` stylesheets.
+Edit `styles.css` for layout and typography. Keep `normalize.css` as the cross-browser baseline.
 
 ## License
 The content within `content/` and any logos, artwork, or icons are Copyright &copy; Joshua Poehls. You may not reuse anything therein without my permission.

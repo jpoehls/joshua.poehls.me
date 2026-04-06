@@ -1,30 +1,24 @@
-<div class="row">
-<div class="twelve columns">
-
 <article class="post">
-    <header>
-        <h1>
-            {{if .Params.linkurl}}
-            <a href="{{.Params.linkurl}}">{{.Title}}</a> <span class="subtle symbol">&#10230;</span>
-            {{else}}
-            <a href="{{.Permalink}}">{{.Title}}</a>
-            {{end}}
-        </h1>
-        <p>
-            <time datetime="{{.Date}}" pubdate="pubdate">{{.Date.Format "Mon, Jan 2, 2006"}}</time>
-            <span class="symbol">&#8226;</span>
-            <a class="permalink" title="Permalink" href="{{.Permalink}}">
-                <span class="noprint symbol">&#8734;</span>
-                <span class="printonly">{{.Permalink}}</span>
-            </a>
-        </p>
-    </header>
+	<header>
+		<h1>
+			{{if .Params.linkurl}}
+			<a href="{{.Params.linkurl}}">{{.Title}}</a> <span class="subtle symbol">&#10230;</span>
+			{{else}}
+			<a href="{{.Permalink}}">{{.Title}}</a>
+			{{end}}
+		</h1>
+		<p>
+			<time datetime="{{.Date}}" pubdate="pubdate">{{.Date.Format "Mon, Jan 2, 2006"}}</time>
+			<span class="symbol">&#8226;</span>
+			<a class="permalink" title="Permalink" href="{{.Permalink}}">
+				<span class="noprint symbol">&#8734;</span>
+				<span class="printonly">{{.Permalink}}</span>
+			</a>
+		</p>
+	</header>
 
-    {{.Content}}
+	{{.Content}}
 
 </article>
 
 <div class="fin symbol">&#10687;</div>
-
-</div>
-</div>

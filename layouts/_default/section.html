@@ -2,16 +2,14 @@
 
 {{$pag := .Paginator}}
 
-<div class="container">
-
-	<section id="posts">
+<div class="site-wrap">
+	<main>
 	{{range $pag.Pages}}
 	{{partial "li.html" .}}
 	{{end}}
-	</section>
+	</main>
 
+	{{partial "posts-pager.html" $pag}}
 </div>
-
-{{partial "posts-pager.html" $pag}}
 
 {{partial "footer.html" .}}

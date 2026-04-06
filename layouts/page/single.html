@@ -1,6 +1,7 @@
 {{partial "header.html" .}}
 
-<div class="container" id="page">
+<div class="site-wrap">
+	<main>
 
 {{ if eq .Params.url "/archives" }}
 
@@ -52,11 +53,12 @@
 {{ if eq .Params.url "/contact" }}
 
 	<ul>
-		<li>X (née Twitter): <a href="https://x.com/JoshuaPoehls">@joshuapoehls</a></li>
+		<li>X (née): <a href="https://x.com/JoshuaPoehls">@joshuapoehls</a></li>
 	</ul>
 
 {{ end }}
 
+	</main>
 </div>
 
 {{partial "footer.html" .}}
