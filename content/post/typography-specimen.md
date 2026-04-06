@@ -81,6 +81,8 @@ Pretend checklist (plain bullets — same rhythm as a real todo list):
 
 ## Blockquotes
 
+Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 > Single-paragraph blockquote. Lorem ipsum dolor sit amet, adipiscing elit. Nulla vitae elit libero, a pharetra augue.
 
 > Blockquote **with a list inside** (pull-quote style):
@@ -93,6 +95,8 @@ Pretend checklist (plain bullets — same rhythm as a real todo list):
 >
 > Closing line after the list still inside the quote.
 
+Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 > Numbered reasoning inside a quote:
 >
 > 1. Premise with `evidence`
@@ -100,6 +104,8 @@ Pretend checklist (plain bullets — same rhythm as a real todo list):
 > 3. Conclusion
 
 {{% cite text="Example citation line (KJV-style label)" url="https://example.com" %}}
+
+Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 ## Figures (images from existing posts)
 

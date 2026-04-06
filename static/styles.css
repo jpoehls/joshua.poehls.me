@@ -275,13 +275,20 @@ footer p {
 	margin-bottom: 0.75rem;
 }
 
-/* --- Blockquotes --- */
+/* --- Blockquotes (long-quote: bilateral indent, tighter lead — loosely Turabian-like) --- */
 blockquote {
-	font-size: inherit;
-	margin: 0 var(--space-md);
-	padding: var(--space-xs) var(--space-md);
-	background: var(--color-bg-subtle);
-	border-left: 2px solid var(--color-border-quote);
+	font-size: 0.88em;
+	line-height: 1.32;
+	margin-block: var(--space-md);
+	margin-inline: 0;
+	padding-block: var(--space-xs);
+	padding-inline: 2em;
+}
+
+article.post blockquote,
+article.post--excerpt .post-summary blockquote {
+	font-size: calc(var(--font-post-body) * 0.88);
+	line-height: 1.32;
 }
 
 article.post blockquote p {
@@ -291,6 +298,9 @@ article.post blockquote p {
 blockquote > blockquote {
 	border: 0;
 	padding: 0;
+	margin: 0;
+	font-size: inherit;
+	line-height: inherit;
 }
 
 cite {
