@@ -385,6 +385,23 @@ around the thumb drive is too much to pass up.</p>
 	<a href="/p/6/" aria-label="Recent Posts"><span aria-hidden="true">Recent Posts &raquo;</span></a>
 
 </nav>
+	<script>
+var refTagger = {
+	settings: {
+		bibleVersion: 'CSB'
+	}
+};
+
+(function(d, t) {
+	var n=d.querySelector('[nonce]');
+	refTagger.settings.nonce = n && (n.nonce||n.getAttribute('nonce'));
+	var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+	g.src = 'https://api.reftagger.com/v2/RefTagger.js';
+	g.nonce = refTagger.settings.nonce;
+	s.parentNode.insertBefore(g, s);
+}(document, 'script'));
+</script>
+
 </div>
 
   </main>

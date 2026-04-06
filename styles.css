@@ -15,6 +15,8 @@
 	--color-text: #222;
 	--color-muted: #888;
 	--color-link: #045fb4;
+	/* Bible link color: rtBibleRef; lightness/saturation matched to --color-link */
+	--color-bible-link: #b40404;
 	--color-link-hover-bg: #ffffaa;
 	--color-bg-subtle: #f9f9f9;
 	--color-banner: #efefef;
@@ -399,13 +401,22 @@ a:hover {
 	background-color: var(--color-link-hover-bg);
 }
 
+a.rtBibleRef {
+	color: inherit;
+	text-decoration: none;
+}
+
+a.rtBibleRef:hover {
+	color: var(--color-bible-link);
+}
+
 /* Linked images (e.g. figure): keep hover highlight off the photo */
 a:has(img):hover {
 	background-color: transparent;
 }
 
 a:focus-visible {
-	outline: 2px solid var(--color-link);
+	outline: 1px solid var(--color-link);
 	outline-offset: 2px;
 }
 
