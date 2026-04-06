@@ -186,8 +186,8 @@ END
   
   <entry>
     <title>Vincent van Gogh - The Letters</title>
-    <link href="https://joshua.poehls.me/2017/vincent-van-gogh-the-letters/"/>
-    <id>https://joshua.poehls.me/2017/vincent-van-gogh-the-letters/</id>
+    <link href="https://joshua.poehls.me/2017/vincent-van-gogh-letters/"/>
+    <id>https://joshua.poehls.me/2017/vincent-van-gogh-letters/</id>
     <updated>2017-11-10T08:54:57-06:00</updated>
     
     <category term="art" />
@@ -200,7 +200,7 @@ END
 &lt;p&gt;&amp;ndash; Vincent van Gogh, &lt;a href=&#34;http://www.vangoghletters.org/vg/letters/let155/letter.html&#34;&gt;Letter no. 155 (June 1880)&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;figure &gt;
-&lt;img src=&#34;https://joshua.poehls.me/2017/vgletter.jpg&#34; alt=&#34;Facsimile of a letter from Vincent van Gogh&#34; /&gt;
+&lt;img src=&#34;vgletter.jpg&#34; alt=&#34;Facsimile of a letter from Vincent van Gogh&#34; /&gt;
 &lt;figcaption&gt;
 &lt;p&gt;
 Facsimile of a letter from Vincent van Gogh
@@ -515,7 +515,7 @@ a &lt;code&gt;$stopwatch&lt;/code&gt; that will output the elapsed time when the
 &lt;p&gt;Early in the year 1535, Peter Beskendorf, a barber and an old friend of Luther&amp;rsquo;s, asked Dr. Luther for suggestions concerning prayer. Luther responded with an open letter titled, &lt;em&gt;How One Should Pray, for Master Peter the Barber&lt;/em&gt;. This letter is as follows.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Paraphrased introduction from Paster Wolfmueller of Hope Lutheran Church, Aurora, CO. 2006.&lt;/em&gt;&lt;/p&gt;
 &lt;figure &gt;
-&lt;img src=&#34;https://joshua.poehls.me/2015/luther-and-friends-praying.jpg&#34; alt=&#34;Luther and Friends Pray at the Bedside of Melancthon&#34; /&gt;
+&lt;img src=&#34;luther-and-friends-praying.jpg&#34; alt=&#34;Luther and Friends Pray at the Bedside of Melancthon&#34; /&gt;
 &lt;figcaption&gt;
 &lt;p&gt;
 Luther and Friends Pray at the Bedside of Melancthon

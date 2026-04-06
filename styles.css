@@ -2,18 +2,19 @@ body {
 	background-color: #fff;
 	color: #222;
 
-	font-family: 'Merriweather', serif;
-
+	font-family: 'Spectral', Georgia, 'Times New Roman', serif;
+	font-weight: 300;
+	font-size: 2rem;
 	word-wrap: break-word;
 }
 
 .symbol {
-	font-family: Helvetica, Arial, sans-serif;
+	font-family: 'Georama', system-ui, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6, footer,
 article.post figure figcaption {
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Georama', system-ui, sans-serif;
 }
 
 h1.taxonomy-title {
@@ -52,13 +53,13 @@ sub {
 	top: 0.4em;
 }
 
-h1 {
-	margin-top: 1em;
-}
+h1 { margin-top: 1em; }
+h1, h2, h3, h4, h5, h6 { letter-spacing: 0; }
+
+ul, ol { margin-left: 2em; }
 
 ul {
 	list-style-type: disc;
-	margin-left: 1em;
 }
 
 ul li ul {
@@ -82,17 +83,6 @@ b, strong {
 .permalink {
 	text-decoration: none;
 	border-bottom: none;
-}
-
-.footnotes {
-	font-size: .8em;
-	border-top: 1px dotted #888;
-	margin-top: 1em;
-	padding-top: 1em;
-}
-
-.footnotes hr {
-	display: none;
 }
 
 .footnote-return {
@@ -185,7 +175,6 @@ a:hover > code {
 	border: 0;
 	border-radius: 0;
 	padding: 0;
-	font-size: 1em;
 }
 
 p code, li code {
@@ -206,7 +195,7 @@ pre {
 	text-indent: 0;
 }
 pre, code {
-	font-family: 'Inconsolata', monospace;
+	font-family: 'IBM Plex Mono', ui-monospace, monospace;
 	font-size: 1.1em;
 }
 
@@ -227,6 +216,7 @@ pre, code {
 	font-weight: 300;
 	color: #888;
 	margin: 0 auto;
+	letter-spacing: 0;
 }
 
 #masthead h1 a {
@@ -237,7 +227,6 @@ pre, code {
 
 #masthead h1 .aka {
 	font-size: .6em;
-	letter-spacing: .08em;
 	float: right;
 }
 
@@ -277,27 +266,36 @@ pre, code {
 #posts p, #posts div {
 	margin-top: 1.3em;
 	margin-bottom: 1.3em;
-	font-size: 1em;
-	line-height: 1.8em;
-	text-indent: -1em;
-	padding-left: 1em;
+	font-size: 1.05em;
+	line-height: 1.4em;
+	text-indent: 0em;
+}
+
+#posts p+p {
+	margin-top: -15px;
+	text-indent: 2em;
+}
+
+#posts code {
+	font-size: 0.9em;
 }
 
 #posts h1 {
 	margin-bottom: 0;
-	font-size: 1.8em;
+	font-size: 1.6em;
+	letter-spacing: 0;
 }
 
 #posts h2 {
-	font-size: 1.5em;
+	font-size: 1.4em;
 	margin-top: 1em;
 	margin-bottom: .5em;
 }
 
-#posts h3 { font-size: 1.4em; margin-top: 1em; }
-#posts h4 { font-size: 1.3em; }
-#posts h5 { font-size: 1.2em; }
-#posts h6 { font-size: 1.1em; }
+#posts h3 { font-size: 1.3em; margin-top: 1em; }
+#posts h4 { font-size: 1.2em; }
+#posts h5 { font-size: 1.1em; }
+#posts h6 { font-size: 1.0em; font-weight: 400; }
 
 #posts article.post header p {
 	margin-top: 0;
@@ -338,6 +336,21 @@ article.post figure a {
 	font-size: 2em !important;
 	color: #888;
 	margin-top: 1em;
+}
+
+#posts .footnotes {
+	font-size: .8em;
+	border-top: 1px dotted #888;
+	margin-top: 1em;
+	padding-top: 1em;
+}
+
+#posts .footnotes hr {
+	display: none;
+}
+
+#posts .footnotes ol {
+	list-style: decimal outside;
 }
 
 /* Print friendliness
