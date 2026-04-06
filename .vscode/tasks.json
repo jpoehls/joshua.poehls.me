@@ -1,13 +1,28 @@
 {
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
-    "version": "0.1.0",
+    "version": "2.0.0",
     "command": "c:\\tools\\hugo\\hugo.exe",
-    "isShellCommand": true,
     "isBackground": true,
     "args": [
         "server",
         "--watch"
     ],
-    "showOutput": "always"
+    "tasks": [
+        {
+            "label": "c:\\tools\\hugo\\hugo.exe",
+            "type": "shell",
+            "command": "c:\\tools\\hugo\\hugo.exe",
+            "args": [
+                "server",
+                "--watch"
+            ],
+            "isBackground": true,
+            "problemMatcher": [],
+            "group": {
+                "_id": "build",
+                "isDefault": false
+            }
+        }
+    ]
 }
