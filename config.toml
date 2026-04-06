@@ -11,9 +11,13 @@ disableKinds = ["404"]
 pagerSize = 10
 path = "page"
 
+[mediaTypes]
+	[mediaTypes.'application/atom+xml']
+		suffixes = ["xml", "atom"]
+
 [outputFormats]
 [outputFormats.RSS]
-	mediatype = "application/rss"
+	mediatype = "application/atom+xml"
 	baseName = "feed"
 
 [permalinks]

@@ -81,7 +81,7 @@ try {
 
     Push-Location -LiteralPath $folderName
     try {
-        Write-Host 'Removing excess RSS feeds (keep root feed.xml only)'
+        Write-Host 'Removing excess feeds (keep root feed.xml only)'
         $rootFeed = Join-Path -Path (Get-Location).Path -ChildPath 'feed.xml'
         Get-ChildItem -Path . -Recurse -File -Filter 'feed.xml' |
             Where-Object { $_.FullName -ne $rootFeed } |
