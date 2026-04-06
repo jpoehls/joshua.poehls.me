@@ -1,5 +1,14 @@
 <article class="post">
 	<header>
+		{{ with .GetTerms "series" }}
+		{{ with index . 0 }}
+		{{ $sk := .Title | urlize }}
+		<p class="post-series-line">
+			<span class="post-series-line__in">Series</span>
+			<a href="{{ .RelPermalink }}" class="post-series-line__name">{{ with index hugo.Data.series $sk }}{{ .title }}{{ else }}{{ .Title }}{{ end }}</a>
+		</p>
+		{{ end }}
+		{{ end }}
 		<h1>
 			{{ if .Params.linkurl }}
 			<a href="{{ .Params.linkurl }}" class="post-title-link post-title-link--external">{{ .Title }}</a> <span class="subtle symbol">&#10230;</span>

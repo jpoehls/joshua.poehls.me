@@ -566,6 +566,39 @@ article.post header {
 	text-align: center;
 }
 
+article.post .post-series-line {
+	margin: var(--space-lg) 0 0;
+	font-family: var(--font-sans);
+	font-size: 1rem;
+	font-weight: var(--font-sans-weight-medium);
+	line-height: 1.4;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--color-muted);
+}
+
+article.post .post-series-line__in {
+	margin-right: 0.4em;
+}
+
+article.post .post-series-line__name {
+	text-transform: none;
+	letter-spacing: 0;
+	font-size: 1.05em;
+	font-weight: var(--font-sans-weight-semibold);
+	color: var(--color-link);
+	text-decoration: none;
+	border-bottom: 1px dotted var(--color-link);
+}
+
+article.post .post-series-line__name:hover {
+	background-color: var(--color-link-hover-bg);
+}
+
+article.post .post-series-line + h1 {
+	margin-top: 0;
+}
+
 /* Title in masthead of the card — not body heading rhythm */
 article.post header h1 {
 	margin-bottom: 0;
