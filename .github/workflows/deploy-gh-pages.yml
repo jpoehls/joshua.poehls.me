@@ -1,0 +1,49 @@
+# Build Hugo and push static output to the gh-pages branch (same end result as publish.ps1).
+# Manual only: Actions → this workflow → "Run workflow". (Runs against the branch you choose.)
+# Repo Settings → Pages: set source to branch "gh-pages" / root (or your usual layout).
+
+name: Deploy site to gh-pages
+
+on:
+  workflow_dispatch:
+#  push:
+#    branches:
+#      - master
+
+concurrency:
+  group: deploy-gh-pages
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.160.0"
+          extended: true
+
+      - name: Build
+        run: hugo --gc
+
+      - name: Remove nested feed.xml (keep root only)
+        run: |
+          set -euo pipefail
+          cd public
+          find . -type f -name feed.xml ! -path './feed.xml' -delete
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./public
