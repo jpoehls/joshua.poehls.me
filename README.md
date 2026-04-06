@@ -2,6 +2,16 @@ This is the source for my blog, <https://joshua.poehls.me>. It is powered by [Hu
 
 ## Recipes
 
+### New Post
+
+```
+hugo new post/2026/my-post-slug.md
+```
+
+Use `<!--more-->` in the body to explicitly insert a breakpoint between the excerpt and the full article.
+
+Use `tags` metadata as needed.
+
 ### Typography Styling
 
 Run the local Hugo server with drafts enabled: `hugo server -D`
