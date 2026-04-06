@@ -10,35 +10,39 @@ Sometimes you want a `.cmd` wrapper for your PowerShell script. Usually for me t
 
 This batch file should be saved alongside your PowerShell script, like so.
 
-	.\
-	 |- my_script.ps1
-	 |- my_script.cmd
+```
+.\
+  |- my_script.ps1
+  |- my_script.cmd
+```
 
 `my_script.cmd` will execute the same named `.ps1` file in the same directory, so `my_script.ps1` in this case. Any arguments passed to `my_script.cmd` will pass-through to the PowerShell script.
 
-    @ECHO OFF
+```cmd
+@ECHO OFF
 
-    SET SCRIPTNAME=%~d0%~p0%~n0.ps1
-    SET ARGS=%*
-    IF [%ARGS%] NEQ [] GOTO ESCAPE_ARGS
+SET SCRIPTNAME=%~d0%~p0%~n0.ps1
+SET ARGS=%*
+IF [%ARGS%] NEQ [] GOTO ESCAPE_ARGS
 
-    :POWERSHELL
-    PowerShell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -Command "& { $ErrorActionPreference = 'Stop'; & '%SCRIPTNAME%' @args; EXIT $LASTEXITCODE }" %ARGS%
-    EXIT /B %ERRORLEVEL%
+:POWERSHELL
+PowerShell.exe -NoProfile -NonInteractive -NoLogo -ExecutionPolicy Unrestricted -Command "& { $ErrorActionPreference = 'Stop'; & '%SCRIPTNAME%' @args; EXIT $LASTEXITCODE }" %ARGS%
+EXIT /B %ERRORLEVEL%
 
-    :ESCAPE_ARGS
-    SET ARGS=%ARGS:"=\"%
-    SET ARGS=%ARGS:`=``%
-    SET ARGS=%ARGS:'=`'%
-    SET ARGS=%ARGS:$=`$%
-    SET ARGS=%ARGS:{=`}%
-    SET ARGS=%ARGS:}=`}%
-    SET ARGS=%ARGS:(=`(%
-    SET ARGS=%ARGS:)=`)%
-    SET ARGS=%ARGS:,=`,%
-    SET ARGS=%ARGS:^%=%
+:ESCAPE_ARGS
+SET ARGS=%ARGS:"=\"%
+SET ARGS=%ARGS:`=``%
+SET ARGS=%ARGS:'=`'%
+SET ARGS=%ARGS:$=`$%
+SET ARGS=%ARGS:{=`}%
+SET ARGS=%ARGS:}=`}%
+SET ARGS=%ARGS:(=`(%
+SET ARGS=%ARGS:)=`)%
+SET ARGS=%ARGS:,=`,%
+SET ARGS=%ARGS:^%=%
 
-    GOTO POWERSHELL
+GOTO POWERSHELL
+```
 
 ## What's going on here?
 
@@ -67,12 +71,12 @@ This batch file should be saved alongside your PowerShell script, like so.
 
 Remember that certain special characters need to be escaped in arguments passed to the batch file. These characters are: `^  &  <  >  /?`. Note that `/?` is a sequence and is recognized as a help flag when passed to a batch file.
 
-> `my_script.cmd "I ""am"" quoted"` passes a single argument `I "am" quoted` to PowerShell.
+`my_script.cmd "I ""am"" quoted"` passes a single argument `I "am" quoted` to PowerShell.
 
-> `my_script.cmd "^&<>/?"` passes `^&<>/?`
+`my_script.cmd "^&<>/?"` passes `^&<>/?`
 
 ### Environment variable expansion
 
 Environment variables get automatically expanded in batch file arguments.
 
-> `my_script.cmd %PROGRAMFILES%` passes `C:\Program Files`
+`my_script.cmd %PROGRAMFILES%` passes `C:\Program Files`

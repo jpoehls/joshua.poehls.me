@@ -29,3 +29,10 @@ author = "Joshua Poehls"
 
 [markup.goldmark.renderer]
 	unsafe = true
+
+# Syntax highlighting (Chroma). style = theme name; try: github, emacs, friendly,
+# pygments, tango, xcode, vs, … List: hugo gen chromastyles --help
+[markup.highlight]
+	codeFences = true
+	noClasses = true
+	style = "github"

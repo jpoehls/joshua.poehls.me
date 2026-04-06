@@ -11,27 +11,29 @@ This post is as much for me as it is for you. I write a lot of PowerShell script
 
 <!--more-->
 
-    #Requires -Version 3
-    Set-StrictMode -Version Latest
-    $ErrorActionPreference = "Stop"
+```powershell
+#Requires -Version 3
+Set-StrictMode -Version Latest
+$ErrorActionPreference = "Stop"
 
-    $stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
-    $scriptDir = Split-Path -LiteralPath $PSCommandPath
-    $startingLoc = Get-Location
-    Set-Location $scriptDir
-    $startingDir = [System.Environment]::CurrentDirectory
-    [System.Environment]::CurrentDirectory = $scriptDir
+$stopwatch = [System.Diagnostics.Stopwatch]::StartNew()
+$scriptDir = Split-Path -LiteralPath $PSCommandPath
+$startingLoc = Get-Location
+Set-Location $scriptDir
+$startingDir = [System.Environment]::CurrentDirectory
+[System.Environment]::CurrentDirectory = $scriptDir
 
-    try
-    {
-        # TODO: Insert script here.
-    }
-    finally
-    {
-        Set-Location $startingLoc
-        [System.Environment]::CurrentDirectory = $startingDir
-        Write-Output "Done. Elapsed time: $($stopwatch.Elapsed)"
-    }
+try
+{
+    # TODO: Insert script here.
+}
+finally
+{
+    Set-Location $startingLoc
+    [System.Environment]::CurrentDirectory = $startingDir
+    Write-Output "Done. Elapsed time: $($stopwatch.Elapsed)"
+}
+```
 
 ## What's going on here?
 
@@ -50,6 +52,6 @@ This post is as much for me as it is for you. I write a lot of PowerShell script
   a `$stopwatch` that will output the elapsed time when the script finishes.
 - The `try...finally` ensures that the elapsed time will output even if the script throws an exception.
 
-> Need to wrap your PowerShells script with a batch file? Grab my [PowerShell batch file wrapper](/powershell-batch-file-wrapper).
+Need to wrap your PowerShells script with a batch file? Grab my [PowerShell batch file wrapper](/powershell-batch-file-wrapper).
 
 [^1]: [Read more about this](http://blogs.technet.com/b/heyscriptingguy/archive/2014/12/03/enforce-better-script-practices-by-using-set-strictmode.aspx) on the "Hey, Scripting Guy!" blog.
