@@ -7,6 +7,4 @@ tags:
 
 > My desire is to think clearly about concepts and then communicate them intuitively to others. I am particularly interested in the ideas and advancements that affect our lives spiritually and emotionally.
 >
-> -- Jonathan Collins, co-founder of [The Bible Project](https://thebibleproject.com/)
-
-Source: http://www.jonpdx.com/
+> —Jonathan Collins (co-founder of [The Bible Project](https://thebibleproject.com/)), http://www.jonpdx.com/
