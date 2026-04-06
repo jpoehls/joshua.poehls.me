@@ -23,6 +23,9 @@
 	--color-code-text: #515151;
 	--font-serif: "Spectral", Georgia, "Times New Roman", serif;
 	--font-sans: "Georama", system-ui, sans-serif;
+	/* Georama loads these in head.html — use by name for predictable sans rhythm */
+	--font-sans-weight-medium: 500;
+	--font-sans-weight-semibold: 600;
 	--font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
 	--font-root: 1.25rem;
@@ -561,6 +564,14 @@ article.post--excerpt .post-summary p + p {
 	text-indent: 0;
 }
 
+article.post--excerpt .post-summary p:empty {
+	display: none;
+}
+
+article.post--excerpt .excerpt-ellipsis {
+	white-space: nowrap;
+}
+
 /* Home excerpts: Summary still includes Goldmark footnotes — hide refs + block (full post unchanged) */
 article.post--excerpt .post-summary sup:has(a.footnote-ref) {
 	display: none;
@@ -573,7 +584,10 @@ article.post--excerpt .post-summary .footnotes {
 article.post--excerpt .post-read-more {
 	margin-top: var(--space-md);
 	margin-bottom: 0;
-	text-align: center;
+	text-align: left;
+	font-weight: var(--font-sans-weight-medium);
+	font-variant: small-caps;
+	letter-spacing: 0.05em;
 	font-family: var(--font-sans);
 	font-size: var(--font-root);
 }
@@ -636,14 +650,14 @@ article.post table:not(.noborder) td {
 
 article.post table:not(.noborder) thead th {
 	font-family: var(--font-sans);
-	font-weight: 600;
+	font-weight: var(--font-sans-weight-semibold);
 	border-bottom: var(--table-rule-thin) solid var(--color-text);
 	padding-bottom: 0.4rem;
 }
 
 article.post table:not(.noborder) tbody th {
 	font-family: var(--font-sans);
-	font-weight: 600;
+	font-weight: var(--font-sans-weight-semibold);
 }
 
 article.post table:not(.noborder) tbody td {

@@ -17,8 +17,14 @@
 		</p>
 	</header>
 	<div class="post-summary">
-		{{ .Summary | safeHTML }}
+		{{- $summary := .Summary | replaceRE `(?s)(<p>\s*</p>\s*)+$` "" | replaceRE `(?s)(<p><br\s*/?></p>\s*)+$` "" -}}
+		{{ $summary | safeHTML }}
 	</div>
-	<p class="post-read-more"><a href="{{ .RelPermalink }}">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a></p>
+	{{ if .Truncated }}
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="{{ .RelPermalink }}">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+	</p>
+	{{ end }}
 </article>
 <div class="fin-symbol" aria-hidden="true"></div>
