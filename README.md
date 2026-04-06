@@ -2,7 +2,7 @@ This is the source for my blog, <https://joshua.poehls.me>. It is powered by [Hu
 
 ## Recipes
 
-### New Post
+### Create a New Post
 
 ```
 hugo new post/2026/my-post-slug.md
@@ -14,7 +14,17 @@ Use `tags` metadata as needed.
 
 Use `linkurl` metadata for posts which "share" an external article.
 
-### Typography Styling
+### Add a New Series
+
+Use `series` metadata in the post's markdown file.
+
+Add the series description to `data/series.toml`.
+
+### Change Recommended Tags
+
+The set of recommended/best tags is in `data/tags.toml`.
+
+### Change Typography Styles
 
 Run the local Hugo server with drafts enabled: `hugo server -D`
 
