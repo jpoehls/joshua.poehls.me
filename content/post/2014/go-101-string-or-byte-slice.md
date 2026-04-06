@@ -40,7 +40,7 @@ Converting to and from `[]byte` is easy. Just remember that each conversion crea
 	b := []byte(s) // convert string -> []byte
 	s2 := string(b) // convert []byte -> string
 
-> Converting to/from `string` and `[]byte` copies the entire value. Using lots of type conversions in your code is typically a warning sign that you need to reevaluate the types you are using. You want to minimize conversions both for performance and clean code.
+Converting to/from `string` and `[]byte` copies the entire value. Using lots of type conversions in your code is typically a warning sign that you need to reevaluate the types you are using. You want to minimize conversions both for performance and clean code.
 
 ## More about strings
 
