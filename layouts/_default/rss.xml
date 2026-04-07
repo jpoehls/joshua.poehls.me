@@ -31,12 +31,11 @@
     {{- if .Params.tags }}{{ range .Params.tags }}
     <category term="{{ . | html }}"/>
     {{- end }}{{ end }}
-    <content type="html">{{ .Summary | html }}{{ if .Truncated }}
-	<p class="post-read-more">
-		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="{{ .Permalink }}">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
-	</p>
-	{{ end }}</content>
+    <content type="html">{{ .Summary | html }}{{- $readMore := "" -}}
+  {{- if .Truncated -}}
+    {{- $readMore = partial "feed-read-more.html" . -}}
+  {{- end -}}
+  {{ print .Summary $readMore | html }}</content>
   </entry>
   {{- end }}
 </feed>
