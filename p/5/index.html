@@ -55,6 +55,31 @@
 	<article class="post post--excerpt">
 	<header>
 		<h1>
+			<a href="/2013/errorlevel-is-not-errorlevel/" class="post-title-link">ERRORLEVEL is not %ERRORLEVEL%</a>
+		</h1>
+		<p>
+			<time datetime="2013-07-25 22:18:36 -0500 -0500" pubdate="pubdate">Thursday, 25 July 2013</time>
+		</p>
+	</header>
+	<div class="post-summary"><p><strong>DO</strong> use <code>IF ERRORLEVEL 1 ECHO error level is 1 or more</code> to check for errors
+in your batch/command line scripts.</p>
+<p><strong>DO NOT</strong> use <code>IF %ERRORLEVEL% NEQ 0 ECHO error level is not equal to 0</code>.</p>
+<p>Most of the time <code>%ERRORLEVEL%</code> will be what you expect but it isn&rsquo;t guaranteed.
+<code>%ERRORLEVEL%</code> is simply an environment variable like any other. It just happens to fallback to returning the <code>ERRORLEVEL</code> value if an environment variable with that name isn&rsquo;t defined.</p>
+	</div>
+	
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="/2013/errorlevel-is-not-errorlevel/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+	</p>
+	
+</article>
+<div class="fin-symbol" aria-hidden="true"></div>
+
+	
+	<article class="post post--excerpt">
+	<header>
+		<h1>
 			<a href="/2013/first-steps-in-go-a-scoreboard-app/" class="post-title-link">First Steps in Go: A Scoreboard App</a>
 		</h1>
 		<p>
@@ -284,47 +309,6 @@ When the rock has thus been worn away, then a single day of eternity will have g
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
 		<a href="/2013/using-unix-terminal-shortcuts-in-the-windows-command-prompt/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
-	</p>
-	
-</article>
-<div class="fin-symbol" aria-hidden="true"></div>
-
-	
-	<article class="post post--excerpt">
-	<header>
-		<h1>
-			<a href="/2013/using-enum-flags-to-model-user-roles-in-csharp-and-sql/" class="post-title-link">Using enum flags to model user roles in C#, SQL, and Go</a>
-		</h1>
-		<p>
-			<time datetime="2013-02-12 21:48:50 -0500 -0500" pubdate="pubdate">Tuesday, 12 February 2013</time>
-		</p>
-	</header>
-	<div class="post-summary"><p>Using an enum flags property to hold users&rsquo; roles is just one trick
-I&rsquo;ve learned from <a href="https://twitter.com/SeiginoRaikou">@SeiginoRaikou</a>,
-one of my co-geniuses at <a href="https://www.interworks.com/">InterWorks</a>.</p>
-<p>Historically I have always modeled user roles with a <code>Role</code> table
-and a many-to-many relationship with my <code>User</code> table.</p>
-<pre>    +-------------------+
-    | User              |
-    |-------------------|
-    | UserId   : int    +-------------+---------------+
-    | UserName : varchar|             | UserRole      |
-    +-------------------+             |---------------|
-                                      + UserId : int  |
-    +-------------------+             + RoleId : int  |
-    | Role              |             |---------------+
-    |-------------------|             |
-    | RoleId   : int    +-------------+
-    | RoleName : varchar|
-    +-------------------+</pre>
-<p>Compared to a flags enum approach this is downright wasteful.
-With flags, there is only ever one column to work with and it is an integer.
-No second table. No joins or second query.</p>
-	</div>
-	
-	<p class="post-read-more">
-		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/using-enum-flags-to-model-user-roles-in-csharp-and-sql/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
 	</p>
 	
 </article>

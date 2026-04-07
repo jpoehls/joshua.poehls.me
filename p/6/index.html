@@ -55,6 +55,47 @@
 	<article class="post post--excerpt">
 	<header>
 		<h1>
+			<a href="/2013/using-enum-flags-to-model-user-roles-in-csharp-and-sql/" class="post-title-link">Using enum flags to model user roles in C#, SQL, and Go</a>
+		</h1>
+		<p>
+			<time datetime="2013-02-12 21:48:50 -0500 -0500" pubdate="pubdate">Tuesday, 12 February 2013</time>
+		</p>
+	</header>
+	<div class="post-summary"><p>Using an enum flags property to hold users&rsquo; roles is just one trick
+I&rsquo;ve learned from <a href="https://twitter.com/SeiginoRaikou">@SeiginoRaikou</a>,
+one of my co-geniuses at <a href="https://www.interworks.com/">InterWorks</a>.</p>
+<p>Historically I have always modeled user roles with a <code>Role</code> table
+and a many-to-many relationship with my <code>User</code> table.</p>
+<pre>    +-------------------+
+    | User              |
+    |-------------------|
+    | UserId   : int    +-------------+---------------+
+    | UserName : varchar|             | UserRole      |
+    +-------------------+             |---------------|
+                                      + UserId : int  |
+    +-------------------+             + RoleId : int  |
+    | Role              |             |---------------+
+    |-------------------|             |
+    | RoleId   : int    +-------------+
+    | RoleName : varchar|
+    +-------------------+</pre>
+<p>Compared to a flags enum approach this is downright wasteful.
+With flags, there is only ever one column to work with and it is an integer.
+No second table. No joins or second query.</p>
+	</div>
+	
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="/2013/using-enum-flags-to-model-user-roles-in-csharp-and-sql/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+	</p>
+	
+</article>
+<div class="fin-symbol" aria-hidden="true"></div>
+
+	
+	<article class="post post--excerpt">
+	<header>
+		<h1>
 			<a href="/2013/open-graph-twitter-cards-and-your-blog/" class="post-title-link">Open Graph Twitter Cards and Your Blog</a>
 		</h1>
 		<p>
@@ -310,35 +351,6 @@ sys    0m0.100s
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
 		<a href="/2012/storing-your-raspberry-pi-configuration-in-git/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
-	</p>
-	
-</article>
-<div class="fin-symbol" aria-hidden="true"></div>
-
-	
-	<article class="post post--excerpt">
-	<header>
-		<h1>
-			<a href="/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows/" class="post-title-link">Soft links, hard links, junctions, oh my! Symlinks on Windows, a how-to</a>
-		</h1>
-		<p>
-			<time datetime="2012-06-07 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thursday, 7 June 2012</time>
-		</p>
-	</header>
-	<div class="post-summary"><p>First, a quick definition of terms. There are three kinds of &ldquo;<a href="https://en.wikipedia.org/wiki/Symbolic_link">symlinks</a>&rdquo; on Windows.</p>
-<ul>
-<li>soft links (also called symlinks, or symbolic links)</li>
-<li>hard links</li>
-<li>junctions (a type of soft link only for directories)</li>
-</ul>
-<p>Soft links can be created for files or directories.</p>
-<p>Hard links can only be created for files.</p>
-<p>Both soft and hard links must be created on the same volume as the target. i.e. You can&rsquo;t link something on <code>C:\</code> to something on <code>D:\</code>.</p>
-	</div>
-	
-	<p class="post-read-more">
-		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
 	</p>
 	
 </article>

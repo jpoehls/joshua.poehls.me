@@ -4,12 +4,30 @@
   <rights>Copyright (c) 2014–2026 Joshua Poehls. All rights reserved.</rights>
   <link rel="self" type="application/atom+xml" href="https://joshua.poehls.me/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://joshua.poehls.me/"/>
-  <updated>2022-03-29T07:52:10-05:00</updated>
+  <updated>2026-04-06T19:16:28-05:00</updated>
   <author>
     <name>Joshua Poehls</name>
   </author>
   <id>https://joshua.poehls.me/feed.xml</id>
   <generator uri="https://gohugo.io/" version="0.160.0">Hugo</generator>
+  <entry xml:base="https://joshua.poehls.me/2026/william-perkins-on-preaching/">
+    <title>William Perkins on Preaching</title>
+    <link rel="alternate" type="text/html" href="https://joshua.poehls.me/2026/william-perkins-on-preaching/"/>
+    <id>https://joshua.poehls.me/2026/william-perkins-on-preaching/</id>
+    <published>2026-04-06T19:16:28-05:00</published>
+    <updated>2026-04-06T19:16:28-05:00</updated>
+    <category term="preaching"/>
+    <content type="html">&lt;p&gt;The elements of preaching, as summed up by William Perkins:&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Preaching involves:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Reading the text clearly from the canonical Scriptures.&lt;/li&gt;
+&lt;li&gt;Explaining the meaning of it, once it has been read, in the light of the Scriptures themselves.&lt;/li&gt;
+&lt;li&gt;Gathering a few profitable points of doctrine from the natural sense of the passage.&lt;/li&gt;
+&lt;li&gt;If the preacher is suitably gifted, applying the doctrines thus explained to the life and practice of the congregation in straightforward, plain speech.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The heart of the matter is this:&lt;/p&gt;</content>
+  </entry>
   <entry xml:base="https://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/">
     <title>Two Ways To Not Use A Bible Reading Plan</title>
     <link rel="alternate" type="text/html" href="https://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/"/>
@@ -215,19 +233,5 @@ if err != nil {
 	panic(err)
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;I&amp;rsquo;d like to add support for creating and editing entries in the future. Contributions welcome, just hit me up!&lt;/p&gt;</content>
-  </entry>
-  <entry xml:base="https://joshua.poehls.me/2014/11/drone-strike-terrorism/">
-    <title>Drone Strike Terrorism</title>
-    <link rel="alternate" type="text/html" href="https://joshua.poehls.me/2014/11/drone-strike-terrorism/"/>
-    <id>https://joshua.poehls.me/2014/11/drone-strike-terrorism/</id>
-    <published>2014-11-18T09:55:27-06:00</published>
-    <updated>2014-11-18T09:55:27-06:00</updated>
-    <category term="war"/>
-    <content type="html">&lt;p&gt;Have you read The Intercept&amp;rsquo;s &lt;a href=&#34;https://firstlook.org/theintercept/2014/11/18/media-outlets-continue-describe-unknown-drone-victims-militants/&#34;&gt;article on US drone strikes&lt;/a&gt; and the media&amp;rsquo;s coverage of them in the US? If you are an American, you should.&lt;/p&gt;
-&lt;p&gt;Let me be clear; I&amp;rsquo;m horrified. There is so much that is completely wrong here that it is hard to begin.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://firstlook.org/theintercept/2014/11/18/media-outlets-continue-describe-unknown-drone-victims-militants/&#34;&gt;Read the article.&lt;/a&gt; Read it twice.&lt;/p&gt;
-&lt;h2 id=&#34;on-target-selection&#34;&gt;On Target Selection&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;It has been more than two years since The New York Times revealed that &amp;ldquo;Mr. Obama embraced a disputed method for counting civilian casualties&amp;rdquo; of his drone strikes which &amp;ldquo;in effect &lt;strong&gt;counts all military-age males in a strike zone as combatants . . . . unless there is explicit intelligence posthumously proving them innocent&lt;/strong&gt;.&amp;rdquo;&lt;/p&gt;</content>
   </entry>
 </feed>
