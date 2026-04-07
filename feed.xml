@@ -26,7 +26,12 @@
 &lt;li&gt;Gathering a few profitable points of doctrine from the natural sense of the passage.&lt;/li&gt;
 &lt;li&gt;If the preacher is suitably gifted, applying the doctrines thus explained to the life and practice of the congregation in straightforward, plain speech.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;The heart of the matter is this:&lt;/p&gt;</content>
+&lt;p&gt;The heart of the matter is this:&lt;/p&gt;
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="https://joshua.poehls.me/2026/william-perkins-on-preaching/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+	</p>
+	</content>
   </entry>
   <entry xml:base="https://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/">
     <title>Two Ways To Not Use A Bible Reading Plan</title>
@@ -41,7 +46,12 @@
 &lt;li&gt;You don&amp;rsquo;t like being tied to a specific reading plan. You like the flexibility to pick what book to read next.&lt;/li&gt;
 &lt;li&gt;You want to make sure you actually &lt;em&gt;do&lt;/em&gt; read through the whole Bible. Without a plan, it is easy to end up rotating through your favorite books and avoid others longer than you realize.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;If that sounds like you, I have two strategies that may help. I&amp;rsquo;ve been using one of these for a couple years now, and the other is fairly recent.&lt;/p&gt;</content>
+&lt;p&gt;If that sounds like you, I have two strategies that may help. I&amp;rsquo;ve been using one of these for a couple years now, and the other is fairly recent.&lt;/p&gt;
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="https://joshua.poehls.me/two-ways-to-not-use-a-bible-reading-plan/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+	</p>
+	</content>
   </entry>
   <entry xml:base="https://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/">
     <title>Parse .NET TimeSpans in a Tableau Calculated Field</title>
@@ -53,7 +63,12 @@
     <category term="csharp"/>
     <category term="dotnet"/>
     <category term="regex"/>
-    <content type="html">&lt;p&gt;Here&amp;rsquo;s a formula you can use to create a calculated field in &lt;a href=&#34;https://tableau.com&#34;&gt;Tableau&lt;/a&gt; for converting strings in the format of .NET &lt;code&gt;TimeSpan&lt;/code&gt; values to a total number of seconds.&lt;/p&gt;</content>
+    <content type="html">&lt;p&gt;Here&amp;rsquo;s a formula you can use to create a calculated field in &lt;a href=&#34;https://tableau.com&#34;&gt;Tableau&lt;/a&gt; for converting strings in the format of .NET &lt;code&gt;TimeSpan&lt;/code&gt; values to a total number of seconds.&lt;/p&gt;
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="https://joshua.poehls.me/2019/parse-dotnet-timespans-in-a-tableau-calculated-field/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+	</p>
+	</content>
   </entry>
   <entry xml:base="https://joshua.poehls.me/2018/resources-for-studying-zephaniah/">
     <title>Resources for Studying Zephaniah</title>
@@ -66,7 +81,12 @@
     <category term="jason-derouchie"/>
     <content type="html">&lt;p&gt;I&amp;rsquo;ve been studying through Zephaniah recently, prompted by the recently released &lt;em&gt;&lt;a href=&#34;https://www.amazon.com/ESV-Expository-Commentary-7-Daniel-Malachi/dp/1433546523?&amp;amp;_encoding=UTF8&amp;amp;tag=poehls-20&amp;amp;linkCode=ur2&amp;amp;linkId=f84fa13acb18f9e11c227fc183537e37&amp;amp;camp=1789&amp;amp;creative=9325&#34;&gt;ESV Expository Commentary (Volume 7): Daniel–Malachi&lt;/a&gt;&lt;/em&gt;. The commentary on Zephaniah is written by Jason DeRouchie who I&amp;rsquo;ve been following since his &lt;em&gt;&lt;a href=&#34;https://www.amazon.com/How-Understand-Apply-Old-Testament/dp/1629952451?&amp;amp;_encoding=UTF8&amp;amp;tag=poehls-20&amp;amp;linkCode=ur2&amp;amp;linkId=3aea9f4d4504f9ceb5bb219392214716&amp;amp;camp=1789&amp;amp;creative=9325&#34;&gt;How to Understand and Apply the Old Testament&lt;/a&gt;&lt;/em&gt;, which is fantastic.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Aside:&lt;/strong&gt; Andy Naselli&amp;rsquo;s companion volume, &lt;em&gt;&lt;a href=&#34;https://www.amazon.com/How-Understand-Apply-New-Testament/dp/1629952486?&amp;amp;_encoding=UTF8&amp;amp;tag=poehls-20&amp;amp;linkCode=ur2&amp;amp;linkId=1b2956844e522127703e788ed3967077&amp;amp;camp=1789&amp;amp;creative=9325&#34;&gt;How to Understand and Apply the New Testament&lt;/a&gt;&lt;/em&gt;, is equally fantastic. I read it first and I&amp;rsquo;m still working through DeRouchie&amp;rsquo;s volume.&lt;/p&gt;</content>
+&lt;p&gt;&lt;strong&gt;Aside:&lt;/strong&gt; Andy Naselli&amp;rsquo;s companion volume, &lt;em&gt;&lt;a href=&#34;https://www.amazon.com/How-Understand-Apply-New-Testament/dp/1629952486?&amp;amp;_encoding=UTF8&amp;amp;tag=poehls-20&amp;amp;linkCode=ur2&amp;amp;linkId=1b2956844e522127703e788ed3967077&amp;amp;camp=1789&amp;amp;creative=9325&#34;&gt;How to Understand and Apply the New Testament&lt;/a&gt;&lt;/em&gt;, is equally fantastic. I read it first and I&amp;rsquo;m still working through DeRouchie&amp;rsquo;s volume.&lt;/p&gt;
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="https://joshua.poehls.me/2018/resources-for-studying-zephaniah/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+	</p>
+	</content>
   </entry>
   <entry xml:base="https://joshua.poehls.me/2018/greek-new-testament-narrated-by-theo-karvounakis/">
     <title>Greek New Testament Narrated by Theo Karvounakis</title>
@@ -81,7 +101,12 @@
 &lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=-BfYa4QM2dc&amp;amp;list=PL40D66708671D260F&#34;&gt;Stream on YouTube&lt;/a&gt; with text that follows the audio&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://bit.ly/KoineGreekNT-mp3&#34;&gt;Download the MP3s&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://biblia.com/books/tr1894mr&#34;&gt;Read along at Biblia.com&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content>
+&lt;/ul&gt;
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="https://joshua.poehls.me/2018/greek-new-testament-narrated-by-theo-karvounakis/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+	</p>
+	</content>
   </entry>
   <entry xml:base="https://joshua.poehls.me/2017/vincent-van-gogh-letters/">
     <title>Vincent van Gogh - The Letters</title>
@@ -94,7 +119,12 @@
     <category term="quotes"/>
     <content type="html">&lt;p&gt;&lt;a href=&#34;http://www.vangoghletters.org&#34;&gt;Vincent van Gogh - The Letters&lt;/a&gt; is an amazing archive of documents. Searchable, with facsimiles, translations, and including even the original sketches. Van Gogh seems like a fascinating person and the letters contain some gems.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Someone has a great fire in his soul and nobody ever comes to warm themselves at it, and passers-by see nothing but a little smoke at the top of the chimney and then go on their way.&lt;/p&gt;</content>
+&lt;p&gt;Someone has a great fire in his soul and nobody ever comes to warm themselves at it, and passers-by see nothing but a little smoke at the top of the chimney and then go on their way.&lt;/p&gt;
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="https://joshua.poehls.me/2017/vincent-van-gogh-letters/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+	</p>
+	</content>
   </entry>
   <entry xml:base="https://joshua.poehls.me/2017/the-bible-project-justice/">
     <title>The Bible Project: Justice</title>
@@ -107,7 +137,12 @@
     <category term="tim-mackie"/>
     <content type="html">&lt;p&gt;&lt;em&gt;Justice&lt;/em&gt; has been a recurring theme that stands out to me as I read the Bible. This video from &lt;a href=&#34;https://thebibleproject.com/&#34;&gt;The Bible Project&lt;/a&gt; is really helpful to understand the biblical themes righteousness and justice.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Humans are set apart from all other creatures as the &lt;em&gt;image of God&lt;/em&gt;&amp;hellip; This identity is the bedrock of the Bible&amp;rsquo;s view of justice. All humans are equal before God and have the right to be treated with dignity and fairness, no matter who you are.&lt;/p&gt;</content>
+&lt;p&gt;Humans are set apart from all other creatures as the &lt;em&gt;image of God&lt;/em&gt;&amp;hellip; This identity is the bedrock of the Bible&amp;rsquo;s view of justice. All humans are equal before God and have the right to be treated with dignity and fairness, no matter who you are.&lt;/p&gt;
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="https://joshua.poehls.me/2017/the-bible-project-justice/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+	</p>
+	</content>
   </entry>
   <entry xml:base="https://joshua.poehls.me/2017/think-clearly/">
     <title>Think Clearly</title>
@@ -128,7 +163,12 @@
     <published>2017-11-06T01:18:00-06:00</published>
     <updated>2017-11-06T01:18:00-06:00</updated>
     <category term="powershell"/>
-    <content type="html">&lt;p&gt;This post is as much for me as it is for you. I write a lot of PowerShell scripts and they tend to follow a certain pattern. This is my personal boilerplate for PowerShell scripts.&lt;/p&gt;</content>
+    <content type="html">&lt;p&gt;This post is as much for me as it is for you. I write a lot of PowerShell scripts and they tend to follow a certain pattern. This is my personal boilerplate for PowerShell scripts.&lt;/p&gt;
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="https://joshua.poehls.me/powershell-script-boilerplate/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+	</p>
+	</content>
   </entry>
   <entry xml:base="https://joshua.poehls.me/2016/01/bible-quiz-1/">
     <title>Bible Quiz: Deu 7:9, 10:12-13</title>
@@ -139,7 +179,12 @@
     <category term="Bible Quiz Questions"/>
     <category term="bible quiz"/>
     <category term="scripture"/>
-    <content type="html">&lt;p&gt;Hundreds of verses forgotten. Yep, that&amp;rsquo;s what happen to me. I joined up with our church&amp;rsquo;s Bible Quiz team as a teen and memorized hundreds of verses for competition. Looking back, it is one of my favorite things I did growing up. Unfortunately, that was many years ago and with little practice comes much forgetfulness.&lt;/p&gt;</content>
+    <content type="html">&lt;p&gt;Hundreds of verses forgotten. Yep, that&amp;rsquo;s what happen to me. I joined up with our church&amp;rsquo;s Bible Quiz team as a teen and memorized hundreds of verses for competition. Looking back, it is one of my favorite things I did growing up. Unfortunately, that was many years ago and with little practice comes much forgetfulness.&lt;/p&gt;
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="https://joshua.poehls.me/2016/01/bible-quiz-1/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+	</p>
+	</content>
   </entry>
   <entry xml:base="https://joshua.poehls.me/2016/09/fear-not/">
     <title>Serve the LORD, Fear Not</title>
@@ -150,7 +195,12 @@
     <category term="scripture"/>
     <content type="html">&lt;p&gt;I call heaven and earth to record this day against you, that &lt;strong&gt;I have set before you life and death&lt;/strong&gt;, blessing and cursing: therefore choose life, that both thou and thy seed may live:&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;p&gt;And if it seem evil unto you to serve the LORD, &lt;strong&gt;choose you this day whom ye will serve&lt;/strong&gt;; &amp;hellip;&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;If ye will fear the LORD, and serve him, and obey his voice,&lt;/strong&gt; and not rebel against the commandment of the LORD, then shall both ye and also the king that reigneth over you continue following the LORD your God:&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;strong&gt;If ye will fear the LORD, and serve him, and obey his voice,&lt;/strong&gt; and not rebel against the commandment of the LORD, then shall both ye and also the king that reigneth over you continue following the LORD your God:&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="https://joshua.poehls.me/2016/09/fear-not/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+	</p>
+	</content>
   </entry>
   <entry xml:base="https://joshua.poehls.me/2015/08/delighting-trinity/">
     <title>Delighting in the Trinity</title>
@@ -162,7 +212,12 @@
 &lt;p&gt;&amp;ldquo;It is not to be expected that we should love God supremely if we have not known him to be more desirable than all other things.&amp;rdquo; So wrote the great hymn writer Isaac Watts. And of course, he was quite right, for we always love what seems most attractive to us.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
-&lt;p&gt;But what kind of God could outstrip the attractions of all other things? Could any unitary, single-person god do so? Hardly, or at least not for long. Single-person gods must, by definition, have spent eternity in absolute solitude. Before creation, having no other persons with whom they could commune, they must have been entirely alone.&lt;/p&gt;</content>
+&lt;p&gt;But what kind of God could outstrip the attractions of all other things? Could any unitary, single-person god do so? Hardly, or at least not for long. Single-person gods must, by definition, have spent eternity in absolute solitude. Before creation, having no other persons with whom they could commune, they must have been entirely alone.&lt;/p&gt;
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="https://joshua.poehls.me/2015/08/delighting-trinity/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+	</p>
+	</content>
   </entry>
   <entry xml:base="https://joshua.poehls.me/2015/07/a-simple-way-to-pray-luther/">
     <title>A Simple Way to Pray: A Letter from Dr. Martin Luther</title>
@@ -179,7 +234,12 @@
 &lt;figcaption&gt;
 &lt;p&gt;
 Luther and Friends Pray at the Bedside of Melancthon
-&lt;/p&gt;</content>
+&lt;/p&gt;
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="https://joshua.poehls.me/2015/07/a-simple-way-to-pray-luther/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+	</p>
+	</content>
   </entry>
   <entry xml:base="https://joshua.poehls.me/powershell-resources/">
     <title>Resources for PowerShell users</title>
@@ -201,7 +261,12 @@ Luther and Friends Pray at the Bedside of Melancthon
 &lt;li&gt;Sublime Text via the &lt;a href=&#34;https://github.com/SublimeText/PowerShell&#34;&gt;PowerShell package&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;articles&#34;&gt;Articles&lt;/h2&gt;
-&lt;p&gt;I few articles I&amp;rsquo;ve written to help you get started.&lt;/p&gt;</content>
+&lt;p&gt;I few articles I&amp;rsquo;ve written to help you get started.&lt;/p&gt;
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="https://joshua.poehls.me/powershell-resources/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+	</p>
+	</content>
   </entry>
   <entry xml:base="https://joshua.poehls.me/2015/03/dayone-golang-package/">
     <title>Reading Day One journals in Go</title>
