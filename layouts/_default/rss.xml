@@ -26,16 +26,16 @@
     <published>{{ .Date.Format "2006-01-02T15:04:05-07:00" }}</published>
     <updated>{{ if .Lastmod.After .Date }}{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" }}{{ else }}{{ .Date.Format "2006-01-02T15:04:05-07:00" }}{{ end }}</updated>
     {{- with .Params.series }}
-    <category term="{{ . | html }}"/>
+    <category term="{{ . | urlize }}" label="{{ . | html }}"/>
     {{- end }}
     {{- if .Params.tags }}{{ range .Params.tags }}
-    <category term="{{ . | html }}"/>
+    <category term="{{ . | urlize }}" label="{{ . | html }}"/>
     {{- end }}{{ end }}
     <content type="html">{{ .Summary | html }}{{- $readMore := "" -}}
   {{- if .Truncated -}}
     {{- $readMore = partial "feed-read-more.html" . -}}
   {{- end -}}
-  {{ print .Summary $readMore | html }}</content>
+  {{ $readMore | html }}</content>
   </entry>
   {{- end }}
 </feed>
