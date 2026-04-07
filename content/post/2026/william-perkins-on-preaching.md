@@ -5,7 +5,7 @@ tags:
 - preaching
 ---
 
-The elements of preaching, as summed up by William Perkins:[^n1]
+The elements of preaching, as summed up by William Perkins in 1592:[^n1]
 
 > Preaching involves: 
 > 
