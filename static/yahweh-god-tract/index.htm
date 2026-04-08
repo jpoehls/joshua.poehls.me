@@ -16,13 +16,72 @@
 --text:   #1e3a44;
 }
 
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    color: var(--text);
+    font-family: 'Libre Baskerville', serif;
+    background-color: #d8e2e7; /* Fallback color matching the image sky */
+}
+
 body {
-background: #ffffff;
-color: var(--text);
-font-family: 'Libre Baskerville', serif;
 max-width: 860px;
 margin: 0 auto;
 padding: 40px 32px 60px;
+}
+
+/* --- THE BACKGROUND CONTAINER --- */
+/* Use z-index 0, not -1: negative fixed layers + async bg-image can fail to repaint the first viewport tile until scroll. */
+.fixed-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    
+    /* Start hidden for the fade-in effect */
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out; 
+}
+
+/* This class is added by JS once the page is ready */
+.fixed-background.is-loaded {
+    opacity: 1;
+}
+
+/* --- CONTENT STYLING --- */
+.scrolling-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 60px auto;
+    padding: 40px;
+    /* High-end glassmorphism effect for the text box */
+    /* background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    line-height: 1.6;
+    color: #334155; */
+}
+
+/* Media Query for Background Image Selection */
+/* We define the images here, but they won't download until .is-loaded is added */
+@media (min-width: 769px) {
+    .fixed-background.is-loaded {
+        background-image: url('bg-wide.png');
+    }
+}
+@media (max-width: 768px) {
+    .fixed-background.is-loaded {
+        background-image: url('bg-tall.png');
+    }
 }
 
 /* ── PAGE 1 ── */
@@ -82,7 +141,7 @@ line-height: 1.75;
 /* ── PAGE 2 divider ── */
 .page-break {
 border: none;
-border-top: 2px solid #d0dde2;
+border-top: 2px solid #fff;
 margin: 56px 0 48px;
 }
 
@@ -172,9 +231,16 @@ font-family: 'Libre Baskerville', serif;
 font-size: 0.76rem;
 color: var(--dark);
 line-height: 1.7;
-border: 1.5px solid #c8d8de;
 display: inline-block;
 padding: 10px 16px;
+
+/* Glassmorphism effect for the text box */
+background: rgba(255, 255, 255, 0.5);
+backdrop-filter: blur(10px); 
+-webkit-backdrop-filter: blur(10px);
+border-radius: 12px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+color: #334155;
 }
 .contact strong { display: block; }
 
@@ -192,6 +258,10 @@ a.rtBibleRef:hover {
 
 </head>
 <body>
+
+  <div id="bg-layer" class="fixed-background"></div>
+
+  <main class="scrolling-content">
 
 <!-- ══════════════ PAGE 1 ══════════════ -->
 
@@ -504,6 +574,20 @@ letter-spacing="1" text-anchor="middle">IS</text>
     <a href="https://www.biblicalcounselingutah.com/" target="_blank">The Upward Call Biblical Counseling</a>
   </div>
 </div>
+
+</main>
+
+<script>
+    // This script waits until the entire window (text, fonts, etc.) 
+    // has loaded before it triggers the background download.
+    window.addEventListener('load', function() {
+        const bgLayer = document.getElementById('bg-layer');
+        
+        // Adding this class triggers the background-image CSS 
+        // and the opacity transition.
+        bgLayer.classList.add('is-loaded');
+    });
+</script>
 
 <script>
 var refTagger = {
