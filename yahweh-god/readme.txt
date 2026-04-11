@@ -9,7 +9,12 @@ All credits and rights belong to Samuel Torres for this work.
 
 I have only applied minor changes for errata I discovered:
 
-1. Front side, under The Father is Yahweh, last line, Psa 2:74 doesn't exist. Corrected to Psa 2:7.
-2. Front side, under The Father is Yahweh, "Isai 63:16". Corrected to "Isa".
-3. Back side, under Jesus is God, last line, Rev 28:9 doesn't exist. Corrected to Rev 22:9.
-4. Back side, the full quotation of Rev 21:8 had the end quotation mark but was missing the beginning quotation mark. Added it.
+* Front
+    * The Father is Yahweh
+        * On the last line, Psa 2:74 doesn’t exist. Corrected to 2:7.
+        * "Isai 63:16" corrected to "Isa"
+* Back
+    * The full quotation of Rev 21:8 had an end quotation mark but was missing the beginning quotation mark. Added beginning quotation mark.
+    * Jesus is God
+        * On the last line, Rev 28:9 doesn’t exist. Corrected to 22:9.
+        * "Rev 19:10 / 28:9" replaced the "/" with a "," since the book is the same to be consistent with other formatting.
