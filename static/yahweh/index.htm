@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yahweh God</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -19,9 +19,9 @@
     --font-scale: 1.1;
 
     /* Font stacks */
-    --font-display: 'Cinzel', serif;
-    --font-body: 'Libre Baskerville', serif;
-    --font-scripture: 'EB Garamond', serif;
+    --font-display: 'Spectral', serif;
+    --font-body: 'Spectral', serif;
+    --font-scripture: 'Spectral', serif;
 
     /* Palette */
     --color-teal: #2b6070;
@@ -40,14 +40,14 @@
 
     /* Semantic type scale (rem × optional global scale) */
     --fs-hero-title: calc(3rem * var(--font-scale));
-    --fs-banner-title: calc(2.15rem * var(--font-scale));
+    --fs-banner-title: calc(2rem * var(--font-scale));
     --fs-scripture: calc(1.05rem * var(--font-scale));
-    --fs-ref-heading: calc(0.82rem * var(--font-scale));
-    --fs-ref-body: calc(0.78rem * var(--font-scale));
-    --fs-section-title: calc(0.78rem * var(--font-scale));
-    --fs-section-refs: calc(0.76rem * var(--font-scale));
-    --fs-column-heading: calc(0.74rem * var(--font-scale));
-    --fs-column-body: calc(0.72rem * var(--font-scale));
+    --fs-ref-heading: calc(1rem * var(--font-scale));
+    --fs-ref-body: calc(0.85rem * var(--font-scale));
+    --fs-section-title: calc(1rem * var(--font-scale));
+    --fs-section-refs: calc(0.85rem * var(--font-scale));
+    --fs-column-heading: calc(1rem * var(--font-scale));
+    --fs-column-body: calc(0.85rem * var(--font-scale));
     --fs-contact: calc(0.76rem * var(--font-scale));
 
     /* One-off spacing (matches previous inline style) */
@@ -179,8 +179,8 @@
     font-family: var(--font-scripture);
     font-size: var(--fs-scripture);
     font-style: italic;
-    font-weight: 400;
-    color: var(--color-ink);
+    font-weight: 600;
+    color: var(--color-teal);
     text-align: center;
     line-height: 1.75;
     margin-bottom: 20px;
@@ -201,7 +201,7 @@
   .section-refs {
     font-family: var(--font-body);
     font-size: var(--fs-section-refs);
-    font-weight: 400;
+    font-weight: 600;
     color: var(--color-teal);
     text-align: center;
     line-height: 1.85;
@@ -233,7 +233,7 @@
   .p2-col p {
     font-family: var(--font-body);
     font-size: var(--fs-column-body);
-    font-weight: 400;
+    font-weight: 600;
     color: var(--color-teal);
     text-align: center;
     line-height: 1.8;
@@ -266,7 +266,7 @@
 
   .contact img {
     width: 100px;
-    border-radius: 50%;
+    aspect-ratio: 300 / 323;
     grid-row: 1 / span 2;
     justify-self: center;
     align-self: center;
@@ -343,17 +343,17 @@ dominant-baseline middle so they sit centered between rails.
 
   <!-- IS NOT label – left side (midpoint + perpendicular centering via dominant-baseline) -->
 
-<text transform="translate(144.5,182) rotate(-62.51)"
-font-size="11" font-weight="700" fill="var(--color-teal)" letter-spacing="1.5" text-anchor="middle" dominant-baseline="middle">IS NOT</text>
+<text transform="translate(145.5,182) rotate(-62.51)"
+font-size="12" font-weight="700" fill="var(--color-teal)" letter-spacing="1.5" text-anchor="middle" dominant-baseline="middle">IS NOT</text>
 
   <!-- IS NOT label – right side -->
 
-<text transform="translate(315.5,182) rotate(62.51)"
-font-size="11" font-weight="700" fill="var(--color-teal)" letter-spacing="1.5" text-anchor="middle" dominant-baseline="middle">IS NOT</text>
+<text transform="translate(314.5,182) rotate(62.51)"
+font-size="12" font-weight="700" fill="var(--color-teal)" letter-spacing="1.5" text-anchor="middle" dominant-baseline="middle">IS NOT</text>
 
   <!-- IS NOT label – bottom (between horizontal rails) -->
 
-<text x="230" y="300" font-size="11" font-weight="700" fill="var(--color-teal)"
+<text x="230" y="301" font-size="12" font-weight="700" fill="var(--color-teal)"
 letter-spacing="1.5" text-anchor="middle" dominant-baseline="middle">IS NOT</text>
 
   <!-- ── inner spokes (IS): twin dashed rails ── -->
@@ -370,53 +370,53 @@ letter-spacing="1.5" text-anchor="middle" dominant-baseline="middle">IS NOT</tex
 
   <!-- IS label – top spoke (center of vertical strip) -->
 
-<text x="230" y="145" font-size="11" font-weight="700" fill="var(--color-teal)"
+<text x="230" y="145" font-size="12" font-weight="700" fill="var(--color-teal)"
 letter-spacing="1" text-anchor="middle" dominant-baseline="middle">IS</text>
 
   <!-- IS label – bottom-left spoke (parallel to rails, centered in strip) -->
 
-<text transform="translate(151.49,263.53) rotate(-25.82)"
-font-size="11" font-weight="700" fill="var(--color-teal)" letter-spacing="1" text-anchor="middle" dominant-baseline="middle">IS</text>
+<text transform="translate(160,260) rotate(-25.82)"
+font-size="12" font-weight="700" fill="var(--color-teal)" letter-spacing="1" text-anchor="middle" dominant-baseline="middle">IS</text>
 
   <!-- IS label – bottom-right spoke (angle matches rails; 25.82° = line from hub to HS) -->
 
-<text transform="translate(308.51,263.53) rotate(25.82)"
-font-size="11" font-weight="700" fill="var(--color-teal)" letter-spacing="1" text-anchor="middle" dominant-baseline="middle">IS</text>
+<text transform="translate(300,260) rotate(25.82)"
+font-size="12" font-weight="700" fill="var(--color-teal)" letter-spacing="1" text-anchor="middle" dominant-baseline="middle">IS</text>
 
   <!-- ── circles (drawn last so they sit on top of lines) ── -->
 
   <!-- THE FATHER (top) -->
 
   <circle cx="230" cy="68" r="52" fill="var(--color-surface)" stroke="var(--color-diagram-ring)" stroke-width="2"/>
-  <text x="230" y="61" font-size="12" font-weight="700" fill="var(--color-teal)"
+  <text x="230" y="61" font-size="14" font-weight="700" fill="var(--color-teal)"
         letter-spacing="1" text-anchor="middle">THE</text>
-  <text x="230" y="77" font-size="12" font-weight="700" fill="var(--color-teal)"
+  <text x="230" y="77" font-size="14" font-weight="700" fill="var(--color-teal)"
         letter-spacing="1" text-anchor="middle">FATHER</text>
 
   <!-- JESUS THE SON (bottom left) -->
 
   <circle cx="82" cy="300" r="52" fill="var(--color-surface)" stroke="var(--color-diagram-ring)" stroke-width="2"/>
-  <text x="82" y="293" font-size="11" font-weight="700" fill="var(--color-teal)"
+  <text x="82" y="293" font-size="14" font-weight="700" fill="var(--color-teal)"
         letter-spacing="0.5" text-anchor="middle">JESUS</text>
-  <text x="82" y="309" font-size="11" font-weight="700" fill="var(--color-teal)"
+  <text x="82" y="309" font-size="14" font-weight="700" fill="var(--color-teal)"
         letter-spacing="0.5" text-anchor="middle">THE SON</text>
 
   <!-- THE HOLY SPIRIT (bottom right) -->
 
   <circle cx="378" cy="300" r="52" fill="var(--color-surface)" stroke="var(--color-diagram-ring)" stroke-width="2"/>
-  <text x="378" y="293" font-size="11" font-weight="700" fill="var(--color-teal)"
+  <text x="378" y="293" font-size="14" font-weight="700" fill="var(--color-teal)"
         letter-spacing="0.5" text-anchor="middle">THE</text>
-  <text x="378" y="309" font-size="11" font-weight="700" fill="var(--color-teal)"
+  <text x="378" y="309" font-size="14" font-weight="700" fill="var(--color-teal)"
         letter-spacing="0.5" text-anchor="middle">HOLY SPIRIT</text>
 
   <!-- YAHWEH IS GOD (center) -->
 
   <circle cx="230" cy="210" r="40" fill="var(--color-surface)" stroke="var(--color-diagram-ring)" stroke-width="2"/>
-  <text x="230" y="202" font-size="11" font-weight="700" fill="var(--color-ink)"
+  <text x="230" y="202" font-size="14" font-weight="700" fill="var(--color-ink)"
         text-anchor="middle">YAHWEH</text>
-  <text x="230" y="216" font-size="11" font-weight="700" fill="var(--color-ink)"
+  <text x="230" y="216" font-size="14" font-weight="700" fill="var(--color-ink)"
         text-anchor="middle">IS</text>
-  <text x="230" y="230" font-size="11" font-weight="700" fill="var(--color-ink)"
+  <text x="230" y="230" font-size="14" font-weight="700" fill="var(--color-ink)"
         text-anchor="middle">GOD</text>
 
 </svg>
@@ -426,34 +426,34 @@ font-size="11" font-weight="700" fill="var(--color-teal)" letter-spacing="1" tex
 
 <div class="ref-grid">
 
-  <div class="ref-col">
+<div class="ref-col">
     <h3>The Father Is Yahweh</h3>
-    <p>Deut 32:6<br>Psa 110:1<br>Isa 63:16<br>Zech 13:7-9<br>Heb 1:5 / Psa 2:7</p>
+    <p>Deut&nbsp;32:6<br>Psa&nbsp;110:1<br>Isa&nbsp;63:16<br>Zech&nbsp;13:7-9<br>Heb&nbsp;1:5 / Psa&nbsp;2:7</p>
   </div>
 
   <div class="ref-col">
     <h3>Jesus Is Yahweh</h3>
-    <p>Matt 21:16 / Psa 8:1-2<br>Rom 10:13 / Joel 2:32<br>Phil 2:10-11 / Isa 45:23<br>Col 1:16-17 / Gen 2:4<br>1 Pet 2:3 / Psa 34:8</p>
+    <p>Matt&nbsp;21:16 / Psa&nbsp;8:1-2<br>Rom&nbsp;10:13 / Joel&nbsp;2:32<br>Phil&nbsp;2:10-11 / Isa&nbsp;45:23<br>Col&nbsp;1:16-17 / Gen&nbsp;2:4<br>1&nbsp;Pet&nbsp;2:3 / Psa&nbsp;34:8</p>
   </div>
 
   <div class="ref-col">
     <h3>The Holy Spirit Is Yahweh</h3>
-    <p>Num 11:25<br>1 Kings 18:12<br>Isa 61:1-3<br>Ezek 11:5<br>Zech 7:12</p>
+    <p>Num&nbsp;11:25<br>1&nbsp;Kings&nbsp;18:12<br>Isa&nbsp;61:1-3<br>Ezek&nbsp;11:5<br>Zech&nbsp;7:12</p>
   </div>
 
   <div class="ref-col">
     <h3>The Father Is God</h3>
-    <p>John 4:21<br>Acts 2:33<br>Rom 1:7<br>1 Cor 1:3<br>Gal 1:1</p>
+    <p>John&nbsp;4:21<br>Acts&nbsp;2:33<br>Rom&nbsp;1:7<br>1&nbsp;Cor&nbsp;1:3<br>Gal&nbsp;1:1</p>
   </div>
 
   <div class="ref-col">
     <h3>Jesus Is God</h3>
-    <p>John 1:1<br>Acts 20:28<br>Titus 2:13<br>Heb 1:8<br>2 Pet 1:1</p>
+    <p>John&nbsp;1:1<br>Acts&nbsp;20:28<br>Titus&nbsp;2:13<br>Heb&nbsp;1:8<br>2&nbsp;Pet&nbsp;1:1</p>
   </div>
 
   <div class="ref-col">
     <h3>The Holy Spirit Is God</h3>
-    <p>Gen 1:2<br>Exod 31:3<br>Matt 3:16<br>John 15:26-27<br>Acts 5:3-4</p>
+    <p>Gen&nbsp;1:2<br>Exod&nbsp;31:3<br>Matt&nbsp;3:16<br>John&nbsp;15:26-27<br>Acts&nbsp;5:3-4</p>
   </div>
 
 </div>
@@ -467,7 +467,7 @@ font-size="11" font-weight="700" fill="var(--color-teal)" letter-spacing="1" tex
 <p class="scripture-block">
   "But the fearful, and unbelieving, and the abominable, and murderers, and
   whoremongers, and sorcerers, and idolaters, and all liars, shall have their part in the
-  lake which burneth with fire and brimstone: which is the second death" (Rev. 21:8, KJV).
+  lake which burneth with fire and brimstone: which is the second death" (Rev&nbsp;21:8, KJV).
 </p>
 
 <p class="scripture-block">
@@ -476,20 +476,19 @@ font-size="11" font-weight="700" fill="var(--color-teal)" letter-spacing="1" tex
   made me free from the law of sin and death. For what the law could not do, in that it was
   weak through the flesh, God sending his own Son in the likeness of sinful flesh, and for
   sin, condemned sin in the flesh: That the righteousness of the law might be fulfilled in us,
-  who walk not after the flesh, but after the Spirit" (Rom. 8:1-4, KJV).
+  who walk not after the flesh, but after the Spirit" (Rom&nbsp;8:1-4, KJV).
 </p>
 
 <p class="section-title">There Is Only One God</p>
 <p class="section-refs">
-  Deut 4:35, 4:39, 32:39; 2 Sam 7:22; 1 Kings 8:60; 2 Kings 5:15, 19:15; 1 Chron 17:20; Neh 9:6-7; Psa 18:31, 86:10;
-  Isa 43:10, 44:6-8, 45:5, 45:21-22; John 17:3; 1 Cor 8:4-6; Eph 4:6; 1 Tim 2:5; Jude 25
+  Deut&nbsp;4:35, 4:39, 32:39; 2&nbsp;Sam&nbsp;7:22; 1&nbsp;Kings&nbsp;8:60; 2&nbsp;Kings&nbsp;5:15, 19:15; 1&nbsp;Chron&nbsp;17:20; Neh&nbsp;9:6-7; Psa&nbsp;18:31, 86:10;
+  Isa&nbsp;43:10, 44:6-8, 45:5, 45:21-22; John&nbsp;17:3; 1&nbsp;Cor&nbsp;8:4-6; Eph&nbsp;4:6; 1&nbsp;Tim&nbsp;2:5; Jude&nbsp;25
 </p>
 
 <p class="section-title">Yahweh Is God</p>
 <p class="section-refs">
-  Gen 2:4, 2:5, 2:7-9, 2:15; Exod 20:2, 34:6; Deut 6:4, 7:9; Judg 21:3; 2 Sam 7:25; 1 Chron 17:16-17, 22:1, 22:19; 2 Chron 1:9, 6:41-42;
-  Neh 9:7; Psa 31:5, 50:1, 59:5, 72:18, 80:4, 84:8, 84:11, 118:27, 140:6, 144:15; Isa 7:11, 17:6, 45:5; Jer 15:16; Dan 9:14, 9:20; Hos 1:7; Joel
-  1:14; Amos 4:13; Jon 1:9; Mic 7:10, 7:17
+  Gen&nbsp;2:4, 2:5, 2:7-9, 2:15; Exod&nbsp;20:2, 34:6; Deut&nbsp;6:4, 7:9; Judg&nbsp;21:3; 2&nbsp;Sam&nbsp;7:25; 1&nbsp;Chron&nbsp;17:16-17, 22:1, 22:19; 2&nbsp;Chron&nbsp;1:9, 6:41-42;
+  Neh&nbsp;9:7; Psa&nbsp;31:5, 50:1, 59:5, 72:18, 80:4, 84:8, 84:11, 118:27, 140:6, 144:15; Isa&nbsp;7:11, 17:6, 45:5; Jer&nbsp;15:16; Dan&nbsp;9:14, 9:20; Hos&nbsp;1:7; Joel&nbsp;1:14; Amos&nbsp;4:13; Jon&nbsp;1:9; Mic&nbsp;7:10, 7:17
 </p>
 
 <!-- 3-column grid page 2 -->
@@ -501,43 +500,43 @@ font-size="11" font-weight="700" fill="var(--color-teal)" letter-spacing="1" tex
   <div class="p2-col">
     <h3>The Father Is Yahweh</h3>
     <p>
-      2 Sam 7:14<br>
-      Psa 2:2, 2:7, 68:5, 89:26<br>
-      Isa 53:6-10, 64:8<br>
-      Jer 3:4, 3:19, 31:9<br>
-      Mal 2:10<br>
-      Matt 2:6 / Mic 5:2-5<br>
-      Matt 6:6-7 / Psa 91:11-12<br>
-      Matt 12:18-21 / Isa 42:1-4<br>
-      Luke 4:18-19 / Isa 61:1-2<br>
-      Heb 1:5 / 2 Sam 7:14
+      2&nbsp;Sam&nbsp;7:14<br>
+      Psa&nbsp;2:2, 2:7, 68:5, 89:26<br>
+      Isa&nbsp;53:6-10, 64:8<br>
+      Jer&nbsp;3:4, 3:19, 31:9<br>
+      Mal&nbsp;2:10<br>
+      Matt&nbsp;2:6 / Mic&nbsp;5:2-5<br>
+      Matt&nbsp;6:6-7 / Psa&nbsp;91:11-12<br>
+      Matt&nbsp;12:18-21 / Isa&nbsp;42:1-4<br>
+      Luke&nbsp;4:18-19 / Isa&nbsp;61:1-2<br>
+      Heb&nbsp;1:5 / 2&nbsp;Sam&nbsp;7:14
     </p>
 
     <h3 class="p2-subheading">The Father Is God</h3>
     <p>
-      Matt 5:16, 5:45, 5:48, 6:9, 6:15, 7:21, 11:25-26<br>
-      Mark 11:26<br>
-      Luke 10:21<br>
-      John 5:18, 6:27, 8:41-42<br>
-      Rom 15:6<br>
-      1 Cor 8:6, 15:24<br>
-      2 Cor 1:2-3, 6:18, 11:31<br>
-      Gal 1:3-4<br>
-      Eph 1:2-3, 1:17, 4:6, 5:20, 6:23<br>
-      Phil 1:2, 2:11, 4:20<br>
-      Col 1:2-3, 3:17<br>
-      1 Thess 1:1, 1:3, 3:11<br>
-      2 Thess 1:1-2<br>
-      2 Thess 2:16<br>
-      1 Tim 1:2<br>
-      Titus 1:4<br>
-      Philem 1:3<br>
-      Heb 1:5<br>
-      Jas 1:27, 3:9<br>
-      1 Pet 1:2-3, 1:17<br>
-      2 John 1:3, 1:9<br>
-      Jude 1:1<br>
-      Rev 1:6, 3:5, 3:21
+      Matt&nbsp;5:16, 5:45, 5:48, 6:9, 6:15, 7:21, 11:25-26<br>
+      Mark&nbsp;11:26<br>
+      Luke&nbsp;10:21<br>
+      John&nbsp;5:18, 6:27, 8:41-42<br>
+      Rom&nbsp;15:6<br>
+      1&nbsp;Cor&nbsp;8:6, 15:24<br>
+      2&nbsp;Cor&nbsp;1:2-3, 6:18, 11:31<br>
+      Gal&nbsp;1:3-4<br>
+      Eph&nbsp;1:2-3, 1:17, 4:6, 5:20, 6:23<br>
+      Phil&nbsp;1:2, 2:11, 4:20<br>
+      Col&nbsp;1:2-3, 3:17<br>
+      1&nbsp;Thess&nbsp;1:1, 1:3, 3:11<br>
+      2&nbsp;Thess&nbsp;1:1-2<br>
+      2&nbsp;Thess&nbsp;2:16<br>
+      1&nbsp;Tim&nbsp;1:2<br>
+      Titus&nbsp;1:4<br>
+      Philem&nbsp;1:3<br>
+      Heb&nbsp;1:5<br>
+      Jas&nbsp;1:27, 3:9<br>
+      1&nbsp;Pet&nbsp;1:2-3, 1:17<br>
+      2&nbsp;John&nbsp;1:3, 1:9<br>
+      Jude&nbsp;1:1<br>
+      Rev&nbsp;1:6, 3:5, 3:21
     </p>
 
   </div>
@@ -547,34 +546,34 @@ font-size="11" font-weight="700" fill="var(--color-teal)" letter-spacing="1" tex
   <div class="p2-col">
     <h3>Jesus Is Yahweh</h3>
     <p>
-      John 1:23 / Isa 40:3<br>
-      John 6:20<br>
-      John 6:35<br>
-      John 8:12 / Psa 27:1 / Isa 60:19-20<br>
-      John 8:58<br>
-      John 10:7 / Psa 23:1<br>
-      John 11:25 / Psa 49:15<br>
-      John 14:6 / Exod 33:13<br>
-      John 15:1<br>
-      John 18:5<br>
-      Heb 1:10<br>
-      Heb 1:12 / Psa 102:26<br>
-      Rev 22:13 / Isa 41:4
+      John&nbsp;1:23 / Isa&nbsp;40:3<br>
+      John&nbsp;6:20<br>
+      John&nbsp;6:35<br>
+      John&nbsp;8:12 / Psa&nbsp;27:1 / Isa&nbsp;60:19-20<br>
+      John&nbsp;8:58<br>
+      John&nbsp;10:7 / Psa&nbsp;23:1<br>
+      John&nbsp;11:25 / Psa&nbsp;49:15<br>
+      John&nbsp;14:6 / Exod&nbsp;33:13<br>
+      John&nbsp;15:1<br>
+      John&nbsp;18:5<br>
+      Heb&nbsp;1:10<br>
+      Heb&nbsp;1:12 / Psa&nbsp;102:26<br>
+      Rev&nbsp;22:13 / Isa&nbsp;41:4
     </p>
 
     <h3 class="p2-subheading">Jesus Is God</h3>
     <p>
-      Isa 9:6<br>
-      Isa 40:8 / Mark 13:3<br>
-      John 1:18, 8:54, 10:30-33, 20:28<br>
-      Acts 10:42 / Psa 50:6<br>
-      Rom 9:5<br>
-      Phil 2:5-6<br>
-      Col 1:16-17 / Gen 2:4<br>
-      Col 2:9<br>
-      1 Tim 6:15<br>
-      1 John 5:20<br>
-      Rev 1:8, 22:13
+      Isa&nbsp;9:6<br>
+      Isa&nbsp;40:8 / Mark&nbsp;13:3<br>
+      John&nbsp;1:18, 8:54, 10:30-33, 20:28<br>
+      Acts&nbsp;10:42 / Psa&nbsp;50:6<br>
+      Rom&nbsp;9:5<br>
+      Phil&nbsp;2:5-6<br>
+      Col&nbsp;1:16-17 / Gen&nbsp;2:4<br>
+      Col&nbsp;2:9<br>
+      1&nbsp;Tim&nbsp;6:15<br>
+      1&nbsp;John&nbsp;5:20<br>
+      Rev&nbsp;1:8, 22:13
     </p>
 
   </div>
@@ -584,31 +583,31 @@ font-size="11" font-weight="700" fill="var(--color-teal)" letter-spacing="1" tex
   <div class="p2-col">
     <h3>The Holy Spirit Is Yahweh</h3>
     <p>
-      Num 11:29<br>
-      Judg 3:10, 6:34, 11:29, 13:25, 14:6, 14:19, 15:14<br>
-      1 Sam 10:6, 16:13-14<br>
-      2 Sam 23:2<br>
-      1 Kings 22:24<br>
-      2 Kings 2:16<br>
-      2 Chron 18:23, 20:14<br>
-      Psa 139:7<br>
-      Isa 11:2, 30:1, 34:16, 40:13, 59:21, 63:14<br>
-      Ezek 37:1<br>
-      Mic 2:7, 3:8
+      Num&nbsp;11:29<br>
+      Judg&nbsp;3:10, 6:34, 11:29, 13:25, 14:6, 14:19, 15:14<br>
+      1&nbsp;Sam&nbsp;10:6, 16:13-14<br>
+      2&nbsp;Sam&nbsp;23:2<br>
+      1&nbsp;Kings&nbsp;22:24<br>
+      2&nbsp;Kings&nbsp;2:16<br>
+      2&nbsp;Chron&nbsp;18:23, 20:14<br>
+      Psa&nbsp;139:7<br>
+      Isa&nbsp;11:2, 30:1, 34:16, 40:13, 59:21, 63:14<br>
+      Ezek&nbsp;37:1<br>
+      Mic&nbsp;2:7, 3:8
     </p>
 
     <h3 class="p2-subheading">The Holy Spirit Is God</h3>
     <p>
-      Num 24:2<br>
-      1 Sam 10:10<br>
-      2 Chron 15:1, 24:20<br>
-      Job 33:4<br>
-      Ezek 11:24<br>
-      Rom 8:2<br>
-      1 Cor 2:10-14<br>
-      Phil 3:3<br>
-      Heb 9:14 / Psa 90:2<br>
-      1 John 4:2
+      Num&nbsp;24:2<br>
+      1&nbsp;Sam&nbsp;10:10<br>
+      2&nbsp;Chron&nbsp;15:1, 24:20<br>
+      Job&nbsp;33:4<br>
+      Ezek&nbsp;11:24<br>
+      Rom&nbsp;8:2<br>
+      1&nbsp;Cor&nbsp;2:10-14<br>
+      Phil&nbsp;3:3<br>
+      Heb&nbsp;9:14 / Psa&nbsp;90:2<br>
+      1&nbsp;John&nbsp;4:2
     </p>
 
   </div>
