@@ -45,4 +45,4 @@ That's it. Now you'll have nice colors when you edit your Nginx configs with VIM
 > vim /etc/nginx/conf/nginx.conf
 ```
 
-{{% img src="nginx-vim-colors.png" caption="Screenshot of VIM with syntax highlighting in an Nginx config file" %}}
+{{< img  src="nginx-vim-colors.png" caption="Screenshot of VIM with syntax highlighting in an Nginx config file"  >}}

@@ -14,7 +14,7 @@ tags:
 >
 > -- Vincent van Gogh, [Letter no. 155 (June 1880)](http://www.vangoghletters.org/vg/letters/let155/letter.html)
 
-{{% img src="vgletter.jpg" caption="Facsimile of a letter from Vincent van Gogh" %}}
+{{< img  src="vgletter.jpg" caption="Facsimile of a letter from Vincent van Gogh"  >}}
 
 > What am I in the eyes of most people? A nonentity or an oddity or a disagreeable person — someone who has and will have no position in society, in short a little lower than the lowest.
 > 

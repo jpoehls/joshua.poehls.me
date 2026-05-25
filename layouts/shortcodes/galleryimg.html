@@ -1,0 +1,59 @@
+{{- $raw := .Get "src" -}}
+{{- $caption := .Get "caption" -}}
+{{- $imgSrc := $raw -}}
+{{- $fallbackSrc := $raw -}}
+{{- $isLandscape := false -}}
+
+{{- if $raw -}}
+    {{- if not (or (strings.HasPrefix $raw "http://") (strings.HasPrefix $raw "https://") (strings.HasPrefix $raw "//") (strings.HasPrefix $raw "/")) -}}
+        {{- with .Page.Resources.GetMatch $raw -}}
+            {{- if gt .Width .Height -}}
+                {{- $isLandscape = true -}}
+            {{- end -}}
+            
+            {{- $resizeWidth := cond $isLandscape "600x" "500x" -}}
+            {{- $thumbnail := .Resize (printf "%s webp q85" $resizeWidth) -}}
+            {{- $imgSrc = $thumbnail.Permalink -}}
+            {{- $fallbackSrc = .Permalink -}}
+        {{- end -}}
+    {{- else -}}
+        {{- $imgSrc = absURL $raw -}}
+        {{- $fallbackSrc = absURL $raw -}}
+    {{- end -}}
+{{- end -}}
+
+<!-- 
+    LANDSCAPE ADJUSTMENT: 
+    Wide pictures are given a higher flex-grow limit (max-width: 420px) 
+    compared to the rigid portrait wallpaper limit (max-width: 250px).
+-->
+<div style="flex: {{ if $isLandscape }}1.5{{ else }}1{{ end }}; max-width: {{ if $isLandscape }}420px{{ else }}250px{{ end }}; min-width: 140px;">
+    <figure style="margin: 0;" {{ with .Get "class" }}class="{{.}}"{{ end }}>
+        {{ if .Get "link" }}
+            <a href="{{ .Get "link" | absURL }}">
+        {{ else }}
+            <a href="{{ $fallbackSrc }}" target="_blank" rel="noopener" aria-label="Open full-size image: {{ $caption }}">
+        {{ end }}
+            <img src="{{ $imgSrc }}" 
+                 loading="lazy"
+                 style="max-width: 100%; height: auto; display: block; border-radius: 6px; border: 1px solid rgba(0, 0, 0, 0.08);"
+                 {{ if or (.Get "alt") $caption }}alt="{{ with .Get "alt"}}{{.}}{{else}}{{ $caption }}{{ end }}"{{ end }} />
+        </a>
+
+        {{ if or (or (.Get "title") $caption) (.Get "attr") }}
+            <figcaption style="margin-top: 10px; font-size: 0.8rem; color: #666; text-align: center; line-height: 1.3;">
+                {{ if isset .Params "title" }}
+                    <h4 style="margin: 0 0 2px 0; font-size: 0.9rem; font-weight: 600; color: #111;">{{ .Get "title" }}</h4>
+                {{ end }}
+                {{ if or $caption (.Get "attr") }}
+                    <p style="margin: 0;">
+                        {{ $caption }}
+                        {{ with .Get "attrlink" }}<a href="{{ . | absURL }}" style="color: inherit; text-decoration: underline;">{{ end }}
+                        {{ .Get "attr" }}
+                        {{ if .Get "attrlink" }}</a>{{ end }}
+                    </p>
+                {{ end }}
+            </figcaption>
+        {{ end }}
+    </figure>
+</div>

@@ -1,27 +1,59 @@
 {{- $raw := .Get "src" -}}
+{{- $caption := .Get "caption" -}}
 {{- $imgSrc := $raw -}}
+{{- $fallbackSrc := $raw -}}
+{{- $isLandscape := false -}}
+
 {{- if $raw -}}
-	{{- if not (or (strings.HasPrefix $raw "http://") (strings.HasPrefix $raw "https://") (strings.HasPrefix $raw "//") (strings.HasPrefix $raw "/")) -}}
-		{{- with .Page.Resources.GetMatch $raw -}}
-			{{- $imgSrc = .RelPermalink -}}
-		{{- else -}}
-			{{- $imgSrc = relURL $raw -}}
-		{{- end -}}
-	{{- end -}}
+    {{- if not (or (strings.HasPrefix $raw "http://") (strings.HasPrefix $raw "https://") (strings.HasPrefix $raw "//") (strings.HasPrefix $raw "/")) -}}
+        {{- with .Page.Resources.GetMatch $raw -}}
+            <!-- Build-time aspect ratio calculation -->
+            {{- if gt .Width .Height -}}
+                {{- $isLandscape = true -}}
+            {{- end -}}
+            
+            <!-- Adjust processing size dynamically based on ratio -->
+            {{- $resizeWidth := cond $isLandscape "800x" "600x" -}}
+            {{- $thumbnail := .Resize (printf "%s webp q85" $resizeWidth) -}}
+            {{- $imgSrc = $thumbnail.Permalink -}}
+            {{- $fallbackSrc = .Permalink -}}
+        {{- end -}}
+    {{- else -}}
+        {{- $imgSrc = absURL $raw -}}
+        {{- $fallbackSrc = absURL $raw -}}
+    {{- end -}}
 {{- end -}}
-<figure {{ with .Get "class" }}class="{{.}}"{{ end }}>
-{{ with .Get "link"}}<a href="{{.}}">{{ end }}
-<img src="{{ $imgSrc }}" {{ if or (.Get "alt") (.Get "caption") }}alt="{{ with .Get "alt"}}{{.}}{{else}}{{ .Get "caption" }}{{ end }}"{{ end }} />
-{{ if .Get "link"}}</a>{{ end }}
-{{ if or (or (.Get "title") (.Get "caption")) (.Get "attr")}}
-<figcaption>{{ if isset .Params "title" }}
-<h4>{{ .Get "title" }}</h4>{{ end }}
-{{ if or (.Get "caption") (.Get "attr")}}<p>
-{{ .Get "caption" }}
-{{ with .Get "attrlink"}}<a href="{{.}}"> {{ end }}
-{{ .Get "attr" }}
-{{ if .Get "attrlink"}}</a> {{ end }}
-</p> {{ end }}
-</figcaption>
-{{ end }}
-</figure>
+
+<div class="single-image-container" style="display: flex; justify-content: center; margin: 32px auto; max-width: 100%;">
+    <!-- Wide assets scale up gracefully to 650px; Tall ones remain locked to an elegant 280px -->
+    <div style="width: 100%; max-width: {{ if $isLandscape }}650px{{ else }}280px{{ end }}; transition: max-width 0.2s ease;">
+        <figure style="margin: 0;" {{ with .Get "class" }}class="{{.}}"{{ end }}>
+            {{ if .Get "link" }}
+                <a href="{{ .Get "link" | absURL }}">
+            {{ else }}
+                <a href="{{ $fallbackSrc }}" target="_blank" rel="noopener" aria-label="Open full-size image: {{ $caption }}">
+            {{ end }}
+                <img src="{{ $imgSrc }}" 
+                     loading="lazy"
+                     style="max-width: 100%; height: auto; display: block; border-radius: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 6px 18px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.06);"
+                     {{ if or (.Get "alt") $caption }}alt="{{ with .Get "alt"}}{{.}}{{else}}{{ $caption }}{{ end }}"{{ end }} />
+            </a>
+
+            {{ if or (or (.Get "title") $caption) (.Get "attr") }}
+                <figcaption style="margin-top: 12px; font-size: 0.825rem; color: #555555; text-align: center; line-height: 1.4; padding: 0 10px;">
+                    {{ if isset .Params "title" }}
+                        <h4 style="margin: 0 0 4px 0; font-size: 0.95rem; font-weight: 600; color: #111;">{{ .Get "title" }}</h4>
+                    {{ end }}
+                    {{ if or $caption (.Get "attr") }}
+                        <p style="margin: 0;">
+                            {{ $caption }}
+                            {{ with .Get "attrlink" }}<a href="{{ . | absURL }}" style="color: inherit; text-decoration: underline;">{{ end }}
+                            {{ .Get "attr" }}
+                            {{ if .Get "attrlink" }}</a>{{ end }}
+                        </p>
+                    {{ end }}
+                </figcaption>
+            {{ end }}
+        </figure>
+    </div>
+</div>

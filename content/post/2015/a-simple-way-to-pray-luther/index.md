@@ -12,7 +12,7 @@ Early in the year 1535, Peter Beskendorf, a barber and an old friend of Luther's
 
 _Paraphrased introduction from Paster Wolfmueller of Hope Lutheran Church, Aurora, CO. 2006._
 
-{{% img src="luther-and-friends-praying.jpg" caption="Luther and Friends Pray at the Bedside of Melancthon" %}}
+{{< img  src="luther-and-friends-praying.jpg" caption="Luther and Friends Pray at the Bedside of Melancthon"  >}}
 
 # How One Should Pray
 

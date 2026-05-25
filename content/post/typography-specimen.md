@@ -109,9 +109,9 @@ Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad mi
 
 ## Figures (images from existing posts)
 
-{{% img src="/2017/vincent-van-gogh-letters/vgletter.jpg" caption="Facsimile borrowed from the van Gogh letters post — tests caption size and Georama figcaption." %}}
+{{< img src="/2017/vincent-van-gogh-letters/vgletter.jpg" caption="Facsimile borrowed from the van Gogh letters post — tests caption size and Georama figcaption." >}}
 
-{{% img src="/2014/10/worlds-loudest-sound/krakatoa.jpg" caption="Krakatoa illustration from another archive post — second image to compare vertical rhythm." link="https://example.com" %}}
+{{< img src="/2014/10/worlds-loudest-sound/krakatoa.jpg" caption="Krakatoa illustration from another archive post — second image to compare vertical rhythm." link="https://example.com" >}}
 
 ## Table (markdown)
 
