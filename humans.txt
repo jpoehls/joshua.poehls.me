@@ -7,4 +7,4 @@ Location: Earth
 /* SITE */
 
 Canonical URL: https://joshua.poehls.me
-Last update: 2026-05-11
+Last update: 2026-05-25

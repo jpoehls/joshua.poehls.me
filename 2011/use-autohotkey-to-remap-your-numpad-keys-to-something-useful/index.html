@@ -75,55 +75,160 @@
 <p>Here is a quick tutorial in using AutoHotkey to remap one of your numpad keys to the degree symbol. Of course you can expand on this beginning easily to solve whatever woes you are having.</p>
 <p>Start out by going to <a href="http://www.autohotkey.com">the AutoHotkey website</a>.</p>
 <p>Download the <strong>AutoHotkey_L</strong> installer. This is the most recent version of AutoHotkey and specifically supports Unicode which is important for us.</p>
-<figure >
-<img src="/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/Image4.png" alt="Screenshot of the AutoHotkey download page" />
-<figcaption>
-<p>
-Screenshot of the AutoHotkey download page
-</p> 
-</figcaption>
-</figure>
+<div class="single-image-container" style="display: flex; justify-content: center; margin: 32px auto; max-width: 100%;">
+    
+    <div style="width: 100%; max-width: 650px; transition: max-width 0.2s ease;">
+        <figure style="margin: 0;" >
+            
+                <a href="https://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/Image4.png" target="_blank" rel="noopener" aria-label="Open full-size image: Screenshot of the AutoHotkey download page">
+            
+                <img src="https://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/Image4_hu_37e9b91b5c3ad42e.webp" 
+                     loading="lazy"
+                     style="max-width: 100%; height: auto; display: block; border-radius: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 6px 18px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.06);"
+                     alt="Screenshot of the AutoHotkey download page" />
+            </a>
+
+            
+                <figcaption style="margin-top: 12px; font-size: 0.825rem; color: #555555; text-align: center; line-height: 1.4; padding: 0 10px;">
+                    
+                    
+                        <p style="margin: 0;">
+                            Screenshot of the AutoHotkey download page
+                            
+                            
+                            
+                        </p>
+                    
+                </figcaption>
+            
+        </figure>
+    </div>
+</div>
 <p>Run the installer and leave all the defaults.</p>
-<figure >
-<img src="/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/Image3.png" alt="Screenshot of the AutoHotkey installer" />
-<figcaption>
-<p>
-Screenshot of the AutoHotkey installer
-</p> 
-</figcaption>
-</figure>
+<div class="single-image-container" style="display: flex; justify-content: center; margin: 32px auto; max-width: 100%;">
+    
+    <div style="width: 100%; max-width: 650px; transition: max-width 0.2s ease;">
+        <figure style="margin: 0;" >
+            
+                <a href="https://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/Image3.png" target="_blank" rel="noopener" aria-label="Open full-size image: Screenshot of the AutoHotkey installer">
+            
+                <img src="https://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/Image3_hu_afefe80046128ce6.webp" 
+                     loading="lazy"
+                     style="max-width: 100%; height: auto; display: block; border-radius: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 6px 18px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.06);"
+                     alt="Screenshot of the AutoHotkey installer" />
+            </a>
+
+            
+                <figcaption style="margin-top: 12px; font-size: 0.825rem; color: #555555; text-align: center; line-height: 1.4; padding: 0 10px;">
+                    
+                    
+                        <p style="margin: 0;">
+                            Screenshot of the AutoHotkey installer
+                            
+                            
+                            
+                        </p>
+                    
+                </figcaption>
+            
+        </figure>
+    </div>
+</div>
 <p>Look in your My Documents folder and open up <code>AutoHotkey.ahk</code> in a text editor that you can save as UTF-8 in.</p>
 <p>If you don&rsquo;t know what this means or don&rsquo;t have an editor that can do this then <a href="http://www.flos-freeware.ch/notepad2.html">download Notepad2</a> and open the file in that program.</p>
-<figure >
-<img src="/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/Image5.png" alt="Screenshot of the AutoHotkey.ahk file in Windows Explorer" />
-<figcaption>
-<p>
-Screenshot of the AutoHotkey.ahk file in Windows Explorer
-</p> 
-</figcaption>
-</figure>
+<div class="single-image-container" style="display: flex; justify-content: center; margin: 32px auto; max-width: 100%;">
+    
+    <div style="width: 100%; max-width: 650px; transition: max-width 0.2s ease;">
+        <figure style="margin: 0;" >
+            
+                <a href="https://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/Image5.png" target="_blank" rel="noopener" aria-label="Open full-size image: Screenshot of the AutoHotkey.ahk file in Windows Explorer">
+            
+                <img src="https://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/Image5_hu_34861f3904abc6d6.webp" 
+                     loading="lazy"
+                     style="max-width: 100%; height: auto; display: block; border-radius: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 6px 18px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.06);"
+                     alt="Screenshot of the AutoHotkey.ahk file in Windows Explorer" />
+            </a>
+
+            
+                <figcaption style="margin-top: 12px; font-size: 0.825rem; color: #555555; text-align: center; line-height: 1.4; padding: 0 10px;">
+                    
+                    
+                        <p style="margin: 0;">
+                            Screenshot of the AutoHotkey.ahk file in Windows Explorer
+                            
+                            
+                            
+                        </p>
+                    
+                </figcaption>
+            
+        </figure>
+    </div>
+</div>
 <p>Now that you have <code>AutoHotkey.ahk</code> opened, delete everything in there (after reading it if you care) and paste the following in its place.</p>
 <pre><code>NumpadIns::
 Send &deg;
 return</code></pre>
 <p>Now save this file with <strong>UTF-8</strong> encoding. If you are using Notepad2 you can do this by going to <code>File | Encoding | UTF-8</code> and clicking <strong>Yes</strong> to the warning. Then click <code>File | Save</code> as usual.</p>
-<figure >
-<img src="/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/Image.png" alt="Screenshot of saving the file with UTF-8 encoding" />
-<figcaption>
-<p>
-Screenshot of saving the file with UTF-8 encoding
-</p> 
-</figcaption>
-</figure>
+<div class="single-image-container" style="display: flex; justify-content: center; margin: 32px auto; max-width: 100%;">
+    
+    <div style="width: 100%; max-width: 280px; transition: max-width 0.2s ease;">
+        <figure style="margin: 0;" >
+            
+                <a href="https://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/Image.png" target="_blank" rel="noopener" aria-label="Open full-size image: Screenshot of saving the file with UTF-8 encoding">
+            
+                <img src="https://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/Image_hu_8dbb48ee28bb43de.webp" 
+                     loading="lazy"
+                     style="max-width: 100%; height: auto; display: block; border-radius: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 6px 18px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.06);"
+                     alt="Screenshot of saving the file with UTF-8 encoding" />
+            </a>
+
+            
+                <figcaption style="margin-top: 12px; font-size: 0.825rem; color: #555555; text-align: center; line-height: 1.4; padding: 0 10px;">
+                    
+                    
+                        <p style="margin: 0;">
+                            Screenshot of saving the file with UTF-8 encoding
+                            
+                            
+                            
+                        </p>
+                    
+                </figcaption>
+            
+        </figure>
+    </div>
+</div>
 <p>Finally, run the <strong>AutoHotkey</strong> program from your Start Menu.</p>
-<figure >
-<img src="/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/Image2.png" alt="Screenshot of AutoHotkey in the Start Menu" />
-<figcaption>
-<p>
-Screenshot of AutoHotkey in the Start Menu
-</p> 
-</figcaption>
-</figure>
+<div class="single-image-container" style="display: flex; justify-content: center; margin: 32px auto; max-width: 100%;">
+    
+    <div style="width: 100%; max-width: 280px; transition: max-width 0.2s ease;">
+        <figure style="margin: 0;" >
+            
+                <a href="https://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/Image2.png" target="_blank" rel="noopener" aria-label="Open full-size image: Screenshot of AutoHotkey in the Start Menu">
+            
+                <img src="https://joshua.poehls.me/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/Image2_hu_d5e0419b3fde3039.webp" 
+                     loading="lazy"
+                     style="max-width: 100%; height: auto; display: block; border-radius: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 6px 18px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.06);"
+                     alt="Screenshot of AutoHotkey in the Start Menu" />
+            </a>
+
+            
+                <figcaption style="margin-top: 12px; font-size: 0.825rem; color: #555555; text-align: center; line-height: 1.4; padding: 0 10px;">
+                    
+                    
+                        <p style="margin: 0;">
+                            Screenshot of AutoHotkey in the Start Menu
+                            
+                            
+                            
+                        </p>
+                    
+                </figcaption>
+            
+        </figure>
+    </div>
+</div>
 <h3 id="now-to-try-it-out">Now to try it out!</h3>
 <p>Put your focus in any text box. Anywhere. Go ahead. Now make sure you have NumLock turned OFF and hit the <code>0</code> key on your numpad.</p>
 <p>See what just happened? No, that&rsquo;s not a superscripted zero. That&rsquo;s a degree symbol. Now that they are easy to type you are going to have to learn what it is! ;)</p>
