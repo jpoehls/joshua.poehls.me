@@ -6,7 +6,7 @@ tags:
 - fighter-verses
 ---
 
-This week, our family is memorizing **Deuteronomy** 7:9 from [Fighter Verses: Set 1, Week 1](https://www.fighterverses.com/verse-index).
+This week, our family is memorizing **Deuteronomy 7:9** from [Fighter Verses: Set 1, Week 1](https://www.fighterverses.com/verse-index).
 
 ## The Scripture
 
