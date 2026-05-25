@@ -32,7 +32,7 @@ Click any preview below to download a full-size wallpaper optimized for iOS.
 
 ## Study Resources
 
-* **Hebrew Torah Audio:** Listen to a traditional audio reading of the original text on [Sefaria](https://www.sefaria.org/Deuteronomy.7.9?lang=bi&with=Torah%20Readings&lang2=en).
+* **Hebrew Torah Audio:** Listen to a traditional reading of the text on [Sefaria](https://www.sefaria.org/Deuteronomy.7.9?lang=bi&with=Torah%20Readings&lang2=en).
 * **Fighter Verses:** Check out the currated resources for this memory verse on the [Fighter Verses site](https://www.fighterverses.com/verses/deuteronomy-7%3A9).
 
 [^csb]: Christian Standard Bible (Nashville, TN: Holman Bible Publishers, 2020), Dt 7:9.
