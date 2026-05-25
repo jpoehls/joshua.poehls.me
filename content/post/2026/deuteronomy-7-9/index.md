@@ -18,7 +18,7 @@ This week, our family is memorizing **Deuteronomy 7:9** from [Fighter Verses: Se
 
 ## Wallpapers
 
-Click any preview below to view and download the full-size wallpaper optimized for iOS.
+Click any preview below to download a full-size wallpaper optimized for iOS.
 
 {{< gallery title="CSB Wallpapers" >}}
   {{< galleryimg src="/2026/deuteronomy-7-9/csb-light.jpeg" caption="CSB light background" >}}
