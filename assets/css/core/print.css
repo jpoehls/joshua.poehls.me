@@ -1,0 +1,20 @@
+/* Print styles */
+.printonly {
+	display: none;
+}
+
+@media print {
+	.noprint {
+		display: none;
+	}
+
+	.printonly {
+		display: inline;
+	}
+
+	a,
+	a:active,
+	a:visited {
+		color: var(--color-muted);
+	}
+}

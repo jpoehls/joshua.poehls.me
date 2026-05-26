@@ -1,0 +1,80 @@
+/* Blockquotes (long-quote: bilateral indent, tighter lead — loosely Turabian-like) */
+blockquote {
+	font-size: 0.88em;
+	line-height: 1.32;
+	margin-block: var(--space-md);
+	margin-inline: 0;
+	padding-block: var(--space-xs);
+	padding-inline: 2em;
+}
+
+article.post blockquote,
+article.post--excerpt .post-summary blockquote {
+	font-size: calc(var(--font-post-body) * 0.88);
+	line-height: 1.32;
+}
+
+/* Match in-quote ¶ rhythm to body; strip UA p margins so quote mb isn't doubled before next ¶ */
+article.post blockquote p,
+article.post--excerpt .post-summary blockquote p {
+	font-size: inherit;
+	margin-top: 0;
+	margin-bottom: var(--space-md);
+}
+
+article.post blockquote p:last-child,
+article.post--excerpt .post-summary blockquote p:last-child {
+	margin-bottom: 0;
+}
+
+article.post blockquote > ul:last-child,
+article.post blockquote > ol:last-child,
+article.post--excerpt .post-summary blockquote > ul:last-child,
+article.post--excerpt .post-summary blockquote > ol:last-child {
+	margin-bottom: 0;
+}
+
+blockquote > blockquote {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+/* Adjacent blockquotes: short centered rule (CSS-only; no extra markup) */
+blockquote:has(+ blockquote) {
+	margin-bottom: 0;
+}
+
+blockquote + blockquote {
+	margin-top: 0;
+	position: relative;
+	padding-top: calc(2 * var(--space-md));
+}
+
+/* Rule sits midway in padding-top: var(--space-md) above and below, matching ¶ rhythm */
+blockquote + blockquote::before {
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: calc(var(--space-md) - 0.5px);
+	width: var(--rule-blockquote-separator-width);
+	height: 0;
+	border-top: 1px dotted var(--color-muted);
+	transform: translateX(-50%);
+}
+
+blockquote > ul,
+blockquote > ol {
+	margin-top: var(--space-md);
+	margin-bottom: var(--space-md);
+}
+
+/* Blockquote already has horizontal padding; don't double-indent a leading list */
+blockquote > ul:first-child,
+blockquote > ol:first-child {
+	margin-left: 0;
+	margin-top: 0;
+	padding-left: 1em;
+}

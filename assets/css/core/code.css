@@ -1,0 +1,55 @@
+/* Code blocks and inline code */
+a > code {
+	background-color: transparent !important;
+	border: 0;
+	border-radius: 0;
+	padding: 0;
+}
+
+a:hover > code {
+	background-color: transparent;
+}
+
+article.post h1 code,
+article.post h2 code,
+article.post h3 code,
+article.post h4 code,
+article.post h5 code,
+article.post h6 code {
+	background-color: transparent;
+	border: 0;
+	border-radius: 0;
+	padding: 0;
+}
+
+p code,
+li code {
+	background-color: var(--color-bg-subtle);
+	border: 0;
+	border-radius: 0;
+}
+
+pre > code {
+	font-size: inherit;
+	color: var(--color-code-text);
+	background-color: transparent;
+	border: 0;
+	line-height: 1.45;
+}
+
+pre {
+	padding: var(--space-md);
+	background-color: var(--color-bg-subtle);
+	text-indent: 0;
+	overflow-x: auto;
+}
+
+pre,
+code {
+	font-family: var(--font-mono);
+	font-size: var(--font-code);
+}
+
+article.post code {
+	font-size: var(--font-code-in-post);
+}

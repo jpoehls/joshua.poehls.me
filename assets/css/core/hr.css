@@ -1,0 +1,27 @@
+/* Horizontal rules */
+/*
+  Same dotted look as adjacent-blockquote separator; wider band, not full measure.
+  Fixed-height box keeps var(--space-md) above and below the line; sibling rules
+  normalize margin collapse (e.g. headings, tables).
+*/
+hr {
+	border: 0;
+	margin: 0;
+	margin-inline: auto;
+	width: var(--rule-hr-width);
+	max-width: 100%;
+	height: calc(2 * var(--space-md) + 1px);
+	box-sizing: border-box;
+	background: transparent;
+	position: relative;
+}
+
+hr::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: calc(var(--space-md) - 0.5px);
+	height: 0;
+	border-top: 1px dotted var(--color-muted);
+}

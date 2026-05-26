@@ -1,0 +1,273 @@
+/* Blog post component */
+article.post > p,
+article.post > div {
+	margin-top: 0;
+	margin-bottom: var(--space-md);
+	font-size: var(--font-post-body);
+	line-height: 1.65;
+	text-indent: 0;
+}
+
+/* Indent scales with paragraph font (typographic tradition) */
+article.post > p + p {
+	text-indent: 2em;
+}
+
+/* Space between title/meta and post body; center title + date line */
+article.post header {
+	margin-bottom: var(--space-lg);
+	text-align: center;
+}
+
+article.post .post-series-line {
+	margin: var(--space-lg) 0 0;
+	font-family: var(--font-sans);
+	font-size: 1rem;
+	font-weight: var(--font-sans-weight-medium);
+	line-height: 1.4;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--color-muted);
+}
+
+article.post .post-series-line__in {
+	margin-right: 0.4em;
+}
+
+article.post .post-series-line__name {
+	text-transform: none;
+	letter-spacing: 0;
+	font-size: 1.05em;
+	font-weight: var(--font-sans-weight-semibold);
+	color: var(--color-link);
+	text-decoration: none;
+	border-bottom: 1px dotted var(--color-link);
+}
+
+article.post .post-series-line__name:hover {
+	background-color: var(--color-link-hover-bg);
+}
+
+article.post .post-series-line + h1 {
+	margin-top: 0;
+}
+
+/* Title in masthead of the card — not body heading rhythm */
+article.post header h1 {
+	margin-bottom: 0;
+	font-size: var(--font-post-h1);
+	letter-spacing: 0;
+}
+
+/* Rare in-body # heading (direct child of article, not inside header) */
+article.post > h1 {
+	font-size: var(--font-post-h1);
+	letter-spacing: 0;
+	margin-top: var(--space-heading-before);
+	margin-bottom: var(--space-heading-after);
+	text-align: center;
+}
+
+article.post h2,
+article.post h3,
+article.post h4,
+article.post h5,
+article.post h6 {
+	margin-top: var(--space-heading-before);
+	margin-bottom: var(--space-heading-after);
+}
+
+article.post h2 {
+	font-size: var(--font-post-h2);
+	text-align: center;
+}
+
+article.post h3,
+article.post h4,
+article.post h5,
+article.post h6 {
+	text-align: left;
+}
+
+article.post h3 {
+	font-size: var(--font-post-h3);
+}
+
+article.post h4 {
+	font-size: var(--font-post-h4);
+}
+
+article.post h5 {
+	font-size: var(--font-post-h5);
+	font-weight: 600;
+}
+
+article.post h6 {
+	font-size: var(--font-post-h6);
+	font-weight: 600;
+}
+
+article.post header p {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding: 0;
+	font-size: var(--font-post-body);
+	text-indent: 0;
+}
+
+article.post .post-tags {
+	margin-top: var(--space-xl);
+	padding-top: var(--space-md);
+	border-top: 1px dotted var(--color-muted);
+	font-family: var(--font-sans);
+	text-align: center;
+}
+
+article.post .post-tags-heading {
+	margin: 0 0 0 var(--space-sm);
+	font-size: 0.75rem;
+	font-weight: var(--font-sans-weight-semibold);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--color-muted);
+}
+
+article.post .post-tags-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.35rem 0.75rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: var(--font-post-body);
+}
+
+article.post .post-tags-list a {
+	white-space: nowrap;
+}
+
+/* Home list: excerpt under title (Hugo .Summary) */
+article.post--excerpt .post-summary {
+	margin-top: var(--space-md);
+	font-size: var(--font-post-body);
+	line-height: 1.65;
+}
+
+article.post--excerpt .post-summary > :first-child {
+	margin-top: 0;
+}
+
+article.post--excerpt .post-summary p {
+	text-indent: 0;
+}
+
+article.post--excerpt .post-summary p + p {
+	margin-top: var(--space-sm);
+	text-indent: 0;
+}
+
+article.post--excerpt .post-summary p:empty {
+	display: none;
+}
+
+article.post--excerpt .post-summary > *:has(+ hr) {
+	margin-bottom: 0;
+}
+
+article.post--excerpt .post-summary hr + * {
+	margin-top: var(--space-md);
+}
+
+article.post--excerpt .post-summary hr + hr {
+	margin-top: 0;
+}
+
+article.post--excerpt .excerpt-ellipsis {
+	white-space: nowrap;
+}
+
+/* Home excerpts: Summary still includes Goldmark footnotes — hide refs + block (full post unchanged) */
+article.post--excerpt .post-summary sup:has(a.footnote-ref) {
+	display: none;
+}
+
+article.post--excerpt .post-summary .footnotes {
+	display: none;
+}
+
+article.post--excerpt .post-read-more {
+	margin-top: var(--space-md);
+	margin-bottom: 0;
+	text-align: left;
+	font-weight: var(--font-sans-weight-medium);
+	font-variant: small-caps;
+	letter-spacing: 0.05em;
+	font-family: var(--font-sans);
+	font-size: var(--font-root);
+}
+
+article.post figure {
+	text-align: center;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+article.post figure figcaption {
+	font-size: var(--font-figcaption);
+	font-weight: 300;
+	color: var(--color-muted);
+}
+
+article.post figure figcaption p {
+	margin-top: 0;
+}
+
+article.post figure a {
+	text-decoration: none;
+	border: 0;
+}
+
+/* Normalize margin collapse around <hr> so rhythm matches the rule's internal padding */
+article.post > *:has(+ hr),
+main article:not(.post) > *:has(+ hr) {
+	margin-bottom: 0;
+}
+
+article.post hr + *,
+main article:not(.post) hr + * {
+	margin-top: var(--space-md);
+}
+
+article.post hr + hr,
+main article:not(.post) hr + hr {
+	margin-top: 0;
+}
+
+.fin-symbol {
+	font-family: var(--font-sans);
+	text-align: center;
+	font-size: var(--font-fin) !important;
+	color: var(--color-muted);
+	margin-top: var(--space-md);
+}
+
+.fin-symbol::before {
+	content: var(--fin-symbol);
+}
+
+article.post .footnotes {
+	font-family: var(--font-footnote);
+	font-size: var(--font-footnote-size);
+	border-top: 1px dotted var(--color-muted);
+	margin-top: var(--space-md);
+	padding-top: var(--space-md);
+}
+
+article.post .footnotes hr {
+	display: none;
+}
+
+article.post .footnotes ol {
+	list-style: decimal outside;
+}

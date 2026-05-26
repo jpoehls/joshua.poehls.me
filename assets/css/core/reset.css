@@ -1,0 +1,43 @@
+/* Reset and base styles */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: var(--font-serif);
+	font-weight: 300;
+	font-size: var(--font-root);
+	line-height: 1.65;
+	color: var(--color-text);
+	background: #fff;
+	overflow-wrap: break-word;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-sans);
+	letter-spacing: 0;
+	font-weight: 400;
+	margin-top: 0;
+}
+
+p {
+	margin-top: 0;
+}

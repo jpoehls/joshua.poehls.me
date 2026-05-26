@@ -1,0 +1,26 @@
+/* Hebrew text shortcode component (standalone .hebrew spans, not part of parallel) */
+
+/* Style for inline spans of Hebrew text (e.g., <span class="hebrew">) */
+.hebrew {
+	/* 1. Ensure the browser handles right-to-left layout and punctuation shifts */
+    direction: rtl;
+    display: inline-block; /* Forces punctuation at the end of the Hebrew span to sit on the correct left side */
+
+    /* 2. Scale the font up (Hebrew characters naturally look smaller than English at 1rem) */
+    font-size: 1.75rem;
+
+    /* 3. Give breathing room vertically for vowel points (nikkud) and cantillation marks */
+    line-height: 1.5;
+
+    /* 4. Use high-legibility, modern web-safe system fonts for Hebrew scripts */
+    font-family: var(--font-hebrew);
+
+    /* 5. Improve rendering crispness on modern displays */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.hebrew a.footnote-ref {
+	/* Prevent footnote refs from scaling with the Hebrew text. */
+	font-size: 1rem;
+}

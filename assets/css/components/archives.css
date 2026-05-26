@@ -1,0 +1,39 @@
+/* Archives page component */
+p.archive-tag-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	column-gap: 0.65em;
+	row-gap: var(--space-xs);
+}
+
+main:not(:has(article.post)) h2 {
+	font-size: var(--font-page-h2);
+	margin-bottom: var(--space-xs);
+}
+
+main:not(:has(article.post)) h3 {
+	font-size: var(--font-page-h3);
+	margin-bottom: var(--space-sm);
+}
+
+.archive-series-list {
+	list-style: none;
+	margin-top: 0;
+	margin-left: 0;
+	padding-left: 0;
+}
+
+.archive-series-list li {
+	margin-bottom: var(--space-md);
+}
+
+.archive-series-list li:last-child {
+	margin-bottom: 0;
+}
+
+.series-desc {
+	font-size: 1.0625rem;
+	margin-left: 0;
+	margin-top: var(--space-xs);
+}

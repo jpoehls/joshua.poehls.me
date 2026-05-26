@@ -1,0 +1,50 @@
+/* Taxonomy pages (tags, categories) */
+h1.taxonomy-title {
+	font-size: var(--font-taxonomy-title);
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+h1.taxonomy-title .desc {
+	margin-left: 1em;
+	margin-top: 0;
+	font-size: 0.6em;
+}
+
+h1.taxonomy-title .term {
+	color: var(--color-muted);
+}
+
+.taxonomy-desc {
+	margin-top: var(--space-md);
+}
+
+.taxonomy-content {
+	margin-top: var(--space-xl);
+}
+
+.taxonomy-list-header {
+	margin-bottom: var(--space-md);
+}
+
+.taxonomy-list-nav {
+	margin: 0;
+	font-family: var(--font-sans);
+	font-size: 1rem;
+}
+
+.taxonomy-list-nav a {
+	color: var(--color-link);
+}
+
+.taxonomy-term-cloud {
+	margin-top: var(--space-md);
+}
+
+.term-header {
+	margin-bottom: 0;
+}
+
+.term-posts {
+	margin-top: var(--space-xl);
+}

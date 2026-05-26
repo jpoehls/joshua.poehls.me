@@ -1,0 +1,50 @@
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+footer,
+article.post figure figcaption {
+	font-family: var(--font-footnote);
+}
+
+h1 {
+	margin-top: var(--space-lg);
+}
+
+.symbol {
+	font-family: var(--font-sans);
+}
+
+/* Footnote refs: em tracks surrounding text size */
+sup,
+sub {
+	vertical-align: baseline;
+	position: relative;
+	top: -0.35em;
+}
+
+sub {
+	top: 0.35em;
+}
+
+i,
+em {
+	font-style: italic;
+}
+
+b,
+strong {
+	font-weight: 600;
+}
+
+.subtle {
+	color: var(--color-muted);
+}
+
+span.tab {
+	display: inline-block;
+	width: 1em;
+}

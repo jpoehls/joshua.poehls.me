@@ -1,0 +1,40 @@
+/* Layout structure */
+.site-wrap {
+	width: 100%;
+	max-width: var(--wrap-max);
+	margin-inline: auto;
+	padding-inline: var(--wrap-pad);
+}
+
+main {
+	display: block;
+	margin-inline: auto;
+}
+
+/* Post list / single: <article class="post"> inside main. Archives, contact, taxonomy: no article.post */
+main:has(article.post) {
+	margin-top: 0;
+	padding-block: 0 var(--space-sm);
+}
+
+main:not(:has(article.post)) {
+	margin-top: var(--space-lg);
+}
+
+ul,
+ol {
+	margin-left: var(--space-xl);
+	padding-left: 0;
+}
+
+ul {
+	list-style-type: disc;
+}
+
+ul li ul {
+	list-style-type: circle;
+}
+
+table.noborder td {
+	border: 0;
+}

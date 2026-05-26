@@ -1,0 +1,64 @@
+/* Design tokens (colors, fonts, spacing) */
+:root {
+	--color-text: #222;
+	--color-muted: #888;
+	--color-link: #045fb4;
+	--color-footnote-link: #b40404;
+	--color-link-hover-bg: #ffffaa;
+	--color-bg-subtle: #f9f9f9;
+	--color-banner: #efefef;
+	--color-banner-rule: #333;
+	--color-focused-bg: #e8f0fe; /* Warm, digital focus tint */
+	/* Short centered rule between adjacent blockquotes; <hr> is longer, same look */
+	--rule-blockquote-separator-width: 2.75rem;
+	--rule-hr-width: min(34rem, 72%);
+	--color-code-text: #515151;
+	--font-serif: "Noto Serif", Georgia, "Times New Roman", serif;
+	--font-hebrew: "Noto Serif Hebrew", "Segoe UI", "David", "Taamey David CLM", "Times New Roman", serif;
+	--font-greek: "Noto Serif", "Galatia SIL", "Gentium Plus", "Palatino Linotype", "Times New Roman", serif;
+	--font-sans: "Oswald", "Georama", system-ui, sans-serif;
+	--font-footnote: "Noto Sans", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	/* Georama loads these in head.html — use by name for predictable sans rhythm */
+	--font-sans-weight-medium: 500;
+	--font-sans-weight-semibold: 600;
+	--font-mono: "Noto Sans Mono", ui-monospace, monospace;
+
+	--font-root: 1.25rem;
+	/* Post body slightly above root (was 1.05em of root) */
+	--font-post-body: 1.3125rem;
+	/* Heading step (rem) ≈ former em × --font-root */
+	--font-banner-title: 1.875rem;
+	--font-taxonomy-title: 2.25rem;
+	--font-page-h2: 2.125rem;
+	--font-page-h3: 1.875rem;
+	--font-post-h1: 2rem;
+	--font-post-h2: 1.75rem;
+	--font-post-h3: 1.5rem;
+	--font-post-h4: 1.375rem;
+	--font-post-h5: 1.25rem;
+	--font-post-h6: 1rem;
+	--font-code: 1.0625rem;
+	--font-code-in-post: 0.85em;
+	--font-footnote-size: 0.75rem;
+	--font-figcaption: 0.875rem;
+	--font-fin: 2.5rem;
+	/* Glyph for .fin-symbol::before (U+29BF); change once for whole site */
+	--fin-symbol: "\29BF";
+	--font-footer: 1.125rem;
+
+	--wrap-max: 60rem;
+	--wrap-pad: 1.25rem;
+
+	--space-xs: 0.25rem;
+	--space-sm: 0.5rem;
+	--space-md: 1rem;
+	--space-lg: 1.5rem;
+	--space-xl: 2rem;
+	/* Post headings: more air above (separate from prior block), tight below (lead into next ¶) */
+	--space-heading-before: 2.125rem;
+	--space-heading-after: 0.375rem;
+
+	/* Post tables: booktabs-style rules (LaTeX-like, no vertical rules) */
+	--table-rule-thick: 2px;
+	--table-rule-thin: 1px;
+}

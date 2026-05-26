@@ -1,41 +1,16 @@
 {{ $title := .Get "title" }}
 
-<div class="hugo-gallery-wrapper" style="
-    background: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: 12px;
-    padding: 24px;
-    margin: 32px auto;
-    max-width: 100%;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 8px 24px rgba(0, 0, 0, 0.04);
-">
-    
+<div class="gallery-wrapper">
     <!-- Centered Header Section -->
     {{ with $title }}
-        <div class="gallery-header" style="
-            margin-bottom: 24px;
-            text-align: center;
-        ">
-            <h3 style="
-                margin: 0 0 12px 0;
-                font-size: 1.2rem;
-                font-weight: 300;
-                color: #111111;
-                display: inline-block;
-            ">{{ . }}</h3>
-            <div style="width: 40px; height: 2px; background: rgba(0,0,0,0.1); margin: 0 auto;"></div>
+        <div class="gallery-header">
+            <h3>{{ . }}</h3>
+            <div class="gallery-header-divider"></div>
         </div>
     {{ end }}
 
     <!-- Flexible Flex Grid -->
-    <div class="gallery-flex-grid" style="
-        display: flex; 
-        justify-content: center; 
-        align-items: flex-start;
-        flex-wrap: wrap;
-        gap: 24px; 
-        max-width: 100%;
-    ">
+    <div class="gallery-grid">
         {{ .Inner }}
     </div>
 </div>

@@ -1,0 +1,53 @@
+/* Tables (booktabs-style) */
+/*
+  Booktabs-style tables: strong top & bottom, thin rule under header, no vertical rules.
+  — In posts: every table except .noborder (legacy opt-out).
+  — Elsewhere: add class="booktabs" (and omit .noborder to keep styling).
+*/
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) {
+	width: 100%;
+	max-width: 100%;
+	margin: var(--space-lg) 0;
+	border-collapse: collapse;
+	border-top: var(--table-rule-thick) solid var(--color-text);
+	border-bottom: var(--table-rule-thick) solid var(--color-text);
+	font-size: 0.94em;
+	line-height: 1.45;
+}
+
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) caption {
+	caption-side: top;
+	text-align: left;
+	font-family: var(--font-sans);
+	font-size: 0.88rem;
+	font-style: italic;
+	font-weight: 400;
+	color: var(--color-muted);
+	margin-bottom: var(--space-sm);
+	padding: 0;
+}
+
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) th,
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) td {
+	padding: 0.4rem 1rem 0.45rem 0;
+	vertical-align: top;
+	text-align: left;
+	border: 0;
+}
+
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) thead th {
+	font-family: var(--font-sans);
+	font-weight: var(--font-sans-weight-semibold);
+	border-bottom: var(--table-rule-thin) solid var(--color-text);
+	padding-bottom: 0.4rem;
+}
+
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) tbody th {
+	font-family: var(--font-sans);
+	font-weight: var(--font-sans-weight-semibold);
+}
+
+:is(article.post table:not(.noborder), table.booktabs:not(.noborder)) tbody td {
+	padding-top: 0.35rem;
+	padding-bottom: 0.35rem;
+}

@@ -1,0 +1,38 @@
+/* Site banner component */
+.site-banner {
+	position: relative;
+	display: block;
+	margin: 0;
+	padding: 0;
+	background-color: var(--color-banner);
+	border-top: 5px solid var(--color-banner-rule);
+}
+
+.site-banner h1 {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	column-gap: 0.35em;
+	row-gap: var(--space-xs);
+	padding: var(--space-sm) 0;
+	font-size: var(--font-banner-title);
+	font-weight: 300;
+	color: var(--color-muted);
+	margin: 0;
+	letter-spacing: 0;
+}
+
+.site-banner h1 .aka {
+	font-size: 0.6em;
+	margin-left: auto;
+}
+
+.site-banner h1 a {
+	text-decoration: none;
+	color: var(--color-muted);
+}
+
+.contact-link,
+.archives-link {
+	margin-left: var(--space-md);
+}

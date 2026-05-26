@@ -1,0 +1,18 @@
+/* Site footer component */
+footer {
+	margin: 0 auto;
+	font-size: var(--font-footer);
+	color: var(--color-muted);
+	font-weight: 300;
+	text-align: center;
+}
+
+footer p {
+	margin-bottom: 0.75rem;
+}
+
+nav.pagination {
+	text-align: center;
+	margin-top: var(--space-md);
+	margin-bottom: var(--space-xl);
+}
