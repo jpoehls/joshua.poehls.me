@@ -5,8 +5,13 @@
 <link href="{{ "feed.xml" | relURL }}" rel="alternate" type="application/atom+xml" title="{{ .Site.Title }}">
 {{ hugo.Generator }}
 
-<link rel="stylesheet" href="{{ "normalize.css" | relURL }}">
-<link rel="stylesheet" href="{{ "styles.css" | relURL }}">
+<!-- Modern Hugo Asset Engine Integration -->
+{{ $normalize := resources.Get "normalize.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $normalize.RelPermalink }}" integrity="{{ $normalize.Data.Integrity }}">
+
+{{ $stylesOptions := dict "enableSourceMap" true }}
+{{ $styles := resources.Get "styles.css" | css.Build $stylesOptions | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
