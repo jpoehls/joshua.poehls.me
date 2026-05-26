@@ -74,10 +74,7 @@
 /* Navigation links - amber color scheme */
 .banner-nav a {
 	color: var(--color-banner-link);
-	text-decoration: underline;
-	text-decoration-thickness: 1px;
-	text-decoration-style: dotted;
-	text-underline-offset: 2px;
+	text-decoration: none;
 	font-size: 0.9em;
 	font-weight: var(--font-weight-light);
 	text-transform: uppercase;
