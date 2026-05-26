@@ -1,9 +1,15 @@
 <div class="site-wrap">
-	<h1>
-		<small>I am</small>
-		<a href="{{ "/" | relURL }}">{{ .Site.Params.author }}</a>.
-		<small class="contact-link"><a href="{{ "contact" | relURL }}">Say hello</a></small>
-		<small class="archives-link"><a href="{{ "archives" | relURL }}">Archives</a></small>
-		<span class="aka">{{ .Site.Params.tagline }}</span>
-	</h1>
+	<div class="banner-top">
+		<h1>
+			<small>I am</small>
+			<a href="{{ "/" | relURL }}">{{ .Site.Params.author }}</a>
+			<small>.</small>
+		</h1>
+		<span class="banner-tagline">{{ .Site.Params.tagline }}</span>
+	</div>
+	<nav class="banner-nav">
+		<a href="{{ "contact" | relURL }}">Say hello</a>
+		<span class="nav-separator">//</span>
+		<a href="{{ "archives" | relURL }}">Archives</a>
+	</nav>
 </div>

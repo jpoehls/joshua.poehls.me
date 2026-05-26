@@ -14,4 +14,6 @@ Robert Purnell lists five ways that God's Word purifies His saints:[^n1]
 > 4. As a rule, according to which we are heedful to order our conversation: "Wherewith shall a young man cleanse his way, but by taking heed thereto, according to your word?" (Ps. 119:9).
 > 5. As a motive in the precious promises of it: "Having therefore these promises, let us cleanse ourselves from all filthiness of the flesh and spirit" (2 Cor. 7:1).
 
+<!--more-->
+
 [^n1]: Robert Purnell, *A Body of Doctrinal and Practical Divinity from 1657* ([Free Grace Press](https://freegracepress.com/products/a-body-of-doctrinal-and-practical-divinity-from-1657), 2026), 82.

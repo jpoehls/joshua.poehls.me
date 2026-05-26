@@ -5,7 +5,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1em;
-    margin: 36px 0;
+    margin: var(--space-xxl) 0;
     width: 100%;
 }
 
@@ -20,43 +20,55 @@
     flex-direction: column;
     justify-content: flex-start;
 
+    /* Card styling to pop from page background */
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 2px 6px var(--color-card-shadow);
+
     /* 1. Explicitly target flex-basis and opacity cleanly */
     transition: opacity 0.3s ease,
-                transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+                transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.2s ease;
 
     /* 2. Hardware acceleration hint to stop browser stuttering */
     will-change: flex-basis, transform;
 }
 
+.verse-col:hover {
+    box-shadow: 0 4px 12px var(--color-card-hover-shadow);
+}
+
 .verse-content-body {
     white-space: pre-wrap; /* Safeguards custom spacing indents and lines */
-    margin-bottom: 8px;
-    padding: 4px 8px; /* Adds alignment padding to match the new header structure */
+    margin-bottom: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
     transition: font-size 0.3s ease;
 }
 
 /* -------------------------------------------------------------
    CLICKABLE METADATA HEADER ROW STYLE
+   Uses banner styling for distinct header within card
 ------------------------------------------------------------- */
 article.post .col-meta-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    background-color: var(--color-bg-subtle);
-    padding: 6px 10px;
-    border-radius: 6px;
-    margin-bottom: 10px;
+    /* Banner-inspired header styling */
+    background-color: var(--color-banner);
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0; /* Rounded top corners only, flush with card */
+    margin: -1px -1px 0 -1px; /* Pull up/out to overlay card border at top */
     cursor: pointer;
     user-select: none; /* Prevents text highlighting when multi-clicking to zoom */
 
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Hover state changes color across the entire top row layout */
+/* Hover state lightens the banner header */
 article.post .col-meta-header:hover {
-    background-color: var(--color-banner);
-    color: var(--color-link);
+    background-color: var(--color-banner-hover);
 }
 
 /* Subtle Right-to-Left layout balance adjustments for Hebrew column headers */
@@ -64,17 +76,17 @@ article.post .col-meta-header:hover {
     flex-direction: row-reverse;
 }
 
-/* Structural Text Design Settings */
+/* Structural Text Design Settings - banner-inspired colors */
 .col-meta-label {
     font-family: var(--font-sans);
-    font-size: 0.72rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--color-muted);
+    color: var(--color-banner-text); /* Tan text like banner h1 */
 }
 .col-meta-header:hover .col-meta-label {
-    color: var(--color-link);
+    color: var(--color-banner-link-hover); /* Light amber on hover */
 }
 
 /* Icon Wrap Layer */
@@ -82,11 +94,11 @@ article.post .col-meta-header:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-muted);
+    color: var(--color-banner-text); /* Tan text like banner h1 */
     transition: color 0.2s ease;
 }
 .col-meta-header:hover .col-zoom-status-icon {
-    color: var(--color-link);
+    color: var(--color-banner-link-hover); /* Light amber on hover */
 }
 
 /* Icon State Swapping Core Logic */
@@ -100,17 +112,18 @@ article.post .col-meta-header:hover {
 .parallel-verse-container.has-focused-column .verse-col.focused-column {
 	flex-basis: 100%; /* Transitioning this smoothly expands the row width */
     order: -1;
-    border-bottom: 1px dashed var(--color-focused-bg);
-    padding-bottom: 24px;
-    margin-bottom: 12px;
+    margin-bottom: 1em; /* Space below focused column */
 }
 
 /* Give the focused column's bar a distinct, colored active state */
 .verse-col.focused-column .col-meta-header {
-    background-color: var(--color-focused-bg);
+    background-color: var(--color-banner-active);
 }
 .verse-col.focused-column .col-meta-label {
-    color: var(--color-link); /* Matches active focus tone */
+    color: var(--color-banner-link-hover); /* Bright amber for active focus */
+}
+.verse-col.focused-column .col-zoom-status-icon {
+    color: var(--color-banner-link-hover); /* Bright amber for active focus */
 }
 
 /* Sibling layouts automatically tile side-by-side underneath */
@@ -122,7 +135,7 @@ article.post .col-meta-header:hover {
 
 /* Toggle icon transformations when focus is active */
 .verse-col.focused-column .zoom-icon-expand { display: none; }
-.verse-col.focused-column .zoom-icon-collapse { display: inline-block; color: var(--color-link); }
+.verse-col.focused-column .zoom-icon-collapse { display: inline-block; }
 
 /* 2. Dimensional Text Scaling: Magnifies typography when focused */
 .focused-column.english-col .verse-content-body { font-size: 1.4rem; }
@@ -134,5 +147,5 @@ article.post .col-meta-header:hover {
 .hebrew-col .verse-content-body  { font-family: var(--font-hebrew); font-size: 1.6rem; line-height: 1.6; color: var(--color-text); text-align: right; direction: rtl; }
 .greek-col .verse-content-body   { font-family: var(--font-greek); font-size: 1.2rem; line-height: 1.7; color: var(--color-text); text-align: left; }
 
-.col-meta-cite { font-family: var(--font-footnote); font-size: var(--font-footnote-size); color: var(--color-muted); font-style: italic; margin-top: auto; padding: 0 8px; display: block; }
+.col-meta-cite { font-family: var(--font-footnote); font-size: var(--font-footnote-size); color: var(--color-muted); font-style: italic; margin-top: auto; padding: 0 var(--space-lg) var(--space-md) var(--space-lg); display: block; }
 .hebrew-col .col-meta-cite { direction: rtl; text-align: right; }

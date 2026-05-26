@@ -1,7 +1,5 @@
 /* Links */
-a,
-.site-banner h1 .contact-link a,
-.site-banner h1 .archives-link a {
+a {
 	color: var(--color-link);
 	text-decoration: underline;
 	text-decoration-thickness: 1px;
@@ -11,6 +9,11 @@ a,
 
 a:hover {
 	background-color: var(--color-link-hover-bg);
+	box-decoration-break: clone;
+	-webkit-box-decoration-break: clone;
+	box-shadow:
+		2px 0 0 var(--color-link-hover-bg),
+		-2px 0 0 var(--color-link-hover-bg);
 }
 
 a.rtBibleRef {

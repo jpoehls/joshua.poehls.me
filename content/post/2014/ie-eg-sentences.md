@@ -12,6 +12,8 @@ tags:
 
 I used to debate this everytime I'd use i.e. or e.g. in my writing. Not anymore!
 
+<!--more-->
+
 Right way:
 
 > E.g., this is a proper example.

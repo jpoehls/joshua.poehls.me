@@ -37,7 +37,7 @@ em {
 
 b,
 strong {
-	font-weight: 600;
+	font-weight: var(--font-weight-medium);
 }
 
 .subtle {

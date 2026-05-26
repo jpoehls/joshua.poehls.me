@@ -8,6 +8,12 @@ article.post > div {
 	text-indent: 0;
 }
 
+/* Softer bold weight for better readability */
+article.post strong,
+article.post b {
+	font-weight: var(--font-weight-medium);
+}
+
 /* Indent scales with paragraph font (typographic tradition) */
 article.post > p + p {
 	text-indent: 2em;
@@ -46,6 +52,11 @@ article.post .post-series-line__name {
 
 article.post .post-series-line__name:hover {
 	background-color: var(--color-link-hover-bg);
+	box-decoration-break: clone;
+	-webkit-box-decoration-break: clone;
+	box-shadow:
+		2px 0 0 var(--color-link-hover-bg),
+		-2px 0 0 var(--color-link-hover-bg);
 }
 
 article.post .post-series-line + h1 {
@@ -99,12 +110,12 @@ article.post h4 {
 
 article.post h5 {
 	font-size: var(--font-post-h5);
-	font-weight: 600;
+	font-weight: var(--font-weight-semibold);
 }
 
 article.post h6 {
 	font-size: var(--font-post-h6);
-	font-weight: 600;
+	font-weight: var(--font-weight-semibold);
 }
 
 article.post header p {

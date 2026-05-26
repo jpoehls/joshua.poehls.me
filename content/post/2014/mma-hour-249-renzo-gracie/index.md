@@ -13,6 +13,8 @@ tags:
 
 I listened to [the Renzo interview on MMA Hour][1] this morning; an amazing interview. [Renzo](https://twitter.com/renzograciebjj) seems like a great person and several of his comments really touched me. Lots of great stories and true respect as he talks about various people and competitors. Getting exposed to people like this is one of the reasons I love BJJ. There is a strong sense of honor and respect in the community that I don’t see in my own everyday life. It’s an inspiring influence.
 
+<!--more-->
+
 Just stop reading and [go listen to it][1].
 
 One part that stood out the most to me was when he talked about how in this country (America), “nobody wants to **do**.”[^2] He referenced a story about a woman who was raped in New York. “Fifty-two people heard her scream.” Nobody helped. “Everybody assumed, you gonna take care, not me.”

@@ -14,6 +14,8 @@ _Paraphrased introduction from Paster Wolfmueller of Hope Lutheran Church, Auror
 
 {{< img  src="luther-and-friends-praying.jpg" caption="Luther and Friends Pray at the Bedside of Melancthon"  >}}
 
+<!--more-->
+
 # How One Should Pray
 
 I will tell you as best I can what I do personally when I pray. May our dear Lord grant to you and to everybody to do it better than I! Amen.

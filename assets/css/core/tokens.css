@@ -2,6 +2,7 @@
 :root {
 	/* Base colors */
 	--color-white: #ffffff;
+	--color-page-bg: #f4f1e8; /* Sepia reading background */
 	--color-text: #222;
 	--color-text-dark: #111;
 	--color-text-medium: #666;
@@ -10,12 +11,15 @@
 	/* Link colors */
 	--color-link: #045fb4;
 	--color-footnote-link: #b40404;
-	--color-link-hover-bg: #ffffaa;
+	--color-link-hover-bg: rgba(255, 235, 59, 0.4); /* Semi-transparent yellow for highlighter effect */
 
 	/* Background colors */
 	--color-bg-subtle: #f9f9f9;
-	--color-banner: #efefef;
-	--color-banner-rule: #333;
+	--color-banner: #5c1a1a; /* Rich mahogany */
+	--color-banner-text: #e8dcc8; /* Tan text */
+	--color-banner-link: #d4a574; /* Amber links */
+	--color-banner-link-hover: #e8c098; /* Light amber hover */
+	--color-banner-rule: #e8dcc8; /* Tan border to match text */
 	--color-focused-bg: #e8f0fe; /* Warm, digital focus tint */
 
 	/* Gallery component colors */
@@ -30,6 +34,12 @@
 	--color-card-border: rgba(0, 0, 0, 0.04);
 	--color-card-shadow: rgba(0, 0, 0, 0.03);
 	--color-card-hover-shadow: rgba(0, 0, 0, 0.08);
+
+	/* Banner color variants */
+	--color-banner-hover: #6e2222; /* Lighter hover state */
+	--color-banner-active: #4a1515; /* Darker active/focused state */
+	--color-banner-text-muted: rgba(255, 255, 255, 0.4);
+	--color-banner-hover-bg: rgba(255, 255, 255, 0.1);
 
 	/* Structural settings */
 	/* Short centered rule between adjacent blockquotes; <hr> is longer, same look */
@@ -79,9 +89,22 @@
 	--space-md: 1rem;
 	--space-lg: 1.5rem;
 	--space-xl: 2rem;
+	--space-xxl: 2.25rem; /* 36px equivalent for verse containers */
 	/* Post headings: more air above (separate from prior block), tight below (lead into next ¶) */
 	--space-heading-before: 2.125rem;
 	--space-heading-after: 0.375rem;
+
+	/* Border radius scale */
+	--border-radius-sm: 4px;
+	--border-radius-md: 6px;
+	--border-radius-lg: 8px;
+	--border-radius-xl: 12px;
+
+	/* Font weights */
+	--font-weight-light: 300;
+	--font-weight-normal: 400;
+	--font-weight-medium: 500;
+	--font-weight-semibold: 600;
 
 	/* Post tables: booktabs-style rules (LaTeX-like, no vertical rules) */
 	--table-rule-thick: 2px;

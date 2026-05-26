@@ -3,36 +3,91 @@
 	position: relative;
 	display: block;
 	margin: 0;
-	padding: 0;
+	padding: var(--space-sm) 0;
 	background-color: var(--color-banner);
-	border-top: 5px solid var(--color-banner-rule);
 }
 
-.site-banner h1 {
+/* Top row: title (left) + tagline (right) */
+.banner-top {
 	display: flex;
-	flex-wrap: wrap;
+	justify-content: space-between;
 	align-items: baseline;
-	column-gap: 0.35em;
-	row-gap: var(--space-xs);
-	padding: var(--space-sm) 0;
+	gap: var(--space-md);
+}
+
+.banner-top h1 {
+	display: flex;
+	align-items: baseline;
+	gap: 0.35em;
 	font-size: var(--font-banner-title);
-	font-weight: 300;
-	color: var(--color-muted);
+	font-weight: var(--font-weight-light);
+	font-family: var(--font-serif);
+	color: var(--color-banner-text);
 	margin: 0;
 	letter-spacing: 0;
+	white-space: nowrap;
 }
 
-.site-banner h1 .aka {
-	font-size: 0.6em;
-	margin-left: auto;
+.banner-tagline {
+	font-size: calc(var(--font-banner-title) * 0.6);
+	font-weight: var(--font-weight-light);
+	font-style: italic;
+	white-space: nowrap;
+	/* Debossed stamp effect - pressed into the surface */
+	color: var(--color-banner-text-muted);
+	text-shadow:
+		0 -1px 0 rgba(255, 255, 255, 0.15),
+		0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
-.site-banner h1 a {
+/* Second row: navigation links */
+.banner-nav {
+	display: flex;
+	align-items: baseline;
+	gap: var(--space-sm);
+	margin-top: var(--space-xs);
+	margin-left: 1.5em;
+}
+
+/* Separator between nav links */
+.nav-separator {
+	color: var(--color-banner-text-muted);
+	text-shadow:
+		0 -1px 0 rgba(255, 255, 255, 0.15),
+		0 1px 1px rgba(0, 0, 0, 0.3);
+	font-weight: var(--font-weight-light);
+	user-select: none;
+}
+
+/* Main title link (author name) - looks like text, hovers like link */
+.banner-top h1 a {
+	color: var(--color-banner-text);
 	text-decoration: none;
-	color: var(--color-muted);
 }
 
-.contact-link,
-.archives-link {
-	margin-left: var(--space-md);
+.banner-top h1 a:hover {
+	color: var(--color-banner-link-hover);
+	background-color: var(--color-banner-hover-bg);
+	box-shadow: none;
 }
+
+/* Navigation links - amber color scheme */
+.banner-nav a {
+	color: var(--color-banner-link);
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-decoration-style: dotted;
+	text-underline-offset: 2px;
+	font-size: 0.9em;
+	font-weight: var(--font-weight-light);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	font-family: var(--font-sans);
+}
+
+.banner-nav a:hover {
+	color: var(--color-banner-link-hover);
+	background-color: var(--color-banner-hover-bg);
+	box-shadow: none;
+}
+

@@ -8,13 +8,7 @@
 		</p>
 	</header>
 	<div class="post-summary">
-		{{- $summary := .Summary | replaceRE `(?s)(<p>\s*</p>\s*)+$` "" | replaceRE `(?s)(<p><br\s*/?></p>\s*)+$` "" -}}
-		{{- /* Remove unclosed footnotes div that Hugo's .Summary may include */ -}}
-		{{- $summary = $summary | replaceRE `<div class="footnotes"[^>]*>[\s\S]*$` "" -}}
-		{{- /* Remove partially-rendered shortcode containers */ -}}
-		{{- $summary = $summary | replaceRE `<div class="single-image-container"[\s\S]*$` "" -}}
-		{{- $summary = $summary | replaceRE `<div class="gallery-wrapper"[\s\S]*$` "" -}}
-		{{ $summary | safeHTML }}
+		{{ .Summary }}
 	</div>
 	<p class="post-read-more">
 		{{ if .Truncated }}<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>{{ end }}

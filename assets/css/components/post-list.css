@@ -2,7 +2,7 @@
 
 /* Hero post (featured on page 1) */
 article.post--hero {
-	background: var(--color-card-bg);
+	background: transparent;
 	border: none;
 	border-radius: 0;
 	padding: var(--space-xl);
@@ -48,6 +48,33 @@ article.post--hero .post-summary {
 	margin-bottom: var(--space-lg);
 }
 
+/* Scale down headings in hero summaries */
+article.post--hero .post-summary h1,
+article.post--hero .post-summary h2,
+article.post--hero .post-summary h3 {
+	font-size: 1.25rem;
+	margin-top: var(--space-md);
+	margin-bottom: var(--space-sm);
+	line-height: 1.3;
+}
+
+article.post--hero .post-summary h4,
+article.post--hero .post-summary h5,
+article.post--hero .post-summary h6 {
+	font-size: 1.0625rem;
+	margin-top: var(--space-md);
+	margin-bottom: var(--space-sm);
+	line-height: 1.3;
+}
+
+/* First heading should have no top margin */
+article.post--hero .post-summary > :first-child,
+article.post--hero .post-summary h1:first-child,
+article.post--hero .post-summary h2:first-child,
+article.post--hero .post-summary h3:first-child {
+	margin-top: 0;
+}
+
 article.post--hero .post-summary > :first-child {
 	margin-top: 0;
 }
@@ -62,15 +89,35 @@ article.post--hero .post-summary p:last-child {
 	margin-bottom: 0;
 }
 
+article.post--hero .post-summary strong,
+article.post--hero .post-summary b {
+	font-weight: 500;
+}
+
 /* Hide complex components in hero excerpt */
 article.post--hero .post-summary .gallery-wrapper,
 article.post--hero .post-summary .parallel-verse-container,
-article.post--hero .post-summary figure,
 article.post--hero .post-summary .footnotes {
 	display: none;
 }
 
-/* Fade-out for hero summary */
+/* Allow images in hero excerpt, but constrain size */
+article.post--hero .post-summary .single-image-container {
+	margin-top: 0 !important;
+	margin-bottom: var(--space-lg) !important;
+}
+
+article.post--hero .post-summary figure {
+	max-width: 100%;
+	margin: var(--space-md) 0;
+}
+
+article.post--hero .post-summary figure img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Fade-out gradient for overflowing content */
 article.post--hero .post-summary::after {
 	content: "";
 	position: absolute;
@@ -78,13 +125,16 @@ article.post--hero .post-summary::after {
 	left: 0;
 	right: 0;
 	height: 4em;
-	background: linear-gradient(to bottom, transparent, var(--color-card-bg));
+	background: linear-gradient(to bottom, transparent, var(--color-page-bg));
 	pointer-events: none;
 	opacity: 0;
 }
 
+/* Show fade when content is likely to overflow (4+ children or contains lists/blockquotes) */
 article.post--hero .post-summary:has(> :nth-child(4))::after,
-article.post--hero .post-summary:has(blockquote)::after {
+article.post--hero .post-summary:has(blockquote)::after,
+article.post--hero .post-summary:has(ul)::after,
+article.post--hero .post-summary:has(ol)::after {
 	opacity: 1;
 }
 
@@ -98,14 +148,14 @@ article.post--hero .hero-cta {
 	display: inline-block;
 	padding: var(--space-md) var(--space-xl);
 	font-family: var(--font-sans);
-	font-size: 1rem;
-	font-weight: var(--font-sans-weight-semibold);
+	font-size: 1.2rem;
+	font-weight: 400;
 	text-decoration: none;
 	text-indent: 0;
 	color: var(--color-link);
 	background-color: transparent;
 	border: 2px solid var(--color-link);
-	border-radius: 4px;
+	border-radius: var(--border-radius-sm);
 	transition: all 0.2s ease;
 	letter-spacing: 0.02em;
 }
@@ -130,7 +180,7 @@ article.post--hero .hero-cta:hover {
 article.post--card {
 	background: var(--color-card-bg);
 	border: 1px solid var(--color-card-border);
-	border-radius: 8px;
+	border-radius: var(--border-radius-lg);
 	padding: var(--space-lg);
 	padding-bottom: calc(var(--space-lg) + 3rem); /* Extra space for absolutely positioned read-more */
 	transition: box-shadow 0.2s ease, transform 0.1s ease;
@@ -185,6 +235,26 @@ article.post--card .post-summary {
 	position: relative;
 }
 
+/* Scale down headings in card summaries */
+article.post--card .post-summary h1,
+article.post--card .post-summary h2,
+article.post--card .post-summary h3 {
+	font-size: 1.125rem;
+	margin-top: var(--space-sm);
+	margin-bottom: var(--space-xs);
+	line-height: 1.3;
+}
+
+article.post--card .post-summary h4,
+article.post--card .post-summary h5,
+article.post--card .post-summary h6 {
+	font-size: 1rem;
+	margin-top: var(--space-sm);
+	margin-bottom: var(--space-xs);
+	line-height: 1.3;
+}
+
+/* First element should have no top margin */
 article.post--card .post-summary > :first-child {
 	margin-top: 0;
 }
@@ -197,6 +267,11 @@ article.post--card .post-summary p {
 
 article.post--card .post-summary p:last-child {
 	margin-bottom: 0;
+}
+
+article.post--card .post-summary strong,
+article.post--card .post-summary b {
+	font-weight: 500;
 }
 
 /* Blockquotes in card excerpts - normalize line-height to match card */
@@ -220,7 +295,6 @@ article.post--card .post-summary blockquote ul {
 /* Hide complex nested components in card excerpts */
 article.post--card .post-summary .gallery-wrapper,
 article.post--card .post-summary .parallel-verse-container,
-article.post--card .post-summary figure,
 article.post--card .post-summary .verse-col,
 article.post--card .post-summary table,
 article.post--card .post-summary blockquote ol,
@@ -229,7 +303,23 @@ article.post--card .post-summary .footnotes {
 	display: none;
 }
 
-/* Fade-out gradient for long content - only when content overflows */
+/* Allow images in card excerpts, but constrain size */
+article.post--card .post-summary .single-image-container {
+	margin-top: 0 !important;
+	margin-bottom: var(--space-md) !important;
+}
+
+article.post--card .post-summary figure {
+	max-width: 100%;
+	margin: var(--space-sm) 0;
+}
+
+article.post--card .post-summary figure img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Fade-out gradient for overflowing content */
 article.post--card .post-summary::after {
 	content: "";
 	position: absolute;
@@ -239,14 +329,14 @@ article.post--card .post-summary::after {
 	height: 3em;
 	background: linear-gradient(to bottom, transparent, var(--color-card-bg));
 	pointer-events: none;
-	/* Only show fade when there's enough content to need it */
 	opacity: 0;
 }
 
-/* Show fade-out when summary has substantial content */
+/* Show fade when content is likely to overflow (3+ children or contains lists/blockquotes) */
 article.post--card .post-summary:has(> :nth-child(3))::after,
 article.post--card .post-summary:has(blockquote)::after,
-article.post--card .post-summary:has(p + p + p)::after {
+article.post--card .post-summary:has(ul)::after,
+article.post--card .post-summary:has(ol)::after {
 	opacity: 1;
 }
 
@@ -267,8 +357,8 @@ article.post--card .post-read-more {
 	right: var(--space-lg);
 	padding-top: var(--space-sm);
 	border-top: 1px solid var(--color-card-border);
-	font-size: 0.9375rem;
-	font-weight: var(--font-sans-weight-medium);
+	font-size: 1.2rem;
+	font-weight: 400;
 	font-family: var(--font-sans);
 	text-align: left;
 	margin: 0;
@@ -280,7 +370,7 @@ article.post--card .post-read-more a {
 }
 
 article.post--card .post-read-more a:hover {
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 article.post--card .excerpt-ellipsis {
