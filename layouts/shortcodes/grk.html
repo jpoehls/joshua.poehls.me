@@ -1,0 +1,5 @@
+<div class="verse-col greek-col">
+    {{- with .Get "label" -}}<span class="col-meta-label">{{ . }}</span>{{- end -}}
+    <div class="verse-content-body">{{ .Inner | markdownify }}</div>
+    {{- with .Get "cite" -}}<span class="col-meta-cite">{{ . }}</span>{{- end -}}
+</div>

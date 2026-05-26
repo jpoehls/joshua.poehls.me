@@ -242,6 +242,36 @@ em {
 	font-style: italic;
 }
 
+span.tab {
+	display: inline-block;
+	width: 2em;
+}
+
+/* Style for inline spans of Hebrew text (e.g., <span class="hebrew">) */
+.hebrew {
+	/* 1. Ensure the browser handles right-to-left layout and punctuation shifts */
+    direction: rtl;
+    display: inline-block; /* Forces punctuation at the end of the Hebrew span to sit on the correct left side */
+    
+    /* 2. Scale the font up (Hebrew characters naturally look smaller than English at 1rem) */
+    font-size: 1.75rem; 
+    
+    /* 3. Give breathing room vertically for vowel points (nikkud) and cantillation marks */
+    line-height: 1.5;
+    
+    /* 4. Use high-legibility, modern web-safe system fonts for Hebrew scripts */
+    font-family: "Segoe UI", "David", "Taamey David CLM", "Frank Ruehl CLM", "Times New Roman", serif;
+    
+    /* 5. Improve rendering crispness on modern displays */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.hebrew a.footnote-ref {
+	/* Prevent footnote refs from scaling with the Hebrew text. */
+	font-size: 1rem;
+}
+
 b,
 strong {
 	font-weight: 600;
@@ -888,6 +918,93 @@ article.post .footnotes hr {
 
 article.post .footnotes ol {
 	list-style: decimal outside;
+}
+
+/* --- Styles for parallel Bible texts --- */
+/* Core Grid Alignment Map */
+.parallel-verse-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin: 36px 0;
+    width: 100%;
+}
+
+/* Individual Content Blocks */
+.verse-col {
+    flex: 1 1 280px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* The Verse Content Body Inner Frame */
+.verse-content-body {
+    white-space: pre-wrap; /* Crucial for keeping your custom line-breaks and memory indents */
+    margin-bottom: 8px;
+}
+
+/* 1. English Typography Rules */
+.english-col .verse-content-body {
+    direction: ltr;
+    text-align: left;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #222222;
+}
+
+/* 2. Hebrew Typography & Spacing Rules */
+.hebrew-col .verse-content-body {
+    direction: rtl;
+    text-align: right;
+    font-family: "Segoe UI", "David", "Taamey David CLM", "Times New Roman", serif;
+    font-size: 1.4rem;
+    line-height: 1.8; /* Expands to keep vowel points from clipping */
+    color: #111111;
+}
+
+/* 3. Greek Typography Rules */
+.greek-col .verse-content-body {
+    direction: ltr;
+    text-align: left;
+    font-family: "Galatia SIL", "Gentium Plus", "Palatino Linotype", "Times New Roman", serif;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #1c2d3d;
+}
+
+/* Minimalist Shared Metadata Design (Labels & Footnotes) */
+.col-meta-label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #8c8c8c; /* Very soft, understated gray header */
+    margin-bottom: 12px;
+    display: block;
+}
+
+.col-meta-cite {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.75rem;
+    color: #a0a0a0; /* Soft, out-of-the-way footnote tracker */
+    font-style: italic;
+    margin-top: auto; /* Pushes the citation lines neatly to the bottom boundary of each block */
+    display: block;
+}
+
+/* Ensure right-aligned columns match the structural metadata text flow */
+.hebrew-col .col-meta-label,
+.hebrew-col .col-meta-cite {
+    direction: rtl;
+    text-align: right;
+}
+.english-col .col-meta-label, .english-col .col-meta-cite,
+.greek-col .col-meta-label, .greek-col .col-meta-cite {
+    direction: ltr;
+    text-align: left;
 }
 
 /* --- Print --- */

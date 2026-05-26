@@ -8,11 +8,24 @@ tags:
 
 This week, our family is memorizing **Deuteronomy 7:9** from [Fighter Verses: Set 1, Week 1](https://www.fighterverses.com/verse-index).
 
-## The Scripture
+{{< parallel >}}
+  {{< eng label="CSB" cite="Christian Standard Bible (Nashville, TN: Holman Bible Publishers, 2020), Dt 7:9." >}}
+  Know that the LORD your God is God,
+  {{< tab >}}the faithful God
+  {{<tab>}}who keeps his gracious covenant loyalty
+  {{<tab>}}{{<tab>}}for a thousand generations
+  {{<tab>}}{{<tab>}}with those who love him
+  {{<tab>}}{{<tab>}}{{<tab>}}and keep his commands.
+  {{< /eng >}}
 
-> Know that the LORD your God is God, the faithful God who keeps his gracious covenant loyalty for a thousand generations with those who love him and keep his commands.[^csb]
+  {{< heb label="Hebrew" cite="K. Elliger, W. Rudolph, and Gérard E. Weil, Biblia Hebraica Stuttgartensia, electronic ed. (Stuttgart: German Bible Society, 2003), Dt 7:9." >}}
+  וְיָ֣דַעְתָּ֔ כִּֽי־יְהוָ֥ה אֱלֹהֶ֖יךָ ה֣וּא הָֽאֱלֹהִ֑ים הָאֵל֙ הַֽנֶּאֱמָ֔ן שֹׁמֵ֧ר הַבְּרִ֣ית וְהַחֶ֗סֶד לְאֹהֲבָ֛יו וּלְשֹׁמְרֵ֥י מִצְוֹתָ֖ו לְאֶ֥לֶף דֹּֽור׃
+  {{< /heb >}}
 
->  וְיָ֣דַעְתָּ֔ כִּֽי־יְהוָ֥ה אֱלֹהֶ֖יךָ ה֣וּא הָֽאֱלֹהִ֑ים הָאֵל֙ הַֽנֶּאֱמָ֔ן שֹׁמֵ֧ר הַבְּרִ֣ית וְהַחֶ֗סֶד לְאֹהֲבָ֛יו וּלְשֹׁמְרֵ֥י מִצְוֹתָ֖ו לְאֶ֥לֶף דֹּֽור׃[^hb]
+  {{< grk label="LXX" cite="Septuaginta: With Morphology, electronic ed. (Stuttgart: Deutsche Bibelgesellschaft, 1979), Dt 7:9." >}}
+  καὶ γνώσῃ ὅτι κύριος ὁ θεός σου, οὗτος θεός, θεὸς πιστός, ὁ φυλάσσων διαθήκην καὶ ἔλεος τοῖς ἀγαπῶσιν αὐτὸν καὶ τοῖς φυλάσσουσιν τὰς ἐντολὰς αὐτοῦ εἰς χιλίας γενεὰς
+  {{< /grk >}}
+{{< /parallel >}}
 
 <!--more-->
 
@@ -30,9 +43,9 @@ Click any preview below to download a full-size wallpaper optimized for iOS.
   {{< galleryimg src="/2026/deuteronomy-7-9/hb-dark.jpeg" caption="Hebrew dark background" >}}
 {{< /gallery >}}
 
-## Study Resources
+## Resources
 
-* **Hebrew Torah Audio:** Listen to a traditional reading of the text on [Sefaria](https://www.sefaria.org/Deuteronomy.7.9?lang=bi&with=Torah%20Readings&lang2=en).
+* **Hebrew Audio:** Listen to traditional readings of the text on [Sefaria](https://www.sefaria.org/Deuteronomy.7.9?lang=bi&with=Torah%20Readings&lang2=en) or modern readings on [Haktuvim](https://haktuvim.co.il/study/Deut.7.9).
 * **Fighter Verses:** Check out the currated resources for this memory verse on the [Fighter Verses site](https://www.fighterverses.com/verses/deuteronomy-7%3A9).
 
 [^csb]: Christian Standard Bible (Nashville, TN: Holman Bible Publishers, 2020), Dt 7:9.
