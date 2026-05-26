@@ -20,16 +20,37 @@
     <content type="html">&lt;p&gt;This week, our family is memorizing &lt;strong&gt;Deuteronomy 7:9&lt;/strong&gt; from &lt;a href=&#34;https://www.fighterverses.com/verse-index&#34;&gt;Fighter Verses: Set 1, Week 1&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&#34;parallel-verse-container&#34;&gt;
     
-  &lt;div class=&#34;verse-col english-col&#34;&gt;&lt;span class=&#34;col-meta-label&#34;&gt;CSB&lt;/span&gt;&lt;div class=&#34;verse-content-body&#34;&gt;Know that the LORD your God is God,
+  &lt;div class=&#34;verse-col english-col&#34;&gt;
+    &lt;header class=&#34;col-meta-header&#34; role=&#34;button&#34; tabindex=&#34;0&#34; aria-label=&#34;Toggle Focus Mode&#34; onclick=&#34;toggleColumnFocus(this)&#34; onkeydown=&#34;if(event.key===&#39;Enter&#39;||event.key===&#39; &#39;){toggleColumnFocus(this); event.preventDefault();}&#34;&gt;&lt;span class=&#34;col-meta-label&#34;&gt;CSB&lt;/span&gt;&lt;div class=&#34;col-zoom-status-icon&#34;&gt;
+            &lt;svg class=&#34;zoom-icon-expand&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;13&#34; height=&#34;13&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2.5&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7&#34;/&gt;&lt;/svg&gt;
+            &lt;svg class=&#34;zoom-icon-collapse&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;13&#34; height=&#34;13&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2.5&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M4 14h6v6M20 10h-6V4M14 10l7-7M10 14l-7 7&#34;/&gt;&lt;/svg&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+    
+    &lt;div class=&#34;verse-content-body&#34;&gt;Know that the LORD your God is God,
 &lt;span class=&#34;tab&#34;&gt;&lt;/span&gt;the faithful God
 &lt;span class=&#34;tab&#34;&gt;&lt;/span&gt;who keeps his gracious covenant loyalty
 &lt;span class=&#34;tab&#34;&gt;&lt;/span&gt;&lt;span class=&#34;tab&#34;&gt;&lt;/span&gt;for a thousand generations
 &lt;span class=&#34;tab&#34;&gt;&lt;/span&gt;&lt;span class=&#34;tab&#34;&gt;&lt;/span&gt;with those who love him
 &lt;span class=&#34;tab&#34;&gt;&lt;/span&gt;&lt;span class=&#34;tab&#34;&gt;&lt;/span&gt;&lt;span class=&#34;tab&#34;&gt;&lt;/span&gt;and keep his commands.&lt;/div&gt;&lt;span class=&#34;col-meta-cite&#34;&gt;Christian Standard Bible (Nashville, TN: Holman Bible Publishers, 2020), Dt 7:9.&lt;/span&gt;&lt;/div&gt;
 
-  &lt;div class=&#34;verse-col hebrew-col&#34;&gt;&lt;span class=&#34;col-meta-label&#34;&gt;Hebrew&lt;/span&gt;&lt;div class=&#34;verse-content-body&#34;&gt;וְיָ֣דַעְתָּ֔ כִּֽי־יְהוָ֥ה אֱלֹהֶ֖יךָ ה֣וּא הָֽאֱלֹהִ֑ים הָאֵל֙ הַֽנֶּאֱמָ֔ן שֹׁמֵ֧ר הַבְּרִ֣ית וְהַחֶ֗סֶד לְאֹהֲבָ֛יו וּלְשֹׁמְרֵ֥י מִצְוֹתָ֖ו לְאֶ֥לֶף דֹּֽור׃&lt;/div&gt;&lt;span class=&#34;col-meta-cite&#34;&gt;K. Elliger, W. Rudolph, and Gérard E. Weil, Biblia Hebraica Stuttgartensia, electronic ed. (Stuttgart: German Bible Society, 2003), Dt 7:9.&lt;/span&gt;&lt;/div&gt;
+  &lt;div class=&#34;verse-col hebrew-col&#34;&gt;
+    &lt;header class=&#34;col-meta-header&#34; role=&#34;button&#34; tabindex=&#34;0&#34; aria-label=&#34;Toggle Focus Mode&#34; onclick=&#34;toggleColumnFocus(this)&#34; onkeydown=&#34;if(event.key===&#39;Enter&#39;||event.key===&#39; &#39;){toggleColumnFocus(this); event.preventDefault();}&#34;&gt;&lt;span class=&#34;col-meta-label&#34;&gt;Hebrew&lt;/span&gt;&lt;div class=&#34;col-zoom-status-icon&#34;&gt;
+            &lt;svg class=&#34;zoom-icon-expand&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;13&#34; height=&#34;13&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2.5&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7&#34;/&gt;&lt;/svg&gt;
+            &lt;svg class=&#34;zoom-icon-collapse&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;13&#34; height=&#34;13&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2.5&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M4 14h6v6M20 10h-6V4M14 10l7-7M10 14l-7 7&#34;/&gt;&lt;/svg&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+    
+    &lt;div class=&#34;verse-content-body&#34;&gt;וְיָ֣דַעְתָּ֔ כִּֽי־יְהוָ֥ה אֱלֹהֶ֖יךָ ה֣וּא הָֽאֱלֹהִ֑ים הָאֵל֙ הַֽנֶּאֱמָ֔ן שֹׁמֵ֧ר הַבְּרִ֣ית וְהַחֶ֗סֶד לְאֹהֲבָ֛יו וּלְשֹׁמְרֵ֥י מִצְוֹתָ֖ו לְאֶ֥לֶף דֹּֽור׃&lt;/div&gt;&lt;span class=&#34;col-meta-cite&#34;&gt;K. Elliger, W. Rudolph, and Gérard E. Weil, Biblia Hebraica Stuttgartensia, electronic ed. (Stuttgart: German Bible Society, 2003), Dt 7:9.&lt;/span&gt;&lt;/div&gt;
 
-  &lt;div class=&#34;verse-col greek-col&#34;&gt;&lt;span class=&#34;col-meta-label&#34;&gt;LXX&lt;/span&gt;&lt;div class=&#34;verse-content-body&#34;&gt;καὶ γνώσῃ ὅτι κύριος ὁ θεός σου, οὗτος θεός, θεὸς πιστός, ὁ φυλάσσων διαθήκην καὶ ἔλεος τοῖς ἀγαπῶσιν αὐτὸν καὶ τοῖς φυλάσσουσιν τὰς ἐντολὰς αὐτοῦ εἰς χιλίας γενεὰς&lt;/div&gt;&lt;span class=&#34;col-meta-cite&#34;&gt;Septuaginta: With Morphology, electronic ed. (Stuttgart: Deutsche Bibelgesellschaft, 1979), Dt 7:9.&lt;/span&gt;&lt;/div&gt;
+  &lt;!-- &lt;div class=&#34;verse-col greek-col&#34;&gt;
+    &lt;header class=&#34;col-meta-header&#34; role=&#34;button&#34; tabindex=&#34;0&#34; aria-label=&#34;Toggle Focus Mode&#34; onclick=&#34;toggleColumnFocus(this)&#34; onkeydown=&#34;if(event.key===&#39;Enter&#39;||event.key===&#39; &#39;){toggleColumnFocus(this); event.preventDefault();}&#34;&gt;&lt;span class=&#34;col-meta-label&#34;&gt;LXX&lt;/span&gt;&lt;div class=&#34;col-zoom-status-icon&#34;&gt;
+            &lt;svg class=&#34;zoom-icon-expand&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;13&#34; height=&#34;13&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2.5&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7&#34;/&gt;&lt;/svg&gt;
+            &lt;svg class=&#34;zoom-icon-collapse&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;13&#34; height=&#34;13&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2.5&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34;&gt;&lt;path d=&#34;M4 14h6v6M20 10h-6V4M14 10l7-7M10 14l-7 7&#34;/&gt;&lt;/svg&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+    
+    &lt;div class=&#34;verse-content-body&#34;&gt;καὶ γνώσῃ ὅτι κύριος ὁ θεός σου, οὗτος θεός, θεὸς πιστός, ὁ φυλάσσων διαθήκην καὶ ἔλεος τοῖς ἀγαπῶσιν αὐτὸν καὶ τοῖς φυλάσσουσιν τὰς ἐντολὰς αὐτοῦ εἰς χιλίας γενεὰς&lt;/div&gt;&lt;span class=&#34;col-meta-cite&#34;&gt;Septuaginta: With Morphology, electronic ed. (Stuttgart: Deutsche Bibelgesellschaft, 1979), Dt 7:9.&lt;/span&gt;&lt;/div&gt; --&gt;
 
 &lt;/div&gt;&lt;p&gt;
     &lt;span&gt;&amp;hellip;&lt;/span&gt;

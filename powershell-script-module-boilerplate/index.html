@@ -11,7 +11,9 @@
 <link rel="stylesheet" href="/normalize.css">
 <link rel="stylesheet" href="/styles.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Spectral:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Hebrew:wght@100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -244,6 +246,24 @@ var refTagger = {
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
 <p>&copy;&nbsp;2014&ndash;2026&nbsp;Joshua Poehls.</p>
 </div>
+
+<script>
+function toggleColumnFocus(headerElement) {
+    
+    const activeColumn = headerElement.closest('.verse-col');
+    const container = activeColumn.closest('.parallel-verse-container');
+    const isCurrentlyFocused = activeColumn.classList.contains('focused-column');
+    
+    if (isCurrentlyFocused) {
+        activeColumn.classList.remove('focused-column');
+        container.classList.remove('has-focused-column');
+    } else {
+        container.querySelectorAll('.verse-col').forEach(col => col.classList.remove('focused-column'));
+        activeColumn.classList.add('focused-column');
+        container.classList.add('has-focused-column');
+    }
+}
+</script>
   </footer>
 </body>
 </html>
