@@ -22,9 +22,9 @@ This week, our family is memorizing **Deuteronomy 7:9** from [Fighter Verses: Se
   וְיָ֣דַעְתָּ֔ כִּֽי־יְהוָ֥ה אֱלֹהֶ֖יךָ ה֣וּא הָֽאֱלֹהִ֑ים הָאֵל֙ הַֽנֶּאֱמָ֔ן שֹׁמֵ֧ר הַבְּרִ֣ית וְהַחֶ֗סֶד לְאֹהֲבָ֛יו וּלְשֹׁמְרֵ֥י מִצְוֹתָ֖ו לְאֶ֥לֶף דֹּֽור׃
   {{< /heb >}}
 
-  {{< grk label="LXX" cite="Septuaginta: With Morphology, electronic ed. (Stuttgart: Deutsche Bibelgesellschaft, 1979), Dt 7:9." >}}
+  <!-- {{< grk label="LXX" cite="Septuaginta: With Morphology, electronic ed. (Stuttgart: Deutsche Bibelgesellschaft, 1979), Dt 7:9." >}}
   καὶ γνώσῃ ὅτι κύριος ὁ θεός σου, οὗτος θεός, θεὸς πιστός, ὁ φυλάσσων διαθήκην καὶ ἔλεος τοῖς ἀγαπῶσιν αὐτὸν καὶ τοῖς φυλάσσουσιν τὰς ἐντολὰς αὐτοῦ εἰς χιλίας γενεὰς
-  {{< /grk >}}
+  {{< /grk >}} -->
 {{< /parallel >}}
 
 <!--more-->
