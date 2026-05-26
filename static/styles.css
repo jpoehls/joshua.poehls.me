@@ -20,6 +20,7 @@
 	--color-bg-subtle: #f9f9f9;
 	--color-banner: #efefef;
 	--color-banner-rule: #333;
+	--color-focused-bg: #e8f0fe; /* Warm, digital focus tint */
 	/* Short centered rule between adjacent blockquotes; <hr> is longer, same look */
 	--rule-blockquote-separator-width: 2.75rem;
 	--rule-hr-width: min(34rem, 72%);
@@ -925,92 +926,142 @@ article.post .footnotes ol {
 }
 
 /* --- Styles for parallel Bible texts --- */
-/* Core Grid Alignment Map */
+/* Core Flexbox Component Container Grid Base */
 .parallel-verse-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 32px;
+    gap: 1em;
     margin: 36px 0;
     width: 100%;
 }
 
-/* Individual Content Blocks */
+/* Individual Translation Blocks */
 .verse-col {
-    flex: 1 1 280px;
-    min-width: 0;
+	/* Hardcode the shorthand defaults, but split out flex-basis */
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 28%; /* Use a percentage base instead of a hard pixel min-width */
+    
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    
+    /* 1. Explicitly target flex-basis and opacity cleanly */
+    transition: opacity 0.3s ease,
+                transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+                
+    /* 2. Hardware acceleration hint to stop browser stuttering */
+    will-change: flex-basis, transform;
 }
 
-/* The Verse Content Body Inner Frame */
 .verse-content-body {
-    white-space: pre-wrap; /* Crucial for keeping your custom line-breaks and memory indents */
+    white-space: pre-wrap; /* Safeguards custom spacing indents and lines */
     margin-bottom: 8px;
+    padding: 4px 8px; /* Adds alignment padding to match the new header structure */
+    transition: font-size 0.3s ease;
 }
 
-/* 1. English Typography Rules */
-.english-col .verse-content-body {
-    direction: ltr;
-    text-align: left;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #222222;
+/* -------------------------------------------------------------
+   CLICKABLE METADATA HEADER ROW STYLE
+------------------------------------------------------------- */
+article.post .col-meta-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    background-color: var(--color-bg-subtle);
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    user-select: none; /* Prevents text highlighting when multi-clicking to zoom */
+    
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* 2. Hebrew Typography & Spacing Rules */
-.hebrew-col .verse-content-body {
-    direction: rtl;
-    text-align: right;
-    font-family: var(--font-hebrew);
-    font-size: 1.7rem;
-    line-height: 1.5; /* Expands to keep vowel points from clipping */
-    color: #111111;
+/* Hover state changes color across the entire top row layout */
+article.post .col-meta-header:hover {
+    background-color: var(--color-banner);
+    color: var(--color-link);
 }
 
-/* 3. Greek Typography Rules */
-.greek-col .verse-content-body {
-    direction: ltr;
-    text-align: left;
-    font-family: var(--font-greek);
-    font-size: 1.25rem;
-    line-height: 1.6;
-    color: #1c2d3d;
+/* Subtle Right-to-Left layout balance adjustments for Hebrew column headers */
+.hebrew-col .col-meta-header {
+    flex-direction: row-reverse;
 }
 
-/* Minimalist Shared Metadata Design (Labels & Footnotes) */
+/* Structural Text Design Settings */
 .col-meta-label {
-    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; */
-	font-family: var(--font-sans);
-    font-size: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: #8c8c8c; /* Very soft, understated gray header */
+    color: var(--color-muted);
+}
+.col-meta-header:hover .col-meta-label {
+    color: var(--color-link);
+}
+
+/* Icon Wrap Layer */
+.col-zoom-status-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-muted);
+    transition: color 0.2s ease;
+}
+.col-meta-header:hover .col-zoom-status-icon {
+    color: var(--color-link);
+}
+
+/* Icon State Swapping Core Logic */
+.col-zoom-status-icon .zoom-icon-collapse { display: none; }
+
+/* -------------------------------------------------------------
+   THE EXPANDED FOCUS LAYOUT ENGINE
+------------------------------------------------------------- */
+
+/* 1. Force active focus column to take up full page width */
+.parallel-verse-container.has-focused-column .verse-col.focused-column {
+	flex-basis: 100%; /* Transitioning this smoothly expands the row width */
+    order: -1;
+    border-bottom: 1px dashed var(--color-focused-bg);
+    padding-bottom: 24px;
     margin-bottom: 12px;
-    display: block;
 }
 
-.col-meta-cite {
-    font-family: var(--font-footnote);
-    font-size: var(--font-footnote-size);
-    color: #a0a0a0; /* Soft, out-of-the-way footnote tracker */
-    font-style: italic;
-    margin-top: auto; /* Pushes the citation lines neatly to the bottom boundary of each block */
-    display: block;
+/* Give the focused column's bar a distinct, colored active state */
+.verse-col.focused-column .col-meta-header {
+    background-color: var(--color-focused-bg);
+}
+.verse-col.focused-column .col-meta-label {
+    color: var(--color-link); /* Matches active focus tone */
 }
 
-/* Ensure right-aligned columns match the structural metadata text flow */
-.hebrew-col .col-meta-label,
-.hebrew-col .col-meta-cite {
-    direction: rtl;
-    text-align: right;
+/* Sibling layouts automatically tile side-by-side underneath */
+.parallel-verse-container.has-focused-column .verse-col:not(.focused-column) {
+	/* Give them an explicit base to scale down to, preventing weird fluid recalculation snaps */
+    flex-basis: 45%; 
+    opacity: 0.65;
 }
-.english-col .col-meta-label, .english-col .col-meta-cite,
-.greek-col .col-meta-label, .greek-col .col-meta-cite {
-    direction: ltr;
-    text-align: left;
-}
+
+/* Toggle icon transformations when focus is active */
+.verse-col.focused-column .zoom-icon-expand { display: none; }
+.verse-col.focused-column .zoom-icon-collapse { display: inline-block; color: var(--color-link); }
+
+/* 2. Dimensional Text Scaling: Magnifies typography when focused */
+.focused-column.english-col .verse-content-body { font-size: 1.4rem; }
+.focused-column.hebrew-col  .verse-content-body { font-size: 2.2rem; }
+.focused-column.greek-col   .verse-content-body { font-size: 1.6rem; }
+
+/* Default Base Typography Standard Layout Rules */
+.english-col .verse-content-body { font-family: var(--font-serif); font-size: 1.1rem; line-height: 1.6; color: var(--color-text); text-align: left; }
+.hebrew-col .verse-content-body  { font-family: var(--font-hebrew); font-size: 1.6rem; line-height: 1.6; color: var(--color-text); text-align: right; direction: rtl; }
+.greek-col .verse-content-body   { font-family: var(--font-greek); font-size: 1.2rem; line-height: 1.7; color: var(--color-text); text-align: left; }
+
+.col-meta-cite { font-family: var(--font-footnote); font-size: var(--font-footnote-size); color: var(--color-muted); font-style: italic; margin-top: auto; padding: 0 8px; display: block; }
+.hebrew-col .col-meta-cite { direction: rtl; text-align: right; }
 
 /* --- Print --- */
 .printonly {

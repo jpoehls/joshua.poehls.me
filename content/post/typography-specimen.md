@@ -107,19 +107,26 @@ Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad mi
 
 Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-## Figures (images from existing posts)
+## Images (Singles)
 
 {{< img src="/2017/vincent-van-gogh-letters/vgletter.jpg" caption="Facsimile borrowed from the van Gogh letters post — tests caption size and Georama figcaption." >}}
 
 {{< img src="/2014/10/worlds-loudest-sound/krakatoa.jpg" caption="Krakatoa illustration from another archive post — second image to compare vertical rhythm." link="https://example.com" >}}
 
+## Images (Gallery)
+
+{{< gallery title="Gallery Title" >}}
+  {{< galleryimg src="/2017/vincent-van-gogh-letters/vgletter.jpg" caption="Facsimile borrowed from the van Gogh letters post — tests caption size and Georama figcaption." >}}
+  {{< galleryimg src="/2014/10/worlds-loudest-sound/krakatoa.jpg" caption="Krakatoa illustration from another archive post — second image to compare vertical rhythm." >}}
+{{< /gallery >}}
+
 ## Table (markdown)
 
 | Key        | Role                          |
 | ---------- | ----------------------------- |
-| `body`     | Spectral 300, main reading    |
-| `h1`–`h6`  | Georama headings              |
-| `pre`/`code` | IBM Plex Mono             |
+| `body`     | A first row    |
+| `h1`–`h6`  | Second row, too              |
+| `pre`/`code` | Finally, a third row             |
 
 ## Code
 
@@ -155,6 +162,44 @@ function Get-Specimen {
     Get-Content -LiteralPath $Path
 }
 ```
+
+## Parallel (2 Columns)
+
+{{< parallel >}}
+  {{< eng label="CSB" cite="Christian Standard Bible (Nashville, TN: Holman Bible Publishers, 2020), Dt 7:9." >}}
+  Know that the LORD your God is God,
+  {{< tab >}}the faithful God
+  {{<tab>}}who keeps his gracious covenant loyalty
+  {{<tab>}}{{<tab>}}for a thousand generations
+  {{<tab>}}{{<tab>}}with those who love him
+  {{<tab>}}{{<tab>}}{{<tab>}}and keep his commands.
+  {{< /eng >}}
+
+  {{< heb label="Hebrew" cite="K. Elliger, W. Rudolph, and Gérard E. Weil, Biblia Hebraica Stuttgartensia, electronic ed. (Stuttgart: German Bible Society, 2003), Dt 7:9." >}}
+  וְיָ֣דַעְתָּ֔ כִּֽי־יְהוָ֥ה אֱלֹהֶ֖יךָ ה֣וּא הָֽאֱלֹהִ֑ים הָאֵל֙ הַֽנֶּאֱמָ֔ן שֹׁמֵ֧ר הַבְּרִ֣ית וְהַחֶ֗סֶד לְאֹהֲבָ֛יו וּלְשֹׁמְרֵ֥י מִצְוֹתָ֖ו לְאֶ֥לֶף דֹּֽור׃
+  {{< /heb >}}
+{{< /parallel >}}
+
+## Parallel (3 Columns)
+
+{{< parallel >}}
+  {{< eng label="CSB" cite="Christian Standard Bible (Nashville, TN: Holman Bible Publishers, 2020), Dt 7:9." >}}
+  Know that the LORD your God is God,
+  {{< tab >}}the faithful God
+  {{<tab>}}who keeps his gracious covenant loyalty
+  {{<tab>}}{{<tab>}}for a thousand generations
+  {{<tab>}}{{<tab>}}with those who love him
+  {{<tab>}}{{<tab>}}{{<tab>}}and keep his commands.
+  {{< /eng >}}
+
+  {{< heb label="Hebrew" cite="K. Elliger, W. Rudolph, and Gérard E. Weil, Biblia Hebraica Stuttgartensia, electronic ed. (Stuttgart: German Bible Society, 2003), Dt 7:9." >}}
+  וְיָ֣דַעְתָּ֔ כִּֽי־יְהוָ֥ה אֱלֹהֶ֖יךָ ה֣וּא הָֽאֱלֹהִ֑ים הָאֵל֙ הַֽנֶּאֱמָ֔ן שֹׁמֵ֧ר הַבְּרִ֣ית וְהַחֶ֗סֶד לְאֹהֲבָ֛יו וּלְשֹׁמְרֵ֥י מִצְוֹתָ֖ו לְאֶ֥לֶף דֹּֽור׃
+  {{< /heb >}}
+
+  {{< grk label="LXX" cite="Septuaginta: With Morphology, electronic ed. (Stuttgart: Deutsche Bibelgesellschaft, 1979), Dt 7:9." >}}
+  καὶ γνώσῃ ὅτι κύριος ὁ θεός σου, οὗτος θεός, θεὸς πιστός, ὁ φυλάσσων διαθήκην καὶ ἔλεος τοῖς ἀγαπῶσιν αὐτὸν καὶ τοῖς φυλάσσουσιν τὰς ἐντολὰς αὐτοῦ εἰς χιλίας γενεὰς
+  {{< /grk >}}
+{{< /parallel >}}
 
 ## Long closing paragraph
 

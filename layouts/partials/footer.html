@@ -3,3 +3,21 @@
 <p>Browse the <a href="{{ "archives" | relURL }}">archives</a> if you're bored.</p>
 <p>&copy;&nbsp;2014&ndash;{{ now.Format "2006"}}&nbsp;{{ .Site.Params.author }}.</p>
 </div>
+
+<script>
+function toggleColumnFocus(headerElement) {
+    // Finds the parent column block directly from the header row wrapper
+    const activeColumn = headerElement.closest('.verse-col');
+    const container = activeColumn.closest('.parallel-verse-container');
+    const isCurrentlyFocused = activeColumn.classList.contains('focused-column');
+    
+    if (isCurrentlyFocused) {
+        activeColumn.classList.remove('focused-column');
+        container.classList.remove('has-focused-column');
+    } else {
+        container.querySelectorAll('.verse-col').forEach(col => col.classList.remove('focused-column'));
+        activeColumn.classList.add('focused-column');
+        container.classList.add('has-focused-column');
+    }
+}
+</script>
