@@ -23,8 +23,18 @@ main:not(:has(article.post)) {
 
 ul,
 ol {
-	margin-left: var(--space-xl);
+	margin-left: var(--space-xxl);
 	padding-left: 0;
+}
+
+ul li,
+ol li {
+	margin-bottom: var(--space-sm);
+}
+
+ul li:last-child,
+ol li:last-child {
+	margin-bottom: 0;
 }
 
 ul {
@@ -33,6 +43,11 @@ ul {
 
 ul li ul {
 	list-style-type: circle;
+	margin-top: var(--space-sm);
+}
+
+ol li ol {
+	margin-top: var(--space-sm);
 }
 
 table.noborder td {

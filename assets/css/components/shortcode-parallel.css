@@ -143,9 +143,9 @@ article.post .col-meta-header:hover {
 .focused-column.greek-col   .verse-content-body { font-size: 1.6rem; }
 
 /* Default Base Typography Standard Layout Rules */
-.english-col .verse-content-body { font-family: var(--font-serif); font-size: 1.1rem; line-height: 1.6; color: var(--color-text); text-align: left; }
-.hebrew-col .verse-content-body  { font-family: var(--font-hebrew); font-size: 1.6rem; line-height: 1.6; color: var(--color-text); text-align: right; direction: rtl; }
-.greek-col .verse-content-body   { font-family: var(--font-greek); font-size: 1.2rem; line-height: 1.7; color: var(--color-text); text-align: left; }
+.english-col .verse-content-body { font-family: var(--font-serif); font-size: 1.1rem; color: var(--color-text); text-align: left; }
+.hebrew-col .verse-content-body  { font-family: var(--font-hebrew); font-size: 1.6rem; color: var(--color-text); text-align: right; direction: rtl; }
+.greek-col .verse-content-body   { font-family: var(--font-greek); font-size: 1.2rem; color: var(--color-text); text-align: left; }
 
 .col-meta-cite { font-family: var(--font-footnote); font-size: var(--font-footnote-size); color: var(--color-muted); font-style: italic; margin-top: auto; padding: 0 var(--space-lg) var(--space-md) var(--space-lg); display: block; }
 .hebrew-col .col-meta-cite { direction: rtl; text-align: right; }

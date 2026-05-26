@@ -1,7 +1,7 @@
 /* Blockquotes (long-quote: bilateral indent, tighter lead — loosely Turabian-like) */
 blockquote {
 	font-size: 0.88em;
-	line-height: 1.32;
+	line-height: var(--line-height-base);
 	margin-block: var(--space-md);
 	margin-inline: 0;
 	padding-block: var(--space-xs);
@@ -11,7 +11,7 @@ blockquote {
 article.post blockquote,
 article.post--excerpt .post-summary blockquote {
 	font-size: calc(var(--font-post-body) * 0.88);
-	line-height: 1.32;
+	line-height: var(--line-height-base);
 }
 
 /* Match in-quote ¶ rhythm to body; strip UA p margins so quote mb isn't doubled before next ¶ */

@@ -74,12 +74,14 @@
 	--font-post-h6: 1rem;
 	--font-code: 1.0625rem;
 	--font-code-in-post: 0.85em;
-	--font-footnote-size: 0.75rem;
+	--font-footnote-size: 0.8rem;
 	--font-figcaption: 0.875rem;
 	--font-fin: 2.5rem;
 	/* Glyph for .fin-symbol::before (U+29BF); change once for whole site */
 	--fin-symbol: "\29BF";
 	--font-footer: 1.125rem;
+
+	--line-height-base: 1.45;
 
 	--wrap-max: 60rem;
 	--wrap-pad: 1.25rem;

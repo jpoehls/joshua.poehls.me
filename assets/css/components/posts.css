@@ -4,7 +4,7 @@ article.post > div {
 	margin-top: 0;
 	margin-bottom: var(--space-md);
 	font-size: var(--font-post-body);
-	line-height: 1.65;
+	line-height: var(--line-height-base);
 	text-indent: 0;
 }
 
@@ -135,7 +135,7 @@ article.post .post-tags {
 }
 
 article.post .post-tags-heading {
-	margin: 0 0 0 var(--space-sm);
+	margin: 0 0 var(--space-sm) 0;
 	font-size: 0.75rem;
 	font-weight: var(--font-sans-weight-semibold);
 	letter-spacing: 0.08em;
@@ -162,7 +162,7 @@ article.post .post-tags-list a {
 article.post--excerpt .post-summary {
 	margin-top: var(--space-md);
 	font-size: var(--font-post-body);
-	line-height: 1.65;
+	line-height: var(--line-height-base);
 }
 
 article.post--excerpt .post-summary > :first-child {

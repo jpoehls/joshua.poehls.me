@@ -15,7 +15,7 @@ body {
 	font-family: var(--font-serif);
 	font-weight: 300;
 	font-size: var(--font-root);
-	line-height: 1.65;
+	line-height: var(--line-height-base);
 	color: var(--color-text);
 	background: var(--color-page-bg);
 	overflow-wrap: break-word;
