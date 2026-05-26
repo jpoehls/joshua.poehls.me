@@ -26,6 +26,7 @@
 	margin: 0;
 	letter-spacing: 0;
 	white-space: nowrap;
+	flex-shrink: 0; /* Prevent title from shrinking */
 }
 
 .banner-tagline {
@@ -33,6 +34,11 @@
 	font-weight: var(--font-weight-light);
 	font-style: italic;
 	white-space: nowrap;
+	flex-shrink: 1; /* Allow tagline to shrink */
+	min-width: 0; /* Allow shrinking below content size */
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: right;
 	/* Debossed stamp effect - pressed into the surface */
 	color: var(--color-banner-text-muted);
 	text-shadow:

@@ -1,6 +1,6 @@
 baseURL = "https://joshua.poehls.me/"
 languageCode = "en-us"
-title = "joshua poehls | (not so) silent thoughts"
+title = "joshua poehls | God is good"
 
 footnoteAnchorPrefix = "fn"
 footnoteReturnLinkContents = "↩"
@@ -38,7 +38,7 @@ path = "p"
 
 [params]
 author = "Joshua Poehls"
-tagline = "(not so) silent thoughts"
+tagline = "God is good"
 
 [taxonomies]
 	tag = "tags"
