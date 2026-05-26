@@ -14,7 +14,7 @@
 
 
 
-<link rel="stylesheet" href="/styles.min.1e03aaed3a4e11ee3ce5fe951ebf48903110caad26f837a5c92183985fb72499.css" integrity="sha256-HgOq7TpOEe485f6VHr9IkDEQyq0m&#43;DelySGDmF&#43;3JJk=">
+<link rel="stylesheet" href="/styles.min.e1f3c8c166806a7b1fddfd11ce1636ee0877400ccbabe673fdc55b48b31dd7a9.css" integrity="sha256-4fPIwWaAansf3f0RzhY27gh3QAzLq&#43;Zz/cVbSLMd16k=">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,13 +42,19 @@
 <body>
   <header class="site-banner">
     <div class="site-wrap">
-	<h1>
-		<small>I am</small>
-		<a href="/">Joshua Poehls</a>.
-		<small class="contact-link"><a href="/contact">Say hello</a></small>
-		<small class="archives-link"><a href="/archives">Archives</a></small>
-		<span class="aka">(not so) silent thoughts</span>
-	</h1>
+	<div class="banner-top">
+		<h1>
+			<small>I am</small>
+			<a href="/">Joshua Poehls</a>
+			<small>.</small>
+		</h1>
+		<span class="banner-tagline">(not so) silent thoughts</span>
+	</div>
+	<nav class="banner-nav">
+		<a href="/contact">Say hello</a>
+		<span class="nav-separator">//</span>
+		<a href="/archives">Archives</a>
+	</nav>
 </div>
 
   </header>
@@ -58,7 +64,9 @@
 
 <div class="site-wrap">
 	
-	<article class="post post--excerpt">
+		<div class="post-list-grid">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/single-day-of-eternity/" class="post-title-link">Single day of eternity</a>
@@ -67,7 +75,8 @@
 			<time datetime="2013-02-26 21:55:57 -0500 -0500" pubdate="pubdate">Tuesday, 26 February 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><blockquote>
+	<div class="post-summary">
+		<blockquote>
 <p>High up in the North in the land called Svithjod, there stands a rock.
 It is a hundred miles high and a hundred miles wide.
 Once every thousand years a little bird comes to this rock to sharpen its beak.
@@ -75,12 +84,14 @@ When the rock has thus been worn away, then a single day of eternity will have g
 </blockquote>
 <p>-<a href="http://books.google.com/books?id=RskHAAAAIAAJ&amp;pg=PA1#v=onepage&amp;q&amp;f=false">Hendrik Willem Van Loon</a></p>
 	</div>
-	
+	<p class="post-read-more">
+		
+		<a href="/2013/single-day-of-eternity/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
+	</p>
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/using-unix-terminal-shortcuts-in-the-windows-command-prompt/" class="post-title-link">Using Unix terminal shortcuts in the Windows command prompt</a>
@@ -89,7 +100,8 @@ When the rock has thus been worn away, then a single day of eternity will have g
 			<time datetime="2013-02-20 21:52:29 -0500 -0500" pubdate="pubdate">Wednesday, 20 February 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Unix terminals have a few basic keyboard shortcuts.</p>
+	<div class="post-summary">
+		<p>Unix terminals have a few basic keyboard shortcuts.</p>
 <ul>
 <li><code>CTRL+L</code> to clear the window</li>
 <li><code>CTRL+D</code> to close the window</li>
@@ -99,17 +111,14 @@ When the rock has thus been worn away, then a single day of eternity will have g
 <p><em>If you don&rsquo;t already have it installed, you can follow the steps in <a href="/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/">my blog post</a>.</em></p>
 <p>Add this magic to your AutoHotkey script to enable these shortcuts in the Windows command prompt and PowerShell.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/using-unix-terminal-shortcuts-in-the-windows-command-prompt/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/using-unix-terminal-shortcuts-in-the-windows-command-prompt/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/using-enum-flags-to-model-user-roles-in-csharp-and-sql/" class="post-title-link">Using enum flags to model user roles in C#, SQL, and Go</a>
@@ -118,7 +127,8 @@ When the rock has thus been worn away, then a single day of eternity will have g
 			<time datetime="2013-02-12 21:48:50 -0500 -0500" pubdate="pubdate">Tuesday, 12 February 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Using an enum flags property to hold users&rsquo; roles is just one trick
+	<div class="post-summary">
+		<p>Using an enum flags property to hold users&rsquo; roles is just one trick
 I&rsquo;ve learned from <a href="https://twitter.com/SeiginoRaikou">@SeiginoRaikou</a>,
 one of my co-geniuses at <a href="https://www.interworks.com/">InterWorks</a>.</p>
 <p>Historically I have always modeled user roles with a <code>Role</code> table
@@ -140,17 +150,14 @@ and a many-to-many relationship with my <code>User</code> table.</p>
 With flags, there is only ever one column to work with and it is an integer.
 No second table. No joins or second query.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/using-enum-flags-to-model-user-roles-in-csharp-and-sql/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/using-enum-flags-to-model-user-roles-in-csharp-and-sql/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/open-graph-twitter-cards-and-your-blog/" class="post-title-link">Open Graph Twitter Cards and Your Blog</a>
@@ -159,7 +166,8 @@ No second table. No joins or second query.</p>
 			<time datetime="2013-02-01 21:43:53 -0500 -0500" pubdate="pubdate">Friday, 1 February 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Have you ever wondered why some web pages have a great preview when linked on Twitter, Facebook, or Google+ while others look so lacking?</p>
+	<div class="post-summary">
+		<p>Have you ever wondered why some web pages have a great preview when linked on Twitter, Facebook, or Google+ while others look so lacking?</p>
 <style>
 	.carousel {
 		width: 600px;
@@ -180,17 +188,14 @@ No second table. No joins or second query.</p>
 <div style="clear: both;"></div>
 <p>What you are seeing are formats such as the <a href="http://ogp.me/">Open Graph protocol</a> and <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a> at work.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/open-graph-twitter-cards-and-your-blog/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/open-graph-twitter-cards-and-your-blog/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/using-bookmarks-to-quickly-navigate-in-powershell/" class="post-title-link">Using bookmarks to quickly navigate in PowerShell</a>
@@ -199,7 +204,8 @@ No second table. No joins or second query.</p>
 			<time datetime="2013-01-31 21:32:57 -0500 -0500" pubdate="pubdate">Thursday, 31 January 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>There are a few folders that I spend a lot of time and it is surprisingly slow to type <code>cd c:\path\to\my\project</code> many times a day. I solved this by creating a module that allows me to bookmark directories and navigate to them using aliases. Simply put, I can shorten the previous command to <code>g project</code>.</p>
+	<div class="post-summary">
+		<p>There are a few folders that I spend a lot of time and it is surprisingly slow to type <code>cd c:\path\to\my\project</code> many times a day. I solved this by creating a module that allows me to bookmark directories and navigate to them using aliases. Simply put, I can shorten the previous command to <code>g project</code>.</p>
 <p>Usage looks like this:</p>
 <pre>
 <b>Set-Bookmark</b> &lt;name&gt; &lt;path&gt;
@@ -211,17 +217,14 @@ No second table. No joins or second query.</p>
 </pre>
 <p>I alias <code>Invoke-Bookmark</code> as <code>g</code> for speed.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/using-bookmarks-to-quickly-navigate-in-powershell/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/using-bookmarks-to-quickly-navigate-in-powershell/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/benchmarking-scripts-and-programs-with-powershell/" class="post-title-link">Benchmarking scripts and programs with PowerShell</a>
@@ -230,7 +233,8 @@ No second table. No joins or second query.</p>
 			<time datetime="2013-01-24 21:23:08 -0500 -0500" pubdate="pubdate">Thursday, 24 January 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>UNIX has the <code>time</code> command that will measure the execution time of a program. Timings are returned for the wall clock and CPU time. It looks something like this.</p>
+	<div class="post-summary">
+		<p>UNIX has the <code>time</code> command that will measure the execution time of a program. Timings are returned for the wall clock and CPU time. It looks something like this.</p>
 <pre>
 <b>$</b> time ping google.com -c 1
 <span class="comment">PING google.com (74.125.225.232) 56(84) bytes of data.
@@ -246,17 +250,14 @@ sys    0m0.100s
 </pre>
 <p>The <code>real</code>, <code>user</code>, and <code>sys</code> information at the end is the output from <code>time</code>. StackOverflow has a <a href="http://stackoverflow.com/questions/556405/what-do-real-user-and-sys-mean-in-the-output-of-time1/556411#556411">great explanation</a> of what those values mean.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/benchmarking-scripts-and-programs-with-powershell/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/benchmarking-scripts-and-programs-with-powershell/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/an-mklink-powershell-module/" class="post-title-link">An MKLINK PowerShell Module</a>
@@ -265,22 +266,20 @@ sys    0m0.100s
 			<time datetime="2013-01-22 21:07:03 -0500 -0500" pubdate="pubdate">Tuesday, 22 January 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">MKLINK</a> is a very useful utility on Windows. Unfortunately there aren&rsquo;t any native PowerShell functions that replace it so we still have to shell out to the command prompt.</p>
+	<div class="post-summary">
+		<p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">MKLINK</a> is a very useful utility on Windows. Unfortunately there aren&rsquo;t any native PowerShell functions that replace it so we still have to shell out to the command prompt.</p>
 <p>This can be made less painful with a helper function that will pipe all arguments to the MKLINK command.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#cf222e">function</span><span style="color:#fff"> </span><span style="color:#6639ba">mklink</span> <span style="color:#1f2328">{</span> cmd <span style="color:#1f2328">/</span>c mklink <span style="color:#953800">$args</span> <span style="color:#1f2328">}</span>
 </span></span></code></pre></div><p>Personally though, I prefer to use native PowerShell functions whenever possible so I put together a module that provides wrappers for the key functionality of MKLINK.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/an-mklink-powershell-module/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/an-mklink-powershell-module/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2012/killing-processes-in-disconnected-terminal-service-sessions/" class="post-title-link">Killing Processes In Disconnected Terminal Service Sessions</a>
@@ -289,21 +288,19 @@ sys    0m0.100s
 			<time datetime="2012-12-12 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wednesday, 12 December 2012</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Usually it is best to configure your terminal service policy to log out disconnected sessions, however there may be cases where you only want to kill specific applications when the user disconnects.</p>
+	<div class="post-summary">
+		<p>Usually it is best to configure your terminal service policy to log out disconnected sessions, however there may be cases where you only want to kill specific applications when the user disconnects.</p>
 <p>This is easy to do with a PowerShell script that you run periodically as a scheduled task. The processes won&rsquo;t be killed <em>immediately</em> when the user disconnects but will be killed shortly after.</p>
 <p>This script will, by default, only kill the OUTLOOK processes in disconnected sessions after waiting 15 seconds for it to gracefully close. It is trivial to tweak the script to kill whichever processes you care about.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2012/killing-processes-in-disconnected-terminal-service-sessions/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2012/killing-processes-in-disconnected-terminal-service-sessions/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2012/crime-rates-are-dropping/" class="post-title-link">Crime Rates Are Dropping</a>
@@ -312,7 +309,8 @@ sys    0m0.100s
 			<time datetime="2012-08-13 00:00:00 &#43;0000 UTC" pubdate="pubdate">Monday, 13 August 2012</time>
 		</p>
 	</header>
-	<div class="post-summary"><script type="text/javascript" src="http://www.google.com/jsapi"></script>
+	<div class="post-summary">
+		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load('visualization', '1', {packages: ['corechart']});
     </script>
@@ -328,17 +326,14 @@ sys    0m0.100s
     that I occasionally listen to and always enjoy. He does a good job, in my opinion, of thinking
     about situations from both sides of the fence.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2012/crime-rates-are-dropping/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2012/crime-rates-are-dropping/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2012/powershell-batch-files-exit-codes/" class="post-title-link">PowerShell, batch files, and exit codes. Recipes &amp; Secrets.</a>
@@ -347,22 +342,22 @@ sys    0m0.100s
 			<time datetime="2012-06-23 10:43:31 -0600 -0600" pubdate="pubdate">Saturday, 23 June 2012</time>
 		</p>
 	</header>
-	<div class="post-summary"><h2 id="tldr">TL;DR;</h2>
+	<div class="post-summary">
+		<h2 id="tldr">TL;DR;</h2>
 <blockquote>
 <p><strong>Update:</strong> If you want to save some time, skip reading this and just use my <a href="/powershell-script-boilerplate">PowerShell Script Boilerplate</a>. It includes an excellent batch file wrapper, argument escaping, and error code bubbling.</p>
 </blockquote>
 <p><code>PowerShell.exe</code> doesn&rsquo;t return correct exit codes when using the <code>-File</code> option. Use <code>-Command</code> instead. <em>(<a href="https://connect.microsoft.com/PowerShell/feedback/details/750653/powershell-exe-doesn-t-return-correct-exit-codes-when-using-the-file-option">Vote for this issue</a> on Microsoft Connect.)</em></p>
 <p><a href="#bat-wrapper">This</a> is a batch file wrapper for executing PowerShell scripts. It forwards arguments to PowerShell and correctly bubbles up the exit code (when it can).</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2012/powershell-batch-files-exit-codes/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2012/powershell-batch-files-exit-codes/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
+			
+		</div>
 	
 
 	<nav class="pagination">
@@ -378,6 +373,7 @@ sys    0m0.100s
 	<a href="/p/5/" aria-label="Recent Posts"><span aria-hidden="true">Recent Posts &raquo;</span></a>
 
 </nav>
+	<p class="fin-symbol"></p>
 	<script>
 var refTagger = {
 	settings: {

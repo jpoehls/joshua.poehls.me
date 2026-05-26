@@ -14,7 +14,7 @@
 
 
 
-<link rel="stylesheet" href="/styles.min.1e03aaed3a4e11ee3ce5fe951ebf48903110caad26f837a5c92183985fb72499.css" integrity="sha256-HgOq7TpOEe485f6VHr9IkDEQyq0m&#43;DelySGDmF&#43;3JJk=">
+<link rel="stylesheet" href="/styles.min.e1f3c8c166806a7b1fddfd11ce1636ee0877400ccbabe673fdc55b48b31dd7a9.css" integrity="sha256-4fPIwWaAansf3f0RzhY27gh3QAzLq&#43;Zz/cVbSLMd16k=">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,13 +42,19 @@
 <body>
   <header class="site-banner">
     <div class="site-wrap">
-	<h1>
-		<small>I am</small>
-		<a href="/">Joshua Poehls</a>.
-		<small class="contact-link"><a href="/contact">Say hello</a></small>
-		<small class="archives-link"><a href="/archives">Archives</a></small>
-		<span class="aka">(not so) silent thoughts</span>
-	</h1>
+	<div class="banner-top">
+		<h1>
+			<small>I am</small>
+			<a href="/">Joshua Poehls</a>
+			<small>.</small>
+		</h1>
+		<span class="banner-tagline">(not so) silent thoughts</span>
+	</div>
+	<nav class="banner-nav">
+		<a href="/contact">Say hello</a>
+		<span class="nav-separator">//</span>
+		<a href="/archives">Archives</a>
+	</nav>
 </div>
 
   </header>
@@ -58,7 +64,9 @@
 
 <div class="site-wrap">
 	
-	<article class="post post--excerpt">
+		<div class="post-list-grid">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2012/syntax-highlighting-for-nginx-in-vim/" class="post-title-link">Syntax highlighting for Nginx in VIM</a>
@@ -67,7 +75,8 @@
 			<time datetime="2012-06-10 00:00:00 &#43;0000 UTC" pubdate="pubdate">Sunday, 10 June 2012</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Thanks to <a href="http://www.vim.org/scripts/script.php?script_id=1886">Evan Miller</a>, adding VIM syntax highlighting for Nginx config files is a breeze.</p>
+	<div class="post-summary">
+		<p>Thanks to <a href="http://www.vim.org/scripts/script.php?script_id=1886">Evan Miller</a>, adding VIM syntax highlighting for Nginx config files is a breeze.</p>
 <p>First, install VIM if you haven&rsquo;t already. On Arch Linux, it goes like this:</p>
 <pre tabindex="0"><code>&gt; pacman -Sy vim
 </code></pre><p>Create a folder for your VIM syntax files.</p>
@@ -76,17 +85,14 @@
 <pre tabindex="0"><code>&gt; curl http://www.vim.org/scripts/download_script.php?src_id=14376 -o ~/.vim/syntax/nginx.vim
 </code></pre><p>Add it to VIM&rsquo;s file type definitions. Make sure to adjust the path to your Nginx installation if you need to.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2012/syntax-highlighting-for-nginx-in-vim/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2012/syntax-highlighting-for-nginx-in-vim/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2012/storing-your-raspberry-pi-configuration-in-git/" class="post-title-link">Storing your Raspberry Pi configuration in Git</a>
@@ -95,20 +101,18 @@
 			<time datetime="2012-06-08 00:00:00 &#43;0000 UTC" pubdate="pubdate">Friday, 8 June 2012</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Storing your Raspberry Pi&rsquo;s configuration files in Git is a great way to protect yourself from really bad accidents. You get a backup of all your configs and revision control to rollback those nasty changes. Best of all, you don&rsquo;t have to manually create backup copies of each individual file. (<code>cp rc.conf rc.conf.bak</code> anyone?)</p>
+	<div class="post-summary">
+		<p>Storing your Raspberry Pi&rsquo;s configuration files in Git is a great way to protect yourself from really bad accidents. You get a backup of all your configs and revision control to rollback those nasty changes. Best of all, you don&rsquo;t have to manually create backup copies of each individual file. (<code>cp rc.conf rc.conf.bak</code> anyone?)</p>
 <p>I should note that I&rsquo;m running <a href="http://archlinuxarm.org">Arch Linux ARM</a>, but this should apply fairly equally to Debian and other distros.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2012/storing-your-raspberry-pi-configuration-in-git/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2012/storing-your-raspberry-pi-configuration-in-git/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows/" class="post-title-link">Soft links, hard links, junctions, oh my! Symlinks on Windows, a how-to</a>
@@ -117,7 +121,8 @@
 			<time datetime="2012-06-07 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thursday, 7 June 2012</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>First, a quick definition of terms. There are three kinds of &ldquo;<a href="https://en.wikipedia.org/wiki/Symbolic_link">symlinks</a>&rdquo; on Windows.</p>
+	<div class="post-summary">
+		<p>First, a quick definition of terms. There are three kinds of &ldquo;<a href="https://en.wikipedia.org/wiki/Symbolic_link">symlinks</a>&rdquo; on Windows.</p>
 <ul>
 <li>soft links (also called symlinks, or symbolic links)</li>
 <li>hard links</li>
@@ -127,17 +132,14 @@
 <p>Hard links can only be created for files.</p>
 <p>Both soft and hard links must be created on the same volume as the target. i.e. You can&rsquo;t link something on <code>C:\</code> to something on <code>D:\</code>.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2012/soft-links-hard-links-junctions-oh-my-symlinks-on-windows/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/" class="post-title-link">Can&#39;t access network resources over VPN connection on Mac OS X?</a>
@@ -146,20 +148,18 @@
 			<time datetime="2012-04-18 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wednesday, 18 April 2012</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>So you have your shiny OS X connected to a VPN, good deal! The problem is, you can&rsquo;t connect to any of the servers and workstations on the VPN. What could be wrong?</p>
+	<div class="post-summary">
+		<p>So you have your shiny OS X connected to a VPN, good deal! The problem is, you can&rsquo;t connect to any of the servers and workstations on the VPN. What could be wrong?</p>
 <p>It could be that OS X is still trying to find those machines on the internet instead of looking for them on the VPN connection. We can tell OS X to check the VPN connection first by giving it a higher priority than the other network connections on your Mac.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2012/cant-access-network-resources-over-vpn-connection-on-mac-os-x/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/" class="post-title-link">Use AutoHotkey to remap your numpad keys to something useful</a>
@@ -168,21 +168,19 @@
 			<time datetime="2011-12-14 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wednesday, 14 December 2011</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Are you tired of having to remember that <code>ALT+0176</code> is the degree symbol <strong>°</strong> ? Maybe there are other special characters that you want to be able to type easier.</p>
+	<div class="post-summary">
+		<p>Are you tired of having to remember that <code>ALT+0176</code> is the degree symbol <strong>°</strong> ? Maybe there are other special characters that you want to be able to type easier.</p>
 <p>Personally it was the degree symbol that got me, and since I never use my numpad, I decided it would be much more useful if those keys actually entered stuff that I cared about.</p>
 <p>Here is a quick tutorial in using AutoHotkey to remap one of your numpad keys to the degree symbol. Of course you can expand on this beginning easily to solve whatever woes you are having.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2011/use-autohotkey-to-remap-your-numpad-keys-to-something-useful/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2011/what-i-miss-in-vanilla-visual-studio/" class="post-title-link">What I miss in vanilla Visual Studio</a>
@@ -191,7 +189,8 @@
 			<time datetime="2011-10-20 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thursday, 20 October 2011</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>For the past week or so I&rsquo;ve gone without any Visual Studio enhancements. No <a href="http://www.jetbrains.com/resharper">ReSharper</a>. No <a href="http://www.devexpress.com/coderush">CodeRush</a>. I knew that I didn&rsquo;t leverage even a fraction of what these tools offer so I wanted to find out what I would miss.</p>
+	<div class="post-summary">
+		<p>For the past week or so I&rsquo;ve gone without any Visual Studio enhancements. No <a href="http://www.jetbrains.com/resharper">ReSharper</a>. No <a href="http://www.devexpress.com/coderush">CodeRush</a>. I knew that I didn&rsquo;t leverage even a fraction of what these tools offer so I wanted to find out what I would miss.</p>
 <p>Here&rsquo;s what I&rsquo;m missing the most. In no particular order.</p>
 <ol>
 <li>
@@ -201,17 +200,14 @@
 <p><strong>Shortcut for moving a class</strong> to its own file.</p>
 <p>I like to build up features in the same file (for speed) and then refactor the classes into their own files later. A tedius process of copy/paste.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2011/what-i-miss-in-vanilla-visual-studio/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2011/what-i-miss-in-vanilla-visual-studio/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2011/tortoise-svn-powershell-helper-function/" class="post-title-link">Tortoise SVN PowerShell helper function</a>
@@ -220,22 +216,20 @@
 			<time datetime="2011-10-12 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wednesday, 12 October 2011</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Do you work from the command line? Use PowerShell? SVN?</p>
+	<div class="post-summary">
+		<p>Do you work from the command line? Use PowerShell? SVN?</p>
 <p>While the SVN command line client is certainly usable, there are definitely times where a GUI is more convenient. Specifically during a commit where you want to easily check/uncheck files and view diffs.</p>
 <p>I got tired of having to open an explorer window to get into Tortoise SVN&rsquo;s commit screen so I wrote this helper function.</p>
 <p>Put this into your profile and you can start typing <code>tsvn commit</code> (or just <code>tsvn</code>) to open the Tortoise SVN commit dialog. Enjoy!</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2011/tortoise-svn-powershell-helper-function/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2011/tortoise-svn-powershell-helper-function/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2011/take-your-powershell-profile-everywhere-with-dropbox/" class="post-title-link">Take your PowerShell profile everywhere with Dropbox</a>
@@ -244,7 +238,8 @@
 			<time datetime="2011-03-25 00:00:00 &#43;0000 UTC" pubdate="pubdate">Friday, 25 March 2011</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>I&rsquo;ll cover these prerequisites in brief, but for this tip I&rsquo;m going to assume a few things:</p>
+	<div class="post-summary">
+		<p>I&rsquo;ll cover these prerequisites in brief, but for this tip I&rsquo;m going to assume a few things:</p>
 <ul>
 <li>You are running Windows and have <a href="http://msdn.microsoft.com/en-us/library/aa973757.aspx">PowerShell</a> installed.</li>
 <li>You are familiar enough with PowerShell to care about your <a href="http://msdn.microsoft.com/en-us/library/bb613488.aspx">$PROFILE</a>.</li>
@@ -252,17 +247,14 @@
 <h3 id="what-is-powershell">What is PowerShell?</h3>
 <p>In short, PowerShell is a new scripting language from Microsoft designed to replace the use of batch files and VBScript for administrating and automating Windows machines. The language leverages the .NET Framework such that anything you can do with .NET you can do with PowerShell. Typically you will be using PowerShell from the command line but there are lots of other ways to use it.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2011/take-your-powershell-profile-everywhere-with-dropbox/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2011/take-your-powershell-profile-everywhere-with-dropbox/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2010/installing-ruby-and-the-devkit-on-windows/" class="post-title-link">Installing Ruby (and the DevKit) on Windows</a>
@@ -271,7 +263,8 @@
 			<time datetime="2010-11-11 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thursday, 11 November 2010</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Here&rsquo;s my recipe for a painfree installation of Ruby on Windows.</p>
+	<div class="post-summary">
+		<p>Here&rsquo;s my recipe for a painfree installation of Ruby on Windows.</p>
 <ol>
 <li>Use the RubyInstaller from <a href="http://www.ruby-lang.org/en/downloads/">www.ruby-lang.org</a>.
 I used Ruby 1.9.2-p0.</li>
@@ -287,17 +280,14 @@ ERROR: Failed to build gem native extension.
 operable program or batch file.
 </code></pre><p>After installing DevKit <code>gem install jekyll</code> will work like a champ.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2010/installing-ruby-and-the-devkit-on-windows/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2010/installing-ruby-and-the-devkit-on-windows/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2010/ria-services-lessons-learned-while-getting-started/" class="post-title-link">RIA Services - Lessons Learned While Getting Started</a>
@@ -306,20 +296,20 @@ operable program or batch file.
 			<time datetime="2010-05-17 00:00:00 &#43;0000 UTC" pubdate="pubdate">Monday, 17 May 2010</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Recently my company has been working on a rewrite of one of our line-of-business applications. We have decided to leverage RIA Services in the new application. At the moment we are also using Entity Framework; that may or may not change.</p>
+	<div class="post-summary">
+		<p>Recently my company has been working on a rewrite of one of our line-of-business applications. We have decided to leverage RIA Services in the new application. At the moment we are also using Entity Framework; that may or may not change.</p>
 <p>Here are a few lessons I&rsquo;ve learned so far when working with RIA Services.</p>
 <h3 id="potentially-massive-in-terms-of-lines-of-code--logic-domain-services">Potentially massive (in terms of lines of code &amp; logic) domain services</h3>
 <p>RIA doesn&rsquo;t handle multiple domain services well. What I mean by this is that an entity cannot be shared between multiple services. This means that in most cases you are going to have domain services with lots of methods. Worst case, think having an insert, update and delete method for each entity in your domain.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2010/ria-services-lessons-learned-while-getting-started/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2010/ria-services-lessons-learned-while-getting-started/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
+			
+		</div>
 	
 
 	<nav class="pagination">
@@ -335,6 +325,7 @@ operable program or batch file.
 	<a href="/p/6/" aria-label="Recent Posts"><span aria-hidden="true">Recent Posts &raquo;</span></a>
 
 </nav>
+	<p class="fin-symbol"></p>
 	<script>
 var refTagger = {
 	settings: {

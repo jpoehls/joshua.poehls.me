@@ -14,7 +14,7 @@
 
 
 
-<link rel="stylesheet" href="/styles.min.1e03aaed3a4e11ee3ce5fe951ebf48903110caad26f837a5c92183985fb72499.css" integrity="sha256-HgOq7TpOEe485f6VHr9IkDEQyq0m&#43;DelySGDmF&#43;3JJk=">
+<link rel="stylesheet" href="/styles.min.e1f3c8c166806a7b1fddfd11ce1636ee0877400ccbabe673fdc55b48b31dd7a9.css" integrity="sha256-4fPIwWaAansf3f0RzhY27gh3QAzLq&#43;Zz/cVbSLMd16k=">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,13 +42,19 @@
 <body>
   <header class="site-banner">
     <div class="site-wrap">
-	<h1>
-		<small>I am</small>
-		<a href="/">Joshua Poehls</a>.
-		<small class="contact-link"><a href="/contact">Say hello</a></small>
-		<small class="archives-link"><a href="/archives">Archives</a></small>
-		<span class="aka">(not so) silent thoughts</span>
-	</h1>
+	<div class="banner-top">
+		<h1>
+			<small>I am</small>
+			<a href="/">Joshua Poehls</a>
+			<small>.</small>
+		</h1>
+		<span class="banner-tagline">(not so) silent thoughts</span>
+	</div>
+	<nav class="banner-nav">
+		<a href="/contact">Say hello</a>
+		<span class="nav-separator">//</span>
+		<a href="/archives">Archives</a>
+	</nav>
 </div>
 
   </header>
@@ -58,7 +64,9 @@
 
 <div class="site-wrap">
 	
-	<article class="post post--excerpt">
+		<div class="post-list-grid">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2014/go-project-structure-and-dependencies/" class="post-title-link">Go Project Structure and Dependencies</a>
@@ -67,20 +75,18 @@
 			<time datetime="2014-03-21 21:48:59 -0500 -0500" pubdate="pubdate">Friday, 21 March 2014</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Go is build around the concept of a <a href="http://golang.org/cmd/go/#hdr-GOPATH_environment_variable">GOPATH</a> which is a common workspace for most (or all) of your Go source code. This works well but sometimes you don&rsquo;t want the third party packages you depend on to be in your primary GOPATH. I can think of a few reasons for this:</p>
+	<div class="post-summary">
+		<p>Go is build around the concept of a <a href="http://golang.org/cmd/go/#hdr-GOPATH_environment_variable">GOPATH</a> which is a common workspace for most (or all) of your Go source code. This works well but sometimes you don&rsquo;t want the third party packages you depend on to be in your primary GOPATH. I can think of a few reasons for this:</p>
 <p>• You have multiple Go apps and each depend on different versions of the same third party package. Ideally these packages would use a versioned URL so that the import paths are different but this isn&rsquo;t always the case. (See <a href="http://gopkg.in">http://gopkg.in</a>, a great tool for package authors to use for providing versioned URLs.)</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2014/go-project-structure-and-dependencies/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2014/go-project-structure-and-dependencies/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2014/creating-an-ico-icon-file-for-your-windows-app/" class="post-title-link">Creating an ICO icon file for your Windows app</a>
@@ -89,23 +95,21 @@
 			<time datetime="2014-01-29 22:13:50 -0500 -0500" pubdate="pubdate">Wednesday, 29 January 2014</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Every Windows app needs an icon. Even yours.</p>
+	<div class="post-summary">
+		<p>Every Windows app needs an icon. Even yours.</p>
 <p>If you are a developer then this task probably sounds simpler than it may turn out to be. First off, a lot of graphics programs (<a href="http://www.getpaint.net/">Paint.NET</a>, for example) don&rsquo;t support saving as an ICO file, the format needed by Windows.</p>
 <p>Don&rsquo;t sweat. I&rsquo;ve got you covered. Here is the developer cheat sheet for creating an app icon file.</p>
 <blockquote>
 <p><strong>Pro tip:</strong> ICO files can contain <em>multiple</em> icons. Often they will contain multiple versions of the same icon in different sizes. For example, a 64px and a 16px icon, each optimized for their respective size.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2014/creating-an-ico-icon-file-for-your-windows-app/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2014/creating-an-ico-icon-file-for-your-windows-app/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/detecting-zip-files-with-powershell/" class="post-title-link">Detecting ZIP files with PowerShell</a>
@@ -114,20 +118,18 @@
 			<time datetime="2013-12-22 22:23:43 -0500 -0500" pubdate="pubdate">Sunday, 22 December 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Have you heard of <a href="http://en.wikipedia.org/wiki/Magic_number_(programming)#Magic_numbers_in_files">magic numbers</a>? Some file formats are designed such that files are always saved with a specific byte sequence in the header. JPEG, PDF, and ZIP are all such formats.</p>
+	<div class="post-summary">
+		<p>Have you heard of <a href="http://en.wikipedia.org/wiki/Magic_number_(programming)#Magic_numbers_in_files">magic numbers</a>? Some file formats are designed such that files are always saved with a specific byte sequence in the header. JPEG, PDF, and ZIP are all such formats.</p>
 <p>You <em>could</em> look for ZIP files by searching for all files with a <code>.zip</code> extension but a better way would be to look for all files that have <code>50 4b 03 04</code> as the first 4 bytes of the file. <a href="http://stackoverflow.com/a/1887113/31308">All ZIP files will start with those bytes.</a> Not all ZIP files have the <code>.zip</code> extension.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/detecting-zip-files-with-powershell/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/detecting-zip-files-with-powershell/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/powershell-script-module-boilerplate/" class="post-title-link">PowerShell Script Module Boilerplate</a>
@@ -136,20 +138,18 @@
 			<time datetime="2013-12-21 10:43:31 -0600 -0600" pubdate="pubdate">Saturday, 21 December 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>One of the things I always look for when getting familiar with a new language or environment is examples of the physical file structure and logical organization of the code. How do you layout your project files? What is idiomatic?</p>
+	<div class="post-summary">
+		<p>One of the things I always look for when getting familiar with a new language or environment is examples of the physical file structure and logical organization of the code. How do you layout your project files? What is idiomatic?</p>
 <p>Unsurprisingly, this isn&rsquo;t always as simple as finding a few open-source projects on GitHub to reference. Believe it or not, there are a lot of pretty unorganized coders out there. I admit to being a bit OCD with my project structures. I like them clean, organized, and consistent.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/powershell-script-module-boilerplate/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/powershell-script-module-boilerplate/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/powershell-batch-file-wrapper/" class="post-title-link">PowerShell Batch File Wrapper</a>
@@ -158,24 +158,22 @@
 			<time datetime="2013-12-18 10:43:31 -0600 -0600" pubdate="pubdate">Wednesday, 18 December 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Sometimes you want a <code>.cmd</code> wrapper for your PowerShell script. Usually for me this is so people who aren&rsquo;t familiar with the command line can double-click to execute the script.</p>
+	<div class="post-summary">
+		<p>Sometimes you want a <code>.cmd</code> wrapper for your PowerShell script. Usually for me this is so people who aren&rsquo;t familiar with the command line can double-click to execute the script.</p>
 <p>This batch file should be saved alongside your PowerShell script, like so.</p>
 <pre tabindex="0"><code>.\
   |- my_script.ps1
   |- my_script.cmd
 </code></pre><p><code>my_script.cmd</code> will execute the same named <code>.ps1</code> file in the same directory, so <code>my_script.ps1</code> in this case. Any arguments passed to <code>my_script.cmd</code> will pass-through to the PowerShell script.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/powershell-batch-file-wrapper/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/powershell-batch-file-wrapper/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/differential-backups-using-7-zip-and-powershell/" class="post-title-link">Differential backups using 7-zip and PowerShell</a>
@@ -184,20 +182,18 @@
 			<time datetime="2013-12-10 23:04:50 -0500 -0500" pubdate="pubdate">Tuesday, 10 December 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Backups are like changing the oil on your car. It&rsquo;s the best thing you can do to extend the life of your engine and the best thing you can do to save yourself when your hard drive crashes, gets stolen, or otherwise corrupted.</p>
+	<div class="post-summary">
+		<p>Backups are like changing the oil on your car. It&rsquo;s the best thing you can do to extend the life of your engine and the best thing you can do to save yourself when your hard drive crashes, gets stolen, or otherwise corrupted.</p>
 <p>I work remotely and needed a backup strategy for my work laptop. My company encourages you to keep critical client files and such in your personal share on the network. Most of our employees work in office so this is perfectly reasonable as the norm. (Though I bet a ton of stuff still ends up on local machines!) As a remotee however, this isn&rsquo;t practical for reasons that are hopefully obvious to everyone.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/differential-backups-using-7-zip-and-powershell/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/differential-backups-using-7-zip-and-powershell/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/push-it-out-push-ups-every-hour./" class="post-title-link">Push it out! Push ups every hour.</a>
@@ -206,21 +202,19 @@
 			<time datetime="2013-08-23 22:20:56 -0500 -0500" pubdate="pubdate">Friday, 23 August 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p><strong>Push ups. Every hour, on the hour. Can you handle it?</strong></p>
+	<div class="post-summary">
+		<p><strong>Push ups. Every hour, on the hour. Can you handle it?</strong></p>
 <p>I&rsquo;ve been motivated by <a href="http://www.steubing.me">a friend</a> to start this challenge. Every hour, on the hour, I&rsquo;m going to drop and do a set of push ups.</p>
 <p>Remembering is the hardest part. Timers are easy to set but also easy to ignore. My solution is to make myself a massive nag screen that will flash every hour while I&rsquo;m at work.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/push-it-out-push-ups-every-hour./">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/push-it-out-push-ups-every-hour./">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/user-sign-up-and-email-confirmation-a-ux-boilerplate/" class="post-title-link">User sign up and email confirmation, a UX boilerplate</a>
@@ -229,20 +223,18 @@
 			<time datetime="2013-08-13 22:29:37 -0500 -0500" pubdate="pubdate">Tuesday, 13 August 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Sign up, confirm your email address, login. The three steps that almost all web apps share.</p>
+	<div class="post-summary">
+		<p>Sign up, confirm your email address, login. The three steps that almost all web apps share.</p>
 <p>It isn&rsquo;t hard to get this process right but it does take some planning. I&rsquo;ve had to implement this a lot so I finally decided to document it. This is my boilerplate for a user sign up process. The interaction flow that I use as the starting point for sign-ups in my apps. Along the way I&rsquo;ll point out some key UX (User eXperience) tips. I hope this saves you some time on your next project.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/user-sign-up-and-email-confirmation-a-ux-boilerplate/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/user-sign-up-and-email-confirmation-a-ux-boilerplate/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/tableaukit-a-powershell-module-for-tableau/" class="post-title-link">TableauKit: A PowerShell Module for Tableau</a>
@@ -251,7 +243,8 @@
 			<time datetime="2013-08-09 22:32:43 -0500 -0500" pubdate="pubdate">Friday, 9 August 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><style>
+	<div class="post-summary">
+		<style>
 pre.powershell-result {
 	background-color: #012456;
 	color: #ffffff;
@@ -266,17 +259,14 @@ module for working with Tableau files.</p>
 <h2 id="say-what">Say what?</h2>
 <p>Today TableauKit is shipping with the following commands:</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/tableaukit-a-powershell-module-for-tableau/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/tableaukit-a-powershell-module-for-tableau/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/tableau-via-powershell-part-2-saving-changes/" class="post-title-link">Tableau via PowerShell, Part 2: Saving Changes</a>
@@ -285,21 +275,21 @@ module for working with Tableau files.</p>
 			<time datetime="2013-08-07 22:40:40 -0500 -0500" pubdate="pubdate">Wednesday, 7 August 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><blockquote>
+	<div class="post-summary">
+		<blockquote>
 <p>This is part 2 of my mini-series on exploring Tableau workbooks with PowerShell. If you missed it, you should read <a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">Part 1: Opening Workbooks</a>, before continuing.</p>
 </blockquote>
 <p>Welcome back! Last time I showed you how to open a Tableau workbook (TWB or TWBX) in PowerShell so you could start exploring the raw XML. Today I&rsquo;ll show the next logical thing, saving the changes you make.</p>
 <p>If you are only opening TWB files, then saving your changes couldn&rsquo;t be easier. Since TWBs are just XML files we can simply write it to a file, like so.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/tableau-via-powershell-part-2-saving-changes/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/tableau-via-powershell-part-2-saving-changes/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
+			
+		</div>
 	
 
 	<nav class="pagination">
@@ -315,6 +305,7 @@ module for working with Tableau files.</p>
 	<a href="/p/3/" aria-label="Recent Posts"><span aria-hidden="true">Recent Posts &raquo;</span></a>
 
 </nav>
+	<p class="fin-symbol"></p>
 	<script>
 var refTagger = {
 	settings: {

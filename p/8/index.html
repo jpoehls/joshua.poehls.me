@@ -14,7 +14,7 @@
 
 
 
-<link rel="stylesheet" href="/styles.min.1e03aaed3a4e11ee3ce5fe951ebf48903110caad26f837a5c92183985fb72499.css" integrity="sha256-HgOq7TpOEe485f6VHr9IkDEQyq0m&#43;DelySGDmF&#43;3JJk=">
+<link rel="stylesheet" href="/styles.min.e1f3c8c166806a7b1fddfd11ce1636ee0877400ccbabe673fdc55b48b31dd7a9.css" integrity="sha256-4fPIwWaAansf3f0RzhY27gh3QAzLq&#43;Zz/cVbSLMd16k=">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,13 +42,19 @@
 <body>
   <header class="site-banner">
     <div class="site-wrap">
-	<h1>
-		<small>I am</small>
-		<a href="/">Joshua Poehls</a>.
-		<small class="contact-link"><a href="/contact">Say hello</a></small>
-		<small class="archives-link"><a href="/archives">Archives</a></small>
-		<span class="aka">(not so) silent thoughts</span>
-	</h1>
+	<div class="banner-top">
+		<h1>
+			<small>I am</small>
+			<a href="/">Joshua Poehls</a>
+			<small>.</small>
+		</h1>
+		<span class="banner-tagline">(not so) silent thoughts</span>
+	</div>
+	<nav class="banner-nav">
+		<a href="/contact">Say hello</a>
+		<span class="nav-separator">//</span>
+		<a href="/archives">Archives</a>
+	</nav>
 </div>
 
   </header>
@@ -58,7 +64,9 @@
 
 <div class="site-wrap">
 	
-	<article class="post post--excerpt">
+		<div class="post-list-grid">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2010/why-i-love-silverlight/" class="post-title-link">Why I Love Silverlight</a>
@@ -67,7 +75,8 @@
 			<time datetime="2010-01-06 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wednesday, 6 January 2010</time>
 		</p>
 	</header>
-	<div class="post-summary"><h3 id="update-on-june-9th-2012">Update on June 9th, 2012</h3>
+	<div class="post-summary">
+		<h3 id="update-on-june-9th-2012">Update on June 9th, 2012</h3>
 <p>It is now the year 2012. All of the previous love I had for Silverlight has long since moved on to web standards, specifically HTML5. I don&rsquo;t miss Silverlight, even a little bit.
 Even so. I will leave this post around for fun.</p>
 <p>&hellip;</p>
@@ -75,17 +84,14 @@ Even so. I will leave this post around for fun.</p>
 I&rsquo;m already pretty familiar with the basics but now I need
 to dig in and write some real apps using it.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2010/why-i-love-silverlight/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2010/why-i-love-silverlight/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2009/installing-python-pygments-on-windows/" class="post-title-link">Installing Python Pygments on Windows</a>
@@ -94,7 +100,8 @@ to dig in and write some real apps using it.</p>
 			<time datetime="2009-10-25 00:00:00 &#43;0000 UTC" pubdate="pubdate">Sunday, 25 October 2009</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>While I was updating this blog to use <a href="http://www.jekyllrb.com">Jekyll</a>,
+	<div class="post-summary">
+		<p>While I was updating this blog to use <a href="http://www.jekyllrb.com">Jekyll</a>,
 I wanted to enable some nice syntax highlighting for any code snippets I may post.
 Jekyll provides support for this through <a href="http://pygments.org/">Pygments</a> which is
 a pretty mature and widely used syntax highlighter built on Python.</p>
@@ -102,17 +109,14 @@ a pretty mature and widely used syntax highlighter built on Python.</p>
 Though it is nice to see that the Jekyll team isn&rsquo;t afraid to leverage great tools even if they
 aren&rsquo;t written in Ruby.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2009/installing-python-pygments-on-windows/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2009/installing-python-pygments-on-windows/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2009/from-windows-live-mesh-to-dropbox/" class="post-title-link">From Windows Live Mesh to Dropbox</a>
@@ -121,7 +125,8 @@ aren&rsquo;t written in Ruby.</p>
 			<time datetime="2009-10-12 00:00:00 &#43;0000 UTC" pubdate="pubdate">Monday, 12 October 2009</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>The other night I received a recommendation to try out Dropbox.
+	<div class="post-summary">
+		<p>The other night I received a recommendation to try out Dropbox.
 If you don&rsquo;t know what Dropbox is, here&rsquo;s the short of it.
 Post-install, you&rsquo;ll see a &ldquo;My Dropbox&rdquo; folder on your desktop
 (or wherever you chose to place it) and anything you put in there gets
@@ -133,17 +138,14 @@ for this&hellip; and I have in the past, but the convenience of having everythin
 synchronized automatically for me and not having to remember to carry
 around the thumb drive is too much to pass up.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2009/from-windows-live-mesh-to-dropbox/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2009/from-windows-live-mesh-to-dropbox/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2007/recursively-deleting-files-with-powershell/" class="post-title-link">Recursively deleting files with PowerShell</a>
@@ -152,18 +154,18 @@ around the thumb drive is too much to pass up.</p>
 			<time datetime="2007-04-23 10:43:31 -0600 -0600" pubdate="pubdate">Monday, 23 April 2007</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>So out of all the things I don&rsquo;t know, PowerShell is the one thing that made it to the top of my To Learn stack. Last week I ordered <a href="http://www.amazon.com/Windows-PowerShell-Action-Bruce-Payette/dp/1932394907/ref=pd_bbs_sr_1/102-7531966-1417704?ie=UTF8&amp;s=books&amp;qid=1177382702&amp;sr=8-1">PowerShell In Action</a>, it hasn&rsquo;t arrived yet but I&rsquo;ve already read about 100 pages out of the PDF (don&rsquo;t ask). The book is very well written and describes the core concepts of PowerShell very well.</p>
+	<div class="post-summary">
+		<p>So out of all the things I don&rsquo;t know, PowerShell is the one thing that made it to the top of my To Learn stack. Last week I ordered <a href="http://www.amazon.com/Windows-PowerShell-Action-Bruce-Payette/dp/1932394907/ref=pd_bbs_sr_1/102-7531966-1417704?ie=UTF8&amp;s=books&amp;qid=1177382702&amp;sr=8-1">PowerShell In Action</a>, it hasn&rsquo;t arrived yet but I&rsquo;ve already read about 100 pages out of the PDF (don&rsquo;t ask). The book is very well written and describes the core concepts of PowerShell very well.</p>
 <p>Having (almost) never written a batch file in my life it is taking a bit for me to wrap my head around the basics but so far I love it. Compiling C# apps to do simple tasks like iterate directory structures and process files has always annoyed me. There is just too much overhead in having to compile and manage both the source code an executable when you only need the code once (until tomorrow comes).</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2007/recursively-deleting-files-with-powershell/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2007/recursively-deleting-files-with-powershell/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
+			
+		</div>
 	
 
 	<nav class="pagination">
@@ -173,6 +175,7 @@ around the thumb drive is too much to pass up.</p>
 	<a href="/p/7/" aria-label="Recent Posts"><span aria-hidden="true">Recent Posts &raquo;</span></a>
 
 </nav>
+	<p class="fin-symbol"></p>
 	<script>
 var refTagger = {
 	settings: {

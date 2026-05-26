@@ -14,7 +14,7 @@
 
 
 
-<link rel="stylesheet" href="/styles.min.1e03aaed3a4e11ee3ce5fe951ebf48903110caad26f837a5c92183985fb72499.css" integrity="sha256-HgOq7TpOEe485f6VHr9IkDEQyq0m&#43;DelySGDmF&#43;3JJk=">
+<link rel="stylesheet" href="/styles.min.e1f3c8c166806a7b1fddfd11ce1636ee0877400ccbabe673fdc55b48b31dd7a9.css" integrity="sha256-4fPIwWaAansf3f0RzhY27gh3QAzLq&#43;Zz/cVbSLMd16k=">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,13 +42,19 @@
 <body>
   <header class="site-banner">
     <div class="site-wrap">
-	<h1>
-		<small>I am</small>
-		<a href="/">Joshua Poehls</a>.
-		<small class="contact-link"><a href="/contact">Say hello</a></small>
-		<small class="archives-link"><a href="/archives">Archives</a></small>
-		<span class="aka">(not so) silent thoughts</span>
-	</h1>
+	<div class="banner-top">
+		<h1>
+			<small>I am</small>
+			<a href="/">Joshua Poehls</a>
+			<small>.</small>
+		</h1>
+		<span class="banner-tagline">(not so) silent thoughts</span>
+	</div>
+	<nav class="banner-nav">
+		<a href="/contact">Say hello</a>
+		<span class="nav-separator">//</span>
+		<a href="/archives">Archives</a>
+	</nav>
 </div>
 
   </header>
@@ -58,7 +64,9 @@
 
 <div class="site-wrap">
 	
-	<article class="post post--excerpt">
+		<div class="post-list-grid">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2014/09/david-rumsey-map-collection/" class="post-title-link">David Rumsey Map Collection</a> <span class="subtle symbol">&#10230;</span>
@@ -67,8 +75,9 @@
 			<time datetime="2014-09-26 16:51:06 -0500 -0500" pubdate="pubdate">Friday, 26 September 2014</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>I just hit the cartography jackpot. This collection has well over 37,000 maps in high-resolution glory. I&rsquo;ll see you in a few hours&hellip;</p>
-<p><div class="single-image-container" style="display: flex; justify-content: center; margin: 32px auto; max-width: 100%;">
+	<div class="post-summary">
+		<p>I just hit the cartography jackpot. This collection has well over 37,000 maps in high-resolution glory. I&rsquo;ll see you in a few hours&hellip;</p>
+<div class="single-image-container" style="display: flex; justify-content: center; margin: 32px auto; max-width: 100%;">
     
     <div style="width: 100%; max-width: 650px; transition: max-width 0.2s ease;">
         <figure style="margin: 0;" >
@@ -91,18 +100,21 @@
                             
                             
                         </p>
+                    
+                </figcaption>
+            
+        </figure>
+    </div>
+</div>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2014/09/david-rumsey-map-collection/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2014/09/david-rumsey-map-collection/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2014/09/languages-are-beautiful/" class="post-title-link">Languages Are Beautiful</a>
@@ -111,7 +123,8 @@
 			<time datetime="2014-09-26 12:52:44 -0500 -0500" pubdate="pubdate">Friday, 26 September 2014</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>If you ever see me doodling, odds are that I&rsquo;m drawing letters and numbers of some kind. I&rsquo;ve always found alphabets, notations, and writing systems in general to be facinating. Typography is beautiful. Typography in foreign languages, even more so.</p>
+	<div class="post-summary">
+		<p>If you ever see me doodling, odds are that I&rsquo;m drawing letters and numbers of some kind. I&rsquo;ve always found alphabets, notations, and writing systems in general to be facinating. Typography is beautiful. Typography in foreign languages, even more so.</p>
 <div class="single-image-container" style="display: flex; justify-content: center; margin: 32px auto; max-width: 100%;">
     
     <div style="width: 100%; max-width: 650px; transition: max-width 0.2s ease;">
@@ -142,17 +155,14 @@
     </div>
 </div>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2014/09/languages-are-beautiful/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2014/09/languages-are-beautiful/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2014/09/nsa-reaches-out/" class="post-title-link">The NSA Reaches Out</a> <span class="subtle symbol">&#10230;</span>
@@ -161,22 +171,20 @@
 			<time datetime="2014-09-26 09:18:41 -0500 -0500" pubdate="pubdate">Friday, 26 September 2014</time>
 		</p>
 	</header>
-	<div class="post-summary"><iframe width="100%" height="150" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/162688991&color=2fa3bc&show_artwork=false"></iframe>
+	<div class="post-summary">
+		<iframe width="100%" height="150" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/162688991&color=2fa3bc&show_artwork=false"></iframe>
 <blockquote>
 <p>Anne Neuberger is Special Assistant to NSA Director Michael Rogers and also the Director of the NSA&rsquo;s Commercial Solutions Center.</p>
 <p>The NSA, Neuberger said, has suffered a particularly &ldquo;long and challenging year&rdquo; dealing with the public loss of trust following the Snowden revelations. The agency is reviewing all of its activities to determine how to regain that trust. One change is more open engagement with the public. &ldquo;This presentation is a starting point.&rdquo;</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2014/09/nsa-reaches-out/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2014/09/nsa-reaches-out/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2014/09/earths-water-is-older-than-the-sun/" class="post-title-link">Earth&#39;s Water is Older Than the Sun</a> <span class="subtle symbol">&#10230;</span>
@@ -185,7 +193,8 @@
 			<time datetime="2014-09-25 14:21:31 -0500 -0500" pubdate="pubdate">Thursday, 25 September 2014</time>
 		</p>
 	</header>
-	<div class="post-summary"><blockquote>
+	<div class="post-summary">
+		<blockquote>
 <p>Astronomers have discovered that much of the water on Earth—and the solar system—predates the Sun.</p>
 </blockquote>
 <p>This isn&rsquo;t really surprising, right? I mean, it lines right up with the Genesis creation. Still, thinking about things like this blows my mind.</p>
@@ -194,17 +203,14 @@
 <sup>2</sup> And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters.
 <sup>3</sup> And God said, Let there be light: and there was light. <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2014/09/earths-water-is-older-than-the-sun/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2014/09/earths-water-is-older-than-the-sun/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2014/09/ie-eg-sentences/" class="post-title-link">Starting Sentences With I.E. or E.G.</a> <span class="subtle symbol">&#10230;</span>
@@ -213,37 +219,20 @@
 			<time datetime="2014-09-25 13:48:49 -0500 -0500" pubdate="pubdate">Thursday, 25 September 2014</time>
 		</p>
 	</header>
-	<div class="post-summary"><blockquote>
+	<div class="post-summary">
+		<blockquote>
 <p>A parenthetical statement that is a complete sentence should begin with a capital.</p>
 </blockquote>
 <p>I used to debate this everytime I&rsquo;d use i.e. or e.g. in my writing. Not anymore!</p>
-<p>Right way:</p>
-<blockquote>
-<p>E.g., this is a proper example.</p>
-<p>I.e., something like this is correct.</p>
-</blockquote>
-<p>Wrong way: <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></p>
-<blockquote>
-<p>e.g., This is a bad example.</p>
-</blockquote>
-<p>Apparently it is also good practice to <a href="http://english.stackexchange.com/a/16215">include the comma</a>.</p>
-<div class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p>Sadly this is how I&rsquo;ve usually written it, except I almost always left off the comma.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2014/09/ie-eg-sentences/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2014/09/ie-eg-sentences/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2014/09/hello-world/" class="post-title-link">Hello World</a>
@@ -252,22 +241,20 @@
 			<time datetime="2014-09-25 09:58:59 -0500 -0500" pubdate="pubdate">Thursday, 25 September 2014</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Welcome to my new blog! <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> All of my blogging in the past has been in the form of longer articles, mostly technology related, and mostly trying to teach a tip or trick.</p>
+	<div class="post-summary">
+		<p>Welcome to my new blog! <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> All of my blogging in the past has been in the form of longer articles, mostly technology related, and mostly trying to teach a tip or trick.</p>
 <p>I&rsquo;m taking a different approach this time. I&rsquo;ll be posting more random thoughts.
 Sharing articles I find interesting. Overall I expect this to feel more like reading my Facebook wall and that&rsquo;s what I&rsquo;m going for. <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
 <p>Here goes nothing!</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2014/09/hello-world/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2014/09/hello-world/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2014/04/go-101-string-or-byte-slice/" class="post-title-link">Go 101: String or Byte Slice?</a>
@@ -276,22 +263,20 @@ Sharing articles I find interesting. Overall I expect this to feel more like rea
 			<time datetime="2014-04-16 09:58:59 -0500 -0500" pubdate="pubdate">Wednesday, 16 April 2014</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>One of the first things you&rsquo;ll notice in Go is that two different types are commonly used for representing text. <code>string</code> and <code>[]byte</code>. A quick example is the <a href="http://golang.org/pkg/regexp/#Regexp.FindAll">regexp package</a> which has functions for both <code>string</code> and <code>[]byte</code>.</p>
+	<div class="post-summary">
+		<p>One of the first things you&rsquo;ll notice in Go is that two different types are commonly used for representing text. <code>string</code> and <code>[]byte</code>. A quick example is the <a href="http://golang.org/pkg/regexp/#Regexp.FindAll">regexp package</a> which has functions for both <code>string</code> and <code>[]byte</code>.</p>
 <h2 id="what-is-the-difference">What is the difference?</h2>
 <p><code>string</code> is immutable and <code>[]byte</code> is mutable. Both can contain arbitrary bytes.</p>
 <p>The name &ldquo;string&rdquo; implies unicode text but this is not enforced. Operating on <code>string</code> is like operating on <code>[]byte</code>. You are working with bytes not characters.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2014/04/go-101-string-or-byte-slice/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2014/04/go-101-string-or-byte-slice/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2014/04/go-101-methods-on-pointers-vs-values/" class="post-title-link">Go 101: Methods on Pointers vs. Values</a>
@@ -300,7 +285,8 @@ Sharing articles I find interesting. Overall I expect this to feel more like rea
 			<time datetime="2014-04-14 09:58:59 -0500 -0500" pubdate="pubdate">Monday, 14 April 2014</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Methods can be declared on both pointers and values. The difference is subtle but important.</p>
+	<div class="post-summary">
+		<p>Methods can be declared on both pointers and values. The difference is subtle but important.</p>
 <pre><code>type Person struct {
      age int
 }
@@ -318,17 +304,14 @@ func (p *Person) SetAge(age int) {
 <blockquote>
 <p>In reality, you&rsquo;d only define getter and setter functions like this if you needed to implement additional logic. In an example like this you&rsquo;d just make the <code>Age</code> field public.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2014/04/go-101-methods-on-pointers-vs-values/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2014/04/go-101-methods-on-pointers-vs-values/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2014/04/go-conventions-constructors-and-overloads/" class="post-title-link">Go 101: Constructors and Overloads</a>
@@ -337,7 +320,8 @@ func (p *Person) SetAge(age int) {
 			<time datetime="2014-04-11 09:58:59 -0500 -0500" pubdate="pubdate">Friday, 11 April 2014</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Go doesn&rsquo;t have constructors in the traditional sense. The convention is to make the zero value useful whenever possible.</p>
+	<div class="post-summary">
+		<p>Go doesn&rsquo;t have constructors in the traditional sense. The convention is to make the zero value useful whenever possible.</p>
 <pre><code>type Person struct {
      Age int
 }
@@ -354,17 +338,14 @@ p3 := new(Person) // type *Person
 <blockquote>
 <p>It is most common to use the struct initializer. e.g. <code>p := Person{}</code> or <code>p := &amp;Person{}</code> if you need the pointer.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2014/04/go-conventions-constructors-and-overloads/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2014/04/go-conventions-constructors-and-overloads/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2014/go-and-package-versioning/" class="post-title-link">Go and Package Versioning</a>
@@ -373,18 +354,18 @@ p3 := new(Person) // type *Person
 			<time datetime="2014-03-23 20:49:21 -0500 -0500" pubdate="pubdate">Sunday, 23 March 2014</time>
 		</p>
 	</header>
-	<div class="post-summary"><p><em>I&rsquo;ve been working with Go on personal projects for several months. During that time, Go&rsquo;s intended strategy for package management and versioning has largely eluded me. My understanding really started to come together over the past week which is why I wrote about my <a href="/2014/go-project-structure-and-dependencies">Go Project Structure</a> and now am writing about package versioning.</em></p>
+	<div class="post-summary">
+		<p><em>I&rsquo;ve been working with Go on personal projects for several months. During that time, Go&rsquo;s intended strategy for package management and versioning has largely eluded me. My understanding really started to come together over the past week which is why I wrote about my <a href="/2014/go-project-structure-and-dependencies">Go Project Structure</a> and now am writing about package versioning.</em></p>
 <p><em>My goal with this post is to help others who, like myself, have had a hard time reconciling Go&rsquo;s approach to package dependencies and versioning with that of other languages.</em></p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2014/go-and-package-versioning/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2014/go-and-package-versioning/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
+			
+		</div>
 	
 
 	<nav class="pagination">
@@ -400,6 +381,7 @@ p3 := new(Person) // type *Person
 	<a href="/p/2/" aria-label="Recent Posts"><span aria-hidden="true">Recent Posts &raquo;</span></a>
 
 </nav>
+	<p class="fin-symbol"></p>
 	<script>
 var refTagger = {
 	settings: {

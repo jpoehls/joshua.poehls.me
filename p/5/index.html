@@ -14,7 +14,7 @@
 
 
 
-<link rel="stylesheet" href="/styles.min.1e03aaed3a4e11ee3ce5fe951ebf48903110caad26f837a5c92183985fb72499.css" integrity="sha256-HgOq7TpOEe485f6VHr9IkDEQyq0m&#43;DelySGDmF&#43;3JJk=">
+<link rel="stylesheet" href="/styles.min.e1f3c8c166806a7b1fddfd11ce1636ee0877400ccbabe673fdc55b48b31dd7a9.css" integrity="sha256-4fPIwWaAansf3f0RzhY27gh3QAzLq&#43;Zz/cVbSLMd16k=">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,13 +42,19 @@
 <body>
   <header class="site-banner">
     <div class="site-wrap">
-	<h1>
-		<small>I am</small>
-		<a href="/">Joshua Poehls</a>.
-		<small class="contact-link"><a href="/contact">Say hello</a></small>
-		<small class="archives-link"><a href="/archives">Archives</a></small>
-		<span class="aka">(not so) silent thoughts</span>
-	</h1>
+	<div class="banner-top">
+		<h1>
+			<small>I am</small>
+			<a href="/">Joshua Poehls</a>
+			<small>.</small>
+		</h1>
+		<span class="banner-tagline">(not so) silent thoughts</span>
+	</div>
+	<nav class="banner-nav">
+		<a href="/contact">Say hello</a>
+		<span class="nav-separator">//</span>
+		<a href="/archives">Archives</a>
+	</nav>
 </div>
 
   </header>
@@ -58,7 +64,9 @@
 
 <div class="site-wrap">
 	
-	<article class="post post--excerpt">
+		<div class="post-list-grid">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/go-beginners-iota-enumerations/" class="post-title-link">Go Beginners: Iota Enumerations</a>
@@ -67,7 +75,8 @@
 			<time datetime="2013-07-28 22:26:07 -0500 -0500" pubdate="pubdate">Sunday, 28 July 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Enum constants in Go have a super power. As opposed to C# where you only have two options for enums, either you assign each value yourself or let the compiler increment each value by one, Go has a third option.</p>
+	<div class="post-summary">
+		<p>Enum constants in Go have a super power. As opposed to C# where you only have two options for enums, either you assign each value yourself or let the compiler increment each value by one, Go has a third option.</p>
 <p><strong>Auto-incremented enum in C#</strong></p>
 <pre data-language="csharp">
 enum Example
@@ -79,17 +88,14 @@ enum Example
 </pre>
 <p>Go&rsquo;s third option is that you can make use of repeating expressions. This works because of Go&rsquo;s <code>iota</code> enumerator. The best example can by found in <a href="http://golang.org/doc/effective_go.html#constants">the Effective Go docs</a>.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/go-beginners-iota-enumerations/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/go-beginners-iota-enumerations/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/" class="post-title-link">Tableau via PowerShell, Part 1: Opening Workbooks</a>
@@ -98,21 +104,19 @@ enum Example
 			<time datetime="2013-07-25 22:36:58 -0500 -0500" pubdate="pubdate">Thursday, 25 July 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>In this mini-series I&rsquo;m going to show you some cookbook style examples for using PowerShell to explore your Tableau workbooks. Follow along, this is going to be fun!</p>
+	<div class="post-summary">
+		<p>In this mini-series I&rsquo;m going to show you some cookbook style examples for using PowerShell to explore your Tableau workbooks. Follow along, this is going to be fun!</p>
 <p>Tableau workbooks (TWB files) are just XML files. Packaged workbooks (TWBX files) are just ZIP files that contain a TWB and various assets, like data extracts for example.</p>
 <p>This is wonderful because it means it is very easy to go spelunking through workbook files without a <strong>gui</strong>de.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/errorlevel-is-not-errorlevel/" class="post-title-link">ERRORLEVEL is not %ERRORLEVEL%</a>
@@ -121,23 +125,21 @@ enum Example
 			<time datetime="2013-07-25 22:18:36 -0500 -0500" pubdate="pubdate">Thursday, 25 July 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p><strong>DO</strong> use <code>IF ERRORLEVEL 1 ECHO error level is 1 or more</code> to check for errors
+	<div class="post-summary">
+		<p><strong>DO</strong> use <code>IF ERRORLEVEL 1 ECHO error level is 1 or more</code> to check for errors
 in your batch/command line scripts.</p>
 <p><strong>DO NOT</strong> use <code>IF %ERRORLEVEL% NEQ 0 ECHO error level is not equal to 0</code>.</p>
 <p>Most of the time <code>%ERRORLEVEL%</code> will be what you expect but it isn&rsquo;t guaranteed.
 <code>%ERRORLEVEL%</code> is simply an environment variable like any other. It just happens to fallback to returning the <code>ERRORLEVEL</code> value if an environment variable with that name isn&rsquo;t defined.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/errorlevel-is-not-errorlevel/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/errorlevel-is-not-errorlevel/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/first-steps-in-go-a-scoreboard-app/" class="post-title-link">First Steps in Go: A Scoreboard App</a>
@@ -146,20 +148,18 @@ in your batch/command line scripts.</p>
 			<time datetime="2013-06-06 22:15:33 -0500 -0500" pubdate="pubdate">Thursday, 6 June 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Mostly I just read about new programming languages. Call it a hobby. Only once in awhile am I struck with enough interest to want to try something out on a real project. <a href="http://golang.org">Go</a> is the most recent of such interests. As someone who loves a lot about <a href="http://nodejs.org">Node.js</a>, I&rsquo;m looking forward to seeing how Go compares and whether it solves my Node and JavaScript pain points.</p>
+	<div class="post-summary">
+		<p>Mostly I just read about new programming languages. Call it a hobby. Only once in awhile am I struck with enough interest to want to try something out on a real project. <a href="http://golang.org">Go</a> is the most recent of such interests. As someone who loves a lot about <a href="http://nodejs.org">Node.js</a>, I&rsquo;m looking forward to seeing how Go compares and whether it solves my Node and JavaScript pain points.</p>
 <p><strong>Scores</strong> is my first app in Go. It is a very simple scoreboard app for &ldquo;tracking personal records between friends&rdquo;. You define a record like &ldquo;max push-ups&rdquo; and you create a scoreboard for it. The scoreboard is specific to your group of friends or &ldquo;team&rdquo;.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/first-steps-in-go-a-scoreboard-app/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/first-steps-in-go-a-scoreboard-app/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/does-your-business-need-a-website/" class="post-title-link">Does your business need a website?</a>
@@ -168,22 +168,20 @@ in your batch/command line scripts.</p>
 			<time datetime="2013-04-10 22:12:02 -0500 -0500" pubdate="pubdate">Wednesday, 10 April 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>A friend got me thinking about this today. Does a business' website design matter? Does a business even need a website?</p>
+	<div class="post-summary">
+		<p>A friend got me thinking about this today. Does a business' website design matter? Does a business even need a website?</p>
 <blockquote class="twitter-tweet"><p>Question: Does website design matter to you? Maybe I'm a snob but I'm turned away from a business/person if they have an ugly website.</p>&mdash; Joshua Steubing (@joshuasteubing) <a href="https://twitter.com/joshuasteubing/status/321968615702282241">April 10, 2013</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 <p>The answer strongly depends on the type of business we are talking about. If the business offers digital services of any kind, then obviously they need a website and their design is going to play a huge role in their success. The real interesting discussion begins when we talk about brick and mortar businesses that don't offer any digital services.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/does-your-business-need-a-website/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/does-your-business-need-a-website/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/initiation-into-mechanical-keyboard-geekdom/" class="post-title-link">Initiation into mechanical keyboard geekdom</a>
@@ -192,21 +190,19 @@ in your batch/command line scripts.</p>
 			<time datetime="2013-04-09 22:08:30 -0500 -0500" pubdate="pubdate">Tuesday, 9 April 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>A laptop style short keyed keyboard has been my instrument of choice for years now. They are easy to type on and fast. I gave up the stock Dell keyboards years ago for a bare bones Logitech.</p>
+	<div class="post-summary">
+		<p>A laptop style short keyed keyboard has been my instrument of choice for years now. They are easy to type on and fast. I gave up the stock Dell keyboards years ago for a bare bones Logitech.</p>
 <p><img src="logitech.png" alt="Old Logitech keyboard" title="My old Logitech keyboard"></p>
 <p>A few months ago I started digging into mechanical keyboards. They had caught my attention and suddenly I <em>really</em> wanted one. I was ready for a new keyboard, as you can see my Logitech is positively filthy. Why clean it when you can buy a new one, right?</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/initiation-into-mechanical-keyboard-geekdom/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/initiation-into-mechanical-keyboard-geekdom/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/non-enumerable-properties-in-javascript/" class="post-title-link">Non-enumerable properties in JavaScript</a>
@@ -215,23 +211,21 @@ in your batch/command line scripts.</p>
 			<time datetime="2013-03-28 22:06:19 -0500 -0500" pubdate="pubdate">Thursday, 28 March 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>It isn&rsquo;t very common in the wild but JavaScript (as of ES5) does support non-enumerable properties.
+	<div class="post-summary">
+		<p>It isn&rsquo;t very common in the wild but JavaScript (as of ES5) does support non-enumerable properties.
 That is to say, objects can have properties that don&rsquo;t show up when you do a <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Statements/for...in"><code>for...in</code></a> loop over the object or use <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/keys"><code>Object.keys()</code></a> to get an array of property names.</p>
 <p>I spent way too long tonight figuring out why a property was not being
 included in the <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/JSON/stringify"><code>JSON.stringify()</code></a> output because I didn&rsquo;t remember that this was possible. You see, <code>stringify()</code> works by enumerating the object&rsquo;s properties.
 So it makes sense that non-enumerable properties would be ignored.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/non-enumerable-properties-in-javascript/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/non-enumerable-properties-in-javascript/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/substacks-philosophy-of-small-things/" class="post-title-link">Substack&#39;s philosophy of small things</a>
@@ -240,7 +234,8 @@ So it makes sense that non-enumerable properties would be ignored.</p>
 			<time datetime="2013-03-22 22:04:38 -0500 -0500" pubdate="pubdate">Friday, 22 March 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>
+	<div class="post-summary">
+		<p>
   Those of you who follow the <a href='https://nodejs.org'>Node.js</a> community at all
   will recognize <a href='https://twitter.com/substack'>substack</a> as one of the most prolific
   package authors on <a href='https://npmjs.org/~substack'>NPM</a>.
@@ -252,17 +247,14 @@ So it makes sense that non-enumerable properties would be ignored.</p>
   the UNIX philosophy works. Do one thing, do it well, and it will stand the test of time.
 </p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/substacks-philosophy-of-small-things/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/substacks-philosophy-of-small-things/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/google-chrome-and-woff-font-mime-type-warnings/" class="post-title-link">Google Chrome and WOFF font MIME type warnings</a>
@@ -271,7 +263,8 @@ So it makes sense that non-enumerable properties would be ignored.</p>
 			<time datetime="2013-03-15 22:00:31 -0500 -0500" pubdate="pubdate">Friday, 15 March 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>If you are getting warnings like <strong>Resource interpreted as Font but transferred with MIME type font/x-woff</strong> in Google Chrome then it means your web server is serving the font with the wrong MIME type.</p>
+	<div class="post-summary">
+		<p>If you are getting warnings like <strong>Resource interpreted as Font but transferred with MIME type font/x-woff</strong> in Google Chrome then it means your web server is serving the font with the wrong MIME type.</p>
 <p>It took awhile for the WOFF font format to get an approved MIME type so there are several variations hanging around.</p>
 <ul>
 <li><code>font/x-woff</code></li>
@@ -281,17 +274,14 @@ So it makes sense that non-enumerable properties would be ignored.</p>
 <p>Thank God an official type <a href="http://www.w3.org/TR/WOFF/#appendix-b">was finally decided on</a>, <code>application/font-woff</code>.</p>
 <p>Unfortunately, Google Chrome (as of 26 beta) still expects you to use <code>application/x-font-woff</code> and doesn&rsquo;t recognize <code>application/font-woff</code> as a valid MIME type. This <a href="https://bugs.webkit.org/show_bug.cgi?id=111418">has been fixed</a> in the WebKit trunk but hasn&rsquo;t been merged into Chrome yet. The <a href="https://code.google.com/p/chromium/issues/detail?id=178823">Chromium bug report</a> has been closed so it should be coming soon.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/google-chrome-and-woff-font-mime-type-warnings/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/google-chrome-and-woff-font-mime-type-warnings/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
-	
-	<article class="post post--excerpt">
+			
+			<article class="post post--card">
 	<header>
 		<h1>
 			<a href="/2013/jquery-css-clip-animation-plugin/" class="post-title-link">jQuery CSS Clip Animation Plugin</a>
@@ -300,7 +290,8 @@ So it makes sense that non-enumerable properties would be ignored.</p>
 			<time datetime="2013-03-06 21:58:15 -0500 -0500" pubdate="pubdate">Wednesday, 6 March 2013</time>
 		</p>
 	</header>
-	<div class="post-summary"><p>Yesterday I needed to animate the CSS <a href="https://developer.mozilla.org/en-US/docs/CSS/clip">clip property</a> using jQuery.
+	<div class="post-summary">
+		<p>Yesterday I needed to animate the CSS <a href="https://developer.mozilla.org/en-US/docs/CSS/clip">clip property</a> using jQuery.
 <a href="http://api.jquery.com/animate/"><code>jQuery.animate()</code></a> doesn&rsquo;t support this natively so I went searching for a plugin.
 I found exactly what I needed in <a href="http://www.overset.com/2008/08/07/jquery-css-clip-animation-plugin/">a simple plugin by Jim Palmer</a>, unfortunately it hasn&rsquo;t been updated to work with jQuery 1.8.0+.</p>
 <p>So here you go, a forked and updated copy of the plugin which will work with jQuery 1.8.0+.</p>
@@ -314,15 +305,14 @@ I found exactly what I needed in <a href="http://www.overset.com/2008/08/07/jque
 </ul>
 <p>The element you are animating <strong>must</strong> have a <code>clip</code> style specified. Otherwise, usage is as you would expect.</p>
 	</div>
-	
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/jquery-css-clip-animation-plugin/">Continue reading <span class="symbol" aria-hidden="true">&#10230;</span></a>
+		<a href="/2013/jquery-css-clip-animation-plugin/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
-	
 </article>
-<div class="fin-symbol" aria-hidden="true"></div>
 
+			
+		</div>
 	
 
 	<nav class="pagination">
@@ -338,6 +328,7 @@ I found exactly what I needed in <a href="http://www.overset.com/2008/08/07/jque
 	<a href="/p/4/" aria-label="Recent Posts"><span aria-hidden="true">Recent Posts &raquo;</span></a>
 
 </nav>
+	<p class="fin-symbol"></p>
 	<script>
 var refTagger = {
 	settings: {
