@@ -10,12 +10,7 @@ This week, our family is memorizing **Deuteronomy 7:9** from [Fighter Verses: Se
 
 {{< parallel >}}
   {{< eng label="CSB" cite="Christian Standard Bible (Nashville, TN: Holman Bible Publishers, 2020), Dt 7:9." >}}
-  Know that the LORD your God is God,
-  {{< tab >}}the faithful God
-  {{<tab>}}who keeps his gracious covenant loyalty
-  {{<tab>}}{{<tab>}}for a thousand generations
-  {{<tab>}}{{<tab>}}with those who love him
-  {{<tab>}}{{<tab>}}{{<tab>}}and keep his commands.
+  Know that the LORD your God is God, the faithful God who keeps his gracious covenant loyalty for a thousand generations with those who love him and keep his commands.
   {{< /eng >}}
 
   {{< heb label="Hebrew" cite="K. Elliger, W. Rudolph, and Gérard E. Weil, Biblia Hebraica Stuttgartensia, electronic ed. (Stuttgart: German Bible Society, 2003), Dt 7:9." >}}
