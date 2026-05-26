@@ -27,6 +27,7 @@
 @import "css/components/taxonomy.css";
 @import "css/components/archives.css";
 @import "css/components/posts.css";
+@import "css/components/post-list.css";
 
 /* Shortcode components */
 @import "css/components/shortcode-parallel.css";

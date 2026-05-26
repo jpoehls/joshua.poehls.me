@@ -14,5 +14,5 @@ footer p {
 nav.pagination {
 	text-align: center;
 	margin-top: var(--space-md);
-	margin-bottom: var(--space-xl);
+	margin-bottom: var(--space-sm);
 }

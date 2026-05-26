@@ -249,7 +249,8 @@ main article:not(.post) hr + hr {
 	text-align: center;
 	font-size: var(--font-fin) !important;
 	color: var(--color-muted);
-	margin-top: var(--space-md);
+	margin-top: var(--space-sm);
+	margin-bottom: var(--space-sm);
 }
 
 .fin-symbol::before {

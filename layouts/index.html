@@ -2,11 +2,25 @@
 {{ $pag := .Paginate (where .Site.RegularPages "Section" "post") }}
 
 <div class="site-wrap">
-	{{ range $pag.Pages }}
-	{{ partial "li-excerpt.html" . }}
+	{{ if eq $pag.PageNumber 1 }}
+		{{ $first := index $pag.Pages 0 }}
+		{{ partial "li-excerpt-hero.html" $first }}
+
+		<div class="post-list-grid">
+			{{ range after 1 $pag.Pages }}
+			{{ partial "li-excerpt.html" . }}
+			{{ end }}
+		</div>
+	{{ else }}
+		<div class="post-list-grid">
+			{{ range $pag.Pages }}
+			{{ partial "li-excerpt.html" . }}
+			{{ end }}
+		</div>
 	{{ end }}
 
 	{{ partial "posts-pager.html" $pag }}
+	<p class="fin-symbol"></p>
 	{{ partial "bible-reftagger.html" . }}
 </div>
 {{ end }}

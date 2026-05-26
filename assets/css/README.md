@@ -24,7 +24,8 @@ assets/
         ├── footer.css          # Site footer
         ├── taxonomy.css        # Taxonomy pages (tags, categories)
         ├── archives.css        # Archives page
-        ├── posts.css           # Blog post styles
+        ├── posts.css           # Blog post styles (single post view)
+        ├── post-list.css       # Post list card grid (homepage)
         ├── shortcode-parallel.css   # Parallel Bible text shortcode
         ├── shortcode-hebrew.css     # Hebrew text shortcode
         └── shortcode-gallery.css    # Gallery shortcode

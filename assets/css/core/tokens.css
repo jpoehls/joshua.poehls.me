@@ -25,6 +25,12 @@
 	--color-gallery-divider: rgba(0, 0, 0, 0.1);
 	--color-gallery-img-border: rgba(0, 0, 0, 0.08);
 
+	/* Post card colors (subtler than gallery for nested components) */
+	--color-card-bg: var(--color-white);
+	--color-card-border: rgba(0, 0, 0, 0.04);
+	--color-card-shadow: rgba(0, 0, 0, 0.03);
+	--color-card-hover-shadow: rgba(0, 0, 0, 0.08);
+
 	/* Structural settings */
 	/* Short centered rule between adjacent blockquotes; <hr> is longer, same look */
 	--rule-blockquote-separator-width: 2.75rem;

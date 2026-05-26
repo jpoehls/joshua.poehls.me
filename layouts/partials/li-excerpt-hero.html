@@ -1,4 +1,4 @@
-<article class="post post--card">
+<article class="post post--hero">
 	<header>
 		<h1>
 			<a href="{{ .RelPermalink }}" class="post-title-link">{{ .Title }}</a>{{ if .Params.linkurl }} <span class="subtle symbol">&#10230;</span>{{ end }}
@@ -17,7 +17,6 @@
 		{{ $summary | safeHTML }}
 	</div>
 	<p class="post-read-more">
-		{{ if .Truncated }}<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>{{ end }}
-		<a href="{{ .RelPermalink }}">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
+		<a href="{{ .RelPermalink }}" class="hero-cta">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
 </article>
