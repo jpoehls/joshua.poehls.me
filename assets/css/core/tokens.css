@@ -1,17 +1,36 @@
 /* Design tokens (colors, fonts, spacing) */
 :root {
+	/* Base colors */
+	--color-white: #ffffff;
 	--color-text: #222;
+	--color-text-dark: #111;
+	--color-text-medium: #666;
 	--color-muted: #888;
+
+	/* Link colors */
 	--color-link: #045fb4;
 	--color-footnote-link: #b40404;
 	--color-link-hover-bg: #ffffaa;
+
+	/* Background colors */
 	--color-bg-subtle: #f9f9f9;
 	--color-banner: #efefef;
 	--color-banner-rule: #333;
 	--color-focused-bg: #e8f0fe; /* Warm, digital focus tint */
+
+	/* Gallery component colors */
+	--color-gallery-border: rgba(0, 0, 0, 0.06);
+	--color-gallery-shadow-sm: rgba(0, 0, 0, 0.02);
+	--color-gallery-shadow-lg: rgba(0, 0, 0, 0.04);
+	--color-gallery-divider: rgba(0, 0, 0, 0.1);
+	--color-gallery-img-border: rgba(0, 0, 0, 0.08);
+
+	/* Structural settings */
 	/* Short centered rule between adjacent blockquotes; <hr> is longer, same look */
 	--rule-blockquote-separator-width: 2.75rem;
 	--rule-hr-width: min(34rem, 72%);
+
+	/* Code colors */
 	--color-code-text: #515151;
 	--font-serif: "Noto Serif", Georgia, "Times New Roman", serif;
 	--font-hebrew: "Noto Serif Hebrew", "Segoe UI", "David", "Taamey David CLM", "Times New Roman", serif;
