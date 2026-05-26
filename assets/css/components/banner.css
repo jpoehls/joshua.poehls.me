@@ -19,25 +19,20 @@
 	display: flex;
 	align-items: baseline;
 	gap: 0.35em;
-	font-size: var(--font-banner-title);
+	font-size: clamp(1.25rem, 5vw + 0.5rem, var(--font-banner-title));
 	font-weight: var(--font-weight-light);
 	font-family: var(--font-serif);
 	color: var(--color-banner-text);
 	margin: 0;
 	letter-spacing: 0;
 	white-space: nowrap;
-	flex-shrink: 0; /* Prevent title from shrinking */
 }
 
 .banner-tagline {
-	font-size: calc(var(--font-banner-title) * 0.6);
+	font-size: clamp(0.75rem, 3vw + 0.3rem, calc(var(--font-banner-title) * 0.6));
 	font-weight: var(--font-weight-light);
 	font-style: italic;
 	white-space: nowrap;
-	flex-shrink: 1; /* Allow tagline to shrink */
-	min-width: 0; /* Allow shrinking below content size */
-	overflow: hidden;
-	text-overflow: ellipsis;
 	text-align: right;
 	/* Debossed stamp effect - pressed into the surface */
 	color: var(--color-banner-text-muted);
