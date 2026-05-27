@@ -408,6 +408,10 @@ const figures = [
         .born(1634, LOCATIONS.devizes_wiltshire)
         .died(1668, LOCATIONS.taunton)
         .tags(TAGS.PUR)
+        .events(
+            pastored(LOCATIONS.taunton, 1655, month(1662, 8), "Church of St. Mary Magdalene"),
+            event("Ejected following the Act of Uniformity", month(1662, 8), null, LOCATIONS.taunton)
+        )
         .build(),
 
     figure("bunyan_j", "John Bunyan")
