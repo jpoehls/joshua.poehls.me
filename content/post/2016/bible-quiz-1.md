@@ -5,7 +5,6 @@ url: 2016/01/bible-quiz-1
 tags:
 - bible quiz
 - scripture
-series: Bible Quiz Questions
 ---
 
 Hundreds of verses forgotten. Yep, that's what happen to me. I joined up with our church's Bible Quiz team as a teen and memorized hundreds of verses for competition. Looking back, it is one of my favorite things I did growing up. Unfortunately, that was many years ago and with little practice comes much forgetfulness.
