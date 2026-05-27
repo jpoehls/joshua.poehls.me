@@ -171,8 +171,9 @@ function createEventCardHTML(item) {
             // Multi-date event: show age range
             const ageStart = calculateAge(birthDate, startDate);
             const ageEnd = calculateAge(birthDate, endDate);
+
             if (ageStart !== null && ageEnd !== null && ageStart !== ageEnd) {
-                ageHTML = `<span class="event-age">age ${ageStart}–${ageEnd}</span>`;
+                ageHTML = `<span class="event-age">age ${Math.min(ageStart, ageEnd)}–${Math.max(ageStart, ageEnd)}</span>`;
             } else if (ageStart !== null) {
                 ageHTML = `<span class="event-age">age ${ageStart}</span>`;
             }
