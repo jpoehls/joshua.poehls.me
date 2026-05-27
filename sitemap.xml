@@ -89,13 +89,7 @@
     <loc>https://joshua.poehls.me/tags/bible-quiz/</loc>
     <lastmod>2016-01-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joshua.poehls.me/series/bible-quiz-questions/</loc>
-    <lastmod>2016-01-18T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://joshua.poehls.me/2016/01/bible-quiz-1/</loc>
-    <lastmod>2016-01-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://joshua.poehls.me/series/</loc>
     <lastmod>2016-01-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://joshua.poehls.me/2016/09/fear-not/</loc>
@@ -195,6 +189,9 @@
     <lastmod>2014-04-16T09:58:59-05:00</lastmod>
   </url><url>
     <loc>https://joshua.poehls.me/2014/04/go-101-string-or-byte-slice/</loc>
+    <lastmod>2014-04-16T09:58:59-05:00</lastmod>
+  </url><url>
+    <loc>https://joshua.poehls.me/series/</loc>
     <lastmod>2014-04-16T09:58:59-05:00</lastmod>
   </url><url>
     <loc>https://joshua.poehls.me/2014/04/go-101-methods-on-pointers-vs-values/</loc>
