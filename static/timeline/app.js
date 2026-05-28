@@ -192,7 +192,7 @@ function createEventCardHTML(item) {
                 <span class="event-figure" style="color: ${figureColors[item.figure.id]}">${item.figure.name}</span>
                 <span class="event-years">${dateString}</span>
                 ${ageHTML}
-                <span class="event-loc-inline">📍 ${item.resolvedLoc.name}</span>
+                <span class="event-loc-inline">${item.resolvedLoc.name}</span>
             </div>
             <div class="event-desc">${item.ev.description}</div>
         </div>
