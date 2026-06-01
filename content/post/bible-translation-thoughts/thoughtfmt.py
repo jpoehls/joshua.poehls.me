@@ -71,7 +71,7 @@ def get_bible_sort_key(reference):
     except ValueError: book_index = 998
     return (book_index, int(chapter), int(verse or 0), suffix or "")
 
-def process_toml_file(file_path, preferred_order, sort_fn=None):
+def process_toml_file(file_path, preferred_order, array_name, sort_fn=None):
     """Generic function to process, sort, and format a TOML file."""
     with open(file_path, 'r', encoding='utf-8') as f:
         data = tomlkit.parse(f.read())
@@ -87,15 +87,17 @@ def process_toml_file(file_path, preferred_order, sort_fn=None):
     if sort_fn:
         all_entries.sort(key=sort_fn)
 
-    # 3. Regroup and Reorder
-    new_data = tomlkit.table()
+    # 3. Build sorted output with translation as a property
+    new_data = tomlkit.document()
+    new_data[array_name] = tomlkit.aot()
 
     for entry in all_entries:
         trans_key = entry.pop('_translation_key')
-        if trans_key not in new_data:
-            new_data[trans_key] = tomlkit.aot()
 
         ordered_entry = tomlkit.table()
+        # Add translation as the first field
+        ordered_entry['translation'] = trans_key
+
         for key in preferred_order:
             if key in entry:
                 val = entry[key]
@@ -105,7 +107,8 @@ def process_toml_file(file_path, preferred_order, sort_fn=None):
         for key in entry:
             if key not in preferred_order:
                 ordered_entry[key] = entry[key]
-        new_data[trans_key].append(ordered_entry)
+
+        new_data[array_name].append(ordered_entry)
 
     # 4. Format
     sorted_toml_content = tomlkit.dumps(new_data)
@@ -123,10 +126,11 @@ script_dir = Path(__file__).resolve().parent
 
 # Process thoughts.toml
 thoughts_file = script_dir / 'thoughts.toml'
-THOUGHTS_ORDER = ['reference', 'date', 'emoji', 'revision', 'text']
+THOUGHTS_ORDER = ['translation', 'revision', 'reference', 'date', 'emoji', 'text']
 process_toml_file(
     thoughts_file,
     THOUGHTS_ORDER,
+    'thought',
     sort_fn=lambda e: (
         get_bible_sort_key(e.get('reference', '')),
         sort_key_date(e.get('date', '1 Jan 1900'))
@@ -141,6 +145,7 @@ if resources_file.exists():
     process_toml_file(
         resources_file,
         RESOURCES_ORDER,
+        'resource',
         sort_fn=lambda e: (
             # Sort by date (most recent first), then title
             sort_key_date(e.get('date', '1 Jan 1900')),

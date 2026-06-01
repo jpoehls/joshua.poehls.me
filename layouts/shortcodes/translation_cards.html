@@ -17,8 +17,8 @@
         {{/* Render resource cards first if resources file is provided */}}
         {{ if $resourcesFile }}
             {{ $resourcesData := .Page.Resources.GetMatch $resourcesFile | transform.Unmarshal }}
-            {{ with index $resourcesData $translation }}
-                {{ range . }}
+            {{ range $resourcesData.resource }}
+                {{ if eq .translation $translation }}
                     {{/* Determine icon based on resource type */}}
                     {{- $typeIcon := "" -}}
                     {{- if eq .type "pdf" -}}{{ $typeIcon = "📄" -}}
@@ -66,8 +66,8 @@
         {{ end }}
 
         {{/* Render thought cards */}}
-        {{ with index $data $translation }}
-            {{ range . }}
+        {{ range $data.thought }}
+            {{ if eq .translation $translation }}
             <div class="thought-card">
                 <div class="card-header">
                     {{- $emojiMap := dict
