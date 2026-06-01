@@ -53,3 +53,6 @@ tagline = "God is good"
 	codeFences = true
 	noClasses = true
 	style = "github"
+
+[security]
+	allowContent = ['.*']
