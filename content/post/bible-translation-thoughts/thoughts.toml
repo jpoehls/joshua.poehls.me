@@ -32,24 +32,12 @@ The CSB flops but gets it right in a footnote.
 '''
 
 [[thought]]
-translation = "lsb"
+translation = ["lsb", "esv", "csb"]
 reference = "Zechariah 9:11"
 date = '10 Apr 2023'
 emoji = "interesting"
 text = '''
-ESV and NASB translate as "**my** covenant."
-The CSB and LSB translate as "**your** covenant."
-The NET as "**our** covenant."
-'''
-
-[[thought]]
-translation = "esv"
-revision = "ESV 2016"
-reference = "Zechariah 9:11"
-date = '10 Apr 2023'
-emoji = "interesting"
-text = '''
-ESV and NASB translate as "**my** covenant."
+ESV (2016) and NASB translate as "**my** covenant."
 The CSB and LSB translate as "**your** covenant."
 The NET as "**our** covenant."
 '''

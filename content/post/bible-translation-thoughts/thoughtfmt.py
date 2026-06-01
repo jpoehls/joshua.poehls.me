@@ -95,8 +95,11 @@ def process_toml_file(file_path, preferred_order, array_name, sort_fn=None):
         trans_key = entry.pop('_translation_key')
 
         ordered_entry = tomlkit.table()
-        # Add translation as the first field
-        ordered_entry['translation'] = trans_key
+        # Add translation as the first field (preserve as array if it already is one)
+        if 'translation' in entry:
+            ordered_entry['translation'] = entry.pop('translation')
+        else:
+            ordered_entry['translation'] = trans_key
 
         for key in preferred_order:
             if key in entry:
