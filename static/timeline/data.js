@@ -18,7 +18,7 @@ const LOCATIONS = {
     ettrick: { key: "ettrick", name: "Ettrick", lat: 55.416, lng: -3.155 },
     london_walbrook: { key: "london_walbrook", name: "St. Stephen's Walbrook, London", lat: 51.512, lng: -0.111 },
     barnston: { key: "barnston", name: "Barnston", lat: 51.874, lng: 0.387 },
-    bristol: { key: "bristol", name: "Broadmead, Bristol", lat: 51.456, lng: -2.587 },
+    bristol_broadmead: { key: "bristol_broadmead", name: "Bristol, England", lat: 51.456, lng: -2.587 },
     langham: { key: "langham", name: "Langham", lat: 51.928, lng: 0.981 },
     wicken: { key: "wicken", name: "Wicken, Cambridgeshire", lat: 52.312, lng: 0.281 },
     soham: { key: "soham", name: "Soham, Cambridgeshire", lat: 52.333, lng: 0.334 },
@@ -323,15 +323,6 @@ const figures = [
     //     )
     //     .build(),
 
-    // figure("purnell_r", "Robert Purnell")
-    //     .born(1606)
-    //     .died(1666)
-    //     .tags(TAGS.PB)
-    //     .events(
-    //         event("Served as founding Elder (Circa 1657 prominence)", 1640, 1666, LOCATIONS.bristol)
-    //     )
-    //     .build(),
-
     // figure("trivett_z", "Zenas Trivett")
     //     .born(1745)
     //     .died(1822)
@@ -371,6 +362,21 @@ const figures = [
             event("Baptized", 1770, null, LOCATIONS.soham),
             pastored(LOCATIONS.soham, 1775, 1782),
             pastored(LOCATIONS.kettering, month(1782, 10), 1815)
+        )
+        .build(),
+
+    figure("purnell_r", "Robert Purnell")
+        .born(day(1606, 10, 15), LOCATIONS.bristol_broadmead)
+        .died(month(1666, 11), LOCATIONS.bristol_broadmead)
+        .tags(TAGS.PB)
+        .events(
+            published("Good Tydings for Sinners, Great Joy for Saints", 1649, LOCATIONS.bristol_broadmead),
+            event("Founding member and leader in the Broadmead church", 1653, null, LOCATIONS.bristol_broadmead),
+            event("Baptized along with Thomas Ewins by Henry Jessey in London", 1654, null, LOCATIONS.london),
+            published("A little cabinet richly stored with all sorts of heavenly varieties, and soul-reviving influences", 1657, LOCATIONS.bristol_broadmead),
+            published("The Church of Christ in Bristol, Recovering her Vail", 1657, LOCATIONS.bristol_broadmead), /* co-authored with Thomas Ewin */
+            published("A Serious Exhortation To an Holy Life, or Conversation", 1663, LOCATIONS.bristol_broadmead),
+            event("Formally called as a ruling elder at Broadmead", 1660, month(1666, 11), LOCATIONS.bristol_broadmead)
         )
         .build(),
 
