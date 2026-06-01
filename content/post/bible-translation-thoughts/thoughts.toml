@@ -3,7 +3,7 @@ translation = "nasb"
 revision = "NASB 2020"
 reference = "Job 5:17"
 date = '24 Jun 2023'
-emoji = "😔"
+emoji = "disappointing"
 text = '''
 NASB uses `happy` in Job 5:17 but has a cross-reference to Psalm 94:12 where `blessed` is used for the same Hebrew word and context.
 CSB consistently translates both as `happy`; LSB has both as `blessed`.
@@ -13,28 +13,33 @@ CSB consistently translates both as `happy`; LSB has both as `blessed`.
 translation = "lsb"
 reference = "Psalm 2:1"
 date = '6 Apr 2023'
+emoji = 'good'
 text = '''
-Uses “and the peoples meditate on a vain thing” clearly showing the connection to Psalm 1:2 “in his law he meditates day and night” where the same Hebrew word is in both cases.
+"...and the peoples **meditate** on a vain thing" clearly shows the connection to Psalm 1:2, "...in his law he **meditates** day and night." The same Hebrew word is used in both cases.
 
-These Psalms contrast the meditations of the righteous and the wicked. Kudos to Scott Aniol for making this connection in his talk [Musing on God’s Music](https://youtu.be/MRujkRSvS2U) at the Covenant Baptist Theological Seminary conference 2023.
+These Psalms contrast the meditations of the righteous and the wicked. Kudos to Scott Aniol for making this connection in his talk, [*Musing on God's Music*](https://youtu.be/MRujkRSvS2U), at the Covenant Baptist Theological Seminary conference 2023.
 '''
 
 [[thought]]
 translation = "lsb"
 reference = "Hosea 13:14a"
 date = '7 Apr 2023'
-emoji = "👍"
+emoji = "good"
 text = '''
-Love how it translates Hosea 13:14a as a rhetorical question. ESV and NET also does this, but not as elegantly. CSB flops here.
+Love how the LSB translates Hosea 13:14a as a rhetorical question. 
+The ESV and NET also do this but not as elegantly.
+The CSB flops but gets it right in a footnote.
 '''
 
 [[thought]]
 translation = "lsb"
 reference = "Zechariah 9:11"
 date = '10 Apr 2023'
-emoji = "🤔"
+emoji = "interesting"
 text = '''
-ESV translates as “my covenant”. NASB also gets translates as “my”. CSB and LSB translate as “your covenant”. NET as “our covenant”.
+ESV and NASB translate as "**my** covenant."
+The CSB and LSB translate as "**your** covenant."
+The NET as "**our** covenant."
 '''
 
 [[thought]]
@@ -42,9 +47,11 @@ translation = "esv"
 revision = "ESV 2016"
 reference = "Zechariah 9:11"
 date = '10 Apr 2023'
-emoji = "🤔"
+emoji = "interesting"
 text = '''
-ESV translates Zech 9:11 as "...**my** covenant." NASB also gets translates as "my." CSB and LSB translate as "**your** covenant." NET as "**our** covenant."
+ESV and NASB translate as "**my** covenant."
+The CSB and LSB translate as "**your** covenant."
+The NET as "**our** covenant."
 '''
 
 [[thought]]
