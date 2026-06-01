@@ -90,9 +90,8 @@
                     </span>
 
                 </div>
-                <div class="card-body rtIgnore">
-                    {{/* Zero-width space before colons prevents Reftagger from over-eagerly linkifying */}}
-                    {{ replace .text ":" "&#8203;:" | markdownify }}
+                <div class="card-body">
+                    {{ .text | markdownify }}
                 </div>
                 <div class="card-footer">
                     {{ with .revision }}

@@ -3,7 +3,7 @@ title: "Bible Translation Thoughts"
 date: 2026-06-01T10:26:46-05:00
 draft: true
 slug: "bible-translation-thoughts"
-disable_ref_tagger: false
+disable_ref_tagger: true
 ---
 
 This is my collection of notes, comparisons, and observations across various modern English Bible translations. Use the buttons below to filter to a specific translation.
@@ -47,4 +47,5 @@ The ESV was the first translation I switched to after growing up with the KJV.
 {{< translation_cards src="thoughts.toml" translation="nasb" >}}
 
 <link rel="stylesheet" href="filter.css">
+<script src="reftagger.js"></script>
 <script src="filter.js" defer></script>
