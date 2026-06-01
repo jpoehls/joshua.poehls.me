@@ -3,9 +3,10 @@
 {{ $translation := .Get "translation" }}
 {{ $data := .Page.Resources.GetMatch $file | transform.Unmarshal }}
 
-{{ if not (.Page.Scratch.Get "translation_cards_css_loaded") }}
-{{ .Page.Scratch.Set "translation_cards_css_loaded" true }}
 {{ $css := resources.Get "css/components/shortcode-translation-cards.css" | minify | fingerprint }}
+{{ $cssKey := printf "translation_cards_css_%s" $css.Data.Integrity }}
+{{ if not (.Page.Scratch.Get $cssKey) }}
+{{ .Page.Scratch.Set $cssKey true }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 {{ end }}
 
@@ -33,41 +34,43 @@
                     {{- else -}}{{ $typeIcon = "🔗" -}}
                     {{- end -}}
 
-                    <a href="{{ .url }}" class="resource-card-link" target="_blank" rel="noopener">
-                        <div class="resource-card">
-                            <div class="card-header">
-                                <span class="card-emoji">{{ $typeIcon }}</span>
-                                <span class="resource-title">{{ .title }}</span>
-                            </div>
-                            {{ with .description }}
-                            <div class="card-body">
-                                <p>{{ . | markdownify }}</p>
-                            </div>
-                            {{ end }}
-                            {{ if eq .type "video" }}
-                                {{/* Extract YouTube video ID and embed thumbnail */}}
-                                {{ $videoId := "" }}
-                                {{ if strings.Contains .url "youtube.com/watch?v=" }}
-                                    {{ $videoId = index (split (index (split .url "v=") 1) "&") 0 }}
-                                {{ else if strings.Contains .url "youtu.be/" }}
-                                    {{/* Handle both youtu.be/VIDEO_ID and youtu.be/VIDEO_ID?params */}}
-                                    {{ $urlPart := index (split .url "youtu.be/") 1 }}
-                                    {{ $videoId = index (split (index (split $urlPart "?") 0) "/") 0 }}
-                                {{ end }}
-                                {{ if $videoId }}
-                                <div class="video-preview">
-                                    <img src="https://img.youtube.com/vi/{{ $videoId }}/hqdefault.jpg" alt="Video thumbnail" loading="lazy">
-                                </div>
-                                {{ end }}
-                            {{ end }}
-                            <div class="card-footer">
-                                {{ if or .author .date }}
-                                    {{ with .author }}<span class="card-revision">{{ . }}</span>{{ end }}
-                                    {{ with .date }}<span class="card-date">{{ . }}</span>{{ end }}
-                                {{ end }}
-                            </div>
+                    <div class="resource-card">
+                        <div class="card-header">
+                            <span class="card-emoji">{{ $typeIcon }}</span>
+                            <span class="resource-title">
+                                <a href="{{ .url }}" class="resource-title-link" target="_blank" rel="noopener">{{ .title }}</a>
+                            </span>
                         </div>
-                    </a>
+                        {{ with .description }}
+                        <div class="card-body">
+                            <p>{{ . | markdownify }}</p>
+                        </div>
+                        {{ end }}
+                        {{ if eq .type "video" }}
+                            {{/* Extract YouTube video ID and embed thumbnail */}}
+                            {{ $videoId := "" }}
+                            {{ if strings.Contains .url "youtube.com/watch?v=" }}
+                                {{ $videoId = index (split (index (split .url "v=") 1) "&") 0 }}
+                            {{ else if strings.Contains .url "youtu.be/" }}
+                                {{/* Handle both youtu.be/VIDEO_ID and youtu.be/VIDEO_ID?params */}}
+                                {{ $urlPart := index (split .url "youtu.be/") 1 }}
+                                {{ $videoId = index (split (index (split $urlPart "?") 0) "/") 0 }}
+                            {{ end }}
+                            {{ if $videoId }}
+                            <div class="video-preview">
+                                <a href="{{ .url }}" target="_blank" rel="noopener">
+                                    <img src="https://img.youtube.com/vi/{{ $videoId }}/hqdefault.jpg" alt="Video thumbnail" loading="lazy">
+                                </a>
+                            </div>
+                            {{ end }}
+                        {{ end }}
+                        <div class="card-footer">
+                            {{ if or .author .date }}
+                                {{ with .author }}<span class="card-revision">{{ . }}</span>{{ end }}
+                                {{ with .date }}<span class="card-date">{{ . }}</span>{{ end }}
+                            {{ end }}
+                        </div>
+                    </div>
                 {{ end }}
             {{ end }}
         {{ end }}
