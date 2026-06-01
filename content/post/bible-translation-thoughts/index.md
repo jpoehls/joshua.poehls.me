@@ -8,13 +8,15 @@ disable_ref_tagger: false
 
 This is my collection of notes, comparisons, and observations across various modern English Bible translations. Use the buttons below to filter to a specific translation.
 
+<!--more-->
+
 <div id="translation-filter-container">
-  <div class="filter-btn-group">
-    <button class="filter-btn active" data-target="all">All</button>
-    <button class="filter-btn" data-target="lsb">LSB</button>
-    <button class="filter-btn" data-target="esv">ESV</button>
-    <button class="filter-btn" data-target="csb">CSB</button>
-    <button class="filter-btn" data-target="nasb">NASB</button>
+  <div class="filter-btn-group" role="group" aria-label="Filter translations">
+    <button class="filter-btn active" data-target="all" role="button">All</button>
+    <button class="filter-btn" data-target="csb" role="button">CSB</button>
+    <button class="filter-btn" data-target="esv" role="button">ESV</button>
+    <button class="filter-btn" data-target="lsb" role="button">LSB</button>
+    <button class="filter-btn" data-target="nasb" role="button">NASB</button>
   </div>
 </div>
 
@@ -26,25 +28,20 @@ This is my collection of notes, comparisons, and observations across various mod
   <span class="legend-item"><strong>🧐</strong> Curious</span>
 </div>
 
-## LSB (Legacy Standard Bible)
-{{< translation_cards src="thoughts.toml" translation="lsb" >}}
-
-## ESV (English Standard Version)
-
-The ESV was the first translation I switched to after growing up with the KJV.
-
-Resources:
-* [*Why the English Standard Version (ESV) Should not become the Standard English Version*](todo) by Mark L. Strauss (20 Nov 2008)
-* [*ESV Bible Translation Update*](todo) by Crossway (11 Feb 2025) describing changes made in the 2025 revision
-    * PDF: Comparison of 2016 to 2025
-
-{{< translation_cards src="thoughts.toml" translation="esv" >}}
-
 ## CSB (Christian Standard Bible)
 
 Unless otherwise noted, I'm referring to the 2020 revision.
 
 {{< translation_cards src="thoughts.toml" resources="resources.toml" translation="csb" >}}
+
+## ESV (English Standard Version)
+
+The ESV was the first translation I switched to after growing up with the KJV.
+
+{{< translation_cards src="thoughts.toml" resources="resources.toml" translation="esv" >}}
+
+## LSB (Legacy Standard Bible)
+{{< translation_cards src="thoughts.toml" resources="resources.toml" translation="lsb" >}}
 
 ## NASB (New American Standard Bible)
 {{< translation_cards src="thoughts.toml" translation="nasb" >}}

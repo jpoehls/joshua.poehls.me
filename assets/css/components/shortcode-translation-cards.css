@@ -18,6 +18,56 @@
     flex-direction: column;
 }
 
+/* Resource Cards */
+.resource-card-link {
+    flex: 1 1 calc(33.333% - 1rem);
+    min-width: 280px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.resource-card {
+    background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+    border: 2px solid #4a90e2;
+    border-radius: 6px;
+    padding: 1rem;
+    box-shadow: 0 2px 6px rgba(74, 144, 226, 0.15);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all 0.2s ease;
+}
+
+.resource-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.25);
+    border-color: #357abd;
+}
+
+.resource-card .card-header {
+    border-bottom: 1px solid #4a90e2;
+}
+
+.resource-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #2c5aa0;
+}
+
+.video-preview {
+    margin: 0.75rem 0;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 2px solid #4a90e2;
+}
+
+.video-preview img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 .card-header {
     display: flex;
     align-items: center;
@@ -28,12 +78,12 @@
 }
 
 .card-emoji {
-    font-size: 1.2rem;
+    font-size: 1rem;
     flex-shrink: 0;
 }
 
 .card-reference {
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     font-weight: 700;
     color: #007acc;
 }
@@ -43,6 +93,7 @@
     line-height: 1.45;
     color: #24292e;
     flex-grow: 1;
+    min-height: 2.5rem;
 }
 
 .card-body p {
@@ -59,8 +110,8 @@
     border-top: 1px dashed #e1e4e8;
     display: flex;
     justify-content: space-between;
-    /* Pushes items to opposite corners */
     align-items: center;
+    gap: 0.5rem;
 }
 
 .card-revision {
@@ -79,7 +130,8 @@
 }
 
 @media (max-width: 768px) {
-    .thought-card {
+    .thought-card,
+    .resource-card-link {
         flex: 1 1 100%;
     }
 }

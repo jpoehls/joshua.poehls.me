@@ -1,6 +1,6 @@
 [[nasb]]
 reference = "Job 5:17"
-date = '24 June 2023'
+date = '24 Jun 2023'
 emoji = "😔"
 revision = "NASB 2020"
 text = '''
@@ -9,7 +9,7 @@ NASB uses "happy" in Job 5:17 but has a cross-reference to Psalm 94:12 where it 
 
 [[lsb]]
 reference = "Psalm 2:1"
-date = '6 April 2023'
+date = '6 Apr 2023'
 text = '''
 Uses “and the peoples meditate on a vain thing” clearly showing the connection to Psalm 1:2 “in his law he meditates day and night” where the same Hebrew word is in both cases.
 
@@ -18,7 +18,7 @@ These Psalms contrast the meditations of the righteous and the wicked. Kudos to 
 
 [[lsb]]
 reference = "Hosea 13:14a"
-date = '7 April 2023'
+date = '7 Apr 2023'
 emoji = "👍"
 text = '''
 Love how it translates Hosea 13:14a as a rhetorical question. ESV and NET also does this, but not as elegantly. CSB flops here.
@@ -26,7 +26,7 @@ Love how it translates Hosea 13:14a as a rhetorical question. ESV and NET also d
 
 [[lsb]]
 reference = "Zechariah 9:11"
-date = '10 April 2023'
+date = '10 Apr 2023'
 emoji = "🤔"
 text = '''
 ESV translates as “my covenant”. NASB also gets translates as “my”. CSB and LSB translate as “your covenant”. NET as “our covenant”.
@@ -34,7 +34,7 @@ ESV translates as “my covenant”. NASB also gets translates as “my”. CSB 
 
 [[esv]]
 reference = "Zechariah 9:11"
-date = '10 April 2023'
+date = '10 Apr 2023'
 emoji = "🤔"
 revision = "ESV 2016"
 text = '''
@@ -43,7 +43,7 @@ ESV translates Zech 9:11 as "...**my** covenant." NASB also gets translates as "
 
 [[esv]]
 reference = "Matthew 16:27"
-date = '5 October 2023'
+date = '5 Oct 2023'
 revision = "ESV 2016"
 text = '''
 ESV lacks OT cross-references for Matt 16:27. LSB references Ps 62:12 and Prov 24:12 in addition to NT references.
@@ -51,7 +51,7 @@ ESV lacks OT cross-references for Matt 16:27. LSB references Ps 62:12 and Prov 2
 
 [[esv]]
 reference = "2 Corinthians 5:20"
-date = '28 January 2025'
+date = '28 Jan 2025'
 revision = "ESV 2016"
 text = '''
 Köstenberger, in *Salvation to the Ends* (2nd Ed, pg 169), points out that the ESV has, "we implore **you** on Christ's behalf,” (2 Cor 5:20) and the "you" is not in the Greek. In context, Paul seems to be referring to the world or people more broadly.
@@ -61,12 +61,12 @@ See CSB rendering which avoids this by making the "you" implicit, "We plead on C
 
 [[csb]]
 reference = "1 Corinthians 7"
-date = '1 February 2023'
+date = '1 Feb 2023'
 emoji = "💬"
 text = '''Roy Ciampa noted CSB follows latest research for the term “touching” in 1 Corinthians 7. (I haven’t dug into how other modern translations compare in this area.)'''
 
 [[csb]]
 reference = "Galatians 4:6"
-date = '1 February 2023'
+date = '1 Feb 2023'
 emoji = "👍"
 text = '''Footnote on Galatians 4:6 “other mss read your.” ESV doesn’t mention this textual variant.'''

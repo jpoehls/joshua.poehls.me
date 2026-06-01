@@ -18,6 +18,7 @@
     border: none;
     padding: 0.6rem 1.2rem;
     font-size: 0.95rem;
+    font-family: var(--font-footnote);
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
@@ -30,6 +31,12 @@
 
 .filter-btn:hover {
     background-color: #eaeaea;
+}
+
+.filter-btn:focus-visible {
+    outline: 2px solid #007acc;
+    outline-offset: -2px;
+    z-index: 1;
 }
 
 .filter-btn.active {
@@ -51,11 +58,20 @@
     color: #586069;
 }
 
+.legend-item {
+    font-size: 1rem;
+    font-family: var(--font-footnote);
+}
+
 .legend-item strong {
     margin-right: 0.2rem;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .translation-section {
+    transition: opacity 0.2s ease-in-out;
+}
+
+.translation-content-wrapper {
     transition: opacity 0.2s ease-in-out;
 }

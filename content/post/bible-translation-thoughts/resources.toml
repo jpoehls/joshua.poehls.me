@@ -1,7 +1,35 @@
+[[esv]]
+title = "Why the ESV Should Not Become the Standard"
+author = "Mark L. Strauss"
+date = '20 Nov 2008'
+type = "link"
+url = "https://danielbwallace.com/2008/11/20/why-the-english-standard-version-esv-should-not-become-the-standard-english-version/"
+description = "Critical analysis of the ESV's translation philosophy and potential as a standard translation"
+
 [[csb]]
-title = "CSB Editorial"
-source = "CSB"
-date = "1 January 2020"
-type = "resource" # youtube, article, PDF
-url = "https://example.com/csb-2020.pdf"
-text = "2020 Changes to the CSB"
+title = "CSB 2020 Changes — Detailed Comparison"
+date = '1 Jan 2020'
+type = "pdf"
+url = "csb-2020-detailed-comparison.pdf"
+description = "Comprehensive verse-by-verse comparison table between CSB 2017 and CSB 2020"
+
+[[csb]]
+title = "CSB Translation Changes — 2020 Revision"
+date = '1 Jan 2020'
+type = "pdf"
+url = "csb-2020-changes-overview.pdf"
+description = "Official overview of changes made in the 2020 revision of the Christian Standard Bible"
+
+[[csb]]
+title = "The Mercy Seat Translation Choice"
+date = '1 Jan 2020'
+type = "pdf"
+url = "csb-mercy-seat-defense.pdf"
+description = "Defense of the CSB 2020 decision to translate the Hebrew כַּפֹּרֶת as 'mercy seat'"
+
+[[lsb]]
+title = "Translation Philosophy of the Legacy Standard Bible"
+date = '1 Jan 2023'
+type = "video"
+url = "https://www.youtube.com/watch?v=EXAMPLE_VIDEO_ID"
+description = "Deep dive into the LSB's approach to biblical translation and textual decisions"

@@ -1,4 +1,5 @@
 {{ $file := .Get "src" }}
+{{ $resourcesFile := .Get "resources" }}
 {{ $translation := .Get "translation" }}
 {{ $data := .Page.Resources.GetMatch $file | transform.Unmarshal }}
 
@@ -12,44 +13,97 @@
 {{ $containerId := printf "section-%s" $translation }}
 
 <div class="translation-section" id="{{ $containerId }}">
-    {{ with index $data $translation }}
     <div class="cards-flex-container">
-        {{ range . }}
-        <div class="thought-card">
-            <div class="card-header">
-                {{- $emojiMap := dict 
-                    "good" "👍" 
-                    "disappointing" "😔" 
-                    "note" "💬" 
-                    "interesting" "🤔" 
-                    "curious" "🧐" 
-                -}}
+        {{/* Render resource cards first if resources file is provided */}}
+        {{ if $resourcesFile }}
+            {{ $resourcesData := .Page.Resources.GetMatch $resourcesFile | transform.Unmarshal }}
+            {{ with index $resourcesData $translation }}
+                {{ range . }}
+                    {{/* Determine icon based on resource type */}}
+                    {{- $typeIcon := "" -}}
+                    {{- if eq .type "pdf" -}}{{ $typeIcon = "📄" -}}
+                    {{- else if eq .type "video" -}}{{ $typeIcon = "🎥" -}}
+                    {{- else -}}{{ $typeIcon = "🔗" -}}
+                    {{- end -}}
 
-                {{- $emoji := .emoji | default "note" -}}
-                {{- $render := index $emojiMap $emoji | default $emoji -}}
-
-                <span class="card-emoji">{{ $render }}</span>
-
-                <span class="card-reference">
-                    <a class="rtBibleRef" href="https://ref.ly/{{ .reference }};{{ $version }}?t=biblia"
-                        data-reference="{{ .reference }}" data-version="{{ $version }}" data-purpose="bible-reference"
-                        target="_blank" rel="noopener">{{ .reference }}</a>
-                </span>
-
-            </div>
-            <div class="card-body rtIgnore">
-                {{ replace .text ":" "&#8203;:" | markdownify }}
-            </div>
-            <div class="card-footer">
-                {{ with .revision }}
-                <span class="card-revision">{{ . }}</span>
-                {{ else }}
-                <span></span>
+                    <a href="{{ .url }}" class="resource-card-link" target="_blank" rel="noopener">
+                        <div class="resource-card">
+                            <div class="card-header">
+                                <span class="card-emoji">{{ $typeIcon }}</span>
+                                <span class="resource-title">{{ .title }}</span>
+                            </div>
+                            {{ with .description }}
+                            <div class="card-body">
+                                <p>{{ . }}</p>
+                            </div>
+                            {{ end }}
+                            {{ if eq .type "video" }}
+                                {{/* Extract YouTube video ID and embed thumbnail */}}
+                                {{ $videoId := "" }}
+                                {{ if strings.Contains .url "youtube.com/watch?v=" }}
+                                    {{ $videoId = index (split (index (split .url "v=") 1) "&") 0 }}
+                                {{ else if strings.Contains .url "youtu.be/" }}
+                                    {{/* Handle both youtu.be/VIDEO_ID and youtu.be/VIDEO_ID?params */}}
+                                    {{ $urlPart := index (split .url "youtu.be/") 1 }}
+                                    {{ $videoId = index (split (index (split $urlPart "?") 0) "/") 0 }}
+                                {{ end }}
+                                {{ if $videoId }}
+                                <div class="video-preview">
+                                    <img src="https://img.youtube.com/vi/{{ $videoId }}/hqdefault.jpg" alt="Video thumbnail" loading="lazy">
+                                </div>
+                                {{ end }}
+                            {{ end }}
+                            <div class="card-footer">
+                                {{ if or .author .date }}
+                                    {{ with .author }}<span class="card-revision">{{ . }}</span>{{ end }}
+                                    {{ with .date }}<span class="card-date">{{ . }}</span>{{ end }}
+                                {{ end }}
+                            </div>
+                        </div>
+                    </a>
                 {{ end }}
-                <span class="card-date">{{ .date }}</span>
+            {{ end }}
+        {{ end }}
+
+        {{/* Render thought cards */}}
+        {{ with index $data $translation }}
+            {{ range . }}
+            <div class="thought-card">
+                <div class="card-header">
+                    {{- $emojiMap := dict
+                        "good" "👍"
+                        "disappointing" "😔"
+                        "note" "💬"
+                        "interesting" "🤔"
+                        "curious" "🧐"
+                    -}}
+
+                    {{- $emoji := .emoji | default "note" -}}
+                    {{- $render := index $emojiMap $emoji | default $emoji -}}
+
+                    <span class="card-emoji">{{ $render }}</span>
+
+                    <span class="card-reference">
+                        <a class="rtBibleRef" href="https://ref.ly/{{ .reference }};{{ $version }}?t=biblia"
+                            data-reference="{{ .reference }}" data-version="{{ $version }}" data-purpose="bible-reference"
+                            target="_blank" rel="noopener">{{ .reference }}</a>
+                    </span>
+
+                </div>
+                <div class="card-body rtIgnore">
+                    {{/* Zero-width space before colons prevents Reftagger from over-eagerly linkifying */}}
+                    {{ replace .text ":" "&#8203;:" | markdownify }}
+                </div>
+                <div class="card-footer">
+                    {{ with .revision }}
+                    <span class="card-revision">{{ . }}</span>
+                    {{ else }}
+                    <span></span>
+                    {{ end }}
+                    <span class="card-date">{{ .date }}</span>
+                </div>
             </div>
-        </div>
-    {{ end }}
+            {{ end }}
+        {{ end }}
     </div>
-    {{ end }}
 </div>
