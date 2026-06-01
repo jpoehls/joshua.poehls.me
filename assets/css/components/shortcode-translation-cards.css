@@ -28,11 +28,11 @@
 }
 
 .resource-card {
-    background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
-    border: 2px solid #4a90e2;
-    border-radius: 6px;
+    background: linear-gradient(135deg, #fffaf8 0%, var(--color-white) 100%);
+    border: 2px solid var(--color-banner-hover);
+    border-radius: var(--border-radius-md);
     padding: 1rem;
-    box-shadow: 0 2px 6px rgba(74, 144, 226, 0.15);
+    box-shadow: 0 2px 6px color-mix(in srgb, var(--color-banner) 15%, transparent);
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -41,25 +41,25 @@
 
 .resource-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.25);
-    border-color: #357abd;
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-banner) 35%, transparent);
+    border-color: var(--color-banner);
 }
 
 .resource-card .card-header {
-    border-bottom: 1px solid #4a90e2;
+    border-bottom: 1px solid var(--color-banner-hover);
 }
 
 .resource-title {
     font-size: 0.9rem;
     font-weight: 700;
-    color: #2c5aa0;
+    color: var(--color-banner);
 }
 
 .video-preview {
     margin: 0.75rem 0;
-    border-radius: 4px;
+    border-radius: var(--border-radius-sm);
     overflow: hidden;
-    border: 2px solid #4a90e2;
+    border: 2px solid var(--color-banner-hover);
 }
 
 .video-preview img {

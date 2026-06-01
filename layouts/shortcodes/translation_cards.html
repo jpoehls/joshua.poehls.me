@@ -34,7 +34,7 @@
                             </div>
                             {{ with .description }}
                             <div class="card-body">
-                                <p>{{ . }}</p>
+                                <p>{{ . | markdownify }}</p>
                             </div>
                             {{ end }}
                             {{ if eq .type "video" }}
