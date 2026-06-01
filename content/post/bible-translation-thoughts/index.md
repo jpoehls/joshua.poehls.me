@@ -44,7 +44,7 @@ The ESV was the first translation I switched to after growing up with the KJV.
 {{< translation_cards src="thoughts.toml" resources="resources.toml" translation="lsb" >}}
 
 ## NASB (New American Standard Bible)
-{{< translation_cards src="thoughts.toml" translation="nasb" >}}
+{{< translation_cards src="thoughts.toml" resources="resources.toml" translation="nasb" >}}
 
 <link rel="stylesheet" href="filter.css">
 <script src="reftagger.js"></script>

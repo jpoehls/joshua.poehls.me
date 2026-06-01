@@ -1,40 +1,61 @@
 [[resource]]
 translation = "esv"
-title = "Why the ESV Should Not Become the Standard"
+title = "Why the English Standard Version (ESV) Should not become the Standard English Version"
 author = "Mark L. Strauss"
 date = '20 Nov 2008'
-type = "link"
-url = "https://danielbwallace.com/2008/11/20/why-the-english-standard-version-esv-should-not-become-the-standard-english-version/"
+type = "pdf"
+url = "esv-strauss-2008.pdf"
 description = "Critical analysis of the ESV's translation philosophy and potential as a standard translation"
 
 [[resource]]
-translation = "csb"
-title = "CSB 2020 Changes — Detailed Comparison"
-date = '1 Jan 2020'
+translation = "esv"
+title = "ESV 2025 Text Changes"
+author = "Crossway"
+date = '11 Feb 2025'
 type = "pdf"
-url = "csb-2020-detailed-comparison.pdf"
-description = "Comprehensive verse-by-verse comparison table between CSB 2017 and CSB 2020"
+url = "esv-2025-text-changes.pdf"
+description = '''
+Official of textual changes made in the 2025 update of the ESV.
+Originally published as part of Crossway's [ESV Bible Translation Update](https://www.crossway.org/articles/esv-bible-translation-update/) announcement.
+'''
 
 [[resource]]
-translation = "csb"
-title = "CSB Translation Changes — 2020 Revision"
-date = '1 Jan 2020'
-type = "pdf"
-url = "csb-2020-changes-overview.pdf"
-description = "Official overview of changes made in the 2020 revision of the Christian Standard Bible"
+translation = "nasb"
+title = "Example Passages from the NASB Update"
+author = "Peter Gurry"
+date = '3 Mar 2019'
+type = "link"
+url = "https://evangelicaltextualcriticism.blogspot.com/2019/03/example-passages-from-nasb-update.html"
+description = "Comments and comparisons of several passages changed in the NASB 2020 update."
 
-[[resource]]
-translation = "csb"
-title = "The Mercy Seat Translation Choice"
-date = '1 Jan 2020'
-type = "pdf"
-url = "csb-mercy-seat-defense.pdf"
-description = "Defense of the CSB 2020 decision to translate the Hebrew כַּפֹּרֶת as 'mercy seat'"
+# [[resource]]
+# translation = "csb"
+# title = "CSB 2020 Changes — Detailed Comparison"
+# date = '1 Jan 2020'
+# type = "pdf"
+# url = "csb-2020-detailed-comparison.pdf"
+# description = "Comprehensive verse-by-verse comparison table between CSB 2017 and CSB 2020"
 
-[[resource]]
-translation = "lsb"
-title = "Translation Philosophy of the Legacy Standard Bible"
-date = '1 Jan 2023'
-type = "video"
-url = "https://www.youtube.com/watch?v=EXAMPLE_VIDEO_ID"
-description = "Deep dive into the LSB's approach to biblical translation and textual decisions"
+# [[resource]]
+# translation = "csb"
+# title = "CSB Translation Changes — 2020 Revision"
+# date = '1 Jan 2020'
+# type = "pdf"
+# url = "csb-2020-changes-overview.pdf"
+# description = "Official overview of changes made in the 2020 revision of the Christian Standard Bible"
+
+# [[resource]]
+# translation = "csb"
+# title = "The Mercy Seat Translation Choice"
+# date = '1 Jan 2020'
+# type = "pdf"
+# url = "csb-mercy-seat-defense.pdf"
+# description = "Defense of the CSB 2020 decision to translate the Hebrew כַּפֹּרֶת as 'mercy seat'"
+
+# [[resource]]
+# translation = "lsb"
+# title = "Translation Philosophy of the Legacy Standard Bible"
+# date = '1 Jan 2023'
+# type = "video"
+# url = "https://www.youtube.com/watch?v=EXAMPLE_VIDEO_ID"
+# description = "Deep dive into the LSB's approach to biblical translation and textual decisions"
