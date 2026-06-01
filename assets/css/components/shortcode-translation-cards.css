@@ -75,7 +75,7 @@ article.post .thought-card code {
 
 .card-header {
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: 0.6rem;
     margin-bottom: 0.75rem;
     border-bottom: 1px solid #e1e4e8;
