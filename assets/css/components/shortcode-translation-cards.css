@@ -1,0 +1,85 @@
+/* Flexbox Cards Grid */
+.cards-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1.5rem 0 3rem 0;
+}
+
+.thought-card {
+    background: #ffffff;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 1rem;
+    flex: 1 1 calc(33.333% - 1rem);
+    min-width: 280px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid #e1e4e8;
+    padding-bottom: 0.5rem;
+}
+
+.card-emoji {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.card-reference {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #007acc;
+}
+
+.card-body {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: #24292e;
+    flex-grow: 1;
+}
+
+.card-body p {
+    margin: 0 0 0.5rem 0;
+}
+
+.card-body p:last-child {
+    margin-bottom: 0;
+}
+
+.card-footer {
+    margin-top: 1rem;
+    padding-top: 0.6rem;
+    border-top: 1px dashed #e1e4e8;
+    display: flex;
+    justify-content: space-between;
+    /* Pushes items to opposite corners */
+    align-items: center;
+}
+
+.card-revision {
+    font-size: 0.75rem;
+    color: #959da5;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.card-date {
+    font-size: 0.75rem;
+    color: #959da5;
+    font-weight: 500;
+    /* Optional: ensures date stays on the right */
+    margin-left: auto;
+}
+
+@media (max-width: 768px) {
+    .thought-card {
+        flex: 1 1 100%;
+    }
+}

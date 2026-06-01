@@ -1,0 +1,61 @@
+/* Widget Buttons Container */
+#translation-filter-container {
+    margin: 2rem 0 1rem 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.filter-btn-group {
+    display: inline-flex;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    outline: none;
+}
+
+.filter-btn:not(:last-child) {
+    border-right: 1px solid #ccc;
+}
+
+.filter-btn:hover {
+    background-color: #eaeaea;
+}
+
+.filter-btn.active {
+    background-color: #007acc;
+    color: white;
+}
+
+/* Emoji Legend Styles */
+.emoji-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 0.75rem;
+    background-color: #f6f8fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #586069;
+}
+
+.legend-item strong {
+    margin-right: 0.2rem;
+    font-size: 1rem;
+}
+
+.translation-section {
+    transition: opacity 0.2s ease-in-out;
+}

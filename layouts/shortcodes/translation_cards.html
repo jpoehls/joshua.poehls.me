@@ -1,0 +1,55 @@
+{{ $file := .Get "src" }}
+{{ $translation := .Get "translation" }}
+{{ $data := .Page.Resources.GetMatch $file | transform.Unmarshal }}
+
+{{ if not (.Page.Scratch.Get "translation_cards_css_loaded") }}
+{{ .Page.Scratch.Set "translation_cards_css_loaded" true }}
+{{ $css := resources.Get "css/components/shortcode-translation-cards.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{ end }}
+
+{{ $version := lower $translation }}
+{{ $containerId := printf "section-%s" $translation }}
+
+<div class="translation-section" id="{{ $containerId }}">
+    {{ with index $data $translation }}
+    <div class="cards-flex-container">
+        {{ range . }}
+        <div class="thought-card">
+            <div class="card-header">
+                {{- $emojiMap := dict 
+                    "good" "👍" 
+                    "disappointing" "😔" 
+                    "note" "💬" 
+                    "interesting" "🤔" 
+                    "curious" "🧐" 
+                -}}
+
+                {{- $emoji := .emoji | default "note" -}}
+                {{- $render := index $emojiMap $emoji | default $emoji -}}
+
+                <span class="card-emoji">{{ $render }}</span>
+
+                <span class="card-reference">
+                    <a class="rtBibleRef" href="https://ref.ly/{{ .reference }};{{ $version }}?t=biblia"
+                        data-reference="{{ .reference }}" data-version="{{ $version }}" data-purpose="bible-reference"
+                        target="_blank" rel="noopener">{{ .reference }}</a>
+                </span>
+
+            </div>
+            <div class="card-body rtIgnore">
+                {{ replace .text ":" "&#8203;:" | markdownify }}
+            </div>
+            <div class="card-footer">
+                {{ with .revision }}
+                <span class="card-revision">{{ . }}</span>
+                {{ else }}
+                <span></span>
+                {{ end }}
+                <span class="card-date">{{ .date }}</span>
+            </div>
+        </div>
+    {{ end }}
+    </div>
+    {{ end }}
+</div>

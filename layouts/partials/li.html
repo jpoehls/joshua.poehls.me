@@ -1,2 +1,5 @@
 {{ partial "li-body.html" . }}
-{{ partial "bible-reftagger.html" . }}
+
+{{ if not .Params.disable_ref_tagger }}
+  {{ partial "bible-reftagger.html" . }}
+{{ end }}

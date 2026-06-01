@@ -1,0 +1,7 @@
+[[csb]]
+title = "CSB Editorial"
+source = "CSB"
+date = "1 January 2020"
+type = "resource" # youtube, article, PDF
+url = "https://example.com/csb-2020.pdf"
+text = "2020 Changes to the CSB"

@@ -1,0 +1,2 @@
+# Requirements for repository maintenance scripts
+tomlkit>=0.13.0
