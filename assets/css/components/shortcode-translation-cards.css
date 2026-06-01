@@ -18,6 +18,11 @@
     flex-direction: column;
 }
 
+article.post .thought-card code {
+    font-weight: 400;
+    font-size: 0.85rem;
+}
+
 /* Resource Cards */
 .resource-card-link {
     flex: 1 1 calc(33.333% - 1rem);
