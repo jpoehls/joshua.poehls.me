@@ -47,16 +47,11 @@ translation = "esv"
 revision = "ESV 2016"
 reference = "Matthew 16:27"
 date = '5 Oct 2023'
+emoji = "disappointing"
 text = '''
-ESV lacks OT cross-references for Matt 16:27. LSB references Ps 62:12 and Prov 24:12 in addition to NT references.
+ESV lacks OT cross-references for Matt 16:27.
+The LSB references Ps 62:12 and Prov 24:12, in addition to various NT references.
 '''
-
-[[thought]]
-translation = "csb"
-reference = "1 Corinthians 7"
-date = '1 Feb 2023'
-emoji = "💬"
-text = '''Roy Ciampa noted CSB follows latest research for the term “touching” in 1 Corinthians 7. (I haven’t dug into how other modern translations compare in this area.)'''
 
 [[thought]]
 translation = "esv"
@@ -64,14 +59,17 @@ revision = "ESV 2016"
 reference = "2 Corinthians 5:20"
 date = '28 Jan 2025'
 text = '''
-Köstenberger, in *Salvation to the Ends* (2nd Ed, pg 169), points out that the ESV has, "we implore **you** on Christ's behalf,” (2 Cor 5:20) and the "you" is not in the Greek. In context, Paul seems to be referring to the world or people more broadly.
+Köstenberger, in *Salvation to the Ends of the Earth* (2nd Ed, pg 169), points out that the ESV has, "we implore **you** on Christ's behalf,” (2 Cor 5:20) and the "you" is not in the Greek.
+In context, Paul seems to be referring to the world or people more broadly.
 
-See CSB rendering which avoids this by making the "you" implicit, "We plead on Christ’s behalf, 'Be reconciled to God.'"
+See CSB rendering which avoids this by making the "you" implicit, "We plead on Christ's behalf, 'Be reconciled to God.'"
 '''
 
 [[thought]]
-translation = "csb"
+translation = ["csb", "esv"]
 reference = "Galatians 4:6"
 date = '1 Feb 2023'
-emoji = "👍"
-text = '''Footnote on Galatians 4:6 “other mss read your.” ESV doesn’t mention this textual variant.'''
+text = '''
+CSB has a footnote on Galatians 4:6, "other mss read *your*."
+The ESV doesn't mention this textual variant.
+'''
