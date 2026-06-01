@@ -18,6 +18,10 @@
     flex-direction: column;
 }
 
+article.post .thought-card strong {
+    font-weight: 400;
+}
+
 article.post .thought-card code {
     font-weight: 400;
     font-size: 0.85rem;
