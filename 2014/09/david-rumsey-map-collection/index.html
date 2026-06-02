@@ -14,7 +14,7 @@
 
 
 
-<link rel="stylesheet" href="/styles.min.2d458bb32971f7859612b3770b83490f317c1f8d401bb20ce7d11939bca6c40e.css" integrity="sha256-LUWLsylx94WWErN3C4NJDzF8H41AG7IM59EZObymxA4=">
+<link rel="stylesheet" href="/styles.min.c6946bd6a0ae719fe898d26f997aa324830b8b621144f8b834c1dd90f02cf85f.css" integrity="sha256-xpRr1qCucZ/omNJvmXqjJIMLi2IRRPi4NMHdkPAs&#43;F8=">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,8 +52,37 @@
 	</div>
 	<nav class="banner-nav">
 		<a href="/contact">👋 Say hello</a>
-		<span class="nav-separator">//</span>
+		<span class="banner-nav-separator">//</span>
 		<a href="/archives">🗄️ Archives</a>
+		<span class="banner-nav-separator">//</span>
+		<div class="pins-dropdown">
+			<button class="pins-toggle" aria-haspopup="true">📌 Pins</button>
+			<div class="pins-menu">
+				
+					
+					<a href="/yahweh/" class="pin-item">
+						<div class="pin-item-content">
+							<span class="pin-title">Yahweh God Tract</span>
+							
+							<span class="pin-description">Biblical definition and basis of the trinity</span>
+							
+						</div>
+					</a>
+					
+				
+					
+					<a href="/timeline/" class="pin-item">
+						<div class="pin-item-content">
+							<span class="pin-title">Timeline &amp; Map</span>
+							
+							<span class="pin-description">Geovisualizer of historical figures</span>
+							
+						</div>
+					</a>
+					
+				
+			</div>
+		</div>
 	</nav>
 </div>
 
@@ -228,7 +257,7 @@ function toggleColumnFocus(headerElement) {
     const activeColumn = headerElement.closest('.verse-col');
     const container = activeColumn.closest('.parallel-verse-container');
     const isCurrentlyFocused = activeColumn.classList.contains('focused-column');
-    
+
     if (isCurrentlyFocused) {
         activeColumn.classList.remove('focused-column');
         container.classList.remove('has-focused-column');
@@ -238,6 +267,7 @@ function toggleColumnFocus(headerElement) {
         container.classList.add('has-focused-column');
     }
 }
+
 </script>
   </footer>
 </body>
