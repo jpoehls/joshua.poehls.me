@@ -2,6 +2,11 @@
 # Each pin can be a post (use relative URL like /2026/post-slug/) or a page (like /yahweh/)
 
 [[pin]]
+url = "/library/"
+title = "My Library"
+description = "Catalog of my physical book collection"
+
+[[pin]]
 url = "/yahweh/"
 title = "Yahweh God Tract"
 description = "Biblical definition and basis of the trinity"
