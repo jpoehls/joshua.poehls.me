@@ -2,7 +2,7 @@
 title: "Bible Translation Thoughts"
 date: 2026-06-01T10:26:46-05:00
 draft: true
-slug: "bible-translation-thoughts"
+url: "/bible-translation-thoughts/"
 disable_ref_tagger: true
 ---
 
