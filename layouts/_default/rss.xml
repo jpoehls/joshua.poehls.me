@@ -5,7 +5,7 @@
 {{- with index $entries 0 -}}
 	{{- $feedUpdated = .Lastmod | default .Date -}}
 {{- end -}}
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ or site.Language.LanguageCode site.Language.Lang }}">
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ or site.Language.Locale site.Language.Lang }}">
   <title>{{ site.Title | html }}</title>
   <icon>{{ "touch-icon-iphone-retinahd.png" | absURL }}</icon>
   <rights>Copyright (c) 2014–{{ now.Format "2006" }} {{ site.Params.author | html }}. All rights reserved.</rights>
