@@ -213,7 +213,7 @@ article.post .thought-card code {
     margin-left: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .thought-card,
     .resource-card {
         flex: 1 1 100%;
