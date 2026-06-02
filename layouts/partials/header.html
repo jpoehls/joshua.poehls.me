@@ -9,7 +9,25 @@
 	</div>
 	<nav class="banner-nav">
 		<a href="{{ "contact" | relURL }}">👋 Say hello</a>
-		<span class="nav-separator">//</span>
+		<span class="banner-nav-separator">//</span>
 		<a href="{{ "archives" | relURL }}">🗄️ Archives</a>
+		<span class="banner-nav-separator">//</span>
+		<div class="pins-dropdown">
+			<button class="pins-toggle" aria-haspopup="true">📌 Pins</button>
+			<div class="pins-menu">
+				{{ range hugo.Data.pins.pin }}
+					{{ if or (not .draft) (not hugo.IsProduction) }}
+					<a href="{{ .url | relURL }}" class="pin-item">
+						<div class="pin-item-content">
+							<span class="pin-title">{{ .title }}</span>
+							{{ with .description }}
+							<span class="pin-description">{{ . }}</span>
+							{{ end }}
+						</div>
+					</a>
+					{{ end }}
+				{{ end }}
+			</div>
+		</div>
 	</nav>
 </div>

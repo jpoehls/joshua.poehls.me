@@ -10,7 +10,7 @@ function toggleColumnFocus(headerElement) {
     const activeColumn = headerElement.closest('.verse-col');
     const container = activeColumn.closest('.parallel-verse-container');
     const isCurrentlyFocused = activeColumn.classList.contains('focused-column');
-    
+
     if (isCurrentlyFocused) {
         activeColumn.classList.remove('focused-column');
         container.classList.remove('has-focused-column');
@@ -20,4 +20,5 @@ function toggleColumnFocus(headerElement) {
         container.classList.add('has-focused-column');
     }
 }
+
 </script>

@@ -1,0 +1,12 @@
+# Pinned content - highlighted links in banner dropdown
+# Each pin can be a post (use relative URL like /2026/post-slug/) or a page (like /yahweh/)
+
+[[pin]]
+url = "/yahweh/"
+title = "Yahweh God Tract"
+description = "Biblical definition and basis of the trinity"
+
+[[pin]]
+url = "/timeline/"
+title = "Timeline & Map"
+description = "Geovisualizer of historical figures"
