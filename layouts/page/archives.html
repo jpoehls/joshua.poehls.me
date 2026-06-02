@@ -1,15 +1,5 @@
 {{ define "main" }}
 <div class="site-wrap">
-	<h2>Fun Stuff</h2>
-	<ul>
-		<li><span>
-				<a href="../yahweh/index.htm">Yahweh God Tract</a>
-			</span></li>
-		<li><span>
-				<a href="../timeline/index.html">Historical Figures Geovisualizer</a>
-			</span></li>
-	</ul>
-
 	<h2>Best Tags</h2>
 	<p class="archive-tag-list">
 		{{ $recommended := hugo.Data.tags.recommended }}
@@ -55,6 +45,17 @@
 		</span>
 		{{ end }}
 	</p>
+
+	<h2>Pins</h2>
+	<ul class="archive-series-list">
+		{{ $pins := hugo.Data.pins.pin }}
+		{{ range $pins }}
+		<li>
+			<h3><a href="{{ .url }}">{{ .title }}</a></h3>
+			<p class="series-desc">{{ .description }}</p>
+		</li>
+		{{ end }}
+	</ul>
 	<div class="fin-symbol" aria-hidden="true"></div>
 </div>
 {{ end }}
