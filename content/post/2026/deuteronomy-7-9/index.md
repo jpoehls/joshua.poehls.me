@@ -42,6 +42,3 @@ Click any preview below to download a full-size wallpaper optimized for iOS.
 
 * **Hebrew Audio:** Listen to traditional readings of the text on [Sefaria](https://www.sefaria.org/Deuteronomy.7.9?lang=bi&with=Torah%20Readings&lang2=en) or modern readings on [Haktuvim](https://haktuvim.co.il/study/Deut.7.9).
 * **Fighter Verses:** Check out the currated resources for this memory verse on the [Fighter Verses site](https://www.fighterverses.com/verses/deuteronomy-7%3A9).
-
-[^csb]: Christian Standard Bible (Nashville, TN: Holman Bible Publishers, 2020), Dt 7:9.
-[^hb]: K. Elliger, W. Rudolph, and Gérard E. Weil, Biblia Hebraica Stuttgartensia, electronic ed. (Stuttgart: German Bible Society, 2003), Dt 7:9.
