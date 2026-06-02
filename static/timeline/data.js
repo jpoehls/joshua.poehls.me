@@ -45,7 +45,8 @@ const LOCATIONS = {
     edinburgh: { key: "edinburgh", name: "Edinburgh, Scotland", lat: 55.9474, lng: -3.1873 },
     galloway: { key: "galloway", name: "Galloway, Scotland", lat: 54.8458, lng: -4.2047 },
     devizes_wiltshire: { key: "devizes_wiltshire", name: "Devizes, Wiltshire, England", lat: 51.3522, lng: -1.9954 },
-    taunton: { key: "taunton", name: "Taunton, Somerset, England", lat: 51.0149, lng: -3.1029 }
+    taunton: { key: "taunton", name: "Taunton, Somerset, England", lat: 51.0149, lng: -3.1029 },
+    leicester_harvey_lane_baptist_chapel: { key: "leicester_harvey_lane_baptist_chapel", name: "Harvey Lane Baptist Chapel, Leicester", lat: 52.634, lng: -1.133 }
 };
 
 // ============================================================================
@@ -361,7 +362,18 @@ const figures = [
         .events(
             event("Baptized", 1770, null, LOCATIONS.soham),
             pastored(LOCATIONS.soham, 1775, 1782),
-            pastored(LOCATIONS.kettering, month(1782, 10), 1815)
+            pastored(LOCATIONS.kettering, month(1782, 10), 1815),
+            published('The Gospel Worthy of All Acceptation', 1785, LOCATIONS.kettering),
+            event('Moderated the meeting where William Carey preached his famous sermon on Isaiah 54:2–3 at the Northamptonshire Association, declaring, "Expect great things, attempt great things."', day(1792, 5, 31), null, LOCATIONS.nottingham),
+            event("Secretary of The Particular Baptist Society for the Propagation of the Gospel among the Heathen (later the Baptist Missionary Society, or BMS)", day(1792, 10, 2), day(1815, 5, 7), LOCATIONS.kettering),
+            event("Preached at the commissioning the service for the BMS's first missionaries, William Carey and John Thomas", day(1793, 3, 20), null, LOCATIONS.leicester_harvey_lane_baptist_chapel),
+            published('The Calvinistic and Socinian Systems Examined and Compared as to Their Moral Tendency', 1794, LOCATIONS.kettering),
+            published('The Gospel Its Own Witness', 1800, LOCATIONS.kettering),
+            published('Memoirs of the Rev. Samuel Pearce', 1800, LOCATIONS.kettering),
+            // published('The Backslider', 1801, LOCATIONS.kettering),
+            published('An Apology for the Late Christian Missions to India', 1808, LOCATIONS.kettering),
+            // published('Expository Discourses on the Book of Genesis', 1806, LOCATIONS.kettering),
+            // event("Posthumous Publication of 'Expository Discourses on the Apocalypse'", 1815, null, LOCATIONS.kettering)
         )
         .build(),
 
