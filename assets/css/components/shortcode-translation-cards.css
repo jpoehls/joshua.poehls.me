@@ -119,11 +119,19 @@ article.post .thought-card code {
 
 .card-header {
     display: flex;
-    align-items: start;
+    align-items: baseline;
+    justify-content: space-between;
     gap: 0.6rem;
     margin-bottom: 0.75rem;
     border-bottom: 1px solid #e1e4e8;
     padding-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.card-header-left {
+    display: flex;
+    align-items: start;
+    gap: 0.6rem;
     line-height: 1.2;
 }
 
@@ -160,11 +168,9 @@ article.post .thought-card code {
 }
 
 .card-footer {
-    margin-top: 1rem;
-    padding-top: 0.6rem;
-    border-top: 1px dashed #e1e4e8;
+    margin-top: 0.5rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     gap: 0.5rem;
 }
@@ -176,10 +182,33 @@ article.post .thought-card code {
     font-weight: 300;
 }
 
-.card-date {
-    font-size: 0.75rem;
+.card-header-revision {
+    font-size: 0.7rem;
     color: #959da5;
-    font-weight: 500;
+    font-family: var(--font-footnote);
+    font-weight: 300;
+    flex-shrink: 0;
+}
+
+.resource-card-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.4rem;
+}
+
+.resource-card-author {
+    font-size: 0.7rem;
+    color: #959da5;
+    font-family: var(--font-footnote);
+    font-weight: 300;
+    padding-left: 1.6rem; /* Align with title text (emoji + gap) */
+}
+
+.card-date {
+    font-size: 0.7rem;
+    color: #959da5;
+    font-family: var(--font-footnote);
+    font-weight: 300;
     /* Optional: ensures date stays on the right */
     margin-left: auto;
 }

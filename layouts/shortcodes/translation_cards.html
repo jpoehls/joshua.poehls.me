@@ -3,13 +3,6 @@
 {{ $translation := .Get "translation" }}
 {{ $data := .Page.Resources.GetMatch $file | transform.Unmarshal }}
 
-{{ $css := resources.Get "css/components/shortcode-translation-cards.css" | minify | fingerprint }}
-{{ $cssKey := printf "translation_cards_css_%s" $css.Data.Integrity }}
-{{ if not (.Page.Scratch.Get $cssKey) }}
-{{ .Page.Scratch.Set $cssKey true }}
-<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
-{{ end }}
-
 {{ $version := lower $translation }}
 {{ $containerId := printf "section-%s" $translation }}
 
@@ -35,11 +28,16 @@
                     {{- end -}}
 
                     <div class="resource-card">
-                        <div class="card-header">
-                            <span class="card-emoji">{{ $typeIcon }}</span>
-                            <span class="resource-title">
-                                <a href="{{ .url }}" class="resource-title-link" target="_blank" rel="noopener">{{ .title }}</a>
-                            </span>
+                        <div class="card-header resource-card-header">
+                            <div class="card-header-left">
+                                <span class="card-emoji">{{ $typeIcon }}</span>
+                                <span class="resource-title">
+                                    <a href="{{ .url }}" class="resource-title-link" target="_blank" rel="noopener">{{ .title }}</a>
+                                </span>
+                            </div>
+                            {{ with .author }}
+                            <div class="resource-card-author">{{ . }}</div>
+                            {{ end }}
                         </div>
                         {{ with .description }}
                         <div class="card-body">
@@ -64,12 +62,11 @@
                             </div>
                             {{ end }}
                         {{ end }}
+                        {{ with .date }}
                         <div class="card-footer">
-                            {{ if or .author .date }}
-                                {{ with .author }}<span class="card-revision">{{ . }}</span>{{ end }}
-                                {{ with .date }}<span class="card-date">{{ . }}</span>{{ end }}
-                            {{ end }}
+                            <span class="card-date">{{ . }}</span>
                         </div>
+                        {{ end }}
                     </div>
                 {{ end }}
             {{ end }}
@@ -87,35 +84,34 @@
             {{ if $matches }}
             <div class="thought-card">
                 <div class="card-header">
-                    {{- $emojiMap := dict
-                        "good" "👍"
-                        "disappointing" "😔"
-                        "note" "💬"
-                        "interesting" "🤔"
-                        "curious" "🧐"
-                    -}}
+                    <div class="card-header-left">
+                        {{- $emojiMap := dict
+                            "good" "👍"
+                            "disappointing" "😔"
+                            "note" "💬"
+                            "interesting" "🤔"
+                            "curious" "🧐"
+                        -}}
 
-                    {{- $emoji := .emoji | default "note" -}}
-                    {{- $render := index $emojiMap $emoji | default $emoji -}}
+                        {{- $emoji := .emoji | default "note" -}}
+                        {{- $render := index $emojiMap $emoji | default $emoji -}}
 
-                    <span class="card-emoji">{{ $render }}</span>
+                        <span class="card-emoji">{{ $render }}</span>
 
-                    <span class="card-reference">
-                        <a class="rtBibleRef" href="https://ref.ly/{{ .reference }};{{ $version }}?t=biblia"
-                            data-reference="{{ .reference }}" data-version="{{ $version }}" data-purpose="bible-reference"
-                            target="_blank" rel="noopener">{{ .reference }}</a>
-                    </span>
-
+                        <span class="card-reference">
+                            <a class="rtBibleRef" href="https://ref.ly/{{ .reference }};{{ $version }}?t=biblia"
+                                data-reference="{{ .reference }}" data-version="{{ $version }}" data-purpose="bible-reference"
+                                target="_blank" rel="noopener">{{ .reference }}</a>
+                        </span>
+                    </div>
+                    {{ with .revision }}
+                    <span class="card-header-revision">{{ . }}</span>
+                    {{ end }}
                 </div>
                 <div class="card-body">
                     {{ .text | markdownify }}
                 </div>
                 <div class="card-footer">
-                    {{ with .revision }}
-                    <span class="card-revision">{{ . }}</span>
-                    {{ else }}
-                    <span></span>
-                    {{ end }}
                     <span class="card-date">{{ .date }}</span>
                 </div>
             </div>
