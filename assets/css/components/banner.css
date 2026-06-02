@@ -230,3 +230,42 @@
 	}
 }
 
+/* Small mobile screens - compact nav to fit on one line */
+@media (max-width: 480px) {
+	.banner-nav {
+		gap: 0.2rem;
+		margin-left: 0.5em;
+		flex-wrap: nowrap; /* Force single line */
+	}
+
+	.banner-nav a,
+	.pins-toggle {
+		font-size: 0.75em;
+		padding: 0.3em 0.35em 0.5em;
+		letter-spacing: 0.03em;
+	}
+
+	.banner-nav-separator {
+		font-size: 0.8em;
+	}
+}
+
+/* Extra small screens (iPhone SE, etc.) - minimal spacing */
+@media (max-width: 375px) {
+	.banner-nav {
+		gap: 0.15rem;
+		margin-left: 0.25em;
+	}
+
+	.banner-nav a,
+	.pins-toggle {
+		font-size: 0.7em;
+		padding: 0.25em 0.3em 0.4em;
+		letter-spacing: 0.02em;
+	}
+
+	.banner-nav-separator {
+		font-size: 0.75em;
+	}
+}
+
