@@ -20,17 +20,15 @@ This is my collection of notes, comparisons, and observations across various mod
   </div>
 </div>
 
-<div class="emoji-legend">
+<!-- <div class="emoji-legend">
   <span class="legend-item"><strong>👍</strong> Nice</span>
   <span class="legend-item"><strong>😔</strong> Disappointing</span>
   <span class="legend-item"><strong>💬</strong> Note</span>
   <span class="legend-item"><strong>🤔</strong> Interesting</span>
   <span class="legend-item"><strong>🧐</strong> Curious</span>
-</div>
+</div> -->
 
 ## CSB (Christian Standard Bible)
-
-Unless otherwise noted, I'm referring to the 2020 revision.
 
 {{< translation_cards src="thoughts.toml" resources="resources.toml" translation="csb" >}}
 
