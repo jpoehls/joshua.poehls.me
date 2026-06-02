@@ -6,7 +6,7 @@ url: "/bible-translation-thoughts/"
 disable_ref_tagger: true
 ---
 
-This is my collection of notes, comparisons, and observations across various modern English Bible translations. Use the buttons below to filter to a specific translation.
+This is my collection of notes and observations across various English Bible translations. Use the buttons below to filter to a specific translation.
 
 <!--more-->
 
