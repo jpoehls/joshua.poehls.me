@@ -14,7 +14,7 @@
 
 
 
-<link rel="stylesheet" href="/styles.min.f627b624f7503db422fce7aaae57a8f0ea32821b211cc353558b81cab6e27852.css" integrity="sha256-9ie2JPdQPbQi/Oeqrleo8OoyghshHMNTVYuByrbieFI=">
+<link rel="stylesheet" href="/styles.min.164283d341dee8d64fe7d4986eb3559a48ebc115fab1c50e3b25d967ee74f3e4.css" integrity="sha256-FkKD00He6NZP59SYbrNVmkjrwRX6scUOOyXZZ&#43;508&#43;Q=">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -105,6 +105,37 @@
 <div class="site-wrap">
 	
 		<div class="post-list-grid">
+			
+			<article class="post post--card">
+	<header>
+		<h1>
+			<a href="/2013/jquery-css-clip-animation-plugin/" class="post-title-link">jQuery CSS Clip Animation Plugin</a>
+		</h1>
+		<p>
+			<time datetime="2013-03-06 21:58:15 -0500 -0500" pubdate="pubdate">Wednesday, 6 March 2013</time>
+		</p>
+	</header>
+	<div class="post-summary">
+		<p>Yesterday I needed to animate the CSS <a href="https://developer.mozilla.org/en-US/docs/CSS/clip">clip property</a> using jQuery.
+<a href="http://api.jquery.com/animate/"><code>jQuery.animate()</code></a> doesn&rsquo;t support this natively so I went searching for a plugin.
+I found exactly what I needed in <a href="http://www.overset.com/2008/08/07/jquery-css-clip-animation-plugin/">a simple plugin by Jim Palmer</a>, unfortunately it hasn&rsquo;t been updated to work with jQuery 1.8.0+.</p>
+<p>So here you go, a forked and updated copy of the plugin which will work with jQuery 1.8.0+.</p>
+<p>Changes include:</p>
+<ul>
+<li>Support for jQuery 1.8.0+</li>
+<li>Support for the element&rsquo;s initial clip value to be specified via a stylesheet instead of an inline style</li>
+<li>Support for decimal clip values (thanks to a comment by Manoel Quirino Neto)</li>
+<li>Type checking <code>fx.end</code> to guard against errors in some scenarios</li>
+<li>Support for IE8</li>
+</ul>
+<p>The element you are animating <strong>must</strong> have a <code>clip</code> style specified. Otherwise, usage is as you would expect.</p>
+	</div>
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="/2013/jquery-css-clip-animation-plugin/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
+	</p>
+</article>
+
 			
 			<article class="post post--card">
 	<header>
@@ -369,30 +400,6 @@ sys    0m0.100s
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
 		<a href="/2012/crime-rates-are-dropping/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
-	</p>
-</article>
-
-			
-			<article class="post post--card">
-	<header>
-		<h1>
-			<a href="/2012/powershell-batch-files-exit-codes/" class="post-title-link">PowerShell, batch files, and exit codes. Recipes &amp; Secrets.</a>
-		</h1>
-		<p>
-			<time datetime="2012-06-23 10:43:31 -0600 -0600" pubdate="pubdate">Saturday, 23 June 2012</time>
-		</p>
-	</header>
-	<div class="post-summary">
-		<h2 id="tldr">TL;DR;</h2>
-<blockquote>
-<p><strong>Update:</strong> If you want to save some time, skip reading this and just use my <a href="/powershell-script-boilerplate">PowerShell Script Boilerplate</a>. It includes an excellent batch file wrapper, argument escaping, and error code bubbling.</p>
-</blockquote>
-<p><code>PowerShell.exe</code> doesn&rsquo;t return correct exit codes when using the <code>-File</code> option. Use <code>-Command</code> instead. <em>(<a href="https://connect.microsoft.com/PowerShell/feedback/details/750653/powershell-exe-doesn-t-return-correct-exit-codes-when-using-the-file-option">Vote for this issue</a> on Microsoft Connect.)</em></p>
-<p><a href="#bat-wrapper">This</a> is a batch file wrapper for executing PowerShell scripts. It forwards arguments to PowerShell and correctly bubbles up the exit code (when it can).</p>
-	</div>
-	<p class="post-read-more">
-		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2012/powershell-batch-files-exit-codes/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
 </article>
 
