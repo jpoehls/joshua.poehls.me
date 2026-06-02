@@ -9,7 +9,7 @@
 .thought-card {
     background: #ffffff;
     border: 1px solid #e1e4e8;
-    border-radius: 6px;
+    border-radius: var(--border-radius-md);
     padding: 1rem;
     flex: 1 1 calc(33.333% - 1rem);
     min-width: 280px;

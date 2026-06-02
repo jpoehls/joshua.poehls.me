@@ -122,7 +122,9 @@ article.post header p {
 	margin-top: 0;
 	margin-bottom: 0;
 	padding: 0;
-	font-size: var(--font-post-body);
+	font-size: 1.2rem;
+	font-family: var(--font-sans);
+	color: var(--color-muted);
 	text-indent: 0;
 }
 
