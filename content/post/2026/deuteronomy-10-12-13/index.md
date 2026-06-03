@@ -21,10 +21,4 @@ This week is **Deuteronomy 10:12–13** from [Fighter Verses: Set 1, Week 2](htt
 
 <!--more-->
 
-<!-- ## Wallpapers
-
-Click any preview below to download a full-size wallpaper optimized for iOS.
-
-{{< gallery title="CSB Wallpaper" >}}
-  {{< galleryimg src="/2026/deuteronomy-10-12-13/csb.jpeg" caption="CSB wallpaper" >}}
-{{< /gallery >}} -->
+{{< img src="/2026/deuteronomy-10-12-13/csb.jpeg" caption="CSB wallpaper" >}}
