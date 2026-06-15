@@ -109,6 +109,64 @@
 			<article class="post post--card">
 	<header>
 		<h1>
+			<a href="/2011/take-your-powershell-profile-everywhere-with-dropbox/" class="post-title-link">Take your PowerShell profile everywhere with Dropbox</a>
+		</h1>
+		<p>
+			<time datetime="2011-03-25 00:00:00 &#43;0000 UTC" pubdate="pubdate">Friday, 25 March 2011</time>
+		</p>
+	</header>
+	<div class="post-summary">
+		<p>I&rsquo;ll cover these prerequisites in brief, but for this tip I&rsquo;m going to assume a few things:</p>
+<ul>
+<li>You are running Windows and have <a href="http://msdn.microsoft.com/en-us/library/aa973757.aspx">PowerShell</a> installed.</li>
+<li>You are familiar enough with PowerShell to care about your <a href="http://msdn.microsoft.com/en-us/library/bb613488.aspx">$PROFILE</a>.</li>
+</ul>
+<h3 id="what-is-powershell">What is PowerShell?</h3>
+<p>In short, PowerShell is a new scripting language from Microsoft designed to replace the use of batch files and VBScript for administrating and automating Windows machines. The language leverages the .NET Framework such that anything you can do with .NET you can do with PowerShell. Typically you will be using PowerShell from the command line but there are lots of other ways to use it.</p>
+	</div>
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="/2011/take-your-powershell-profile-everywhere-with-dropbox/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
+	</p>
+</article>
+
+			
+			<article class="post post--card">
+	<header>
+		<h1>
+			<a href="/2010/installing-ruby-and-the-devkit-on-windows/" class="post-title-link">Installing Ruby (and the DevKit) on Windows</a>
+		</h1>
+		<p>
+			<time datetime="2010-11-11 00:00:00 &#43;0000 UTC" pubdate="pubdate">Thursday, 11 November 2010</time>
+		</p>
+	</header>
+	<div class="post-summary">
+		<p>Here&rsquo;s my recipe for a painfree installation of Ruby on Windows.</p>
+<ol>
+<li>Use the RubyInstaller from <a href="http://www.ruby-lang.org/en/downloads/">www.ruby-lang.org</a>.
+I used Ruby 1.9.2-p0.</li>
+<li>Install the Ruby DevKit by following the instructions in the <a href="https://github.com/oneclick/rubyinstaller/wiki/development-kit">Installation Overview</a>.
+I used version DevKit-4.5.0-20100819-1536-sfx.</li>
+</ol>
+<p>The DevKit is needed so that you can install gems that need to build native extensions.
+Without it when you try to <code>gem install jekyll</code> you will see an error like this:</p>
+<pre tabindex="0"><code>ERROR: Error installing jekyll:
+ERROR: Failed to build gem native extension.
+
+&#39;make&#39; is not recognized as an internal or external command,
+operable program or batch file.
+</code></pre><p>After installing DevKit <code>gem install jekyll</code> will work like a champ.</p>
+	</div>
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="/2010/installing-ruby-and-the-devkit-on-windows/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
+	</p>
+</article>
+
+			
+			<article class="post post--card">
+	<header>
+		<h1>
 			<a href="/2010/ria-services-lessons-learned-while-getting-started/" class="post-title-link">RIA Services - Lessons Learned While Getting Started</a>
 		</h1>
 		<p>

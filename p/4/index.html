@@ -109,6 +109,75 @@
 			<article class="post post--card">
 	<header>
 		<h1>
+			<a href="/2014/04/go-101-methods-on-pointers-vs-values/" class="post-title-link">Go 101: Methods on Pointers vs. Values</a>
+		</h1>
+		<p>
+			<time datetime="2014-04-14 09:58:59 -0500 -0500" pubdate="pubdate">Monday, 14 April 2014</time>
+		</p>
+	</header>
+	<div class="post-summary">
+		<p>Methods can be declared on both pointers and values. The difference is subtle but important.</p>
+<pre><code>type Person struct {
+     age int
+}
+
+// Method's receiver is the value, `Person`.
+func (p Person) Age() int {
+     return p.age
+}
+
+// Method's receiver is a pointer, `*Person`.
+func (p *Person) SetAge(age int) {
+     p.age = age
+}
+</code></pre>
+<blockquote>
+<p>In reality, you&rsquo;d only define getter and setter functions like this if you needed to implement additional logic. In an example like this you&rsquo;d just make the <code>Age</code> field public.</p>
+	</div>
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="/2014/04/go-101-methods-on-pointers-vs-values/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
+	</p>
+</article>
+
+			
+			<article class="post post--card">
+	<header>
+		<h1>
+			<a href="/2014/04/go-conventions-constructors-and-overloads/" class="post-title-link">Go 101: Constructors and Overloads</a>
+		</h1>
+		<p>
+			<time datetime="2014-04-11 09:58:59 -0500 -0500" pubdate="pubdate">Friday, 11 April 2014</time>
+		</p>
+	</header>
+	<div class="post-summary">
+		<p>Go doesn&rsquo;t have constructors in the traditional sense. The convention is to make the zero value useful whenever possible.</p>
+<pre><code>type Person struct {
+     Age int
+}
+
+// These are equivalent.
+// `p1` and `p2` are initialized to the zero value of Person.
+// Neither of these are nil.
+var p1 Person // type Person
+p2 := Person{} // type Person
+
+// You could also use `new` to allocate which returns a pointer
+p3 := new(Person) // type *Person
+</code></pre>
+<blockquote>
+<p>It is most common to use the struct initializer. e.g. <code>p := Person{}</code> or <code>p := &amp;Person{}</code> if you need the pointer.</p>
+	</div>
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="/2014/04/go-conventions-constructors-and-overloads/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
+	</p>
+</article>
+
+			
+			<article class="post post--card">
+	<header>
+		<h1>
 			<a href="/2014/go-and-package-versioning/" class="post-title-link">Go and Package Versioning</a>
 		</h1>
 		<p>
@@ -270,58 +339,6 @@
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
 		<a href="/2013/push-it-out-push-ups-every-hour./">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
-	</p>
-</article>
-
-			
-			<article class="post post--card">
-	<header>
-		<h1>
-			<a href="/2013/user-sign-up-and-email-confirmation-a-ux-boilerplate/" class="post-title-link">User sign up and email confirmation, a UX boilerplate</a>
-		</h1>
-		<p>
-			<time datetime="2013-08-13 22:29:37 -0500 -0500" pubdate="pubdate">Tuesday, 13 August 2013</time>
-		</p>
-	</header>
-	<div class="post-summary">
-		<p>Sign up, confirm your email address, login. The three steps that almost all web apps share.</p>
-<p>It isn&rsquo;t hard to get this process right but it does take some planning. I&rsquo;ve had to implement this a lot so I finally decided to document it. This is my boilerplate for a user sign up process. The interaction flow that I use as the starting point for sign-ups in my apps. Along the way I&rsquo;ll point out some key UX (User eXperience) tips. I hope this saves you some time on your next project.</p>
-	</div>
-	<p class="post-read-more">
-		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/user-sign-up-and-email-confirmation-a-ux-boilerplate/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
-	</p>
-</article>
-
-			
-			<article class="post post--card">
-	<header>
-		<h1>
-			<a href="/2013/tableaukit-a-powershell-module-for-tableau/" class="post-title-link">TableauKit: A PowerShell Module for Tableau</a>
-		</h1>
-		<p>
-			<time datetime="2013-08-09 22:32:43 -0500 -0500" pubdate="pubdate">Friday, 9 August 2013</time>
-		</p>
-	</header>
-	<div class="post-summary">
-		<style>
-pre.powershell-result {
-	background-color: #012456;
-	color: #ffffff;
-}
-</style>
-<p>If you&rsquo;ve been following my <a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">Tableau via PowerShell</a> series then you already
-know there are a lot of cool things you can do with Tableau workbooks using
-PowerShell. Up until now I&rsquo;ve been sharing helper functions in a stand-alone
-fashion. No longer.</p>
-<p>I&rsquo;d like to introduce you to <a href="https://www.interworks.com/content/download-tableaukit">TableauKit</a>. A pure, script-based PowerShell
-module for working with Tableau files.</p>
-<h2 id="say-what">Say what?</h2>
-<p>Today TableauKit is shipping with the following commands:</p>
-	</div>
-	<p class="post-read-more">
-		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/tableaukit-a-powershell-module-for-tableau/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
 </article>
 

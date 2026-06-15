@@ -109,6 +109,62 @@
 			<article class="post post--card">
 	<header>
 		<h1>
+			<a href="/2013/substacks-philosophy-of-small-things/" class="post-title-link">Substack&#39;s philosophy of small things</a>
+		</h1>
+		<p>
+			<time datetime="2013-03-22 22:04:38 -0500 -0500" pubdate="pubdate">Friday, 22 March 2013</time>
+		</p>
+	</header>
+	<div class="post-summary">
+		<p>
+  Those of you who follow the <a href='https://nodejs.org'>Node.js</a> community at all
+  will recognize <a href='https://twitter.com/substack'>substack</a> as one of the most prolific
+  package authors on <a href='https://npmjs.org/~substack'>NPM</a>.
+  You have probably also picked up on the fact that he is a big fan of small packages.
+</p>
+<p>
+  I ran across this interview the other day and I think substack communicates
+  his &#8220;small things&#8221; philosophy well. Simply put,
+  the UNIX philosophy works. Do one thing, do it well, and it will stand the test of time.
+</p>
+	</div>
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="/2013/substacks-philosophy-of-small-things/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
+	</p>
+</article>
+
+			
+			<article class="post post--card">
+	<header>
+		<h1>
+			<a href="/2013/google-chrome-and-woff-font-mime-type-warnings/" class="post-title-link">Google Chrome and WOFF font MIME type warnings</a>
+		</h1>
+		<p>
+			<time datetime="2013-03-15 22:00:31 -0500 -0500" pubdate="pubdate">Friday, 15 March 2013</time>
+		</p>
+	</header>
+	<div class="post-summary">
+		<p>If you are getting warnings like <strong>Resource interpreted as Font but transferred with MIME type font/x-woff</strong> in Google Chrome then it means your web server is serving the font with the wrong MIME type.</p>
+<p>It took awhile for the WOFF font format to get an approved MIME type so there are several variations hanging around.</p>
+<ul>
+<li><code>font/x-woff</code></li>
+<li><code>font/woff</code></li>
+<li><code>application/x-font-woff</code></li>
+</ul>
+<p>Thank God an official type <a href="http://www.w3.org/TR/WOFF/#appendix-b">was finally decided on</a>, <code>application/font-woff</code>.</p>
+<p>Unfortunately, Google Chrome (as of 26 beta) still expects you to use <code>application/x-font-woff</code> and doesn&rsquo;t recognize <code>application/font-woff</code> as a valid MIME type. This <a href="https://bugs.webkit.org/show_bug.cgi?id=111418">has been fixed</a> in the WebKit trunk but hasn&rsquo;t been merged into Chrome yet. The <a href="https://code.google.com/p/chromium/issues/detail?id=178823">Chromium bug report</a> has been closed so it should be coming soon.</p>
+	</div>
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="/2013/google-chrome-and-woff-font-mime-type-warnings/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
+	</p>
+</article>
+
+			
+			<article class="post post--card">
+	<header>
+		<h1>
 			<a href="/2013/jquery-css-clip-animation-plugin/" class="post-title-link">jQuery CSS Clip Animation Plugin</a>
 		</h1>
 		<p>
@@ -346,60 +402,6 @@ sys    0m0.100s
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
 		<a href="/2013/an-mklink-powershell-module/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
-	</p>
-</article>
-
-			
-			<article class="post post--card">
-	<header>
-		<h1>
-			<a href="/2012/killing-processes-in-disconnected-terminal-service-sessions/" class="post-title-link">Killing Processes In Disconnected Terminal Service Sessions</a>
-		</h1>
-		<p>
-			<time datetime="2012-12-12 00:00:00 &#43;0000 UTC" pubdate="pubdate">Wednesday, 12 December 2012</time>
-		</p>
-	</header>
-	<div class="post-summary">
-		<p>Usually it is best to configure your terminal service policy to log out disconnected sessions, however there may be cases where you only want to kill specific applications when the user disconnects.</p>
-<p>This is easy to do with a PowerShell script that you run periodically as a scheduled task. The processes won&rsquo;t be killed <em>immediately</em> when the user disconnects but will be killed shortly after.</p>
-<p>This script will, by default, only kill the OUTLOOK processes in disconnected sessions after waiting 15 seconds for it to gracefully close. It is trivial to tweak the script to kill whichever processes you care about.</p>
-	</div>
-	<p class="post-read-more">
-		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2012/killing-processes-in-disconnected-terminal-service-sessions/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
-	</p>
-</article>
-
-			
-			<article class="post post--card">
-	<header>
-		<h1>
-			<a href="/2012/crime-rates-are-dropping/" class="post-title-link">Crime Rates Are Dropping</a>
-		</h1>
-		<p>
-			<time datetime="2012-08-13 00:00:00 &#43;0000 UTC" pubdate="pubdate">Monday, 13 August 2012</time>
-		</p>
-	</header>
-	<div class="post-summary">
-		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-      google.load('visualization', '1', {packages: ['corechart']});
-    </script>
-
-    <p>We all know the news is biased. Media slants to the left or the right. Bias is natural
-    and very difficult to avoid.</p>
-
-    <p>I don't read the news much but the recent public shootings in Aurora, Colorado
-    and at the Sikh temple in Wisconsin have made my social media feeds flutter with the topic of gun control with
-    points from all sides.</p>
-
-    <p>Today I listened to <a href="http://www.dancarlin.com/disp.php/csarchive/Show-234---Aiming-for-Effectiveness/guns-shootings-firearms">an episode of Common Sense with Dan Carlin</a>, a podcast
-    that I occasionally listen to and always enjoy. He does a good job, in my opinion, of thinking
-    about situations from both sides of the fence.</p>
-	</div>
-	<p class="post-read-more">
-		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2012/crime-rates-are-dropping/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
 </article>
 

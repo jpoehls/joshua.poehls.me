@@ -109,6 +109,58 @@
 			<article class="post post--card">
 	<header>
 		<h1>
+			<a href="/2013/user-sign-up-and-email-confirmation-a-ux-boilerplate/" class="post-title-link">User sign up and email confirmation, a UX boilerplate</a>
+		</h1>
+		<p>
+			<time datetime="2013-08-13 22:29:37 -0500 -0500" pubdate="pubdate">Tuesday, 13 August 2013</time>
+		</p>
+	</header>
+	<div class="post-summary">
+		<p>Sign up, confirm your email address, login. The three steps that almost all web apps share.</p>
+<p>It isn&rsquo;t hard to get this process right but it does take some planning. I&rsquo;ve had to implement this a lot so I finally decided to document it. This is my boilerplate for a user sign up process. The interaction flow that I use as the starting point for sign-ups in my apps. Along the way I&rsquo;ll point out some key UX (User eXperience) tips. I hope this saves you some time on your next project.</p>
+	</div>
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="/2013/user-sign-up-and-email-confirmation-a-ux-boilerplate/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
+	</p>
+</article>
+
+			
+			<article class="post post--card">
+	<header>
+		<h1>
+			<a href="/2013/tableaukit-a-powershell-module-for-tableau/" class="post-title-link">TableauKit: A PowerShell Module for Tableau</a>
+		</h1>
+		<p>
+			<time datetime="2013-08-09 22:32:43 -0500 -0500" pubdate="pubdate">Friday, 9 August 2013</time>
+		</p>
+	</header>
+	<div class="post-summary">
+		<style>
+pre.powershell-result {
+	background-color: #012456;
+	color: #ffffff;
+}
+</style>
+<p>If you&rsquo;ve been following my <a href="/2013/exploring-tableau-workbooks-with-powershell-part-1-opening-workbooks/">Tableau via PowerShell</a> series then you already
+know there are a lot of cool things you can do with Tableau workbooks using
+PowerShell. Up until now I&rsquo;ve been sharing helper functions in a stand-alone
+fashion. No longer.</p>
+<p>I&rsquo;d like to introduce you to <a href="https://www.interworks.com/content/download-tableaukit">TableauKit</a>. A pure, script-based PowerShell
+module for working with Tableau files.</p>
+<h2 id="say-what">Say what?</h2>
+<p>Today TableauKit is shipping with the following commands:</p>
+	</div>
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="/2013/tableaukit-a-powershell-module-for-tableau/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
+	</p>
+</article>
+
+			
+			<article class="post post--card">
+	<header>
+		<h1>
 			<a href="/2013/tableau-via-powershell-part-2-saving-changes/" class="post-title-link">Tableau via PowerShell, Part 2: Saving Changes</a>
 		</h1>
 		<p>
@@ -284,62 +336,6 @@ So it makes sense that non-enumerable properties would be ignored.</p>
 	<p class="post-read-more">
 		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
 		<a href="/2013/non-enumerable-properties-in-javascript/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
-	</p>
-</article>
-
-			
-			<article class="post post--card">
-	<header>
-		<h1>
-			<a href="/2013/substacks-philosophy-of-small-things/" class="post-title-link">Substack&#39;s philosophy of small things</a>
-		</h1>
-		<p>
-			<time datetime="2013-03-22 22:04:38 -0500 -0500" pubdate="pubdate">Friday, 22 March 2013</time>
-		</p>
-	</header>
-	<div class="post-summary">
-		<p>
-  Those of you who follow the <a href='https://nodejs.org'>Node.js</a> community at all
-  will recognize <a href='https://twitter.com/substack'>substack</a> as one of the most prolific
-  package authors on <a href='https://npmjs.org/~substack'>NPM</a>.
-  You have probably also picked up on the fact that he is a big fan of small packages.
-</p>
-<p>
-  I ran across this interview the other day and I think substack communicates
-  his &#8220;small things&#8221; philosophy well. Simply put,
-  the UNIX philosophy works. Do one thing, do it well, and it will stand the test of time.
-</p>
-	</div>
-	<p class="post-read-more">
-		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/substacks-philosophy-of-small-things/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
-	</p>
-</article>
-
-			
-			<article class="post post--card">
-	<header>
-		<h1>
-			<a href="/2013/google-chrome-and-woff-font-mime-type-warnings/" class="post-title-link">Google Chrome and WOFF font MIME type warnings</a>
-		</h1>
-		<p>
-			<time datetime="2013-03-15 22:00:31 -0500 -0500" pubdate="pubdate">Friday, 15 March 2013</time>
-		</p>
-	</header>
-	<div class="post-summary">
-		<p>If you are getting warnings like <strong>Resource interpreted as Font but transferred with MIME type font/x-woff</strong> in Google Chrome then it means your web server is serving the font with the wrong MIME type.</p>
-<p>It took awhile for the WOFF font format to get an approved MIME type so there are several variations hanging around.</p>
-<ul>
-<li><code>font/x-woff</code></li>
-<li><code>font/woff</code></li>
-<li><code>application/x-font-woff</code></li>
-</ul>
-<p>Thank God an official type <a href="http://www.w3.org/TR/WOFF/#appendix-b">was finally decided on</a>, <code>application/font-woff</code>.</p>
-<p>Unfortunately, Google Chrome (as of 26 beta) still expects you to use <code>application/x-font-woff</code> and doesn&rsquo;t recognize <code>application/font-woff</code> as a valid MIME type. This <a href="https://bugs.webkit.org/show_bug.cgi?id=111418">has been fixed</a> in the WebKit trunk but hasn&rsquo;t been merged into Chrome yet. The <a href="https://code.google.com/p/chromium/issues/detail?id=178823">Chromium bug report</a> has been closed so it should be coming soon.</p>
-	</div>
-	<p class="post-read-more">
-		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/google-chrome-and-woff-font-mime-type-warnings/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
 	</p>
 </article>
 
