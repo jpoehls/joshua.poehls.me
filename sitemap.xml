@@ -2,10 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://joshua.poehls.me/tags/fighter-verses/</loc>
-    <lastmod>2026-06-15T00:00:00+00:00</lastmod>
+    <loc>https://joshua.poehls.me/2026/hosea-1-2-persuading-unfaithful-people/</loc>
+    <lastmod>2026-10-04T12:00:00-05:00</lastmod>
   </url><url>
     <loc>https://joshua.poehls.me/</loc>
+    <lastmod>2026-10-04T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://joshua.poehls.me/series/</loc>
+    <lastmod>2026-10-04T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://joshua.poehls.me/series/sermons/</loc>
+    <lastmod>2026-10-04T12:00:00-05:00</lastmod>
+  </url><url>
+    <loc>https://joshua.poehls.me/tags/fighter-verses/</loc>
     <lastmod>2026-06-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://joshua.poehls.me/2026/romans-11-33/</loc>
@@ -198,9 +207,6 @@
     <lastmod>2014-04-16T09:58:59-05:00</lastmod>
   </url><url>
     <loc>https://joshua.poehls.me/2014/04/go-101-string-or-byte-slice/</loc>
-    <lastmod>2014-04-16T09:58:59-05:00</lastmod>
-  </url><url>
-    <loc>https://joshua.poehls.me/series/</loc>
     <lastmod>2014-04-16T09:58:59-05:00</lastmod>
   </url><url>
     <loc>https://joshua.poehls.me/2014/04/go-101-methods-on-pointers-vs-values/</loc>

@@ -4,12 +4,22 @@
   <rights>Copyright (c) 2014–2026 Joshua Poehls. All rights reserved.</rights>
   <link rel="self" type="application/atom+xml" href="https://joshua.poehls.me/feed.xml"/>
   <link rel="alternate" type="text/html" href="https://joshua.poehls.me/"/>
-  <updated>2026-06-15T00:00:00&#43;00:00</updated>
+  <updated>2026-10-04T12:00:00-05:00</updated>
   <author>
     <name>Joshua Poehls</name>
   </author>
   <id>https://joshua.poehls.me/feed.xml</id>
   <generator uri="https://gohugo.io/" version="0.160.0">Hugo</generator>
+  <entry xml:base="https://joshua.poehls.me/2026/hosea-1-2-persuading-unfaithful-people/">
+    <title>Hosea 1–2: Persuading Unfaithful People</title>
+    <link rel="alternate" type="text/html" href="https://joshua.poehls.me/2026/hosea-1-2-persuading-unfaithful-people/"/>
+    <id>https://joshua.poehls.me/2026/hosea-1-2-persuading-unfaithful-people/</id>
+    <published>2026-10-04T12:00:00-05:00</published>
+    <updated>2026-10-04T12:00:00-05:00</updated>
+    <category term="sermons" label="sermons"/>
+    <content type="html">&lt;p&gt;This is a sermon I preached from Hosea 1–2 on October 4, 2026 at Elm Grove Baptist Church in Waelder, Texas.&lt;/p&gt;
+&lt;iframe data-testid=&#34;embed-iframe&#34; style=&#34;border-radius:12px&#34; src=&#34;https://open.spotify.com/embed/episode/2A7QUPBy8sKDQ5xagabGX2?utm_source=generator&amp;si=1327d7d6fd3c4d6f&#34; width=&#34;100%&#34; height=&#34;152&#34; frameBorder=&#34;0&#34; allowfullscreen=&#34;&#34; allow=&#34;autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture&#34; loading=&#34;lazy&#34;&gt;&lt;/iframe&gt;</content>
+  </entry>
   <entry xml:base="https://joshua.poehls.me/2026/romans-11-33/">
     <title>Romans 11:33</title>
     <link rel="alternate" type="text/html" href="https://joshua.poehls.me/2026/romans-11-33/"/>
@@ -297,19 +307,6 @@
     <content type="html">&lt;p&gt;This post is as much for me as it is for you. I write a lot of PowerShell scripts and they tend to follow a certain pattern. This is my personal boilerplate for PowerShell scripts.&lt;/p&gt;&lt;p&gt;
     &lt;span&gt;&amp;hellip;&lt;/span&gt;
     &lt;a href=&#34;https://joshua.poehls.me/powershell-script-boilerplate/&#34;&gt;Continue reading &amp;#10230;&lt;/a&gt;
-&lt;/p&gt;</content>
-  </entry>
-  <entry xml:base="https://joshua.poehls.me/2016/01/bible-quiz-1/">
-    <title>Bible Quiz: Deu 7:9, 10:12-13</title>
-    <link rel="alternate" type="text/html" href="https://joshua.poehls.me/2016/01/bible-quiz-1/"/>
-    <id>https://joshua.poehls.me/2016/01/bible-quiz-1/</id>
-    <published>2016-01-18T00:00:00&#43;00:00</published>
-    <updated>2016-01-18T00:00:00&#43;00:00</updated>
-    <category term="bible-quiz" label="bible quiz"/>
-    <category term="scripture" label="scripture"/>
-    <content type="html">&lt;p&gt;Hundreds of verses forgotten. Yep, that&amp;rsquo;s what happen to me. I joined up with our church&amp;rsquo;s Bible Quiz team as a teen and memorized hundreds of verses for competition. Looking back, it is one of my favorite things I did growing up. Unfortunately, that was many years ago and with little practice comes much forgetfulness.&lt;/p&gt;&lt;p&gt;
-    &lt;span&gt;&amp;hellip;&lt;/span&gt;
-    &lt;a href=&#34;https://joshua.poehls.me/2016/01/bible-quiz-1/&#34;&gt;Continue reading &amp;#10230;&lt;/a&gt;
 &lt;/p&gt;</content>
   </entry>
 </feed>

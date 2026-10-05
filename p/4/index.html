@@ -109,6 +109,28 @@
 			<article class="post post--card">
 	<header>
 		<h1>
+			<a href="/2014/04/go-101-string-or-byte-slice/" class="post-title-link">Go 101: String or Byte Slice?</a>
+		</h1>
+		<p>
+			<time datetime="2014-04-16 09:58:59 -0500 -0500" pubdate="pubdate">Wednesday, 16 April 2014</time>
+		</p>
+	</header>
+	<div class="post-summary">
+		<p>One of the first things you&rsquo;ll notice in Go is that two different types are commonly used for representing text. <code>string</code> and <code>[]byte</code>. A quick example is the <a href="http://golang.org/pkg/regexp/#Regexp.FindAll">regexp package</a> which has functions for both <code>string</code> and <code>[]byte</code>.</p>
+<h2 id="what-is-the-difference">What is the difference?</h2>
+<p><code>string</code> is immutable and <code>[]byte</code> is mutable. Both can contain arbitrary bytes.</p>
+<p>The name &ldquo;string&rdquo; implies unicode text but this is not enforced. Operating on <code>string</code> is like operating on <code>[]byte</code>. You are working with bytes not characters.</p>
+	</div>
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="/2014/04/go-101-string-or-byte-slice/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
+	</p>
+</article>
+
+			
+			<article class="post post--card">
+	<header>
+		<h1>
 			<a href="/2014/04/go-101-methods-on-pointers-vs-values/" class="post-title-link">Go 101: Methods on Pointers vs. Values</a>
 		</h1>
 		<p>
@@ -322,27 +344,6 @@ p3 := new(Person) // type *Person
 </article>
 
 			
-			<article class="post post--card">
-	<header>
-		<h1>
-			<a href="/2013/push-it-out-push-ups-every-hour./" class="post-title-link">Push it out! Push ups every hour.</a>
-		</h1>
-		<p>
-			<time datetime="2013-08-23 22:20:56 -0500 -0500" pubdate="pubdate">Friday, 23 August 2013</time>
-		</p>
-	</header>
-	<div class="post-summary">
-		<p><strong>Push ups. Every hour, on the hour. Can you handle it?</strong></p>
-<p>I&rsquo;ve been motivated by <a href="http://www.steubing.me">a friend</a> to start this challenge. Every hour, on the hour, I&rsquo;m going to drop and do a set of push ups.</p>
-<p>Remembering is the hardest part. Timers are easy to set but also easy to ignore. My solution is to make myself a massive nag screen that will flash every hour while I&rsquo;m at work.</p>
-	</div>
-	<p class="post-read-more">
-		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/push-it-out-push-ups-every-hour./">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
-	</p>
-</article>
-
-			
 		</div>
 	
 
@@ -382,7 +383,7 @@ var refTagger = {
   </main>
   <footer>
     <div class="site-wrap">
-<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Subscribe to the <a style="font-weight: bold;" href="https://creators.spotify.com/pod/profile/not-so-silent-thoughts/">podcast</a> (<a href="https://anchor.fm/s/118240720/podcast/rss">RSS</a>) or blog <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
 <p>&copy;&nbsp;2014&ndash;2026&nbsp;Joshua Poehls.</p>
 </div>

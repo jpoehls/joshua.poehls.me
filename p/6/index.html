@@ -109,6 +109,29 @@
 			<article class="post post--card">
 	<header>
 		<h1>
+			<a href="/2013/non-enumerable-properties-in-javascript/" class="post-title-link">Non-enumerable properties in JavaScript</a>
+		</h1>
+		<p>
+			<time datetime="2013-03-28 22:06:19 -0500 -0500" pubdate="pubdate">Thursday, 28 March 2013</time>
+		</p>
+	</header>
+	<div class="post-summary">
+		<p>It isn&rsquo;t very common in the wild but JavaScript (as of ES5) does support non-enumerable properties.
+That is to say, objects can have properties that don&rsquo;t show up when you do a <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Statements/for...in"><code>for...in</code></a> loop over the object or use <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/keys"><code>Object.keys()</code></a> to get an array of property names.</p>
+<p>I spent way too long tonight figuring out why a property was not being
+included in the <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/JSON/stringify"><code>JSON.stringify()</code></a> output because I didn&rsquo;t remember that this was possible. You see, <code>stringify()</code> works by enumerating the object&rsquo;s properties.
+So it makes sense that non-enumerable properties would be ignored.</p>
+	</div>
+	<p class="post-read-more">
+		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
+		<a href="/2013/non-enumerable-properties-in-javascript/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
+	</p>
+</article>
+
+			
+			<article class="post post--card">
+	<header>
+		<h1>
 			<a href="/2013/substacks-philosophy-of-small-things/" class="post-title-link">Substack&#39;s philosophy of small things</a>
 		</h1>
 		<p>
@@ -384,28 +407,6 @@ sys    0m0.100s
 </article>
 
 			
-			<article class="post post--card">
-	<header>
-		<h1>
-			<a href="/2013/an-mklink-powershell-module/" class="post-title-link">An MKLINK PowerShell Module</a>
-		</h1>
-		<p>
-			<time datetime="2013-01-22 21:07:03 -0500 -0500" pubdate="pubdate">Tuesday, 22 January 2013</time>
-		</p>
-	</header>
-	<div class="post-summary">
-		<p><a href="http://technet.microsoft.com/en-us/library/cc753194(v=WS.10).aspx">MKLINK</a> is a very useful utility on Windows. Unfortunately there aren&rsquo;t any native PowerShell functions that replace it so we still have to shell out to the command prompt.</p>
-<p>This can be made less painful with a helper function that will pipe all arguments to the MKLINK command.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#cf222e">function</span><span style="color:#fff"> </span><span style="color:#6639ba">mklink</span> <span style="color:#1f2328">{</span> cmd <span style="color:#1f2328">/</span>c mklink <span style="color:#953800">$args</span> <span style="color:#1f2328">}</span>
-</span></span></code></pre></div><p>Personally though, I prefer to use native PowerShell functions whenever possible so I put together a module that provides wrappers for the key functionality of MKLINK.</p>
-	</div>
-	<p class="post-read-more">
-		<span class="excerpt-ellipsis" aria-hidden="true">&nbsp;&hellip;</span>
-		<a href="/2013/an-mklink-powershell-module/">Continue reading <span class="symbol" aria-hidden="true">→</span></a>
-	</p>
-</article>
-
-			
 		</div>
 	
 
@@ -445,7 +446,7 @@ var refTagger = {
   </main>
   <footer>
     <div class="site-wrap">
-<p>Subscribe to the <a href="/feed.xml">feed</a> to stay up-to-date.</p>
+<p>Subscribe to the <a style="font-weight: bold;" href="https://creators.spotify.com/pod/profile/not-so-silent-thoughts/">podcast</a> (<a href="https://anchor.fm/s/118240720/podcast/rss">RSS</a>) or blog <a href="/feed.xml">feed</a> to stay up-to-date.</p>
 <p>Browse the <a href="/archives">archives</a> if you're bored.</p>
 <p>&copy;&nbsp;2014&ndash;2026&nbsp;Joshua Poehls.</p>
 </div>
