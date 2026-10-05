@@ -25,3 +25,7 @@ postPrefixHtml = """
 </p>
 </blockquote>
 """
+[sermons]
+title = "Sermons"
+description = "Sermons I've preached"
+postPrefixHtml = ""
